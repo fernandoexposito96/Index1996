@@ -1,104 +1,52 @@
-const CACHE_NAME = "conecta-v1";
+const CACHE_NAME = "conecta-2026-v1";
 
-const FILES_TO_CACHE = [
+const FILES = [
   "./",
   "./index.html",
-  "./manifest.json",
-  "./sw.js"
+  "./manifest.json"
 ];
 
-
-/* INSTALACIÓN */
-
 self.addEventListener("install", event => {
-
   event.waitUntil(
-
     caches.open(CACHE_NAME)
-      .then(cache => {
-
-        return cache.addAll(FILES_TO_CACHE);
-
-      })
-
+      .then(cache => cache.addAll(FILES))
+      .then(() => self.skipWaiting())
   );
-
-  self.skipWaiting();
-
 });
 
-
-/* ACTIVACIÓN */
-
 self.addEventListener("activate", event => {
-
   event.waitUntil(
-
-    caches.keys().then(keys => {
-
-      return Promise.all(
-
+    caches.keys().then(keys =>
+      Promise.all(
         keys
           .filter(key => key !== CACHE_NAME)
           .map(key => caches.delete(key))
-
-      );
-
-    })
-
+      )
+    ).then(() => self.clients.claim())
   );
-
-  self.clients.claim();
-
 });
-
-
-/* PETICIONES */
 
 self.addEventListener("fetch", event => {
 
-  if(event.request.method !== "GET"){
-    return;
-  }
+  if (event.request.method !== "GET") return;
 
   event.respondWith(
+    fetch(event.request)
+      .then(response => {
 
-    caches.match(event.request)
-      .then(cachedResponse => {
+        const copy = response.clone();
 
-        if(cachedResponse){
-          return cachedResponse;
-        }
-
-        return fetch(event.request)
-          .then(response => {
-
-            if(
-              !response ||
-              response.status !== 200 ||
-              response.type === "opaque"
-            ){
-              return response;
-            }
-
-            const copy=response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request,copy);
-              });
-
-            return response;
-
-          })
-          .catch(() => {
-
-            return caches.match("./index.html");
-
+        caches.open(CACHE_NAME)
+          .then(cache => {
+            cache.put(event.request, copy);
           });
 
-      })
+        return response;
 
+      })
+      .catch(() =>
+        caches.match(event.request)
+      )
   );
 
 });
