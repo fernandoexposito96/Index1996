@@ -55,6 +55,12 @@
       "short_name": "Chat",
       "description": "Habla con tus conexiones",
       "url": "./#chat"
+    },
+    {
+      "name": "Perfil",
+      "short_name": "Perfil",
+      "description": "Gestiona tu perfil y ajustes",
+      "url": "./#perfil"
     }
   ],
 
