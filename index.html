@@ -1,3507 +1,3313 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#ffffff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="CONECTA">
-<meta name="description" content="CONECTA — personas, fotos, intereses, planes, música y chat.">
-<link rel="manifest" href="manifest.json">
-<title>CONECTA</title>
+  <meta charset="UTF-8">
 
-<style>
-:root{
-  --accent:#7c3aed;
-  --accent2:#ec4899;
-  --bg:#f7f7fb;
-  --surface:#fff;
-  --surface2:#f1f1f6;
-  --surface3:#e7e7ef;
-  --text:#15151b;
-  --muted:#73737f;
-  --border:rgba(20,20,30,.09);
-  --shadow:0 12px 35px rgba(20,20,30,.08);
-  --radius:22px;
-}
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:
-    radial-gradient(circle at 5% 0%,rgba(124,58,237,.14),transparent 30%),
-    radial-gradient(circle at 100% 20%,rgba(236,72,153,.12),transparent 30%),
-    var(--bg);
-  color:var(--text);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-button,input,textarea,select{font:inherit}
-button{border:0;cursor:pointer}
-.hidden{display:none!important}
+  <meta name="theme-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="NEXO">
 
-.screen{
-  display:none;
-  min-height:100vh;
-  padding-bottom:110px;
-}
-.screen.active{display:block}
-.container{width:min(1120px,92%);margin:auto}
+  <title>NEXO</title>
 
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(255,255,255,.82);
-  backdrop-filter:blur(22px);
-  border-bottom:1px solid var(--border)
-}
-.topbar-inner{
-  width:min(1120px,92%);
-  min-height:68px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px
-}
-.logo{
-  font-size:24px;
-  font-weight:950;
-  letter-spacing:-1.4px
-}
-.logo span{color:var(--accent2)}
+  <link rel="manifest" href="./manifest.json">
 
-.icon-btn{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:var(--surface);
-  color:var(--text);
-  border:1px solid var(--border);
-  box-shadow:var(--shadow)
-}
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --surface-2: #f0f2f7;
+      --text: #111318;
+      --muted: #747987;
+      --border: rgba(20, 24, 35, .08);
+      --primary: #635bff;
+      --primary-2: #8c5cff;
+      --pink: #ff4f9a;
+      --blue: #2d8cff;
+      --green: #20c997;
+      --orange: #ff9f43;
+      --shadow: 0 12px 35px rgba(31, 36, 54, .10);
+      --radius: 22px;
+      --nav-height: 76px;
+    }
 
-.hero{padding:34px 0 18px}
-.hero h1{
-  font-size:clamp(36px,8vw,62px);
-  line-height:.98;
-  letter-spacing:-3px;
-  margin-bottom:12px
-}
-.gradient{
-  background:linear-gradient(100deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent
-}
-.hero p{color:var(--muted);line-height:1.55}
+    body.dark {
+      --bg: #090b10;
+      --surface: #11141b;
+      --surface-2: #191d26;
+      --text: #f6f7fb;
+      --muted: #969dac;
+      --border: rgba(255,255,255,.08);
+      --shadow: 0 15px 40px rgba(0,0,0,.35);
+    }
 
-.card{
-  background:rgba(255,255,255,.92);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:20px;
-  margin-bottom:15px;
-  box-shadow:var(--shadow)
-}
-.card-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:15px
-}
-.card-title h2{font-size:20px}
-.card-title span{font-size:13px;color:var(--muted)}
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-.btn{
-  min-height:46px;
-  padding:0 18px;
-  border-radius:15px;
-  color:#fff;
-  font-weight:850;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  transition:.2s
-}
-.btn:active{transform:scale(.97)}
-.btn-primary{
-  background:linear-gradient(135deg,var(--accent),var(--accent2))
-}
-.btn-secondary{
-  background:var(--surface2);
-  color:var(--text);
-  border:1px solid var(--border)
-}
-.btn-danger{
-  background:#fee2e2;
-  color:#dc2626
-}
-.btn-success{
-  background:#dcfce7;
-  color:#15803d
-}
-.full{width:100%}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
 
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px
-}
-.quick{
-  min-height:95px;
-  padding:15px;
-  background:linear-gradient(145deg,var(--surface),var(--surface2));
-  border:1px solid var(--border);
-  border-radius:19px;
-  color:var(--text);
-  text-align:left
-}
-.quick-icon{font-size:28px;display:block;margin-bottom:7px}
-.quick small{color:var(--muted)}
+    body {
+      overflow-x: hidden;
+      padding-bottom: calc(var(--nav-height) + 20px);
+      transition: background .25s ease, color .25s ease;
+    }
 
-.section-heading{
-  margin:28px 0 14px
-}
-.section-heading h2{font-size:23px;margin-bottom:5px}
-.section-heading p{font-size:14px;color:var(--muted)}
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
 
-.category-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px
-}
-.category-card{
-  position:relative;
-  min-height:150px;
-  overflow:hidden;
-  border-radius:21px;
-  border:1px solid rgba(0,0,0,.08);
-  color:#fff;
-  text-align:left;
-  isolation:isolate
-}
-.category-bg{
-  position:absolute;
-  inset:0;
-  background-size:cover;
-  background-position:center;
-  z-index:-2;
-  transition:.4s
-}
-.category-card:hover .category-bg{transform:scale(1.08)}
-.category-overlay{
-  position:absolute;
-  inset:0;
-  z-index:-1;
-  background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05))
-}
-.category-content{
-  position:absolute;
-  left:14px;
-  right:14px;
-  bottom:14px
-}
-.category-icon{font-size:28px;margin-bottom:5px}
-.category-content strong{display:block;font-size:17px}
-.category-content small{color:#eee;font-size:12px}
+    button {
+      border: 0;
+      cursor: pointer;
+    }
 
-.feed{
-  display:flex;
-  flex-direction:column;
-  gap:15px
-}
-.post{
-  overflow:hidden;
-  padding:0
-}
-.post-head{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px
-}
-.avatar{
-  width:52px;
-  height:52px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;
-  font-size:21px;
-  font-weight:900;
-  overflow:hidden
-}
-.avatar img{
-  width:100%;
-  height:100%;
-  object-fit:cover
-}
-.post-user{flex:1}
-.post-user strong{display:block}
-.post-user small{color:var(--muted)}
-.post-image{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  display:block
-}
-.post-body{padding:15px 16px 17px}
-.post-actions{
-  display:flex;
-  gap:8px;
-  margin-bottom:11px
-}
-.post-action{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:var(--surface2);
-  color:var(--text)
-}
-.post-caption{line-height:1.5}
-.post-caption b{margin-right:5px}
-.music{
-  margin-top:12px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 12px;
-  background:var(--surface2);
-  border-radius:15px
-}
-.music-icon{font-size:21px}
-.music small{display:block;color:var(--muted)}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.profile-head{
-  display:flex;
-  align-items:center;
-  gap:15px
-}
-.profile-head h2{margin-bottom:4px}
-.muted{color:var(--muted)}
-.tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:13px
-}
-.tag{
-  padding:8px 12px;
-  background:var(--surface3);
-  border-radius:999px;
-  color:var(--text);
-  font-size:13px
-}
+    .app {
+      width: 100%;
+      max-width: 760px;
+      margin: auto;
+      min-height: 100vh;
+    }
 
-.person{
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:12px 0
-}
-.person-info{flex:1}
-.person-info strong{display:block;margin-bottom:3px}
-.person-info small{color:var(--muted)}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      padding: 14px 16px 12px;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.person-avatar{
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  flex-shrink:0;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;
-  font-size:21px;
-  font-weight:800
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
 
-.plan-card{
-  padding:0;
-  overflow:hidden
-}
-.plan-cover{
-  height:170px;
-  background-size:cover;
-  background-position:center
-}
-.plan-body{padding:17px}
-.plan-title-row{
-  display:flex;
-  align-items:center;
-  gap:12px
-}
-.plan-icon{
-  width:53px;
-  height:53px;
-  border-radius:16px;
-  background:var(--surface2);
-  display:grid;
-  place-items:center;
-  font-size:27px;
-  flex-shrink:0
-}
-.plan-info{
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-  margin-top:6px
-}
-.plan-actions{
-  display:flex;
-  gap:8px;
-  margin-top:14px
-}
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      font-weight: 900;
+      box-shadow: 0 8px 20px rgba(99,91,255,.28);
+    }
 
-.search{
-  position:relative;
-  margin:15px 0
-}
-.search input{padding-left:45px}
-.search-icon{
-  position:absolute;
-  left:15px;
-  top:13px
-}
+    .brand-name {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -.8px;
+    }
 
-.input-group{margin-bottom:15px}
-.input-group label{
-  display:block;
-  font-size:13px;
-  color:var(--muted);
-  margin-bottom:7px
-}
-.input,textarea,select{
-  width:100%;
-  min-height:47px;
-  background:var(--surface2);
-  color:var(--text);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 14px;
-  outline:none
-}
-textarea{min-height:100px;resize:vertical}
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
 
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px
-}
-.stat{
-  text-align:center;
-  background:var(--surface2);
-  border-radius:17px;
-  padding:15px 8px
-}
-.stat strong{font-size:24px;display:block}
-.stat small{color:var(--muted)}
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.04);
+    }
 
-.bottom-nav{
-  position:fixed;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  z-index:100;
-  width:min(720px,94%);
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  background:rgba(255,255,255,.92);
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:7px;
-  backdrop-filter:blur(22px);
-  box-shadow:0 20px 60px rgba(0,0,0,.15)
-}
-.nav-item{
-  min-height:58px;
-  border-radius:17px;
-  background:transparent;
-  color:#777783;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:3px;
-  font-size:11px
-}
-.nav-icon{font-size:21px}
-.nav-item.active{
-  background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(236,72,153,.12));
-  color:var(--accent)
-}
+    .screen {
+      display: none;
+      padding: 8px 16px 20px;
+      animation: fade .25s ease;
+    }
 
-.modal{
-  position:fixed;
-  inset:0;
-  z-index:300;
-  background:rgba(0,0,0,.6);
-  backdrop-filter:blur(8px);
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  padding:15px
-}
-.modal.open{display:flex}
-.modal-box{
-  width:min(650px,100%);
-  max-height:91vh;
-  overflow:auto;
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:28px;
-  padding:22px
-}
-.modal-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px
-}
+    .screen.active {
+      display: block;
+    }
 
-.toast{
-  position:fixed;
-  left:50%;
-  top:20px;
-  z-index:500;
-  transform:translate(-50%,-20px);
-  opacity:0;
-  pointer-events:none;
-  background:#18181b;
-  color:#fff;
-  border-radius:14px;
-  padding:13px 18px;
-  transition:.25s
-}
-.toast.show{
-  opacity:1;
-  transform:translate(-50%,0)
-}
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.setting{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid var(--border)
-}
-.setting:last-child{border-bottom:0}
-.setting-info{flex:1}
-.setting-info strong{display:block;margin-bottom:4px}
-.setting-info small{color:var(--muted);line-height:1.4}
+    .welcome {
+      margin: 12px 0 18px;
+    }
 
-.switch{
-  position:relative;
-  width:50px;
-  height:28px;
-  flex-shrink:0
-}
-.switch input{opacity:0;width:0;height:0}
-.slider{
-  position:absolute;
-  inset:0;
-  background:#d4d4d8;
-  border-radius:999px
-}
-.slider:before{
-  content:"";
-  position:absolute;
-  width:22px;
-  height:22px;
-  left:3px;
-  top:3px;
-  background:#fff;
-  border-radius:50%;
-  transition:.2s;
-  box-shadow:0 2px 5px rgba(0,0,0,.2)
-}
-.switch input:checked+.slider{background:var(--accent)}
-.switch input:checked+.slider:before{transform:translateX(22px)}
+    .welcome h1 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.08;
+      letter-spacing: -1.3px;
+    }
 
-.color-options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-top:12px
-}
-.color{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:3px solid transparent
-}
+    .welcome p {
+      color: var(--muted);
+      margin: 8px 0 0;
+      font-size: 14px;
+    }
 
-#welcome{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(124,58,237,.25),transparent 30%),
-    radial-gradient(circle at 80% 70%,rgba(236,72,153,.2),transparent 30%),
-    #f7f7fb
-}
-.welcome-box{
-  width:min(510px,100%);
-  text-align:center
-}
-.welcome-logo{
-  font-size:56px;
-  font-weight:950;
-  letter-spacing:-4px;
-  margin-bottom:12px
-}
-.welcome-logo span{color:var(--accent2)}
-.welcome-box p{
-  color:var(--muted);
-  line-height:1.6;
-  margin-bottom:25px
-}
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 210px;
+      border-radius: 28px;
+      padding: 24px;
+      color: white;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.25), transparent 30%),
+        linear-gradient(135deg, #635bff, #8b5cf6 50%, #ff4f9a);
+      box-shadow: 0 18px 40px rgba(99,91,255,.23);
+      margin-bottom: 18px;
+    }
 
-.chat-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px
-}
-.chat{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px;
-  background:var(--surface2);
-  border-radius:17px;
-  color:var(--text);
-  text-align:left
-}
-.chat-text{flex:1}
-.chat-text strong{display:block}
-.chat-text small{color:var(--muted)}
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      right: -55px;
+      bottom: -75px;
+      background: rgba(255,255,255,.12);
+    }
 
-.empty{
-  text-align:center;
-  padding:40px;
-  color:var(--muted)
-}
+    .hero h2 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-size: 28px;
+      max-width: 310px;
+      letter-spacing: -.8px;
+    }
 
-.photo-preview{
-  width:100%;
-  max-height:300px;
-  object-fit:cover;
-  border-radius:18px;
-  margin-top:10px
-}
+    .hero p {
+      position: relative;
+      z-index: 2;
+      max-width: 330px;
+      line-height: 1.5;
+      margin: 12px 0 20px;
+      color: rgba(255,255,255,.86);
+    }
 
-@media(max-width:850px){
-  .category-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px){
-  .quick-grid{grid-template-columns:repeat(2,1fr)}
-  .category-grid{grid-template-columns:repeat(2,1fr)}
-  .category-card{min-height:135px}
-  .hero h1{letter-spacing:-2px}
-  .plan-cover{height:150px}
-}
-</style>
+    .hero button {
+      position: relative;
+      z-index: 3;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: white;
+      color: #554cff;
+      font-weight: 800;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 22px 2px 12px;
+    }
+
+    .section-head h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .section-head span {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .tile {
+      min-height: 145px;
+      border-radius: 22px;
+      padding: 17px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform .18s ease;
+    }
+
+    .tile:active {
+      transform: scale(.98);
+    }
+
+    .tile-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 21px;
+      margin-bottom: 18px;
+    }
+
+    .tile h4 {
+      margin: 0 0 5px;
+      font-size: 16px;
+    }
+
+    .tile p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .purple {
+      background: rgba(99,91,255,.12);
+    }
+
+    .pink {
+      background: rgba(255,79,154,.12);
+    }
+
+    .blue {
+      background: rgba(45,140,255,.12);
+    }
+
+    .green {
+      background: rgba(32,201,151,.12);
+    }
+
+    .orange {
+      background: rgba(255,159,67,.14);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .person-card {
+      position: relative;
+    }
+
+    .person-cover {
+      height: 130px;
+      background:
+        linear-gradient(135deg, #635bff, #ff4f9a);
+      position: relative;
+    }
+
+    .person-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-large {
+      position: absolute;
+      left: 18px;
+      bottom: -34px;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--surface);
+      background: var(--surface-2);
+    }
+
+    .person-body {
+      padding: 45px 17px 17px;
+    }
+
+    .person-name {
+      font-weight: 900;
+      font-size: 19px;
+    }
+
+    .online {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-left: 5px;
+    }
+
+    .person-meta {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 12px 0;
+    }
+
+    .chip {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 800;
+    }
+
+    .primary-btn {
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    }
+
+    .secondary-btn {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .feed-post {
+      overflow: hidden;
+    }
+
+    .post-header {
+      padding: 13px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+
+    .post-user {
+      flex: 1;
+    }
+
+    .post-user strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .post-user span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .post-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: var(--surface-2);
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 7px;
+      padding: 12px 13px 5px;
+    }
+
+    .post-action {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: var(--surface-2);
+      color: var(--text);
+      font-size: 18px;
+    }
+
+    .post-caption {
+      padding: 3px 14px 16px;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .plan-card {
+      padding: 16px;
+    }
+
+    .plan-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .plan-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 25px;
+      flex: 0 0 auto;
+    }
+
+    .plan-info {
+      flex: 1;
+    }
+
+    .plan-info h4 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .plan-info p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .plan-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 13px 0;
+    }
+
+    .detail {
+      background: var(--surface-2);
+      padding: 8px 10px;
+      border-radius: 11px;
+      font-size: 11px;
+    }
+
+    .chat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .chat-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      box-shadow: 0 6px 20px rgba(0,0,0,.04);
+    }
+
+    .chat-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .chat-content strong {
+      display: block;
+      font-size: 14px;
+    }
+
+    .chat-content span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+    }
+
+    .chat-time {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .chat-window {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: var(--bg);
+      flex-direction: column;
+    }
+
+    .chat-window.active {
+      display: flex;
+    }
+
+    .chat-header {
+      padding: 12px 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .back-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 18px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .message {
+      max-width: 78%;
+      padding: 11px 13px;
+      border-radius: 17px;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .message.me {
+      align-self: flex-end;
+      color: white;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      border-bottom-right-radius: 5px;
+    }
+
+    .message.them {
+      align-self: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-compose {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .chat-compose input {
+      min-width: 0;
+      flex: 1;
+      border: 0;
+      outline: none;
+      border-radius: 15px;
+      padding: 12px;
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .send-btn {
+      width: 45px;
+      border-radius: 14px;
+      color: white;
+      background: var(--primary);
+    }
+
+    .profile-card {
+      padding: 22px;
+      text-align: center;
+    }
+
+    .profile-avatar {
+      width: 105px;
+      height: 105px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 auto 13px;
+      border: 4px solid var(--surface-2);
+    }
+
+    .profile-card h2 {
+      margin: 0;
+    }
+
+    .profile-card p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .profile-options {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .profile-option {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+    }
+
+    .option-icon {
+      width: 39px;
+      height: 39px;
+      border-radius: 13px;
+      background: var(--surface-2);
+      display: grid;
+      place-items: center;
+    }
+
+    .profile-option span:last-child {
+      margin-left: auto;
+      color: var(--muted);
+    }
+
+    .music-player {
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: calc(var(--nav-height) + 8px);
+      z-index: 45;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 35px rgba(0,0,0,.14);
+      backdrop-filter: blur(18px);
+      border-radius: 19px;
+      padding: 9px;
+      display: none;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .music-player.show {
+      display: flex;
+    }
+
+    .music-cover {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--pink), var(--primary));
+      display: grid;
+      place-items: center;
+      color: white;
+      font-size: 19px;
+    }
+
+    .music-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .music-info strong {
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 12px;
+    }
+
+    .music-info span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .music-control {
+      width: 37px;
+      height: 37px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      height: var(--nav-height);
+      display: flex;
+      justify-content: center;
+      background: color-mix(in srgb, var(--surface) 94%, transparent);
+      border-top: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: 760px;
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      padding: 7px 8px;
+    }
+
+    .nav-item {
+      color: var(--muted);
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      border-radius: 16px;
+    }
+
+    .nav-item span:first-child {
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+      background: rgba(99,91,255,.08);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      background: rgba(0,0,0,.45);
+      padding: 10px;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 620px;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 27px;
+      padding: 20px;
+      box-shadow: 0 -15px 60px rgba(0,0,0,.25);
+      animation: slideup .25s ease;
+    }
+
+    @keyframes slideup {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+    }
+
+    .close {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 13px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      border: 1px solid var(--border);
+      outline: none;
+      background: var(--surface-2);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .ai-box {
+      padding: 16px;
+      border-radius: 21px;
+      background:
+        linear-gradient(135deg, rgba(99,91,255,.13), rgba(255,79,154,.12));
+      border: 1px solid rgba(99,91,255,.15);
+    }
+
+    .ai-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 900;
+      margin-bottom: 9px;
+    }
+
+    .ai-answer {
+      line-height: 1.5;
+      font-size: 13px;
+      color: var(--text);
+      white-space: pre-wrap;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 16px;
+      outline: none;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 35px 15px;
+      color: var(--muted);
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 92px;
+      transform: translateX(-50%) translateY(20px);
+      background: #17191f;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 14px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .25s ease;
+      z-index: 500;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .story-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 4px 2px 7px;
+      scrollbar-width: none;
+    }
+
+    .story-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .story {
+      flex: 0 0 72px;
+      text-align: center;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .story-avatar {
+      width: 62px;
+      height: 62px;
+      margin: auto;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+    }
+
+    .story-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--surface);
+    }
+
+    .music-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface-2);
+      padding: 10px;
+      border-radius: 15px;
+    }
+
+    .song-cover {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--pink));
+      color: white;
+      display: grid;
+      place-items: center;
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .song-info strong {
+      display: block;
+      font-size: 12px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .song-info span {
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    @media (min-width: 700px) {
+      .screen {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, minmax(0,1fr));
+      }
+
+      .modal {
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="welcome">
-  <div class="welcome-box">
-    <div class="welcome-logo">CONECTA<span>.</span></div>
-    <p>
-      Personas. Fotos. Intereses. Planes. Música.
-      <br>Todo en un mismo lugar.
-    </p>
-    <button class="btn btn-primary full" onclick="enterApp()">
-      Entrar en CONECTA
+<div class="app">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">N</div>
+      <div class="brand-name">NEXO</div>
+    </div>
+
+    <div class="top-actions">
+      <button class="icon-btn" onclick="openSearch()">⌕</button>
+      <button class="icon-btn" onclick="openNotifications()">♡</button>
+    </div>
+  </header>
+
+  <!-- =========================
+       INICIO
+  ========================== -->
+  <main id="home" class="screen active">
+
+    <div class="welcome">
+      <h1>Tu mundo.<br>Tu NEXO.</h1>
+      <p>Conecta, comparte, descubre y crea.</p>
+    </div>
+
+    <section class="hero">
+      <h2>Todo lo que necesitas, en un solo lugar.</h2>
+      <p>
+        Personas, conversaciones, planes, música, fotos y herramientas
+        inteligentes diseñadas para estar más conectado.
+      </p>
+      <button onclick="showScreen('connect')">
+        Explorar NEXO →
+      </button>
+    </section>
+
+    <!-- ACCESOS EN TARJETAS, SIN "DESCUBRIR PERSONAS" -->
+    <div class="section-head">
+      <h3>Tu espacio</h3>
+      <span>NEXO 2026</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="tile" onclick="showScreen('connect')">
+        <div class="tile-icon purple">🤝</div>
+        <h4>Conexiones</h4>
+        <p>Personas con intereses que encajan contigo.</p>
+      </div>
+
+      <div class="tile" onclick="showScreen('plans')">
+        <div class="tile-icon blue">📅</div>
+        <h4>Mis planes</h4>
+        <p>Organiza actividades y encuentra compañía.</p>
+      </div>
+
+      <div class="tile" onclick="showScreen('feed')">
+        <div class="tile-icon pink">📸</div>
+        <h4>Fotos</h4>
+        <p>Comparte momentos y descubre publicaciones.</p>
+      </div>
+
+      <div class="tile" onclick="openMusic()">
+        <div class="tile-icon orange">🎵</div>
+        <h4>Música</h4>
+        <p>Escucha tus canciones mientras utilizas NEXO.</p>
+      </div>
+
+      <div class="tile" onclick="showScreen('chat')">
+        <div class="tile-icon green">💬</div>
+        <h4>Mensajes</h4>
+        <p>Habla con tus conexiones en tiempo real.</p>
+      </div>
+
+      <div class="tile" onclick="openAI()">
+        <div class="tile-icon purple">✦</div>
+        <h4>NEXO IA</h4>
+        <p>Tu asistente inteligente dentro de la aplicación.</p>
+      </div>
+
+    </div>
+
+    <div class="section-head">
+      <h3>Historias</h3>
+      <span>Ahora</span>
+    </div>
+
+    <div class="story-row">
+
+      <div class="story">
+        <div class="story-avatar">
+          <img src="https://i.pravatar.cc/150?img=12" alt="">
+        </div>
+        <div>Laura</div>
+      </div>
+
+      <div class="story">
+        <div class="story-avatar">
+          <img src="https://i.pravatar.cc/150?img=33" alt="">
+        </div>
+        <div>Mario</div>
+      </div>
+
+      <div class="story">
+        <div class="story-avatar">
+          <img src="https://i.pravatar.cc/150?img=47" alt="">
+        </div>
+        <div>Lucía</div>
+      </div>
+
+      <div class="story">
+        <div class="story-avatar">
+          <img src="https://i.pravatar.cc/150?img=51" alt="">
+        </div>
+        <div>Álex</div>
+      </div>
+
+      <div class="story">
+        <div class="story-avatar">
+          <img src="https://i.pravatar.cc/150?img=68" alt="">
+        </div>
+        <div>Paula</div>
+      </div>
+
+    </div>
+
+    <div class="section-head">
+      <h3>Planes cerca de ti</h3>
+      <span onclick="showScreen('plans')" style="cursor:pointer">Ver todos</span>
+    </div>
+
+    <div class="card plan-card">
+
+      <div class="plan-top">
+
+        <div class="plan-icon">🏃</div>
+
+        <div class="plan-info">
+          <h4>Running al atardecer</h4>
+          <p>
+            Ruta tranquila para correr y conocer gente.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="plan-details">
+        <span class="detail">📍 La Pineda</span>
+        <span class="detail">🕖 19:30</span>
+        <span class="detail">👥 8 personas</span>
+      </div>
+
+      <button class="primary-btn" onclick="joinPlan('Running al atardecer')">
+        Me interesa
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- =========================
+       CONECTAR
+  ========================== -->
+  <main id="connect" class="screen">
+
+    <div class="welcome">
+      <h1>Conexiones</h1>
+      <p>Personas, intereses y nuevas posibilidades.</p>
+    </div>
+
+    <div class="search-box">
+      <input
+        id="peopleSearch"
+        type="search"
+        placeholder="Buscar personas o intereses..."
+        oninput="filterPeople()"
+      >
+    </div>
+
+    <div id="peopleContainer"></div>
+
+  </main>
+
+  <!-- =========================
+       PLANES
+  ========================== -->
+  <main id="plans" class="screen">
+
+    <div class="welcome">
+      <h1>Planes</h1>
+      <p>Haz algo. Invita. Conecta.</p>
+    </div>
+
+    <button
+      class="primary-btn"
+      style="width:100%; margin-bottom:15px"
+      onclick="openPlanCreator()"
+    >
+      ＋ Crear un plan
     </button>
-  </div>
+
+    <div id="plansContainer"></div>
+
+  </main>
+
+  <!-- =========================
+       FEED
+  ========================== -->
+  <main id="feed" class="screen">
+
+    <div class="welcome">
+      <h1>Momentos</h1>
+      <p>Fotos y publicaciones de tu comunidad.</p>
+    </div>
+
+    <button
+      class="primary-btn"
+      style="width:100%; margin-bottom:15px"
+      onclick="openPostCreator()"
+    >
+      ＋ Crear publicación
+    </button>
+
+    <div id="feedContainer"></div>
+
+  </main>
+
+  <!-- =========================
+       CHAT
+  ========================== -->
+  <main id="chat" class="screen">
+
+    <div class="welcome">
+      <h1>Chats</h1>
+      <p>Tus conversaciones.</p>
+    </div>
+
+    <div id="chatList" class="chat-list"></div>
+
+  </main>
+
+  <!-- =========================
+       PERFIL
+  ========================== -->
+  <main id="profile" class="screen">
+
+    <div class="card profile-card">
+
+      <img
+        id="myAvatar"
+        class="profile-avatar"
+        src="https://i.pravatar.cc/300?img=12"
+        alt="Perfil"
+      >
+
+      <h2 id="myName">Fernando</h2>
+
+      <p id="myBio">
+        Explorando NEXO · deporte · música · planes
+      </p>
+
+      <div class="chips" style="justify-content:center">
+        <span class="chip">🏃 Deporte</span>
+        <span class="chip">🎵 Música</span>
+        <span class="chip">📸 Fotos</span>
+      </div>
+
+      <button
+        class="primary-btn"
+        style="width:100%"
+        onclick="openProfileEditor()"
+      >
+        Editar perfil
+      </button>
+
+    </div>
+
+    <div class="profile-options">
+
+      <button class="profile-option" onclick="openMusic()">
+        <span class="option-icon">🎵</span>
+        <strong>Mi música</strong>
+        <span>›</span>
+      </button>
+
+      <button class="profile-option" onclick="openAI()">
+        <span class="option-icon">✦</span>
+        <strong>NEXO IA</strong>
+        <span>›</span>
+      </button>
+
+      <button class="profile-option" onclick="toggleTheme()">
+        <span class="option-icon">🌙</span>
+        <strong>Cambiar apariencia</strong>
+        <span>›</span>
+      </button>
+
+      <button class="profile-option" onclick="openSettings()">
+        <span class="option-icon">⚙️</span>
+        <strong>Ajustes</strong>
+        <span>›</span>
+      </button>
+
+    </div>
+
+  </main>
+
 </div>
 
-<div id="app">
+<!-- =========================
+     MUSIC PLAYER
+========================== -->
 
-<!-- ================= INICIO ================= -->
-<section id="home" class="screen active">
+<div id="musicPlayer" class="music-player">
 
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-    <button class="icon-btn" onclick="showScreen('settings')">⚙️</button>
-  </div>
-</header>
+  <div class="music-cover">♫</div>
 
-<main class="container">
-
-<div class="hero">
-  <h1>Tu mundo.<br><span class="gradient">Tu gente.</span></h1>
-  <p>Descubre personas, comparte momentos y encuentra planes que encajen contigo.</p>
-</div>
-
-<!-- ACCESOS -->
-<div class="quick-grid">
-  <button class="quick" onclick="showScreen('feed')">
-    <span class="quick-icon">📸</span>
-    <small>Descubrir</small>
-  </button>
-  <button class="quick" onclick="showScreen('connect')">
-    <span class="quick-icon">🤝</span>
-    <small>Personas</small>
-  </button>
-  <button class="quick" onclick="showScreen('plans')">
-    <span class="quick-icon">📅</span>
-    <small>Planes</small>
-  </button>
-  <button class="quick" onclick="openPostModal()">
-    <span class="quick-icon">＋</span>
-    <small>Publicar</small>
-  </button>
-</div>
-
-<div class="section-heading">
-  <h2>Explora</h2>
-  <p>Encuentra tu gente según lo que te gusta.</p>
-</div>
-
-<div class="category-grid" id="homeCategories"></div>
-
-<div class="section-heading">
-  <h2>✨ Personas para ti</h2>
-  <p>Perfiles que podrían encajar contigo.</p>
-</div>
-
-<div class="card">
-  <div id="homePeople"></div>
-</div>
-
-<div class="section-heading">
-  <h2>🔥 Planes cerca de ti</h2>
-  <p>Actividades creadas por la comunidad.</p>
-</div>
-
-<div id="homePlans"></div>
-
-<div class="section-heading">
-  <h2>📸 Últimas publicaciones</h2>
-</div>
-
-<div id="homeFeed" class="feed"></div>
-
-</main>
-</section>
-
-
-<!-- ================= FEED ================= -->
-<section id="feed" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-    <button class="btn btn-primary" onclick="openPostModal()">＋ Publicar</button>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-  <h1>Descubrir</h1>
-  <p>Mira qué comparte la comunidad y descubre nuevas personas.</p>
-</div>
-
-<div id="feedList" class="feed"></div>
-
-</main>
-</section>
-
-
-<!-- ================= CONECTAR ================= -->
-<section id="connect" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-    <button class="icon-btn" onclick="openProfileModal()">👤</button>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-  <h1>Conectar</h1>
-  <p>Encuentra personas con intereses parecidos a los tuyos.</p>
-</div>
-
-<div class="search">
-  <span class="search-icon">🔎</span>
-  <input id="peopleSearch"
-         class="input"
-         placeholder="Buscar personas, ciudades o intereses..."
-         oninput="renderPeople()">
-</div>
-
-<div class="section-heading">
-  <h2>Explora intereses</h2>
-</div>
-
-<div class="category-grid" id="connectCategories"></div>
-
-<div class="section-heading">
-  <h2>Personas</h2>
-</div>
-
-<div id="peopleList"></div>
-
-</main>
-</section>
-
-
-<!-- ================= PLANES ================= -->
-<section id="plans" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-    <button class="btn btn-primary" onclick="openPlanModal()">＋ Crear</button>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-  <h1>Planes</h1>
-  <p>Haz algo diferente. Encuentra gente. CONECTA.</p>
-</div>
-
-<div class="category-grid" id="planCategories"></div>
-
-<div style="margin-top:22px" id="plansList"></div>
-
-</main>
-</section>
-
-
-<!-- ================= CHAT ================= -->
-<section id="chat" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-  <h1>Chat</h1>
-  <p>Habla con tus conexiones.</p>
-</div>
-
-<div class="card">
-  <div id="chatList"></div>
-</div>
-
-<div class="card">
-  <div class="card-title">
-    <h2>Próximamente</h2>
+  <div class="music-info">
+    <strong id="currentSong">Sin canción</strong>
+    <span id="currentArtist">NEXO Music</span>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <button class="btn btn-secondary" onclick="futureFeature('Llamadas')">📞 Llamadas</button>
-    <button class="btn btn-secondary" onclick="futureFeature('Videollamadas')">🎥 Vídeo</button>
-    <button class="btn btn-secondary" onclick="futureFeature('Grupos')">👥 Grupos</button>
-    <button class="btn btn-secondary" onclick="futureFeature('Voz')">🎙️ Voz</button>
-  </div>
-</div>
+  <button class="music-control" onclick="toggleAudio()">▶</button>
 
-</main>
-</section>
-
-
-<!-- ================= PERFIL ================= -->
-<section id="profile" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-    <button class="btn btn-primary" onclick="openProfileModal()">Editar</button>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-  <h1>Mi perfil</h1>
-  <p>Así te ve la comunidad.</p>
-</div>
-
-<div class="card">
-
-<div class="profile-head">
-
-<div class="avatar" id="profileAvatar">F</div>
-
-<div>
-<h2 id="profileName">Fernando</h2>
-<p class="muted" id="profileLocation">📍 Ubicación no definida</p>
-</div>
+  <button class="music-control" onclick="stopAudio()">■</button>
 
 </div>
 
-<div class="tags" id="profileTags"></div>
-
-<p id="profileDescription"
-   class="muted"
-   style="margin-top:15px">
-   Añade una descripción.
-</p>
-
-<br>
-
-<button class="btn btn-secondary full" onclick="openPhotoModal()">
-📸 Añadir foto de perfil
-</button>
-
-</div>
-
-<div class="card">
-
-<div class="card-title">
-<h2>Mi actividad</h2>
-</div>
-
-<div class="stats">
-
-<div class="stat">
-<strong id="statConnections">0</strong>
-<small>Conexiones</small>
-</div>
-
-<div class="stat">
-<strong id="statPlans">0</strong>
-<small>Planes</small>
-</div>
-
-<div class="stat">
-<strong id="statPosts">0</strong>
-<small>Publicaciones</small>
-</div>
-
-</div>
-
-</div>
-
-<div class="section-heading">
-<h2>Mis publicaciones</h2>
-</div>
-
-<div id="profileFeed" class="feed"></div>
-
-</main>
-</section>
-
-
-<!-- ================= AJUSTES ================= -->
-<section id="settings" class="screen">
-
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="logo">CONECTA<span>.</span></div>
-  </div>
-</header>
-
-<main class="container">
-
-<div class="hero">
-<h1>Ajustes</h1>
-<p>Personaliza tu experiencia.</p>
-</div>
-
-<div class="card">
-
-<div class="card-title">
-<h2>🎨 Apariencia</h2>
-</div>
-
-<div class="setting">
-
-<div class="setting-info">
-<strong>Modo oscuro</strong>
-<small>Cambia entre claro y oscuro.</small>
-</div>
-
-<label class="switch">
-<input id="darkToggle"
-       type="checkbox"
-       onchange="toggleDarkMode()">
-<span class="slider"></span>
-</label>
-
-</div>
-
-<div class="setting">
-<div class="setting-info">
-<strong>Color principal</strong>
-<small>Elige el color de CONECTA.</small>
-</div>
-</div>
-
-<div class="color-options">
-
-<button class="color"
-style="background:#7c3aed"
-onclick="setAccent('#7c3aed','#ec4899')"></button>
-
-<button class="color"
-style="background:#2563eb"
-onclick="setAccent('#2563eb','#06b6d4')"></button>
-
-<button class="color"
-style="background:#059669"
-onclick="setAccent('#059669','#22c55e')"></button>
-
-<button class="color"
-style="background:#dc2626"
-onclick="setAccent('#dc2626','#f97316')"></button>
-
-<button class="color"
-style="background:#db2777"
-onclick="setAccent('#db2777','#f472b6')"></button>
-
-<button class="color"
-style="background:#ea580c"
-onclick="setAccent('#ea580c','#facc15')"></button>
-
-</div>
-
-<div class="setting" style="margin-top:15px">
-
-<div class="setting-info">
-<strong>Fondo</strong>
-<small>Cambia el ambiente de la aplicación.</small>
-</div>
-
-<select id="backgroundSelect"
-onchange="setBackground(this.value)">
-
-<option value="default">Original</option>
-<option value="gradient">Gradiente</option>
-<option value="blue">Azul</option>
-<option value="green">Verde</option>
-<option value="red">Rojo</option>
-<option value="pink">Rosa</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-title">
-<h2>🔐 Privacidad</h2>
-</div>
-
-<div class="setting">
-
-<div class="setting-info">
-<strong>Perfil privado</strong>
-<small>Controla quién puede descubrirte.</small>
-</div>
-
-<label class="switch">
-<input id="privateProfile"
-type="checkbox"
-onchange="savePrivacy()">
-<span class="slider"></span>
-</label>
-
-</div>
-
-<div class="setting">
-
-<div class="setting-info">
-<strong>Mostrar ubicación</strong>
-<small>Utiliza una ubicación aproximada.</small>
-</div>
-
-<label class="switch">
-<input id="showLocation"
-type="checkbox"
-onchange="savePrivacy()">
-<span class="slider"></span>
-</label>
-
-</div>
-
-<div class="setting">
-
-<div class="setting-info">
-<strong>Mensajes</strong>
-<small>Controla quién puede escribirte.</small>
-</div>
-
-<select id="messagePermission"
-onchange="savePrivacy()">
-
-<option value="everyone">Todo el mundo</option>
-<option value="connections">Solo conexiones</option>
-<option value="nobody">Nadie</option>
-
-</select>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-title">
-<h2>📦 Mis datos</h2>
-</div>
-
-<button class="btn btn-secondary full"
-onclick="exportData()">
-Exportar mis datos
-</button>
-
-<br><br>
-
-<button class="btn btn-danger full"
-onclick="deleteLocalData()">
-Eliminar datos locales
-</button>
-
-</div>
-
-<div class="card">
-
-<div class="card-title">
-<h2>📜 Legal</h2>
-</div>
-
-<button class="btn btn-secondary full"
-onclick="openLegal('rules')">
-Normas de la comunidad
-</button>
-
-<br><br>
-
-<button class="btn btn-secondary full"
-onclick="openLegal('privacy')">
-Privacidad
-</button>
-
-<br><br>
-
-<button class="btn btn-secondary full"
-onclick="openLegal('terms')">
-Términos y condiciones
-</button>
-
-</div>
-
-</main>
-</section>
-
-</div>
-
-
-<!-- ================= NAVEGACIÓN ================= -->
+<audio id="audioPlayer"></audio>
+
+<!-- =========================
+     BOTTOM NAV
+========================== -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item active"
-data-screen="home"
-onclick="showScreen('home')">
+  <div class="nav-inner">
 
-<span class="nav-icon">🏠</span>
-Inicio
+    <button class="nav-item active" data-screen="home" onclick="showScreen('home')">
+      <span>⌂</span>
+      <span>Inicio</span>
+    </button>
 
-</button>
+    <button class="nav-item" data-screen="connect" onclick="showScreen('connect')">
+      <span>🤝</span>
+      <span>Conectar</span>
+    </button>
 
-<button class="nav-item"
-data-screen="connect"
-onclick="showScreen('connect')">
+    <button class="nav-item" data-screen="plans" onclick="showScreen('plans')">
+      <span>▣</span>
+      <span>Planes</span>
+    </button>
 
-<span class="nav-icon">🤝</span>
-Conectar
+    <button class="nav-item" data-screen="chat" onclick="showScreen('chat')">
+      <span>💬</span>
+      <span>Chat</span>
+    </button>
 
-</button>
+    <button class="nav-item" data-screen="profile" onclick="showScreen('profile')">
+      <span>●</span>
+      <span>Perfil</span>
+    </button>
 
-<button class="nav-item"
-data-screen="plans"
-onclick="showScreen('plans')">
-
-<span class="nav-icon">📅</span>
-Planes
-
-</button>
-
-<button class="nav-item"
-data-screen="chat"
-onclick="showScreen('chat')">
-
-<span class="nav-icon">💬</span>
-Chat
-
-</button>
-
-<button class="nav-item"
-data-screen="profile"
-onclick="showScreen('profile')">
-
-<span class="nav-icon">👤</span>
-Perfil
-
-</button>
+  </div>
 
 </nav>
 
+<!-- =========================
+     MODAL
+========================== -->
 
-<!-- ================= MODAL ================= -->
-
-<div id="modal"
-class="modal"
-onclick="closeModalOutside(event)">
-
-<div class="modal-box">
-
-<div class="modal-header">
-
-<h2 id="modalTitle">CONECTA</h2>
-
-<button class="icon-btn"
-onclick="closeModal()">✕</button>
-
+<div id="modal" class="modal" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modalContent"></div>
 </div>
-
-<div id="modalContent"></div>
-
-</div>
-
-</div>
-
 
 <div id="toast" class="toast"></div>
 
+<!-- =========================
+     JAVASCRIPT
+========================== -->
 
 <script>
 
-const STORAGE_KEY="conecta_2026";
+const STORAGE = {
+  profile: "nexo_profile",
+  posts: "nexo_posts",
+  plans: "nexo_plans",
+  songs: "nexo_songs",
+  theme: "nexo_theme"
+};
 
-const categories=[
+const defaultPeople = [
 
-{
-id:"running",
-title:"Running",
-icon:"🏃",
-text:"Salir a correr",
-image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id: 1,
+    name: "Laura",
+    age: 27,
+    city: "Tarragona",
+    photo: "https://i.pravatar.cc/500?img=47",
+    cover: "https://picsum.photos/900/500?random=11",
+    interests: ["Running", "Música", "Viajes"],
+    bio: "Me gusta correr, viajar y descubrir sitios nuevos."
+  },
 
-{
-id:"gym",
-title:"Gym",
-icon:"🏋️",
-text:"Entrenar juntos",
-image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id: 2,
+    name: "Mario",
+    age: 29,
+    city: "Salou",
+    photo: "https://i.pravatar.cc/500?img=12",
+    cover: "https://picsum.photos/900/500?random=12",
+    interests: ["Gym", "Fútbol", "Playa"],
+    bio: "Gym, fútbol y buenos planes."
+  },
 
-{
-id:"cine",
-title:"Cine",
-icon:"🎬",
-text:"Películas",
-image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id: 3,
+    name: "Lucía",
+    age: 25,
+    city: "Reus",
+    photo: "https://i.pravatar.cc/500?img=32",
+    cover: "https://picsum.photos/900/500?random=13",
+    interests: ["Fotografía", "Cine", "Música"],
+    bio: "Fotografía, cine y música."
+  },
 
-{
-id:"futbol",
-title:"Fútbol",
-icon:"⚽",
-text:"Partidos",
-image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"
-},
+  {
+    id: 4,
+    name: "Álex",
+    age: 31,
+    city: "Tarragona",
+    photo: "https://i.pravatar.cc/500?img=68",
+    cover: "https://picsum.photos/900/500?random=14",
+    interests: ["Ciclismo", "Naturaleza", "Running"],
+    bio: "Siempre buscando una nueva ruta."
+  },
 
-{
-id:"musica",
-title:"Música",
-icon:"🎵",
-text:"Conciertos",
-image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"viajes",
-title:"Viajes",
-icon:"✈️",
-text:"Descubrir lugares",
-image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"gaming",
-title:"Gaming",
-icon:"🎮",
-text:"Jugar",
-image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"comida",
-title:"Comida",
-icon:"🍔",
-text:"Restaurantes",
-image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"ciclismo",
-title:"Ciclismo",
-icon:"🚴",
-text:"Rutas",
-image:"https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"playa",
-title:"Playa",
-icon:"🏖️",
-text:"Planes de playa",
-image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"senderismo",
-title:"Senderismo",
-icon:"🥾",
-text:"Naturaleza",
-image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
-id:"fiesta",
-title:"Fiesta",
-icon:"🎉",
-text:"Salir",
-image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
-}
+  {
+    id: 5,
+    name: "Paula",
+    age: 28,
+    city: "Vila-seca",
+    photo: "https://i.pravatar.cc/500?img=49",
+    cover: "https://picsum.photos/900/500?random=15",
+    interests: ["Viajes", "Gastronomía", "Música"],
+    bio: "Viajar, comer bien y disfrutar."
+  }
 
 ];
 
+let plans = JSON.parse(localStorage.getItem(STORAGE.plans) || "null") || [
 
-const people=[
+  {
+    title: "Running al atardecer",
+    description: "Ruta tranquila para correr y conocer gente.",
+    icon: "🏃",
+    location: "La Pineda",
+    time: "19:30",
+    people: 8
+  },
 
-{
-id:1,
-name:"Álex",
-age:29,
-city:"Tarragona",
-interests:["Gym","Running","Música"]
-},
+  {
+    title: "Partido de fútbol",
+    description: "Buscamos jugadores para un partido amistoso.",
+    icon: "⚽",
+    location: "Tarragona",
+    time: "20:00",
+    people: 10
+  },
 
-{
-id:2,
-name:"Laura",
-age:27,
-city:"Reus",
-interests:["Viajes","Fitness","Cine"]
-},
-
-{
-id:3,
-name:"David",
-age:31,
-city:"Salou",
-interests:["Fútbol","Gym","Gaming"]
-},
-
-{
-id:4,
-name:"Marta",
-age:28,
-city:"Vila-seca",
-interests:["Running","Música","Viajes"]
-},
-
-{
-id:5,
-name:"Carlos",
-age:30,
-city:"Tarragona",
-interests:["Deporte","Tecnología","Cocina"]
-}
+  {
+    title: "Café y conocer gente",
+    description: "Plan tranquilo para hablar y hacer nuevas conexiones.",
+    icon: "☕",
+    location: "Salou",
+    time: "18:00",
+    people: 5
+  }
 
 ];
 
+let posts = JSON.parse(localStorage.getItem(STORAGE.posts) || "null") || [
 
-const defaultData={
+  {
+    user: "Laura",
+    avatar: "https://i.pravatar.cc/200?img=47",
+    image: "https://picsum.photos/800/800?random=31",
+    caption: "Un día perfecto para desconectar 🌅",
+    likes: 24
+  },
 
-entered:false,
+  {
+    user: "Mario",
+    avatar: "https://i.pravatar.cc/200?img=12",
+    image: "https://picsum.photos/800/800?random=32",
+    caption: "Después del gym 💪",
+    likes: 18
+  },
 
-profile:{
-name:"Fernando",
-bio:"Estoy en CONECTA.",
-location:"Tarragona",
-interests:["Deporte","Música","Amigos"],
-photo:""
-},
+  {
+    user: "Lucía",
+    avatar: "https://i.pravatar.cc/200?img=32",
+    image: "https://picsum.photos/800/800?random=33",
+    caption: "Música, cámara y acción 🎵📸",
+    likes: 37
+  }
 
-privacy:{
-private:false,
-location:true,
-messages:"everyone"
-},
+];
 
-appearance:{
-dark:false,
-accent:"#7c3aed",
-accent2:"#ec4899",
-background:"default"
-},
+let songs = [];
 
-connections:[],
+let chats = [
 
-plans:[
+  {
+    name: "Laura",
+    avatar: "https://i.pravatar.cc/200?img=47",
+    last: "¿Te apuntas al plan?",
+    time: "Ahora"
+  },
 
-{
-id:1,
-title:"Running por el parque",
-category:"running",
-icon:"🏃",
-date:"Hoy",
-time:"19:00",
-place:"Parque",
-description:"Salida tranquila para correr y conocer gente.",
-people:7
-},
+  {
+    name: "Mario",
+    avatar: "https://i.pravatar.cc/200?img=12",
+    last: "Perfecto, nos vemos allí.",
+    time: "10:42"
+  },
 
-{
-id:2,
-title:"Sesión de gym",
-category:"gym",
-icon:"🏋️",
-date:"Mañana",
-time:"18:30",
-place:"Zona deportiva",
-description:"Entrenamiento juntos y buen ambiente.",
-people:4
-},
+  {
+    name: "Lucía",
+    avatar: "https://i.pravatar.cc/200?img=32",
+    last: "Te mando una foto después.",
+    time: "Ayer"
+  },
 
-{
-id:3,
-title:"Cine",
-category:"cine",
-icon:"🎬",
-date:"Sábado",
-time:"20:00",
-place:"Cines",
-description:"Película y algo para comer después.",
-people:5
-},
+  {
+    name: "Álex",
+    avatar: "https://i.pravatar.cc/200?img=68",
+    last: "¿A qué hora salimos?",
+    time: "Ayer"
+  }
 
-{
-id:4,
-title:"Partido de fútbol",
-category:"futbol",
-icon:"⚽",
-date:"Domingo",
-time:"18:00",
-place:"Campo municipal",
-description:"Partido entre usuarios de CONECTA.",
-people:10
-}
+];
 
-],
+let activeChat = null;
 
-posts:[
+let audio = document.getElementById("audioPlayer");
 
-{
-id:1,
-name:"Álex",
-city:"Tarragona",
-avatar:"A",
-image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85",
-caption:"Entrenamiento terminado 💪 ¿Quién se apunta mañana?",
-likes:24,
-liked:false,
-music:"Workout Mix"
-},
-
-{
-id:2,
-name:"Marta",
-city:"Vila-seca",
-avatar:"M",
-image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
-caption:"Día de playa ☀️",
-likes:41,
-liked:false,
-music:"Summer Vibes"
-}
-
-],
-
-chats:[],
-
-stats:{
-connections:0,
-plans:4,
-posts:2
-}
-
-};
+let currentSongIndex = -1;
 
 
-let data=loadData();
+/* =========================
+   INIT
+========================= */
 
+document.addEventListener("DOMContentLoaded", () => {
 
-function loadData(){
+  loadTheme();
 
-try{
+  renderPeople();
+  renderPlans();
+  renderFeed();
+  renderChats();
 
-const saved=localStorage.getItem(STORAGE_KEY);
+  const savedSongs = localStorage.getItem(STORAGE.songs);
 
-if(!saved)return structuredClone(defaultData);
+  if (savedSongs) {
+    try {
+      songs = JSON.parse(savedSongs);
+    } catch(e) {
+      songs = [];
+    }
+  }
 
-return mergeData(
-structuredClone(defaultData),
-JSON.parse(saved)
-);
-
-}catch(e){
-
-return structuredClone(defaultData);
-
-}
-
-}
-
-
-function mergeData(base,extra){
-
-if(!extra||typeof extra!=="object")return base;
-
-Object.keys(extra).forEach(k=>{
-
-if(
-extra[k] &&
-typeof extra[k]==="object" &&
-!Array.isArray(extra[k]) &&
-typeof base[k]==="object"
-){
-
-base[k]=mergeData(base[k],extra[k]);
-
-}else{
-
-base[k]=extra[k];
-
-}
-
-});
-
-return base;
-
-}
-
-
-function saveData(){
-
-localStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(data)
-);
-
-}
-
-
-document.addEventListener("DOMContentLoaded",()=>{
-
-applyAppearance();
-renderAll();
-
-if(data.entered){
-
-document.getElementById("welcome").style.display="none";
-
-}
+  registerServiceWorker();
 
 });
 
 
-function renderAll(){
+/* =========================
+   SERVICE WORKER
+========================= */
 
-renderProfile();
-renderPeople();
-renderPlans();
-renderHome();
-renderFeed();
-renderChats();
-renderPrivacy();
-renderCategories();
-updateStats();
+async function registerServiceWorker() {
 
-}
+  if (!("serviceWorker" in navigator)) return;
 
+  try {
 
-function enterApp(){
+    const registration =
+      await navigator.serviceWorker.register("./sw.js", {
+        updateViaCache: "none"
+      });
 
-data.entered=true;
+    registration.update();
 
-saveData();
+  } catch(error) {
 
-document.getElementById("welcome").style.display="none";
+    console.log("Service Worker:", error);
 
-showToast("Bienvenido a CONECTA 👋");
+  }
 
 }
 
 
-function showScreen(screen){
+/* =========================
+   NAVIGATION
+========================= */
 
-document
-.querySelectorAll(".screen")
-.forEach(x=>x.classList.remove("active"));
+function showScreen(id) {
 
-const target=document.getElementById(screen);
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
 
-if(target)target.classList.add("active");
+  const target = document.getElementById(id);
 
-document
-.querySelectorAll(".nav-item")
-.forEach(x=>
-x.classList.toggle(
-"active",
-x.dataset.screen===screen
-)
-);
+  if (target) {
+    target.classList.add("active");
+  }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
+  document.querySelectorAll(".nav-item").forEach(item => {
+
+    item.classList.toggle(
+      "active",
+      item.dataset.screen === id
+    );
+
+  });
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* =========================
+   PEOPLE
+========================= */
+
+function renderPeople(list = defaultPeople) {
+
+  const container =
+    document.getElementById("peopleContainer");
+
+  if (!container) return;
+
+  if (!list.length) {
+
+    container.innerHTML = `
+      <div class="card empty">
+        No hemos encontrado personas.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML = list.map(person => `
+
+    <article class="card person-card">
+
+      <div class="person-cover">
+        <img
+          src="${person.cover}"
+          alt=""
+          loading="lazy"
+        >
+
+        <img
+          class="avatar-large"
+          src="${person.photo}"
+          alt="${person.name}"
+          loading="lazy"
+        >
+      </div>
+
+      <div class="person-body">
+
+        <div class="person-name">
+          ${escapeHTML(person.name)}
+          <span class="online"></span>
+        </div>
+
+        <div class="person-meta">
+          ${person.age} años · ${escapeHTML(person.city)}
+        </div>
+
+        <div class="chips">
+
+          ${person.interests.map(
+            interest =>
+            `<span class="chip">${escapeHTML(interest)}</span>`
+          ).join("")}
+
+        </div>
+
+        <p
+          style="
+            font-size:13px;
+            line-height:1.45;
+            color:var(--muted);
+            margin:8px 0 14px;
+          "
+        >
+          ${escapeHTML(person.bio)}
+        </p>
+
+        <div class="actions-row">
+
+          <button
+            class="primary-btn"
+            onclick="openPersonChat(${person.id})"
+          >
+            💬 Chatear
+          </button>
+
+          <button
+            class="secondary-btn"
+            onclick="likePerson(${person.id})"
+          >
+            ♡
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+function filterPeople() {
+
+  const query =
+    document
+      .getElementById("peopleSearch")
+      .value
+      .toLowerCase()
+      .trim();
+
+  const filtered = defaultPeople.filter(person => {
+
+    const text = [
+      person.name,
+      person.city,
+      person.bio,
+      ...person.interests
+    ].join(" ").toLowerCase();
+
+    return text.includes(query);
+
+  });
+
+  renderPeople(filtered);
+
+}
+
+
+function likePerson(id) {
+
+  const person =
+    defaultPeople.find(p => p.id === id);
+
+  if (!person) return;
+
+  showToast(`Has conectado con ${person.name} ❤️`);
+
+}
+
+
+/* =========================
+   PLANS
+========================= */
+
+function renderPlans() {
+
+  const container =
+    document.getElementById("plansContainer");
+
+  if (!container) return;
+
+  container.innerHTML = plans.map((plan, index) => `
+
+    <article class="card plan-card">
+
+      <div class="plan-top">
+
+        <div class="plan-icon">
+          ${plan.icon}
+        </div>
+
+        <div class="plan-info">
+
+          <h4>
+            ${escapeHTML(plan.title)}
+          </h4>
+
+          <p>
+            ${escapeHTML(plan.description)}
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="plan-details">
+
+        <span class="detail">
+          📍 ${escapeHTML(plan.location)}
+        </span>
+
+        <span class="detail">
+          🕖 ${escapeHTML(plan.time)}
+        </span>
+
+        <span class="detail">
+          👥 ${plan.people} personas
+        </span>
+
+      </div>
+
+      <div class="actions-row">
+
+        <button
+          class="primary-btn"
+          onclick="joinPlan('${escapeAttr(plan.title)}')"
+        >
+          Me interesa
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="sharePlan(${index})"
+        >
+          ↗
+        </button>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+function joinPlan(title) {
+
+  showToast(`Te has apuntado a "${title}"`);
+
+}
+
+
+function sharePlan(index) {
+
+  const plan = plans[index];
+
+  if (!plan) return;
+
+  if (navigator.share) {
+
+    navigator.share({
+      title: plan.title,
+      text: plan.description
+    }).catch(() => {});
+
+  } else {
+
+    showToast("Plan preparado para compartir");
+
+  }
+
+}
+
+
+function openPlanCreator() {
+
+  openModal(`
+
+    <div class="modal-head">
+      <h3>Crear plan</h3>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div class="form-group">
+      <label>Nombre</label>
+      <input id="planTitle" placeholder="Ej. Pádel esta tarde">
+    </div>
+
+    <div class="form-group">
+      <label>Descripción</label>
+      <textarea
+        id="planDescription"
+        placeholder="¿Qué quieres hacer?"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Ubicación</label>
+      <input id="planLocation" placeholder="Tarragona">
+    </div>
+
+    <div class="form-group">
+      <label>Hora</label>
+      <input id="planTime" type="time">
+    </div>
+
+    <div class="form-group">
+      <label>Personas</label>
+      <input id="planPeople" type="number" min="1" value="4">
+    </div>
+
+    <button class="primary-btn" style="width:100%" onclick="createPlan()">
+      Crear plan
+    </button>
+
+  `);
+
+}
+
+
+function createPlan() {
+
+  const title =
+    document.getElementById("planTitle").value.trim();
+
+  const description =
+    document.getElementById("planDescription").value.trim();
+
+  const location =
+    document.getElementById("planLocation").value.trim();
+
+  const time =
+    document.getElementById("planTime").value;
+
+  const people =
+    document.getElementById("planPeople").value;
+
+  if (!title) {
+
+    showToast("Ponle un nombre al plan");
+
+    return;
+
+  }
+
+  plans.unshift({
+    title,
+    description: description || "Nuevo plan creado en NEXO.",
+    icon: "✨",
+    location: location || "Por decidir",
+    time: time || "Por decidir",
+    people: Number(people) || 1
+  });
+
+  localStorage.setItem(
+    STORAGE.plans,
+    JSON.stringify(plans)
+  );
+
+  renderPlans();
+
+  closeModal();
+
+  showToast("Plan creado correctamente");
+
+}
+
+
+/* =========================
+   FEED
+========================= */
+
+function renderFeed() {
+
+  const container =
+    document.getElementById("feedContainer");
+
+  if (!container) return;
+
+  container.innerHTML = posts.map((post, index) => `
+
+    <article class="card feed-post">
+
+      <div class="post-header">
+
+        <img
+          class="avatar"
+          src="${post.avatar}"
+          alt=""
+        >
+
+        <div class="post-user">
+          <strong>${escapeHTML(post.user)}</strong>
+          <span>Ahora · NEXO</span>
+        </div>
+
+        <button
+          class="icon-btn"
+          style="width:35px;height:35px"
+          onclick="showToast('Opciones de publicación')"
+        >
+          ···
+        </button>
+
+      </div>
+
+      <img
+        class="post-image"
+        src="${post.image}"
+        alt="Publicación"
+        loading="lazy"
+      >
+
+      <div class="post-actions">
+
+        <button
+          class="post-action"
+          onclick="likePost(${index})"
+        >
+          ${post.liked ? "❤️" : "♡"}
+        </button>
+
+        <button
+          class="post-action"
+          onclick="showToast('Comentarios próximamente')"
+        >
+          💬
+        </button>
+
+        <button
+          class="post-action"
+          onclick="sharePost(${index})"
+        >
+          ↗
+        </button>
+
+      </div>
+
+      <div class="post-caption">
+
+        <strong>
+          ${post.likes || 0} me gusta
+        </strong>
+
+        <br>
+
+        ${escapeHTML(post.caption)}
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+function likePost(index) {
+
+  if (!posts[index]) return;
+
+  posts[index].liked = !posts[index].liked;
+
+  if (posts[index].liked) {
+    posts[index].likes++;
+  } else {
+    posts[index].likes--;
+  }
+
+  savePosts();
+
+  renderFeed();
+
+}
+
+
+function sharePost(index) {
+
+  const post = posts[index];
+
+  if (!post) return;
+
+  if (navigator.share) {
+
+    navigator.share({
+      title: "NEXO",
+      text: post.caption
+    }).catch(() => {});
+
+  } else {
+
+    showToast("Publicación preparada para compartir");
+
+  }
+
+}
+
+
+function openPostCreator() {
+
+  openModal(`
+
+    <div class="modal-head">
+      <h3>Nueva publicación</h3>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div class="form-group">
+      <label>Foto</label>
+      <input id="postImage" type="file" accept="image/*">
+    </div>
+
+    <div class="form-group">
+      <label>Texto</label>
+      <textarea
+        id="postCaption"
+        placeholder="¿Qué estás pensando?"
+      ></textarea>
+    </div>
+
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="createPost()"
+    >
+      Publicar
+    </button>
+
+  `);
+
+}
+
+
+function createPost() {
+
+  const input =
+    document.getElementById("postImage");
+
+  const caption =
+    document.getElementById("postCaption").value.trim();
+
+  if (!input.files.length) {
+
+    showToast("Selecciona una foto");
+
+    return;
+
+  }
+
+  const file = input.files[0];
+
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+
+    posts.unshift({
+      user: "Fernando",
+      avatar: document.getElementById("myAvatar").src,
+      image: event.target.result,
+      caption: caption || "Nueva publicación en NEXO.",
+      likes: 0
+    });
+
+    savePosts();
+
+    renderFeed();
+
+    closeModal();
+
+    showToast("Publicación creada");
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+
+function savePosts() {
+
+  localStorage.setItem(
+    STORAGE.posts,
+    JSON.stringify(posts)
+  );
+
+}
+
+
+/* =========================
+   CHAT
+========================= */
+
+function renderChats() {
+
+  const container =
+    document.getElementById("chatList");
+
+  if (!container) return;
+
+  container.innerHTML = chats.map((chat, index) => `
+
+    <button
+      class="chat-item"
+      onclick="openChat(${index})"
+    >
+
+      <img
+        class="avatar"
+        src="${chat.avatar}"
+        alt=""
+      >
+
+      <div class="chat-content">
+
+        <strong>
+          ${escapeHTML(chat.name)}
+        </strong>
+
+        <span>
+          ${escapeHTML(chat.last)}
+        </span>
+
+      </div>
+
+      <span class="chat-time">
+        ${escapeHTML(chat.time)}
+      </span>
+
+    </button>
+
+  `).join("");
+
+}
+
+
+function openPersonChat(id) {
+
+  const person =
+    defaultPeople.find(p => p.id === id);
+
+  if (!person) return;
+
+  activeChat = {
+    name: person.name,
+    avatar: person.photo
+  };
+
+  openChatWindow();
+
+}
+
+
+function openChat(index) {
+
+  const chat = chats[index];
+
+  if (!chat) return;
+
+  activeChat = chat;
+
+  openChatWindow();
+
+}
+
+
+function openChatWindow() {
+
+  const windowElement =
+    document.createElement("div");
+
+  windowElement.id = "chatWindow";
+
+  windowElement.className = "chat-window active";
+
+  windowElement.innerHTML = `
+
+    <div class="chat-header">
+
+      <button
+        class="back-btn"
+        onclick="closeChatWindow()"
+      >
+        ←
+      </button>
+
+      <img
+        class="avatar"
+        src="${activeChat.avatar}"
+        alt=""
+      >
+
+      <div>
+        <strong>
+          ${escapeHTML(activeChat.name)}
+        </strong>
+
+        <div
+          style="
+            color:var(--green);
+            font-size:10px;
+            margin-top:3px;
+          "
+        >
+          ● En línea
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+
+      <div class="message them">
+        ¡Hola! 👋
+      </div>
+
+      <div class="message them">
+        ¿Qué tal?
+      </div>
+
+    </div>
+
+    <div class="chat-compose">
+
+      <input
+        id="messageInput"
+        placeholder="Escribe un mensaje..."
+        onkeydown="if(event.key==='Enter') sendMessage()"
+      >
+
+      <button
+        class="send-btn"
+        onclick="sendMessage()"
+      >
+        ➤
+      </button>
+
+    </div>
+
+  `;
+
+  document.body.appendChild(windowElement);
+
+}
+
+
+function closeChatWindow() {
+
+  const element =
+    document.getElementById("chatWindow");
+
+  if (element) {
+    element.remove();
+  }
+
+}
+
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("messageInput");
+
+  const messages =
+    document.getElementById("chatMessages");
+
+  if (!input || !messages) return;
+
+  const text = input.value.trim();
+
+  if (!text) return;
+
+  const message =
+    document.createElement("div");
+
+  message.className = "message me";
+
+  message.textContent = text;
+
+  messages.appendChild(message);
+
+  input.value = "";
+
+  messages.scrollTop = messages.scrollHeight;
+
+  setTimeout(() => {
+
+    const reply =
+      document.createElement("div");
+
+    reply.className = "message them";
+
+    reply.textContent =
+      "¡Perfecto! 😄 Hablamos en NEXO.";
+
+    messages.appendChild(reply);
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }, 700);
+
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+function openMusic() {
+
+  openModal(`
+
+    <div class="modal-head">
+
+      <h3>🎵 Mi música</h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <p
+      style="
+        color:var(--muted);
+        font-size:12px;
+        line-height:1.5;
+      "
+    >
+      Añade canciones desde tu dispositivo.
+      La música puede continuar mientras navegas por NEXO.
+    </p>
+
+    <div class="form-group">
+
+      <label>Añadir canción</label>
+
+      <input
+        id="songFile"
+        type="file"
+        accept="audio/*"
+        onchange="addSong(event)"
+      >
+
+    </div>
+
+    <div id="songList" class="music-list"></div>
+
+  `);
+
+  renderSongs();
+
+}
+
+
+function addSong(event) {
+
+  const file =
+    event.target.files[0];
+
+  if (!file) return;
+
+  const url =
+    URL.createObjectURL(file);
+
+  songs.push({
+    name: file.name,
+    artist: "Mi dispositivo",
+    url
+  });
+
+  localStorage.setItem(
+    STORAGE.songs,
+    JSON.stringify(
+      songs.map(song => ({
+        name: song.name,
+        artist: song.artist
+      }))
+    )
+  );
+
+  renderSongs();
+
+  showToast("Canción añadida");
+
+}
+
+
+function renderSongs() {
+
+  const container =
+    document.getElementById("songList");
+
+  if (!container) return;
+
+  if (!songs.length) {
+
+    container.innerHTML = `
+      <div class="empty">
+        Todavía no tienes canciones.
+      </div>
+    `;
+
+    return;
+
+  }
+
+  container.innerHTML =
+    songs.map((song, index) => `
+
+      <div class="song">
+
+        <div class="song-cover">
+          ♫
+        </div>
+
+        <div class="song-info">
+
+          <strong>
+            ${escapeHTML(song.name)}
+          </strong>
+
+          <span>
+            ${escapeHTML(song.artist || "NEXO Music")}
+          </span>
+
+        </div>
+
+        <button
+          class="music-control"
+          onclick="playSong(${index})"
+        >
+          ▶
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function playSong(index) {
+
+  const song = songs[index];
+
+  if (!song) return;
+
+  if (!song.url) {
+
+    showToast(
+      "Vuelve a seleccionar esta canción desde tu dispositivo"
+    );
+
+    return;
+
+  }
+
+  currentSongIndex = index;
+
+  audio.src = song.url;
+
+  audio.play().catch(() => {});
+
+  document
+    .getElementById("musicPlayer")
+    .classList.add("show");
+
+  document
+    .getElementById("currentSong")
+    .textContent = song.name;
+
+  document
+    .getElementById("currentArtist")
+    .textContent = song.artist || "NEXO Music";
+
+}
+
+
+function toggleAudio() {
+
+  if (!audio.src) {
+
+    if (songs.length) {
+      playSong(0);
+    } else {
+      openMusic();
+    }
+
+    return;
+
+  }
+
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  } else {
+    audio.pause();
+  }
+
+}
+
+
+function stopAudio() {
+
+  audio.pause();
+
+  audio.currentTime = 0;
+
+}
+
+
+audio.addEventListener("ended", () => {
+
+  if (currentSongIndex >= 0 &&
+      currentSongIndex < songs.length - 1) {
+
+    playSong(currentSongIndex + 1);
+
+  }
+
 });
 
-renderAll();
 
-}
-
-
-/* CATEGORÍAS */
-
-function categoryCard(category){
-
-return `
-
-<button class="category-card"
-onclick="selectCategory('${category.id}')">
-
-<div class="category-bg"
-style="background-image:url('${category.image}')">
-</div>
-
-<div class="category-overlay"></div>
-
-<div class="category-content">
-
-<div class="category-icon">
-${category.icon}
-</div>
-
-<strong>${escapeHTML(category.title)}</strong>
-
-<small>
-${escapeHTML(category.text)}
-</small>
-
-</div>
-
-</button>
-
-`;
-
-}
-
-
-function renderCategories(){
-
-const html=
-categories.map(categoryCard).join("");
-
-[
-"homeCategories",
-"connectCategories",
-"planCategories"
-]
-.forEach(id=>{
-
-const el=document.getElementById(id);
-
-if(el)el.innerHTML=html;
-
-});
-
-}
-
-
-function selectCategory(id){
-
-const category=
-categories.find(x=>x.id===id);
-
-if(!category)return;
-
-showScreen("plans");
-
-setTimeout(()=>{
-
-const matching=
-data.plans.filter(p=>
-p.category===id
-);
-
-const list=
-document.getElementById("plansList");
-
-if(matching.length){
-
-list.innerHTML=
-matching.map(planHTML).join("");
-
-}else{
-
-list.innerHTML=`
-
-<div class="card">
-
-<div style="text-align:center;padding:30px">
-
-<div style="font-size:48px">
-${category.icon}
-</div>
-
-<h2 style="margin:12px 0">
-Todavía no hay planes de ${escapeHTML(category.title)}
-</h2>
-
-<p class="muted">
-Puedes crear el primero.
-</p>
-
-<br>
-
-<button
-class="btn btn-primary"
-onclick="openPlanModal('${id}')">
-
-＋ Crear plan
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-},50);
-
-}
-
-
-/* PERFIL */
-
-function renderProfile(){
-
-const name=
-data.profile.name||
-"Fernando";
-
-const initial=
-name.trim()
-?name.trim()[0].toUpperCase()
-:"F";
-
-
-[
-"profileAvatar",
-"homeAvatar"
-].forEach(id=>{
-
-const e=document.getElementById(id);
-
-if(!e)return;
-
-if(
-id==="profileAvatar" &&
-data.profile.photo
-){
-
-e.innerHTML=
-`<img src="${data.profile.photo}">`;
-
-}else{
-
-e.textContent=initial;
-
-}
-
-});
-
-
-const n=
-document.getElementById("profileName");
-
-if(n)n.textContent=name;
-
-
-const loc=
-document.getElementById("profileLocation");
-
-if(loc){
-
-loc.textContent=
-data.privacy.location &&
-data.profile.location
-?"📍 "+data.profile.location
-:"📍 Ubicación privada";
-
-}
-
-
-const desc=
-document.getElementById("profileDescription");
-
-if(desc){
-
-desc.textContent=
-data.profile.bio||
-"Añade una descripción.";
-
-}
-
-
-const tags=
-document.getElementById("profileTags");
-
-if(tags){
-
-tags.innerHTML=
-data.profile.interests
-.map(i=>
-`<span class="tag">${escapeHTML(i)}</span>`
-)
-.join("");
-
-}
-
-}
-
-
-function openProfileModal(){
-
-openModal(
-"Editar perfil",
-`
-
-<div class="input-group">
-
-<label>Nombre</label>
-
-<input
-id="editName"
-class="input"
-value="${escapeAttribute(data.profile.name)}">
-
-</div>
-
-
-<div class="input-group">
-
-<label>Descripción</label>
-
-<textarea id="editBio">
-${escapeHTML(data.profile.bio)}
-</textarea>
-
-</div>
-
-
-<div class="input-group">
-
-<label>Ubicación</label>
-
-<input
-id="editLocation"
-class="input"
-value="${escapeAttribute(data.profile.location)}">
-
-</div>
-
-
-<div class="input-group">
-
-<label>Intereses</label>
-
-<input
-id="editInterests"
-class="input"
-value="${escapeAttribute(data.profile.interests.join(", "))}">
-
-</div>
-
-
-<button
-class="btn btn-primary full"
-onclick="saveProfile()">
-
-Guardar perfil
-
-</button>
-
-`);
-
-}
-
-
-function saveProfile(){
-
-data.profile.name=
-document.getElementById("editName")
-.value.trim()||
-"Fernando";
-
-data.profile.bio=
-document.getElementById("editBio")
-.value.trim()||
-"Estoy en CONECTA.";
-
-data.profile.location=
-document.getElementById("editLocation")
-.value.trim();
-
-data.profile.interests=
-document.getElementById("editInterests")
-.value
-.split(",")
-.map(x=>x.trim())
-.filter(Boolean)
-.slice(0,12);
-
-saveData();
-
-closeModal();
-
-renderAll();
-
-showToast("Perfil actualizado ✓");
-
-}
-
-
-/* FOTO DE PERFIL */
-
-function openPhotoModal(){
-
-openModal(
-"Foto de perfil",
-`
-
-<p class="muted" style="margin-bottom:15px">
-Selecciona una imagen desde tu dispositivo.
-</p>
-
-<input
-id="profileFile"
-type="file"
-accept="image/*"
-class="input"
-onchange="previewProfilePhoto(event)">
-
-<div id="profilePreview"></div>
-
-<br>
-
-<button
-class="btn btn-primary full"
-onclick="saveProfilePhoto()">
-
-Guardar foto
-
-</button>
-
-`);
-
-}
-
-
-let pendingProfilePhoto="";
-
-
-function previewProfilePhoto(e){
-
-const file=e.target.files[0];
-
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=()=>{
-
-pendingProfilePhoto=reader.result;
-
-document.getElementById("profilePreview").innerHTML=
-`<img class="photo-preview" src="${reader.result}">`;
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-
-function saveProfilePhoto(){
-
-if(!pendingProfilePhoto){
-
-showToast("Selecciona una foto.");
-
-return;
-
-}
-
-data.profile.photo=
-pendingProfilePhoto;
-
-saveData();
-
-pendingProfilePhoto="";
-
-closeModal();
-
-renderAll();
-
-showToast("Foto de perfil actualizada 📸");
-
-}
-
-
-/* PERSONAS */
-
-function renderPeople(){
-
-const searchEl=
-document.getElementById("peopleSearch");
-
-const search=
-searchEl
-?searchEl.value.toLowerCase().trim()
-:"";
-
-const filtered=
-people.filter(p=>{
-
-if(!search)return true;
-
-return [
-p.name,
-p.city,
-...p.interests
-]
-.join(" ")
-.toLowerCase()
-.includes(search);
-
-});
-
-
-const list=
-document.getElementById("peopleList");
-
-if(!list)return;
-
-
-list.innerHTML=
-filtered.map(p=>{
-
-const connected=
-data.connections.includes(p.id);
-
-return `
-
-<div class="card">
-
-<div class="person">
-
-<div class="person-avatar">
-${p.name[0]}
-</div>
-
-<div class="person-info">
-
-<strong>
-${escapeHTML(p.name)}, ${p.age}
-</strong>
-
-<small>
-📍 ${escapeHTML(p.city)}
-</small>
-
-<div class="tags">
-
-${p.interests.map(i=>
-`<span class="tag">${escapeHTML(i)}</span>`
-).join("")}
-
-</div>
-
-</div>
-
-<button
-class="btn ${connected?"btn-success":"btn-primary"}"
-onclick="toggleConnection(${p.id})">
-
-${connected?"✓ Conectado":"Conectar"}
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}).join("")||
-
-`<div class="empty">
-🔎<br><br>
-No se encontraron personas.
-</div>`;
-
-}
-
-
-function renderHomePeople(){
-
-const hp=
-document.getElementById("homePeople");
-
-if(!hp)return;
-
-hp.innerHTML=
-people.slice(0,4).map(p=>`
-
-<div class="person">
-
-<div class="person-avatar">
-${p.name[0]}
-</div>
-
-<div class="person-info">
-
-<strong>
-${escapeHTML(p.name)}, ${p.age}
-</strong>
-
-<small>
-${p.interests.slice(0,3).join(" · ")}
-</small>
-
-</div>
-
-<button
-class="btn btn-primary"
-onclick="toggleConnection(${p.id})">
-
-${data.connections.includes(p.id)
-?"✓"
-:"+"}
-
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-function toggleConnection(id){
-
-const i=
-data.connections.indexOf(id);
-
-if(i>=0){
-
-data.connections.splice(i,1);
-
-showToast("Conexión eliminada");
-
-}else{
-
-data.connections.push(id);
-
-showToast("¡Nueva conexión! 🤝");
-
-}
-
-saveData();
-
-renderAll();
-
-}
-
-
-/* PLANES */
-
-function planHTML(plan){
-
-const cat=
-categories.find(c=>c.id===plan.category)
-||
-categories[0];
-
-return `
-
-<div class="card plan-card">
-
-<div
-class="plan-cover"
-style="background-image:url('${cat.image}')">
-</div>
-
-<div class="plan-body">
-
-<div class="plan-title-row">
-
-<div class="plan-icon">
-${escapeHTML(plan.icon)}
-</div>
-
-<div>
-
-<h3>
-${escapeHTML(plan.title)}
-</h3>
-
-<div class="plan-info">
-
-📅 ${escapeHTML(plan.date)}
-·
-🕐 ${escapeHTML(plan.time)}
-
-<br>
-
-📍 ${escapeHTML(plan.place)}
-·
-👥 ${plan.people} personas
-
-</div>
-
-</div>
-
-</div>
-
-<p
-class="muted"
-style="margin-top:12px">
-
-${escapeHTML(plan.description)}
-
-</p>
-
-<div class="plan-actions">
-
-<button
-class="btn btn-primary"
-onclick="joinPlan(${plan.id})">
-
-Participar
-
-</button>
-
-<button
-class="btn btn-secondary"
-onclick="sharePlan(${plan.id})">
-
-Compartir
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-function renderPlans(){
-
-const list=
-document.getElementById("plansList");
-
-if(!list)return;
-
-list.innerHTML=
-data.plans.length
-?data.plans.map(planHTML).join("")
-:
-`<div class="empty">
-📅<br><br>
-Todavía no hay planes.
-</div>`;
-
-}
-
-
-function openPlanModal(categoryId=""){
-
-const cat=
-categories.find(c=>c.id===categoryId)
-||
-categories[0];
-
-openModal(
-"Crear nuevo plan",
-`
-
-<div class="input-group">
-
-<label>Nombre</label>
-
-<input
-id="planTitle"
-class="input"
-placeholder="Ej. Running por la playa">
-
-</div>
-
-
-<div class="input-group">
-
-<label>Categoría</label>
-
-<select id="planCategory">
-
-${categories.map(c=>
-
-`<option
-value="${c.id}"
-${c.id===cat.id?"selected":""}>
-
-${c.icon} ${c.title}
-
-</option>`
-
-).join("")}
-
-</select>
-
-</div>
-
-
-<div class="input-group">
-
-<label>Icono</label>
-
-<input
-id="planIcon"
-class="input"
-value="${cat.icon}">
-
-</div>
-
-
-<div style="
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px">
-
-<div class="input-group">
-
-<label>Fecha</label>
-
-<input
-id="planDate"
-class="input"
-placeholder="Hoy">
-
-</div>
-
-<div class="input-group">
-
-<label>Hora</label>
-
-<input
-id="planTime"
-class="input"
-placeholder="19:00">
-
-</div>
-
-</div>
-
-
-<div class="input-group">
-
-<label>Lugar</label>
-
-<input
-id="planPlace"
-class="input"
-placeholder="Lugar">
-
-</div>
-
-
-<div class="input-group">
-
-<label>Descripción</label>
-
-<textarea
-id="planDescription"
-placeholder="Cuenta el plan...">
-</textarea>
-
-</div>
-
-
-<button
-class="btn btn-primary full"
-onclick="createPlan()">
-
-Crear plan
-
-</button>
-
-`);
-
-}
-
-
-function createPlan(){
-
-const title=
-document.getElementById("planTitle")
-.value.trim();
+/* =========================
+   IA
+========================= */
 
-if(!title){
+function openAI() {
 
-showToast("Escribe un nombre.");
+  openModal(`
 
-return;
+    <div class="modal-head">
 
-}
-
-const p={
-
-id:Date.now(),
-
-title,
-
-category:
-document.getElementById("planCategory").value,
-
-icon:
-document.getElementById("planIcon")
-.value.trim()||"📅",
-
-date:
-document.getElementById("planDate")
-.value.trim()||"Próximamente",
-
-time:
-document.getElementById("planTime")
-.value.trim()||"Por definir",
-
-place:
-document.getElementById("planPlace")
-.value.trim()||"Por definir",
-
-description:
-document.getElementById("planDescription")
-.value.trim()||
-"Nuevo plan de CONECTA.",
-
-people:1
-
-};
-
-data.plans.unshift(p);
-
-saveData();
-
-closeModal();
-
-showScreen("plans");
-
-showToast("Plan creado ✓");
-
-}
-
-
-function joinPlan(id){
-
-const p=
-data.plans.find(x=>x.id===id);
-
-if(!p)return;
-
-p.people++;
-
-saveData();
-
-renderAll();
-
-showToast("Te has unido 🎉");
-
-}
-
-
-async function sharePlan(id){
-
-const p=
-data.plans.find(x=>x.id===id);
-
-if(!p)return;
-
-const text=
-`${p.icon} ${p.title}
-${p.date} · ${p.time}
-📍 ${p.place}
-
-${p.description}`;
-
-try{
-
-if(navigator.share){
-
-await navigator.share({
-title:p.title,
-text
-});
-
-}else{
-
-await navigator.clipboard.writeText(text);
-
-showToast("Plan copiado.");
-
-}
-
-}catch(e){}
-
-}
-
-
-/* PUBLICACIONES */
-
-function renderFeed(){
-
-const feed=
-document.getElementById("feedList");
-
-const home=
-document.getElementById("homeFeed");
-
-const profile=
-document.getElementById("profileFeed");
-
-const html=
-data.posts
-.slice()
-.reverse()
-.map(postHTML)
-.join("");
-
-if(feed)feed.innerHTML=html||emptyPosts();
-
-if(home)home.innerHTML=
-data.posts.slice(-2).reverse()
-.map(postHTML)
-.join("")||emptyPosts();
-
-if(profile){
-
-const own=
-data.posts.filter(p=>p.owner);
-
-profile.innerHTML=
-own.length
-?own.map(postHTML).join("")
-:`<div class="empty">
-📸<br><br>
-Todavía no tienes publicaciones.
-<br><br>
-<button class="btn btn-primary"
-onclick="openPostModal()">
-＋ Publicar
-</button>
-</div>`;
-
-}
-
-}
-
-
-function emptyPosts(){
-
-return `<div class="empty">
-📸<br><br>
-Todavía no hay publicaciones.
-</div>`;
-
-}
-
-
-function postHTML(post){
-
-return `
-
-<article class="card post">
-
-<div class="post-head">
-
-<div class="avatar">
-${post.avatar||post.name[0]}
-</div>
-
-<div class="post-user">
-
-<strong>
-${escapeHTML(post.name)}
-</strong>
-
-<small>
-📍 ${escapeHTML(post.city||"España")}
-</small>
-
-</div>
-
-</div>
-
-
-${post.image?`
-
-<img
-class="post-image"
-src="${post.image}"
-alt="Publicación">
-
-`:""}
-
-
-<div class="post-body">
-
-<div class="post-actions">
-
-<button
-class="post-action"
-onclick="likePost(${post.id})">
-
-${post.liked?"❤️":"🤍"}
-
-</button>
-
-<button
-class="post-action"
-onclick="sharePost(${post.id})">
-
-↗️
-
-</button>
-
-<button
-class="post-action"
-onclick="commentPost(${post.id})">
-
-💬
-
-</button>
-
-</div>
-
-
-<div class="post-caption">
-
-<b>${escapeHTML(post.name)}</b>
-
-${escapeHTML(post.caption||"")}
-
-</div>
-
-
-${post.music?`
-
-<div class="music">
-
-<div class="music-icon">
-🎵
-</div>
-
-<div>
-
-<strong>
-${escapeHTML(post.music)}
-</strong>
-
-<small>
-Música añadida a la publicación
-</small>
-
-</div>
-
-<button
-class="icon-btn"
-style="margin-left:auto"
-onclick="playMusic('${escapeAttribute(post.music)}')">
-
-▶️
-
-</button>
-
-</div>
-
-`:""}
-
-</div>
-
-</article>
-
-`;
-
-}
-
-
-function likePost(id){
-
-const post=
-data.posts.find(p=>p.id===id);
-
-if(!post)return;
-
-post.liked=!post.liked;
-
-post.likes+=post.liked?1:-1;
-
-saveData();
-
-renderFeed();
-
-}
+      <h3>✦ NEXO IA</h3>
 
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
 
-function commentPost(){
+    </div>
 
-openModal(
-"Comentarios",
-`
+    <div class="ai-box">
 
-<div class="input-group">
+      <div class="ai-title">
+        ✦ Tu asistente NEXO
+      </div>
 
-<textarea
-class="input"
-placeholder="Escribe un comentario...">
-</textarea>
+      <div
+        id="aiAnswer"
+        class="ai-answer"
+      >
+        Pregúntame algo sobre NEXO,
+        ideas para planes, mensajes,
+        publicaciones o cualquier cosa.
+      </div>
 
-</div>
+    </div>
 
-<button
-class="btn btn-primary full"
-onclick="showToast('Comentario preparado ✓');closeModal()">
+    <div
+      class="form-group"
+      style="margin-top:14px"
+    >
 
-Publicar comentario
+      <label>¿Qué necesitas?</label>
 
-</button>
+      <textarea
+        id="aiQuestion"
+        placeholder="Ej. Dame una idea para un plan..."
+      ></textarea>
 
-`);
+    </div>
 
-}
-
-
-async function sharePost(id){
-
-const p=
-data.posts.find(x=>x.id===id);
-
-if(!p)return;
-
-const text=
-`📸 ${p.name}
-
-${p.caption}`;
-
-try{
-
-if(navigator.share){
-
-await navigator.share({
-title:"CONECTA",
-text
-});
-
-}else{
-
-await navigator.clipboard.writeText(text);
-
-showToast("Publicación copiada.");
-
-}
-
-}catch(e){}
-
-}
-
-
-function playMusic(name){
-
-showToast("▶️ Reproduciendo: "+name);
-
-}
-
-
-/* CREAR PUBLICACIÓN */
-
-function openPostModal(){
-
-openModal(
-"Crear publicación",
-`
-
-<div class="input-group">
-
-<label>Foto</label>
-
-<input
-id="postFile"
-type="file"
-accept="image/*"
-class="input"
-onchange="previewPostPhoto(event)">
-
-<div id="postPreview"></div>
-
-</div>
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="askAI()"
+    >
+      Preguntar a NEXO IA
+    </button>
 
+  `);
 
-<div class="input-group">
-
-<label>Texto</label>
-
-<textarea
-id="postCaption"
-placeholder="¿Qué estás haciendo?">
-</textarea>
-
-</div>
-
-
-<div class="input-group">
-
-<label>🎵 Música</label>
-
-<input
-id="postMusic"
-class="input"
-placeholder="Ej. Mi canción favorita">
-
-</div>
-
-
-<button
-class="btn btn-primary full"
-onclick="createPost()">
-
-Publicar
-
-</button>
-
-`);
-
-}
-
-
-let pendingPostPhoto="";
-
-
-function previewPostPhoto(e){
-
-const file=e.target.files[0];
-
-if(!file)return;
-
-const reader=new FileReader();
-
-reader.onload=()=>{
-
-pendingPostPhoto=reader.result;
-
-document.getElementById("postPreview").innerHTML=
-`<img class="photo-preview" src="${reader.result}">`;
-
-};
-
-reader.readAsDataURL(file);
-
 }
 
 
-function createPost(){
+function askAI() {
 
-const caption=
-document.getElementById("postCaption")
-.value.trim();
+  const input =
+    document.getElementById("aiQuestion");
 
-if(!pendingPostPhoto && !caption){
+  const answer =
+    document.getElementById("aiAnswer");
 
-showToast("Añade una foto o texto.");
+  if (!input || !answer) return;
 
-return;
+  const question =
+    input.value.trim().toLowerCase();
 
-}
-
-const post={
+  if (!question) {
 
-id:Date.now(),
+    answer.textContent =
+      "Escribe primero lo que necesitas.";
 
-owner:true,
+    return;
 
-name:data.profile.name||"Fernando",
+  }
 
-city:data.profile.location||"España",
+  let response =
+    "Puedo ayudarte a organizarlo dentro de NEXO.";
 
-avatar:data.profile.name
-?data.profile.name[0].toUpperCase()
-:"F",
+  if (
+    question.includes("plan") ||
+    question.includes("actividad")
+  ) {
 
-image:pendingPostPhoto,
+    response =
+      "Idea NEXO: crea un plan de tarde, indica ubicación, hora y número de personas y deja que otros usuarios se apunten.";
 
-caption:caption||"Nueva publicación en CONECTA.",
+  } else if (
+    question.includes("mensaje") ||
+    question.includes("chat")
+  ) {
 
-music:
-document.getElementById("postMusic")
-.value.trim(),
+    response =
+      "Puedes empezar con algo natural: “¡Hola! He visto que también te gusta la música. ¿Qué sueles escuchar?”";
 
-likes:0,
+  } else if (
+    question.includes("foto") ||
+    question.includes("publicación")
+  ) {
 
-liked:false
+    response =
+      "Puedes crear una publicación desde Momentos, subir una foto y añadir un texto.";
 
-};
+  } else if (
+    question.includes("música")
+  ) {
 
-data.posts.push(post);
+    response =
+      "Abre Mi música y añade archivos de audio desde tu dispositivo. Después podrás reproducirlos mientras navegas por NEXO.";
 
-saveData();
+  } else {
 
-pendingPostPhoto="";
+    response =
+      "Buena idea. En esta versión puedo ayudarte con planes, perfiles, publicaciones, música, chats y organización de NEXO. La conexión a una IA online real se puede añadir posteriormente mediante un backend seguro.";
 
-closeModal();
+  }
 
-showScreen("feed");
+  answer.textContent = response;
 
-showToast("Publicación creada 📸");
-
 }
-
 
-/* HOME */
 
-function renderHome(){
+/* =========================
+   PROFILE
+========================= */
 
-renderHomePeople();
+function openProfileEditor() {
 
-const plans=
-document.getElementById("homePlans");
+  openModal(`
 
-if(plans){
+    <div class="modal-head">
 
-plans.innerHTML=
-data.plans
-.slice(0,3)
-.map(planHTML)
-.join("");
+      <h3>Editar perfil</h3>
 
-}
-
-}
-
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
 
-/* CHAT */
+    </div>
 
-function renderChats(){
+    <div class="form-group">
 
-const list=
-document.getElementById("chatList");
+      <label>Nombre</label>
 
-if(!list)return;
+      <input
+        id="profileName"
+        value="${escapeAttr(
+          document.getElementById("myName").textContent
+        )}"
+      >
 
-if(!data.chats.length){
+    </div>
 
-list.innerHTML=`
+    <div class="form-group">
 
-<div class="empty">
+      <label>Descripción</label>
 
-💬<br><br>
+      <textarea id="profileBio">${escapeHTML(
+        document.getElementById("myBio").textContent
+      )}</textarea>
 
-Todavía no tienes conversaciones.
+    </div>
 
-<br><br>
+    <div class="form-group">
 
-<button
-class="btn btn-primary"
-onclick="showScreen('connect')">
+      <label>Foto de perfil</label>
 
-Encontrar personas
+      <input
+        id="profilePhoto"
+        type="file"
+        accept="image/*"
+      >
 
-</button>
+    </div>
 
-</div>
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="saveProfile()"
+    >
+      Guardar cambios
+    </button>
 
-`;
+  `);
 
-return;
-
 }
-
-list.innerHTML=
-data.chats.map(c=>`
-
-<button
-class="chat"
-onclick="openChat('${escapeAttribute(c.name)}')">
-
-<div class="person-avatar">
-${escapeHTML(c.name[0])}
-</div>
 
-<div class="chat-text">
 
-<strong>
-${escapeHTML(c.name)}
-</strong>
+function saveProfile() {
 
-<small>
-${escapeHTML(c.last)}
-</small>
+  const name =
+    document.getElementById("profileName").value.trim();
 
-</div>
+  const bio =
+    document.getElementById("profileBio").value.trim();
 
-</button>
+  const file =
+    document.getElementById("profilePhoto").files[0];
 
-`).join("");
+  document.getElementById("myName").textContent =
+    name || "Fernando";
 
-}
+  document.getElementById("myBio").textContent =
+    bio || "Explorando NEXO.";
 
+  if (file) {
 
-function openChat(name){
+    const reader = new FileReader();
 
-openModal(
-"Chat con "+escapeHTML(name),
-`
+    reader.onload = event => {
 
-<div style="text-align:center;padding:30px">
+      document.getElementById("myAvatar").src =
+        event.target.result;
 
-💬
+      saveProfileData(
+        name,
+        bio,
+        event.target.result
+      );
 
-<br><br>
+    };
 
-<h3>
-Chat preparado
-</h3>
+    reader.readAsDataURL(file);
 
-<p class="muted"
-style="margin-top:8px">
+  } else {
 
-La interfaz está lista.
-Para mensajes reales necesitaremos conectar
-CONECTA a una base de datos y servidor.
+    saveProfileData(
+      name,
+      bio,
+      document.getElementById("myAvatar").src
+    );
 
-</p>
+  }
 
-</div>
+  closeModal();
 
-`);
+  showToast("Perfil actualizado");
 
 }
 
 
-function futureFeature(name){
+function saveProfileData(name, bio, photo) {
 
-showToast(
-name+" preparado para la siguiente fase 🚀"
-);
+  localStorage.setItem(
+    STORAGE.profile,
+    JSON.stringify({
+      name,
+      bio,
+      photo
+    })
+  );
 
 }
-
-
-/* PRIVACIDAD */
-
-function renderPrivacy(){
-
-const p=
-document.getElementById("privateProfile");
-
-if(p)p.checked=data.privacy.private;
-
-const l=
-document.getElementById("showLocation");
-
-if(l)l.checked=data.privacy.location;
 
-const m=
-document.getElementById("messagePermission");
 
-if(m)m.value=data.privacy.messages;
+function loadProfile() {
 
-const d=
-document.getElementById("darkToggle");
+  const data =
+    localStorage.getItem(STORAGE.profile);
 
-if(d)d.checked=data.appearance.dark;
+  if (!data) return;
 
-const b=
-document.getElementById("backgroundSelect");
+  try {
 
-if(b)b.value=data.appearance.background;
+    const profile =
+      JSON.parse(data);
 
-}
-
-
-function savePrivacy(){
-
-data.privacy.private=
-document.getElementById("privateProfile").checked;
+    if (profile.name) {
+      document.getElementById("myName").textContent =
+        profile.name;
+    }
 
-data.privacy.location=
-document.getElementById("showLocation").checked;
+    if (profile.bio) {
+      document.getElementById("myBio").textContent =
+        profile.bio;
+    }
 
-data.privacy.messages=
-document.getElementById("messagePermission").value;
+    if (profile.photo) {
+      document.getElementById("myAvatar").src =
+        profile.photo;
+    }
 
-saveData();
+  } catch(e) {}
 
-renderProfile();
-
-showToast("Privacidad actualizada 🔐");
-
 }
-
-
-/* APARIENCIA */
 
-function toggleDarkMode(){
 
-data.appearance.dark=
-document.getElementById("darkToggle").checked;
+loadProfile();
 
-saveData();
 
-applyAppearance();
+/* =========================
+   SEARCH
+========================= */
 
-}
-
-
-function setAccent(a,b){
-
-data.appearance.accent=a;
+function openSearch() {
 
-data.appearance.accent2=b;
+  openModal(`
 
-document.documentElement
-.style.setProperty("--accent",a);
+    <div class="modal-head">
 
-document.documentElement
-.style.setProperty("--accent2",b);
+      <h3>Buscar en NEXO</h3>
 
-saveData();
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
 
-showToast("Color actualizado 🎨");
+    </div>
 
-}
+    <div class="search-box">
 
+      <input
+        id="globalSearch"
+        autofocus
+        placeholder="Personas, planes, música..."
+      >
 
-function setBackground(v){
+    </div>
 
-data.appearance.background=v;
+    <div class="grid">
 
-document.body.classList.remove(
-"bg-gradient",
-"bg-blue",
-"bg-green",
-"bg-red",
-"bg-pink"
-);
+      <div class="tile" onclick="closeModal();showScreen('connect')">
+        <div class="tile-icon purple">🤝</div>
+        <h4>Personas</h4>
+        <p>Buscar conexiones.</p>
+      </div>
 
-if(v!=="default"){
+      <div class="tile" onclick="closeModal();showScreen('plans')">
+        <div class="tile-icon blue">📅</div>
+        <h4>Planes</h4>
+        <p>Buscar actividades.</p>
+      </div>
 
-document.body.classList.add("bg-"+v);
+      <div class="tile" onclick="closeModal();openMusic()">
+        <div class="tile-icon orange">🎵</div>
+        <h4>Música</h4>
+        <p>Tu biblioteca.</p>
+      </div>
 
-}
+    </div>
 
-saveData();
+  `);
 
 }
-
-
-function applyAppearance(){
 
-document.documentElement
-.style.setProperty(
-"--accent",
-data.appearance.accent
-);
 
-document.documentElement
-.style.setProperty(
-"--accent2",
-data.appearance.accent2
-);
+function openNotifications() {
 
-document.body.classList.toggle(
-"dark",
-data.appearance.dark
-);
+  openModal(`
 
-document.body.classList.remove(
-"bg-gradient",
-"bg-blue",
-"bg-green",
-"bg-red",
-"bg-pink"
-);
+    <div class="modal-head">
 
-if(data.appearance.background!=="default"){
+      <h3>Notificaciones</h3>
 
-document.body.classList.add(
-"bg-"+data.appearance.background
-);
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
 
-}
-
-}
-
-
-/* LEGAL */
-
-function openLegal(type){
-
-let title="";
-let content="";
-
-if(type==="rules"){
+    </div>
 
-title="Normas de la comunidad";
+    <div class="card" style="padding:14px">
 
-content=`
+      ❤️ A Laura le ha gustado tu publicación.
 
-<p class="muted">
-CONECTA debe ser un espacio seguro,
-respetuoso y positivo.
-</p>
+    </div>
 
-<br>
+    <div class="card" style="padding:14px">
 
-<h3>Respeto</h3>
+      🤝 Tienes una nueva conexión.
 
-<p class="muted">
-No se permite acoso, amenazas,
-discriminación ni comportamiento abusivo.
-</p>
+    </div>
 
-<br>
+    <div class="card" style="padding:14px">
 
-<h3>Contenido</h3>
+      📅 Hay un nuevo plan cerca de ti.
 
-<p class="muted">
-No publiques contenido ilegal,
-engañoso o que vulnere derechos.
-</p>
+    </div>
 
-`;
+  `);
 
 }
-
-if(type==="privacy"){
-
-title="Privacidad";
-
-content=`
-
-<p class="muted">
-La privacidad del usuario debe ser
-una parte fundamental de CONECTA.
-</p>
-
-<br>
-
-<h3>Ubicación</h3>
-
-<p class="muted">
-La ubicación debe ser opcional.
-</p>
-
-<br>
 
-<h3>Datos</h3>
 
-<p class="muted">
-El usuario debe poder gestionar
-sus datos.
-</p>
+/* =========================
+   SETTINGS
+========================= */
 
-`;
+function openSettings() {
 
-}
-
-if(type==="terms"){
+  openModal(`
 
-title="Términos y condiciones";
+    <div class="modal-head">
 
-content=`
+      <h3>Ajustes</h3>
 
-<p class="muted">
-CONECTA proporciona herramientas
-para descubrir personas,
-publicaciones y actividades.
-</p>
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
 
-<br>
+    </div>
 
-<p class="muted">
-El usuario debe utilizar la plataforma
-de forma responsable y conforme
-a la legislación aplicable.
-</p>
+    <button
+      class="profile-option"
+      style="width:100%"
+      onclick="toggleTheme();closeModal()"
+    >
+      <span class="option-icon">🌙</span>
+      <strong>Modo claro / oscuro</strong>
+      <span>›</span>
+    </button>
 
-`;
-
-}
+    <button
+      class="profile-option"
+      style="width:100%; margin-top:8px"
+      onclick="clearLocalData()"
+    >
+      <span class="option-icon">🗑️</span>
+      <strong>Borrar datos locales</strong>
+      <span>›</span>
+    </button>
 
-openModal(title,content);
+  `);
 
 }
-
-
-/* DATOS */
-
-function exportData(){
-
-const blob=
-new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
-);
 
-const url=
-URL.createObjectURL(blob);
 
-const a=
-document.createElement("a");
+function clearLocalData() {
 
-a.href=url;
+  if (
+    confirm(
+      "¿Seguro que quieres borrar los datos locales de NEXO?"
+    )
+  ) {
 
-a.download=
-"conecta-mis-datos.json";
+    localStorage.clear();
 
-document.body.appendChild(a);
+    location.reload();
 
-a.click();
+  }
 
-a.remove();
-
-URL.revokeObjectURL(url);
-
-showToast("Datos exportados ✓");
-
 }
-
 
-function deleteLocalData(){
 
-if(!confirm(
-"¿Seguro que quieres eliminar los datos locales?"
-))return;
+/* =========================
+   THEME
+========================= */
 
-localStorage.removeItem(STORAGE_KEY);
+function loadTheme() {
 
-data=structuredClone(defaultData);
+  const theme =
+    localStorage.getItem(STORAGE.theme);
 
-applyAppearance();
+  if (theme === "dark") {
 
-renderAll();
+    document.body.classList.add("dark");
 
-showToast("Datos eliminados.");
+  }
 
 }
 
 
-/* ESTADÍSTICAS */
+function toggleTheme() {
 
-function updateStats(){
+  document.body.classList.toggle("dark");
 
-data.stats.connections=
-data.connections.length;
+  const dark =
+    document.body.classList.contains("dark");
 
-data.stats.plans=
-data.plans.length;
+  localStorage.setItem(
+    STORAGE.theme,
+    dark ? "dark" : "light"
+  );
 
-data.stats.posts=
-data.posts.length;
+  const themeMeta =
+    document.querySelector(
+      'meta[name="theme-color"]'
+    );
 
-const c=
-document.getElementById("statConnections");
+  if (themeMeta) {
 
-const p=
-document.getElementById("statPlans");
+    themeMeta.setAttribute(
+      "content",
+      dark ? "#090b10" : "#ffffff"
+    );
 
-const po=
-document.getElementById("statPosts");
+  }
 
-if(c)c.textContent=
-data.stats.connections;
-
-if(p)p.textContent=
-data.stats.plans;
-
-if(po)po.textContent=
-data.stats.posts;
-
-saveData();
-
 }
 
 
-/* MODAL */
+/* =========================
+   MODALS
+========================= */
 
-function openModal(title,content){
+function openModal(content) {
 
-document.getElementById(
-"modalTitle"
-).textContent=title;
+  const modal =
+    document.getElementById("modal");
 
-document.getElementById(
-"modalContent"
-).innerHTML=content;
+  document.getElementById("modalContent").innerHTML =
+    content;
 
-document.getElementById(
-"modal"
-).classList.add("open");
+  modal.classList.add("active");
 
 }
 
 
-function closeModal(){
+function closeModal() {
 
-document.getElementById(
-"modal"
-).classList.remove("open");
+  document
+    .getElementById("modal")
+    .classList.remove("active");
 
 }
 
 
-function closeModalOutside(e){
+function closeModalOutside(event) {
 
-if(e.target.id==="modal"){
+  if (
+    event.target.id === "modal"
+  ) {
 
-closeModal();
+    closeModal();
 
-}
+  }
 
 }
 
 
-/* TOAST */
+/* =========================
+   TOAST
+========================= */
 
 let toastTimer;
 
-function showToast(message){
+function showToast(message) {
 
-const t=
-document.getElementById("toast");
+  const toast =
+    document.getElementById("toast");
 
-t.textContent=message;
+  toast.textContent = message;
 
-t.classList.add("show");
+  toast.classList.add("show");
 
-clearTimeout(toastTimer);
+  clearTimeout(toastTimer);
 
-toastTimer=
-setTimeout(
-()=>t.classList.remove("show"),
-2500
-);
+  toastTimer = setTimeout(() => {
 
-}
+    toast.classList.remove("show");
 
-
-/* SEGURIDAD HTML */
-
-function escapeHTML(value){
-
-return String(value)
-
-.replaceAll("&","&amp;")
-
-.replaceAll("<","&lt;")
-
-.replaceAll(">","&gt;")
-
-.replaceAll('"',"&quot;")
-
-.replaceAll("'","&#039;");
+  }, 2300);
 
 }
 
 
-function escapeAttribute(value){
+/* =========================
+   SECURITY / HTML
+========================= */
 
-return escapeHTML(value);
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
 
 
-/* SERVICE WORKER */
+function escapeAttr(value) {
 
-if("serviceWorker" in navigator){
-
-window.addEventListener(
-"load",
-()=>{
-
-navigator.serviceWorker
-.register("./sw.js")
-.then(
-()=>console.log(
-"CONECTA Service Worker activo."
-)
-)
-.catch(
-e=>console.log(
-"Service Worker no disponible:",
-e
-)
-);
-
-});
+  return escapeHTML(value);
 
 }
 
