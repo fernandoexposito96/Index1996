@@ -2,2190 +2,1675 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#8b35ff">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>CONECTA</title>
+
+<meta name="description" content="CONECTA - conecta personas, intereses y planes.">
+<meta name="theme-color" content="#111111">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NEXO">
-<meta name="mobile-web-app-capable" content="yes">
-
-<title>NEXO</title>
+<meta name="apple-mobile-web-app-title" content="CONECTA">
 
 <link rel="manifest" href="manifest.json">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
 :root{
-  --bg:#070711;
-  --bg2:#0d0d19;
-  --panel:#121221;
-  --panel2:#19192d;
-  --border:rgba(255,255,255,.10);
-  --primary:#8b35ff;
-  --secondary:#ff168c;
-  --accent:#354dff;
-  --success:#20e59a;
-  --warning:#ffd447;
-  --danger:#ff4d67;
-  --text:#fff;
-  --muted:#9292a8;
-  --gradient:linear-gradient(135deg,var(--secondary),var(--primary) 52%,var(--accent));
-  --radius:18px;
-  --nav:76px;
-  --shadow:0 18px 50px rgba(0,0,0,.28);
-}
-
-[data-theme="pink"]{
- --primary:#ff168c;--secondary:#ff58ba;--accent:#9b35ff;
-}
-[data-theme="purple"]{
- --primary:#8b35ff;--secondary:#c026ff;--accent:#354dff;
-}
-[data-theme="blue"]{
- --primary:#354dff;--secondary:#0077ff;--accent:#00d9ff;
-}
-[data-theme="cyan"]{
- --primary:#00d9ff;--secondary:#0077ff;--accent:#354dff;
-}
-[data-theme="green"]{
- --primary:#20e59a;--secondary:#00b879;--accent:#00d9ff;
-}
-[data-theme="red"]{
- --primary:#ff304f;--secondary:#ff168c;--accent:#8b35ff;
-}
-[data-theme="gold"]{
- --primary:#ffd447;--secondary:#ff9f1c;--accent:#ff5c35;
-}
-[data-theme="sunset"]{
- --primary:#ff5c35;--secondary:#ff168c;--accent:#8b35ff;
-}
-[data-theme="mono"]{
- --primary:#fff;--secondary:#aaa;--accent:#555;
-}
-[data-theme="ocean"]{
- --primary:#00d9ff;--secondary:#354dff;--accent:#7c3aed;
-}
-[data-theme="lime"]{
- --primary:#b7ff3c;--secondary:#20e59a;--accent:#00d9ff;
+  --accent:#7c3aed;
+  --accent2:#a855f7;
+  --bg:#09090b;
+  --surface:#111114;
+  --surface2:#18181c;
+  --surface3:#222228;
+  --text:#ffffff;
+  --muted:#a1a1aa;
+  --border:rgba(255,255,255,.09);
+  --danger:#ef4444;
+  --success:#22c55e;
+  --radius:22px;
+  --shadow:0 18px 50px rgba(0,0,0,.25);
 }
 
 *{
- box-sizing:border-box;
- -webkit-tap-highlight-color:transparent;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
- scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
- margin:0;
- min-height:100vh;
- background:#000;
- color:var(--text);
- font-family:Inter,Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(124,58,237,.18),transparent 30%),
+    radial-gradient(circle at 85% 25%,rgba(168,85,247,.10),transparent 28%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-button,input,textarea,select{
- font:inherit;
+button,
+input,
+textarea,
+select{
+  font:inherit;
 }
 
 button{
- cursor:pointer;
+  border:0;
+  cursor:pointer;
 }
 
-button:active{
- transform:scale(.97);
-}
-
-input,textarea,select{
- outline:none;
-}
-
-#app{
- width:100%;
- max-width:520px;
- min-height:100vh;
- margin:auto;
- position:relative;
- overflow:hidden;
- background:
- radial-gradient(circle at 85% 0%,color-mix(in srgb,var(--primary) 22%,transparent),transparent 34%),
- radial-gradient(circle at 0% 35%,color-mix(in srgb,var(--secondary) 13%,transparent),transparent 31%),
- var(--bg);
-}
-
-.screen{
- display:none;
- min-height:100vh;
- padding:
- calc(20px + env(safe-area-inset-top))
- 17px
- calc(105px + env(safe-area-inset-bottom));
- overflow-y:auto;
-}
-
-.screen.active{
- display:block;
- animation:screenIn .22s ease;
-}
-
-@keyframes screenIn{
- from{opacity:0;transform:translateY(8px)}
- to{opacity:1;transform:translateY(0)}
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
 .hidden{
- display:none!important;
+  display:none!important;
+}
+
+/* APP */
+
+#app{
+  min-height:100vh;
+}
+
+.screen{
+  display:none;
+  min-height:100vh;
+  padding-bottom:100px;
+}
+
+.screen.active{
+  display:block;
+}
+
+.container{
+  width:min(1100px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  background:rgba(9,9,11,.78);
+  border-bottom:1px solid var(--border);
+}
+
+.topbar-inner{
+  width:min(1100px,92%);
+  min-height:68px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 
 .logo{
- font-size:32px;
- font-weight:900;
- letter-spacing:-2px;
- background:var(--gradient);
- -webkit-background-clip:text;
- background-clip:text;
- color:transparent;
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-.top-header,.page-header{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:12px;
+.logo span{
+  color:var(--accent2);
 }
 
-.top-header{
- margin-bottom:20px;
+.icon-btn{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  background:var(--surface2);
+  color:white;
+  border:1px solid var(--border);
+  display:grid;
+  place-items:center;
+  font-size:20px;
 }
 
-.top-header h1{
- font-size:20px;
- margin:5px 0 0;
+/* HERO */
+
+.hero{
+  padding:35px 0 20px;
 }
 
-.top-header p{
- margin:5px 0 0;
- color:var(--muted);
- font-size:11px;
+.hero h1{
+  font-size:clamp(32px,7vw,58px);
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:12px;
 }
 
-.page-header{
- margin-bottom:18px;
+.gradient{
+  background:linear-gradient(100deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
-.page-header h1{
- font-size:21px;
- margin:0;
+.hero p{
+  color:var(--muted);
+  font-size:16px;
+  line-height:1.5;
 }
 
-.icon-button,.plus-small{
- width:44px;
- height:44px;
- border-radius:14px;
- border:1px solid var(--border);
- color:white;
- background:rgba(255,255,255,.06);
+/* CARDS */
+
+.card{
+  background:rgba(24,24,28,.84);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow:var(--shadow);
+  margin-bottom:15px;
 }
 
-.back-button{
- width:42px;
- height:42px;
- border:0;
- background:transparent;
- color:white;
- font-size:38px;
- line-height:1;
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:15px;
 }
 
-.search-box{
- min-height:49px;
- display:flex;
- align-items:center;
- gap:8px;
- padding:0 13px;
- margin-bottom:18px;
- border:1px solid var(--border);
- border-radius:15px;
- background:rgba(15,15,27,.88);
- box-shadow:inset 0 1px rgba(255,255,255,.03);
+.card-title h2{
+  font-size:20px;
 }
 
-.search-box span{
- color:#aaaabe;
- font-size:22px;
+.card-title span{
+  color:var(--muted);
+  font-size:13px;
 }
 
-.search-box input{
- flex:1;
- min-width:0;
- border:0;
- background:transparent;
- color:white;
- font-size:13px;
+/* BUTTONS */
+
+.btn{
+  min-height:46px;
+  padding:0 18px;
+  border-radius:14px;
+  color:white;
+  font-weight:750;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  transition:.2s;
 }
 
-.search-box input::placeholder{
- color:#707087;
+.btn:active{
+  transform:scale(.97);
 }
 
-.section-title{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:10px;
- margin:21px 0 11px;
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
 }
 
-.section-title h2{
- margin:0;
- font-size:14px;
+.btn-secondary{
+  background:var(--surface3);
+  border:1px solid var(--border);
 }
 
-.section-title button{
- border:0;
- background:transparent;
- color:var(--primary);
- font-size:10px;
- font-weight:700;
+.btn-danger{
+  background:rgba(239,68,68,.13);
+  color:#f87171;
+  border:1px solid rgba(239,68,68,.2);
 }
 
-.categories{
- display:flex;
- gap:8px;
- overflow-x:auto;
- scrollbar-width:none;
- padding-bottom:4px;
+.btn-success{
+  background:rgba(34,197,94,.13);
+  color:#4ade80;
+  border:1px solid rgba(34,197,94,.2);
 }
 
-.categories::-webkit-scrollbar{
- display:none;
+.full{
+  width:100%;
 }
 
-.category{
- flex-shrink:0;
- border:1px solid var(--border);
- background:rgba(18,18,31,.9);
- color:#ddd;
- border-radius:22px;
- padding:9px 13px;
- font-size:10px;
+/* GRID */
+
+.grid{
+  display:grid;
+  gap:15px;
 }
 
-.category.active{
- background:var(--gradient);
- border-color:transparent;
- color:white;
- box-shadow:0 8px 25px color-mix(in srgb,var(--primary) 30%,transparent);
+.grid-2{
+  grid-template-columns:repeat(2,minmax(0,1fr));
 }
 
-.plan-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px;
+.grid-3{
+  grid-template-columns:repeat(3,minmax(0,1fr));
 }
 
-.plan-card{
- height:195px;
- position:relative;
- overflow:hidden;
- border-radius:var(--radius);
- background-size:cover;
- background-position:center;
- border:1px solid rgba(255,255,255,.12);
- box-shadow:var(--shadow);
+@media(max-width:700px){
+  .grid-2,
+  .grid-3{
+    grid-template-columns:1fr;
+  }
 }
 
-.plan-card:after,
-.interest-card:after{
- content:"";
- position:absolute;
- inset:0;
- background:linear-gradient(transparent 10%,rgba(0,0,0,.9));
+/* QUICK ACTIONS */
+
+.actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
 
-.plan-top,.card-content{
- position:absolute;
- z-index:2;
+.action{
+  min-height:95px;
+  border-radius:18px;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  color:white;
+  padding:12px;
+  text-align:center;
 }
 
-.plan-top{
- top:10px;
- left:10px;
+.action .emoji{
+  display:block;
+  font-size:27px;
+  margin-bottom:7px;
 }
 
-.card-content{
- left:11px;
- right:11px;
- bottom:11px;
+.action small{
+  color:var(--muted);
 }
 
-.card-content h3{
- margin:0 0 6px;
- font-size:13px;
+@media(max-width:600px){
+  .actions{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-.card-content p,.card-content small{
- display:block;
- margin:4px 0;
- font-size:8px;
- color:#dddde6;
-}
+/* PROFILE */
 
-.distance{
- display:inline-block;
- padding:5px 8px;
- border-radius:10px;
- font-size:8px;
- background:rgba(0,70,40,.86);
- border:1px solid rgba(40,255,160,.25);
-}
-
-.distance.pink{
- background:rgba(100,15,70,.86);
- border-color:rgba(255,70,190,.25);
-}
-
-.image-running{
- background-image:url("https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-gym{
- background-image:url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-football{
- background-image:url("https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-cycling{
- background-image:url("https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-yoga{
- background-image:url("https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-cross{
- background-image:url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-padel{
- background-image:url("https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-cinema{
- background-image:url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80");
-}
-
-.image-music{
- background-image:url("https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80");
-}
-
-.people-row{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
-}
-
-.person-card{
- padding:12px;
- border:1px solid var(--border);
- border-radius:var(--radius);
- background:linear-gradient(145deg,rgba(27,27,46,.95),rgba(14,14,25,.95));
+.profile-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
 }
 
 .avatar{
- width:45px;
- height:45px;
- border-radius:50%;
- background-size:cover;
- background-position:center;
- border:2px solid var(--primary);
- box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 12%,transparent);
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  font-size:30px;
+  font-weight:900;
+  flex-shrink:0;
 }
 
-.avatar-laura{
- background-image:url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80");
+.profile-head h2{
+  margin-bottom:5px;
 }
 
-.avatar-marc{
- background-image:url("https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80");
+.muted{
+  color:var(--muted);
 }
 
-.avatar-sofia{
- background-image:url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80");
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:13px;
 }
 
-.avatar-alex{
- background-image:url("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80");
+.tag{
+  padding:8px 12px;
+  background:var(--surface3);
+  border-radius:999px;
+  color:#ddd;
+  font-size:13px;
 }
 
-.person-card strong{
- display:block;
- margin-top:8px;
- font-size:11px;
-}
-
-.person-card span,.person-card small{
- display:block;
- color:var(--muted);
- font-size:8px;
- margin-top:4px;
-}
-
-.connect-button{
- margin-top:9px;
- padding:7px 10px;
- border:0;
- border-radius:9px;
- background:var(--gradient);
- color:white;
- font-size:8px;
- font-weight:700;
-}
-
-.message-preview{
- display:flex;
- align-items:center;
- gap:10px;
- padding:12px;
- border:1px solid var(--border);
- border-radius:15px;
- background:var(--panel);
- cursor:pointer;
-}
-
-.message-preview p{
- margin:4px 0 0;
- color:var(--muted);
- font-size:9px;
-}
-
-.message-time{
- margin-left:auto;
- color:var(--muted);
- font-size:8px;
-}
-
-.tabs{
- display:flex;
- padding:4px;
- margin-bottom:15px;
- border:1px solid var(--border);
- border-radius:14px;
- background:rgba(13,13,23,.9);
-}
-
-.tab{
- flex:1;
- border:0;
- background:transparent;
- color:#888;
- padding:9px 4px;
- border-radius:10px;
- font-size:9px;
- font-weight:700;
-}
-
-.tab.active{
- background:var(--gradient);
- color:white;
-}
-
-.big-plan-card{
- overflow:hidden;
- margin-bottom:12px;
- border:1px solid var(--border);
- border-radius:var(--radius);
- background:var(--panel);
- box-shadow:var(--shadow);
-}
-
-.big-plan-image{
- height:170px;
- background-size:cover;
- background-position:center;
-}
-
-.big-plan-info{
- padding:14px;
-}
-
-.big-plan-info h3{
- margin:9px 0;
- font-size:16px;
-}
-
-.big-plan-info p{
- margin:5px 0;
- color:var(--muted);
- font-size:9px;
-}
-
-.badge{
- display:inline-block;
- padding:5px 8px;
- border-radius:9px;
- font-size:8px;
- font-weight:700;
-}
-
-.badge.green{
- background:rgba(7,61,41,.75);
- color:#43ed9a;
-}
-
-.badge.pink{
- background:rgba(77,16,67,.75);
- color:#ff62d0;
-}
-
-.badge.yellow{
- background:rgba(70,58,9,.75);
- color:#f5db59;
-}
-
-.small-plan{
- display:flex;
- align-items:center;
- gap:10px;
- margin-bottom:8px;
- padding:8px;
- border:1px solid var(--border);
- border-radius:14px;
- background:var(--panel);
-}
-
-.small-plan-image{
- width:62px;
- height:62px;
- flex-shrink:0;
- border-radius:11px;
- background-size:cover;
- background-position:center;
-}
-
-.small-plan>div:nth-child(2){
- flex:1;
- min-width:0;
-}
-
-.small-plan h3{
- margin:0 0 5px;
- font-size:10px;
-}
-
-.small-plan p,.small-plan small{
- display:block;
- margin:3px 0;
- color:var(--muted);
- font-size:8px;
-}
-
-#createPlanForm label{
- display:block;
- margin-bottom:14px;
- color:#bdbdcc;
- font-size:10px;
-}
-
-#createPlanForm input,
-#createPlanForm textarea,
-#createPlanForm select{
- display:block;
- width:100%;
- margin-top:7px;
- padding:13px;
- border:1px solid var(--border);
- border-radius:13px;
- background:rgba(13,13,23,.92);
- color:white;
-}
-
-#createPlanForm textarea{
- height:105px;
- resize:none;
-}
-
-#createPlanForm input:focus,
-#createPlanForm textarea:focus,
-#createPlanForm select:focus{
- border-color:var(--primary);
- box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 12%,transparent);
-}
-
-.upload-box{
- min-height:160px;
- display:flex!important;
- align-items:center;
- justify-content:center;
- text-align:center;
- border:1px dashed var(--primary);
- border-radius:15px;
- background:#0b0b13;
- cursor:pointer;
- overflow:hidden;
-}
-
-.upload-box input{
- display:none!important;
-}
-
-#imagePreview{
- display:flex;
- flex-direction:column;
- align-items:center;
- gap:7px;
-}
-
-.upload-icon{
- font-size:34px;
- color:var(--secondary);
-}
-
-#imagePreview small{
- color:#777;
-}
-
-.settings-list{
- margin-top:4px;
- overflow:hidden;
- border:1px solid var(--border);
- border-radius:15px;
- background:var(--panel);
-}
-
-.setting-row{
- width:100%;
- min-height:55px;
- display:flex;
- align-items:center;
- gap:10px;
- padding:0 12px;
- border:0;
- border-bottom:1px solid var(--border);
- background:transparent;
- color:white;
- text-align:left;
-}
+/* PEOPLE */
 
-.setting-row:last-child{
- border-bottom:0;
+.person{
+  display:flex;
+  align-items:center;
+  gap:13px;
 }
 
-.setting-row strong{
- font-size:10px;
+.person-avatar{
+  width:54px;
+  height:54px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  display:grid;
+  place-items:center;
+  font-size:22px;
+  flex-shrink:0;
 }
 
-.setting-value{
- margin-left:auto;
- color:#777;
- font-size:9px;
+.person-info{
+  flex:1;
 }
 
-.quantity{
- margin-left:auto;
- display:flex;
- align-items:center;
- gap:10px;
+.person-info strong{
+  display:block;
+  margin-bottom:3px;
 }
 
-.quantity button{
- width:27px;
- height:27px;
- border:1px solid var(--border);
- border-radius:8px;
- background:#181822;
- color:white;
+.person-info small{
+  color:var(--muted);
 }
 
-.main-button{
- width:100%;
- height:51px;
- margin-top:18px;
- border:0;
- border-radius:25px;
- background:var(--gradient);
- color:white;
- font-weight:800;
- box-shadow:0 14px 35px color-mix(in srgb,var(--primary) 24%,transparent);
-}
-
-.active-people{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:8px;
- margin-bottom:20px;
- text-align:center;
-}
-
-.active-people>div{
- display:flex;
- flex-direction:column;
- align-items:center;
- gap:5px;
- min-width:0;
-}
-
-.active-people strong{
- font-size:9px;
-}
-
-.active-people small{
- color:var(--muted);
- font-size:7px;
-}
-
-.large-avatar{
- width:58px;
- height:58px;
- border-radius:50%;
- background-size:cover;
- background-position:center;
- border:2px solid var(--primary);
-}
-
-.interest-grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:9px;
-}
-
-.interest-card{
- height:105px;
- position:relative;
- overflow:hidden;
- display:flex;
- flex-direction:column;
- justify-content:flex-end;
- padding:11px;
- border-radius:15px;
- background-size:cover;
- background-position:center;
-}
-
-.interest-card strong,.interest-card span{
- position:relative;
- z-index:2;
-}
-
-.interest-card strong{
- font-size:11px;
-}
-
-.interest-card span{
- margin-top:3px;
- color:#ccc;
- font-size:8px;
-}
-
-.chat-item{
- display:flex;
- align-items:center;
- gap:10px;
- padding:14px 3px;
- border-bottom:1px solid var(--border);
-}
-
-.chat-item>div:nth-child(2){
- flex:1;
- min-width:0;
-}
-
-.chat-item strong{
- font-size:11px;
-}
-
-.chat-item p{
- margin:5px 0 0;
- color:#858593;
- font-size:8px;
- white-space:nowrap;
- overflow:hidden;
- text-overflow:ellipsis;
-}
-
-.chat-right{
- text-align:right;
-}
-
-.chat-right small{
- color:var(--muted);
- font-size:8px;
-}
+/* PLANS */
 
-.profile-card{
- overflow:hidden;
- padding-bottom:18px;
- border:1px solid var(--border);
- border-radius:18px;
- background:rgba(12,12,21,.95);
- text-align:center;
+.plan{
+  position:relative;
 }
 
-.profile-cover{
- height:145px;
- display:flex;
- align-items:flex-end;
- justify-content:center;
- background:
- radial-gradient(circle at 20% 30%,var(--secondary),transparent 28%),
- radial-gradient(circle at 80% 40%,var(--primary),transparent 35%),
- radial-gradient(circle at 50% 100%,var(--accent),transparent 35%),
- linear-gradient(135deg,#32103d,#10101e);
+.plan-top{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
 }
 
-.profile-avatar{
- width:94px;
- height:94px;
- transform:translateY(48px);
- border:3px solid white;
- border-radius:50%;
- background:url("https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80") center/cover;
- box-shadow:0 0 0 5px color-mix(in srgb,var(--primary) 30%,transparent);
+.plan-icon{
+  width:54px;
+  height:54px;
+  border-radius:16px;
+  background:var(--surface3);
+  display:grid;
+  place-items:center;
+  font-size:25px;
+  flex-shrink:0;
 }
 
-.profile-card h2{
- margin-top:58px;
- margin-bottom:5px;
+.plan h3{
+  margin-bottom:5px;
 }
 
-.profile-card p{
- margin:5px;
- color:var(--muted);
- font-size:10px;
+.plan-info{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
 }
 
-.edit-profile{
- margin-top:10px;
- padding:8px 14px;
- border:1px solid var(--border);
- border-radius:10px;
- background:#141420;
- color:white;
- font-size:9px;
+.plan-actions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
 }
 
-.stats{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- margin-top:9px;
- padding:14px 5px;
- border:1px solid var(--border);
- border-radius:14px;
- background:var(--panel);
-}
-
-.stats div{
- text-align:center;
-}
-
-.stats strong,.stats span{
- display:block;
-}
-
-.stats strong{
- font-size:14px;
-}
-
-.stats span{
- margin-top:4px;
- color:#777;
- font-size:7px;
-}
-
-.profile-section{
- margin-top:10px;
- padding:13px;
- border:1px solid var(--border);
- border-radius:15px;
- background:var(--panel);
-}
-
-.profile-section p{
- color:#b5b5c0;
- font-size:10px;
- line-height:1.6;
-}
-
-.profile-interests{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:6px;
-}
-
-.profile-interests div{
- padding:10px 2px;
- border-radius:9px;
- background:#10101b;
- text-align:center;
- font-size:7px;
-}
+/* INPUTS */
 
-.profile-interests span{
- display:block;
- margin-bottom:4px;
- font-size:18px;
+.input-group{
+  margin-bottom:15px;
 }
 
-.settings-card{
- margin-bottom:10px;
- padding:4px;
- border:1px solid var(--border);
- border-radius:17px;
- background:var(--panel);
+.input-group label{
+  display:block;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:7px;
 }
 
-.settings-row{
- min-height:55px;
- display:flex;
- align-items:center;
- gap:12px;
- padding:8px 10px;
- border-bottom:1px solid var(--border);
+.input,
+textarea,
+select{
+  width:100%;
+  min-height:47px;
+  background:var(--surface2);
+  color:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  outline:none;
 }
 
-.settings-row:last-child{
- border-bottom:0;
+textarea{
+  min-height:100px;
+  resize:vertical;
 }
 
-.settings-row .setting-icon{
- width:34px;
- height:34px;
- display:flex;
- align-items:center;
- justify-content:center;
- flex-shrink:0;
- border-radius:10px;
- background:rgba(255,255,255,.06);
- font-size:16px;
+.input:focus,
+textarea:focus,
+select:focus{
+  border-color:var(--accent);
 }
 
-.settings-row .setting-main{
- flex:1;
- min-width:0;
-}
-
-.settings-row strong{
- display:block;
- font-size:11px;
-}
-
-.settings-row small{
- display:block;
- margin-top:3px;
- color:var(--muted);
- font-size:8px;
-}
-
-.settings-row .arrow{
- color:#777;
-}
-
-.toggle{
- width:43px;
- height:25px;
- padding:3px;
- border:0;
- border-radius:20px;
- background:#343444;
-}
-
-.toggle i{
- display:block;
- width:19px;
- height:19px;
- border-radius:50%;
- background:white;
- transition:.2s;
-}
-
-.toggle.on{
- background:var(--primary);
-}
+/* SEARCH */
 
-.toggle.on i{
- transform:translateX(18px);
+.search{
+  position:relative;
+  margin:15px 0;
 }
 
-.theme-grid{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:8px;
- padding:12px;
+.search input{
+  padding-left:45px;
 }
 
-.theme{
- height:54px;
- position:relative;
- border:2px solid transparent;
- border-radius:13px;
- cursor:pointer;
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:13px;
 }
 
-.theme.selected{
- border-color:white;
-}
+/* SETTINGS */
 
-.theme span{
- position:absolute;
- left:7px;
- bottom:6px;
- color:white;
- font-size:7px;
- font-weight:800;
- text-shadow:0 1px 4px #000;
+.setting{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:15px 0;
+  border-bottom:1px solid var(--border);
 }
 
-.theme-purple{background:linear-gradient(135deg,#ff168c,#8b35ff,#354dff)}
-.theme-pink{background:linear-gradient(135deg,#ff168c,#ff58ba,#9b35ff)}
-.theme-blue{background:linear-gradient(135deg,#354dff,#0077ff,#00d9ff)}
-.theme-cyan{background:linear-gradient(135deg,#00d9ff,#0077ff,#354dff)}
-.theme-green{background:linear-gradient(135deg,#20e59a,#00b879,#00d9ff)}
-.theme-red{background:linear-gradient(135deg,#ff304f,#ff168c,#8b35ff)}
-.theme-gold{background:linear-gradient(135deg,#ffd447,#ff9f1c,#ff5c35)}
-.theme-sunset{background:linear-gradient(135deg,#ff5c35,#ff168c,#8b35ff)}
-.theme-mono{background:linear-gradient(135deg,#fff,#888,#222)}
-.theme-ocean{background:linear-gradient(135deg,#00d9ff,#354dff,#7c3aed)}
-.theme-lime{background:linear-gradient(135deg,#b7ff3c,#20e59a,#00d9ff)}
-
-.empty{
- padding:30px 15px;
- border:1px dashed var(--border);
- border-radius:16px;
- color:var(--muted);
- text-align:center;
- font-size:11px;
+.setting:last-child{
+  border-bottom:0;
 }
 
-.modal{
- position:fixed;
- inset:0;
- z-index:250;
- display:none;
- align-items:flex-end;
- justify-content:center;
- background:rgba(0,0,0,.68);
- backdrop-filter:blur(8px);
+.setting-info{
+  flex:1;
 }
 
-.modal.show{
- display:flex;
+.setting-info strong{
+  display:block;
+  margin-bottom:4px;
 }
 
-.modal-box{
- width:min(520px,100%);
- max-height:88vh;
- overflow-y:auto;
- padding:18px;
- border:1px solid var(--border);
- border-radius:24px 24px 0 0;
- background:#11111e;
- box-shadow:0 -20px 80px rgba(0,0,0,.45);
- animation:modalIn .22s ease;
+.setting-info small{
+  color:var(--muted);
+  line-height:1.4;
 }
 
-@keyframes modalIn{
- from{transform:translateY(100%)}
- to{transform:translateY(0)}
+.switch{
+  position:relative;
+  width:50px;
+  height:28px;
+  flex-shrink:0;
 }
 
-.modal-head{
- display:flex;
- align-items:center;
- justify-content:space-between;
- margin-bottom:16px;
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
 }
 
-.modal-head h2{
- margin:0;
- font-size:18px;
+.slider{
+  position:absolute;
+  inset:0;
+  background:#3f3f46;
+  border-radius:999px;
+  transition:.2s;
 }
 
-.close{
- width:36px;
- height:36px;
- border:0;
- border-radius:10px;
- background:#222232;
- color:white;
- font-size:20px;
+.slider:before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  left:3px;
+  top:3px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
 }
 
-.form-group{
- margin-bottom:13px;
+.switch input:checked+.slider{
+  background:var(--accent);
 }
 
-.form-group label{
- display:block;
- margin-bottom:6px;
- color:#bbb;
- font-size:9px;
+.switch input:checked+.slider:before{
+  transform:translateX(22px);
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
- width:100%;
- padding:12px;
- border:1px solid var(--border);
- border-radius:11px;
- background:#0b0b14;
- color:white;
-}
+/* COLOR PICKER */
 
-.form-group textarea{
- min-height:90px;
- resize:vertical;
+.color-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
 }
 
-.modal-actions{
- display:flex;
- gap:8px;
- margin-top:15px;
+.color{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:3px solid transparent;
 }
 
-.secondary-button{
- flex:1;
- height:45px;
- border:1px solid var(--border);
- border-radius:22px;
- background:#20202e;
- color:white;
+.color.selected{
+  border-color:white;
 }
 
-.primary-button{
- flex:1;
- height:45px;
- border:0;
- border-radius:22px;
- background:var(--gradient);
- color:white;
- font-weight:800;
-}
+/* BOTTOM NAV */
 
 .bottom-nav{
- position:fixed;
- left:50%;
- bottom:0;
- transform:translateX(-50%);
- width:min(520px,100%);
- height:calc(var(--nav) + env(safe-area-inset-bottom));
- padding-bottom:env(safe-area-inset-bottom);
- display:flex;
- align-items:center;
- justify-content:space-around;
- z-index:100;
- border-top:1px solid rgba(255,255,255,.1);
- background:rgba(8,8,15,.95);
- backdrop-filter:blur(22px);
- -webkit-backdrop-filter:blur(22px);
+  position:fixed;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  z-index:100;
+  width:min(700px,94%);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:rgba(20,20,24,.92);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:7px;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
 .nav-item{
- width:65px;
- height:58px;
- border:0;
- background:transparent;
- color:#777;
+  min-height:58px;
+  border-radius:16px;
+  background:transparent;
+  color:#a1a1aa;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:3px;
+  font-size:11px;
 }
 
-.nav-item span{
- display:block;
- font-size:21px;
-}
-
-.nav-item small{
- display:block;
- margin-top:3px;
- font-size:7px;
+.nav-item .nav-icon{
+  font-size:20px;
 }
 
 .nav-item.active{
- color:var(--primary);
+  background:rgba(124,58,237,.18);
+  color:white;
 }
 
-.main-plus{
- width:56px;
- height:56px;
- transform:translateY(-14px);
- border:0;
- border-radius:50%;
- background:var(--gradient);
- color:white;
- font-size:30px;
- box-shadow:0 0 35px color-mix(in srgb,var(--primary) 50%,transparent);
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:300;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(8px);
+  display:none;
+  align-items:flex-end;
+  justify-content:center;
+  padding:15px;
 }
 
-#toast{
- position:fixed;
- left:50%;
- bottom:94px;
- transform:translateX(-50%) translateY(20px);
- width:calc(100% - 34px);
- max-width:450px;
- padding:13px 16px;
- border:1px solid rgba(255,255,255,.12);
- border-radius:14px;
- background:rgba(25,25,40,.97);
- box-shadow:0 15px 40px rgba(0,0,0,.35);
- color:white;
- font-size:11px;
- text-align:center;
- opacity:0;
- pointer-events:none;
- transition:.25s;
- z-index:400;
+.modal.open{
+  display:flex;
 }
 
-#toast.show{
- opacity:1;
- transform:translateX(-50%) translateY(0);
+.modal-box{
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:28px;
+  padding:22px;
 }
 
-.notification-dot{
- position:absolute;
- top:5px;
- right:5px;
- width:7px;
- height:7px;
- border-radius:50%;
- background:var(--secondary);
+.modal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
 }
 
-.relative{
- position:relative;
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  top:20px;
+  transform:translate(-50%,-20px);
+  z-index:500;
+  opacity:0;
+  pointer-events:none;
+  background:#18181b;
+  color:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:13px 18px;
+  transition:.25s;
 }
 
-.online{
- width:9px;
- height:9px;
- border:2px solid #111;
- border-radius:50%;
- background:var(--success);
- position:absolute;
- right:0;
- bottom:1px;
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
 }
 
-.avatar-wrap{
- position:relative;
- width:max-content;
+/* EMPTY */
+
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
 }
 
-@media(min-width:700px){
- body{
-  padding:30px;
- }
+.empty-icon{
+  font-size:40px;
+  margin-bottom:10px;
+}
 
- #app{
-  min-height:calc(100vh - 60px);
-  border-radius:26px;
-  box-shadow:0 0 100px color-mix(in srgb,var(--primary) 18%,transparent);
- }
+/* BADGES */
 
- .bottom-nav{
-  bottom:30px;
-  border-radius:0 0 26px 26px;
- }
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:11px;
+  background:rgba(34,197,94,.12);
+  color:#4ade80;
+}
+
+/* LOGIN */
+
+#welcome{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(124,58,237,.3),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(168,85,247,.2),transparent 30%),
+    #09090b;
+}
+
+.welcome-box{
+  width:min(500px,100%);
+  text-align:center;
+}
+
+.welcome-logo{
+  font-size:52px;
+  font-weight:950;
+  letter-spacing:-3px;
+  margin-bottom:12px;
+}
+
+.welcome-logo span{
+  color:var(--accent2);
+}
+
+.welcome-box p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:25px;
+}
+
+/* CHAT */
+
+.chat-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.chat{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  background:var(--surface2);
+  border-radius:17px;
+}
+
+.chat-text{
+  flex:1;
+}
+
+.chat-text strong{
+  display:block;
+}
+
+.chat-text small{
+  color:var(--muted);
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+}
+
+.stat{
+  text-align:center;
+  background:var(--surface2);
+  border-radius:17px;
+  padding:15px 8px;
+}
+
+.stat strong{
+  font-size:24px;
+  display:block;
+}
+
+.stat small{
+  color:var(--muted);
+}
+
+@media(max-width:500px){
+  .stats{
+    grid-template-columns:1fr;
+  }
+}
+
+/* LIGHT MODE */
+
+body.light{
+  --bg:#f4f4f5;
+  --surface:#ffffff;
+  --surface2:#f1f1f3;
+  --surface3:#e4e4e7;
+  --text:#18181b;
+  --muted:#71717a;
+  --border:rgba(0,0,0,.09);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(124,58,237,.12),transparent 30%),
+    var(--bg);
+}
+
+body.light .topbar{
+  background:rgba(255,255,255,.82);
+}
+
+body.light .bottom-nav{
+  background:rgba(255,255,255,.92);
+}
+
+body.light .icon-btn{
+  color:#18181b;
+}
+
+/* CUSTOM BACKGROUNDS */
+
+body.bg-gradient{
+  background:
+    radial-gradient(circle at 10% 20%,rgba(124,58,237,.28),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(236,72,153,.2),transparent 30%),
+    #09090b;
+}
+
+body.bg-blue{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(37,99,235,.3),transparent 30%),
+    #05070d;
+}
+
+body.bg-green{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(16,185,129,.25),transparent 30%),
+    #050b09;
+}
+
+body.bg-red{
+  background:
+    radial-gradient(circle at 80% 10%,rgba(239,68,68,.25),transparent 30%),
+    #0b0505;
+}
+
+body.bg-pink{
+  background:
+    radial-gradient(circle at 20% 10%,rgba(236,72,153,.3),transparent 30%),
+    #0b0509;
 }
 </style>
 </head>
 
 <body>
 
+<div id="welcome">
+  <div class="welcome-box">
+    <div class="welcome-logo">CONECTA<span>.</span></div>
+
+    <p>
+      Conecta con personas, intereses y planes.
+      Descubre gente, crea actividades y construye tu propia comunidad.
+    </p>
+
+    <button class="btn btn-primary full" onclick="enterApp()">
+      Entrar en CONECTA
+    </button>
+  </div>
+</div>
+
 <div id="app">
 
-<!-- ================= INICIO ================= -->
-
-<section class="screen active" id="screen-home">
-
-<header class="top-header">
-<div>
-<div class="logo">NEXO</div>
-<h1 id="welcomeName">Hola 👋</h1>
-<p>¿Qué planes tienes hoy?</p>
-</div>
+  <!-- INICIO -->
 
-<button class="icon-button relative" id="notificationButton" type="button">
-🔔
-<span class="notification-dot" id="notificationDot"></span>
-</button>
-</header>
-
-<div class="search-box">
-<span>⌕</span>
-<input id="homeSearch" type="search" placeholder="Buscar en NEXO...">
-</div>
+  <section id="home" class="screen active">
 
-<div class="section-title">
-<h2>Explora NEXO</h2>
-<button id="allCategoriesButton" type="button">Ver todo</button>
-</div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
 
-<div class="categories" id="categories">
-<button class="category active" data-category="todos">✨ Para ti</button>
-<button class="category" data-category="Deporte">🏃 Deporte</button>
-<button class="category" data-category="Idiomas">🌎 Idiomas</button>
-<button class="category" data-category="Ocio">🎬 Ocio</button>
-<button class="category" data-category="Música">🎵 Música</button>
-<button class="category" data-category="Viajes">✈️ Viajes</button>
-<button class="category" data-category="Comida">🍔 Comida</button>
-</div>
+        <button class="icon-btn" onclick="showScreen('settings')">
+          ⚙️
+        </button>
+      </div>
+    </header>
 
-<div class="section-title">
-<h2>Planes cerca de ti</h2>
-<button data-screen="plans" type="button">Ver todos</button>
-</div>
+    <main class="container">
 
-<div class="plan-grid" id="homePlans">
-
-<article class="plan-card image-running" data-category="Deporte" data-name="running">
-<div class="plan-top"><span class="distance">● 6 km · Fácil</span></div>
-<div class="card-content">
-<h3>🏃 Running al atardecer</h3>
-<p>📍 Tarragona · Domingo 10:00</p>
-<small>👥 4/8 participantes</small>
-</div>
-</article>
-
-<article class="plan-card image-gym" data-category="Deporte" data-name="gym pecho triceps">
-<div class="plan-top"><span class="distance pink">● 5 plazas</span></div>
-<div class="card-content">
-<h3>💪 Pecho y tríceps</h3>
-<p>📍 Fitness Park · Hoy 19:00</p>
-<small>Intermedio</small>
-</div>
-</article>
+      <div class="hero">
+        <h1>Tu mundo.<br><span class="gradient">Tu gente.</span></h1>
+        <p>
+          Descubre personas, crea planes y conecta según tus intereses.
+        </p>
+      </div>
 
-</div>
+      <div class="card">
+        <div class="profile-head">
+          <div class="avatar" id="homeAvatar">C</div>
 
-<div class="section-title">
-<h2>Personas para ti</h2>
-<button data-screen="connect" type="button">Ver más</button>
-</div>
+          <div>
+            <h2 id="homeName">Tu perfil</h2>
+            <p class="muted" id="homeBio">
+              Completa tu perfil para empezar.
+            </p>
+          </div>
+        </div>
+      </div>
 
-<div class="people-row">
+      <div class="card">
+        <div class="card-title">
+          <h2>Accesos rápidos</h2>
+        </div>
 
-<article class="person-card">
-<div class="avatar-wrap">
-<div class="avatar avatar-laura"></div>
-<span class="online"></span>
-</div>
-<strong>Laura · 24</strong>
-<span>🏃 Running · 🎵 Música</span>
-<small>📍 2 km</small>
-<button class="connect-button" data-person="Laura" type="button">Conectar</button>
-</article>
-
-<article class="person-card">
-<div class="avatar-wrap">
-<div class="avatar avatar-marc"></div>
-<span class="online"></span>
-</div>
-<strong>Marc · 27</strong>
-<span>🏋️ Gym · ⚽ Fútbol</span>
-<small>📍 3 km</small>
-<button class="connect-button" data-person="Marc" type="button">Conectar</button>
-</article>
+        <div class="actions">
 
-</div>
+          <button class="action" onclick="showScreen('connect')">
+            <span class="emoji">🤝</span>
+            <small>Conectar</small>
+          </button>
 
-<div class="section-title">
-<h2>Mensajes recientes</h2>
-<button data-screen="chats" type="button">Ver todos</button>
-</div>
+          <button class="action" onclick="showScreen('plans')">
+            <span class="emoji">📅</span>
+            <small>Planes</small>
+          </button>
 
-<div class="message-preview" data-screen="chats">
-<div class="avatar avatar-laura"></div>
-<div>
-<strong>Laura</strong>
-<p>¡Genial! Entonces quedamos el domingo 👋</p>
-</div>
-<span class="message-time">10:30</span>
-</div>
+          <button class="action" onclick="showScreen('chat')">
+            <span class="emoji">💬</span>
+            <small>Chat</small>
+          </button>
 
-</section>
+          <button class="action" onclick="showScreen('profile')">
+            <span class="emoji">👤</span>
+            <small>Perfil</small>
+          </button>
 
+        </div>
+      </div>
 
-<!-- ================= PLANES ================= -->
+      <div class="card">
 
-<section class="screen" id="screen-plans">
+        <div class="card-title">
+          <h2>Planes cerca de ti</h2>
+          <button class="btn btn-secondary" onclick="showScreen('plans')">
+            Ver todos
+          </button>
+        </div>
 
-<header class="page-header">
-<button class="back-button" data-screen="home" type="button">‹</button>
-<h1>Planes</h1>
-<button class="plus-small" data-screen="create" type="button">+</button>
-</header>
+        <div id="homePlans"></div>
 
-<div class="tabs" id="planTabs">
-<button class="tab active" data-tab="discover" type="button">Descubrir</button>
-<button class="tab" data-tab="mine" type="button">Mis planes</button>
-<button class="tab" data-tab="created" type="button">Creados</button>
-</div>
+      </div>
 
-<div class="search-box">
-<span>⌕</span>
-<input id="planSearch" type="search" placeholder="Buscar planes...">
-</div>
+      <div class="card">
 
-<div id="plansList">
-
-<article class="big-plan-card searchable-plan" data-name="futbol deporte fútbol" data-owner="other">
-<div class="big-plan-image image-football"></div>
-<div class="big-plan-info">
-<span class="badge green">6 plazas</span>
-<h3>Partido de fútbol</h3>
-<p>📍 Camp Municipal · Sábado 18:00</p>
-<p>⚽ Fútbol · Intermedio</p>
-</div>
-</article>
-
-<article class="big-plan-card searchable-plan" data-name="bicicleta ciclismo ruta" data-owner="other">
-<div class="big-plan-image image-cycling"></div>
-<div class="big-plan-info">
-<span class="badge yellow">5 km · Medio</span>
-<h3>Ruta en bicicleta</h3>
-<p>📍 Ruta de Salou · Domingo 09:00</p>
-<p>🚴 Ciclismo · Medio</p>
-</div>
-</article>
+        <div class="card-title">
+          <h2>Personas para ti</h2>
+          <span>Según tus intereses</span>
+        </div>
 
-<div class="section-title">
-<h2>Cerca de ti</h2>
-</div>
+        <div id="homePeople"></div>
 
-<article class="small-plan searchable-plan" data-name="yoga playa" data-owner="other">
-<div class="small-plan-image image-yoga"></div>
-<div>
-<h3>Yoga en la playa</h3>
-<p>📍 La Pineda · Hoy 08:00</p>
-<small>🧘 Todos los niveles</small>
-</div>
-<span class="badge green">4 plazas</span>
-</article>
-
-<article class="small-plan searchable-plan" data-name="cross gimnasio" data-owner="other">
-<div class="small-plan-image image-cross"></div>
-<div>
-<h3>Cross Training</h3>
-<p>📍 Fitness Park · Mañana 18:30</p>
-<small>🏋️ Intermedio</small>
-</div>
-<span class="badge pink">2 plazas</span>
-</article>
-
-<article class="small-plan searchable-plan" data-name="padel" data-owner="other">
-<div class="small-plan-image image-padel"></div>
-<div>
-<h3>Pádel nocturno</h3>
-<p>📍 Club Pádel · Viernes 21:00</p>
-<small>🎾 Intermedio</small>
-</div>
-<span class="badge green">3 plazas</span>
-</article>
+      </div>
 
-</div>
+    </main>
+  </section>
 
-<div id="createdPlans"></div>
 
-</section>
+  <!-- CONECTAR -->
 
+  <section id="connect" class="screen">
 
-<!-- ================= CREAR PLAN ================= -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
+        <button class="icon-btn" onclick="showScreen('settings')">⚙️</button>
+      </div>
+    </header>
 
-<section class="screen" id="screen-create">
+    <main class="container">
 
-<header class="page-header">
-<button class="back-button" data-screen="plans" type="button">‹</button>
-<h1>Crear plan</h1>
-<span></span>
-</header>
+      <div class="hero">
+        <h1>Conectar</h1>
+        <p>Encuentra personas que compartan tus intereses.</p>
+      </div>
 
-<form id="createPlanForm">
+      <div class="search">
+        <span class="search-icon">🔎</span>
+        <input
+          id="peopleSearch"
+          class="input"
+          placeholder="Buscar personas, intereses..."
+          oninput="renderPeople()">
+      </div>
 
-<label class="upload-box">
-<input type="file" id="planImage" accept="image/png,image/jpeg,image/webp">
-<div id="imagePreview">
-<span class="upload-icon">▧</span>
-<strong>Añadir imagen</strong>
-<small>JPG, PNG o WEBP · Máx. 5 MB</small>
-</div>
-</label>
-
-<label>
-Título del plan
-<input id="title" required maxlength="70" placeholder="Ej: Running por la costa">
-</label>
-
-<label>
-Descripción
-<textarea id="description" maxlength="300" placeholder="Describe tu plan..."></textarea>
-</label>
-
-<label>
-Categoría
-<select id="planCategory">
-<option>Deporte</option>
-<option>Idiomas</option>
-<option>Ocio</option>
-<option>Música</option>
-<option>Viajes</option>
-<option>Comida</option>
-<option>Otros</option>
-</select>
-</label>
-
-<label>
-Nivel
-<select id="planLevel">
-<option>Todos los niveles</option>
-<option>Principiante</option>
-<option>Intermedio</option>
-<option>Avanzado</option>
-</select>
-</label>
-
-<label>
-Fecha
-<input id="planDate" type="date">
-</label>
-
-<label>
-Hora
-<input id="planTime" type="time">
-</label>
-
-<label>
-Ubicación
-<input id="planLocation" placeholder="Ej: Tarragona, La Pineda...">
-</label>
-
-<div class="settings-list">
-
-<div class="setting-row">
-<span>👥</span>
-<strong>Número de plazas</strong>
-<span class="quantity">
-<button type="button" id="minus">−</button>
-<b id="places">6</b>
-<button type="button" id="plus">+</button>
-</span>
-</div>
+      <div class="card">
 
-</div>
+        <div class="card-title">
+          <h2>Descubre personas</h2>
+        </div>
 
-<button class="main-button" type="submit">
-🚀 Crear plan
-</button>
+        <div id="peopleList"></div>
 
-</form>
+      </div>
 
-</section>
+    </main>
+  </section>
 
 
-<!-- ================= CONECTA ================= -->
+  <!-- PLANES -->
 
-<section class="screen" id="screen-connect">
+  <section id="plans" class="screen">
 
-<header class="page-header">
-<h1>Conecta</h1>
-<button class="icon-button" id="connectFilters" type="button">☷</button>
-</header>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
+        <button class="btn btn-primary" onclick="openPlanModal()">
+          + Crear
+        </button>
+      </div>
+    </header>
 
-<div class="search-box">
-<span>⌕</span>
-<input id="connectSearch" type="search" placeholder="Buscar personas...">
-</div>
+    <main class="container">
 
-<div class="section-title">
-<h2>Personas activas cerca</h2>
-</div>
+      <div class="hero">
+        <h1>Planes</h1>
+        <p>Haz algo. Encuentra gente. CONECTA.</p>
+      </div>
 
-<div class="active-people" id="activePeople">
+      <div id="plansList"></div>
 
-<div data-name="laura">
-<div class="avatar-wrap">
-<div class="large-avatar avatar-laura"></div>
-<span class="online"></span>
-</div>
-<strong>Laura</strong>
-<small>24 · 2 km</small>
-</div>
+    </main>
+  </section>
 
-<div data-name="marc">
-<div class="avatar-wrap">
-<div class="large-avatar avatar-marc"></div>
-<span class="online"></span>
-</div>
-<strong>Marc</strong>
-<small>27 · 3 km</small>
-</div>
 
-<div data-name="sofia">
-<div class="large-avatar avatar-sofia"></div>
-<strong>Sofia</strong>
-<small>24 · 4 km</small>
-</div>
+  <!-- CHAT -->
 
-<div data-name="alex">
-<div class="large-avatar avatar-alex"></div>
-<strong>Álex</strong>
-<small>25 · 5 km</small>
-</div>
+  <section id="chat" class="screen">
 
-</div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
+      </div>
+    </header>
 
-<div class="section-title">
-<h2>Intereses compartidos</h2>
-</div>
+    <main class="container">
 
-<div class="interest-grid">
+      <div class="hero">
+        <h1>Chat</h1>
+        <p>Tus conversaciones y conexiones.</p>
+      </div>
 
-<div class="interest-card image-running">
-<strong>🏃 Running</strong>
-<span>168 personas</span>
-</div>
+      <div class="card">
 
-<div class="interest-card image-gym">
-<strong>💪 Gym</strong>
-<span>98 personas</span>
-</div>
+        <div class="chat-list" id="chatList"></div>
 
-<div class="interest-card image-padel">
-<strong>🎾 Pádel</strong>
-<span>76 personas</span>
-</div>
+      </div>
 
-<div class="interest-card image-yoga">
-<strong>🧘 Yoga</strong>
-<span>64 personas</span>
-</div>
+      <div class="card">
 
-<div class="interest-card image-cinema">
-<strong>🎬 Cine</strong>
-<span>52 personas</span>
-</div>
+        <div class="card-title">
+          <h2>Funciones sociales</h2>
+        </div>
 
-<div class="interest-card image-music">
-<strong>🎵 Música</strong>
-<span>91 personas</span>
-</div>
+        <div class="grid grid-2">
 
-</div>
+          <button class="btn btn-secondary" onclick="futureFeature('Llamadas')">
+            📞 Llamadas
+          </button>
 
-</section>
+          <button class="btn btn-secondary" onclick="futureFeature('Videollamadas')">
+            🎥 Videollamadas
+          </button>
 
+          <button class="btn btn-secondary" onclick="futureFeature('Grupos')">
+            👥 Grupos
+          </button>
 
-<!-- ================= CHATS ================= -->
+          <button class="btn btn-secondary" onclick="futureFeature('Mensajes de voz')">
+            🎙️ Voz
+          </button>
 
-<section class="screen" id="screen-chats">
+        </div>
 
-<header class="page-header">
-<h1>Chats</h1>
-<button class="icon-button" id="newChat" type="button">✎</button>
-</header>
+      </div>
 
-<div class="search-box">
-<span>⌕</span>
-<input id="chatSearch" type="search" placeholder="Buscar chats...">
-</div>
+    </main>
+  </section>
 
-<div class="chat-list" id="chatList">
 
-<div class="chat-item" data-name="laura">
-<div class="avatar avatar-laura"></div>
-<div>
-<strong>Laura</strong>
-<p>¡Genial! Entonces quedamos el domingo 👋</p>
-</div>
-<div class="chat-right"><small>10:30</small></div>
-</div>
+  <!-- PERFIL -->
 
-<div class="chat-item" data-name="marc">
-<div class="avatar avatar-marc"></div>
-<div>
-<strong>Marc</strong>
-<p>¿Entrenamos mañana? 💪</p>
-</div>
-<div class="chat-right"><small>Ayer</small></div>
-</div>
+  <section id="profile" class="screen">
 
-</div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
+        <button class="btn btn-primary" onclick="openProfileModal()">
+          Editar
+        </button>
+      </div>
+    </header>
 
-<div id="emptyChats" class="empty hidden">
-No tienes conversaciones que coincidan con la búsqueda.
-</div>
+    <main class="container">
 
-</section>
+      <div class="hero">
+        <h1>Mi perfil</h1>
+        <p>Tu identidad dentro de CONECTA.</p>
+      </div>
 
+      <div class="card">
 
-<!-- ================= PERFIL ================= -->
+        <div class="profile-head">
 
-<section class="screen" id="screen-profile">
+          <div class="avatar" id="profileAvatar">
+            C
+          </div>
 
-<header class="page-header">
-<h1>Mi perfil</h1>
-<button class="icon-button" id="settingsButton" type="button">⚙</button>
-</header>
+          <div>
+            <h2 id="profileName">Tu nombre</h2>
+            <p class="muted" id="profileLocation">
+              📍 Ubicación no definida
+            </p>
+          </div>
 
-<div class="profile-card">
+        </div>
 
-<div class="profile-cover">
-<div class="profile-avatar"></div>
-</div>
+        <div class="tags" id="profileTags"></div>
 
-<h2 id="profileName">Fernando ✓</h2>
-<p id="profileUsername">@fernando.nexo</p>
-<p id="profileLocation">📍 Tarragona</p>
+        <p class="muted" id="profileDescription" style="margin-top:15px;">
+          Añade una descripción.
+        </p>
 
-<button class="edit-profile" id="editProfileButton" type="button">
-✏️ Editar perfil
-</button>
+      </div>
 
-</div>
+      <div class="card">
 
-<div class="stats">
+        <div class="card-title">
+          <h2>Mi actividad</h2>
+        </div>
 
-<div>
-<strong id="statPlans">48</strong>
-<span>Planes</span>
-</div>
+        <div class="stats">
 
-<div>
-<strong id="statFriends">127</strong>
-<span>Amigos</span>
-</div>
+          <div class="stat">
+            <strong id="statConnections">0</strong>
+            <small>Conexiones</small>
+          </div>
 
-<div>
-<strong id="statGroups">32</strong>
-<span>Grupos</span>
-</div>
+          <div class="stat">
+            <strong id="statPlans">0</strong>
+            <small>Planes</small>
+          </div>
 
-<div>
-<strong id="statEvents">15</strong>
-<span>Eventos</span>
-</div>
+          <div class="stat">
+            <strong id="statGroups">0</strong>
+            <small>Grupos</small>
+          </div>
 
-</div>
+        </div>
 
-<div class="profile-section">
+      </div>
 
-<div class="section-title">
-<h2>Sobre mí</h2>
-</div>
+    </main>
+  </section>
 
-<p id="profileBio">
-Apasionado del deporte, la música y los buenos planes.
-Siempre listo para nuevas aventuras 🚀
-</p>
 
-</div>
+  <!-- AJUSTES -->
 
-<div class="profile-section">
+  <section id="settings" class="screen">
 
-<div class="section-title">
-<h2>Mis intereses</h2>
-</div>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="logo">CONECTA<span>.</span></div>
+      </div>
+    </header>
 
-<div class="profile-interests">
+    <main class="container">
 
-<div><span>🏃</span>Running</div>
-<div><span>💪</span>Gym</div>
-<div><span>🎾</span>Pádel</div>
-<div><span>🎵</span>Música</div>
+      <div class="hero">
+        <h1>Ajustes</h1>
+        <p>Personaliza CONECTA como quieras.</p>
+      </div>
 
-</div>
 
-</div>
+      <!-- APARIENCIA -->
 
-</section>
+      <div class="card">
 
+        <div class="card-title">
+          <h2>🎨 Apariencia</h2>
+        </div>
 
-<!-- ================= AJUSTES ================= -->
+        <div class="setting">
 
-<section class="screen" id="screen-settings">
+          <div class="setting-info">
+            <strong>Modo oscuro</strong>
+            <small>Cambia entre interfaz clara y oscura.</small>
+          </div>
 
-<header class="page-header">
-<button class="back-button" data-screen="profile" type="button">‹</button>
-<h1>Ajustes</h1>
-<span></span>
-</header>
+          <label class="switch">
+            <input id="darkToggle" type="checkbox" checked onchange="toggleDarkMode()">
+            <span class="slider"></span>
+          </label>
 
-<div class="settings-card">
+        </div>
 
-<div class="settings-row" id="editSettingsProfile">
-<div class="setting-icon">👤</div>
-<div class="setting-main">
-<strong>Editar perfil</strong>
-<small>Nombre, descripción y ubicación</small>
-</div>
-<span class="arrow">›</span>
-</div>
+        <div class="setting">
 
-<div class="settings-row">
-<div class="setting-icon">🔔</div>
-<div class="setting-main">
-<strong>Notificaciones</strong>
-<small>Mensajes, conexiones y planes</small>
-</div>
-<button class="toggle on" data-setting="notifications" type="button"><i></i></button>
-</div>
+          <div class="setting-info">
+            <strong>Color principal</strong>
+            <small>Elige el color de CONECTA.</small>
+          </div>
 
-<div class="settings-row">
-<div class="setting-icon">📍</div>
-<div class="setting-main">
-<strong>Ubicación</strong>
-<small>Mostrar personas y planes cercanos</small>
-</div>
-<button class="toggle on" data-setting="location" type="button"><i></i></button>
-</div>
+        </div>
 
-<div class="settings-row">
-<div class="setting-icon">🌙</div>
-<div class="setting-main">
-<strong>Modo oscuro</strong>
-<small>Interfaz oscura de NEXO</small>
-</div>
-<button class="toggle on" data-setting="dark" type="button"><i></i></button>
-</div>
+        <div class="color-options">
 
-</div>
+          <button class="color" style="background:#7c3aed"
+            onclick="setAccent('#7c3aed','#a855f7')"></button>
 
-<div class="section-title">
-<h2>Personalización</h2>
-</div>
+          <button class="color" style="background:#2563eb"
+            onclick="setAccent('#2563eb','#60a5fa')"></button>
 
-<div class="settings-card">
+          <button class="color" style="background:#059669"
+            onclick="setAccent('#059669','#34d399')"></button>
 
-<div class="settings-row">
-<div class="setting-icon">🎨</div>
-<div class="setting-main">
-<strong>Color de NEXO</strong>
-<small>Elige tu combinación favorita</small>
-</div>
-</div>
+          <button class="color" style="background:#dc2626"
+            onclick="setAccent('#dc2626','#fb7185')"></button>
 
-<div class="theme-grid" id="themeGrid">
-
-<div class="theme theme-purple selected" data-theme-choice="purple"><span>Púrpura</span></div>
-<div class="theme theme-pink" data-theme-choice="pink"><span>Rosa</span></div>
-<div class="theme theme-blue" data-theme-choice="blue"><span>Azul</span></div>
-<div class="theme theme-cyan" data-theme-choice="cyan"><span>Cian</span></div>
-<div class="theme theme-green" data-theme-choice="green"><span>Verde</span></div>
-<div class="theme theme-red" data-theme-choice="red"><span>Rojo</span></div>
-<div class="theme theme-gold" data-theme-choice="gold"><span>Dorado</span></div>
-<div class="theme theme-sunset" data-theme-choice="sunset"><span>Sunset</span></div>
-<div class="theme theme-ocean" data-theme-choice="ocean"><span>Ocean</span></div>
-<div class="theme theme-lime" data-theme-choice="lime"><span>Lime</span></div>
-<div class="theme theme-mono" data-theme-choice="mono"><span>Mono</span></div>
+          <button class="color" style="background:#db2777"
+            onclick="setAccent('#db2777','#f472b6')"></button>
 
-</div>
+          <button class="color" style="background:#ea580c"
+            onclick="setAccent('#ea580c','#fb923c')"></button>
 
-</div>
+        </div>
 
-<div class="settings-card">
+        <br>
 
-<div class="settings-row" id="languageSetting">
-<div class="setting-icon">🌎</div>
-<div class="setting-main">
-<strong>Idioma</strong>
-<small>Español</small>
-</div>
-<span class="arrow">›</span>
-</div>
+        <div class="setting">
 
-<div class="settings-row" id="privacySetting">
-<div class="setting-icon">🔒</div>
-<div class="setting-main">
-<strong>Privacidad</strong>
-<small>Controla quién puede encontrarte</small>
-</div>
-<span class="arrow">›</span>
-</div>
+          <div class="setting-info">
+            <strong>Fondo</strong>
+            <small>Personaliza el ambiente visual.</small>
+          </div>
 
-<div class="settings-row" id="helpSetting">
-<div class="setting-icon">❓</div>
-<div class="setting-main">
-<strong>Ayuda y soporte</strong>
-<small>Preguntas frecuentes y soporte</small>
-</div>
-<span class="arrow">›</span>
-</div>
+          <select id="backgroundSelect" onchange="setBackground(this.value)">
+            <option value="default">Original</option>
+            <option value="gradient">Gradiente</option>
+            <option value="blue">Azul</option>
+            <option value="green">Verde</option>
+            <option value="red">Rojo</option>
+            <option value="pink">Rosa</option>
+          </select>
 
-<div class="settings-row" id="aboutSetting">
-<div class="setting-icon">ℹ️</div>
-<div class="setting-main">
-<strong>Sobre NEXO</strong>
-<small>Información de la aplicación</small>
-</div>
-<span class="arrow">›</span>
-</div>
+        </div>
 
-</div>
+      </div>
+
+
+      <!-- PRIVACIDAD -->
+
+      <div class="card">
+
+        <div class="card-title">
+          <h2>🔐 Privacidad</h2>
+        </div>
+
+        <div class="setting">
+
+          <div class="setting-info">
+            <strong>Perfil privado</strong>
+            <small>Limita quién puede ver tu perfil.</small>
+          </div>
+
+          <label class="switch">
+            <input id="privateProfile" type="checkbox"
+              onchange="savePrivacy()">
+            <span class="slider"></span>
+          </label>
+
+        </div>
+
+        <div class="setting">
+
+          <div class="setting-info">
+            <strong>Mostrar ubicación</strong>
+            <small>Permite mostrar una ubicación aproximada.</small>
+          </div>
+
+          <label class="switch">
+            <input id="showLocation" type="checkbox"
+              onchange="savePrivacy()">
+            <span class="slider"></span>
+          </label>
 
-<button class="main-button" id="resetApp" type="button">
-Restablecer datos locales
-</button>
+        </div>
 
-</section>
+        <div class="setting">
+
+          <div class="setting-info">
+            <strong>Permitir mensajes</strong>
+            <small>Controla quién puede iniciar conversaciones.</small>
+          </div>
+
+          <select id="messagePermission" onchange="savePrivacy()">
+            <option value="everyone">Todo el mundo</option>
+            <option value="connections">Solo conexiones</option>
+            <option value="nobody">Nadie</option>
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <!-- SEGURIDAD -->
+
+      <div class="card">
+
+        <div class="card-title">
+          <h2>🛡️ Seguridad</h2>
+        </div>
+
+        <button class="btn btn-secondary full"
+          onclick="showSecurityInfo()">
+          Ver herramientas de seguridad
+        </button>
+
+        <br><br>
+
+        <button class="btn btn-danger full"
+          onclick="showToast('Sistema de bloqueo preparado.')">
+          🚫 Gestionar bloqueados
+        </button>
+
+      </div>
+
+
+      <!-- DATOS -->
+
+      <div class="card">
+
+        <div class="card-title">
+          <h2>📦 Mis datos</h2>
+        </div>
+
+        <button class="btn btn-secondary full"
+          onclick="exportData()">
+          Exportar mis datos
+        </button>
+
+        <br><br>
+
+        <button class="btn btn-danger full"
+          onclick="deleteLocalData()">
+          Eliminar datos locales
+        </button>
+
+      </div>
+
+
+      <!-- LEGAL -->
+
+      <div class="card">
+
+        <div class="card-title">
+          <h2>📜 Información legal</h2>
+        </div>
+
+        <button class="btn btn-secondary full"
+          onclick="openLegal('rules')">
+          Normas de la comunidad
+        </button>
+
+        <br><br>
+
+        <button class="btn btn-secondary full"
+          onclick="openLegal('privacy')">
+          Privacidad y protección de datos
+        </button>
+
+        <br><br>
+
+        <button class="btn btn-secondary full"
+          onclick="openLegal('terms')">
+          Términos y condiciones
+        </button>
+
+      </div>
+
+    </main>
+  </section>
+
+</div>
 
 
-<!-- ================= NAVEGACIÓN ================= -->
+<!-- NAVEGACIÓN -->
 
 <nav class="bottom-nav">
 
-<button class="nav-item active" data-screen="home" type="button">
-<span>⌂</span>
-<small>Inicio</small>
-</button>
+  <button class="nav-item active"
+    data-screen="home"
+    onclick="showScreen('home')">
+    <span class="nav-icon">🏠</span>
+    Inicio
+  </button>
 
-<button class="nav-item" data-screen="connect" type="button">
-<span>⌕</span>
-<small>Conecta</small>
-</button>
+  <button class="nav-item"
+    data-screen="connect"
+    onclick="showScreen('connect')">
+    <span class="nav-icon">🤝</span>
+    Conectar
+  </button>
 
-<button class="main-plus" data-screen="create" type="button">+</button>
+  <button class="nav-item"
+    data-screen="plans"
+    onclick="showScreen('plans')">
+    <span class="nav-icon">📅</span>
+    Planes
+  </button>
 
-<button class="nav-item" data-screen="chats" type="button">
-<span>◌</span>
-<small>Chats</small>
-</button>
+  <button class="nav-item"
+    data-screen="chat"
+    onclick="showScreen('chat')">
+    <span class="nav-icon">💬</span>
+    Chat
+  </button>
 
-<button class="nav-item" data-screen="profile" type="button">
-<span>♙</span>
-<small>Perfil</small>
-</button>
+  <button class="nav-item"
+    data-screen="profile"
+    onclick="showScreen('profile')">
+    <span class="nav-icon">👤</span>
+    Perfil
+  </button>
 
 </nav>
 
-</div>
 
+<!-- MODAL -->
 
-<!-- ================= TOAST ================= -->
+<div id="modal" class="modal" onclick="closeModalOutside(event)">
 
-<div id="toast"></div>
+  <div class="modal-box">
 
+    <div class="modal-header">
 
-<!-- ================= MODAL PERFIL ================= -->
+      <h2 id="modalTitle">CONECTA</h2>
 
-<div class="modal" id="profileModal">
+      <button class="icon-btn" onclick="closeModal()">
+        ✕
+      </button>
 
-<div class="modal-box">
+    </div>
 
-<div class="modal-head">
-<h2>Editar perfil</h2>
-<button class="close" data-close="profileModal" type="button">×</button>
-</div>
+    <div id="modalContent"></div>
 
-<div class="form-group">
-<label>Nombre</label>
-<input id="editName" maxlength="40">
-</div>
-
-<div class="form-group">
-<label>Usuario</label>
-<input id="editUsername" maxlength="40">
-</div>
-
-<div class="form-group">
-<label>Ubicación</label>
-<input id="editLocation" maxlength="60">
-</div>
-
-<div class="form-group">
-<label>Sobre mí</label>
-<textarea id="editBio" maxlength="300"></textarea>
-</div>
-
-<div class="modal-actions">
-<button class="secondary-button" data-close="profileModal" type="button">Cancelar</button>
-<button class="primary-button" id="saveProfile" type="button">Guardar</button>
-</div>
+  </div>
 
 </div>
-</div>
 
 
-<!-- ================= MODAL FILTROS ================= -->
-
-<div class="modal" id="filtersModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-<h2>Filtros</h2>
-<button class="close" data-close="filtersModal" type="button">×</button>
-</div>
-
-<div class="form-group">
-<label>Distancia máxima</label>
-<select id="distanceFilter">
-<option value="2">2 km</option>
-<option value="5" selected>5 km</option>
-<option value="10">10 km</option>
-<option value="25">25 km</option>
-<option value="50">50 km</option>
-</select>
-</div>
-
-<div class="form-group">
-<label>Interés</label>
-<select id="interestFilter">
-<option>Todos</option>
-<option>Deporte</option>
-<option>Idiomas</option>
-<option>Ocio</option>
-<option>Música</option>
-<option>Viajes</option>
-<option>Comida</option>
-</select>
-</div>
-
-<div class="modal-actions">
-<button class="secondary-button" data-close="filtersModal" type="button">Cancelar</button>
-<button class="primary-button" id="applyFilters" type="button">Aplicar</button>
-</div>
-
-</div>
-</div>
-
-
-<!-- ================= MODAL NUEVO CHAT ================= -->
-
-<div class="modal" id="chatModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-<h2>Nueva conversación</h2>
-<button class="close" data-close="chatModal" type="button">×</button>
-</div>
-
-<div class="form-group">
-<label>Buscar persona</label>
-<input id="newChatName" placeholder="Nombre...">
-</div>
-
-<div class="modal-actions">
-<button class="secondary-button" data-close="chatModal" type="button">Cancelar</button>
-<button class="primary-button" id="startChat" type="button">Iniciar chat</button>
-</div>
-
-</div>
-</div>
+<div id="toast" class="toast"></div>
 
 
 <script>
-"use strict";
-
 /* =========================================================
-   NEXO — MOTOR PRINCIPAL
+   CONECTA
+   APP CORE
 ========================================================= */
 
-const NEXO = {
-  version:"2.0.0",
-  storage:{
-    profile:"nexoProfile",
-    plans:"nexoPlans",
-    settings:"nexoSettings",
-    theme:"nexoTheme",
-    connections:"nexoConnections",
-    chats:"nexoChats"
+const STORAGE_KEY = "conecta_app_v1";
+
+const defaultData = {
+  entered:false,
+
+  profile:{
+    name:"Tu nombre",
+    bio:"Estoy en CONECTA.",
+    location:"",
+    interests:["Deporte","Música","Amigos"]
+  },
+
+  privacy:{
+    private:false,
+    location:true,
+    messages:"everyone"
+  },
+
+  appearance:{
+    dark:true,
+    accent:"#7c3aed",
+    accent2:"#a855f7",
+    background:"default"
+  },
+
+  connections:[],
+
+  plans:[
+    {
+      id:1,
+      title:"Entrenamiento",
+      icon:"🏋️",
+      date:"Hoy",
+      time:"19:00",
+      place:"Zona deportiva",
+      description:"Entrenamiento y deporte con gente de CONECTA.",
+      people:4
+    },
+    {
+      id:2,
+      title:"Running",
+      icon:"🏃",
+      date:"Mañana",
+      time:"20:00",
+      place:"Parque",
+      description:"Salida tranquila para correr y conocer gente.",
+      people:7
+    },
+    {
+      id:3,
+      title:"Fútbol",
+      icon:"⚽",
+      date:"Sábado",
+      time:"18:00",
+      place:"Campo municipal",
+      description:"Partido entre usuarios de CONECTA.",
+      people:10
+    }
+  ],
+
+  chats:[],
+
+  groups:[],
+
+  stats:{
+    connections:0,
+    plans:0,
+    groups:0
   }
 };
 
-const $ = selector => document.querySelector(selector);
-const $$ = selector => document.querySelectorAll(selector);
+let data = loadData();
 
 
 /* =========================================================
-   DATOS
+   STORAGE
 ========================================================= */
 
-const defaultProfile = {
-  name:"Fernando",
-  username:"fernando.nexo",
-  location:"Tarragona",
-  bio:"Apasionado del deporte, la música y los buenos planes. Siempre listo para nuevas aventuras 🚀"
-};
+function loadData(){
 
-const defaultSettings = {
-  notifications:true,
-  location:true,
-  dark:true
-};
-
-
-/* =========================================================
-   STORAGE SEGURO
-========================================================= */
-
-function getStorage(key,fallback){
   try{
-    const value=localStorage.getItem(key);
-    return value ? JSON.parse(value) : fallback;
-  }catch{
-    return fallback;
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if(!saved){
+      return structuredClone(defaultData);
+    }
+
+    const parsed = JSON.parse(saved);
+
+    return mergeData(structuredClone(defaultData),parsed);
+
+  }catch(error){
+
+    console.error(error);
+
+    return structuredClone(defaultData);
+
   }
+
 }
 
-function setStorage(key,value){
-  try{
-    localStorage.setItem(key,JSON.stringify(value));
-  }catch{
-    showToast("No se pudo guardar el cambio");
+
+function mergeData(base, extra){
+
+  if(!extra || typeof extra !== "object"){
+    return base;
   }
+
+  for(const key of Object.keys(extra)){
+
+    if(
+      extra[key] &&
+      typeof extra[key] === "object" &&
+      !Array.isArray(extra[key]) &&
+      typeof base[key] === "object"
+    ){
+
+      base[key] = mergeData(base[key],extra[key]);
+
+    }else{
+
+      base[key] = extra[key];
+
+    }
+
+  }
+
+  return base;
+
+}
+
+
+function saveData(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(data)
+  );
+
 }
 
 
 /* =========================================================
-   TOAST
+   INIT
 ========================================================= */
 
-let toastTimer;
+document.addEventListener("DOMContentLoaded",()=>{
 
-function showToast(message){
-  const toast=$("#toast");
-  if(!toast)return;
+  applyAppearance();
 
-  toast.textContent=message;
-  toast.classList.add("show");
+  renderAll();
 
-  clearTimeout(toastTimer);
+  if(data.entered){
 
-  toastTimer=setTimeout(()=>{
-    toast.classList.remove("show");
-  },2600);
+    document.getElementById("welcome").style.display="none";
+
+  }
+
+});
+
+
+function renderAll(){
+
+  renderProfile();
+
+  renderPeople();
+
+  renderPlans();
+
+  renderHome();
+
+  renderChats();
+
+  renderPrivacy();
+
+  updateStats();
+
 }
 
 
 /* =========================================================
-   NAVEGACIÓN
+   ENTER
 ========================================================= */
 
-const screens=$$(".screen");
-const navItems=$$(".nav-item");
-const navigationButtons=$("[data-screen]") ? $$("[data-screen]") : [];
+function enterApp(){
 
-function navigateTo(name){
+  data.entered=true;
 
-  screens.forEach(screen=>{
-    screen.classList.toggle(
-      "active",
-      screen.id==="screen-"+name
-    );
+  saveData();
+
+  document.getElementById("welcome").style.display="none";
+
+  showToast("Bienvenido a CONECTA 👋");
+
+  renderAll();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showScreen(screen){
+
+  document.querySelectorAll(".screen").forEach(el=>{
+    el.classList.remove("active");
   });
 
-  navItems.forEach(item=>{
-    item.classList.toggle(
+  const target=document.getElementById(screen);
+
+  if(target){
+    target.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav-item").forEach(el=>{
+    el.classList.toggle(
       "active",
-      item.dataset.screen===name
+      el.dataset.screen===screen
     );
   });
 
@@ -2194,1067 +1679,458 @@ function navigateTo(name){
     behavior:"smooth"
   });
 
-  if(name==="plans"){
-    renderCreatedPlans();
-  }
+  renderAll();
 
-  if(name==="profile"){
-    renderProfile();
-  }
 }
-
-navigationButtons.forEach(button=>{
-  button.addEventListener("click",()=>{
-    const screen=button.dataset.screen;
-    if(screen)navigateTo(screen);
-  });
-});
 
 
 /* =========================================================
-   PERFIL
+   PROFILE
 ========================================================= */
-
-let profile=getStorage(
-  NEXO.storage.profile,
-  defaultProfile
-);
 
 function renderProfile(){
 
-  $("#welcomeName").textContent=
-    "Hola "+profile.name+" 👋";
+  const name=data.profile.name || "Tu nombre";
 
-  $("#profileName").textContent=
-    profile.name+" ✓";
+  const initial=name.trim()
+    ? name.trim().charAt(0).toUpperCase()
+    : "C";
 
-  $("#profileUsername").textContent=
-    "@"+profile.username.replace("@","");
+  const elements=[
+    document.getElementById("profileAvatar"),
+    document.getElementById("homeAvatar")
+  ];
 
-  $("#profileLocation").textContent=
-    "📍 "+profile.location;
+  elements.forEach(el=>{
+    if(el) el.textContent=initial;
+  });
 
-  $("#profileBio").textContent=
-    profile.bio;
-}
+  const profileName=document.getElementById("profileName");
 
-renderProfile();
-
-
-function openProfileEditor(){
-
-  $("#editName").value=profile.name;
-  $("#editUsername").value=profile.username;
-  $("#editLocation").value=profile.location;
-  $("#editBio").value=profile.bio;
-
-  $("#profileModal").classList.add("show");
-}
-
-$("#editProfileButton")?.addEventListener(
-  "click",
-  openProfileEditor
-);
-
-$("#editSettingsProfile")?.addEventListener(
-  "click",
-  openProfileEditor
-);
-
-$("#saveProfile")?.addEventListener("click",()=>{
-
-  const name=$("#editName").value.trim();
-
-  if(!name){
-    showToast("Escribe tu nombre");
-    return;
+  if(profileName){
+    profileName.textContent=name;
   }
 
-  profile={
-    name,
-    username:$("#editUsername").value.trim() || "fernando.nexo",
-    location:$("#editLocation").value.trim() || "Tarragona",
-    bio:$("#editBio").value.trim() || "¡Hola! Soy nuevo en NEXO."
-  };
+  const homeName=document.getElementById("homeName");
 
-  setStorage(NEXO.storage.profile,profile);
+  if(homeName){
+    homeName.textContent=name;
+  }
 
-  renderProfile();
+  const description=
+    data.profile.bio || "Añade una descripción.";
 
-  closeModal("profileModal");
+  const profileDescription=
+    document.getElementById("profileDescription");
 
-  showToast("✅ Perfil actualizado");
-});
+  if(profileDescription){
+    profileDescription.textContent=description;
+  }
 
+  const homeBio=
+    document.getElementById("homeBio");
 
-/* =========================================================
-   MODALES
-========================================================= */
+  if(homeBio){
+    homeBio.textContent=description;
+  }
 
-function closeModal(id){
-  const modal=$("#"+id);
-  if(modal)modal.classList.remove("show");
-}
+  const location=
+    document.getElementById("profileLocation");
 
-$$("[data-close]").forEach(button=>{
-  button.addEventListener("click",()=>{
-    closeModal(button.dataset.close);
-  });
-});
+  if(location){
 
-$$(".modal").forEach(modal=>{
-  modal.addEventListener("click",event=>{
-    if(event.target===modal){
-      modal.classList.remove("show");
-    }
-  });
-});
-
-
-/* =========================================================
-   CATEGORÍAS
-========================================================= */
-
-$$(".category").forEach(category=>{
-
-  category.addEventListener("click",()=>{
-
-    $$(".category").forEach(item=>
-      item.classList.remove("active")
-    );
-
-    category.classList.add("active");
-
-    const selected=category.dataset.category;
-
-    if(selected==="todos"){
-      $$("#homePlans .plan-card").forEach(card=>{
-        card.style.display="";
-      });
+    if(
+      data.privacy.location &&
+      data.profile.location
+    ){
+      location.textContent=
+        "📍 "+data.profile.location;
     }else{
-      $$("#homePlans .plan-card").forEach(card=>{
-        card.style.display=
-          card.dataset.category===selected
-          ? ""
-          : "none";
-      });
+      location.textContent=
+        "📍 Ubicación privada";
     }
 
-    showToast("Explorando "+category.textContent.trim());
-  });
-
-});
-
-
-/* =========================================================
-   BÚSQUEDA HOME
-========================================================= */
-
-$("#homeSearch")?.addEventListener(
-  "keydown",
-  event=>{
-
-    if(event.key!=="Enter")return;
-
-    const value=event.target.value.trim();
-
-    if(!value)return;
-
-    navigateTo("plans");
-
-    $("#planSearch").value=value;
-
-    filterPlans(value);
   }
-);
 
+  const tags=
+    document.getElementById("profileTags");
 
-/* =========================================================
-   BÚSQUEDA PLANES
-========================================================= */
+  if(tags){
 
-function filterPlans(value){
+    tags.innerHTML=
+      (data.profile.interests || [])
+      .map(i=>`<span class="tag">${escapeHTML(i)}</span>`)
+      .join("");
 
-  const text=value.toLowerCase().trim();
-
-  const cards=$$(".searchable-plan");
-
-  let visible=0;
-
-  cards.forEach(card=>{
-
-    const name=(
-      card.dataset.name+
-      " "+
-      card.textContent
-    ).toLowerCase();
-
-    const match=!text||name.includes(text);
-
-    card.style.display=match?"":"none";
-
-    if(match)visible++;
-  });
-
-  if(!visible && text){
-    showToast("No encontramos planes para esa búsqueda");
   }
+
 }
 
-$("#planSearch")?.addEventListener(
-  "input",
-  event=>filterPlans(event.target.value)
-);
 
-
-/* =========================================================
-   TABS PLANES
-========================================================= */
-
-$$(".tab").forEach(tab=>{
-
-  tab.addEventListener("click",()=>{
-
-    $$(".tab").forEach(item=>
-      item.classList.remove("active")
-    );
-
-    tab.classList.add("active");
-
-    const type=tab.dataset.tab;
-
-    const existing=$$(".searchable-plan");
-
-    if(type==="discover"){
-      existing.forEach(item=>item.style.display="");
-      $("#createdPlans").style.display="";
-      $("#plansList").style.display="";
-    }
-
-    if(type==="mine"){
-      $("#plansList").style.display="none";
-      $("#createdPlans").style.display="";
-      renderCreatedPlans();
-    }
-
-    if(type==="created"){
-      $("#plansList").style.display="none";
-      $("#createdPlans").style.display="";
-      renderCreatedPlans();
-    }
-  });
-
-});
-
-
-/* =========================================================
-   CONEXIONES
-========================================================= */
-
-let connections=getStorage(
-  NEXO.storage.connections,
-  {}
-);
-
-$$(".connect-button").forEach(button=>{
-
-  const person=button.dataset.person;
-
-  if(connections[person]){
-    button.textContent="Conectado ✓";
-  }
-
-  button.addEventListener("click",()=>{
-
-    if(connections[person]){
-
-      delete connections[person];
-
-      button.textContent="Conectar";
-
-      showToast("Conexión cancelada");
-
-    }else{
-
-      connections[person]=true;
-
-      button.textContent="Conectado ✓";
-
-      showToast("🤝 Conexión enviada a "+person);
-
-    }
-
-    setStorage(
-      NEXO.storage.connections,
-      connections
-    );
-  });
-
-});
-
-
-/* =========================================================
-   BÚSQUEDA PERSONAS
-========================================================= */
-
-$("#connectSearch")?.addEventListener(
-  "input",
-  event=>{
-
-    const text=event.target.value
-      .toLowerCase()
-      .trim();
-
-    $$("#activePeople > div").forEach(person=>{
-
-      const name=person.dataset.name || "";
-
-      person.style.display=
-        !text || name.includes(text)
-        ? "flex"
-        : "none";
-    });
-  }
-);
-
-
-/* =========================================================
-   FILTROS
-========================================================= */
-
-$("#connectFilters")?.addEventListener(
-  "click",
-  ()=>{
-    $("#filtersModal").classList.add("show");
-  }
-);
-
-$("#applyFilters")?.addEventListener(
-  "click",
-  ()=>{
-    closeModal("filtersModal");
-
-    const distance=$("#distanceFilter").value;
-    const interest=$("#interestFilter").value;
-
-    showToast(
-      "Filtros aplicados · "+
-      distance+" km · "+
-      interest
-    );
-  }
-);
-
-
-/* =========================================================
-   CHATS
-========================================================= */
-
-let chats=getStorage(
-  NEXO.storage.chats,
-  []
-);
-
-$("#chatSearch")?.addEventListener(
-  "input",
-  event=>{
-
-    const text=event.target.value
-      .toLowerCase()
-      .trim();
-
-    let visible=0;
-
-    $$(".chat-item").forEach(chat=>{
-
-      const content=chat.textContent.toLowerCase();
-
-      const match=!text||content.includes(text);
-
-      chat.style.display=match?"flex":"none";
-
-      if(match)visible++;
-    });
-
-    $("#emptyChats").classList.toggle(
-      "hidden",
-      visible!==0
-    );
-  }
-);
-
-
-$("#newChat")?.addEventListener(
-  "click",
-  ()=>{
-    $("#newChatName").value="";
-    $("#chatModal").classList.add("show");
-  }
-);
-
-$("#startChat")?.addEventListener(
-  "click",
-  ()=>{
-
-    const name=$("#newChatName").value.trim();
-
-    if(!name){
-      showToast("Escribe el nombre de una persona");
-      return;
-    }
-
-    chats.push({
-      id:Date.now(),
-      name,
-      message:"Nueva conversación",
-      time:"Ahora"
-    });
-
-    setStorage(NEXO.storage.chats,chats);
-
-    closeModal("chatModal");
-
-    renderChats();
-
-    navigateTo("chats");
-
-    showToast("💬 Conversación creada");
-  }
-);
-
-function renderChats(){
-
-  const list=$("#chatList");
-
-  chats.forEach(chat=>{
-
-    const exists=
-      list.querySelector(
-        `[data-chat-id="${chat.id}"]`
-      );
-
-    if(exists)return;
-
-    const row=document.createElement("div");
-
-    row.className="chat-item";
-
-    row.dataset.chatId=chat.id;
-
-    row.innerHTML=`
-      <div class="avatar avatar-alex"></div>
-      <div>
-        <strong>${escapeHTML(chat.name)}</strong>
-        <p>${escapeHTML(chat.message)}</p>
+function openProfileModal(){
+
+  openModal(
+    "Editar perfil",
+    `
+      <div class="input-group">
+        <label>Nombre</label>
+        <input id="editName"
+          class="input"
+          value="${escapeAttribute(data.profile.name)}">
       </div>
-      <div class="chat-right">
-        <small>${escapeHTML(chat.time)}</small>
+
+      <div class="input-group">
+        <label>Descripción</label>
+        <textarea id="editBio">${escapeHTML(data.profile.bio)}</textarea>
+      </div>
+
+      <div class="input-group">
+        <label>Ubicación</label>
+        <input id="editLocation"
+          class="input"
+          placeholder="Ej. Tarragona"
+          value="${escapeAttribute(data.profile.location)}">
+      </div>
+
+      <div class="input-group">
+        <label>Intereses</label>
+        <input id="editInterests"
+          class="input"
+          value="${escapeAttribute(
+            data.profile.interests.join(", ")
+          )}">
+      </div>
+
+      <button class="btn btn-primary full"
+        onclick="saveProfile()">
+        Guardar perfil
+      </button>
+    `
+  );
+
+}
+
+
+function saveProfile(){
+
+  data.profile.name=
+    document.getElementById("editName").value.trim()
+    || "Tu nombre";
+
+  data.profile.bio=
+    document.getElementById("editBio").value.trim()
+    || "Estoy en CONECTA.";
+
+  data.profile.location=
+    document.getElementById("editLocation").value.trim();
+
+  data.profile.interests=
+    document.getElementById("editInterests")
+      .value
+      .split(",")
+      .map(x=>x.trim())
+      .filter(Boolean)
+      .slice(0,12);
+
+  saveData();
+
+  closeModal();
+
+  renderAll();
+
+  showToast("Perfil actualizado ✓");
+
+}
+
+
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+const people=[
+
+  {
+    id:1,
+    name:"Álex",
+    age:29,
+    city:"Tarragona",
+    interests:["Gym","Running","Música"]
+  },
+
+  {
+    id:2,
+    name:"Laura",
+    age:27,
+    city:"Reus",
+    interests:["Viajes","Fitness","Cine"]
+  },
+
+  {
+    id:3,
+    name:"David",
+    age:31,
+    city:"Salou",
+    interests:["Fútbol","Gym","Gaming"]
+  },
+
+  {
+    id:4,
+    name:"Marta",
+    age:28,
+    city:"Vila-seca",
+    interests:["Running","Música","Viajes"]
+  },
+
+  {
+    id:5,
+    name:"Carlos",
+    age:30,
+    city:"Tarragona",
+    interests:["Deporte","Tecnología","Cocina"]
+  }
+
+];
+
+
+function renderPeople(){
+
+  const searchEl=
+    document.getElementById("peopleSearch");
+
+  const search=
+    searchEl
+      ? searchEl.value.toLowerCase().trim()
+      : "";
+
+  const filtered=people.filter(person=>{
+
+    if(!search) return true;
+
+    const text=[
+      person.name,
+      person.city,
+      ...person.interests
+    ].join(" ").toLowerCase();
+
+    return text.includes(search);
+
+  });
+
+  const html=filtered.map(person=>{
+
+    const connected=
+      data.connections.includes(person.id);
+
+    return `
+      <div class="card" style="margin-bottom:10px;">
+
+        <div class="person">
+
+          <div class="person-avatar">
+            ${person.name.charAt(0)}
+          </div>
+
+          <div class="person-info">
+
+            <strong>
+              ${escapeHTML(person.name)}, ${person.age}
+            </strong>
+
+            <small>
+              📍 ${escapeHTML(person.city)}
+            </small>
+
+            <div class="tags">
+              ${person.interests
+                .map(i=>`<span class="tag">${escapeHTML(i)}</span>`)
+                .join("")}
+            </div>
+
+          </div>
+
+          <button
+            class="btn ${connected
+              ? "btn-success"
+              : "btn-primary"}"
+            onclick="toggleConnection(${person.id})">
+
+            ${connected ? "✓ Conectado" : "Conectar"}
+
+          </button>
+
+        </div>
+
       </div>
     `;
 
-    row.addEventListener("click",()=>{
-      showToast("💬 Chat con "+chat.name);
-    });
+  }).join("");
 
-    list.appendChild(row);
-  });
+  const list=document.getElementById("peopleList");
+
+  if(list){
+    list.innerHTML=
+      html ||
+      `<div class="empty">
+        <div class="empty-icon">🔎</div>
+        No se encontraron personas.
+      </div>`;
+  }
+
 }
 
-renderChats();
+
+function toggleConnection(id){
+
+  const index=data.connections.indexOf(id);
+
+  if(index>=0){
+
+    data.connections.splice(index,1);
+
+    showToast("Conexión eliminada");
+
+  }else{
+
+    data.connections.push(id);
+
+    showToast("¡Nueva conexión! 🤝");
+
+  }
+
+  data.stats.connections=data.connections.length;
+
+  saveData();
+
+  renderAll();
+
+}
 
 
 /* =========================================================
-   CREAR PLAN
+   PLANS
 ========================================================= */
 
-let places=6;
+function renderPlans(){
 
-$("#minus")?.addEventListener("click",()=>{
-  if(places>1){
-    places--;
-    $("#places").textContent=places;
-  }
-});
+  const list=document.getElementById("plansList");
 
-$("#plus")?.addEventListener("click",()=>{
-  if(places<50){
-    places++;
-    $("#places").textContent=places;
-  }
-});
+  if(!list) return;
 
+  if(data.plans.length===0){
 
-/* =========================================================
-   IMAGEN DEL PLAN
-========================================================= */
-
-let uploadedImage="";
-
-$("#planImage")?.addEventListener(
-  "change",
-  event=>{
-
-    const file=event.target.files[0];
-
-    if(!file)return;
-
-    if(!file.type.startsWith("image/")){
-      showToast("Selecciona una imagen válida");
-      event.target.value="";
-      return;
-    }
-
-    if(file.size>5*1024*1024){
-      showToast("La imagen supera los 5 MB");
-      event.target.value="";
-      return;
-    }
-
-    const reader=new FileReader();
-
-    reader.onload=e=>{
-
-      uploadedImage=e.target.result;
-
-      $("#imagePreview").innerHTML=`
-        <img
-          src="${uploadedImage}"
-          alt="Vista previa"
-          style="
-            width:100%;
-            height:160px;
-            object-fit:cover;
-            border-radius:14px;
-          "
-        >
-      `;
-    };
-
-    reader.readAsDataURL(file);
-  }
-);
-
-
-/* =========================================================
-   CREAR PLAN — LOCAL
-========================================================= */
-
-let createdPlans=getStorage(
-  NEXO.storage.plans,
-  []
-);
-
-$("#createPlanForm")?.addEventListener(
-  "submit",
-  event=>{
-
-    event.preventDefault();
-
-    const title=$("#title").value.trim();
-
-    if(!title){
-      showToast("Escribe un título");
-      return;
-    }
-
-    const plan={
-      id:Date.now(),
-      title,
-      description:$("#description").value.trim(),
-      category:$("#planCategory").value,
-      level:$("#planLevel").value,
-      date:$("#planDate").value,
-      time:$("#planTime").value,
-      location:$("#planLocation").value.trim(),
-      places,
-      image:uploadedImage,
-      createdAt:new Date().toISOString()
-    };
-
-    createdPlans.unshift(plan);
-
-    setStorage(
-      NEXO.storage.plans,
-      createdPlans
-    );
-
-    $("#createPlanForm").reset();
-
-    places=6;
-    $("#places").textContent="6";
-
-    uploadedImage="";
-
-    $("#imagePreview").innerHTML=`
-      <span class="upload-icon">▧</span>
-      <strong>Añadir imagen</strong>
-      <small>JPG, PNG o WEBP · Máx. 5 MB</small>
-    `;
-
-    showToast("🎉 Plan creado correctamente");
-
-    setTimeout(()=>{
-      navigateTo("plans");
-      renderCreatedPlans();
-    },500);
-  }
-);
-
-
-/* =========================================================
-   MOSTRAR PLANES CREADOS
-========================================================= */
-
-function renderCreatedPlans(){
-
-  const container=$("#createdPlans");
-
-  if(!container)return;
-
-  if(!createdPlans.length){
-
-    container.innerHTML=`
-      <div class="section-title">
-        <h2>Mis planes</h2>
-      </div>
-
-      <div class="empty">
-        <div style="font-size:32px;margin-bottom:8px">📅</div>
-        Todavía no has creado ningún plan.
-        <br><br>
-        Pulsa <strong>+</strong> para crear el primero.
+    list.innerHTML=`
+      <div class="card">
+        <div class="empty">
+          <div class="empty-icon">📅</div>
+          Todavía no hay planes.
+        </div>
       </div>
     `;
 
     return;
+
   }
 
-  container.innerHTML=`
-    <div class="section-title">
-      <h2>Mis planes</h2>
-      <button type="button" id="deleteAllPlans">Borrar todos</button>
-    </div>
-  `;
+  list.innerHTML=data.plans.map(plan=>`
 
-  createdPlans.forEach(plan=>{
+    <div class="card plan">
 
-    const article=document.createElement("article");
+      <div class="plan-top">
 
-    article.className="big-plan-card";
+        <div class="plan-icon">
+          ${escapeHTML(plan.icon)}
+        </div>
 
-    const background=
-      plan.image ||
-      getCategoryImage(plan.category);
+        <div>
 
-    article.innerHTML=`
+          <h3>${escapeHTML(plan.title)}</h3>
 
-      <div
-        class="big-plan-image"
-        style="
-          background-image:url('${background}');
-        "
-      ></div>
+          <div class="plan-info">
+            📅 ${escapeHTML(plan.date)}
+            · 🕐 ${escapeHTML(plan.time)}
+            <br>
+            📍 ${escapeHTML(plan.place)}
+            <br>
+            👥 ${plan.people} personas
+          </div>
 
-      <div class="big-plan-info">
+        </div>
 
-        <span class="badge green">
-          ${plan.places} plazas
-        </span>
+      </div>
 
-        <h3>${escapeHTML(plan.title)}</h3>
+      <p class="muted" style="margin-top:13px;">
+        ${escapeHTML(plan.description)}
+      </p>
 
-        <p>📍 ${escapeHTML(plan.location || "Ubicación por confirmar")}</p>
+      <div class="plan-actions">
 
-        <p>
-          ${escapeHTML(plan.category)}
-          ·
-          ${escapeHTML(plan.level)}
-        </p>
+        <button class="btn btn-primary"
+          onclick="joinPlan(${plan.id})">
+          Participar
+        </button>
 
-        ${
-          plan.date
-          ? `<p>📅 ${escapeHTML(formatDate(plan.date))}${plan.time ? " · "+escapeHTML(plan.time) : ""}</p>`
-          : ""
-        }
-
-        ${
-          plan.description
-          ? `<p>${escapeHTML(plan.description)}</p>`
-          : ""
-        }
-
-        <button
-          class="secondary-button delete-plan"
-          data-id="${plan.id}"
-          type="button"
-          style="width:100%;margin-top:10px;height:38px"
-        >
-          🗑️ Eliminar plan
+        <button class="btn btn-secondary"
+          onclick="sharePlan(${plan.id})">
+          Compartir
         </button>
 
       </div>
-    `;
 
-    container.appendChild(article);
-  });
+    </div>
 
-  $$(".delete-plan").forEach(button=>{
+  `).join("");
 
-    button.addEventListener("click",()=>{
-
-      const id=Number(button.dataset.id);
-
-      createdPlans=
-        createdPlans.filter(plan=>plan.id!==id);
-
-      setStorage(
-        NEXO.storage.plans,
-        createdPlans
-      );
-
-      renderCreatedPlans();
-
-      showToast("Plan eliminado");
-    });
-  });
-
-  $("#deleteAllPlans")?.addEventListener(
-    "click",
-    ()=>{
-
-      if(!createdPlans.length)return;
-
-      if(!confirm("¿Eliminar todos tus planes?"))return;
-
-      createdPlans=[];
-
-      setStorage(
-        NEXO.storage.plans,
-        createdPlans
-      );
-
-      renderCreatedPlans();
-
-      showToast("Todos los planes eliminados");
-    }
-  );
-}
-
-function getCategoryImage(category){
-
-  const images={
-    Deporte:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
-    Idiomas:"https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80",
-    Ocio:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80",
-    Música:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
-    Viajes:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80",
-    Comida:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
-  };
-
-  return images[category] || images.Deporte;
 }
 
 
-/* =========================================================
-   TEMAS
-========================================================= */
-
-let currentTheme=
-  localStorage.getItem(NEXO.storage.theme) || "purple";
-
-function applyTheme(theme){
-
-  currentTheme=theme;
-
-  document.documentElement.dataset.theme=theme;
-
-  localStorage.setItem(
-    NEXO.storage.theme,
-    theme
-  );
-
-  $$(".theme").forEach(item=>{
-    item.classList.toggle(
-      "selected",
-      item.dataset.themeChoice===theme
-    );
-  });
-
-  const meta=document.querySelector(
-    'meta[name="theme-color"]'
-  );
-
-  if(meta){
-    const colors={
-      purple:"#8b35ff",
-      pink:"#ff168c",
-      blue:"#354dff",
-      cyan:"#00d9ff",
-      green:"#20e59a",
-      red:"#ff304f",
-      gold:"#ffd447",
-      sunset:"#ff5c35",
-      ocean:"#00d9ff",
-      lime:"#b7ff3c",
-      mono:"#ffffff"
-    };
-
-    meta.setAttribute(
-      "content",
-      colors[theme] || "#8b35ff"
-    );
-  }
-}
-
-applyTheme(currentTheme);
-
-$$(".theme").forEach(theme=>{
-  theme.addEventListener("click",()=>{
-    applyTheme(theme.dataset.themeChoice);
-    showToast("🎨 Tema cambiado");
-  });
-});
-
-
-/* =========================================================
-   AJUSTES
-========================================================= */
-
-let settings=getStorage(
-  NEXO.storage.settings,
-  defaultSettings
-);
-
-function updateToggle(button,state){
-
-  button.classList.toggle("on",state);
-
-  const icon=button.querySelector("i");
-
-  if(icon){
-    icon.style.transform=
-      state ? "translateX(18px)" : "translateX(0)";
-  }
-}
-
-$$(".toggle").forEach(button=>{
-
-  const key=button.dataset.setting;
-
-  if(key && settings[key]!==undefined){
-    updateToggle(button,settings[key]);
-  }
-
-  button.addEventListener("click",()=>{
-
-    const setting=button.dataset.setting;
-
-    settings[setting]=!settings[setting];
-
-    updateToggle(
-      button,
-      settings[setting]
-    );
-
-    setStorage(
-      NEXO.storage.settings,
-      settings
-    );
-
-    showToast(
-      settings[setting]
-      ? "Activado ✓"
-      : "Desactivado"
-    );
-  });
-});
-
-
-$("#settingsButton")?.addEventListener(
-  "click",
-  ()=>{
-    navigateTo("settings");
-  }
-);
-
-
-/* =========================================================
-   NOTIFICACIONES
-========================================================= */
-
-$("#notificationButton")?.addEventListener(
-  "click",
-  ()=>{
-
-    $("#notificationDot").style.display="none";
-
-    showToast(
-      "🔔 No tienes notificaciones nuevas"
-    );
-  }
-);
-
-
-/* =========================================================
-   AJUSTES EXTRA
-========================================================= */
-
-$("#languageSetting")?.addEventListener(
-  "click",
-  ()=>{
-    showToast("🌎 Actualmente NEXO está en español");
-  }
-);
-
-$("#privacySetting")?.addEventListener(
-  "click",
-  ()=>{
-    showToast("🔒 Configuración de privacidad");
-  }
-);
-
-$("#helpSetting")?.addEventListener(
-  "click",
-  ()=>{
-    showToast("❓ Centro de ayuda de NEXO");
-  }
-);
-
-$("#aboutSetting")?.addEventListener(
-  "click",
-  ()=>{
-    showToast("NEXO · Versión "+NEXO.version);
-  }
-);
-
-
-/* =========================================================
-   RESTABLECER DATOS
-========================================================= */
-
-$("#resetApp")?.addEventListener(
-  "click",
-  ()=>{
-
-    const confirmed=
-      confirm(
-        "¿Seguro que quieres borrar los datos locales de NEXO?"
-      );
-
-    if(!confirmed)return;
-
-    Object.values(NEXO.storage).forEach(key=>{
-      try{
-        localStorage.removeItem(key);
-      }catch{}
-    });
-
-    showToast(
-      "Datos locales eliminados"
-    );
-
-    setTimeout(()=>{
-      location.reload();
-    },700);
-  }
-);
-
-
-/* =========================================================
-   SEGURIDAD DE TEXTO
-========================================================= */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
-
-
-/* =========================================================
-   FECHAS
-========================================================= */
-
-function formatDate(date){
-
-  try{
-
-    return new Date(
-      date+"T00:00:00"
-    ).toLocaleDateString(
-      "es-ES",
-      {
-        day:"2-digit",
-        month:"2-digit",
-        year:"numeric"
-      }
-    );
-
-  }catch{
-    return date;
-  }
-}
-
-
-/* =========================================================
-   FECHA MÍNIMA
-========================================================= */
-
-const today=
-  new Date()
-    .toISOString()
-    .split("T")[0];
-
-if($("#planDate")){
-  $("#planDate").min=today;
-}
-
-
-/* =========================================================
-   SERVICE WORKER
-========================================================= */
-
-if("serviceWorker" in navigator){
-
-  window.addEventListener(
-    "load",
-    ()=>{
-      navigator.serviceWorker
-        .register("./sw.js")
-        .then(()=>{
-          console.log(
-            "NEXO PWA: Service Worker activo"
-          );
-        })
-        .catch(error=>{
-          console.log(
-            "NEXO PWA:",
-            error
-          );
-        });
-    }
-  );
-}
-
-
-/* =========================================================
-   INICIO
-========================================================= */
-
-renderProfile();
-renderCreatedPlans();
-
-navigateTo("home");
-
-console.log(
-  "NEXO "+NEXO.version+" iniciado correctamente."
-);
-
-</script>
-
-</body>
-</html>
+function openPlanModal(){
+
+  openModal(
+    "Crear nuevo plan",
+    `
+      <div class="input-group">
+        <label>Nombre del plan</label>
+        <input id="planTitle"
+          class="input"
+          placeholder="Ej. Running">
+      </div>
+
+      <div class="input-group">
+        <label>Icono</label>
+        <input id="planIcon"
+          class="input"
+          value="📅">
+      </div>
+
+      <div class="grid grid-2">
+
+        <div class="input-group">
+          <label>Fecha</label>
+          <input id="planDate"
+            class="input"
+            placeholder="Hoy">
+        </div>
+
+        <div class="input-group">
+          <label>Hora</label>
+          <input id="planTime"
+            class="input"
+            placeholder="19:00">
+        </div>
+
+      </div>
+
+      <div class="input-group">
+        <label>Lugar</label>
+        <input id="planPlace"
+          class="input"
+          placeholder="Lugar">
+      </div>
+
+      <div class="input-group">
+        <label>Descripción</label>
+        <textarea id="planDescription"
+          placeholder="Cuenta qué vais a hacer..."></textarea>
+      </div>
+
+     
