@@ -3,60 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CONECTA</title>
-<meta name="description" content="CONECTA - conecta personas, intereses y planes.">
-<meta name="theme-color" content="#09090b">
+<meta name="theme-color" content="#ffffff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="CONECTA">
+<meta name="description" content="CONECTA — personas, fotos, intereses, planes, música y chat.">
 <link rel="manifest" href="manifest.json">
+<title>CONECTA</title>
 
 <style>
 :root{
   --accent:#7c3aed;
-  --accent2:#a855f7;
-  --bg:#09090b;
-  --surface:#141419;
-  --surface2:#1b1b21;
-  --surface3:#27272f;
-  --text:#fff;
-  --muted:#a1a1aa;
-  --border:rgba(255,255,255,.1);
+  --accent2:#ec4899;
+  --bg:#f7f7fb;
+  --surface:#fff;
+  --surface2:#f1f1f6;
+  --surface3:#e7e7ef;
+  --text:#15151b;
+  --muted:#73737f;
+  --border:rgba(20,20,30,.09);
+  --shadow:0 12px 35px rgba(20,20,30,.08);
   --radius:22px;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-
 body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   background:
-    radial-gradient(circle at 10% 0%,rgba(124,58,237,.22),transparent 30%),
-    radial-gradient(circle at 90% 30%,rgba(236,72,153,.12),transparent 28%),
+    radial-gradient(circle at 5% 0%,rgba(124,58,237,.14),transparent 30%),
+    radial-gradient(circle at 100% 20%,rgba(236,72,153,.12),transparent 30%),
     var(--bg);
   color:var(--text);
   min-height:100vh;
   overflow-x:hidden;
 }
-
 button,input,textarea,select{font:inherit}
 button{border:0;cursor:pointer}
 .hidden{display:none!important}
-.screen{display:none;min-height:100vh;padding-bottom:105px}
-.screen.active{display:block}
-.container{width:min(1100px,92%);margin:auto}
 
-/* HEADER */
+.screen{
+  display:none;
+  min-height:100vh;
+  padding-bottom:110px;
+}
+.screen.active{display:block}
+.container{width:min(1120px,92%);margin:auto}
+
 .topbar{
   position:sticky;
   top:0;
   z-index:50;
-  background:rgba(9,9,11,.78);
+  background:rgba(255,255,255,.82);
   backdrop-filter:blur(22px);
   border-bottom:1px solid var(--border)
 }
-
 .topbar-inner{
-  width:min(1100px,92%);
+  width:min(1120px,92%);
   min-height:68px;
   margin:auto;
   display:flex;
@@ -64,56 +66,46 @@ button{border:0;cursor:pointer}
   justify-content:space-between;
   gap:12px
 }
-
 .logo{
-  font-size:23px;
+  font-size:24px;
   font-weight:950;
-  letter-spacing:-1px
+  letter-spacing:-1.4px
 }
-
-.logo span,.gradient{color:var(--accent2)}
+.logo span{color:var(--accent2)}
 
 .icon-btn{
   width:44px;
   height:44px;
   border-radius:50%;
-  background:var(--surface2);
-  color:#fff;
-  border:1px solid var(--border)
+  background:var(--surface);
+  color:var(--text);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow)
 }
 
-/* HERO */
-.hero{padding:35px 0 20px}
-
+.hero{padding:34px 0 18px}
 .hero h1{
-  font-size:clamp(34px,8vw,60px);
-  line-height:1;
-  letter-spacing:-2.5px;
+  font-size:clamp(36px,8vw,62px);
+  line-height:.98;
+  letter-spacing:-3px;
   margin-bottom:12px
 }
-
 .gradient{
   background:linear-gradient(100deg,var(--accent),var(--accent2));
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent
 }
+.hero p{color:var(--muted);line-height:1.55}
 
-.hero p{
-  color:var(--muted);
-  line-height:1.5
-}
-
-/* CARDS */
 .card{
-  background:rgba(24,24,30,.86);
+  background:rgba(255,255,255,.92);
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:20px;
   margin-bottom:15px;
-  box-shadow:0 18px 50px rgba(0,0,0,.22)
+  box-shadow:var(--shadow)
 }
-
 .card-title{
   display:flex;
   align-items:center;
@@ -121,117 +113,78 @@ button{border:0;cursor:pointer}
   gap:10px;
   margin-bottom:15px
 }
-
 .card-title h2{font-size:20px}
 .card-title span{font-size:13px;color:var(--muted)}
 
-/* BUTTONS */
 .btn{
   min-height:46px;
   padding:0 18px;
-  border-radius:14px;
+  border-radius:15px;
   color:#fff;
-  font-weight:800;
+  font-weight:850;
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:8px;
   transition:.2s
 }
-
 .btn:active{transform:scale(.97)}
-
 .btn-primary{
   background:linear-gradient(135deg,var(--accent),var(--accent2))
 }
-
 .btn-secondary{
-  background:var(--surface3);
+  background:var(--surface2);
+  color:var(--text);
   border:1px solid var(--border)
 }
-
-.btn-success{
-  background:rgba(34,197,94,.15);
-  color:#4ade80
-}
-
 .btn-danger{
-  background:rgba(239,68,68,.14);
-  color:#f87171
+  background:#fee2e2;
+  color:#dc2626
 }
-
+.btn-success{
+  background:#dcfce7;
+  color:#15803d
+}
 .full{width:100%}
 
-/* QUICK ACTIONS */
-.actions{
+.quick-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px
 }
-
-.action{
-  min-height:105px;
-  border-radius:18px;
-  background:var(--surface2);
+.quick{
+  min-height:95px;
+  padding:15px;
+  background:linear-gradient(145deg,var(--surface),var(--surface2));
   border:1px solid var(--border);
-  color:#fff;
-  padding:12px;
-  transition:.2s
+  border-radius:19px;
+  color:var(--text);
+  text-align:left
 }
+.quick-icon{font-size:28px;display:block;margin-bottom:7px}
+.quick small{color:var(--muted)}
 
-.action:hover{
-  transform:translateY(-3px);
-  border-color:rgba(168,85,247,.5)
-}
-
-.action .emoji{
-  display:block;
-  font-size:29px;
-  margin-bottom:7px
-}
-
-.action small{color:var(--muted)}
-
-/* VISUAL CATEGORIES / INTEREST CARDS */
 .section-heading{
   margin:28px 0 14px
 }
-
-.section-heading h2{
-  font-size:22px;
-  margin-bottom:5px
-}
-
-.section-heading p{
-  color:var(--muted);
-  font-size:14px
-}
+.section-heading h2{font-size:23px;margin-bottom:5px}
+.section-heading p{font-size:14px;color:var(--muted)}
 
 .category-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:12px
 }
-
 .category-card{
   position:relative;
-  min-height:165px;
-  border-radius:20px;
+  min-height:150px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:#202027;
+  border-radius:21px;
+  border:1px solid rgba(0,0,0,.08);
   color:#fff;
   text-align:left;
-  transition:.25s;
   isolation:isolate
 }
-
-.category-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(255,255,255,.35);
-  box-shadow:0 18px 35px rgba(0,0,0,.3)
-}
-
 .category-bg{
   position:absolute;
   inset:0;
@@ -240,269 +193,238 @@ button{border:0;cursor:pointer}
   z-index:-2;
   transition:.4s
 }
-
-.category-card:hover .category-bg{
-  transform:scale(1.07)
-}
-
+.category-card:hover .category-bg{transform:scale(1.08)}
 .category-overlay{
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.92),
-      rgba(0,0,0,.35) 50%,
-      rgba(0,0,0,.08)
-    );
-  z-index:-1
+  z-index:-1;
+  background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.05))
 }
-
 .category-content{
   position:absolute;
-  inset:auto 13px 13px 13px
+  left:14px;
+  right:14px;
+  bottom:14px
 }
+.category-icon{font-size:28px;margin-bottom:5px}
+.category-content strong{display:block;font-size:17px}
+.category-content small{color:#eee;font-size:12px}
 
-.category-icon{
-  font-size:29px;
-  margin-bottom:5px
+.feed{
+  display:flex;
+  flex-direction:column;
+  gap:15px
 }
-
-.category-content strong{
-  display:block;
-  font-size:17px
+.post{
+  overflow:hidden;
+  padding:0
 }
-
-.category-content small{
-  color:#ddd;
-  font-size:12px
+.post-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:16px
 }
-
-/* FEATURED CATEGORY */
-.featured-category{
-  min-height:210px;
-  margin-bottom:12px
+.avatar{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  font-size:21px;
+  font-weight:900;
+  overflow:hidden
 }
-
-.featured-category .category-icon{
-  font-size:38px
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover
 }
-
-@media(max-width:850px){
-  .category-grid{
-    grid-template-columns:repeat(2,1fr)
-  }
+.post-user{flex:1}
+.post-user strong{display:block}
+.post-user small{color:var(--muted)}
+.post-image{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block
 }
-
-@media(max-width:600px){
-  .actions{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .category-grid{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .category-card{
-    min-height:145px
-  }
-
-  .featured-category{
-    min-height:190px
-  }
+.post-body{padding:15px 16px 17px}
+.post-actions{
+  display:flex;
+  gap:8px;
+  margin-bottom:11px
 }
+.post-action{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:var(--surface2);
+  color:var(--text)
+}
+.post-caption{line-height:1.5}
+.post-caption b{margin-right:5px}
+.music{
+  margin-top:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--surface2);
+  border-radius:15px
+}
+.music-icon{font-size:21px}
+.music small{display:block;color:var(--muted)}
 
-/* PROFILE */
 .profile-head{
   display:flex;
   align-items:center;
   gap:15px
 }
-
-.avatar{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  font-size:30px;
-  font-weight:900;
-  flex-shrink:0
-}
-
-.profile-head h2{margin-bottom:5px}
+.profile-head h2{margin-bottom:4px}
 .muted{color:var(--muted)}
-
 .tags{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
   margin-top:13px
 }
-
 .tag{
   padding:8px 12px;
   background:var(--surface3);
   border-radius:999px;
-  color:#ddd;
+  color:var(--text);
   font-size:13px
 }
 
-/* PEOPLE */
 .person{
   display:flex;
   align-items:center;
-  gap:13px
+  gap:13px;
+  padding:12px 0
 }
-
-.person-avatar{
-  width:54px;
-  height:54px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:grid;
-  place-items:center;
-  font-size:22px;
-  flex-shrink:0
-}
-
 .person-info{flex:1}
-.person-info strong{
-  display:block;
-  margin-bottom:3px
-}
+.person-info strong{display:block;margin-bottom:3px}
 .person-info small{color:var(--muted)}
 
-/* PLAN VISUAL */
-.plan-card{
-  position:relative;
-  min-height:225px;
-  padding:0!important;
-  overflow:hidden
-}
-
-.plan-cover{
-  height:145px;
-  background-size:cover;
-  background-position:center;
-  position:relative
-}
-
-.plan-cover:after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to top,
-    rgba(20,20,25,1),
-    rgba(20,20,25,.15) 80%
-  )
-}
-
-.plan-body{
-  padding:15px 18px 18px
-}
-
-.plan-title-row{
-  display:flex;
-  gap:12px;
-  align-items:center
-}
-
-.plan-icon{
-  width:52px;
-  height:52px;
-  border-radius:16px;
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(8px);
+.person-avatar{
+  width:55px;
+  height:55px;
+  border-radius:50%;
   display:grid;
   place-items:center;
-  font-size:26px;
-  flex-shrink:0
+  flex-shrink:0;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  font-size:21px;
+  font-weight:800
 }
 
+.plan-card{
+  padding:0;
+  overflow:hidden
+}
+.plan-cover{
+  height:170px;
+  background-size:cover;
+  background-position:center
+}
+.plan-body{padding:17px}
+.plan-title-row{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+.plan-icon{
+  width:53px;
+  height:53px;
+  border-radius:16px;
+  background:var(--surface2);
+  display:grid;
+  place-items:center;
+  font-size:27px;
+  flex-shrink:0
+}
 .plan-info{
   color:var(--muted);
   font-size:13px;
   line-height:1.7;
-  margin-top:7px
+  margin-top:6px
 }
-
 .plan-actions{
   display:flex;
   gap:8px;
-  margin-top:14px;
-  flex-wrap:wrap
+  margin-top:14px
 }
 
-/* SEARCH */
 .search{
   position:relative;
   margin:15px 0
 }
-
-.search input{
-  padding-left:45px
-}
-
+.search input{padding-left:45px}
 .search-icon{
   position:absolute;
   left:15px;
   top:13px
 }
 
-/* INPUT */
-.input-group{
-  margin-bottom:15px
-}
-
+.input-group{margin-bottom:15px}
 .input-group label{
   display:block;
   font-size:13px;
   color:var(--muted);
   margin-bottom:7px
 }
-
 .input,textarea,select{
   width:100%;
   min-height:47px;
   background:var(--surface2);
-  color:#fff;
+  color:var(--text);
   border:1px solid var(--border);
   border-radius:14px;
   padding:12px 14px;
   outline:none
 }
+textarea{min-height:100px;resize:vertical}
 
-textarea{
-  min-height:100px;
-  resize:vertical
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px
 }
+.stat{
+  text-align:center;
+  background:var(--surface2);
+  border-radius:17px;
+  padding:15px 8px
+}
+.stat strong{font-size:24px;display:block}
+.stat small{color:var(--muted)}
 
-/* NAV */
 .bottom-nav{
   position:fixed;
   left:50%;
   bottom:12px;
   transform:translateX(-50%);
   z-index:100;
-  width:min(700px,94%);
+  width:min(720px,94%);
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  background:rgba(20,20,24,.94);
+  background:rgba(255,255,255,.92);
   border:1px solid var(--border);
-  border-radius:22px;
+  border-radius:24px;
   padding:7px;
-  backdrop-filter:blur(20px);
-  box-shadow:0 20px 60px rgba(0,0,0,.4)
+  backdrop-filter:blur(22px);
+  box-shadow:0 20px 60px rgba(0,0,0,.15)
 }
-
 .nav-item{
   min-height:58px;
-  border-radius:16px;
+  border-radius:17px;
   background:transparent;
-  color:#a1a1aa;
+  color:#777783;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -510,47 +432,40 @@ textarea{
   gap:3px;
   font-size:11px
 }
-
-.nav-icon{font-size:20px}
-
+.nav-icon{font-size:21px}
 .nav-item.active{
-  background:rgba(124,58,237,.2);
-  color:#fff
+  background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(236,72,153,.12));
+  color:var(--accent)
 }
 
-/* MODAL */
 .modal{
   position:fixed;
   inset:0;
   z-index:300;
-  background:rgba(0,0,0,.72);
+  background:rgba(0,0,0,.6);
   backdrop-filter:blur(8px);
   display:none;
   align-items:flex-end;
   justify-content:center;
   padding:15px
 }
-
 .modal.open{display:flex}
-
 .modal-box{
-  width:min(600px,100%);
-  max-height:90vh;
+  width:min(650px,100%);
+  max-height:91vh;
   overflow:auto;
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:28px;
   padding:22px
 }
-
 .modal-header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:20px
 }
 
-/* TOAST */
 .toast{
   position:fixed;
   left:50%;
@@ -561,105 +476,15 @@ textarea{
   pointer-events:none;
   background:#18181b;
   color:#fff;
-  border:1px solid var(--border);
   border-radius:14px;
   padding:13px 18px;
   transition:.25s
 }
-
 .toast.show{
   opacity:1;
   transform:translate(-50%,0)
 }
 
-/* STATS */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px
-}
-
-.stat{
-  text-align:center;
-  background:var(--surface2);
-  border-radius:17px;
-  padding:15px 8px
-}
-
-.stat strong{
-  font-size:24px;
-  display:block
-}
-
-.stat small{color:var(--muted)}
-
-/* EMPTY */
-.empty{
-  text-align:center;
-  padding:35px 15px;
-  color:var(--muted)
-}
-
-/* WELCOME */
-#welcome{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(124,58,237,.3),transparent 30%),
-    radial-gradient(circle at 80% 70%,rgba(236,72,153,.2),transparent 30%),
-    #09090b
-}
-
-.welcome-box{
-  width:min(500px,100%);
-  text-align:center
-}
-
-.welcome-logo{
-  font-size:52px;
-  font-weight:950;
-  letter-spacing:-3px;
-  margin-bottom:12px
-}
-
-.welcome-logo span{color:var(--accent2)}
-
-.welcome-box p{
-  color:var(--muted);
-  line-height:1.6;
-  margin-bottom:25px
-}
-
-/* CHAT */
-.chat-list{
-  display:flex;
-  flex-direction:column;
-  gap:8px
-}
-
-.chat{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px;
-  background:var(--surface2);
-  border-radius:17px;
-  color:#fff;
-  text-align:left
-}
-
-.chat-text{flex:1}
-
-.chat-text strong{display:block}
-.chat-text small{color:var(--muted)}
-
-/* SETTINGS */
 .setting{
   display:flex;
   align-items:center;
@@ -668,20 +493,10 @@ textarea{
   padding:15px 0;
   border-bottom:1px solid var(--border)
 }
-
 .setting:last-child{border-bottom:0}
-
 .setting-info{flex:1}
-
-.setting-info strong{
-  display:block;
-  margin-bottom:4px
-}
-
-.setting-info small{
-  color:var(--muted);
-  line-height:1.4
-}
+.setting-info strong{display:block;margin-bottom:4px}
+.setting-info small{color:var(--muted);line-height:1.4}
 
 .switch{
   position:relative;
@@ -689,20 +504,13 @@ textarea{
   height:28px;
   flex-shrink:0
 }
-
-.switch input{
-  opacity:0;
-  width:0;
-  height:0
-}
-
+.switch input{opacity:0;width:0;height:0}
 .slider{
   position:absolute;
   inset:0;
-  background:#3f3f46;
+  background:#d4d4d8;
   border-radius:999px
 }
-
 .slider:before{
   content:"";
   position:absolute;
@@ -712,23 +520,18 @@ textarea{
   top:3px;
   background:#fff;
   border-radius:50%;
-  transition:.2s
+  transition:.2s;
+  box-shadow:0 2px 5px rgba(0,0,0,.2)
 }
-
-.switch input:checked+.slider{
-  background:var(--accent)
-}
-
-.switch input:checked+.slider:before{
-  transform:translateX(22px)
-}
+.switch input:checked+.slider{background:var(--accent)}
+.switch input:checked+.slider:before{transform:translateX(22px)}
 
 .color-options{
   display:flex;
   flex-wrap:wrap;
-  gap:12px
+  gap:12px;
+  margin-top:12px
 }
-
 .color{
   width:42px;
   height:42px;
@@ -736,72 +539,91 @@ textarea{
   border:3px solid transparent
 }
 
-/* LIGHT */
-body.light{
-  --bg:#f4f4f5;
-  --surface:#fff;
-  --surface2:#f1f1f3;
-  --surface3:#e4e4e7;
-  --text:#18181b;
-  --muted:#71717a;
-  --border:rgba(0,0,0,.09);
+#welcome{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
   background:
-    radial-gradient(circle at 10% 10%,rgba(124,58,237,.12),transparent 30%),
-    var(--bg)
+    radial-gradient(circle at 20% 20%,rgba(124,58,237,.25),transparent 30%),
+    radial-gradient(circle at 80% 70%,rgba(236,72,153,.2),transparent 30%),
+    #f7f7fb
+}
+.welcome-box{
+  width:min(510px,100%);
+  text-align:center
+}
+.welcome-logo{
+  font-size:56px;
+  font-weight:950;
+  letter-spacing:-4px;
+  margin-bottom:12px
+}
+.welcome-logo span{color:var(--accent2)}
+.welcome-box p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:25px
 }
 
-body.light .topbar,
-body.light .bottom-nav{
-  background:rgba(255,255,255,.9)
+.chat-list{
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+.chat{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:13px;
+  background:var(--surface2);
+  border-radius:17px;
+  color:var(--text);
+  text-align:left
+}
+.chat-text{flex:1}
+.chat-text strong{display:block}
+.chat-text small{color:var(--muted)}
+
+.empty{
+  text-align:center;
+  padding:40px;
+  color:var(--muted)
 }
 
-body.light .icon-btn{
-  color:#18181b
+.photo-preview{
+  width:100%;
+  max-height:300px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-top:10px
 }
 
-/* BACKGROUNDS */
-body.bg-gradient{
-  background:
-    radial-gradient(circle at 10% 20%,rgba(124,58,237,.3),transparent 30%),
-    radial-gradient(circle at 90% 80%,rgba(236,72,153,.22),transparent 30%),
-    #09090b
+@media(max-width:850px){
+  .category-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-body.bg-blue{
-  background:
-    radial-gradient(circle at 20% 10%,rgba(37,99,235,.3),transparent 30%),
-    #05070d
-}
-
-body.bg-green{
-  background:
-    radial-gradient(circle at 20% 10%,rgba(16,185,129,.25),transparent 30%),
-    #050b09
-}
-
-body.bg-red{
-  background:
-    radial-gradient(circle at 80% 10%,rgba(239,68,68,.25),transparent 30%),
-    #0b0505
-}
-
-body.bg-pink{
-  background:
-    radial-gradient(circle at 20% 10%,rgba(236,72,153,.3),transparent 30%),
-    #0b0509
+@media(max-width:600px){
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .category-grid{grid-template-columns:repeat(2,1fr)}
+  .category-card{min-height:135px}
+  .hero h1{letter-spacing:-2px}
+  .plan-cover{height:150px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- BIENVENIDA -->
 <div id="welcome">
   <div class="welcome-box">
     <div class="welcome-logo">CONECTA<span>.</span></div>
     <p>
-      Conecta con personas, intereses y planes.
-      Descubre gente, crea actividades y construye tu comunidad.
+      Personas. Fotos. Intereses. Planes. Música.
+      <br>Todo en un mismo lugar.
     </p>
     <button class="btn btn-primary full" onclick="enterApp()">
       Entrar en CONECTA
@@ -811,9 +633,7 @@ body.bg-pink{
 
 <div id="app">
 
-<!-- =========================
-     INICIO
-========================= -->
+<!-- ================= INICIO ================= -->
 <section id="home" class="screen active">
 
 <header class="topbar">
@@ -827,82 +647,92 @@ body.bg-pink{
 
 <div class="hero">
   <h1>Tu mundo.<br><span class="gradient">Tu gente.</span></h1>
-  <p>Descubre personas, crea planes y conecta según tus intereses.</p>
+  <p>Descubre personas, comparte momentos y encuentra planes que encajen contigo.</p>
 </div>
 
-<div class="card">
-  <div class="profile-head">
-    <div class="avatar" id="homeAvatar">C</div>
-    <div>
-      <h2 id="homeName">Tu perfil</h2>
-      <p class="muted" id="homeBio">Completa tu perfil para empezar.</p>
-    </div>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-title">
-    <h2>Accesos rápidos</h2>
-  </div>
-
-  <div class="actions">
-    <button class="action" onclick="showScreen('connect')">
-      <span class="emoji">🤝</span>
-      <small>Conectar</small>
-    </button>
-
-    <button class="action" onclick="showScreen('plans')">
-      <span class="emoji">📅</span>
-      <small>Planes</small>
-    </button>
-
-    <button class="action" onclick="showScreen('chat')">
-      <span class="emoji">💬</span>
-      <small>Chat</small>
-    </button>
-
-    <button class="action" onclick="showScreen('profile')">
-      <span class="emoji">👤</span>
-      <small>Perfil</small>
-    </button>
-  </div>
+<!-- ACCESOS -->
+<div class="quick-grid">
+  <button class="quick" onclick="showScreen('feed')">
+    <span class="quick-icon">📸</span>
+    <small>Descubrir</small>
+  </button>
+  <button class="quick" onclick="showScreen('connect')">
+    <span class="quick-icon">🤝</span>
+    <small>Personas</small>
+  </button>
+  <button class="quick" onclick="showScreen('plans')">
+    <span class="quick-icon">📅</span>
+    <small>Planes</small>
+  </button>
+  <button class="quick" onclick="openPostModal()">
+    <span class="quick-icon">＋</span>
+    <small>Publicar</small>
+  </button>
 </div>
 
 <div class="section-heading">
-  <h2>¿Qué te apetece hacer?</h2>
-  <p>Explora intereses y encuentra gente con tus mismos gustos.</p>
+  <h2>Explora</h2>
+  <p>Encuentra tu gente según lo que te gusta.</p>
 </div>
 
 <div class="category-grid" id="homeCategories"></div>
 
 <div class="section-heading">
+  <h2>✨ Personas para ti</h2>
+  <p>Perfiles que podrían encajar contigo.</p>
+</div>
+
+<div class="card">
+  <div id="homePeople"></div>
+</div>
+
+<div class="section-heading">
   <h2>🔥 Planes cerca de ti</h2>
-  <p>Actividades que están pasando o que están a punto de empezar.</p>
+  <p>Actividades creadas por la comunidad.</p>
 </div>
 
 <div id="homePlans"></div>
 
-<div class="card">
-  <div class="card-title">
-    <h2>Personas para ti</h2>
-    <span>Según tus intereses</span>
-  </div>
-  <div id="homePeople"></div>
+<div class="section-heading">
+  <h2>📸 Últimas publicaciones</h2>
 </div>
+
+<div id="homeFeed" class="feed"></div>
 
 </main>
 </section>
 
 
-<!-- =========================
-     CONECTAR
-========================= -->
+<!-- ================= FEED ================= -->
+<section id="feed" class="screen">
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo">CONECTA<span>.</span></div>
+    <button class="btn btn-primary" onclick="openPostModal()">＋ Publicar</button>
+  </div>
+</header>
+
+<main class="container">
+
+<div class="hero">
+  <h1>Descubrir</h1>
+  <p>Mira qué comparte la comunidad y descubre nuevas personas.</p>
+</div>
+
+<div id="feedList" class="feed"></div>
+
+</main>
+</section>
+
+
+<!-- ================= CONECTAR ================= -->
 <section id="connect" class="screen">
 
 <header class="topbar">
   <div class="topbar-inner">
     <div class="logo">CONECTA<span>.</span></div>
-    <button class="icon-btn" onclick="showScreen('settings')">⚙️</button>
+    <button class="icon-btn" onclick="openProfileModal()">👤</button>
   </div>
 </header>
 
@@ -910,40 +740,34 @@ body.bg-pink{
 
 <div class="hero">
   <h1>Conectar</h1>
-  <p>Encuentra personas que compartan tus intereses.</p>
+  <p>Encuentra personas con intereses parecidos a los tuyos.</p>
 </div>
 
 <div class="search">
   <span class="search-icon">🔎</span>
-  <input
-    id="peopleSearch"
-    class="input"
-    placeholder="Buscar personas, intereses..."
-    oninput="renderPeople()"
-  >
+  <input id="peopleSearch"
+         class="input"
+         placeholder="Buscar personas, ciudades o intereses..."
+         oninput="renderPeople()">
 </div>
 
 <div class="section-heading">
-  <h2>Explora por interés</h2>
-  <p>Busca personas según lo que te gusta hacer.</p>
+  <h2>Explora intereses</h2>
 </div>
 
 <div class="category-grid" id="connectCategories"></div>
 
-<div class="card" style="margin-top:20px">
-  <div class="card-title">
-    <h2>Descubre personas</h2>
-  </div>
-  <div id="peopleList"></div>
+<div class="section-heading">
+  <h2>Personas</h2>
 </div>
+
+<div id="peopleList"></div>
 
 </main>
 </section>
 
 
-<!-- =========================
-     PLANES
-========================= -->
+<!-- ================= PLANES ================= -->
 <section id="plans" class="screen">
 
 <header class="topbar">
@@ -957,12 +781,7 @@ body.bg-pink{
 
 <div class="hero">
   <h1>Planes</h1>
-  <p>Haz algo. Encuentra gente. <b>CONECTA.</b></p>
-</div>
-
-<div class="section-heading">
-  <h2>🎯 Elige tu plan</h2>
-  <p>Running, cine, gimnasio, fútbol, viajes y mucho más.</p>
+  <p>Haz algo diferente. Encuentra gente. CONECTA.</p>
 </div>
 
 <div class="category-grid" id="planCategories"></div>
@@ -973,9 +792,7 @@ body.bg-pink{
 </section>
 
 
-<!-- =========================
-     CHAT
-========================= -->
+<!-- ================= CHAT ================= -->
 <section id="chat" class="screen">
 
 <header class="topbar">
@@ -988,34 +805,23 @@ body.bg-pink{
 
 <div class="hero">
   <h1>Chat</h1>
-  <p>Tus conversaciones y conexiones.</p>
+  <p>Habla con tus conexiones.</p>
 </div>
 
 <div class="card">
-  <div class="chat-list" id="chatList"></div>
+  <div id="chatList"></div>
 </div>
 
 <div class="card">
   <div class="card-title">
-    <h2>Funciones sociales</h2>
+    <h2>Próximamente</h2>
   </div>
 
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-    <button class="btn btn-secondary" onclick="futureFeature('Llamadas')">
-      📞 Llamadas
-    </button>
-
-    <button class="btn btn-secondary" onclick="futureFeature('Videollamadas')">
-      🎥 Videollamadas
-    </button>
-
-    <button class="btn btn-secondary" onclick="futureFeature('Grupos')">
-      👥 Grupos
-    </button>
-
-    <button class="btn btn-secondary" onclick="futureFeature('Mensajes de voz')">
-      🎙️ Voz
-    </button>
+    <button class="btn btn-secondary" onclick="futureFeature('Llamadas')">📞 Llamadas</button>
+    <button class="btn btn-secondary" onclick="futureFeature('Videollamadas')">🎥 Vídeo</button>
+    <button class="btn btn-secondary" onclick="futureFeature('Grupos')">👥 Grupos</button>
+    <button class="btn btn-secondary" onclick="futureFeature('Voz')">🎙️ Voz</button>
   </div>
 </div>
 
@@ -1023,9 +829,7 @@ body.bg-pink{
 </section>
 
 
-<!-- =========================
-     PERFIL
-========================= -->
+<!-- ================= PERFIL ================= -->
 <section id="profile" class="screen">
 
 <header class="topbar">
@@ -1039,60 +843,76 @@ body.bg-pink{
 
 <div class="hero">
   <h1>Mi perfil</h1>
-  <p>Tu identidad dentro de CONECTA.</p>
+  <p>Así te ve la comunidad.</p>
 </div>
 
 <div class="card">
-  <div class="profile-head">
-    <div class="avatar" id="profileAvatar">C</div>
 
-    <div>
-      <h2 id="profileName">Tu nombre</h2>
-      <p class="muted" id="profileLocation">📍 Ubicación no definida</p>
-    </div>
-  </div>
+<div class="profile-head">
 
-  <div class="tags" id="profileTags"></div>
+<div class="avatar" id="profileAvatar">F</div>
 
-  <p
-    class="muted"
-    id="profileDescription"
-    style="margin-top:15px"
-  >
-    Añade una descripción.
-  </p>
+<div>
+<h2 id="profileName">Fernando</h2>
+<p class="muted" id="profileLocation">📍 Ubicación no definida</p>
+</div>
+
+</div>
+
+<div class="tags" id="profileTags"></div>
+
+<p id="profileDescription"
+   class="muted"
+   style="margin-top:15px">
+   Añade una descripción.
+</p>
+
+<br>
+
+<button class="btn btn-secondary full" onclick="openPhotoModal()">
+📸 Añadir foto de perfil
+</button>
+
 </div>
 
 <div class="card">
-  <div class="card-title">
-    <h2>Mi actividad</h2>
-  </div>
 
-  <div class="stats">
-    <div class="stat">
-      <strong id="statConnections">0</strong>
-      <small>Conexiones</small>
-    </div>
-
-    <div class="stat">
-      <strong id="statPlans">0</strong>
-      <small>Planes</small>
-    </div>
-
-    <div class="stat">
-      <strong id="statGroups">0</strong>
-      <small>Grupos</small>
-    </div>
-  </div>
+<div class="card-title">
+<h2>Mi actividad</h2>
 </div>
+
+<div class="stats">
+
+<div class="stat">
+<strong id="statConnections">0</strong>
+<small>Conexiones</small>
+</div>
+
+<div class="stat">
+<strong id="statPlans">0</strong>
+<small>Planes</small>
+</div>
+
+<div class="stat">
+<strong id="statPosts">0</strong>
+<small>Publicaciones</small>
+</div>
+
+</div>
+
+</div>
+
+<div class="section-heading">
+<h2>Mis publicaciones</h2>
+</div>
+
+<div id="profileFeed" class="feed"></div>
 
 </main>
 </section>
 
 
-<!-- =========================
-     AJUSTES
-========================= -->
+<!-- ================= AJUSTES ================= -->
 <section id="settings" class="screen">
 
 <header class="topbar">
@@ -1104,94 +924,84 @@ body.bg-pink{
 <main class="container">
 
 <div class="hero">
-  <h1>Ajustes</h1>
-  <p>Personaliza CONECTA como quieras.</p>
+<h1>Ajustes</h1>
+<p>Personaliza tu experiencia.</p>
 </div>
 
 <div class="card">
 
 <div class="card-title">
-  <h2>🎨 Apariencia</h2>
+<h2>🎨 Apariencia</h2>
 </div>
 
 <div class="setting">
-  <div class="setting-info">
-    <strong>Modo oscuro</strong>
-    <small>Cambia entre interfaz clara y oscura.</small>
-  </div>
 
-  <label class="switch">
-    <input
-      id="darkToggle"
-      type="checkbox"
-      checked
-      onchange="toggleDarkMode()"
-    >
-    <span class="slider"></span>
-  </label>
+<div class="setting-info">
+<strong>Modo oscuro</strong>
+<small>Cambia entre claro y oscuro.</small>
+</div>
+
+<label class="switch">
+<input id="darkToggle"
+       type="checkbox"
+       onchange="toggleDarkMode()">
+<span class="slider"></span>
+</label>
+
 </div>
 
 <div class="setting">
-  <div class="setting-info">
-    <strong>Color principal</strong>
-    <small>Elige el color de CONECTA.</small>
-  </div>
+<div class="setting-info">
+<strong>Color principal</strong>
+<small>Elige el color de CONECTA.</small>
+</div>
 </div>
 
 <div class="color-options">
 
-<button
-  class="color"
-  style="background:#7c3aed"
-  onclick="setAccent('#7c3aed','#a855f7')">
-</button>
+<button class="color"
+style="background:#7c3aed"
+onclick="setAccent('#7c3aed','#ec4899')"></button>
 
-<button
-  class="color"
-  style="background:#2563eb"
-  onclick="setAccent('#2563eb','#60a5fa')">
-</button>
+<button class="color"
+style="background:#2563eb"
+onclick="setAccent('#2563eb','#06b6d4')"></button>
 
-<button
-  class="color"
-  style="background:#059669"
-  onclick="setAccent('#059669','#34d399')">
-</button>
+<button class="color"
+style="background:#059669"
+onclick="setAccent('#059669','#22c55e')"></button>
 
-<button
-  class="color"
-  style="background:#dc2626"
-  onclick="setAccent('#dc2626','#fb7185')">
-</button>
+<button class="color"
+style="background:#dc2626"
+onclick="setAccent('#dc2626','#f97316')"></button>
 
-<button
-  class="color"
-  style="background:#db2777"
-  onclick="setAccent('#db2777','#f472b6')">
-</button>
+<button class="color"
+style="background:#db2777"
+onclick="setAccent('#db2777','#f472b6')"></button>
 
-<button
-  class="color"
-  style="background:#ea580c"
-  onclick="setAccent('#ea580c','#fb923c')">
-</button>
+<button class="color"
+style="background:#ea580c"
+onclick="setAccent('#ea580c','#facc15')"></button>
 
 </div>
 
 <div class="setting" style="margin-top:15px">
 
 <div class="setting-info">
-  <strong>Fondo</strong>
-  <small>Personaliza el ambiente visual.</small>
+<strong>Fondo</strong>
+<small>Cambia el ambiente de la aplicación.</small>
 </div>
 
-<select id="backgroundSelect" onchange="setBackground(this.value)">
-  <option value="default">Original</option>
-  <option value="gradient">Gradiente</option>
-  <option value="blue">Azul</option>
-  <option value="green">Verde</option>
-  <option value="red">Rojo</option>
-  <option value="pink">Rosa</option>
+<select id="backgroundSelect"
+onchange="setBackground(this.value)">
+
+<option value="default">Original</option>
+<option value="gradient">Gradiente</option>
+<option value="blue">Azul</option>
+<option value="green">Verde</option>
+<option value="red">Rojo</option>
+<option value="pink">Rosa</option>
+
 </select>
 
 </div>
@@ -1202,52 +1012,55 @@ body.bg-pink{
 <div class="card">
 
 <div class="card-title">
-  <h2>🔐 Privacidad</h2>
-</div>
-
-<div class="setting">
-  <div class="setting-info">
-    <strong>Perfil privado</strong>
-    <small>Limita quién puede ver tu perfil.</small>
-  </div>
-
-  <label class="switch">
-    <input
-      id="privateProfile"
-      type="checkbox"
-      onchange="savePrivacy()"
-    >
-    <span class="slider"></span>
-  </label>
-</div>
-
-<div class="setting">
-  <div class="setting-info">
-    <strong>Mostrar ubicación</strong>
-    <small>Permite mostrar una ubicación aproximada.</small>
-  </div>
-
-  <label class="switch">
-    <input
-      id="showLocation"
-      type="checkbox"
-      onchange="savePrivacy()"
-    >
-    <span class="slider"></span>
-  </label>
+<h2>🔐 Privacidad</h2>
 </div>
 
 <div class="setting">
 
 <div class="setting-info">
-  <strong>Permitir mensajes</strong>
-  <small>Controla quién puede iniciar conversaciones.</small>
+<strong>Perfil privado</strong>
+<small>Controla quién puede descubrirte.</small>
 </div>
 
-<select id="messagePermission" onchange="savePrivacy()">
-  <option value="everyone">Todo el mundo</option>
-  <option value="connections">Solo conexiones</option>
-  <option value="nobody">Nadie</option>
+<label class="switch">
+<input id="privateProfile"
+type="checkbox"
+onchange="savePrivacy()">
+<span class="slider"></span>
+</label>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<strong>Mostrar ubicación</strong>
+<small>Utiliza una ubicación aproximada.</small>
+</div>
+
+<label class="switch">
+<input id="showLocation"
+type="checkbox"
+onchange="savePrivacy()">
+<span class="slider"></span>
+</label>
+
+</div>
+
+<div class="setting">
+
+<div class="setting-info">
+<strong>Mensajes</strong>
+<small>Controla quién puede escribirte.</small>
+</div>
+
+<select id="messagePermission"
+onchange="savePrivacy()">
+
+<option value="everyone">Todo el mundo</option>
+<option value="connections">Solo conexiones</option>
+<option value="nobody">Nadie</option>
+
 </select>
 
 </div>
@@ -1258,75 +1071,46 @@ body.bg-pink{
 <div class="card">
 
 <div class="card-title">
-  <h2>🛡️ Seguridad</h2>
+<h2>📦 Mis datos</h2>
 </div>
 
-<button
-  class="btn btn-secondary full"
-  onclick="showSecurityInfo()">
-  Ver herramientas de seguridad
+<button class="btn btn-secondary full"
+onclick="exportData()">
+Exportar mis datos
 </button>
 
 <br><br>
 
-<button
-  class="btn btn-danger full"
-  onclick="showToast('Sistema de bloqueo preparado.')">
-  🚫 Gestionar bloqueados
+<button class="btn btn-danger full"
+onclick="deleteLocalData()">
+Eliminar datos locales
 </button>
 
 </div>
-
 
 <div class="card">
 
 <div class="card-title">
-  <h2>📦 Mis datos</h2>
+<h2>📜 Legal</h2>
 </div>
 
-<button
-  class="btn btn-secondary full"
-  onclick="exportData()">
-  Exportar mis datos
+<button class="btn btn-secondary full"
+onclick="openLegal('rules')">
+Normas de la comunidad
 </button>
 
 <br><br>
 
-<button
-  class="btn btn-danger full"
-  onclick="deleteLocalData()">
-  Eliminar datos locales
-</button>
-
-</div>
-
-
-<div class="card">
-
-<div class="card-title">
-  <h2>📜 Información legal</h2>
-</div>
-
-<button
-  class="btn btn-secondary full"
-  onclick="openLegal('rules')">
-  Normas de la comunidad
+<button class="btn btn-secondary full"
+onclick="openLegal('privacy')">
+Privacidad
 </button>
 
 <br><br>
 
-<button
-  class="btn btn-secondary full"
-  onclick="openLegal('privacy')">
-  Privacidad y protección de datos
-</button>
-
-<br><br>
-
-<button
-  class="btn btn-secondary full"
-  onclick="openLegal('terms')">
-  Términos y condiciones
+<button class="btn btn-secondary full"
+onclick="openLegal('terms')">
+Términos y condiciones
 </button>
 
 </div>
@@ -1337,78 +1121,79 @@ body.bg-pink{
 </div>
 
 
-<!-- =========================
-     NAVEGACIÓN
-========================= -->
+<!-- ================= NAVEGACIÓN ================= -->
+
 <nav class="bottom-nav">
 
-<button
-  class="nav-item active"
-  data-screen="home"
-  onclick="showScreen('home')">
-  <span class="nav-icon">🏠</span>
-  Inicio
+<button class="nav-item active"
+data-screen="home"
+onclick="showScreen('home')">
+
+<span class="nav-icon">🏠</span>
+Inicio
+
 </button>
 
-<button
-  class="nav-item"
-  data-screen="connect"
-  onclick="showScreen('connect')">
-  <span class="nav-icon">🤝</span>
-  Conectar
+<button class="nav-item"
+data-screen="connect"
+onclick="showScreen('connect')">
+
+<span class="nav-icon">🤝</span>
+Conectar
+
 </button>
 
-<button
-  class="nav-item"
-  data-screen="plans"
-  onclick="showScreen('plans')">
-  <span class="nav-icon">📅</span>
-  Planes
+<button class="nav-item"
+data-screen="plans"
+onclick="showScreen('plans')">
+
+<span class="nav-icon">📅</span>
+Planes
+
 </button>
 
-<button
-  class="nav-item"
-  data-screen="chat"
-  onclick="showScreen('chat')">
-  <span class="nav-icon">💬</span>
-  Chat
+<button class="nav-item"
+data-screen="chat"
+onclick="showScreen('chat')">
+
+<span class="nav-icon">💬</span>
+Chat
+
 </button>
 
-<button
-  class="nav-item"
-  data-screen="profile"
-  onclick="showScreen('profile')">
-  <span class="nav-icon">👤</span>
-  Perfil
+<button class="nav-item"
+data-screen="profile"
+onclick="showScreen('profile')">
+
+<span class="nav-icon">👤</span>
+Perfil
+
 </button>
 
 </nav>
 
 
-<!-- =========================
-     MODAL
-========================= -->
-<div
-  id="modal"
-  class="modal"
-  onclick="closeModalOutside(event)"
->
+<!-- ================= MODAL ================= -->
+
+<div id="modal"
+class="modal"
+onclick="closeModalOutside(event)">
 
 <div class="modal-box">
 
 <div class="modal-header">
-  <h2 id="modalTitle">CONECTA</h2>
 
-  <button
-    class="icon-btn"
-    onclick="closeModal()">
-    ✕
-  </button>
+<h2 id="modalTitle">CONECTA</h2>
+
+<button class="icon-btn"
+onclick="closeModal()">✕</button>
+
 </div>
 
 <div id="modalContent"></div>
 
 </div>
+
 </div>
 
 
@@ -1417,309 +1202,268 @@ body.bg-pink{
 
 <script>
 
-const STORAGE_KEY="conecta_app_v3";
-
-
-/* =========================
-   CATEGORÍAS VISUALES
-========================= */
+const STORAGE_KEY="conecta_2026";
 
 const categories=[
 
 {
- id:"running",
- title:"Running",
- icon:"🏃",
- text:"Salir a correr",
- image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"
+id:"running",
+title:"Running",
+icon:"🏃",
+text:"Salir a correr",
+image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"gym",
- title:"Gym",
- icon:"🏋️",
- text:"Entrenar juntos",
- image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
+id:"gym",
+title:"Gym",
+icon:"🏋️",
+text:"Entrenar juntos",
+image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"cine",
- title:"Cine",
- icon:"🎬",
- text:"Ir al cine",
- image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
+id:"cine",
+title:"Cine",
+icon:"🎬",
+text:"Películas",
+image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"futbol",
- title:"Fútbol",
- icon:"⚽",
- text:"Partidos y fútbol",
- image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"
+id:"futbol",
+title:"Fútbol",
+icon:"⚽",
+text:"Partidos",
+image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"musica",
- title:"Música",
- icon:"🎵",
- text:"Conciertos y música",
- image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
+id:"musica",
+title:"Música",
+icon:"🎵",
+text:"Conciertos",
+image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"viajes",
- title:"Viajes",
- icon:"✈️",
- text:"Viajar y descubrir",
- image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85"
+id:"viajes",
+title:"Viajes",
+icon:"✈️",
+text:"Descubrir lugares",
+image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"gaming",
- title:"Gaming",
- icon:"🎮",
- text:"Jugar con gente",
- image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85"
+id:"gaming",
+title:"Gaming",
+icon:"🎮",
+text:"Jugar",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"comida",
- title:"Comida",
- icon:"🍔",
- text:"Comer y descubrir sitios",
- image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85"
+id:"comida",
+title:"Comida",
+icon:"🍔",
+text:"Restaurantes",
+image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"ciclismo",
- title:"Ciclismo",
- icon:"🚴",
- text:"Rutas en bici",
- image:"https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=85"
+id:"ciclismo",
+title:"Ciclismo",
+icon:"🚴",
+text:"Rutas",
+image:"https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"playa",
- title:"Playa",
- icon:"🏖️",
- text:"Planes de playa",
- image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85"
+id:"playa",
+title:"Playa",
+icon:"🏖️",
+text:"Planes de playa",
+image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"senderismo",
- title:"Senderismo",
- icon:"🥾",
- text:"Naturaleza y rutas",
- image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"
+id:"senderismo",
+title:"Senderismo",
+icon:"🥾",
+text:"Naturaleza",
+image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"
 },
 
 {
- id:"fiesta",
- title:"Fiesta",
- icon:"🎉",
- text:"Salir y conocer gente",
- image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
- id:"padel",
- title:"Pádel",
- icon:"🎾",
- text:"Jugar al pádel",
- image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
- id:"natacion",
- title:"Natación",
- icon:"🏊",
- text:"Piscina y natación",
- image:"https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
- id:"fotografia",
- title:"Fotografía",
- icon:"📸",
- text:"Fotos y creatividad",
- image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1000&q=85"
-},
-
-{
- id:"arte",
- title:"Arte",
- icon:"🎨",
- text:"Arte y creatividad",
- image:"https://images.unsplash.com/photo-1561214115-f2f134cc4912?auto=format&fit=crop&w=1000&q=85"
+id:"fiesta",
+title:"Fiesta",
+icon:"🎉",
+text:"Salir",
+image:"https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85"
 }
 
 ];
 
-
-/* =========================
-   PERSONAS
-========================= */
 
 const people=[
 
 {
- id:1,
- name:"Álex",
- age:29,
- city:"Tarragona",
- interests:["Gym","Running","Música"]
+id:1,
+name:"Álex",
+age:29,
+city:"Tarragona",
+interests:["Gym","Running","Música"]
 },
 
 {
- id:2,
- name:"Laura",
- age:27,
- city:"Reus",
- interests:["Viajes","Fitness","Cine"]
+id:2,
+name:"Laura",
+age:27,
+city:"Reus",
+interests:["Viajes","Fitness","Cine"]
 },
 
 {
- id:3,
- name:"David",
- age:31,
- city:"Salou",
- interests:["Fútbol","Gym","Gaming"]
+id:3,
+name:"David",
+age:31,
+city:"Salou",
+interests:["Fútbol","Gym","Gaming"]
 },
 
 {
- id:4,
- name:"Marta",
- age:28,
- city:"Vila-seca",
- interests:["Running","Música","Viajes"]
+id:4,
+name:"Marta",
+age:28,
+city:"Vila-seca",
+interests:["Running","Música","Viajes"]
 },
 
 {
- id:5,
- name:"Carlos",
- age:30,
- city:"Tarragona",
- interests:["Deporte","Tecnología","Cocina"]
-},
-
-{
- id:6,
- name:"Sergio",
- age:26,
- city:"La Pineda",
- interests:["Pádel","Playa","Gym"]
-},
-
-{
- id:7,
- name:"Nerea",
- age:25,
- city:"Tarragona",
- interests:["Fotografía","Viajes","Música"]
-},
-
-{
- id:8,
- name:"Javi",
- age:32,
- city:"Reus",
- interests:["Fútbol","Running","Gaming"]
+id:5,
+name:"Carlos",
+age:30,
+city:"Tarragona",
+interests:["Deporte","Tecnología","Cocina"]
 }
 
 ];
 
 
-/* =========================
-   DATOS
-========================= */
-
 const defaultData={
 
- entered:false,
+entered:false,
 
- profile:{
-  name:"Tu nombre",
-  bio:"Estoy en CONECTA.",
-  location:"",
-  interests:["Deporte","Música","Amigos"]
- },
+profile:{
+name:"Fernando",
+bio:"Estoy en CONECTA.",
+location:"Tarragona",
+interests:["Deporte","Música","Amigos"],
+photo:""
+},
 
- privacy:{
-  private:false,
-  location:true,
-  messages:"everyone"
- },
+privacy:{
+private:false,
+location:true,
+messages:"everyone"
+},
 
- appearance:{
-  dark:true,
-  accent:"#7c3aed",
-  accent2:"#a855f7",
-  background:"default"
- },
+appearance:{
+dark:false,
+accent:"#7c3aed",
+accent2:"#ec4899",
+background:"default"
+},
 
- connections:[],
+connections:[],
 
- plans:[
+plans:[
 
- {
-  id:1,
-  title:"Running por el parque",
-  category:"running",
-  icon:"🏃",
-  date:"Hoy",
-  time:"19:00",
-  place:"Parque",
-  description:"Salida tranquila para correr y conocer gente.",
-  people:7
- },
+{
+id:1,
+title:"Running por el parque",
+category:"running",
+icon:"🏃",
+date:"Hoy",
+time:"19:00",
+place:"Parque",
+description:"Salida tranquila para correr y conocer gente.",
+people:7
+},
 
- {
-  id:2,
-  title:"Sesión de gym",
-  category:"gym",
-  icon:"🏋️",
-  date:"Mañana",
-  time:"18:30",
-  place:"Zona deportiva",
-  description:"Entrenamiento juntos y buen ambiente.",
-  people:4
- },
+{
+id:2,
+title:"Sesión de gym",
+category:"gym",
+icon:"🏋️",
+date:"Mañana",
+time:"18:30",
+place:"Zona deportiva",
+description:"Entrenamiento juntos y buen ambiente.",
+people:4
+},
 
- {
-  id:3,
-  title:"Cine",
-  category:"cine",
-  icon:"🎬",
-  date:"Sábado",
-  time:"20:00",
-  place:"Cines",
-  description:"Película y algo para comer después.",
-  people:5
- },
+{
+id:3,
+title:"Cine",
+category:"cine",
+icon:"🎬",
+date:"Sábado",
+time:"20:00",
+place:"Cines",
+description:"Película y algo para comer después.",
+people:5
+},
 
- {
-  id:4,
-  title:"Partido de fútbol",
-  category:"futbol",
-  icon:"⚽",
-  date:"Domingo",
-  time:"18:00",
-  place:"Campo municipal",
-  description:"Partido entre usuarios de CONECTA.",
-  people:10
- }
+{
+id:4,
+title:"Partido de fútbol",
+category:"futbol",
+icon:"⚽",
+date:"Domingo",
+time:"18:00",
+place:"Campo municipal",
+description:"Partido entre usuarios de CONECTA.",
+people:10
+}
 
- ],
+],
 
- chats:[],
- groups:[],
+posts:[
 
- stats:{
-  connections:0,
-  plans:4,
-  groups:0
- }
+{
+id:1,
+name:"Álex",
+city:"Tarragona",
+avatar:"A",
+image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85",
+caption:"Entrenamiento terminado 💪 ¿Quién se apunta mañana?",
+likes:24,
+liked:false,
+music:"Workout Mix"
+},
+
+{
+id:2,
+name:"Marta",
+city:"Vila-seca",
+avatar:"M",
+image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=85",
+caption:"Día de playa ☀️",
+likes:41,
+liked:false,
+music:"Summer Vibes"
+}
+
+],
+
+chats:[],
+
+stats:{
+connections:0,
+plans:4,
+posts:2
+}
 
 };
 
@@ -1727,1845 +1471,2037 @@ const defaultData={
 let data=loadData();
 
 
-/* =========================
-   STORAGE
-========================= */
-
 function loadData(){
 
- try{
+try{
 
-  const saved=localStorage.getItem(STORAGE_KEY);
+const saved=localStorage.getItem(STORAGE_KEY);
 
-  if(!saved){
-   return structuredClone(defaultData);
-  }
+if(!saved)return structuredClone(defaultData);
 
-  return mergeData(
-   structuredClone(defaultData),
-   JSON.parse(saved)
-  );
+return mergeData(
+structuredClone(defaultData),
+JSON.parse(saved)
+);
 
- }catch(e){
+}catch(e){
 
-  return structuredClone(defaultData);
+return structuredClone(defaultData);
 
- }
+}
 
 }
 
 
 function mergeData(base,extra){
 
- if(!extra || typeof extra!=="object"){
-  return base;
- }
+if(!extra||typeof extra!=="object")return base;
 
- Object.keys(extra).forEach(k=>{
+Object.keys(extra).forEach(k=>{
 
-  if(
-   extra[k] &&
-   typeof extra[k]==="object" &&
-   !Array.isArray(extra[k]) &&
-   typeof base[k]==="object"
-  ){
+if(
+extra[k] &&
+typeof extra[k]==="object" &&
+!Array.isArray(extra[k]) &&
+typeof base[k]==="object"
+){
 
-   base[k]=mergeData(base[k],extra[k]);
+base[k]=mergeData(base[k],extra[k]);
 
-  }else{
+}else{
 
-   base[k]=extra[k];
+base[k]=extra[k];
 
-  }
+}
 
- });
+});
 
- return base;
+return base;
 
 }
 
 
 function saveData(){
 
- localStorage.setItem(
-  STORAGE_KEY,
-  JSON.stringify(data)
- );
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(data)
+);
 
 }
 
 
-/* =========================
-   INIT
-========================= */
-
 document.addEventListener("DOMContentLoaded",()=>{
 
- applyAppearance();
+applyAppearance();
+renderAll();
 
- renderAll();
+if(data.entered){
 
- if(data.entered){
+document.getElementById("welcome").style.display="none";
 
-  document.getElementById("welcome").style.display="none";
-
- }
+}
 
 });
 
 
 function renderAll(){
 
- renderProfile();
- renderPeople();
- renderPlans();
- renderHome();
- renderChats();
- renderPrivacy();
- updateStats();
- renderCategories();
+renderProfile();
+renderPeople();
+renderPlans();
+renderHome();
+renderFeed();
+renderChats();
+renderPrivacy();
+renderCategories();
+updateStats();
 
 }
 
-
-/* =========================
-   ENTRADA
-========================= */
 
 function enterApp(){
 
- data.entered=true;
+data.entered=true;
 
- saveData();
+saveData();
 
- document.getElementById("welcome").style.display="none";
+document.getElementById("welcome").style.display="none";
 
- showToast("Bienvenido a CONECTA 👋");
+showToast("Bienvenido a CONECTA 👋");
 
 }
 
-
-/* =========================
-   NAVEGACIÓN
-========================= */
 
 function showScreen(screen){
 
- document
-  .querySelectorAll(".screen")
-  .forEach(x=>x.classList.remove("active"));
+document
+.querySelectorAll(".screen")
+.forEach(x=>x.classList.remove("active"));
 
- const target=document.getElementById(screen);
+const target=document.getElementById(screen);
 
- if(target){
-  target.classList.add("active");
- }
+if(target)target.classList.add("active");
 
- document
-  .querySelectorAll(".nav-item")
-  .forEach(x=>{
-   x.classList.toggle(
-    "active",
-    x.dataset.screen===screen
-   );
-  });
+document
+.querySelectorAll(".nav-item")
+.forEach(x=>
+x.classList.toggle(
+"active",
+x.dataset.screen===screen
+)
+);
 
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
- renderAll();
+renderAll();
 
 }
 
 
-/* =========================
-   TARJETAS DE INTERESES
-========================= */
+/* CATEGORÍAS */
 
 function categoryCard(category){
 
- return `
+return `
 
- <button
-   class="category-card"
-   onclick="selectCategory('${category.id}')"
- >
+<button class="category-card"
+onclick="selectCategory('${category.id}')">
 
-   <div
-     class="category-bg"
-     style="background-image:url('${category.image}')">
-   </div>
+<div class="category-bg"
+style="background-image:url('${category.image}')">
+</div>
 
-   <div class="category-overlay"></div>
+<div class="category-overlay"></div>
 
-   <div class="category-content">
+<div class="category-content">
 
-     <div class="category-icon">
-       ${category.icon}
-     </div>
+<div class="category-icon">
+${category.icon}
+</div>
 
-     <strong>
-       ${escapeHTML(category.title)}
-     </strong>
+<strong>${escapeHTML(category.title)}</strong>
 
-     <small>
-       ${escapeHTML(category.text)}
-     </small>
+<small>
+${escapeHTML(category.text)}
+</small>
 
-   </div>
+</div>
 
- </button>
+</button>
 
- `;
+`;
 
 }
 
 
 function renderCategories(){
 
- const html=categories
-  .map(categoryCard)
-  .join("");
+const html=
+categories.map(categoryCard).join("");
 
- [
-  "homeCategories",
-  "connectCategories",
-  "planCategories"
- ].forEach(id=>{
+[
+"homeCategories",
+"connectCategories",
+"planCategories"
+]
+.forEach(id=>{
 
-  const el=document.getElementById(id);
+const el=document.getElementById(id);
 
-  if(el){
-   el.innerHTML=html;
-  }
+if(el)el.innerHTML=html;
 
- });
+});
 
 }
 
 
 function selectCategory(id){
 
- const category=categories.find(
-  x=>x.id===id
- );
+const category=
+categories.find(x=>x.id===id);
 
- if(!category)return;
+if(!category)return;
 
- showScreen("plans");
+showScreen("plans");
 
- setTimeout(()=>{
+setTimeout(()=>{
 
-  const matching=data.plans.filter(p=>
-   p.category===id ||
-   p.title
-    .toLowerCase()
-    .includes(category.title.toLowerCase())
-  );
+const matching=
+data.plans.filter(p=>
+p.category===id
+);
 
-  const list=document.getElementById("plansList");
+const list=
+document.getElementById("plansList");
 
-  if(!list)return;
+if(matching.length){
 
-  if(matching.length){
+list.innerHTML=
+matching.map(planHTML).join("");
 
-   list.innerHTML=matching
-    .map(planHTML)
-    .join("");
+}else{
 
-  }else{
+list.innerHTML=`
 
-   list.innerHTML=`
+<div class="card">
 
-   <div class="card">
+<div style="text-align:center;padding:30px">
 
-    <div style="text-align:center;padding:25px">
+<div style="font-size:48px">
+${category.icon}
+</div>
 
-      <div style="font-size:50px">
-        ${category.icon}
-      </div>
+<h2 style="margin:12px 0">
+Todavía no hay planes de ${escapeHTML(category.title)}
+</h2>
 
-      <h2 style="margin:10px 0">
-        Todavía no hay planes de
-        ${escapeHTML(category.title)}
-      </h2>
+<p class="muted">
+Puedes crear el primero.
+</p>
 
-      <p class="muted">
-        Puedes ser el primero en crear uno.
-      </p>
+<br>
 
-      <br>
+<button
+class="btn btn-primary"
+onclick="openPlanModal('${id}')">
 
-      <button
-        class="btn btn-primary"
-        onclick="openPlanModal('${id}')">
+＋ Crear plan
 
-        ＋ Crear plan
+</button>
 
-      </button>
+</div>
 
-    </div>
+</div>
 
-   </div>
+`;
 
-   `;
+}
 
-  }
-
- },50);
+},50);
 
 }
 
 
-/* =========================
-   PERFIL
-========================= */
+/* PERFIL */
 
 function renderProfile(){
 
- const name=data.profile.name||"Tu nombre";
+const name=
+data.profile.name||
+"Fernando";
 
- const initial=name.trim()
-  ?name.trim()[0].toUpperCase()
-  :"C";
+const initial=
+name.trim()
+?name.trim()[0].toUpperCase()
+:"F";
 
- [
-  "profileAvatar",
-  "homeAvatar"
- ].forEach(id=>{
 
-  const e=document.getElementById(id);
+[
+"profileAvatar",
+"homeAvatar"
+].forEach(id=>{
 
-  if(e){
-   e.textContent=initial;
-  }
+const e=document.getElementById(id);
 
- });
+if(!e)return;
 
- const n=document.getElementById("profileName");
+if(
+id==="profileAvatar" &&
+data.profile.photo
+){
 
- if(n){
-  n.textContent=name;
- }
+e.innerHTML=
+`<img src="${data.profile.photo}">`;
 
- const hn=document.getElementById("homeName");
+}else{
 
- if(hn){
-  hn.textContent=name;
- }
+e.textContent=initial;
 
- const d=document.getElementById(
-  "profileDescription"
- );
+}
 
- if(d){
-  d.textContent=
-   data.profile.bio||
-   "Añade una descripción.";
- }
+});
 
- const hb=document.getElementById(
-  "homeBio"
- );
 
- if(hb){
+const n=
+document.getElementById("profileName");
 
-  hb.textContent=
-   data.profile.bio||
-   "Completa tu perfil para empezar.";
+if(n)n.textContent=name;
 
- }
 
- const loc=document.getElementById(
-  "profileLocation"
- );
+const loc=
+document.getElementById("profileLocation");
 
- if(loc){
+if(loc){
 
-  loc.textContent=
-   data.privacy.location &&
-   data.profile.location
+loc.textContent=
+data.privacy.location &&
+data.profile.location
+?"📍 "+data.profile.location
+:"📍 Ubicación privada";
 
-   ? "📍 "+data.profile.location
+}
 
-   : "📍 Ubicación privada";
 
- }
+const desc=
+document.getElementById("profileDescription");
 
- const tags=document.getElementById(
-  "profileTags"
- );
+if(desc){
 
- if(tags){
+desc.textContent=
+data.profile.bio||
+"Añade una descripción.";
 
-  tags.innerHTML=
-   data.profile.interests
-    .map(i=>`
-      <span class="tag">
-       ${escapeHTML(i)}
-      </span>
-    `)
-    .join("");
+}
 
- }
+
+const tags=
+document.getElementById("profileTags");
+
+if(tags){
+
+tags.innerHTML=
+data.profile.interests
+.map(i=>
+`<span class="tag">${escapeHTML(i)}</span>`
+)
+.join("");
+
+}
 
 }
 
 
 function openProfileModal(){
 
- openModal(
-  "Editar perfil",
+openModal(
+"Editar perfil",
+`
 
-  `
+<div class="input-group">
 
-  <div class="input-group">
+<label>Nombre</label>
 
-   <label>Nombre</label>
+<input
+id="editName"
+class="input"
+value="${escapeAttribute(data.profile.name)}">
 
-   <input
-    id="editName"
-    class="input"
-    value="${escapeAttribute(data.profile.name)}">
-
-  </div>
-
-
-  <div class="input-group">
-
-   <label>Descripción</label>
-
-   <textarea id="editBio">${escapeHTML(data.profile.bio)}</textarea>
-
-  </div>
+</div>
 
 
-  <div class="input-group">
+<div class="input-group">
 
-   <label>Ubicación</label>
+<label>Descripción</label>
 
-   <input
-    id="editLocation"
-    class="input"
-    placeholder="Ej. Tarragona"
-    value="${escapeAttribute(data.profile.location)}">
+<textarea id="editBio">
+${escapeHTML(data.profile.bio)}
+</textarea>
 
-  </div>
+</div>
 
 
-  <div class="input-group">
+<div class="input-group">
 
-   <label>Intereses</label>
+<label>Ubicación</label>
 
-   <input
-    id="editInterests"
-    class="input"
-    value="${escapeAttribute(data.profile.interests.join(", "))}">
+<input
+id="editLocation"
+class="input"
+value="${escapeAttribute(data.profile.location)}">
 
-  </div>
+</div>
 
 
-  <button
-   class="btn btn-primary full"
-   onclick="saveProfile()">
+<div class="input-group">
 
-   Guardar perfil
+<label>Intereses</label>
 
-  </button>
+<input
+id="editInterests"
+class="input"
+value="${escapeAttribute(data.profile.interests.join(", "))}">
 
-  `
- );
+</div>
+
+
+<button
+class="btn btn-primary full"
+onclick="saveProfile()">
+
+Guardar perfil
+
+</button>
+
+`);
 
 }
 
 
 function saveProfile(){
 
- data.profile.name=
-  document.getElementById("editName")
-   .value
-   .trim()||"Tu nombre";
+data.profile.name=
+document.getElementById("editName")
+.value.trim()||
+"Fernando";
 
- data.profile.bio=
-  document.getElementById("editBio")
-   .value
-   .trim()||"Estoy en CONECTA.";
+data.profile.bio=
+document.getElementById("editBio")
+.value.trim()||
+"Estoy en CONECTA.";
 
- data.profile.location=
-  document.getElementById("editLocation")
-   .value
-   .trim();
+data.profile.location=
+document.getElementById("editLocation")
+.value.trim();
 
- data.profile.interests=
-  document.getElementById("editInterests")
-   .value
-   .split(",")
-   .map(x=>x.trim())
-   .filter(Boolean)
-   .slice(0,12);
+data.profile.interests=
+document.getElementById("editInterests")
+.value
+.split(",")
+.map(x=>x.trim())
+.filter(Boolean)
+.slice(0,12);
 
- saveData();
+saveData();
 
- closeModal();
+closeModal();
 
- renderAll();
+renderAll();
 
- showToast("Perfil actualizado ✓");
+showToast("Perfil actualizado ✓");
 
 }
 
 
-/* =========================
-   PERSONAS
-========================= */
+/* FOTO DE PERFIL */
+
+function openPhotoModal(){
+
+openModal(
+"Foto de perfil",
+`
+
+<p class="muted" style="margin-bottom:15px">
+Selecciona una imagen desde tu dispositivo.
+</p>
+
+<input
+id="profileFile"
+type="file"
+accept="image/*"
+class="input"
+onchange="previewProfilePhoto(event)">
+
+<div id="profilePreview"></div>
+
+<br>
+
+<button
+class="btn btn-primary full"
+onclick="saveProfilePhoto()">
+
+Guardar foto
+
+</button>
+
+`);
+
+}
+
+
+let pendingProfilePhoto="";
+
+
+function previewProfilePhoto(e){
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=()=>{
+
+pendingProfilePhoto=reader.result;
+
+document.getElementById("profilePreview").innerHTML=
+`<img class="photo-preview" src="${reader.result}">`;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+function saveProfilePhoto(){
+
+if(!pendingProfilePhoto){
+
+showToast("Selecciona una foto.");
+
+return;
+
+}
+
+data.profile.photo=
+pendingProfilePhoto;
+
+saveData();
+
+pendingProfilePhoto="";
+
+closeModal();
+
+renderAll();
+
+showToast("Foto de perfil actualizada 📸");
+
+}
+
+
+/* PERSONAS */
 
 function renderPeople(){
 
- const searchEl=
-  document.getElementById("peopleSearch");
+const searchEl=
+document.getElementById("peopleSearch");
 
- const search=
-  searchEl
-   ?searchEl.value.toLowerCase().trim()
-   :"";
+const search=
+searchEl
+?searchEl.value.toLowerCase().trim()
+:"";
 
- const filtered=people.filter(p=>{
+const filtered=
+people.filter(p=>{
 
-  if(!search)return true;
+if(!search)return true;
 
-  return [
-   p.name,
-   p.city,
-   ...p.interests
-  ]
-   .join(" ")
-   .toLowerCase()
-   .includes(search);
+return [
+p.name,
+p.city,
+...p.interests
+]
+.join(" ")
+.toLowerCase()
+.includes(search);
 
- });
+});
 
- const list=
-  document.getElementById("peopleList");
 
- if(!list)return;
+const list=
+document.getElementById("peopleList");
 
- list.innerHTML=
+if(!list)return;
 
-  filtered
-   .map(p=>{
 
-    const connected=
-     data.connections.includes(p.id);
+list.innerHTML=
+filtered.map(p=>{
 
-    return `
+const connected=
+data.connections.includes(p.id);
 
-    <div
-      class="card"
-      style="margin-bottom:10px">
+return `
 
-      <div class="person">
+<div class="card">
 
-        <div class="person-avatar">
-          ${p.name[0]}
-        </div>
+<div class="person">
 
-        <div class="person-info">
+<div class="person-avatar">
+${p.name[0]}
+</div>
 
-          <strong>
-            ${escapeHTML(p.name)}, ${p.age}
-          </strong>
+<div class="person-info">
 
-          <small>
-            📍 ${escapeHTML(p.city)}
-          </small>
+<strong>
+${escapeHTML(p.name)}, ${p.age}
+</strong>
 
-          <div class="tags">
+<small>
+📍 ${escapeHTML(p.city)}
+</small>
 
-            ${p.interests
-              .map(i=>`
-               <span class="tag">
-                ${escapeHTML(i)}
-               </span>
-              `)
-              .join("")}
+<div class="tags">
 
-          </div>
+${p.interests.map(i=>
+`<span class="tag">${escapeHTML(i)}</span>`
+).join("")}
 
-        </div>
+</div>
 
-        <button
-          class="btn ${
-            connected
-             ?"btn-success"
-             :"btn-primary"
-          }"
-          onclick="toggleConnection(${p.id})">
+</div>
 
-          ${
-           connected
-            ?"✓ Conectado"
-            :"Conectar"
-          }
+<button
+class="btn ${connected?"btn-success":"btn-primary"}"
+onclick="toggleConnection(${p.id})">
 
-        </button>
+${connected?"✓ Conectado":"Conectar"}
 
-      </div>
+</button>
 
-    </div>
+</div>
 
-    `;
+</div>
 
-   })
-   .join("")
+`;
 
-   ||
+}).join("")||
 
-   `
+`<div class="empty">
+🔎<br><br>
+No se encontraron personas.
+</div>`;
 
-   <div class="empty">
-     🔎
-     <br><br>
-     No se encontraron personas.
-   </div>
+}
 
-   `;
+
+function renderHomePeople(){
+
+const hp=
+document.getElementById("homePeople");
+
+if(!hp)return;
+
+hp.innerHTML=
+people.slice(0,4).map(p=>`
+
+<div class="person">
+
+<div class="person-avatar">
+${p.name[0]}
+</div>
+
+<div class="person-info">
+
+<strong>
+${escapeHTML(p.name)}, ${p.age}
+</strong>
+
+<small>
+${p.interests.slice(0,3).join(" · ")}
+</small>
+
+</div>
+
+<button
+class="btn btn-primary"
+onclick="toggleConnection(${p.id})">
+
+${data.connections.includes(p.id)
+?"✓"
+:"+"}
+
+</button>
+
+</div>
+
+`).join("");
 
 }
 
 
 function toggleConnection(id){
 
- const i=
-  data.connections.indexOf(id);
+const i=
+data.connections.indexOf(id);
 
- if(i>=0){
+if(i>=0){
 
-  data.connections.splice(i,1);
+data.connections.splice(i,1);
 
-  showToast(
-   "Conexión eliminada"
-  );
+showToast("Conexión eliminada");
 
- }else{
+}else{
 
-  data.connections.push(id);
+data.connections.push(id);
 
-  showToast(
-   "¡Nueva conexión! 🤝"
-  );
+showToast("¡Nueva conexión! 🤝");
 
- }
+}
 
- saveData();
+saveData();
 
- renderAll();
+renderAll();
 
 }
 
 
-/* =========================
-   PLANES
-========================= */
+/* PLANES */
 
 function planHTML(plan){
 
- const cat=
-  categories.find(
-   c=>c.id===plan.category
-  )||
-  categories.find(
-   c=>c.icon===plan.icon
-  )||
-  categories[0];
+const cat=
+categories.find(c=>c.id===plan.category)
+||
+categories[0];
 
- return `
+return `
 
- <div class="card plan-card">
+<div class="card plan-card">
 
-   <div
-     class="plan-cover"
-     style="background-image:url('${cat.image}')">
-   </div>
+<div
+class="plan-cover"
+style="background-image:url('${cat.image}')">
+</div>
 
-   <div class="plan-body">
+<div class="plan-body">
 
-     <div class="plan-title-row">
+<div class="plan-title-row">
 
-       <div class="plan-icon">
-         ${escapeHTML(plan.icon)}
-       </div>
+<div class="plan-icon">
+${escapeHTML(plan.icon)}
+</div>
 
-       <div>
+<div>
 
-         <h3>
-           ${escapeHTML(plan.title)}
-         </h3>
+<h3>
+${escapeHTML(plan.title)}
+</h3>
 
-         <div class="plan-info">
+<div class="plan-info">
 
-           📅 ${escapeHTML(plan.date)}
-           · 🕐 ${escapeHTML(plan.time)}
+📅 ${escapeHTML(plan.date)}
+·
+🕐 ${escapeHTML(plan.time)}
 
-           <br>
+<br>
 
-           📍 ${escapeHTML(plan.place)}
-           · 👥 ${plan.people} personas
+📍 ${escapeHTML(plan.place)}
+·
+👥 ${plan.people} personas
 
-         </div>
+</div>
 
-       </div>
+</div>
 
-     </div>
+</div>
 
-     <p
-       class="muted"
-       style="margin-top:12px">
+<p
+class="muted"
+style="margin-top:12px">
 
-       ${escapeHTML(plan.description)}
+${escapeHTML(plan.description)}
 
-     </p>
+</p>
 
-     <div class="plan-actions">
+<div class="plan-actions">
 
-       <button
-         class="btn btn-primary"
-         onclick="joinPlan(${plan.id})">
+<button
+class="btn btn-primary"
+onclick="joinPlan(${plan.id})">
 
-         Participar
+Participar
 
-       </button>
+</button>
 
-       <button
-         class="btn btn-secondary"
-         onclick="sharePlan(${plan.id})">
+<button
+class="btn btn-secondary"
+onclick="sharePlan(${plan.id})">
 
-         Compartir
+Compartir
 
-       </button>
+</button>
 
-     </div>
+</div>
 
-   </div>
+</div>
 
- </div>
+</div>
 
- `;
+`;
 
 }
 
 
 function renderPlans(){
 
- const list=
-  document.getElementById("plansList");
+const list=
+document.getElementById("plansList");
 
- if(!list)return;
+if(!list)return;
 
- list.innerHTML=
-  data.plans.length
-
-   ?data.plans
-     .map(planHTML)
-     .join("")
-
-   :
-
-   `
-
-   <div class="card">
-
-    <div
-      style="text-align:center;padding:35px">
-
-      📅
-
-      <br><br>
-
-      Todavía no hay planes.
-
-    </div>
-
-   </div>
-
-   `;
+list.innerHTML=
+data.plans.length
+?data.plans.map(planHTML).join("")
+:
+`<div class="empty">
+📅<br><br>
+Todavía no hay planes.
+</div>`;
 
 }
 
 
 function openPlanModal(categoryId=""){
 
- const cat=
-  categories.find(
-   c=>c.id===categoryId
-  )||categories[0];
+const cat=
+categories.find(c=>c.id===categoryId)
+||
+categories[0];
 
- openModal(
-  "Crear nuevo plan",
+openModal(
+"Crear nuevo plan",
+`
 
-  `
+<div class="input-group">
 
-  <div class="input-group">
+<label>Nombre</label>
 
-   <label>Nombre del plan</label>
+<input
+id="planTitle"
+class="input"
+placeholder="Ej. Running por la playa">
 
-   <input
-    id="planTitle"
-    class="input"
-    placeholder="Ej. Running por la playa">
-
-  </div>
-
-
-  <div class="input-group">
-
-   <label>Categoría</label>
-
-   <select id="planCategory">
-
-    ${categories
-      .map(c=>`
-
-       <option
-        value="${c.id}"
-        ${c.id===cat.id?"selected":""}>
-
-        ${c.icon} ${c.title}
-
-       </option>
-
-      `)
-      .join("")}
-
-   </select>
-
-  </div>
+</div>
 
 
-  <div class="input-group">
+<div class="input-group">
 
-   <label>Icono</label>
+<label>Categoría</label>
 
-   <input
-    id="planIcon"
-    class="input"
-    value="${cat.icon}">
+<select id="planCategory">
 
-  </div>
+${categories.map(c=>
 
+`<option
+value="${c.id}"
+${c.id===cat.id?"selected":""}>
 
-  <div
-    style="
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px">
+${c.icon} ${c.title}
 
-   <div class="input-group">
+</option>`
 
-    <label>Fecha</label>
+).join("")}
 
-    <input
-     id="planDate"
-     class="input"
-     placeholder="Hoy">
+</select>
 
-   </div>
-
-   <div class="input-group">
-
-    <label>Hora</label>
-
-    <input
-     id="planTime"
-     class="input"
-     placeholder="19:00">
-
-   </div>
-
-  </div>
+</div>
 
 
-  <div class="input-group">
+<div class="input-group">
 
-   <label>Lugar</label>
+<label>Icono</label>
 
-   <input
-    id="planPlace"
-    class="input"
-    placeholder="Lugar">
+<input
+id="planIcon"
+class="input"
+value="${cat.icon}">
 
-  </div>
-
-
-  <div class="input-group">
-
-   <label>Descripción</label>
-
-   <textarea
-    id="planDescription"
-    placeholder="Cuenta qué vais a hacer..."></textarea>
-
-  </div>
+</div>
 
 
-  <button
-   class="btn btn-primary full"
-   onclick="createPlan()">
+<div style="
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px">
 
-   Crear plan
+<div class="input-group">
 
-  </button>
+<label>Fecha</label>
 
-  `
- );
+<input
+id="planDate"
+class="input"
+placeholder="Hoy">
+
+</div>
+
+<div class="input-group">
+
+<label>Hora</label>
+
+<input
+id="planTime"
+class="input"
+placeholder="19:00">
+
+</div>
+
+</div>
+
+
+<div class="input-group">
+
+<label>Lugar</label>
+
+<input
+id="planPlace"
+class="input"
+placeholder="Lugar">
+
+</div>
+
+
+<div class="input-group">
+
+<label>Descripción</label>
+
+<textarea
+id="planDescription"
+placeholder="Cuenta el plan...">
+</textarea>
+
+</div>
+
+
+<button
+class="btn btn-primary full"
+onclick="createPlan()">
+
+Crear plan
+
+</button>
+
+`);
 
 }
 
 
 function createPlan(){
 
- const title=
-  document
-   .getElementById("planTitle")
-   .value
-   .trim();
+const title=
+document.getElementById("planTitle")
+.value.trim();
 
- if(!title){
+if(!title){
 
-  showToast(
-   "Escribe un nombre para el plan."
-  );
+showToast("Escribe un nombre.");
 
-  return;
- }
+return;
 
- const p={
+}
 
-  id:Date.now(),
+const p={
 
-  title,
+id:Date.now(),
 
-  category:
-   document
-    .getElementById("planCategory")
-    .value,
+title,
 
-  icon:
-   document
-    .getElementById("planIcon")
-    .value
-    .trim()||"📅",
+category:
+document.getElementById("planCategory").value,
 
-  date:
-   document
-    .getElementById("planDate")
-    .value
-    .trim()||
-   "Próximamente",
+icon:
+document.getElementById("planIcon")
+.value.trim()||"📅",
 
-  time:
-   document
-    .getElementById("planTime")
-    .value
-    .trim()||
-   "Por definir",
+date:
+document.getElementById("planDate")
+.value.trim()||"Próximamente",
 
-  place:
-   document
-    .getElementById("planPlace")
-    .value
-    .trim()||
-   "Por definir",
+time:
+document.getElementById("planTime")
+.value.trim()||"Por definir",
 
-  description:
-   document
-    .getElementById("planDescription")
-    .value
-    .trim()||
-   "Nuevo plan creado en CONECTA.",
+place:
+document.getElementById("planPlace")
+.value.trim()||"Por definir",
 
-  people:1
+description:
+document.getElementById("planDescription")
+.value.trim()||
+"Nuevo plan de CONECTA.",
 
- };
+people:1
 
- data.plans.unshift(p);
+};
 
- data.stats.plans=
-  data.plans.length;
+data.plans.unshift(p);
 
- saveData();
+saveData();
 
- closeModal();
+closeModal();
 
- showScreen("plans");
+showScreen("plans");
 
- showToast("Plan creado ✓");
+showToast("Plan creado ✓");
 
 }
 
 
 function joinPlan(id){
 
- const p=
-  data.plans.find(
-   x=>x.id===id
-  );
+const p=
+data.plans.find(x=>x.id===id);
 
- if(!p)return;
+if(!p)return;
 
- p.people++;
+p.people++;
 
- saveData();
+saveData();
 
- renderAll();
+renderAll();
 
- showToast(
-  "Te has unido al plan 🎉"
- );
+showToast("Te has unido 🎉");
 
 }
 
 
 async function sharePlan(id){
 
- const p=
-  data.plans.find(
-   x=>x.id===id
-  );
+const p=
+data.plans.find(x=>x.id===id);
 
- if(!p)return;
+if(!p)return;
 
- const text=
-  `${p.icon} ${p.title}
+const text=
+`${p.icon} ${p.title}
 ${p.date} · ${p.time}
 📍 ${p.place}
 
 ${p.description}`;
 
- try{
+try{
 
-  if(navigator.share){
+if(navigator.share){
 
-   await navigator.share({
-    title:p.title,
-    text
-   });
+await navigator.share({
+title:p.title,
+text
+});
 
-  }else{
+}else{
 
-   await navigator.clipboard.writeText(text);
+await navigator.clipboard.writeText(text);
 
-   showToast(
-    "Plan copiado."
-   );
+showToast("Plan copiado.");
 
-  }
+}
 
- }catch(e){}
+}catch(e){}
 
 }
 
 
-/* =========================
-   HOME
-========================= */
+/* PUBLICACIONES */
+
+function renderFeed(){
+
+const feed=
+document.getElementById("feedList");
+
+const home=
+document.getElementById("homeFeed");
+
+const profile=
+document.getElementById("profileFeed");
+
+const html=
+data.posts
+.slice()
+.reverse()
+.map(postHTML)
+.join("");
+
+if(feed)feed.innerHTML=html||emptyPosts();
+
+if(home)home.innerHTML=
+data.posts.slice(-2).reverse()
+.map(postHTML)
+.join("")||emptyPosts();
+
+if(profile){
+
+const own=
+data.posts.filter(p=>p.owner);
+
+profile.innerHTML=
+own.length
+?own.map(postHTML).join("")
+:`<div class="empty">
+📸<br><br>
+Todavía no tienes publicaciones.
+<br><br>
+<button class="btn btn-primary"
+onclick="openPostModal()">
+＋ Publicar
+</button>
+</div>`;
+
+}
+
+}
+
+
+function emptyPosts(){
+
+return `<div class="empty">
+📸<br><br>
+Todavía no hay publicaciones.
+</div>`;
+
+}
+
+
+function postHTML(post){
+
+return `
+
+<article class="card post">
+
+<div class="post-head">
+
+<div class="avatar">
+${post.avatar||post.name[0]}
+</div>
+
+<div class="post-user">
+
+<strong>
+${escapeHTML(post.name)}
+</strong>
+
+<small>
+📍 ${escapeHTML(post.city||"España")}
+</small>
+
+</div>
+
+</div>
+
+
+${post.image?`
+
+<img
+class="post-image"
+src="${post.image}"
+alt="Publicación">
+
+`:""}
+
+
+<div class="post-body">
+
+<div class="post-actions">
+
+<button
+class="post-action"
+onclick="likePost(${post.id})">
+
+${post.liked?"❤️":"🤍"}
+
+</button>
+
+<button
+class="post-action"
+onclick="sharePost(${post.id})">
+
+↗️
+
+</button>
+
+<button
+class="post-action"
+onclick="commentPost(${post.id})">
+
+💬
+
+</button>
+
+</div>
+
+
+<div class="post-caption">
+
+<b>${escapeHTML(post.name)}</b>
+
+${escapeHTML(post.caption||"")}
+
+</div>
+
+
+${post.music?`
+
+<div class="music">
+
+<div class="music-icon">
+🎵
+</div>
+
+<div>
+
+<strong>
+${escapeHTML(post.music)}
+</strong>
+
+<small>
+Música añadida a la publicación
+</small>
+
+</div>
+
+<button
+class="icon-btn"
+style="margin-left:auto"
+onclick="playMusic('${escapeAttribute(post.music)}')">
+
+▶️
+
+</button>
+
+</div>
+
+`:""}
+
+</div>
+
+</article>
+
+`;
+
+}
+
+
+function likePost(id){
+
+const post=
+data.posts.find(p=>p.id===id);
+
+if(!post)return;
+
+post.liked=!post.liked;
+
+post.likes+=post.liked?1:-1;
+
+saveData();
+
+renderFeed();
+
+}
+
+
+function commentPost(){
+
+openModal(
+"Comentarios",
+`
+
+<div class="input-group">
+
+<textarea
+class="input"
+placeholder="Escribe un comentario...">
+</textarea>
+
+</div>
+
+<button
+class="btn btn-primary full"
+onclick="showToast('Comentario preparado ✓');closeModal()">
+
+Publicar comentario
+
+</button>
+
+`);
+
+}
+
+
+async function sharePost(id){
+
+const p=
+data.posts.find(x=>x.id===id);
+
+if(!p)return;
+
+const text=
+`📸 ${p.name}
+
+${p.caption}`;
+
+try{
+
+if(navigator.share){
+
+await navigator.share({
+title:"CONECTA",
+text
+});
+
+}else{
+
+await navigator.clipboard.writeText(text);
+
+showToast("Publicación copiada.");
+
+}
+
+}catch(e){}
+
+}
+
+
+function playMusic(name){
+
+showToast("▶️ Reproduciendo: "+name);
+
+}
+
+
+/* CREAR PUBLICACIÓN */
+
+function openPostModal(){
+
+openModal(
+"Crear publicación",
+`
+
+<div class="input-group">
+
+<label>Foto</label>
+
+<input
+id="postFile"
+type="file"
+accept="image/*"
+class="input"
+onchange="previewPostPhoto(event)">
+
+<div id="postPreview"></div>
+
+</div>
+
+
+<div class="input-group">
+
+<label>Texto</label>
+
+<textarea
+id="postCaption"
+placeholder="¿Qué estás haciendo?">
+</textarea>
+
+</div>
+
+
+<div class="input-group">
+
+<label>🎵 Música</label>
+
+<input
+id="postMusic"
+class="input"
+placeholder="Ej. Mi canción favorita">
+
+</div>
+
+
+<button
+class="btn btn-primary full"
+onclick="createPost()">
+
+Publicar
+
+</button>
+
+`);
+
+}
+
+
+let pendingPostPhoto="";
+
+
+function previewPostPhoto(e){
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=()=>{
+
+pendingPostPhoto=reader.result;
+
+document.getElementById("postPreview").innerHTML=
+`<img class="photo-preview" src="${reader.result}">`;
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+
+function createPost(){
+
+const caption=
+document.getElementById("postCaption")
+.value.trim();
+
+if(!pendingPostPhoto && !caption){
+
+showToast("Añade una foto o texto.");
+
+return;
+
+}
+
+const post={
+
+id:Date.now(),
+
+owner:true,
+
+name:data.profile.name||"Fernando",
+
+city:data.profile.location||"España",
+
+avatar:data.profile.name
+?data.profile.name[0].toUpperCase()
+:"F",
+
+image:pendingPostPhoto,
+
+caption:caption||"Nueva publicación en CONECTA.",
+
+music:
+document.getElementById("postMusic")
+.value.trim(),
+
+likes:0,
+
+liked:false
+
+};
+
+data.posts.push(post);
+
+saveData();
+
+pendingPostPhoto="";
+
+closeModal();
+
+showScreen("feed");
+
+showToast("Publicación creada 📸");
+
+}
+
+
+/* HOME */
 
 function renderHome(){
 
- const plans=
-  document.getElementById("homePlans");
+renderHomePeople();
 
- if(plans){
+const plans=
+document.getElementById("homePlans");
 
-  plans.innerHTML=
-   data.plans
-    .slice(0,3)
-    .map(planHTML)
-    .join("");
+if(plans){
 
- }
+plans.innerHTML=
+data.plans
+.slice(0,3)
+.map(planHTML)
+.join("");
 
- const hp=
-  document.getElementById("homePeople");
-
- if(hp){
-
-  hp.innerHTML=
-   people
-    .slice(0,3)
-    .map(p=>`
-
-     <div
-       class="person"
-       style="padding:10px 0">
-
-       <div class="person-avatar">
-         ${p.name[0]}
-       </div>
-
-       <div class="person-info">
-
-         <strong>
-           ${escapeHTML(p.name)}, ${p.age}
-         </strong>
-
-         <small>
-           ${p.interests
-             .slice(0,3)
-             .join(" · ")}
-         </small>
-
-       </div>
-
-     </div>
-
-    `)
-    .join("");
-
- }
+}
 
 }
 
 
-/* =========================
-   CHAT
-========================= */
+/* CHAT */
 
 function renderChats(){
 
- const list=
-  document.getElementById("chatList");
+const list=
+document.getElementById("chatList");
 
- if(!list)return;
+if(!list)return;
 
- if(!data.chats.length){
+if(!data.chats.length){
 
-  list.innerHTML=`
+list.innerHTML=`
 
-   <div
-     style="
-       text-align:center;
-       padding:35px;
-       color:var(--muted)">
+<div class="empty">
 
-     💬
+💬<br><br>
 
-     <br><br>
+Todavía no tienes conversaciones.
 
-     Todavía no tienes conversaciones.
+<br><br>
 
-     <br><br>
+<button
+class="btn btn-primary"
+onclick="showScreen('connect')">
 
-     <button
-       class="btn btn-primary"
-       onclick="showScreen('connect')">
+Encontrar personas
 
-       Encontrar personas
+</button>
 
-     </button>
+</div>
 
-   </div>
+`;
 
-  `;
+return;
 
-  return;
+}
 
- }
+list.innerHTML=
+data.chats.map(c=>`
 
- list.innerHTML=
-  data.chats
-   .map(c=>`
+<button
+class="chat"
+onclick="openChat('${escapeAttribute(c.name)}')">
 
-    <button
-      class="chat"
-      onclick="openChat('${escapeAttribute(c.name)}')">
+<div class="person-avatar">
+${escapeHTML(c.name[0])}
+</div>
 
-      <div class="person-avatar">
-        ${escapeHTML(c.name[0])}
-      </div>
+<div class="chat-text">
 
-      <div class="chat-text">
+<strong>
+${escapeHTML(c.name)}
+</strong>
 
-        <strong>
-          ${escapeHTML(c.name)}
-        </strong>
+<small>
+${escapeHTML(c.last)}
+</small>
 
-        <small>
-          ${escapeHTML(c.last)}
-        </small>
+</div>
 
-      </div>
+</button>
 
-    </button>
-
-   `)
-   .join("");
+`).join("");
 
 }
 
 
 function openChat(name){
 
- openModal(
-  "Chat con "+escapeHTML(name),
+openModal(
+"Chat con "+escapeHTML(name),
+`
 
-  `
+<div style="text-align:center;padding:30px">
 
-  <div
-    style="
-      text-align:center;
-      padding:30px;
-      color:var(--muted)">
+💬
 
-    💬
+<br><br>
 
-    <br><br>
+<h3>
+Chat preparado
+</h3>
 
-    El sistema visual de chat está preparado.
+<p class="muted"
+style="margin-top:8px">
 
-    <br><br>
+La interfaz está lista.
+Para mensajes reales necesitaremos conectar
+CONECTA a una base de datos y servidor.
 
-    Los mensajes reales necesitarán conexión
-    a un servidor.
+</p>
 
-  </div>
+</div>
 
-  `
-
- );
-
-}
-
-
-function futureFeature(f){
-
- showToast(
-  f+" está preparado para la siguiente fase."
- );
+`);
 
 }
 
 
-/* =========================
-   PRIVACIDAD
-========================= */
+function futureFeature(name){
+
+showToast(
+name+" preparado para la siguiente fase 🚀"
+);
+
+}
+
+
+/* PRIVACIDAD */
 
 function renderPrivacy(){
 
- const p=
-  document.getElementById(
-   "privateProfile"
-  );
+const p=
+document.getElementById("privateProfile");
 
- if(p){
-  p.checked=data.privacy.private;
- }
+if(p)p.checked=data.privacy.private;
 
- const l=
-  document.getElementById(
-   "showLocation"
-  );
+const l=
+document.getElementById("showLocation");
 
- if(l){
-  l.checked=data.privacy.location;
- }
+if(l)l.checked=data.privacy.location;
 
- const m=
-  document.getElementById(
-   "messagePermission"
-  );
+const m=
+document.getElementById("messagePermission");
 
- if(m){
-  m.value=data.privacy.messages;
- }
+if(m)m.value=data.privacy.messages;
 
- const d=
-  document.getElementById(
-   "darkToggle"
-  );
+const d=
+document.getElementById("darkToggle");
 
- if(d){
-  d.checked=data.appearance.dark;
- }
+if(d)d.checked=data.appearance.dark;
 
- const b=
-  document.getElementById(
-   "backgroundSelect"
-  );
+const b=
+document.getElementById("backgroundSelect");
 
- if(b){
-  b.value=data.appearance.background;
- }
+if(b)b.value=data.appearance.background;
 
 }
 
 
 function savePrivacy(){
 
- data.privacy.private=
-  document
-   .getElementById("privateProfile")
-   .checked;
+data.privacy.private=
+document.getElementById("privateProfile").checked;
 
- data.privacy.location=
-  document
-   .getElementById("showLocation")
-   .checked;
+data.privacy.location=
+document.getElementById("showLocation").checked;
 
- data.privacy.messages=
-  document
-   .getElementById("messagePermission")
-   .value;
+data.privacy.messages=
+document.getElementById("messagePermission").value;
 
- saveData();
+saveData();
 
- renderProfile();
+renderProfile();
 
- showToast(
-  "Privacidad actualizada 🔐"
- );
+showToast("Privacidad actualizada 🔐");
 
 }
 
 
-/* =========================
-   APARIENCIA
-========================= */
+/* APARIENCIA */
 
 function toggleDarkMode(){
 
- data.appearance.dark=
-  document
-   .getElementById("darkToggle")
-   .checked;
+data.appearance.dark=
+document.getElementById("darkToggle").checked;
 
- saveData();
+saveData();
 
- applyAppearance();
+applyAppearance();
 
 }
 
 
 function setAccent(a,b){
 
- data.appearance.accent=a;
+data.appearance.accent=a;
 
- data.appearance.accent2=b;
+data.appearance.accent2=b;
 
- document.documentElement.style
-  .setProperty("--accent",a);
+document.documentElement
+.style.setProperty("--accent",a);
 
- document.documentElement.style
-  .setProperty("--accent2",b);
+document.documentElement
+.style.setProperty("--accent2",b);
 
- saveData();
+saveData();
 
- showToast(
-  "Color actualizado 🎨"
- );
+showToast("Color actualizado 🎨");
 
 }
 
 
 function setBackground(v){
 
- data.appearance.background=v;
+data.appearance.background=v;
 
- document.body.classList.remove(
-  "bg-gradient",
-  "bg-blue",
-  "bg-green",
-  "bg-red",
-  "bg-pink"
- );
+document.body.classList.remove(
+"bg-gradient",
+"bg-blue",
+"bg-green",
+"bg-red",
+"bg-pink"
+);
 
- if(v!=="default"){
+if(v!=="default"){
 
-  document.body.classList.add(
-   "bg-"+v
-  );
+document.body.classList.add("bg-"+v);
 
- }
+}
 
- saveData();
+saveData();
 
 }
 
 
 function applyAppearance(){
 
- document.documentElement.style
-  .setProperty(
-   "--accent",
-   data.appearance.accent
-  );
+document.documentElement
+.style.setProperty(
+"--accent",
+data.appearance.accent
+);
 
- document.documentElement.style
-  .setProperty(
-   "--accent2",
-   data.appearance.accent2
-  );
+document.documentElement
+.style.setProperty(
+"--accent2",
+data.appearance.accent2
+);
 
- document.body.classList.toggle(
-  "light",
-  !data.appearance.dark
- );
+document.body.classList.toggle(
+"dark",
+data.appearance.dark
+);
 
- document.body.classList.remove(
-  "bg-gradient",
-  "bg-blue",
-  "bg-green",
-  "bg-red",
-  "bg-pink"
- );
+document.body.classList.remove(
+"bg-gradient",
+"bg-blue",
+"bg-green",
+"bg-red",
+"bg-pink"
+);
 
- if(
-  data.appearance.background!=="default"
- ){
+if(data.appearance.background!=="default"){
 
-  document.body.classList.add(
-   "bg-"+data.appearance.background
-  );
+document.body.classList.add(
+"bg-"+data.appearance.background
+);
 
- }
+}
 
 }
 
 
-/* =========================
-   SEGURIDAD
-========================= */
-
-function showSecurityInfo(){
-
- openModal(
-  "Seguridad",
-
-  `
-
-  <div class="card">
-
-   <h3>🛡️ Herramientas disponibles</h3>
-
-   <br>
-
-   <p class="muted">
-    CONECTA incorpora controles para gestionar
-    tu experiencia:
-   </p>
-
-   <br>
-
-   <ul
-     style="
-       padding-left:20px;
-       line-height:2">
-
-    <li>Bloqueo de usuarios</li>
-    <li>Denuncia de perfiles</li>
-    <li>Control de privacidad</li>
-    <li>Control de mensajes</li>
-    <li>Perfil privado</li>
-    <li>Control de ubicación</li>
-    <li>Gestión de datos</li>
-
-   </ul>
-
-  </div>
-
-  <button
-    class="btn btn-danger full"
-    onclick="showToast('Sistema de denuncia preparado.')">
-
-    🚩 Denunciar usuario
-
-  </button>
-
-  `
- );
-
-}
-
-
-/* =========================
-   LEGAL
-========================= */
+/* LEGAL */
 
 function openLegal(type){
 
- let title="";
- let content="";
+let title="";
+let content="";
 
- if(type==="rules"){
+if(type==="rules"){
 
-  title="Normas de la comunidad";
+title="Normas de la comunidad";
 
-  content=`
+content=`
 
-   <p class="muted">
-    CONECTA está diseñado para facilitar
-    conexiones respetuosas y actividades
-    entre personas.
-   </p>
+<p class="muted">
+CONECTA debe ser un espacio seguro,
+respetuoso y positivo.
+</p>
 
-   <br>
+<br>
 
-   <h3>1. Respeto</h3>
+<h3>Respeto</h3>
 
-   <p class="muted">
-    No se permite acoso, amenazas,
-    discriminación ni comportamiento abusivo.
-   </p>
+<p class="muted">
+No se permite acoso, amenazas,
+discriminación ni comportamiento abusivo.
+</p>
 
-   <br>
+<br>
 
-   <h3>2. Contenido</h3>
+<h3>Contenido</h3>
 
-   <p class="muted">
-    No publiques contenido ilegal,
-    engañoso, violento o que infrinja
-    derechos de terceros.
-   </p>
+<p class="muted">
+No publiques contenido ilegal,
+engañoso o que vulnere derechos.
+</p>
 
-   <br>
+`;
 
-   <h3>3. Identidad</h3>
+}
 
-   <p class="muted">
-    No utilices CONECTA para suplantar
-    a otra persona.
-   </p>
+if(type==="privacy"){
 
-  `;
+title="Privacidad";
 
- }
+content=`
 
- if(type==="privacy"){
+<p class="muted">
+La privacidad del usuario debe ser
+una parte fundamental de CONECTA.
+</p>
 
-  title="Privacidad y protección de datos";
+<br>
 
-  content=`
+<h3>Ubicación</h3>
 
-   <p class="muted">
-    CONECTA debe recopilar únicamente
-    los datos necesarios para prestar
-    sus servicios.
-   </p>
+<p class="muted">
+La ubicación debe ser opcional.
+</p>
 
-   <br>
+<br>
 
-   <h3>Control del usuario</h3>
+<h3>Datos</h3>
 
-   <p class="muted">
-    El usuario debe poder modificar,
-    descargar o solicitar la eliminación
-    de sus datos.
-   </p>
+<p class="muted">
+El usuario debe poder gestionar
+sus datos.
+</p>
 
-   <br>
+`;
 
-   <h3>Ubicación</h3>
+}
 
-   <p class="muted">
-    La ubicación debe ser opcional y
-    solicitar permiso cuando corresponda.
-   </p>
+if(type==="terms"){
 
-  `;
+title="Términos y condiciones";
 
- }
+content=`
 
- if(type==="terms"){
+<p class="muted">
+CONECTA proporciona herramientas
+para descubrir personas,
+publicaciones y actividades.
+</p>
 
-  title="Términos y condiciones";
+<br>
 
-  content=`
+<p class="muted">
+El usuario debe utilizar la plataforma
+de forma responsable y conforme
+a la legislación aplicable.
+</p>
 
-   <p class="muted">
-    CONECTA proporciona herramientas
-    para descubrir personas,
-    conversaciones y actividades.
-   </p>
+`;
 
-   <br>
+}
 
-   <p class="muted">
-    El usuario es responsable de utilizar
-    la aplicación respetando la legislación
-    aplicable y las normas de la comunidad.
-   </p>
-
-  `;
-
- }
-
- openModal(
-  title,
-  content
- );
+openModal(title,content);
 
 }
 
 
-/* =========================
-   DATOS
-========================= */
+/* DATOS */
 
 function exportData(){
 
- const blob=new Blob(
-  [JSON.stringify(data,null,2)],
-  {type:"application/json"}
- );
+const blob=
+new Blob(
+[JSON.stringify(data,null,2)],
+{type:"application/json"}
+);
 
- const url=
-  URL.createObjectURL(blob);
+const url=
+URL.createObjectURL(blob);
 
- const a=
-  document.createElement("a");
+const a=
+document.createElement("a");
 
- a.href=url;
+a.href=url;
 
- a.download=
-  "conecta-mis-datos.json";
+a.download=
+"conecta-mis-datos.json";
 
- document.body.appendChild(a);
+document.body.appendChild(a);
 
- a.click();
+a.click();
 
- a.remove();
+a.remove();
 
- URL.revokeObjectURL(url);
+URL.revokeObjectURL(url);
 
- showToast(
-  "Datos exportados ✓"
- );
+showToast("Datos exportados ✓");
 
 }
 
 
 function deleteLocalData(){
 
- if(
-  !confirm(
-   "¿Seguro que quieres eliminar los datos locales de CONECTA?"
-  )
- ){
-  return;
- }
+if(!confirm(
+"¿Seguro que quieres eliminar los datos locales?"
+))return;
 
- localStorage.removeItem(
-  STORAGE_KEY
- );
+localStorage.removeItem(STORAGE_KEY);
 
- data=
-  structuredClone(
-   defaultData
-  );
+data=structuredClone(defaultData);
 
- applyAppearance();
+applyAppearance();
 
- renderAll();
+renderAll();
 
- showToast(
-  "Datos eliminados."
- );
+showToast("Datos eliminados.");
 
 }
 
 
-/* =========================
-   ESTADÍSTICAS
-========================= */
+/* ESTADÍSTICAS */
 
 function updateStats(){
 
- data.stats.connections=
-  data.connections.length;
+data.stats.connections=
+data.connections.length;
 
- data.stats.plans=
-  data.plans.length;
+data.stats.plans=
+data.plans.length;
 
- data.stats.groups=
-  data.groups.length;
+data.stats.posts=
+data.posts.length;
 
- const c=
-  document.getElementById(
-   "statConnections"
-  );
+const c=
+document.getElementById("statConnections");
 
- const p=
-  document.getElementById(
-   "statPlans"
-  );
+const p=
+document.getElementById("statPlans");
 
- const g=
-  document.getElementById(
-   "statGroups"
-  );
+const po=
+document.getElementById("statPosts");
 
- if(c){
-  c.textContent=
-   data.stats.connections;
- }
+if(c)c.textContent=
+data.stats.connections;
 
- if(p){
-  p.textContent=
-   data.stats.plans;
- }
+if(p)p.textContent=
+data.stats.plans;
 
- if(g){
-  g.textContent=
-   data.stats.groups;
- }
+if(po)po.textContent=
+data.stats.posts;
 
- saveData();
+saveData();
 
 }
 
 
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 function openModal(title,content){
 
- document.getElementById(
-  "modalTitle"
- ).textContent=title;
+document.getElementById(
+"modalTitle"
+).textContent=title;
 
- document.getElementById(
-  "modalContent"
- ).innerHTML=content;
+document.getElementById(
+"modalContent"
+).innerHTML=content;
 
- document.getElementById(
-  "modal"
- ).classList.add("open");
+document.getElementById(
+"modal"
+).classList.add("open");
 
 }
 
 
 function closeModal(){
 
- document.getElementById(
-  "modal"
- ).classList.remove("open");
+document.getElementById(
+"modal"
+).classList.remove("open");
 
 }
 
 
 function closeModalOutside(e){
 
- if(e.target.id==="modal"){
-  closeModal();
- }
+if(e.target.id==="modal"){
+
+closeModal();
+
+}
 
 }
 
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 let toastTimer;
 
 function showToast(message){
 
- const t=
-  document.getElementById(
-   "toast"
-  );
+const t=
+document.getElementById("toast");
 
- t.textContent=message;
+t.textContent=message;
 
- t.classList.add("show");
+t.classList.add("show");
 
- clearTimeout(toastTimer);
+clearTimeout(toastTimer);
 
- toastTimer=setTimeout(
-  ()=>t.classList.remove("show"),
-  2500
- );
+toastTimer=
+setTimeout(
+()=>t.classList.remove("show"),
+2500
+);
 
 }
 
 
-/* =========================
-   SEGURIDAD HTML
-========================= */
+/* SEGURIDAD HTML */
 
 function escapeHTML(value){
 
- return String(value)
+return String(value)
 
-  .replaceAll(
-   "&",
-   "&amp;"
-  )
+.replaceAll("&","&amp;")
 
-  .replaceAll(
-   "<",
-   "&lt;"
-  )
+.replaceAll("<","&lt;")
 
-  .replaceAll(
-   ">",
-   "&gt;"
-  )
+.replaceAll(">","&gt;")
 
-  .replaceAll(
-   '"',
-   "&quot;"
-  )
+.replaceAll('"',"&quot;")
 
-  .replaceAll(
-   "'",
-   "&#039;"
-  );
+.replaceAll("'","&#039;");
 
 }
 
 
 function escapeAttribute(value){
 
- return escapeHTML(value);
+return escapeHTML(value);
 
 }
 
 
-/* =========================
-   SERVICE WORKER
-========================= */
+/* SERVICE WORKER */
 
 if("serviceWorker" in navigator){
 
- window.addEventListener(
-  "load",
-  ()=>{
+window.addEventListener(
+"load",
+()=>{
 
-   navigator.serviceWorker
-    .register("./sw.js")
+navigator.serviceWorker
+.register("./sw.js")
+.then(
+()=>console.log(
+"CONECTA Service Worker activo."
+)
+)
+.catch(
+e=>console.log(
+"Service Worker no disponible:",
+e
+)
+);
 
-    .then(()=>{
-
-     console.log(
-      "CONECTA Service Worker activo."
-     );
-
-    })
-
-    .catch(e=>{
-
-     console.log(
-      "Service Worker no disponible:",
-      e
-     );
-
-    });
-
-  }
- );
+});
 
 }
 
