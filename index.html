@@ -4941,6 +4941,649 @@ function escapeAttr(
 }
 
 </script>
+<!-- =========================================================
+     NEXO — MÓDULO EXTRA
+     PERSONALIZACIÓN + IMÁGENES DE PLANES
+     Pegar antes de </body>
+========================================================= -->
 
+<style>
+/* =========================
+   PERSONALIZACIÓN NEXO
+========================= */
+
+.nexo-customizer {
+  position: fixed;
+  right: 18px;
+  bottom: 85px;
+  z-index: 99999;
+}
+
+.nexo-customizer-btn {
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--nexo-primary, #635bff);
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.nexo-customizer-panel {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 64px;
+  width: 270px;
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--nexo-panel, #ffffff);
+  color: var(--nexo-text, #111827);
+  box-shadow: 0 15px 45px rgba(0,0,0,.25);
+}
+
+.nexo-customizer-panel.open {
+  display: block;
+}
+
+.nexo-customizer-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.nexo-color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+  gap: 10px;
+}
+
+.nexo-color-row input[type="color"] {
+  width: 55px;
+  height: 38px;
+  padding: 2px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.nexo-reset {
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px;
+  border: 0;
+  border-radius: 12px;
+  background: #eef0f5;
+  color: #111827;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+/* =========================
+   IMÁGENES DE PLANES
+========================= */
+
+.nexo-plan-image {
+  width: 68px;
+  height: 68px;
+  min-width: 68px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.nexo-plan-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.nexo-plan-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.nexo-plan-title {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.nexo-plan-meta {
+  margin-top: 4px;
+  font-size: 13px;
+  opacity: .70;
+}
+
+
+/* =========================
+   TARJETAS GENERADAS
+========================= */
+
+.nexo-extra-plans {
+  display: grid;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.nexo-extra-plan {
+  padding: 12px;
+  border-radius: 18px;
+  background: var(--nexo-card, #ffffff);
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.nexo-extra-plan button {
+  margin-top: 9px;
+  border: 0;
+  border-radius: 10px;
+  padding: 8px 14px;
+  background: var(--nexo-primary, #635bff);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+</style>
+
+
+<!-- =========================
+     BOTÓN PERSONALIZACIÓN
+========================= -->
+
+<div class="nexo-customizer">
+
+  <button
+    class="nexo-customizer-btn"
+    id="nexoCustomizerButton"
+    type="button"
+    aria-label="Personalizar NEXO">
+    🎨
+  </button>
+
+  <div
+    class="nexo-customizer-panel"
+    id="nexoCustomizerPanel">
+
+    <div class="nexo-customizer-title">
+      Personalizar NEXO
+    </div>
+
+    <div class="nexo-color-row">
+      <span>Color de fondo</span>
+
+      <input
+        type="color"
+        id="nexoBackgroundColor"
+        value="#f5f7fb">
+    </div>
+
+    <div class="nexo-color-row">
+      <span>Color principal</span>
+
+      <input
+        type="color"
+        id="nexoPrimaryColor"
+        value="#635bff">
+    </div>
+
+    <div class="nexo-color-row">
+      <span>Color de tarjetas</span>
+
+      <input
+        type="color"
+        id="nexoCardColor"
+        value="#ffffff">
+    </div>
+
+    <button
+      class="nexo-reset"
+      id="nexoResetColors"
+      type="button">
+      Restablecer colores
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     PLANES CON IMÁGENES
+========================================================= -->
+
+<div
+  id="nexoExtraPlans"
+  class="nexo-extra-plans">
+
+  <div
+    class="nexo-extra-plan"
+    data-plan="running">
+
+    <div class="nexo-plan-card">
+
+      <img
+        class="nexo-plan-image"
+        src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=300&q=80"
+        alt="Personas haciendo running"
+        loading="lazy">
+
+      <div class="nexo-plan-info">
+
+        <div class="nexo-plan-title">
+          🏃 Running
+        </div>
+
+        <div class="nexo-plan-meta">
+          Salir a correr · Hoy
+        </div>
+
+        <button type="button">
+          Ver plan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="nexo-extra-plan"
+    data-plan="cine">
+
+    <div class="nexo-plan-card">
+
+      <img
+        class="nexo-plan-image"
+        src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=300&q=80"
+        alt="Cine"
+        loading="lazy">
+
+      <div class="nexo-plan-info">
+
+        <div class="nexo-plan-title">
+          🎬 Cine
+        </div>
+
+        <div class="nexo-plan-meta">
+          Ver una película · Viernes
+        </div>
+
+        <button type="button">
+          Ver plan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="nexo-extra-plan"
+    data-plan="comida">
+
+    <div class="nexo-plan-card">
+
+      <img
+        class="nexo-plan-image"
+        src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=300&q=80"
+        alt="Comida"
+        loading="lazy">
+
+      <div class="nexo-plan-info">
+
+        <div class="nexo-plan-title">
+          🍔 Comida
+        </div>
+
+        <div class="nexo-plan-meta">
+          Comer juntos · Sábado
+        </div>
+
+        <button type="button">
+          Ver plan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="nexo-extra-plan"
+    data-plan="futbol">
+
+    <div class="nexo-plan-card">
+
+      <img
+        class="nexo-plan-image"
+        src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=300&q=80"
+        alt="Fútbol"
+        loading="lazy">
+
+      <div class="nexo-plan-info">
+
+        <div class="nexo-plan-title">
+          ⚽ Fútbol
+        </div>
+
+        <div class="nexo-plan-meta">
+          Partido · Domingo
+        </div>
+
+        <button type="button">
+          Ver plan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="nexo-extra-plan"
+    data-plan="gimnasio">
+
+    <div class="nexo-plan-card">
+
+      <img
+        class="nexo-plan-image"
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=300&q=80"
+        alt="Gimnasio"
+        loading="lazy">
+
+      <div class="nexo-plan-info">
+
+        <div class="nexo-plan-title">
+          🏋️ Gimnasio
+        </div>
+
+        <div class="nexo-plan-meta">
+          Entrenamiento · Hoy
+        </div>
+
+        <button type="button">
+          Ver plan
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+/* =========================================================
+   NEXO — PERSONALIZACIÓN
+========================================================= */
+
+(function () {
+
+  const root = document.documentElement;
+
+  const button =
+    document.getElementById("nexoCustomizerButton");
+
+  const panel =
+    document.getElementById("nexoCustomizerPanel");
+
+  const background =
+    document.getElementById("nexoBackgroundColor");
+
+  const primary =
+    document.getElementById("nexoPrimaryColor");
+
+  const card =
+    document.getElementById("nexoCardColor");
+
+  const reset =
+    document.getElementById("nexoResetColors");
+
+
+  if (!button || !panel) return;
+
+
+  /* Abrir/cerrar */
+
+  button.addEventListener("click", function () {
+
+    panel.classList.toggle("open");
+
+  });
+
+
+  /* Cargar colores guardados */
+
+  const savedBackground =
+    localStorage.getItem("nexo_background");
+
+  const savedPrimary =
+    localStorage.getItem("nexo_primary");
+
+  const savedCard =
+    localStorage.getItem("nexo_card");
+
+
+  if (savedBackground) {
+
+    background.value = savedBackground;
+
+    root.style.setProperty(
+      "--nexo-background",
+      savedBackground
+    );
+
+    document.body.style.backgroundColor =
+      savedBackground;
+
+  }
+
+
+  if (savedPrimary) {
+
+    primary.value = savedPrimary;
+
+    root.style.setProperty(
+      "--nexo-primary",
+      savedPrimary
+    );
+
+  }
+
+
+  if (savedCard) {
+
+    card.value = savedCard;
+
+    root.style.setProperty(
+      "--nexo-card",
+      savedCard
+    );
+
+  }
+
+
+  /* Fondo */
+
+  background.addEventListener("input", function () {
+
+    const value = background.value;
+
+    document.body.style.backgroundColor =
+      value;
+
+    root.style.setProperty(
+      "--nexo-background",
+      value
+    );
+
+    localStorage.setItem(
+      "nexo_background",
+      value
+    );
+
+  });
+
+
+  /* Color principal */
+
+  primary.addEventListener("input", function () {
+
+    const value = primary.value;
+
+    root.style.setProperty(
+      "--nexo-primary",
+      value
+    );
+
+    localStorage.setItem(
+      "nexo_primary",
+      value
+    );
+
+  });
+
+
+  /* Color tarjetas */
+
+  card.addEventListener("input", function () {
+
+    const value = card.value;
+
+    root.style.setProperty(
+      "--nexo-card",
+      value
+    );
+
+    root.style.setProperty(
+      "--nexo-panel",
+      value
+    );
+
+    localStorage.setItem(
+      "nexo_card",
+      value
+    );
+
+  });
+
+
+  /* Restablecer */
+
+  reset.addEventListener("click", function () {
+
+    const defaultBackground =
+      "#f5f7fb";
+
+    const defaultPrimary =
+      "#635bff";
+
+    const defaultCard =
+      "#ffffff";
+
+
+    background.value =
+      defaultBackground;
+
+    primary.value =
+      defaultPrimary;
+
+    card.value =
+      defaultCard;
+
+
+    document.body.style.backgroundColor =
+      defaultBackground;
+
+
+    root.style.setProperty(
+      "--nexo-background",
+      defaultBackground
+    );
+
+    root.style.setProperty(
+      "--nexo-primary",
+      defaultPrimary
+    );
+
+    root.style.setProperty(
+      "--nexo-card",
+      defaultCard
+    );
+
+    root.style.setProperty(
+      "--nexo-panel",
+      defaultCard
+    );
+
+
+    localStorage.removeItem(
+      "nexo_background"
+    );
+
+    localStorage.removeItem(
+      "nexo_primary"
+    );
+
+    localStorage.removeItem(
+      "nexo_card"
+    );
+
+  });
+
+})();
+
+
+/* =========================================================
+   NEXO — SISTEMA DE IMÁGENES DE ACTIVIDADES
+========================================================= */
+
+const NEXO_PLAN_IMAGES = {
+
+  running:
+    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=80",
+
+  cine:
+    "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80",
+
+  comida:
+    "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80",
+
+  futbol:
+    "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80",
+
+  gimnasio:
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80"
+
+};
+
+
+/*
+ * Permite obtener la imagen de una actividad
+ * desde cualquier parte de NEXO.
+ */
+
+window.NEXO_PLAN_IMAGES =
+  NEXO_PLAN_IMAGES;
+
+
+/* =========================================================
+   FIN DEL MÓDULO EXTRA
+========================================================= */
+</script>
 </body>
 </html>
