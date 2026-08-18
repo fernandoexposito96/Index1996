@@ -1,4 +1,4 @@
-const CACHE_VERSION = "nexo-2026-08-18-v3";
+const CACHE_VERSION = "nexo-2026-08-18-v4";
 
 const CORE_FILES = [
   "./",
@@ -14,21 +14,9 @@ const CORE_FILES = [
 self.addEventListener("install", event => {
 
   event.waitUntil(
-
-    caches
-      .open(CACHE_VERSION)
-      .then(cache => {
-
-        return cache.addAll(CORE_FILES);
-
-      })
-
+    caches.open(CACHE_VERSION)
+      .then(cache => cache.addAll(CORE_FILES))
   );
-
-  /*
-   * Hace que la nueva versión no tenga
-   * que esperar a cerrar la aplicación.
-   */
 
   self.skipWaiting();
 
@@ -43,26 +31,17 @@ self.addEventListener("activate", event => {
 
   event.waitUntil(
 
-    caches.keys().then(cacheNames => {
+    caches.keys()
+      .then(cacheNames => {
 
-      return Promise.all(
+        return Promise.all(
+          cacheNames
+            .filter(name => name !== CACHE_VERSION)
+            .map(name => caches.delete(name))
+        );
 
-        cacheNames
-          .filter(name => name !== CACHE_VERSION)
-          .map(name => caches.delete(name))
-
-      );
-
-    }).then(() => {
-
-      /*
-       * Toma el control inmediatamente
-       * de las páginas abiertas.
-       */
-
-      return self.clients.claim();
-
-    })
+      })
+      .then(() => self.clients.claim())
 
   );
 
@@ -77,25 +56,15 @@ self.addEventListener("fetch", event => {
 
   const request = event.request;
 
-  /*
-   * Solo gestionamos peticiones GET.
-   */
-
   if (request.method !== "GET") {
     return;
   }
 
 
-  /*
-   * HTML:
-   *
-   * NETWORK FIRST
-   *
-   * Esto es importante para que cuando
-   * publiques una nueva versión de NEXO,
-   * el navegador intente coger primero
-   * la versión nueva de GitHub Pages.
-   */
+  /* =========================
+     HTML / NAVEGACIÓN
+     NETWORK FIRST
+  ========================= */
 
   if (
     request.mode === "navigate" ||
@@ -107,29 +76,23 @@ self.addEventListener("fetch", event => {
       fetch(request, {
         cache: "no-store"
       })
+
       .then(response => {
 
-        const copy =
-          response.clone();
+        const copy = response.clone();
 
-        caches
-          .open(CACHE_VERSION)
+        caches.open(CACHE_VERSION)
           .then(cache => {
-
-            cache.put(
-              request,
-              copy
-            );
-
+            cache.put(request, copy);
           });
 
         return response;
 
       })
+
       .catch(() => {
 
-        return caches
-          .match(request)
+        return caches.match(request)
           .then(cached => {
 
             return cached ||
@@ -145,11 +108,10 @@ self.addEventListener("fetch", event => {
   }
 
 
-  /*
-   * Otros recursos:
-   *
-   * CACHE FIRST + NETWORK FALLBACK
-   */
+  /* =========================
+     RESTO DE RECURSOS
+     CACHE FIRST
+  ========================= */
 
   event.respondWith(
 
@@ -157,9 +119,7 @@ self.addEventListener("fetch", event => {
       .then(cachedResponse => {
 
         if (cachedResponse) {
-
           return cachedResponse;
-
         }
 
         return fetch(request)
@@ -170,18 +130,11 @@ self.addEventListener("fetch", event => {
               networkResponse.status === 200
             ) {
 
-              const copy =
-                networkResponse.clone();
+              const copy = networkResponse.clone();
 
-              caches
-                .open(CACHE_VERSION)
+              caches.open(CACHE_VERSION)
                 .then(cache => {
-
-                  cache.put(
-                    request,
-                    copy
-                  );
-
+                  cache.put(request, copy);
                 });
 
             }
@@ -205,12 +158,8 @@ self.addEventListener("message", event => {
 
   if (!event.data) return;
 
-  if (
-    event.data.type === "SKIP_WAITING"
-  ) {
-
+  if (event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
-
   }
 
 });
