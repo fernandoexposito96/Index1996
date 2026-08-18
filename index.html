@@ -19,43 +19,42 @@
 
   <style>
     :root {
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --surface-2: #f0f2f7;
-      --text: #111318;
-      --muted: #747987;
-      --border: rgba(20, 24, 35, .08);
-      --primary: #635bff;
-      --primary-2: #8c5cff;
-      --pink: #ff4f9a;
-      --blue: #2d8cff;
-      --green: #20c997;
-      --orange: #ff9f43;
-      --shadow: 0 12px 35px rgba(31, 36, 54, .10);
-      --radius: 22px;
-      --nav-height: 76px;
+      --bg:#f5f7fb;
+      --surface:#fff;
+      --surface2:#f0f2f7;
+      --text:#111318;
+      --muted:#747987;
+      --border:rgba(20,24,35,.08);
+      --primary:#635bff;
+      --primary2:#8c5cff;
+      --pink:#ff4f9a;
+      --blue:#2d8cff;
+      --green:#20c997;
+      --orange:#ff9f43;
+      --shadow:0 12px 35px rgba(31,36,54,.10);
+      --radius:22px;
+      --nav:76px;
     }
 
     body.dark {
-      --bg: #090b10;
-      --surface: #11141b;
-      --surface-2: #191d26;
-      --text: #f6f7fb;
-      --muted: #969dac;
-      --border: rgba(255,255,255,.08);
-      --shadow: 0 15px 40px rgba(0,0,0,.35);
+      --bg:#090b10;
+      --surface:#11141b;
+      --surface2:#191d26;
+      --text:#f6f7fb;
+      --muted:#969dac;
+      --border:rgba(255,255,255,.08);
+      --shadow:0 15px 40px rgba(0,0,0,.35);
     }
 
     * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
+    html,body {
+      margin:0;
+      padding:0;
+      min-height:100%;
       font-family:
         Inter,
         -apple-system,
@@ -64,1013 +63,1141 @@
         Roboto,
         Arial,
         sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background:var(--bg);
+      color:var(--text);
     }
 
     body {
-      overflow-x: hidden;
-      padding-bottom: calc(var(--nav-height) + 20px);
-      transition: background .25s ease, color .25s ease;
+      overflow-x:hidden;
+      padding-bottom:calc(var(--nav) + 18px);
+      transition:.25s ease;
     }
 
-    button,
-    input,
-    textarea,
-    select {
-      font: inherit;
+    button,input,textarea,select {
+      font:inherit;
     }
 
     button {
-      border: 0;
-      cursor: pointer;
+      border:0;
+      cursor:pointer;
     }
 
     img {
-      max-width: 100%;
-      display: block;
+      max-width:100%;
+      display:block;
     }
 
     .app {
-      width: 100%;
-      max-width: 760px;
-      margin: auto;
-      min-height: 100vh;
+      width:100%;
+      max-width:760px;
+      margin:auto;
+      min-height:100vh;
     }
 
+    /* TOP BAR */
+
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 14px 16px 12px;
-      background: color-mix(in srgb, var(--bg) 90%, transparent);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding:14px 16px 12px;
+      background:color-mix(in srgb,var(--bg) 90%,transparent);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 9px;
+      display:flex;
+      align-items:center;
+      gap:9px;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--pink));
-      color: white;
-      display: grid;
-      place-items: center;
-      font-size: 19px;
-      font-weight: 900;
-      box-shadow: 0 8px 20px rgba(99,91,255,.28);
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--primary),var(--pink));
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:19px;
+      font-weight:900;
+      box-shadow:0 8px 20px rgba(99,91,255,.28);
     }
 
     .brand-name {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -.8px;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:-.8px;
     }
 
     .top-actions {
-      display: flex;
-      gap: 8px;
+      display:flex;
+      gap:8px;
     }
 
     .icon-btn {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      display: grid;
-      place-items: center;
-      font-size: 19px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.04);
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:var(--surface);
+      color:var(--text);
+      border:1px solid var(--border);
+      display:grid;
+      place-items:center;
+      font-size:19px;
+      box-shadow:0 5px 18px rgba(0,0,0,.04);
     }
 
+    /* SCREENS */
+
     .screen {
-      display: none;
-      padding: 8px 16px 20px;
-      animation: fade .25s ease;
+      display:none;
+      padding:8px 16px 25px;
+      animation:fade .25s ease;
     }
 
     .screen.active {
-      display: block;
+      display:block;
     }
 
     @keyframes fade {
       from {
-        opacity: 0;
-        transform: translateY(5px);
+        opacity:0;
+        transform:translateY(5px);
       }
       to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity:1;
+        transform:translateY(0);
       }
     }
 
     .welcome {
-      margin: 12px 0 18px;
+      margin:12px 0 18px;
     }
 
     .welcome h1 {
-      margin: 0;
-      font-size: 31px;
-      line-height: 1.08;
-      letter-spacing: -1.3px;
+      margin:0;
+      font-size:31px;
+      line-height:1.08;
+      letter-spacing:-1.3px;
     }
 
     .welcome p {
-      color: var(--muted);
-      margin: 8px 0 0;
-      font-size: 14px;
+      color:var(--muted);
+      margin:8px 0 0;
+      font-size:14px;
     }
 
+    /* HERO */
+
     .hero {
-      position: relative;
-      overflow: hidden;
-      min-height: 210px;
-      border-radius: 28px;
-      padding: 24px;
-      color: white;
+      position:relative;
+      overflow:hidden;
+      min-height:215px;
+      border-radius:28px;
+      padding:24px;
+      color:#fff;
       background:
-        radial-gradient(circle at 85% 20%, rgba(255,255,255,.25), transparent 30%),
-        linear-gradient(135deg, #635bff, #8b5cf6 50%, #ff4f9a);
-      box-shadow: 0 18px 40px rgba(99,91,255,.23);
-      margin-bottom: 18px;
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(255,255,255,.25),
+          transparent 30%
+        ),
+        linear-gradient(
+          135deg,
+          #635bff,
+          #8b5cf6 50%,
+          #ff4f9a
+        );
+      box-shadow:0 18px 40px rgba(99,91,255,.23);
+      margin-bottom:18px;
     }
 
     .hero::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      right: -55px;
-      bottom: -75px;
-      background: rgba(255,255,255,.12);
+      content:"";
+      position:absolute;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      right:-55px;
+      bottom:-75px;
+      background:rgba(255,255,255,.12);
     }
 
     .hero h2 {
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      font-size: 28px;
-      max-width: 310px;
-      letter-spacing: -.8px;
+      position:relative;
+      z-index:2;
+      margin:0;
+      font-size:28px;
+      max-width:310px;
+      letter-spacing:-.8px;
     }
 
     .hero p {
-      position: relative;
-      z-index: 2;
-      max-width: 330px;
-      line-height: 1.5;
-      margin: 12px 0 20px;
-      color: rgba(255,255,255,.86);
+      position:relative;
+      z-index:2;
+      max-width:330px;
+      line-height:1.5;
+      margin:12px 0 20px;
+      color:rgba(255,255,255,.86);
     }
 
     .hero button {
-      position: relative;
-      z-index: 3;
-      padding: 12px 18px;
-      border-radius: 14px;
-      background: white;
-      color: #554cff;
-      font-weight: 800;
+      position:relative;
+      z-index:3;
+      padding:12px 18px;
+      border-radius:14px;
+      background:#fff;
+      color:#554cff;
+      font-weight:800;
     }
 
+    /* SECTIONS */
+
     .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 22px 2px 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin:22px 2px 12px;
     }
 
     .section-head h3 {
-      margin: 0;
-      font-size: 18px;
+      margin:0;
+      font-size:18px;
     }
 
     .section-head span {
-      font-size: 12px;
-      color: var(--muted);
+      font-size:12px;
+      color:var(--muted);
     }
 
+    /* GRID */
+
     .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 12px;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
     }
 
     .tile {
-      min-height: 145px;
-      border-radius: 22px;
-      padding: 17px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      transition: transform .18s ease;
+      min-height:145px;
+      border-radius:22px;
+      padding:17px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transition:transform .18s ease;
     }
 
     .tile:active {
-      transform: scale(.98);
+      transform:scale(.98);
     }
 
     .tile-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      font-size: 21px;
-      margin-bottom: 18px;
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-size:21px;
+      margin-bottom:18px;
     }
 
     .tile h4 {
-      margin: 0 0 5px;
-      font-size: 16px;
+      margin:0 0 5px;
+      font-size:16px;
     }
 
     .tile p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.35;
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.35;
     }
 
-    .purple {
-      background: rgba(99,91,255,.12);
-    }
+    .purple { background:rgba(99,91,255,.12); }
+    .pink { background:rgba(255,79,154,.12); }
+    .blue { background:rgba(45,140,255,.12); }
+    .green { background:rgba(32,201,151,.12); }
+    .orange { background:rgba(255,159,67,.14); }
 
-    .pink {
-      background: rgba(255,79,154,.12);
-    }
-
-    .blue {
-      background: rgba(45,140,255,.12);
-    }
-
-    .green {
-      background: rgba(32,201,151,.12);
-    }
-
-    .orange {
-      background: rgba(255,159,67,.14);
-    }
+    /* CARDS */
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 14px;
-      overflow: hidden;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      margin-bottom:14px;
+      overflow:hidden;
     }
 
+    /* INTEREST CATEGORIES */
+
+    .interest-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:11px;
+      margin-bottom:18px;
+    }
+
+    .interest-card {
+      height:125px;
+      border-radius:20px;
+      overflow:hidden;
+      position:relative;
+      cursor:pointer;
+      border:1px solid var(--border);
+      box-shadow:0 8px 25px rgba(0,0,0,.08);
+      background:var(--surface2);
+    }
+
+    .interest-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .35s ease;
+    }
+
+    .interest-card:hover img,
+    .interest-card:active img {
+      transform:scale(1.06);
+    }
+
+    .interest-overlay {
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          to top,
+          rgba(0,0,0,.72),
+          rgba(0,0,0,.05) 65%
+        );
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      padding:12px;
+      color:#fff;
+    }
+
+    .interest-overlay strong {
+      font-size:15px;
+    }
+
+    .interest-overlay span {
+      font-size:10px;
+      opacity:.82;
+      margin-top:3px;
+    }
+
+    .selected-interest {
+      outline:3px solid var(--primary);
+      outline-offset:2px;
+    }
+
+    /* PEOPLE */
+
     .person-card {
-      position: relative;
+      position:relative;
     }
 
     .person-cover {
-      height: 130px;
-      background:
-        linear-gradient(135deg, #635bff, #ff4f9a);
-      position: relative;
+      height:130px;
+      background:linear-gradient(135deg,#635bff,#ff4f9a);
+      position:relative;
     }
 
-    .person-cover img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .person-cover > img:first-child {
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     .avatar-large {
-      position: absolute;
-      left: 18px;
-      bottom: -34px;
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--surface);
-      background: var(--surface-2);
+      position:absolute;
+      left:18px;
+      bottom:-34px;
+      width:78px;
+      height:78px;
+      border-radius:50%;
+      object-fit:cover;
+      border:4px solid var(--surface);
+      background:var(--surface2);
     }
 
     .person-body {
-      padding: 45px 17px 17px;
+      padding:45px 17px 17px;
     }
 
     .person-name {
-      font-weight: 900;
-      font-size: 19px;
+      font-weight:900;
+      font-size:19px;
     }
 
     .online {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      margin-left: 5px;
+      display:inline-block;
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--green);
+      margin-left:5px;
     }
 
     .person-meta {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 12px;
+      margin-top:4px;
+      color:var(--muted);
+      font-size:12px;
     }
 
     .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin: 12px 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin:12px 0;
     }
 
     .chip {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: var(--surface-2);
-      color: var(--muted);
-      font-size: 11px;
+      padding:7px 10px;
+      border-radius:999px;
+      background:var(--surface2);
+      color:var(--muted);
+      font-size:11px;
     }
 
     .actions-row {
-      display: flex;
-      gap: 8px;
+      display:flex;
+      gap:8px;
     }
 
     .primary-btn,
     .secondary-btn {
-      flex: 1;
-      padding: 12px 14px;
-      border-radius: 14px;
-      font-weight: 800;
+      flex:1;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight:800;
     }
 
     .primary-btn {
-      color: white;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
     }
 
     .secondary-btn {
-      background: var(--surface-2);
-      color: var(--text);
+      background:var(--surface2);
+      color:var(--text);
     }
 
-    .feed-post {
-      overflow: hidden;
+    /* STORIES */
+
+    .story-row {
+      display:flex;
+      gap:12px;
+      overflow-x:auto;
+      padding:4px 2px 7px;
+      scrollbar-width:none;
     }
 
-    .post-header {
-      padding: 13px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .story-row::-webkit-scrollbar {
+      display:none;
     }
 
-    .avatar {
-      width: 43px;
-      height: 43px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: var(--surface-2);
+    .story {
+      flex:0 0 72px;
+      text-align:center;
+      font-size:10px;
+      color:var(--muted);
     }
 
-    .post-user {
-      flex: 1;
+    .story-avatar {
+      width:62px;
+      height:62px;
+      margin:auto;
+      padding:3px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--primary),var(--pink));
     }
 
-    .post-user strong {
-      display: block;
-      font-size: 14px;
+    .story-avatar img {
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid var(--surface);
     }
 
-    .post-user span {
-      color: var(--muted);
-      font-size: 11px;
-    }
-
-    .post-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      background: var(--surface-2);
-    }
-
-    .post-actions {
-      display: flex;
-      gap: 7px;
-      padding: 12px 13px 5px;
-    }
-
-    .post-action {
-      width: 40px;
-      height: 40px;
-      border-radius: 13px;
-      background: var(--surface-2);
-      color: var(--text);
-      font-size: 18px;
-    }
-
-    .post-caption {
-      padding: 3px 14px 16px;
-      font-size: 13px;
-      line-height: 1.45;
-    }
+    /* PLANS */
 
     .plan-card {
-      padding: 16px;
+      padding:16px;
     }
 
     .plan-top {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
     }
 
     .plan-icon {
-      width: 55px;
-      height: 55px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--primary), var(--pink));
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 25px;
-      flex: 0 0 auto;
+      width:55px;
+      height:55px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--primary),var(--pink));
+      display:grid;
+      place-items:center;
+      color:#fff;
+      font-size:25px;
+      flex:0 0 auto;
     }
 
     .plan-info {
-      flex: 1;
+      flex:1;
     }
 
     .plan-info h4 {
-      margin: 0;
-      font-size: 17px;
+      margin:0;
+      font-size:17px;
     }
 
     .plan-info p {
-      margin: 5px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
+      margin:5px 0 0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.4;
     }
 
     .plan-details {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin: 13px 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+      margin:13px 0;
     }
 
     .detail {
-      background: var(--surface-2);
-      padding: 8px 10px;
-      border-radius: 11px;
-      font-size: 11px;
+      background:var(--surface2);
+      padding:8px 10px;
+      border-radius:11px;
+      font-size:11px;
     }
 
+    /* FEED */
+
+    .feed-post {
+      overflow:hidden;
+    }
+
+    .post-header {
+      padding:13px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .avatar {
+      width:43px;
+      height:43px;
+      border-radius:50%;
+      object-fit:cover;
+      background:var(--surface2);
+    }
+
+    .post-user {
+      flex:1;
+    }
+
+    .post-user strong {
+      display:block;
+      font-size:14px;
+    }
+
+    .post-user span {
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .post-image {
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:cover;
+      background:var(--surface2);
+    }
+
+    .post-actions {
+      display:flex;
+      gap:7px;
+      padding:12px 13px 5px;
+    }
+
+    .post-action {
+      width:40px;
+      height:40px;
+      border-radius:13px;
+      background:var(--surface2);
+      color:var(--text);
+      font-size:18px;
+    }
+
+    .post-caption {
+      padding:3px 14px 16px;
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    /* CHAT */
+
     .chat-list {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
+      display:flex;
+      flex-direction:column;
+      gap:9px;
     }
 
     .chat-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      box-shadow: 0 6px 20px rgba(0,0,0,.04);
+      width:100%;
+      text-align:left;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:20px;
+      padding:12px;
+      display:flex;
+      align-items:center;
+      gap:11px;
+      box-shadow:0 6px 20px rgba(0,0,0,.04);
+      color:var(--text);
     }
 
     .chat-content {
-      flex: 1;
-      min-width: 0;
+      flex:1;
+      min-width:0;
     }
 
     .chat-content strong {
-      display: block;
-      font-size: 14px;
+      display:block;
+      font-size:14px;
     }
 
     .chat-content span {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 12px;
+      display:block;
+      margin-top:4px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-size:12px;
     }
 
     .chat-time {
-      color: var(--muted);
-      font-size: 10px;
+      color:var(--muted);
+      font-size:10px;
     }
 
     .chat-window {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      background: var(--bg);
-      flex-direction: column;
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:100;
+      background:var(--bg);
+      flex-direction:column;
     }
 
     .chat-window.active {
-      display: flex;
+      display:flex;
     }
 
     .chat-header {
-      padding: 12px 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      padding:12px 15px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--surface);
+      border-bottom:1px solid var(--border);
     }
 
     .back-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 13px;
-      background: var(--surface-2);
-      color: var(--text);
+      width:40px;
+      height:40px;
+      border-radius:13px;
+      background:var(--surface2);
+      color:var(--text);
     }
 
     .chat-messages {
-      flex: 1;
-      padding: 18px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
+      flex:1;
+      padding:18px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:9px;
     }
 
     .message {
-      max-width: 78%;
-      padding: 11px 13px;
-      border-radius: 17px;
-      font-size: 13px;
-      line-height: 1.4;
+      max-width:78%;
+      padding:11px 13px;
+      border-radius:17px;
+      font-size:13px;
+      line-height:1.4;
     }
 
     .message.me {
-      align-self: flex-end;
-      color: white;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      border-bottom-right-radius: 5px;
+      align-self:flex-end;
+      color:#fff;
+      background:linear-gradient(135deg,var(--primary),var(--primary2));
+      border-bottom-right-radius:5px;
     }
 
     .message.them {
-      align-self: flex-start;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 5px;
+      align-self:flex-start;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-bottom-left-radius:5px;
     }
 
     .chat-compose {
-      display: flex;
-      gap: 8px;
-      padding: 10px;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
+      display:flex;
+      gap:8px;
+      padding:10px;
+      background:var(--surface);
+      border-top:1px solid var(--border);
     }
 
     .chat-compose input {
-      min-width: 0;
-      flex: 1;
-      border: 0;
-      outline: none;
-      border-radius: 15px;
-      padding: 12px;
-      background: var(--surface-2);
-      color: var(--text);
+      min-width:0;
+      flex:1;
+      border:0;
+      outline:none;
+      border-radius:15px;
+      padding:12px;
+      background:var(--surface2);
+      color:var(--text);
     }
 
     .send-btn {
-      width: 45px;
-      border-radius: 14px;
-      color: white;
-      background: var(--primary);
+      width:45px;
+      border-radius:14px;
+      color:#fff;
+      background:var(--primary);
     }
 
+    /* PROFILE */
+
     .profile-card {
-      padding: 22px;
-      text-align: center;
+      padding:22px;
+      text-align:center;
     }
 
     .profile-avatar {
-      width: 105px;
-      height: 105px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 0 auto 13px;
-      border: 4px solid var(--surface-2);
+      width:105px;
+      height:105px;
+      object-fit:cover;
+      border-radius:50%;
+      margin:0 auto 13px;
+      border:4px solid var(--surface2);
     }
 
     .profile-card h2 {
-      margin: 0;
+      margin:0;
     }
 
     .profile-card p {
-      color: var(--muted);
-      font-size: 13px;
+      color:var(--muted);
+      font-size:13px;
     }
 
     .profile-options {
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
+      display:flex;
+      flex-direction:column;
+      gap:9px;
     }
 
     .profile-option {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 17px;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--text);
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:17px;
+      padding:15px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:var(--text);
     }
 
     .option-icon {
-      width: 39px;
-      height: 39px;
-      border-radius: 13px;
-      background: var(--surface-2);
-      display: grid;
-      place-items: center;
+      width:39px;
+      height:39px;
+      border-radius:13px;
+      background:var(--surface2);
+      display:grid;
+      place-items:center;
     }
 
     .profile-option span:last-child {
-      margin-left: auto;
-      color: var(--muted);
+      margin-left:auto;
+      color:var(--muted);
     }
 
+    /* MUSIC */
+
     .music-player {
-      position: fixed;
-      left: 10px;
-      right: 10px;
-      bottom: calc(var(--nav-height) + 8px);
-      z-index: 45;
-      background: color-mix(in srgb, var(--surface) 94%, transparent);
-      border: 1px solid var(--border);
-      box-shadow: 0 12px 35px rgba(0,0,0,.14);
-      backdrop-filter: blur(18px);
-      border-radius: 19px;
-      padding: 9px;
-      display: none;
-      align-items: center;
-      gap: 9px;
+      position:fixed;
+      left:10px;
+      right:10px;
+      bottom:calc(var(--nav) + 8px);
+      z-index:45;
+      background:color-mix(in srgb,var(--surface) 94%,transparent);
+      border:1px solid var(--border);
+      box-shadow:0 12px 35px rgba(0,0,0,.14);
+      backdrop-filter:blur(18px);
+      border-radius:19px;
+      padding:9px;
+      display:none;
+      align-items:center;
+      gap:9px;
     }
 
     .music-player.show {
-      display: flex;
+      display:flex;
+    }
+
+    .music-cover,
+    .song-cover {
+      border-radius:13px;
+      background:linear-gradient(135deg,var(--pink),var(--primary));
+      display:grid;
+      place-items:center;
+      color:#fff;
     }
 
     .music-cover {
-      width: 43px;
-      height: 43px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, var(--pink), var(--primary));
-      display: grid;
-      place-items: center;
-      color: white;
-      font-size: 19px;
+      width:43px;
+      height:43px;
+      font-size:19px;
     }
 
     .music-info {
-      flex: 1;
-      min-width: 0;
+      flex:1;
+      min-width:0;
     }
 
-    .music-info strong {
-      display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size: 12px;
+    .music-info strong,
+    .song-info strong {
+      display:block;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-size:12px;
     }
 
-    .music-info span {
-      color: var(--muted);
-      font-size: 10px;
+    .music-info span,
+    .song-info span {
+      color:var(--muted);
+      font-size:10px;
     }
 
     .music-control {
-      width: 37px;
-      height: 37px;
-      border-radius: 12px;
-      background: var(--surface-2);
-      color: var(--text);
+      width:37px;
+      height:37px;
+      border-radius:12px;
+      background:var(--surface2);
+      color:var(--text);
     }
 
+    .music-list {
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .song {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:var(--surface2);
+      padding:10px;
+      border-radius:15px;
+    }
+
+    .song-cover {
+      width:44px;
+      height:44px;
+    }
+
+    .song-info {
+      flex:1;
+      min-width:0;
+    }
+
+    /* NAV */
+
     .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 60;
-      height: var(--nav-height);
-      display: flex;
-      justify-content: center;
-      background: color-mix(in srgb, var(--surface) 94%, transparent);
-      border-top: 1px solid var(--border);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      position:fixed;
+      bottom:0;
+      left:0;
+      right:0;
+      z-index:60;
+      height:var(--nav);
+      display:flex;
+      justify-content:center;
+      background:color-mix(in srgb,var(--surface) 94%,transparent);
+      border-top:1px solid var(--border);
+      backdrop-filter:blur(20px);
+      -webkit-backdrop-filter:blur(20px);
     }
 
     .nav-inner {
-      width: 100%;
-      max-width: 760px;
-      display: grid;
-      grid-template-columns: repeat(5,1fr);
-      padding: 7px 8px;
+      width:100%;
+      max-width:760px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      padding:7px 8px;
     }
 
     .nav-item {
-      color: var(--muted);
-      background: transparent;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 4px;
-      font-size: 10px;
-      font-weight: 700;
-      border-radius: 16px;
+      color:var(--muted);
+      background:transparent;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:4px;
+      font-size:10px;
+      font-weight:700;
+      border-radius:16px;
     }
 
     .nav-item span:first-child {
-      font-size: 21px;
-      line-height: 1;
+      font-size:21px;
+      line-height:1;
     }
 
     .nav-item.active {
-      color: var(--primary);
-      background: rgba(99,91,255,.08);
+      color:var(--primary);
+      background:rgba(99,91,255,.08);
     }
 
+    /* MODAL */
+
     .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      display: none;
-      align-items: flex-end;
-      justify-content: center;
-      background: rgba(0,0,0,.45);
-      padding: 10px;
+      position:fixed;
+      inset:0;
+      z-index:200;
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      background:rgba(0,0,0,.45);
+      padding:10px;
     }
 
     .modal.active {
-      display: flex;
+      display:flex;
     }
 
     .modal-box {
-      width: 100%;
-      max-width: 620px;
-      max-height: 88vh;
-      overflow-y: auto;
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 27px;
-      padding: 20px;
-      box-shadow: 0 -15px 60px rgba(0,0,0,.25);
-      animation: slideup .25s ease;
+      width:100%;
+      max-width:620px;
+      max-height:88vh;
+      overflow-y:auto;
+      background:var(--surface);
+      color:var(--text);
+      border-radius:27px;
+      padding:20px;
+      box-shadow:0 -15px 60px rgba(0,0,0,.25);
+      animation:slideup .25s ease;
     }
 
     @keyframes slideup {
       from {
-        transform: translateY(40px);
-        opacity: 0;
+        transform:translateY(40px);
+        opacity:0;
       }
       to {
-        transform: translateY(0);
-        opacity: 1;
+        transform:translateY(0);
+        opacity:1;
       }
     }
 
     .modal-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 15px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:15px;
     }
 
     .modal-head h3 {
-      margin: 0;
+      margin:0;
     }
 
     .close {
-      width: 38px;
-      height: 38px;
-      border-radius: 13px;
-      background: var(--surface-2);
-      color: var(--text);
+      width:38px;
+      height:38px;
+      border-radius:13px;
+      background:var(--surface2);
+      color:var(--text);
     }
 
     .form-group {
-      margin-bottom: 13px;
+      margin-bottom:13px;
     }
 
     .form-group label {
-      display: block;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 6px;
+      display:block;
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:6px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
-      width: 100%;
-      border: 1px solid var(--border);
-      outline: none;
-      background: var(--surface-2);
-      color: var(--text);
-      border-radius: 14px;
-      padding: 12px;
+      width:100%;
+      border:1px solid var(--border);
+      outline:none;
+      background:var(--surface2);
+      color:var(--text);
+      border-radius:14px;
+      padding:12px;
     }
 
     .form-group textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .ai-box {
-      padding: 16px;
-      border-radius: 21px;
-      background:
-        linear-gradient(135deg, rgba(99,91,255,.13), rgba(255,79,154,.12));
-      border: 1px solid rgba(99,91,255,.15);
-    }
-
-    .ai-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 900;
-      margin-bottom: 9px;
-    }
-
-    .ai-answer {
-      line-height: 1.5;
-      font-size: 13px;
-      color: var(--text);
-      white-space: pre-wrap;
+      min-height:90px;
+      resize:vertical;
     }
 
     .search-box {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 15px;
+      display:flex;
+      gap:8px;
+      margin-bottom:15px;
     }
 
     .search-box input {
-      flex: 1;
-      min-width: 0;
-      padding: 13px 15px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      border-radius: 16px;
-      outline: none;
+      flex:1;
+      min-width:0;
+      padding:13px 15px;
+      border:1px solid var(--border);
+      background:var(--surface);
+      color:var(--text);
+      border-radius:16px;
+      outline:none;
     }
 
+    /* AI */
+
+    .ai-box {
+      padding:16px;
+      border-radius:21px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(99,91,255,.13),
+          rgba(255,79,154,.12)
+        );
+      border:1px solid rgba(99,91,255,.15);
+    }
+
+    .ai-title {
+      display:flex;
+      align-items:center;
+      gap:9px;
+      font-weight:900;
+      margin-bottom:9px;
+    }
+
+    .ai-answer {
+      line-height:1.5;
+      font-size:13px;
+      white-space:pre-wrap;
+    }
+
+    /* EMPTY / TOAST */
+
     .empty {
-      text-align: center;
-      padding: 35px 15px;
-      color: var(--muted);
+      text-align:center;
+      padding:35px 15px;
+      color:var(--muted);
     }
 
     .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 92px;
-      transform: translateX(-50%) translateY(20px);
-      background: #17191f;
-      color: white;
-      padding: 11px 16px;
-      border-radius: 14px;
-      font-size: 12px;
-      opacity: 0;
-      pointer-events: none;
-      transition: .25s ease;
-      z-index: 500;
-      white-space: nowrap;
+      position:fixed;
+      left:50%;
+      bottom:92px;
+      transform:translateX(-50%) translateY(20px);
+      background:#17191f;
+      color:#fff;
+      padding:11px 16px;
+      border-radius:14px;
+      font-size:12px;
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      z-index:500;
+      white-space:nowrap;
     }
 
     .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
     }
 
-    .story-row {
-      display: flex;
-      gap: 12px;
-      overflow-x: auto;
-      padding: 4px 2px 7px;
-      scrollbar-width: none;
+    /* CATEGORY RESULT */
+
+    .category-banner {
+      position:relative;
+      height:150px;
+      border-radius:24px;
+      overflow:hidden;
+      margin-bottom:15px;
     }
 
-    .story-row::-webkit-scrollbar {
-      display: none;
+    .category-banner img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
-    .story {
-      flex: 0 0 72px;
-      text-align: center;
-      font-size: 10px;
-      color: var(--muted);
+    .category-banner::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top,rgba(0,0,0,.7),transparent);
     }
 
-    .story-avatar {
-      width: 62px;
-      height: 62px;
-      margin: auto;
-      padding: 3px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--pink));
+    .category-banner-content {
+      position:absolute;
+      z-index:2;
+      bottom:15px;
+      left:16px;
+      color:#fff;
     }
 
-    .story-avatar img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--surface);
+    .category-banner-content h2 {
+      margin:0;
+      font-size:24px;
     }
 
-    .music-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .category-banner-content p {
+      margin:4px 0 0;
+      font-size:12px;
+      opacity:.85;
     }
 
-    .song {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--surface-2);
-      padding: 10px;
-      border-radius: 15px;
-    }
-
-    .song-cover {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--primary), var(--pink));
-      color: white;
-      display: grid;
-      place-items: center;
-    }
-
-    .song-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .song-info strong {
-      display: block;
-      font-size: 12px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .song-info span {
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    @media (min-width: 700px) {
+    @media (min-width:700px) {
       .screen {
-        padding-left: 22px;
-        padding-right: 22px;
+        padding-left:22px;
+        padding-right:22px;
       }
 
       .grid {
-        grid-template-columns: repeat(3, minmax(0,1fr));
+        grid-template-columns:repeat(3,minmax(0,1fr));
+      }
+
+      .interest-grid {
+        grid-template-columns:repeat(3,1fr);
       }
 
       .modal {
-        align-items: center;
+        align-items:center;
       }
     }
   </style>
@@ -1081,89 +1208,140 @@
 <div class="app">
 
   <!-- TOP BAR -->
+
   <header class="topbar">
+
     <div class="brand">
       <div class="brand-mark">N</div>
       <div class="brand-name">NEXO</div>
     </div>
 
     <div class="top-actions">
-      <button class="icon-btn" onclick="openSearch()">⌕</button>
-      <button class="icon-btn" onclick="openNotifications()">♡</button>
+
+      <button class="icon-btn" onclick="openSearch()">
+        ⌕
+      </button>
+
+      <button class="icon-btn" onclick="openNotifications()">
+        ♡
+      </button>
+
     </div>
+
   </header>
+
 
   <!-- =========================
        INICIO
   ========================== -->
+
   <main id="home" class="screen active">
 
     <div class="welcome">
-      <h1>Tu mundo.<br>Tu NEXO.</h1>
-      <p>Conecta, comparte, descubre y crea.</p>
+
+      <h1>
+        Tu mundo.<br>
+        Tu NEXO.
+      </h1>
+
+      <p>
+        Conecta, comparte, descubre y crea.
+      </p>
+
     </div>
 
+
     <section class="hero">
-      <h2>Todo lo que necesitas, en un solo lugar.</h2>
+
+      <h2>
+        Todo lo que necesitas,
+        en un solo lugar.
+      </h2>
+
       <p>
-        Personas, conversaciones, planes, música, fotos y herramientas
-        inteligentes diseñadas para estar más conectado.
+        Personas, conversaciones, planes,
+        música, fotos y herramientas
+        inteligentes diseñadas para estar
+        más conectado.
       </p>
+
       <button onclick="showScreen('connect')">
         Explorar NEXO →
       </button>
+
     </section>
 
-    <!-- ACCESOS EN TARJETAS, SIN "DESCUBRIR PERSONAS" -->
+
     <div class="section-head">
       <h3>Tu espacio</h3>
       <span>NEXO 2026</span>
     </div>
+
 
     <div class="grid">
 
       <div class="tile" onclick="showScreen('connect')">
         <div class="tile-icon purple">🤝</div>
         <h4>Conexiones</h4>
-        <p>Personas con intereses que encajan contigo.</p>
+        <p>
+          Personas con intereses que
+          encajan contigo.
+        </p>
       </div>
 
       <div class="tile" onclick="showScreen('plans')">
         <div class="tile-icon blue">📅</div>
         <h4>Mis planes</h4>
-        <p>Organiza actividades y encuentra compañía.</p>
+        <p>
+          Organiza actividades y
+          encuentra compañía.
+        </p>
       </div>
 
       <div class="tile" onclick="showScreen('feed')">
         <div class="tile-icon pink">📸</div>
         <h4>Fotos</h4>
-        <p>Comparte momentos y descubre publicaciones.</p>
+        <p>
+          Comparte momentos y
+          descubre publicaciones.
+        </p>
       </div>
 
       <div class="tile" onclick="openMusic()">
         <div class="tile-icon orange">🎵</div>
         <h4>Música</h4>
-        <p>Escucha tus canciones mientras utilizas NEXO.</p>
+        <p>
+          Escucha tus canciones
+          mientras utilizas NEXO.
+        </p>
       </div>
 
       <div class="tile" onclick="showScreen('chat')">
         <div class="tile-icon green">💬</div>
         <h4>Mensajes</h4>
-        <p>Habla con tus conexiones en tiempo real.</p>
+        <p>
+          Habla con tus conexiones
+          en tiempo real.
+        </p>
       </div>
 
       <div class="tile" onclick="openAI()">
         <div class="tile-icon purple">✦</div>
         <h4>NEXO IA</h4>
-        <p>Tu asistente inteligente dentro de la aplicación.</p>
+        <p>
+          Tu asistente inteligente
+          dentro de la aplicación.
+        </p>
       </div>
 
     </div>
+
 
     <div class="section-head">
       <h3>Historias</h3>
       <span>Ahora</span>
     </div>
+
 
     <div class="story-row">
 
@@ -1204,33 +1382,66 @@
 
     </div>
 
+
     <div class="section-head">
+
       <h3>Planes cerca de ti</h3>
-      <span onclick="showScreen('plans')" style="cursor:pointer">Ver todos</span>
+
+      <span
+        onclick="showScreen('plans')"
+        style="cursor:pointer"
+      >
+        Ver todos
+      </span>
+
     </div>
+
 
     <div class="card plan-card">
 
       <div class="plan-top">
 
-        <div class="plan-icon">🏃</div>
+        <div class="plan-icon">
+          🏃
+        </div>
 
         <div class="plan-info">
-          <h4>Running al atardecer</h4>
+
+          <h4>
+            Running al atardecer
+          </h4>
+
           <p>
-            Ruta tranquila para correr y conocer gente.
+            Ruta tranquila para correr
+            y conocer gente.
           </p>
+
         </div>
 
       </div>
 
+
       <div class="plan-details">
-        <span class="detail">📍 La Pineda</span>
-        <span class="detail">🕖 19:30</span>
-        <span class="detail">👥 8 personas</span>
+
+        <span class="detail">
+          📍 La Pineda
+        </span>
+
+        <span class="detail">
+          🕖 19:30
+        </span>
+
+        <span class="detail">
+          👥 8 personas
+        </span>
+
       </div>
 
-      <button class="primary-btn" onclick="joinPlan('Running al atardecer')">
+
+      <button
+        class="primary-btn"
+        onclick="joinPlan('Running al atardecer')"
+      >
         Me interesa
       </button>
 
@@ -1238,90 +1449,180 @@
 
   </main>
 
+
   <!-- =========================
        CONECTAR
   ========================== -->
+
   <main id="connect" class="screen">
 
     <div class="welcome">
-      <h1>Conexiones</h1>
-      <p>Personas, intereses y nuevas posibilidades.</p>
+
+      <h1>
+        Conexiones
+      </h1>
+
+      <p>
+        Personas, intereses y nuevas posibilidades.
+      </p>
+
     </div>
 
+
     <div class="search-box">
+
       <input
         id="peopleSearch"
         type="search"
         placeholder="Buscar personas o intereses..."
         oninput="filterPeople()"
       >
+
     </div>
+
+
+    <div class="section-head">
+
+      <h3>
+        Descubre por intereses
+      </h3>
+
+      <span>
+        Explora
+      </span>
+
+    </div>
+
+
+    <!-- CATEGORÍAS VISUALES -->
+
+    <div
+      id="interestGrid"
+      class="interest-grid"
+    ></div>
+
+
+    <div
+      id="categoryResult"
+      style="display:none"
+    ></div>
+
+
+    <div class="section-head">
+
+      <h3>
+        Personas para ti
+      </h3>
+
+      <span>
+        Cerca
+      </span>
+
+    </div>
+
 
     <div id="peopleContainer"></div>
 
   </main>
 
+
   <!-- =========================
        PLANES
   ========================== -->
+
   <main id="plans" class="screen">
 
     <div class="welcome">
-      <h1>Planes</h1>
-      <p>Haz algo. Invita. Conecta.</p>
+
+      <h1>
+        Planes
+      </h1>
+
+      <p>
+        Haz algo. Invita. Conecta.
+      </p>
+
     </div>
+
 
     <button
       class="primary-btn"
-      style="width:100%; margin-bottom:15px"
+      style="width:100%;margin-bottom:15px"
       onclick="openPlanCreator()"
     >
       ＋ Crear un plan
     </button>
 
+
     <div id="plansContainer"></div>
 
   </main>
 
+
   <!-- =========================
        FEED
   ========================== -->
+
   <main id="feed" class="screen">
 
     <div class="welcome">
-      <h1>Momentos</h1>
-      <p>Fotos y publicaciones de tu comunidad.</p>
+
+      <h1>
+        Momentos
+      </h1>
+
+      <p>
+        Fotos y publicaciones de tu comunidad.
+      </p>
+
     </div>
+
 
     <button
       class="primary-btn"
-      style="width:100%; margin-bottom:15px"
+      style="width:100%;margin-bottom:15px"
       onclick="openPostCreator()"
     >
       ＋ Crear publicación
     </button>
 
+
     <div id="feedContainer"></div>
 
   </main>
 
+
   <!-- =========================
        CHAT
   ========================== -->
+
   <main id="chat" class="screen">
 
     <div class="welcome">
-      <h1>Chats</h1>
-      <p>Tus conversaciones.</p>
+
+      <h1>
+        Chats
+      </h1>
+
+      <p>
+        Tus conversaciones.
+      </p>
+
     </div>
 
-    <div id="chatList" class="chat-list"></div>
+
+    <div
+      id="chatList"
+      class="chat-list"
+    ></div>
 
   </main>
+
 
   <!-- =========================
        PERFIL
   ========================== -->
+
   <main id="profile" class="screen">
 
     <div class="card profile-card">
@@ -1333,17 +1634,34 @@
         alt="Perfil"
       >
 
-      <h2 id="myName">Fernando</h2>
+      <h2 id="myName">
+        Fernando
+      </h2>
 
       <p id="myBio">
         Explorando NEXO · deporte · música · planes
       </p>
 
-      <div class="chips" style="justify-content:center">
-        <span class="chip">🏃 Deporte</span>
-        <span class="chip">🎵 Música</span>
-        <span class="chip">📸 Fotos</span>
+
+      <div
+        class="chips"
+        style="justify-content:center"
+      >
+
+        <span class="chip">
+          🏃 Deporte
+        </span>
+
+        <span class="chip">
+          🎵 Música
+        </span>
+
+        <span class="chip">
+          📸 Fotos
+        </span>
+
       </div>
+
 
       <button
         class="primary-btn"
@@ -1355,27 +1673,43 @@
 
     </div>
 
+
     <div class="profile-options">
 
-      <button class="profile-option" onclick="openMusic()">
+      <button
+        class="profile-option"
+        onclick="openMusic()"
+      >
         <span class="option-icon">🎵</span>
         <strong>Mi música</strong>
         <span>›</span>
       </button>
 
-      <button class="profile-option" onclick="openAI()">
+
+      <button
+        class="profile-option"
+        onclick="openAI()"
+      >
         <span class="option-icon">✦</span>
         <strong>NEXO IA</strong>
         <span>›</span>
       </button>
 
-      <button class="profile-option" onclick="toggleTheme()">
+
+      <button
+        class="profile-option"
+        onclick="toggleTheme()"
+      >
         <span class="option-icon">🌙</span>
         <strong>Cambiar apariencia</strong>
         <span>›</span>
       </button>
 
-      <button class="profile-option" onclick="openSettings()">
+
+      <button
+        class="profile-option"
+        onclick="openSettings()"
+      >
         <span class="option-icon">⚙️</span>
         <strong>Ajustes</strong>
         <span>›</span>
@@ -1387,56 +1721,101 @@
 
 </div>
 
-<!-- =========================
-     MUSIC PLAYER
-========================== -->
 
-<div id="musicPlayer" class="music-player">
+<!-- MUSIC PLAYER -->
 
-  <div class="music-cover">♫</div>
+<div
+  id="musicPlayer"
+  class="music-player"
+>
 
-  <div class="music-info">
-    <strong id="currentSong">Sin canción</strong>
-    <span id="currentArtist">NEXO Music</span>
+  <div class="music-cover">
+    ♫
   </div>
 
-  <button class="music-control" onclick="toggleAudio()">▶</button>
+  <div class="music-info">
 
-  <button class="music-control" onclick="stopAudio()">■</button>
+    <strong id="currentSong">
+      Sin canción
+    </strong>
+
+    <span id="currentArtist">
+      NEXO Music
+    </span>
+
+  </div>
+
+  <button
+    class="music-control"
+    onclick="toggleAudio()"
+  >
+    ▶
+  </button>
+
+  <button
+    class="music-control"
+    onclick="stopAudio()"
+  >
+    ■
+  </button>
 
 </div>
 
+
 <audio id="audioPlayer"></audio>
 
-<!-- =========================
-     BOTTOM NAV
-========================== -->
+
+<!-- BOTTOM NAV -->
 
 <nav class="bottom-nav">
 
   <div class="nav-inner">
 
-    <button class="nav-item active" data-screen="home" onclick="showScreen('home')">
+    <button
+      class="nav-item active"
+      data-screen="home"
+      onclick="showScreen('home')"
+    >
       <span>⌂</span>
       <span>Inicio</span>
     </button>
 
-    <button class="nav-item" data-screen="connect" onclick="showScreen('connect')">
+
+    <button
+      class="nav-item"
+      data-screen="connect"
+      onclick="showScreen('connect')"
+    >
       <span>🤝</span>
       <span>Conectar</span>
     </button>
 
-    <button class="nav-item" data-screen="plans" onclick="showScreen('plans')">
+
+    <button
+      class="nav-item"
+      data-screen="plans"
+      onclick="showScreen('plans')"
+    >
       <span>▣</span>
       <span>Planes</span>
     </button>
 
-    <button class="nav-item" data-screen="chat" onclick="showScreen('chat')">
+
+    <button
+      class="nav-item"
+      data-screen="chat"
+      onclick="showScreen('chat')"
+    >
       <span>💬</span>
       <span>Chat</span>
     </button>
 
-    <button class="nav-item" data-screen="profile" onclick="showScreen('profile')">
+
+    <button
+      class="nav-item"
+      data-screen="profile"
+      onclick="showScreen('profile')"
+    >
       <span>●</span>
       <span>Perfil</span>
     </button>
@@ -1445,215 +1824,360 @@
 
 </nav>
 
-<!-- =========================
-     MODAL
-========================== -->
 
-<div id="modal" class="modal" onclick="closeModalOutside(event)">
-  <div class="modal-box" id="modalContent"></div>
+<!-- MODAL -->
+
+<div
+  id="modal"
+  class="modal"
+  onclick="closeModalOutside(event)"
+>
+
+  <div
+    class="modal-box"
+    id="modalContent"
+  ></div>
+
 </div>
 
-<div id="toast" class="toast"></div>
 
-<!-- =========================
-     JAVASCRIPT
-========================== -->
+<div
+  id="toast"
+  class="toast"
+></div>
+
 
 <script>
 
+/* =========================
+   STORAGE
+========================= */
+
 const STORAGE = {
-  profile: "nexo_profile",
-  posts: "nexo_posts",
-  plans: "nexo_plans",
-  songs: "nexo_songs",
-  theme: "nexo_theme"
+  profile:"nexo_profile",
+  posts:"nexo_posts",
+  plans:"nexo_plans",
+  theme:"nexo_theme",
+  chats:"nexo_chats"
 };
+
+
+/* =========================
+   INTERESES
+========================= */
+
+const interests = [
+
+  {
+    id:"running",
+    name:"Correr",
+    icon:"🏃",
+    description:"Running y rutas",
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"cine",
+    name:"Cine",
+    icon:"🎬",
+    description:"Películas y series",
+    image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"comida",
+    name:"Comida",
+    icon:"🍔",
+    description:"Gastronomía",
+    image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"musica",
+    name:"Música",
+    icon:"🎵",
+    description:"Música y conciertos",
+    image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"gym",
+    name:"Gym",
+    icon:"🏋️",
+    description:"Entrenamiento",
+    image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"futbol",
+    name:"Fútbol",
+    icon:"⚽",
+    description:"Partidos y equipos",
+    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"playa",
+    name:"Playa",
+    icon:"🏖️",
+    description:"Sol y mar",
+    image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"viajes",
+    name:"Viajes",
+    icon:"✈️",
+    description:"Descubrir lugares",
+    image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"fotografia",
+    name:"Fotografía",
+    icon:"📸",
+    description:"Cámara y creatividad",
+    image:"https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"ciclismo",
+    name:"Ciclismo",
+    icon:"🚴",
+    description:"Rutas en bici",
+    image:"https://images.unsplash.com/photo-1541625602330-2277a4c46182?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"naturaleza",
+    name:"Naturaleza",
+    icon:"🌲",
+    description:"Montaña y aire libre",
+    image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=900&q=80"
+  },
+
+  {
+    id:"videojuegos",
+    name:"Videojuegos",
+    icon:"🎮",
+    description:"Gaming y comunidad",
+    image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"
+  }
+
+];
+
+
+/* =========================
+   PEOPLE
+========================= */
 
 const defaultPeople = [
 
   {
-    id: 1,
-    name: "Laura",
-    age: 27,
-    city: "Tarragona",
-    photo: "https://i.pravatar.cc/500?img=47",
-    cover: "https://picsum.photos/900/500?random=11",
-    interests: ["Running", "Música", "Viajes"],
-    bio: "Me gusta correr, viajar y descubrir sitios nuevos."
+    id:1,
+    name:"Laura",
+    age:27,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=47",
+    cover:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
+    interests:["Running","Música","Viajes"],
+    bio:"Me gusta correr, viajar y descubrir sitios nuevos."
   },
 
   {
-    id: 2,
-    name: "Mario",
-    age: 29,
-    city: "Salou",
-    photo: "https://i.pravatar.cc/500?img=12",
-    cover: "https://picsum.photos/900/500?random=12",
-    interests: ["Gym", "Fútbol", "Playa"],
-    bio: "Gym, fútbol y buenos planes."
+    id:2,
+    name:"Mario",
+    age:29,
+    city:"Salou",
+    photo:"https://i.pravatar.cc/500?img=12",
+    cover:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80",
+    interests:["Gym","Fútbol","Playa"],
+    bio:"Gym, fútbol y buenos planes."
   },
 
   {
-    id: 3,
-    name: "Lucía",
-    age: 25,
-    city: "Reus",
-    photo: "https://i.pravatar.cc/500?img=32",
-    cover: "https://picsum.photos/900/500?random=13",
-    interests: ["Fotografía", "Cine", "Música"],
-    bio: "Fotografía, cine y música."
+    id:3,
+    name:"Lucía",
+    age:25,
+    city:"Reus",
+    photo:"https://i.pravatar.cc/500?img=32",
+    cover:"https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&w=1000&q=80",
+    interests:["Fotografía","Cine","Música"],
+    bio:"Fotografía, cine y música."
   },
 
   {
-    id: 4,
-    name: "Álex",
-    age: 31,
-    city: "Tarragona",
-    photo: "https://i.pravatar.cc/500?img=68",
-    cover: "https://picsum.photos/900/500?random=14",
-    interests: ["Ciclismo", "Naturaleza", "Running"],
-    bio: "Siempre buscando una nueva ruta."
+    id:4,
+    name:"Álex",
+    age:31,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=68",
+    cover:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80",
+    interests:["Ciclismo","Naturaleza","Running"],
+    bio:"Siempre buscando una nueva ruta."
   },
 
   {
-    id: 5,
-    name: "Paula",
-    age: 28,
-    city: "Vila-seca",
-    photo: "https://i.pravatar.cc/500?img=49",
-    cover: "https://picsum.photos/900/500?random=15",
-    interests: ["Viajes", "Gastronomía", "Música"],
-    bio: "Viajar, comer bien y disfrutar."
+    id:5,
+    name:"Paula",
+    age:28,
+    city:"Vila-seca",
+    photo:"https://i.pravatar.cc/500?img=49",
+    cover:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=80",
+    interests:["Viajes","Comida","Música"],
+    bio:"Viajar, comer bien y disfrutar."
   }
 
 ];
 
-let plans = JSON.parse(localStorage.getItem(STORAGE.plans) || "null") || [
 
-  {
-    title: "Running al atardecer",
-    description: "Ruta tranquila para correr y conocer gente.",
-    icon: "🏃",
-    location: "La Pineda",
-    time: "19:30",
-    people: 8
-  },
+/* =========================
+   DATA
+========================= */
 
-  {
-    title: "Partido de fútbol",
-    description: "Buscamos jugadores para un partido amistoso.",
-    icon: "⚽",
-    location: "Tarragona",
-    time: "20:00",
-    people: 10
-  },
+let plans =
+  JSON.parse(
+    localStorage.getItem(STORAGE.plans) || "null"
+  ) || [
 
-  {
-    title: "Café y conocer gente",
-    description: "Plan tranquilo para hablar y hacer nuevas conexiones.",
-    icon: "☕",
-    location: "Salou",
-    time: "18:00",
-    people: 5
-  }
+    {
+      title:"Running al atardecer",
+      description:"Ruta tranquila para correr y conocer gente.",
+      icon:"🏃",
+      location:"La Pineda",
+      time:"19:30",
+      people:8
+    },
 
-];
+    {
+      title:"Partido de fútbol",
+      description:"Buscamos jugadores para un partido amistoso.",
+      icon:"⚽",
+      location:"Tarragona",
+      time:"20:00",
+      people:10
+    },
 
-let posts = JSON.parse(localStorage.getItem(STORAGE.posts) || "null") || [
+    {
+      title:"Café y conocer gente",
+      description:"Plan tranquilo para hablar y hacer nuevas conexiones.",
+      icon:"☕",
+      location:"Salou",
+      time:"18:00",
+      people:5
+    }
 
-  {
-    user: "Laura",
-    avatar: "https://i.pravatar.cc/200?img=47",
-    image: "https://picsum.photos/800/800?random=31",
-    caption: "Un día perfecto para desconectar 🌅",
-    likes: 24
-  },
+  ];
 
-  {
-    user: "Mario",
-    avatar: "https://i.pravatar.cc/200?img=12",
-    image: "https://picsum.photos/800/800?random=32",
-    caption: "Después del gym 💪",
-    likes: 18
-  },
 
-  {
-    user: "Lucía",
-    avatar: "https://i.pravatar.cc/200?img=32",
-    image: "https://picsum.photos/800/800?random=33",
-    caption: "Música, cámara y acción 🎵📸",
-    likes: 37
-  }
+let posts =
+  JSON.parse(
+    localStorage.getItem(STORAGE.posts) || "null"
+  ) || [
 
-];
+    {
+      user:"Laura",
+      avatar:"https://i.pravatar.cc/200?img=47",
+      image:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80",
+      caption:"Un día perfecto para desconectar 🌅",
+      likes:24
+    },
+
+    {
+      user:"Mario",
+      avatar:"https://i.pravatar.cc/200?img=12",
+      image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80",
+      caption:"Después del gym 💪",
+      likes:18
+    },
+
+    {
+      user:"Lucía",
+      avatar:"https://i.pravatar.cc/200?img=32",
+      image:"https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=80",
+      caption:"Música, cámara y acción 🎵📸",
+      likes:37
+    }
+
+  ];
+
+
+let chats =
+  JSON.parse(
+    localStorage.getItem(STORAGE.chats) || "null"
+  ) || [
+
+    {
+      name:"Laura",
+      avatar:"https://i.pravatar.cc/200?img=47",
+      last:"¿Te apuntas al plan?",
+      time:"Ahora"
+    },
+
+    {
+      name:"Mario",
+      avatar:"https://i.pravatar.cc/200?img=12",
+      last:"Perfecto, nos vemos allí.",
+      time:"10:42"
+    },
+
+    {
+      name:"Lucía",
+      avatar:"https://i.pravatar.cc/200?img=32",
+      last:"Te mando una foto después.",
+      time:"Ayer"
+    },
+
+    {
+      name:"Álex",
+      avatar:"https://i.pravatar.cc/200?img=68",
+      last:"¿A qué hora salimos?",
+      time:"Ayer"
+    }
+
+  ];
+
 
 let songs = [];
 
-let chats = [
-
-  {
-    name: "Laura",
-    avatar: "https://i.pravatar.cc/200?img=47",
-    last: "¿Te apuntas al plan?",
-    time: "Ahora"
-  },
-
-  {
-    name: "Mario",
-    avatar: "https://i.pravatar.cc/200?img=12",
-    last: "Perfecto, nos vemos allí.",
-    time: "10:42"
-  },
-
-  {
-    name: "Lucía",
-    avatar: "https://i.pravatar.cc/200?img=32",
-    last: "Te mando una foto después.",
-    time: "Ayer"
-  },
-
-  {
-    name: "Álex",
-    avatar: "https://i.pravatar.cc/200?img=68",
-    last: "¿A qué hora salimos?",
-    time: "Ayer"
-  }
-
-];
-
 let activeChat = null;
 
-let audio = document.getElementById("audioPlayer");
+let audio =
+  document.getElementById("audioPlayer");
 
 let currentSongIndex = -1;
+
+let toastTimer;
+
+let selectedInterest = null;
 
 
 /* =========================
    INIT
 ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  loadTheme();
+    loadTheme();
 
-  renderPeople();
-  renderPlans();
-  renderFeed();
-  renderChats();
+    loadProfile();
 
-  const savedSongs = localStorage.getItem(STORAGE.songs);
+    renderInterests();
 
-  if (savedSongs) {
-    try {
-      songs = JSON.parse(savedSongs);
-    } catch(e) {
-      songs = [];
-    }
+    renderPeople();
+
+    renderPlans();
+
+    renderFeed();
+
+    renderChats();
+
+    registerServiceWorker();
+
   }
-
-  registerServiceWorker();
-
-});
+);
 
 
 /* =========================
@@ -1662,20 +2186,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function registerServiceWorker() {
 
-  if (!("serviceWorker" in navigator)) return;
+  if (!("serviceWorker" in navigator)) {
+    return;
+  }
 
   try {
 
     const registration =
-      await navigator.serviceWorker.register("./sw.js", {
-        updateViaCache: "none"
-      });
+      await navigator.serviceWorker.register(
+        "./sw.js",
+        {
+          updateViaCache:"none"
+        }
+      );
 
     registration.update();
 
   } catch(error) {
 
-    console.log("Service Worker:", error);
+    console.log(
+      "Service Worker:",
+      error
+    );
 
   }
 
@@ -1688,28 +2220,162 @@ async function registerServiceWorker() {
 
 function showScreen(id) {
 
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.remove("active");
-  });
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen => {
 
-  const target = document.getElementById(id);
+      screen.classList.remove("active");
+
+    });
+
+
+  const target =
+    document.getElementById(id);
+
 
   if (target) {
+
     target.classList.add("active");
+
   }
 
-  document.querySelectorAll(".nav-item").forEach(item => {
 
-    item.classList.toggle(
-      "active",
-      item.dataset.screen === id
-    );
+  document
+    .querySelectorAll(".nav-item")
+    .forEach(item => {
 
-  });
+      item.classList.toggle(
+        "active",
+        item.dataset.screen === id
+      );
+
+    });
+
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* =========================
+   INTERESTS
+========================= */
+
+function renderInterests() {
+
+  const container =
+    document.getElementById("interestGrid");
+
+  if (!container) return;
+
+
+  container.innerHTML =
+    interests.map(item => `
+
+      <div
+        class="interest-card ${
+          selectedInterest === item.id
+            ? "selected-interest"
+            : ""
+        }"
+        onclick="selectInterest('${item.id}')"
+      >
+
+        <img
+          src="${item.image}"
+          alt="${escapeAttr(item.name)}"
+          loading="lazy"
+        >
+
+        <div class="interest-overlay">
+
+          <strong>
+            ${item.icon} ${escapeHTML(item.name)}
+          </strong>
+
+          <span>
+            ${escapeHTML(item.description)}
+          </span>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function selectInterest(id) {
+
+  const interest =
+    interests.find(
+      item => item.id === id
+    );
+
+  if (!interest) return;
+
+
+  selectedInterest = id;
+
+  renderInterests();
+
+
+  const filtered =
+    defaultPeople.filter(person =>
+
+      person.interests.some(
+        value =>
+          value.toLowerCase() ===
+          interest.name.toLowerCase()
+      )
+
+    );
+
+
+  const result =
+    document.getElementById("categoryResult");
+
+
+  result.style.display = "block";
+
+
+  result.innerHTML = `
+
+    <div class="category-banner">
+
+      <img
+        src="${interest.image}"
+        alt="${escapeAttr(interest.name)}"
+      >
+
+      <div class="category-banner-content">
+
+        <h2>
+          ${interest.icon} ${escapeHTML(interest.name)}
+        </h2>
+
+        <p>
+          ${filtered.length}
+          conexiones encontradas
+        </p>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  renderPeople(filtered);
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
   });
 
 }
@@ -1719,123 +2385,179 @@ function showScreen(id) {
    PEOPLE
 ========================= */
 
-function renderPeople(list = defaultPeople) {
+function renderPeople(
+  list = defaultPeople
+) {
 
   const container =
-    document.getElementById("peopleContainer");
+    document.getElementById(
+      "peopleContainer"
+    );
 
   if (!container) return;
+
 
   if (!list.length) {
 
     container.innerHTML = `
+
       <div class="card empty">
-        No hemos encontrado personas.
+
+        No hemos encontrado
+        conexiones para esta categoría.
+
       </div>
+
     `;
 
     return;
 
   }
 
-  container.innerHTML = list.map(person => `
 
-    <article class="card person-card">
+  container.innerHTML =
+    list.map(person => `
 
-      <div class="person-cover">
-        <img
-          src="${person.cover}"
-          alt=""
-          loading="lazy"
-        >
+      <article class="card person-card">
 
-        <img
-          class="avatar-large"
-          src="${person.photo}"
-          alt="${person.name}"
-          loading="lazy"
-        >
-      </div>
+        <div class="person-cover">
 
-      <div class="person-body">
-
-        <div class="person-name">
-          ${escapeHTML(person.name)}
-          <span class="online"></span>
-        </div>
-
-        <div class="person-meta">
-          ${person.age} años · ${escapeHTML(person.city)}
-        </div>
-
-        <div class="chips">
-
-          ${person.interests.map(
-            interest =>
-            `<span class="chip">${escapeHTML(interest)}</span>`
-          ).join("")}
-
-        </div>
-
-        <p
-          style="
-            font-size:13px;
-            line-height:1.45;
-            color:var(--muted);
-            margin:8px 0 14px;
-          "
-        >
-          ${escapeHTML(person.bio)}
-        </p>
-
-        <div class="actions-row">
-
-          <button
-            class="primary-btn"
-            onclick="openPersonChat(${person.id})"
+          <img
+            src="${person.cover}"
+            alt=""
+            loading="lazy"
           >
-            💬 Chatear
-          </button>
 
-          <button
-            class="secondary-btn"
-            onclick="likePerson(${person.id})"
+          <img
+            class="avatar-large"
+            src="${person.photo}"
+            alt="${escapeAttr(person.name)}"
+            loading="lazy"
           >
-            ♡
-          </button>
 
         </div>
 
-      </div>
 
-    </article>
+        <div class="person-body">
 
-  `).join("");
+          <div class="person-name">
+
+            ${escapeHTML(person.name)}
+
+            <span class="online"></span>
+
+          </div>
+
+
+          <div class="person-meta">
+
+            ${person.age} años ·
+            ${escapeHTML(person.city)}
+
+          </div>
+
+
+          <div class="chips">
+
+            ${person.interests.map(
+              interest =>
+                `<span class="chip">
+                  ${escapeHTML(interest)}
+                </span>`
+            ).join("")}
+
+          </div>
+
+
+          <p
+            style="
+              font-size:13px;
+              line-height:1.45;
+              color:var(--muted);
+              margin:8px 0 14px;
+            "
+          >
+
+            ${escapeHTML(person.bio)}
+
+          </p>
+
+
+          <div class="actions-row">
+
+            <button
+              class="primary-btn"
+              onclick="openPersonChat(${person.id})"
+            >
+              💬 Chatear
+            </button>
+
+
+            <button
+              class="secondary-btn"
+              onclick="likePerson(${person.id})"
+            >
+              ♡
+            </button>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    `).join("");
 
 }
 
 
 function filterPeople() {
 
+  const input =
+    document.getElementById(
+      "peopleSearch"
+    );
+
   const query =
-    document
-      .getElementById("peopleSearch")
-      .value
+    input.value
       .toLowerCase()
       .trim();
 
-  const filtered = defaultPeople.filter(person => {
 
-    const text = [
-      person.name,
-      person.city,
-      person.bio,
-      ...person.interests
-    ].join(" ").toLowerCase();
+  if (!query) {
 
-    return text.includes(query);
+    selectedInterest = null;
 
-  });
+    renderInterests();
+
+    document.getElementById(
+      "categoryResult"
+    ).style.display = "none";
+
+    renderPeople();
+
+    return;
+
+  }
+
+
+  const filtered =
+    defaultPeople.filter(person => {
+
+      const text = [
+
+        person.name,
+        person.city,
+        person.bio,
+        ...person.interests
+
+      ].join(" ").toLowerCase();
+
+
+      return text.includes(query);
+
+    });
+
 
   renderPeople(filtered);
 
@@ -1845,11 +2567,16 @@ function filterPeople() {
 function likePerson(id) {
 
   const person =
-    defaultPeople.find(p => p.id === id);
+    defaultPeople.find(
+      p => p.id === id
+    );
 
   if (!person) return;
 
-  showToast(`Has conectado con ${person.name} ❤️`);
+
+  showToast(
+    `Has conectado con ${person.name} ❤️`
+  );
 
 }
 
@@ -1861,98 +2588,125 @@ function likePerson(id) {
 function renderPlans() {
 
   const container =
-    document.getElementById("plansContainer");
+    document.getElementById(
+      "plansContainer"
+    );
 
   if (!container) return;
 
-  container.innerHTML = plans.map((plan, index) => `
 
-    <article class="card plan-card">
+  container.innerHTML =
+    plans.map((plan,index) => `
 
-      <div class="plan-top">
+      <article class="card plan-card">
 
-        <div class="plan-icon">
-          ${plan.icon}
+        <div class="plan-top">
+
+          <div class="plan-icon">
+            ${escapeHTML(plan.icon)}
+          </div>
+
+          <div class="plan-info">
+
+            <h4>
+              ${escapeHTML(plan.title)}
+            </h4>
+
+            <p>
+              ${escapeHTML(plan.description)}
+            </p>
+
+          </div>
+
         </div>
 
-        <div class="plan-info">
 
-          <h4>
-            ${escapeHTML(plan.title)}
-          </h4>
+        <div class="plan-details">
 
-          <p>
-            ${escapeHTML(plan.description)}
-          </p>
+          <span class="detail">
+            📍 ${escapeHTML(plan.location)}
+          </span>
+
+          <span class="detail">
+            🕖 ${escapeHTML(plan.time)}
+          </span>
+
+          <span class="detail">
+            👥 ${plan.people} personas
+          </span>
 
         </div>
 
-      </div>
 
-      <div class="plan-details">
+        <div class="actions-row">
 
-        <span class="detail">
-          📍 ${escapeHTML(plan.location)}
-        </span>
+          <button
+            class="primary-btn"
+            onclick="joinPlanByIndex(${index})"
+          >
+            Me interesa
+          </button>
 
-        <span class="detail">
-          🕖 ${escapeHTML(plan.time)}
-        </span>
 
-        <span class="detail">
-          👥 ${plan.people} personas
-        </span>
+          <button
+            class="secondary-btn"
+            onclick="sharePlan(${index})"
+          >
+            ↗
+          </button>
 
-      </div>
+        </div>
 
-      <div class="actions-row">
+      </article>
 
-        <button
-          class="primary-btn"
-          onclick="joinPlan('${escapeAttr(plan.title)}')"
-        >
-          Me interesa
-        </button>
+    `).join("");
 
-        <button
-          class="secondary-btn"
-          onclick="sharePlan(${index})"
-        >
-          ↗
-        </button>
+}
 
-      </div>
 
-    </article>
+function joinPlanByIndex(index) {
 
-  `).join("");
+  const plan =
+    plans[index];
+
+  if (!plan) return;
+
+  joinPlan(plan.title);
 
 }
 
 
 function joinPlan(title) {
 
-  showToast(`Te has apuntado a "${title}"`);
+  showToast(
+    `Te has apuntado a "${title}"`
+  );
 
 }
 
 
 function sharePlan(index) {
 
-  const plan = plans[index];
+  const plan =
+    plans[index];
 
   if (!plan) return;
+
 
   if (navigator.share) {
 
     navigator.share({
-      title: plan.title,
-      text: plan.description
+
+      title:plan.title,
+      text:plan.description
+
     }).catch(() => {});
 
   } else {
 
-    showToast("Plan preparado para compartir");
+    showToast(
+      "Plan preparado para compartir"
+    );
 
   }
 
@@ -1964,39 +2718,98 @@ function openPlanCreator() {
   openModal(`
 
     <div class="modal-head">
-      <h3>Crear plan</h3>
-      <button class="close" onclick="closeModal()">×</button>
+
+      <h3>
+        Crear plan
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Nombre</label>
-      <input id="planTitle" placeholder="Ej. Pádel esta tarde">
-    </div>
 
     <div class="form-group">
-      <label>Descripción</label>
+
+      <label>
+        Nombre
+      </label>
+
+      <input
+        id="planTitle"
+        placeholder="Ej. Pádel esta tarde"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Descripción
+      </label>
+
       <textarea
         id="planDescription"
         placeholder="¿Qué quieres hacer?"
       ></textarea>
+
     </div>
+
 
     <div class="form-group">
-      <label>Ubicación</label>
-      <input id="planLocation" placeholder="Tarragona">
+
+      <label>
+        Ubicación
+      </label>
+
+      <input
+        id="planLocation"
+        placeholder="Tarragona"
+      >
+
     </div>
+
 
     <div class="form-group">
-      <label>Hora</label>
-      <input id="planTime" type="time">
+
+      <label>
+        Hora
+      </label>
+
+      <input
+        id="planTime"
+        type="time"
+      >
+
     </div>
+
 
     <div class="form-group">
-      <label>Personas</label>
-      <input id="planPeople" type="number" min="1" value="4">
+
+      <label>
+        Personas
+      </label>
+
+      <input
+        id="planPeople"
+        type="number"
+        min="1"
+        value="4"
+      >
+
     </div>
 
-    <button class="primary-btn" style="width:100%" onclick="createPlan()">
+
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="createPlan()"
+    >
       Crear plan
     </button>
 
@@ -2008,47 +2821,86 @@ function openPlanCreator() {
 function createPlan() {
 
   const title =
-    document.getElementById("planTitle").value.trim();
+    document
+      .getElementById("planTitle")
+      .value
+      .trim();
+
 
   const description =
-    document.getElementById("planDescription").value.trim();
+    document
+      .getElementById("planDescription")
+      .value
+      .trim();
+
 
   const location =
-    document.getElementById("planLocation").value.trim();
+    document
+      .getElementById("planLocation")
+      .value
+      .trim();
+
 
   const time =
-    document.getElementById("planTime").value;
+    document
+      .getElementById("planTime")
+      .value;
+
 
   const people =
-    document.getElementById("planPeople").value;
+    document
+      .getElementById("planPeople")
+      .value;
+
 
   if (!title) {
 
-    showToast("Ponle un nombre al plan");
+    showToast(
+      "Ponle un nombre al plan"
+    );
 
     return;
 
   }
 
+
   plans.unshift({
-    title,
-    description: description || "Nuevo plan creado en NEXO.",
-    icon: "✨",
-    location: location || "Por decidir",
-    time: time || "Por decidir",
-    people: Number(people) || 1
+
+    title:title,
+
+    description:
+      description ||
+      "Nuevo plan creado en NEXO.",
+
+    icon:"✨",
+
+    location:
+      location ||
+      "Por decidir",
+
+    time:
+      time ||
+      "Por decidir",
+
+    people:
+      Number(people) || 1
+
   });
+
 
   localStorage.setItem(
     STORAGE.plans,
     JSON.stringify(plans)
   );
 
+
   renderPlans();
 
   closeModal();
 
-  showToast("Plan creado correctamente");
+  showToast(
+    "Plan creado correctamente"
+  );
 
 }
 
@@ -2060,84 +2912,108 @@ function createPlan() {
 function renderFeed() {
 
   const container =
-    document.getElementById("feedContainer");
+    document.getElementById(
+      "feedContainer"
+    );
 
   if (!container) return;
 
-  container.innerHTML = posts.map((post, index) => `
 
-    <article class="card feed-post">
+  container.innerHTML =
+    posts.map((post,index) => `
 
-      <div class="post-header">
-
-        <img
-          class="avatar"
-          src="${post.avatar}"
-          alt=""
-        >
-
-        <div class="post-user">
-          <strong>${escapeHTML(post.user)}</strong>
-          <span>Ahora · NEXO</span>
-        </div>
-
-        <button
-          class="icon-btn"
-          style="width:35px;height:35px"
-          onclick="showToast('Opciones de publicación')"
-        >
-          ···
-        </button>
-
-      </div>
-
-      <img
-        class="post-image"
-        src="${post.image}"
-        alt="Publicación"
-        loading="lazy"
+      <article
+        class="card feed-post"
       >
 
-      <div class="post-actions">
+        <div class="post-header">
 
-        <button
-          class="post-action"
-          onclick="likePost(${index})"
+          <img
+            class="avatar"
+            src="${post.avatar}"
+            alt=""
+          >
+
+          <div class="post-user">
+
+            <strong>
+              ${escapeHTML(post.user)}
+            </strong>
+
+            <span>
+              Ahora · NEXO
+            </span>
+
+          </div>
+
+
+          <button
+            class="icon-btn"
+            style="width:35px;height:35px"
+            onclick="showToast('Opciones de publicación')"
+          >
+            ···
+          </button>
+
+        </div>
+
+
+        <img
+          class="post-image"
+          src="${post.image}"
+          alt="Publicación"
+          loading="lazy"
         >
-          ${post.liked ? "❤️" : "♡"}
-        </button>
 
-        <button
-          class="post-action"
-          onclick="showToast('Comentarios próximamente')"
-        >
-          💬
-        </button>
 
-        <button
-          class="post-action"
-          onclick="sharePost(${index})"
-        >
-          ↗
-        </button>
+        <div class="post-actions">
 
-      </div>
+          <button
+            class="post-action"
+            onclick="likePost(${index})"
+          >
+            ${
+              post.liked
+                ? "❤️"
+                : "♡"
+            }
+          </button>
 
-      <div class="post-caption">
 
-        <strong>
-          ${post.likes || 0} me gusta
-        </strong>
+          <button
+            class="post-action"
+            onclick="showToast('Comentarios próximamente')"
+          >
+            💬
+          </button>
 
-        <br>
 
-        ${escapeHTML(post.caption)}
+          <button
+            class="post-action"
+            onclick="sharePost(${index})"
+          >
+            ↗
+          </button>
 
-      </div>
+        </div>
 
-    </article>
 
-  `).join("");
+        <div class="post-caption">
+
+          <strong>
+            ${post.likes || 0}
+            me gusta
+          </strong>
+
+          <br>
+
+          ${escapeHTML(post.caption)}
+
+        </div>
+
+      </article>
+
+    `).join("");
 
 }
 
@@ -2146,13 +3022,25 @@ function likePost(index) {
 
   if (!posts[index]) return;
 
-  posts[index].liked = !posts[index].liked;
+
+  posts[index].liked =
+    !posts[index].liked;
+
 
   if (posts[index].liked) {
+
     posts[index].likes++;
+
   } else {
-    posts[index].likes--;
+
+    posts[index].likes =
+      Math.max(
+        0,
+        posts[index].likes - 1
+      );
+
   }
+
 
   savePosts();
 
@@ -2163,20 +3051,27 @@ function likePost(index) {
 
 function sharePost(index) {
 
-  const post = posts[index];
+  const post =
+    posts[index];
 
   if (!post) return;
+
 
   if (navigator.share) {
 
     navigator.share({
-      title: "NEXO",
-      text: post.caption
+
+      title:"NEXO",
+
+      text:post.caption
+
     }).catch(() => {});
 
   } else {
 
-    showToast("Publicación preparada para compartir");
+    showToast(
+      "Publicación preparada para compartir"
+    );
 
   }
 
@@ -2188,22 +3083,49 @@ function openPostCreator() {
   openModal(`
 
     <div class="modal-head">
-      <h3>Nueva publicación</h3>
-      <button class="close" onclick="closeModal()">×</button>
+
+      <h3>
+        Nueva publicación
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
     </div>
 
-    <div class="form-group">
-      <label>Foto</label>
-      <input id="postImage" type="file" accept="image/*">
-    </div>
 
     <div class="form-group">
-      <label>Texto</label>
+
+      <label>
+        Foto
+      </label>
+
+      <input
+        id="postImage"
+        type="file"
+        accept="image/*"
+      >
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        Texto
+      </label>
+
       <textarea
         id="postCaption"
         placeholder="¿Qué estás pensando?"
       ></textarea>
+
     </div>
+
 
     <button
       class="primary-btn"
@@ -2221,42 +3143,75 @@ function openPostCreator() {
 function createPost() {
 
   const input =
-    document.getElementById("postImage");
+    document.getElementById(
+      "postImage"
+    );
+
 
   const caption =
-    document.getElementById("postCaption").value.trim();
+    document.getElementById(
+      "postCaption"
+    ).value.trim();
+
 
   if (!input.files.length) {
 
-    showToast("Selecciona una foto");
+    showToast(
+      "Selecciona una foto"
+    );
 
     return;
 
   }
 
-  const file = input.files[0];
 
-  const reader = new FileReader();
+  const file =
+    input.files[0];
 
-  reader.onload = function(event) {
 
-    posts.unshift({
-      user: "Fernando",
-      avatar: document.getElementById("myAvatar").src,
-      image: event.target.result,
-      caption: caption || "Nueva publicación en NEXO.",
-      likes: 0
-    });
+  const reader =
+    new FileReader();
 
-    savePosts();
 
-    renderFeed();
+  reader.onload =
+    function(event) {
 
-    closeModal();
+      posts.unshift({
 
-    showToast("Publicación creada");
+        user:
+          document.getElementById(
+            "myName"
+          ).textContent,
 
-  };
+        avatar:
+          document.getElementById(
+            "myAvatar"
+          ).src,
+
+        image:
+          event.target.result,
+
+        caption:
+          caption ||
+          "Nueva publicación en NEXO.",
+
+        likes:0
+
+      });
+
+
+      savePosts();
+
+      renderFeed();
+
+      closeModal();
+
+      showToast(
+        "Publicación creada"
+      );
+
+    };
+
 
   reader.readAsDataURL(file);
 
@@ -2280,42 +3235,48 @@ function savePosts() {
 function renderChats() {
 
   const container =
-    document.getElementById("chatList");
+    document.getElementById(
+      "chatList"
+    );
 
   if (!container) return;
 
-  container.innerHTML = chats.map((chat, index) => `
 
-    <button
-      class="chat-item"
-      onclick="openChat(${index})"
-    >
+  container.innerHTML =
+    chats.map((chat,index) => `
 
-      <img
-        class="avatar"
-        src="${chat.avatar}"
-        alt=""
+      <button
+        class="chat-item"
+        onclick="openChat(${index})"
       >
 
-      <div class="chat-content">
+        <img
+          class="avatar"
+          src="${chat.avatar}"
+          alt=""
+        >
 
-        <strong>
-          ${escapeHTML(chat.name)}
-        </strong>
 
-        <span>
-          ${escapeHTML(chat.last)}
+        <div class="chat-content">
+
+          <strong>
+            ${escapeHTML(chat.name)}
+          </strong>
+
+          <span>
+            ${escapeHTML(chat.last)}
+          </span>
+
+        </div>
+
+
+        <span class="chat-time">
+          ${escapeHTML(chat.time)}
         </span>
 
-      </div>
+      </button>
 
-      <span class="chat-time">
-        ${escapeHTML(chat.time)}
-      </span>
-
-    </button>
-
-  `).join("");
+    `).join("");
 
 }
 
@@ -2323,14 +3284,21 @@ function renderChats() {
 function openPersonChat(id) {
 
   const person =
-    defaultPeople.find(p => p.id === id);
+    defaultPeople.find(
+      p => p.id === id
+    );
 
   if (!person) return;
 
+
   activeChat = {
-    name: person.name,
-    avatar: person.photo
+
+    name:person.name,
+
+    avatar:person.photo
+
   };
+
 
   openChatWindow();
 
@@ -2339,9 +3307,11 @@ function openPersonChat(id) {
 
 function openChat(index) {
 
-  const chat = chats[index];
+  const chat =
+    chats[index];
 
   if (!chat) return;
+
 
   activeChat = chat;
 
@@ -2352,12 +3322,30 @@ function openChat(index) {
 
 function openChatWindow() {
 
+  const existing =
+    document.getElementById(
+      "chatWindow"
+    );
+
+
+  if (existing) {
+    existing.remove();
+  }
+
+
   const windowElement =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  windowElement.id = "chatWindow";
 
-  windowElement.className = "chat-window active";
+  windowElement.id =
+    "chatWindow";
+
+
+  windowElement.className =
+    "chat-window active";
+
 
   windowElement.innerHTML = `
 
@@ -2370,13 +3358,16 @@ function openChatWindow() {
         ←
       </button>
 
+
       <img
         class="avatar"
         src="${activeChat.avatar}"
         alt=""
       >
 
+
       <div>
+
         <strong>
           ${escapeHTML(activeChat.name)}
         </strong>
@@ -2395,7 +3386,11 @@ function openChatWindow() {
 
     </div>
 
-    <div class="chat-messages" id="chatMessages">
+
+    <div
+      class="chat-messages"
+      id="chatMessages"
+    >
 
       <div class="message them">
         ¡Hola! 👋
@@ -2407,13 +3402,18 @@ function openChatWindow() {
 
     </div>
 
+
     <div class="chat-compose">
 
       <input
         id="messageInput"
         placeholder="Escribe un mensaje..."
-        onkeydown="if(event.key==='Enter') sendMessage()"
+        onkeydown="
+          if(event.key==='Enter')
+          sendMessage()
+        "
       >
+
 
       <button
         class="send-btn"
@@ -2426,7 +3426,24 @@ function openChatWindow() {
 
   `;
 
-  document.body.appendChild(windowElement);
+
+  document.body.appendChild(
+    windowElement
+  );
+
+
+  const input =
+    document.getElementById(
+      "messageInput"
+    );
+
+
+  if (input) {
+    setTimeout(
+      () => input.focus(),
+      100
+    );
+  }
 
 }
 
@@ -2434,7 +3451,10 @@ function openChatWindow() {
 function closeChatWindow() {
 
   const element =
-    document.getElementById("chatWindow");
+    document.getElementById(
+      "chatWindow"
+    );
+
 
   if (element) {
     element.remove();
@@ -2446,46 +3466,79 @@ function closeChatWindow() {
 function sendMessage() {
 
   const input =
-    document.getElementById("messageInput");
+    document.getElementById(
+      "messageInput"
+    );
+
 
   const messages =
-    document.getElementById("chatMessages");
+    document.getElementById(
+      "chatMessages"
+    );
+
 
   if (!input || !messages) return;
 
-  const text = input.value.trim();
+
+  const text =
+    input.value.trim();
+
 
   if (!text) return;
 
+
   const message =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  message.className = "message me";
 
-  message.textContent = text;
+  message.className =
+    "message me";
 
-  messages.appendChild(message);
+
+  message.textContent =
+    text;
+
+
+  messages.appendChild(
+    message
+  );
+
 
   input.value = "";
 
-  messages.scrollTop = messages.scrollHeight;
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
 
   setTimeout(() => {
 
     const reply =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
-    reply.className = "message them";
+
+    reply.className =
+      "message them";
+
 
     reply.textContent =
       "¡Perfecto! 😄 Hablamos en NEXO.";
 
-    messages.appendChild(reply);
+
+    messages.appendChild(
+      reply
+    );
+
 
     messages.scrollTop =
       messages.scrollHeight;
 
-  }, 700);
+
+  },700);
 
 }
 
@@ -2500,7 +3553,9 @@ function openMusic() {
 
     <div class="modal-head">
 
-      <h3>🎵 Mi música</h3>
+      <h3>
+        🎵 Mi música
+      </h3>
 
       <button
         class="close"
@@ -2511,6 +3566,7 @@ function openMusic() {
 
     </div>
 
+
     <p
       style="
         color:var(--muted);
@@ -2519,12 +3575,16 @@ function openMusic() {
       "
     >
       Añade canciones desde tu dispositivo.
-      La música puede continuar mientras navegas por NEXO.
+      La música puede continuar mientras
+      navegas por NEXO.
     </p>
+
 
     <div class="form-group">
 
-      <label>Añadir canción</label>
+      <label>
+        Añadir canción
+      </label>
 
       <input
         id="songFile"
@@ -2535,9 +3595,14 @@ function openMusic() {
 
     </div>
 
-    <div id="songList" class="music-list"></div>
+
+    <div
+      id="songList"
+      class="music-list"
+    ></div>
 
   `);
+
 
   renderSongs();
 
@@ -2551,28 +3616,27 @@ function addSong(event) {
 
   if (!file) return;
 
+
   const url =
     URL.createObjectURL(file);
 
+
   songs.push({
-    name: file.name,
-    artist: "Mi dispositivo",
-    url
+
+    name:file.name,
+
+    artist:"Mi dispositivo",
+
+    url:url
+
   });
 
-  localStorage.setItem(
-    STORAGE.songs,
-    JSON.stringify(
-      songs.map(song => ({
-        name: song.name,
-        artist: song.artist
-      }))
-    )
-  );
 
   renderSongs();
 
-  showToast("Canción añadida");
+  showToast(
+    "Canción añadida"
+  );
 
 }
 
@@ -2580,30 +3644,39 @@ function addSong(event) {
 function renderSongs() {
 
   const container =
-    document.getElementById("songList");
+    document.getElementById(
+      "songList"
+    );
 
   if (!container) return;
+
 
   if (!songs.length) {
 
     container.innerHTML = `
+
       <div class="empty">
+
         Todavía no tienes canciones.
+
       </div>
+
     `;
 
     return;
 
   }
 
+
   container.innerHTML =
-    songs.map((song, index) => `
+    songs.map((song,index) => `
 
       <div class="song">
 
         <div class="song-cover">
           ♫
         </div>
+
 
         <div class="song-info">
 
@@ -2612,10 +3685,14 @@ function renderSongs() {
           </strong>
 
           <span>
-            ${escapeHTML(song.artist || "NEXO Music")}
+            ${escapeHTML(
+              song.artist ||
+              "NEXO Music"
+            )}
           </span>
 
         </div>
+
 
         <button
           class="music-control"
@@ -2633,37 +3710,58 @@ function renderSongs() {
 
 function playSong(index) {
 
-  const song = songs[index];
+  const song =
+    songs[index];
 
   if (!song) return;
+
 
   if (!song.url) {
 
     showToast(
-      "Vuelve a seleccionar esta canción desde tu dispositivo"
+      "Selecciona de nuevo esta canción"
     );
 
     return;
 
   }
 
-  currentSongIndex = index;
 
-  audio.src = song.url;
+  currentSongIndex =
+    index;
 
-  audio.play().catch(() => {});
+
+  audio.src =
+    song.url;
+
+
+  audio.play().catch(
+    () => {}
+  );
+
 
   document
-    .getElementById("musicPlayer")
+    .getElementById(
+      "musicPlayer"
+    )
     .classList.add("show");
 
-  document
-    .getElementById("currentSong")
-    .textContent = song.name;
 
   document
-    .getElementById("currentArtist")
-    .textContent = song.artist || "NEXO Music";
+    .getElementById(
+      "currentSong"
+    )
+    .textContent =
+      song.name;
+
+
+  document
+    .getElementById(
+      "currentArtist"
+    )
+    .textContent =
+      song.artist ||
+      "NEXO Music";
 
 }
 
@@ -2673,19 +3771,30 @@ function toggleAudio() {
   if (!audio.src) {
 
     if (songs.length) {
+
       playSong(0);
+
     } else {
+
       openMusic();
+
     }
 
     return;
 
   }
 
+
   if (audio.paused) {
-    audio.play().catch(() => {});
+
+    audio.play().catch(
+      () => {}
+    );
+
   } else {
+
     audio.pause();
+
   }
 
 }
@@ -2700,16 +3809,24 @@ function stopAudio() {
 }
 
 
-audio.addEventListener("ended", () => {
+audio.addEventListener(
+  "ended",
+  () => {
 
-  if (currentSongIndex >= 0 &&
-      currentSongIndex < songs.length - 1) {
+    if (
+      currentSongIndex >= 0 &&
+      currentSongIndex <
+      songs.length - 1
+    ) {
 
-    playSong(currentSongIndex + 1);
+      playSong(
+        currentSongIndex + 1
+      );
+
+    }
 
   }
-
-});
+);
 
 
 /* =========================
@@ -2722,7 +3839,9 @@ function openAI() {
 
     <div class="modal-head">
 
-      <h3>✦ NEXO IA</h3>
+      <h3>
+        ✦ NEXO IA
+      </h3>
 
       <button
         class="close"
@@ -2733,11 +3852,15 @@ function openAI() {
 
     </div>
 
+
     <div class="ai-box">
 
       <div class="ai-title">
+
         ✦ Tu asistente NEXO
+
       </div>
+
 
       <div
         id="aiAnswer"
@@ -2750,12 +3873,15 @@ function openAI() {
 
     </div>
 
+
     <div
       class="form-group"
       style="margin-top:14px"
     >
 
-      <label>¿Qué necesitas?</label>
+      <label>
+        ¿Qué necesitas?
+      </label>
 
       <textarea
         id="aiQuestion"
@@ -2763,6 +3889,7 @@ function openAI() {
       ></textarea>
 
     </div>
+
 
     <button
       class="primary-btn"
@@ -2780,15 +3907,25 @@ function openAI() {
 function askAI() {
 
   const input =
-    document.getElementById("aiQuestion");
+    document.getElementById(
+      "aiQuestion"
+    );
+
 
   const answer =
-    document.getElementById("aiAnswer");
+    document.getElementById(
+      "aiAnswer"
+    );
+
 
   if (!input || !answer) return;
 
+
   const question =
-    input.value.trim().toLowerCase();
+    input.value
+      .trim()
+      .toLowerCase();
+
 
   if (!question) {
 
@@ -2799,8 +3936,10 @@ function askAI() {
 
   }
 
+
   let response =
     "Puedo ayudarte a organizarlo dentro de NEXO.";
+
 
   if (
     question.includes("plan") ||
@@ -2831,16 +3970,36 @@ function askAI() {
   ) {
 
     response =
-      "Abre Mi música y añade archivos de audio desde tu dispositivo. Después podrás reproducirlos mientras navegas por NEXO.";
+      "Abre Mi música y añade archivos de audio desde tu dispositivo.";
 
-  } else {
+  } else if (
+    question.includes("correr") ||
+    question.includes("running")
+  ) {
 
     response =
-      "Buena idea. En esta versión puedo ayudarte con planes, perfiles, publicaciones, música, chats y organización de NEXO. La conexión a una IA online real se puede añadir posteriormente mediante un backend seguro.";
+      "Puedes entrar en Conectar → Correr y descubrir personas interesadas en running.";
+
+  } else if (
+    question.includes("cine")
+  ) {
+
+    response =
+      "En Conectar puedes seleccionar Cine y descubrir personas con ese interés.";
+
+  } else if (
+    question.includes("comida") ||
+    question.includes("comer")
+  ) {
+
+    response =
+      "Prueba la categoría Comida para encontrar personas interesadas en gastronomía.";
 
   }
 
-  answer.textContent = response;
+
+  answer.textContent =
+    response;
 
 }
 
@@ -2855,7 +4014,9 @@ function openProfileEditor() {
 
     <div class="modal-head">
 
-      <h3>Editar perfil</h3>
+      <h3>
+        Editar perfil
+      </h3>
 
       <button
         class="close"
@@ -2866,32 +4027,45 @@ function openProfileEditor() {
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Nombre</label>
+      <label>
+        Nombre
+      </label>
 
       <input
         id="profileName"
         value="${escapeAttr(
-          document.getElementById("myName").textContent
+          document
+            .getElementById("myName")
+            .textContent
         )}"
       >
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Descripción</label>
+      <label>
+        Descripción
+      </label>
 
       <textarea id="profileBio">${escapeHTML(
-        document.getElementById("myBio").textContent
+        document
+          .getElementById("myBio")
+          .textContent
       )}</textarea>
 
     </div>
 
+
     <div class="form-group">
 
-      <label>Foto de perfil</label>
+      <label>
+        Foto de perfil
+      </label>
 
       <input
         id="profilePhoto"
@@ -2900,6 +4074,7 @@ function openProfileEditor() {
       >
 
     </div>
+
 
     <button
       class="primary-btn"
@@ -2917,65 +4092,131 @@ function openProfileEditor() {
 function saveProfile() {
 
   const name =
-    document.getElementById("profileName").value.trim();
+    document
+      .getElementById(
+        "profileName"
+      )
+      .value.trim();
+
 
   const bio =
-    document.getElementById("profileBio").value.trim();
+    document
+      .getElementById(
+        "profileBio"
+      )
+      .value.trim();
+
 
   const file =
-    document.getElementById("profilePhoto").files[0];
+    document
+      .getElementById(
+        "profilePhoto"
+      )
+      .files[0];
 
-  document.getElementById("myName").textContent =
+
+  const finalName =
     name || "Fernando";
 
-  document.getElementById("myBio").textContent =
+
+  const finalBio =
     bio || "Explorando NEXO.";
+
+
+  document
+    .getElementById(
+      "myName"
+    )
+    .textContent =
+      finalName;
+
+
+  document
+    .getElementById(
+      "myBio"
+    )
+    .textContent =
+      finalBio;
+
 
   if (file) {
 
-    const reader = new FileReader();
+    const reader =
+      new FileReader();
 
-    reader.onload = event => {
 
-      document.getElementById("myAvatar").src =
-        event.target.result;
+    reader.onload =
+      event => {
 
-      saveProfileData(
-        name,
-        bio,
-        event.target.result
-      );
+        document
+          .getElementById(
+            "myAvatar"
+          )
+          .src =
+            event.target.result;
 
-    };
 
-    reader.readAsDataURL(file);
+        saveProfileData(
+          finalName,
+          finalBio,
+          event.target.result
+        );
+
+      };
+
+
+    reader.readAsDataURL(
+      file
+    );
 
   } else {
 
     saveProfileData(
-      name,
-      bio,
-      document.getElementById("myAvatar").src
+
+      finalName,
+
+      finalBio,
+
+      document
+        .getElementById(
+          "myAvatar"
+        )
+        .src
+
     );
 
   }
 
+
   closeModal();
 
-  showToast("Perfil actualizado");
+  showToast(
+    "Perfil actualizado"
+  );
 
 }
 
 
-function saveProfileData(name, bio, photo) {
+function saveProfileData(
+  name,
+  bio,
+  photo
+) {
 
   localStorage.setItem(
+
     STORAGE.profile,
+
     JSON.stringify({
-      name,
-      bio,
-      photo
+
+      name:name,
+
+      bio:bio,
+
+      photo:photo
+
     })
+
   );
 
 }
@@ -2984,36 +4225,65 @@ function saveProfileData(name, bio, photo) {
 function loadProfile() {
 
   const data =
-    localStorage.getItem(STORAGE.profile);
+    localStorage.getItem(
+      STORAGE.profile
+    );
+
 
   if (!data) return;
+
 
   try {
 
     const profile =
       JSON.parse(data);
 
+
     if (profile.name) {
-      document.getElementById("myName").textContent =
-        profile.name;
+
+      document
+        .getElementById(
+          "myName"
+        )
+        .textContent =
+          profile.name;
+
     }
+
 
     if (profile.bio) {
-      document.getElementById("myBio").textContent =
-        profile.bio;
+
+      document
+        .getElementById(
+          "myBio"
+        )
+        .textContent =
+          profile.bio;
+
     }
+
 
     if (profile.photo) {
-      document.getElementById("myAvatar").src =
-        profile.photo;
+
+      document
+        .getElementById(
+          "myAvatar"
+        )
+        .src =
+          profile.photo;
+
     }
 
-  } catch(e) {}
+  } catch(e) {
+
+    console.log(
+      "Perfil:",
+      e
+    );
+
+  }
 
 }
-
-
-loadProfile();
 
 
 /* =========================
@@ -3026,7 +4296,9 @@ function openSearch() {
 
     <div class="modal-head">
 
-      <h3>Buscar en NEXO</h3>
+      <h3>
+        Buscar en NEXO
+      </h3>
 
       <button
         class="close"
@@ -3037,34 +4309,91 @@ function openSearch() {
 
     </div>
 
+
     <div class="search-box">
 
       <input
         id="globalSearch"
         autofocus
         placeholder="Personas, planes, música..."
+        oninput="globalSearch(this.value)"
       >
 
     </div>
 
-    <div class="grid">
 
-      <div class="tile" onclick="closeModal();showScreen('connect')">
-        <div class="tile-icon purple">🤝</div>
-        <h4>Personas</h4>
-        <p>Buscar conexiones.</p>
-      </div>
+    <div id="globalResults">
 
-      <div class="tile" onclick="closeModal();showScreen('plans')">
-        <div class="tile-icon blue">📅</div>
-        <h4>Planes</h4>
-        <p>Buscar actividades.</p>
-      </div>
+      <div class="grid">
 
-      <div class="tile" onclick="closeModal();openMusic()">
-        <div class="tile-icon orange">🎵</div>
-        <h4>Música</h4>
-        <p>Tu biblioteca.</p>
+        <div
+          class="tile"
+          onclick="
+            closeModal();
+            showScreen('connect')
+          "
+        >
+
+          <div class="tile-icon purple">
+            🤝
+          </div>
+
+          <h4>
+            Personas
+          </h4>
+
+          <p>
+            Buscar conexiones.
+          </p>
+
+        </div>
+
+
+        <div
+          class="tile"
+          onclick="
+            closeModal();
+            showScreen('plans')
+          "
+        >
+
+          <div class="tile-icon blue">
+            📅
+          </div>
+
+          <h4>
+            Planes
+          </h4>
+
+          <p>
+            Buscar actividades.
+          </p>
+
+        </div>
+
+
+        <div
+          class="tile"
+          onclick="
+            closeModal();
+            openMusic()
+          "
+        >
+
+          <div class="tile-icon orange">
+            🎵
+          </div>
+
+          <h4>
+            Música
+          </h4>
+
+          <p>
+            Tu biblioteca.
+          </p>
+
+        </div>
+
       </div>
 
     </div>
@@ -3074,13 +4403,178 @@ function openSearch() {
 }
 
 
+function globalSearch(value) {
+
+  const query =
+    value
+      .toLowerCase()
+      .trim();
+
+
+  const results =
+    document.getElementById(
+      "globalResults"
+    );
+
+
+  if (!query) return;
+
+
+  const people =
+    defaultPeople.filter(person => {
+
+      const text = [
+
+        person.name,
+        person.city,
+        person.bio,
+        ...person.interests
+
+      ].join(" ").toLowerCase();
+
+
+      return text.includes(query);
+
+    });
+
+
+  const matchingInterests =
+    interests.filter(item =>
+
+      [
+        item.name,
+        item.description
+      ]
+        .join(" ")
+        .toLowerCase()
+        .includes(query)
+
+    );
+
+
+  results.innerHTML = `
+
+    ${
+      matchingInterests.length
+        ? `
+          <h4>
+            Intereses
+          </h4>
+
+          <div class="interest-grid">
+
+            ${matchingInterests.map(
+              item => `
+
+                <div
+                  class="interest-card"
+                  onclick="
+                    closeModal();
+                    showScreen('connect');
+                    setTimeout(
+                      () =>
+                      selectInterest('${item.id}'),
+                      100
+                    );
+                  "
+                >
+
+                  <img
+                    src="${item.image}"
+                    alt=""
+                  >
+
+                  <div class="interest-overlay">
+
+                    <strong>
+                      ${item.icon}
+                      ${escapeHTML(item.name)}
+                    </strong>
+
+                  </div>
+
+                </div>
+
+              `
+            ).join("")}
+
+          </div>
+        `
+        : ""
+    }
+
+
+    <h4>
+      Personas
+    </h4>
+
+
+    ${
+      people.length
+        ? people.map(
+            person => `
+
+              <div
+                class="chat-item"
+                style="margin-bottom:8px"
+                onclick="
+                  closeModal();
+                  showScreen('connect');
+                  setTimeout(
+                    () =>
+                    openPersonChat(${person.id}),
+                    100
+                  );
+                "
+              >
+
+                <img
+                  class="avatar"
+                  src="${person.photo}"
+                  alt=""
+                >
+
+                <div class="chat-content">
+
+                  <strong>
+                    ${escapeHTML(person.name)}
+                  </strong>
+
+                  <span>
+                    ${escapeHTML(person.city)}
+                  </span>
+
+                </div>
+
+              </div>
+
+            `
+          ).join("")
+        : `
+          <div class="empty">
+            No hay resultados.
+          </div>
+        `
+    }
+
+  `;
+
+}
+
+
+/* =========================
+   NOTIFICATIONS
+========================= */
+
 function openNotifications() {
 
   openModal(`
 
     <div class="modal-head">
 
-      <h3>Notificaciones</h3>
+      <h3>
+        Notificaciones
+      </h3>
 
       <button
         class="close"
@@ -3091,22 +4585,30 @@ function openNotifications() {
 
     </div>
 
-    <div class="card" style="padding:14px">
 
-      ❤️ A Laura le ha gustado tu publicación.
-
+    <div
+      class="card"
+      style="padding:14px"
+    >
+      ❤️ A Laura le ha gustado
+      tu publicación.
     </div>
 
-    <div class="card" style="padding:14px">
 
+    <div
+      class="card"
+      style="padding:14px"
+    >
       🤝 Tienes una nueva conexión.
-
     </div>
 
-    <div class="card" style="padding:14px">
 
-      📅 Hay un nuevo plan cerca de ti.
-
+    <div
+      class="card"
+      style="padding:14px"
+    >
+      📅 Hay un nuevo plan cerca
+      de ti.
     </div>
 
   `);
@@ -3124,7 +4626,9 @@ function openSettings() {
 
     <div class="modal-head">
 
-      <h3>Ajustes</h3>
+      <h3>
+        Ajustes
+      </h3>
 
       <button
         class="close"
@@ -3135,24 +4639,49 @@ function openSettings() {
 
     </div>
 
-    <button
-      class="profile-option"
-      style="width:100%"
-      onclick="toggleTheme();closeModal()"
-    >
-      <span class="option-icon">🌙</span>
-      <strong>Modo claro / oscuro</strong>
-      <span>›</span>
-    </button>
 
     <button
       class="profile-option"
-      style="width:100%; margin-top:8px"
+      style="width:100%"
+      onclick="
+        toggleTheme();
+        closeModal()
+      "
+    >
+
+      <span class="option-icon">
+        🌙
+      </span>
+
+      <strong>
+        Modo claro / oscuro
+      </strong>
+
+      <span>
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="profile-option"
+      style="width:100%;margin-top:8px"
       onclick="clearLocalData()"
     >
-      <span class="option-icon">🗑️</span>
-      <strong>Borrar datos locales</strong>
-      <span>›</span>
+
+      <span class="option-icon">
+        🗑️
+      </span>
+
+      <strong>
+        Borrar datos locales
+      </strong>
+
+      <span>
+        ›
+      </span>
+
     </button>
 
   `);
@@ -3184,39 +4713,78 @@ function clearLocalData() {
 function loadTheme() {
 
   const theme =
-    localStorage.getItem(STORAGE.theme);
+    localStorage.getItem(
+      STORAGE.theme
+    );
+
 
   if (theme === "dark") {
 
-    document.body.classList.add("dark");
+    document.body.classList.add(
+      "dark"
+    );
 
   }
+
+
+  updateThemeMeta();
 
 }
 
 
 function toggleTheme() {
 
-  document.body.classList.toggle("dark");
+  document.body.classList.toggle(
+    "dark"
+  );
+
 
   const dark =
-    document.body.classList.contains("dark");
+    document.body.classList.contains(
+      "dark"
+    );
+
 
   localStorage.setItem(
     STORAGE.theme,
-    dark ? "dark" : "light"
+    dark
+      ? "dark"
+      : "light"
   );
+
+
+  updateThemeMeta();
+
+
+  showToast(
+    dark
+      ? "Modo oscuro activado"
+      : "Modo claro activado"
+  );
+
+}
+
+
+function updateThemeMeta() {
 
   const themeMeta =
     document.querySelector(
       'meta[name="theme-color"]'
     );
 
+
   if (themeMeta) {
 
     themeMeta.setAttribute(
+
       "content",
-      dark ? "#090b10" : "#ffffff"
+
+      document.body.classList.contains(
+        "dark"
+      )
+        ? "#090b10"
+        : "#ffffff"
+
     );
 
   }
@@ -3231,12 +4799,24 @@ function toggleTheme() {
 function openModal(content) {
 
   const modal =
-    document.getElementById("modal");
+    document.getElementById(
+      "modal"
+    );
 
-  document.getElementById("modalContent").innerHTML =
+
+  document.getElementById(
+    "modalContent"
+  ).innerHTML =
     content;
 
-  modal.classList.add("active");
+
+  modal.classList.add(
+    "active"
+  );
+
+
+  document.body.style.overflow =
+    "hidden";
 
 }
 
@@ -3245,15 +4825,24 @@ function closeModal() {
 
   document
     .getElementById("modal")
-    .classList.remove("active");
+    .classList.remove(
+      "active"
+    );
+
+
+  document.body.style.overflow =
+    "";
 
 }
 
 
-function closeModalOutside(event) {
+function closeModalOutside(
+  event
+) {
 
   if (
-    event.target.id === "modal"
+    event.target.id ===
+    "modal"
   ) {
 
     closeModal();
@@ -3267,47 +4856,87 @@ function closeModalOutside(event) {
    TOAST
 ========================= */
 
-let toastTimer;
-
-function showToast(message) {
+function showToast(
+  message
+) {
 
   const toast =
-    document.getElementById("toast");
+    document.getElementById(
+      "toast"
+    );
 
-  toast.textContent = message;
 
-  toast.classList.add("show");
+  toast.textContent =
+    message;
 
-  clearTimeout(toastTimer);
 
-  toastTimer = setTimeout(() => {
+  toast.classList.add(
+    "show"
+  );
 
-    toast.classList.remove("show");
 
-  }, 2300);
+  clearTimeout(
+    toastTimer
+  );
+
+
+  toastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+      },
+      2300
+    );
 
 }
 
 
 /* =========================
-   SECURITY / HTML
+   SECURITY
 ========================= */
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
-  return String(value ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return String(
+    value ?? ""
+  )
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-function escapeAttr(value) {
+function escapeAttr(
+  value
+) {
 
-  return escapeHTML(value);
+  return escapeHTML(
+    value
+  );
 
 }
 
