@@ -1,18 +1,26 @@
 {
   "name": "CONECTA",
   "short_name": "CONECTA",
-  "description": "Conecta personas, intereses y planes.",
-  "start_url": "./index.html",
+  "description": "Personas, intereses, fotos, planes, música y chat.",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#09090b",
+  "background_color": "#f7f7fb",
   "theme_color": "#7c3aed",
   "lang": "es",
-  "dir": "ltr",
-  "categories": [
-    "social",
-    "lifestyle",
-    "communication"
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
