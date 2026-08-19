@@ -5724,6 +5724,787 @@ document.addEventListener(
 /* =====================================================
    END
 ===================================================== */
+<!-- =====================================================
+     NEXO — CONECTA 2.0
+     CATEGORÍAS VISUALES
+===================================================== -->
+
+<style>
+
+.nexo-connect-section{
+  margin:24px 0;
+}
+
+.nexo-connect-header{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
+}
+
+.nexo-connect-title{
+  margin:0;
+  font-size:27px;
+  font-weight:900;
+  letter-spacing:-.7px;
+}
+
+.nexo-connect-subtitle{
+  margin:5px 0 0;
+  color:#777;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.nexo-category-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+
+.nexo-category-card{
+  position:relative;
+  min-height:190px;
+  overflow:hidden;
+  border-radius:24px;
+  cursor:pointer;
+  background:#eee;
+  box-shadow:
+    0 8px 25px
+    rgba(0,0,0,.10);
+
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease;
+}
+
+.nexo-category-card:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 14px 35px
+    rgba(0,0,0,.16);
+}
+
+.nexo-category-card:active{
+  transform:scale(.97);
+}
+
+.nexo-category-image{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.nexo-category-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.82) 0%,
+      rgba(0,0,0,.40) 45%,
+      rgba(0,0,0,.05) 100%
+    );
+}
+
+.nexo-category-content{
+  position:absolute;
+  left:15px;
+  right:15px;
+  bottom:14px;
+  color:white;
+  z-index:2;
+}
+
+.nexo-category-icon{
+  font-size:25px;
+  margin-bottom:5px;
+}
+
+.nexo-category-name{
+  font-size:18px;
+  font-weight:900;
+  line-height:1.1;
+}
+
+.nexo-category-description{
+  margin-top:4px;
+  font-size:12px;
+  opacity:.88;
+}
+
+.nexo-connect-more{
+  width:100%;
+  margin-top:16px;
+
+  border:0;
+  border-radius:17px;
+
+  padding:14px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #b68cff,
+      #8d5cf6
+    );
+
+  color:white;
+
+  font-size:15px;
+  font-weight:800;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 22px
+    rgba(141,92,246,.28);
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.nexo-connect-more:hover{
+  transform:translateY(-2px);
+}
+
+.nexo-connect-more:active{
+  transform:scale(.98);
+}
+
+.nexo-category-card.hidden{
+  display:none;
+}
+
+.nexo-connect-more .arrow{
+  display:inline-block;
+  margin-left:6px;
+  transition:transform .2s ease;
+}
+
+.nexo-connect-more.expanded .arrow{
+  transform:rotate(180deg);
+}
+
+
+/* DESTACADOS */
+
+.nexo-mini-title{
+  margin:
+    28px 0
+    13px;
+
+  font-size:18px;
+  font-weight:900;
+}
+
+.nexo-discover-box{
+  position:relative;
+  overflow:hidden;
+
+  border-radius:24px;
+
+  min-height:155px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #18151f,
+      #35255a
+    );
+
+  color:white;
+
+  padding:22px;
+
+  box-shadow:
+    0 12px 35px
+    rgba(0,0,0,.15);
+}
+
+.nexo-discover-box h3{
+  margin:0 0 7px;
+  font-size:21px;
+}
+
+.nexo-discover-box p{
+  margin:0;
+  max-width:300px;
+  color:rgba(255,255,255,.76);
+  font-size:13px;
+  line-height:1.5;
+}
+
+.nexo-discover-button{
+  margin-top:16px;
+
+  border:0;
+
+  background:white;
+  color:#17151f;
+
+  padding:10px 16px;
+
+  border-radius:13px;
+
+  font-weight:800;
+
+  cursor:pointer;
+}
+
+.nexo-discover-decoration{
+  position:absolute;
+
+  right:-30px;
+  bottom:-45px;
+
+  width:150px;
+  height:150px;
+
+  border-radius:50%;
+
+  background:
+    rgba(182,140,255,.25);
+
+  box-shadow:
+    0 0 0 30px
+    rgba(182,140,255,.07),
+    0 0 0 60px
+    rgba(182,140,255,.04);
+}
+
+
+/* MÓVIL */
+
+@media(max-width:520px){
+
+  .nexo-category-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+  }
+
+  .nexo-category-card{
+    min-height:175px;
+    border-radius:21px;
+  }
+
+  .nexo-category-name{
+    font-size:16px;
+  }
+
+  .nexo-category-description{
+    font-size:11px;
+  }
+
+}
+
+
+/* TABLET / PC */
+
+@media(min-width:700px){
+
+  .nexo-category-grid{
+    grid-template-columns:
+      repeat(3,minmax(0,1fr));
+  }
+
+  .nexo-category-card{
+    min-height:220px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+/* =====================================================
+   CONECTA — CATEGORÍAS
+===================================================== */
+
+const NEXO_CATEGORIES = [
+
+  {
+    name:"Compras",
+    icon:"🛍️",
+    description:"Encuentra gente para ir de compras",
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Cine",
+    icon:"🎬",
+    description:"¿Quién se apunta a una película?",
+    image:
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Comer",
+    icon:"🍽️",
+    description:"Descubre sitios y comparte mesa",
+    image:
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Running",
+    icon:"🏃",
+    description:"Corre acompañado",
+    image:
+      "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Gym",
+    icon:"💪",
+    description:"Entrena con gente como tú",
+    image:
+      "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Viajes",
+    icon:"✈️",
+    description:"Encuentra compañeros de viaje",
+    image:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Fútbol",
+    icon:"⚽",
+    description:"Juega y conoce gente",
+    image:
+      "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Cafés",
+    icon:"☕",
+    description:"Un café siempre es un buen plan",
+    image:
+      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Música",
+    icon:"🎵",
+    description:"Conciertos, festivales y más",
+    image:
+      "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Gaming",
+    icon:"🎮",
+    description:"Juega con nuevos amigos",
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Excursiones",
+    icon:"🥾",
+    description:"Naturaleza y aventuras",
+    image:
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=900&q=85"
+  },
+
+  {
+    name:"Ocio",
+    icon:"🎉",
+    description:"Planes para pasarlo bien",
+    image:
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=900&q=85"
+  }
+
+];
+
+
+/* =====================================================
+   CREAR CONECTA
+===================================================== */
+
+function renderNexoConecta(){
+
+  const existing=
+    document.getElementById(
+      "nexoConectaSection"
+    );
+
+  if(existing)return;
+
+
+  const section=
+    document.createElement("section");
+
+  section.id=
+    "nexoConectaSection";
+
+  section.className=
+    "nexo-connect-section";
+
+
+  section.innerHTML=`
+
+    <div class="nexo-connect-header">
+
+      <div>
+
+        <h2 class="nexo-connect-title">
+          CONECTA
+        </h2>
+
+        <p class="nexo-connect-subtitle">
+          Encuentra personas que quieren
+          hacer lo mismo que tú.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div
+      id="nexoCategoryGrid"
+      class="nexo-category-grid"
+    >
+
+      ${NEXO_CATEGORIES.map(
+        (category,index)=>`
+
+          <div
+            class="
+              nexo-category-card
+              ${index>=6 ? "hidden" : ""}
+            "
+            onclick="
+              nexoOpenCategory(
+                '${escapeAttr(category.name)}'
+              )
+            "
+          >
+
+            <img
+              class="nexo-category-image"
+              src="${category.image}"
+              alt="${escapeAttr(category.name)}"
+              loading="lazy"
+              onerror="
+                this.style.display='none'
+              "
+            >
+
+            <div
+              class="nexo-category-overlay"
+            ></div>
+
+
+            <div
+              class="nexo-category-content"
+            >
+
+              <div
+                class="nexo-category-icon"
+              >
+                ${category.icon}
+              </div>
+
+              <div
+                class="nexo-category-name"
+              >
+                ${escapeHTML(category.name)}
+              </div>
+
+              <div
+                class="
+                  nexo-category-description
+                "
+              >
+                ${escapeHTML(
+                  category.description
+                )}
+              </div>
+
+            </div>
+
+          </div>
+
+        `
+      ).join("")}
+
+    </div>
+
+
+    <button
+      id="nexoMoreCategories"
+      class="nexo-connect-more"
+      onclick="toggleNexoCategories()"
+    >
+
+      Ver más
+
+      <span class="arrow">
+        ↓
+      </span>
+
+    </button>
+
+
+    <h3 class="nexo-mini-title">
+      Descubre tu próximo plan
+    </h3>
+
+
+    <div class="nexo-discover-box">
+
+      <div
+        class="nexo-discover-decoration"
+      ></div>
+
+      <h3>
+        No te quedes en casa.
+      </h3>
+
+      <p>
+        Conecta con personas,
+        descubre actividades y crea
+        planes que realmente te apetezcan.
+      </p>
+
+      <button
+        class="nexo-discover-button"
+        onclick="nexoOpenDiscover()"
+      >
+        Explorar CONECTA
+      </button>
+
+    </div>
+
+  `;
+
+
+  /*
+   * Intentamos colocar la sección
+   * en la zona principal de la aplicación.
+   */
+
+  const candidates=[
+
+    document.getElementById("home"),
+
+    document.getElementById("inicio"),
+
+    document.querySelector(
+      ".page.active"
+    ),
+
+    document.querySelector(
+      "main"
+    ),
+
+    document.body
+
+  ];
+
+
+  const target=
+    candidates.find(
+      element=>element
+    );
+
+
+  if(target){
+
+    target.appendChild(
+      section
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   VER MÁS / VER MENOS
+===================================================== */
+
+function toggleNexoCategories(){
+
+  const cards=
+    document.querySelectorAll(
+      ".nexo-category-card"
+    );
+
+  const button=
+    document.getElementById(
+      "nexoMoreCategories"
+    );
+
+
+  const expanded=
+    button.classList.contains(
+      "expanded"
+    );
+
+
+  cards.forEach(
+    (card,index)=>{
+
+      if(index>=6){
+
+        card.classList.toggle(
+          "hidden",
+          expanded
+        );
+
+      }
+
+    }
+  );
+
+
+  button.classList.toggle(
+    "expanded",
+    !expanded
+  );
+
+
+  button.innerHTML=
+    expanded
+    ?`
+      Ver más
+      <span class="arrow">↓</span>
+    `
+    :`
+      Ver menos
+      <span class="arrow">↑</span>
+    `;
+
+}
+
+
+/* =====================================================
+   ABRIR CATEGORÍA
+===================================================== */
+
+function nexoOpenCategory(
+  category
+){
+
+  /*
+   * Si tu aplicación ya tiene una
+   * función para crear/buscar planes,
+   * intentamos utilizarla.
+   */
+
+  if(
+    typeof openPlans==="function"
+  ){
+
+    try{
+
+      openPlans();
+
+    }catch(e){}
+
+  }
+
+
+  /*
+   * Guardamos la categoría seleccionada.
+   */
+
+  try{
+
+    localStorage.setItem(
+      "nexo_selected_category",
+      category
+    );
+
+  }catch(e){}
+
+
+  showToast(
+    `Conecta · ${category}`
+  );
+
+}
+
+
+/* =====================================================
+   DESCUBRIR
+===================================================== */
+
+function nexoOpenDiscover(){
+
+  try{
+
+    if(
+      typeof openPlans==="function"
+    ){
+
+      openPlans();
+
+      return;
+
+    }
+
+  }catch(e){}
+
+
+  showToast(
+    "Descubre nuevos planes en CONECTA"
+  );
+
+}
+
+
+/* =====================================================
+   INICIAR
+===================================================== */
+
+function initNexoConecta(){
+
+  /*
+   * Esperamos a que la aplicación
+   * termine de cargar.
+   */
+
+  setTimeout(
+    ()=>{
+      renderNexoConecta();
+    },
+    300
+  );
+
+}
+
+
+if(
+  document.readyState==="loading"
+){
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    initNexoConecta
+  );
+
+}else{
+
+  initNexoConecta();
+
+}
 
 </script>
 
