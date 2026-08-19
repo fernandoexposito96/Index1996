@@ -1,70 +1,18 @@
 {
-  "id": "./",
-  "name": "CONECTA",
-  "short_name": "CONECTA",
-  "description": "CONECTA: descubre personas, crea planes, comparte intereses y conecta con tu comunidad.",
-  "start_url": "./",
+  "name": "NEXO",
+  "short_name": "NEXO",
+  "description": "Conecta personas, descubre planes y haz cosas juntos.",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone"
-  ],
   "orientation": "portrait",
-  "background_color": "#f5f7fb",
-  "theme_color": "#635bff",
+  "background_color": "#F7F5FC",
+  "theme_color": "#8B5CF6",
   "lang": "es",
-  "dir": "ltr",
   "categories": [
     "social",
-    "communication",
-    "lifestyle"
+    "lifestyle",
+    "entertainment"
   ],
-  "prefer_related_applications": false,
-
-  "icons": [
-    {
-      "src": "./icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "./icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ],
-
-  "shortcuts": [
-    {
-      "name": "Conectar",
-      "short_name": "Conectar",
-      "description": "Descubre personas compatibles",
-      "url": "./#conectar"
-    },
-    {
-      "name": "Planes",
-      "short_name": "Planes",
-      "description": "Descubre y crea planes",
-      "url": "./#planes"
-    },
-    {
-      "name": "Chat",
-      "short_name": "Chat",
-      "description": "Habla con tus conexiones",
-      "url": "./#chat"
-    },
-    {
-      "name": "Perfil",
-      "short_name": "Perfil",
-      "description": "Gestiona tu perfil y ajustes",
-      "url": "./#perfil"
-    }
-  ],
-
-  "launch_handler": {
-    "client_mode": "navigate-existing"
-  }
+  "icons": []
 }
