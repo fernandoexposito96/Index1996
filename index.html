@@ -1,6184 +1,4134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
 <meta charset="UTF-8">
-
-<meta
-  name="viewport"
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#8B5CF6">
-
-<meta
-  name="description"
-  content="NEXO — Conecta, descubre y hazlo."
->
-
 <link rel="manifest" href="./manifest.json">
-
 <title>NEXO</title>
 
 <style>
-
-/* =====================================================
-   NEXO 4.0 — BASE
-===================================================== */
-
 :root{
   --primary:#8B5CF6;
   --primary-dark:#6D28D9;
-  --primary-light:#F0EAFF;
-
   --bg:#F7F5FC;
-  --card:#FFFFFF;
-
+  --card:#fff;
   --text:#17151F;
   --muted:#777383;
-
   --border:#E8E4F0;
-
-  --success:#22C55E;
+  --soft:#F0EAFF;
   --danger:#EF4444;
-  --warning:#F59E0B;
-
+  --success:#22C55E;
   --radius:20px;
-
-  --shadow:
-    0 8px 30px rgba(31,25,55,.07);
 }
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+img{max-width:100%}
+.hidden{display:none!important}
+#app{max-width:760px;margin:auto;min-height:100vh;padding-bottom:90px}
 
-*{
-  box-sizing:border-box;
+header{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;
+  background:rgba(247,245,252,.94);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border)
 }
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  margin:0;
-  padding:0;
-
-  min-height:100vh;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
-  background:var(--bg);
-  color:var(--text);
-
-  transition:
-    background .25s ease,
-    color .25s ease;
-}
-
-button,
-input,
-textarea,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-img{
-  display:block;
-  max-width:100%;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.no-scroll{
-  overflow:hidden;
-}
-
-/* =====================================================
-   APP
-===================================================== */
-
-#app{
-  width:100%;
-  max-width:760px;
-
-  margin:auto;
-
-  min-height:100vh;
-
-  padding-bottom:95px;
-}
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.app-header{
-  position:sticky;
-
-  top:0;
-
-  z-index:100;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:12px;
-
-  padding:
-    14px
-    18px;
-
-  background:
-    rgba(247,245,252,.92);
-
-  backdrop-filter:blur(20px);
-
-  -webkit-backdrop-filter:blur(20px);
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.logo{
-  font-size:26px;
-
-  font-weight:950;
-
-  letter-spacing:-1.5px;
-}
-
-.logo-subtitle{
-  color:var(--muted);
-
-  font-size:11px;
-
-  margin-top:1px;
-}
-
-.header-actions{
-  display:flex;
-
-  gap:7px;
-}
-
+.logo{font-size:26px;font-weight:900;letter-spacing:-1px}
+.header-actions{display:flex;gap:7px}
 .icon-btn{
-  width:40px;
-  height:40px;
-
-  border:0;
-
-  border-radius:50%;
-
-  background:var(--card);
-
-  box-shadow:
-    0 4px 15px rgba(0,0,0,.06);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:18px;
+  width:40px;height:40px;border:0;border-radius:50%;
+  background:var(--card);box-shadow:0 4px 15px rgba(0,0,0,.06)
 }
 
-/* =====================================================
-   SCREENS
-===================================================== */
-
-.screen{
-  display:none;
-
-  padding:18px;
+.screen{display:none;padding:18px}
+.screen.active{display:block}
+.hero{padding:8px 2px 18px}
+.hero h1{margin:5px 0;font-size:30px;letter-spacing:-.7px}
+.hero p,.muted{color:var(--muted)}
+.search{
+  display:flex;gap:9px;align-items:center;
+  background:var(--card);border:1px solid var(--border);
+  padding:12px 14px;border-radius:16px
 }
-
-.screen.active{
-  display:block;
-}
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-  padding:
-    8px
-    2px
-    18px;
-}
-
-.hero h1{
-  margin:4px 0 7px;
-
-  font-size:29px;
-
-  line-height:1.1;
-
-  letter-spacing:-.8px;
-}
-
-.hero p{
-  margin:0;
-
-  color:var(--muted);
-
-  line-height:1.5;
-}
-
-/* =====================================================
-   SECTION HEADER
-===================================================== */
-
-.section-title{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:10px;
-
-  margin:
-    22px
-    0
-    12px;
-}
-
-.section-title h2,
-.section-title h1{
-  margin:0;
-
-  letter-spacing:-.4px;
-}
-
-.section-title h2{
-  font-size:20px;
-}
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-.search-box{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:17px;
-
-  padding:
-    12px
-    15px;
-
-  box-shadow:
-    0 5px 20px rgba(0,0,0,.035);
-}
-
-.search-box input{
-  width:100%;
-
-  border:0;
-
-  outline:0;
-
-  background:transparent;
-
-  color:var(--text);
-
-  font-size:14px;
-}
-
-/* =====================================================
-   CARDS
-===================================================== */
+.search input{width:100%;border:0;outline:0;background:transparent}
 
 .card{
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:var(--radius);
-
-  padding:16px;
-
-  margin-bottom:13px;
-
-  box-shadow:var(--shadow);
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:16px;margin-bottom:12px;
+  box-shadow:0 7px 25px rgba(0,0,0,.035)
 }
+.card h3{margin:0 0 5px}
+.row{display:flex;align-items:center;gap:12px}
+.grow{flex:1}
 
-.card h3{
-  margin:
-    0
-    0
-    6px;
+.primary,.secondary,.danger{
+  border:0;border-radius:13px;padding:10px 14px;font-weight:800
 }
+.primary{background:var(--primary);color:white}
+.secondary{background:var(--soft);color:#6237C7}
+.danger{background:#FEE2E2;color:#B91C1C}
 
-.muted{
-  color:var(--muted);
-
-  font-size:13px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px
 }
-
-/* =====================================================
-   PHOTO CARDS
-===================================================== */
-
-.photo-card{
-  overflow:hidden;
-
-  padding:0;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:22px;
-
-  margin-bottom:15px;
-
-  box-shadow:var(--shadow);
-}
-
-.photo-card-image{
-  position:relative;
-
-  width:100%;
-
-  aspect-ratio:16 / 10;
-
-  overflow:hidden;
-
-  background:#eee;
-}
-
-.photo-card-image img{
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-
-  transition:
-    transform .35s ease;
-}
-
-.photo-card:hover
-.photo-card-image img{
-  transform:scale(1.03);
-}
-
-.photo-card-content{
-  padding:15px;
-}
-
-.photo-card-title{
-  margin:0 0 5px;
-
-  font-size:19px;
-
-  font-weight:900;
-
-  letter-spacing:-.3px;
-}
-
-.photo-card-description{
-  margin:
-    6px
-    0
-    11px;
-
-  color:var(--muted);
-
-  font-size:13px;
-
-  line-height:1.45;
-}
-
-.photo-card-meta{
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:7px;
-
-  margin-bottom:12px;
-}
-
-.meta-item{
-  color:var(--muted);
-
-  font-size:12px;
-}
-
-.photo-card-actions{
-  display:flex;
-
-  gap:8px;
-}
-
-.photo-card-actions button{
-  flex:1;
-}
-
-/* =====================================================
-   PHOTO BADGES
-===================================================== */
-
-.photo-badge{
-  position:absolute;
-
-  left:11px;
-  top:11px;
-
-  padding:
-    7px
-    10px;
-
-  border-radius:999px;
-
-  background:
-    rgba(255,255,255,.94);
-
-  color:#3f2b73;
-
-  font-size:11px;
-
-  font-weight:900;
-
-  backdrop-filter:blur(10px);
-}
-
-.photo-distance{
-  position:absolute;
-
-  right:11px;
-  bottom:11px;
-
-  padding:
-    7px
-    10px;
-
-  border-radius:999px;
-
-  background:
-    rgba(0,0,0,.62);
-
-  color:white;
-
-  font-size:11px;
-
-  font-weight:800;
-}
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.primary-btn{
-  border:0;
-
-  background:var(--primary);
-
-  color:white;
-
-  padding:
-    11px
-    15px;
-
-  border-radius:13px;
-
-  font-weight:850;
-
-  transition:
-    transform .15s,
-    background .15s;
-}
-
-.primary-btn:active{
-  transform:scale(.97);
-}
-
-.primary-btn:hover{
-  background:var(--primary-dark);
-}
-
-.secondary-btn{
-  border:0;
-
-  background:var(--primary-light);
-
-  color:#6237C7;
-
-  padding:
-    10px
-    14px;
-
-  border-radius:13px;
-
-  font-weight:750;
-}
-
-.danger-btn{
-  border:0;
-
-  background:#FEE2E2;
-
-  color:#B91C1C;
-
-  padding:
-    11px
-    15px;
-
-  border-radius:13px;
-
-  font-weight:800;
-}
-
-/* =====================================================
-   QUICK GRID
-===================================================== */
 
 .quick-grid{
   display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:9px;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;margin-bottom:20px
 }
-
-.quick-card{
-  border:
-    1px solid var(--border);
-
-  background:var(--card);
-
-  border-radius:16px;
-
-  padding:
-    12px
-    5px;
-
-  text-align:center;
-
-  font-size:11px;
-
-  box-shadow:
-    0 4px 16px rgba(0,0,0,.025);
+.quick{
+  border:1px solid var(--border);background:var(--card);
+  border-radius:16px;padding:12px 5px;text-align:center;
+  font-size:11px
 }
+.quick span{display:block;font-size:25px;margin-bottom:5px}
 
-.quick-card .emoji{
-  display:block;
-
-  font-size:25px;
-
-  margin-bottom:5px;
+.section-title{
+  display:flex;align-items:center;justify-content:space-between;
+  margin:20px 0 10px
 }
+.section-title h2{margin:0;font-size:20px}
 
-/* =====================================================
-   CATEGORY IMAGE
-===================================================== */
-
-.category-card{
-  position:relative;
-
-  overflow:hidden;
-
-  min-height:100px;
-
-  border-radius:18px;
-
-  border:
-    1px solid var(--border);
-
-  cursor:pointer;
-
-  background:#ddd;
+.photo-card{
+  overflow:hidden;padding:0
 }
-
-.category-card img{
-  width:100%;
-  height:100%;
-
-  min-height:100px;
-
-  object-fit:cover;
+.photo-card img{
+  width:100%;height:180px;object-fit:cover;display:block
 }
+.photo-content{padding:15px}
 
-.category-card::after{
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-    linear-gradient(
-      transparent 20%,
-      rgba(0,0,0,.68)
-    );
-}
-
-.category-card-content{
-  position:absolute;
-
-  left:10px;
-  right:10px;
-  bottom:9px;
-
-  z-index:2;
-
-  color:white;
-}
-
-.category-card-content strong{
-  display:block;
-
-  font-size:13px;
-}
-
-.category-card-content span{
-  font-size:10px;
-
-  opacity:.85;
-}
-
-/* =====================================================
-   NOW
-===================================================== */
-
-.now-card{
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-}
-
-.now-icon{
-  width:52px;
-  height:52px;
-
-  flex:none;
-
-  border-radius:16px;
-
-  background:var(--primary-light);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:25px;
-}
-
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-.person{
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-}
-
+.person{display:flex;align-items:center;gap:12px}
 .avatar{
-  width:55px;
-  height:55px;
-
-  flex:none;
-
-  border-radius:50%;
-
-  object-fit:cover;
-
-  background:#eee;
+  width:58px;height:58px;border-radius:50%;
+  object-fit:cover;background:#ddd
 }
-
-.person-main{
-  flex:1;
-
-  min-width:0;
-}
-
-.compatibility{
-  color:#7042D8;
-
-  font-size:12px;
-
-  font-weight:850;
-}
-
-/* =====================================================
-   PEOPLE PHOTO CARD
-===================================================== */
-
-.person-photo{
-  display:flex;
-
-  gap:12px;
-
-  align-items:center;
-
-  padding:13px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:19px;
-
-  margin-bottom:11px;
-
-  box-shadow:
-    0 6px 20px rgba(0,0,0,.035);
-}
-
-.person-photo-avatar{
-  width:70px;
-  height:70px;
-
-  border-radius:18px;
-
-  object-fit:cover;
-
-  flex:none;
-}
-
-.person-actions{
-  display:flex;
-
-  gap:6px;
-
-  margin-top:8px;
-}
-
-.person-actions button{
-  padding:
-    7px
-    10px;
-
-  font-size:11px;
-}
-
-/* =====================================================
-   CHIPS
-===================================================== */
-
-.chips{
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:6px;
-}
-
+.compatibility{color:#7042D8;font-size:12px;font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .chip{
-  display:inline-flex;
-
-  align-items:center;
-
-  border:0;
-
-  background:var(--primary-light);
-
-  color:#6439C7;
-
-  padding:
-    7px
-    10px;
-
-  border-radius:999px;
-
-  font-size:11px;
-
-  font-weight:700;
+  border:0;background:var(--soft);color:#6439C7;
+  padding:7px 10px;border-radius:999px;font-size:11px
 }
-
-/* =====================================================
-   MAP
-===================================================== */
-
-.map{
-  position:relative;
-
-  height:300px;
-
-  overflow:hidden;
-
-  border-radius:21px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #EDE7FF,
-      #DFF5E8
-    );
-
-  border:
-    1px solid var(--border);
-}
-
-.map::before{
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background-image:
-    linear-gradient(
-      25deg,
-      transparent 47%,
-      rgba(255,255,255,.7) 48%,
-      transparent 50%
-    );
-
-  opacity:.6;
-}
-
-.map-marker{
-  position:absolute;
-
-  font-size:25px;
-
-  transform:
-    translate(-50%,-50%);
-
-  z-index:2;
-}
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-
-.calendar{
-  display:grid;
-
-  grid-template-columns:
-    repeat(7,1fr);
-
-  gap:5px;
-}
-
-.calendar-day{
-  min-height:45px;
-
-  padding:7px;
-
-  border-radius:9px;
-
-  background:#F3F1F7;
-
-  text-align:center;
-
-  font-size:12px;
-}
-
-.calendar-day.event{
-  background:#E9DEFF;
-
-  color:#6134C5;
-
-  font-weight:800;
-}
-
-/* =====================================================
-   CHAT LIST
-===================================================== */
-
-.chat-list{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:9px;
-}
-
-.chat-row{
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  padding:12px;
-
-  background:var(--card);
-
-  border:
-    1px solid var(--border);
-
-  border-radius:17px;
-
-  box-shadow:
-    0 5px 18px rgba(0,0,0,.03);
-
-  cursor:pointer;
-}
-
-.chat-row-content{
-  flex:1;
-
-  min-width:0;
-}
-
-.chat-preview{
-  color:var(--muted);
-
-  font-size:12px;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-}
-
-/* =====================================================
-   CHAT WINDOW
-===================================================== */
-
-.chat-window{
-  position:fixed;
-
-  inset:0;
-
-  background:var(--bg);
-
-  z-index:500;
-
-  display:none;
-
-  flex-direction:column;
-}
-
-.chat-window.active{
-  display:flex;
-}
-
-.chat-header{
-  display:flex;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:14px;
-
-  background:var(--card);
-
-  border-bottom:
-    1px solid var(--border);
-}
-
-.chat-messages{
-  flex:1;
-
-  overflow-y:auto;
-
-  padding:15px;
-}
-
-.message{
-  width:max-content;
-
-  max-width:80%;
-
-  padding:
-    10px
-    13px;
-
-  border-radius:16px;
-
-  background:#EDEAF2;
-
-  margin-bottom:8px;
-
-  line-height:1.4;
-}
-
-.message.me{
-  margin-left:auto;
-
-  background:var(--primary);
-
-  color:white;
-}
-
-.chat-input{
-  display:flex;
-
-  gap:8px;
-
-  padding:10px;
-
-  background:var(--card);
-
-  border-top:
-    1px solid var(--border);
-}
-
-.chat-input input{
-  flex:1;
-
-  min-width:0;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:14px;
-
-  padding:11px;
-
-  outline:none;
-
-  background:var(--card);
-
-  color:var(--text);
-}
-
-/* =====================================================
-   BOTTOM NAV
-===================================================== */
 
 .bottom-nav{
-  position:fixed;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  z-index:200;
-
-  background:
-    rgba(255,255,255,.96);
-
-  backdrop-filter:blur(18px);
-
-  -webkit-backdrop-filter:blur(18px);
-
-  border-top:
-    1px solid var(--border);
-
-  padding-bottom:
-    env(safe-area-inset-bottom);
+  position:fixed;left:0;right:0;bottom:0;z-index:200;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(18px);border-top:1px solid var(--border)
 }
-
-.bottom-nav-inner{
-  max-width:760px;
-
-  margin:auto;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
+.bottom-inner{
+  max-width:760px;margin:auto;
+  display:grid;grid-template-columns:repeat(5,1fr)
 }
-
-.nav-btn{
-  border:0;
-
-  background:transparent;
-
-  color:var(--muted);
-
-  padding:
-    8px
-    3px;
-
-  font-size:10px;
+.nav{
+  border:0;background:transparent;color:var(--muted);
+  padding:8px 2px;font-size:10px
 }
-
-.nav-btn span{
-  display:block;
-
-  font-size:21px;
-
-  margin-bottom:2px;
-}
-
-.nav-btn.active{
-  color:var(--primary);
-
-  font-weight:900;
-}
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-.modal-overlay{
-  position:fixed;
-
-  inset:0;
-
-  z-index:1000;
-
-  display:none;
-
-  align-items:flex-end;
-
-  justify-content:center;
-
-  background:
-    rgba(0,0,0,.55);
-
-  padding:15px;
-}
-
-.modal-overlay.active{
-  display:flex;
-}
+.nav span{display:block;font-size:21px}
+.nav.active{color:var(--primary);font-weight:900}
 
 .modal{
-  width:100%;
+  position:fixed;inset:0;z-index:1000;
+  display:none;align-items:flex-end;
+  background:rgba(0,0,0,.55);padding:12px
+}
+.modal.active{display:flex}
+.modal-box{
+  width:100%;max-width:760px;max-height:92vh;overflow:auto;
+  margin:auto;background:var(--card);border-radius:24px;padding:20px
+}
+.modal-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:15px
+}
+.close{border:0;border-radius:50%;width:36px;height:36px}
 
-  max-width:760px;
-
-  max-height:90vh;
-
-  overflow-y:auto;
-
-  background:var(--card);
-
-  border-radius:25px;
-
-  padding:20px;
-
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.25);
+.form{margin-bottom:12px}
+.form label{display:block;font-size:12px;font-weight:800;margin-bottom:5px}
+.form input,.form textarea,.form select{
+  width:100%;padding:12px;border:1px solid var(--border);
+  border-radius:13px;background:var(--card);color:var(--text)
 }
 
-.modal-header{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  margin-bottom:15px;
+.chat-window{
+  position:fixed;inset:0;z-index:500;background:var(--bg);
+  display:none;flex-direction:column
+}
+.chat-window.active{display:flex}
+.chat-head{
+  display:flex;align-items:center;gap:10px;padding:12px;
+  background:var(--card);border-bottom:1px solid var(--border)
+}
+.messages{flex:1;overflow:auto;padding:15px}
+.msg{
+  width:max-content;max-width:80%;padding:10px 13px;
+  border-radius:16px;background:#EDEAF2;margin-bottom:8px
+}
+.msg.me{margin-left:auto;background:var(--primary);color:white}
+.chat-form{
+  display:flex;gap:8px;padding:10px;
+  background:var(--card);border-top:1px solid var(--border)
+}
+.chat-form input{
+  flex:1;border:1px solid var(--border);
+  border-radius:14px;padding:11px
 }
 
-.close-btn{
-  border:0;
-
-  width:35px;
-  height:35px;
-
-  border-radius:50%;
-
-  background:#F1EFF5;
+.map{
+  height:310px;border-radius:22px;
+  background:linear-gradient(135deg,#EDE7FF,#DFF5E8);
+  position:relative;overflow:hidden
+}
+.marker{
+  position:absolute;font-size:27px;
+  transform:translate(-50%,-50%)
 }
 
-/* =====================================================
-   FORMS
-===================================================== */
-
-.form-group{
-  margin-bottom:12px;
+.calendar{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:5px
 }
-
-.form-group label{
-  display:block;
-
-  margin-bottom:5px;
-
-  font-size:12px;
-
-  font-weight:800;
+.day{
+  min-height:45px;padding:7px;border-radius:9px;
+  background:#F3F1F7;text-align:center;font-size:12px
 }
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-
-  padding:12px;
-
-  border:
-    1px solid var(--border);
-
-  border-radius:13px;
-
-  background:var(--card);
-
-  color:var(--text);
-
-  outline:none;
-}
-
-.form-group textarea{
-  min-height:100px;
-
-  resize:vertical;
-}
-
-/* =====================================================
-   AI
-===================================================== */
-
-.ai-box{
-  background:
-    linear-gradient(
-      135deg,
-      #F0EAFF,
-      #F9F7FF
-    );
-
-  border-radius:20px;
-
-  padding:17px;
-}
-
-.ai-title{
-  font-weight:900;
-
-  margin-bottom:10px;
-}
-
-/* =====================================================
-   EMPTY STATE
-===================================================== */
-
-.empty{
-  padding:30px 15px;
-
-  text-align:center;
-
-  color:var(--muted);
-}
-
-.empty-icon{
-  font-size:38px;
-
-  margin-bottom:8px;
-}
-
-/* =====================================================
-   DARK
-===================================================== */
+.day.event{background:#E9DEFF;color:#6134C5;font-weight:800}
 
 body.dark{
-  --bg:#111016;
-  --card:#1C1922;
-  --text:#F5F3FA;
-  --muted:#AAA5B4;
-  --border:#302B38;
-
-  --primary-light:#2A2044;
+  --bg:#111016;--card:#1C1922;--text:#F5F3FA;
+  --muted:#AAA5B4;--border:#302B38;--soft:#302447
 }
+body.dark header{background:rgba(17,16,22,.94)}
+body.dark .bottom-nav{background:rgba(28,25,34,.96)}
 
-body.dark .bottom-nav{
-  background:
-    rgba(28,25,34,.96);
+@media(max-width:430px){
+  .quick-grid{grid-template-columns:repeat(3,1fr)}
 }
-
-body.dark .app-header{
-  background:
-    rgba(17,16,22,.92);
-}
-
-body.dark .message{
-  background:#302B38;
-}
-
-body.dark .close-btn{
-  background:#302B38;
-
-  color:white;
-}
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:500px){
-
-  .quick-grid{
-    grid-template-columns:
-      repeat(3,1fr);
-  }
-
-}
-
-@media(max-width:360px){
-
-  .quick-grid{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     NEXO — BLOQUE 2
-     TARJETAS CON FOTOS + EXPLORAR + CONECTA + PLANES
-===================================================== -->
-
-<section id="explore" class="screen">
-
-  <div class="hero">
-    <div class="muted">Descubre nuevas conexiones</div>
-    <h1>🔎 Explorar</h1>
-
-    <div class="search-box">
-      🔎
-      <input
-        id="exploreSearch"
-        type="search"
-        placeholder="Personas, grupos, planes..."
-        oninput="renderExplore(this.value)"
-      >
-    </div>
-  </div>
-
-  <div class="chips" id="exploreFilters">
-
-    <button class="chip active"
-            onclick="filterExplore('Todos')">
-      Todos
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Deporte')">
-      🏃 Deporte
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Ocio')">
-      🎬 Ocio
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Música')">
-      🎵 Música
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Cafés')">
-      ☕ Cafés
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Viajes')">
-      ✈️ Viajes
-    </button>
-
-  </div>
-
-  <div id="exploreResults"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PERSONAS
-===================================================== -->
-
-<section id="people" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Encuentra personas compatibles contigo
-    </div>
-
-    <h1>🤝 Conecta</h1>
-
-    <p>
-      Personas con intereses, objetivos y planes
-      parecidos a los tuyos.
-    </p>
-
-  </div>
-
-  <div id="peopleContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PLANES
-===================================================== -->
-
-<section id="plans" class="screen">
-
-  <div class="section-title">
-
-    <div>
-      <div class="muted">Actividades y quedadas</div>
-
-      <h1 style="margin:4px 0">
-        📅 Planes
-      </h1>
-    </div>
-
-    <button
-      class="primary-btn"
-      onclick="openPlanCreator()">
-      + Crear
-    </button>
-
-  </div>
-
-  <div class="chips">
-
-    <button class="chip"
-            onclick="filterPlans('Todos')">
-      Todos
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Deporte')">
-      🏃 Deporte
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Ocio')">
-      🎬 Ocio
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Música')">
-      🎵 Música
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Viajes')">
-      ✈️ Viajes
-    </button>
-
-  </div>
-
-  <div id="plansContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — GRUPOS
-===================================================== -->
-
-<section id="groups" class="screen">
-
-  <div class="section-title">
-
-    <div>
-      <div class="muted">Comunidades</div>
-
-      <h1 style="margin:4px 0">
-        👥 Grupos
-      </h1>
-    </div>
-
-    <button
-      class="primary-btn"
-      onclick="openGroupCreator()">
-      + Crear
-    </button>
-
-  </div>
-
-  <div id="groupsContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — AHORA MISMO
-===================================================== -->
-
-<section id="now" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Actividad en tiempo real
-    </div>
-
-    <h1>🔥 Ahora mismo</h1>
-
-    <p>
-      Cosas que están pasando cerca de ti.
-    </p>
-
-  </div>
-
-  <div id="nowContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — MAPA
-===================================================== -->
-
-<section id="map" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Descubre lo que tienes alrededor
-    </div>
-
-    <h1>🗺️ Cerca de ti</h1>
-
-  </div>
-
-  <div class="map">
-
-    <div
-      class="map-marker"
-      style="left:18%;top:28%"
-      onclick="showMapItem('Running')">
-      🏃
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:70%;top:32%"
-      onclick="showMapItem('Café')">
-      ☕
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:48%;top:68%"
-      onclick="showMapItem('Fútbol')">
-      ⚽
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:78%;top:74%"
-      onclick="showMapItem('Persona')">
-      👤
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:30%;top:78%"
-      onclick="showMapItem('Música')">
-      🎵
-    </div>
-
-  </div>
-
-  <div id="mapResults"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — CALENDARIO
-===================================================== -->
-
-<section id="calendar" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Organiza tus actividades
-    </div>
-
-    <h1>🗓️ Calendario</h1>
-
-    <p>
-      Tus planes, eventos y quedadas.
-    </p>
-
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-
-      <button
-        class="icon-btn"
-        onclick="changeMonth(-1)">
-        ‹
-      </button>
-
-      <strong id="calendarTitle">
-        Agosto 2026
-      </strong>
-
-      <button
-        class="icon-btn"
-        onclick="changeMonth(1)">
-        ›
-      </button>
-
-    </div>
-
-    <div
-      id="calendarGrid"
-      class="calendar">
-    </div>
-
-  </div>
-
-  <div id="calendarEvents"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — CHAT
-===================================================== -->
-
-<section id="chat" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Tus conversaciones
-    </div>
-
-    <h1>💬 Chat</h1>
-
-  </div>
-
-  <div id="chatsContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PERFIL
-===================================================== -->
-
-<section id="profile" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Tu espacio personal
-    </div>
-
-    <h1>👤 Mi perfil</h1>
-
-  </div>
-
-
-  <!-- FOTO DE PERFIL -->
-
-  <div class="card">
-
-    <div
-      style="
-        text-align:center;
-        padding:10px 0 20px;
-      ">
-
-      <img
-        id="myAvatar"
-        class="profile-large-avatar"
-        src=""
-        alt="Foto de perfil">
-
-      <h2
-        id="myName"
-        style="margin:12px 0 4px">
-      </h2>
-
-      <div
-        id="myBio"
-        class="muted">
-      </div>
-
-    </div>
-
-
-    <div
-      id="myChips"
-      class="chips">
-    </div>
-
-  </div>
-
-
-  <div class="grid">
-
-    <button
-      class="secondary-btn"
-      onclick="openQR()">
-      📷 Mi NEXO
-    </button>
-
-    <button
-      class="secondary-btn"
-      onclick="openProfileEditor()">
-      ✏️ Editar
-    </button>
-
-  </div>
-
-
-  <button
-    class="secondary-btn"
-    style="
-      width:100%;
-      margin-top:10px;
-    "
-    onclick="openSettings()">
-    ⚙️ Ajustes
-  </button>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — TARJETAS
-===================================================== -->
-
-<script>
-
-const NEXO_PEOPLE = [
-
-  {
-    id:1,
-    name:"Laura",
-    age:27,
-    city:"Tarragona",
-    photo:"https://i.pravatar.cc/500?img=47",
-    compatibility:96,
-    online:true,
-    bio:"Me encanta correr, viajar y descubrir sitios nuevos.",
-    interests:[
-      "Running",
-      "Viajes",
-      "Música"
-    ]
-  },
-
-  {
-    id:2,
-    name:"Alex",
-    age:29,
-    city:"Reus",
-    photo:"https://i.pravatar.cc/500?img=12",
-    compatibility:91,
-    online:true,
-    bio:"Gym, fútbol y planes espontáneos.",
-    interests:[
-      "Gym",
-      "Fútbol",
-      "Ocio"
-    ]
-  },
-
-  {
-    id:3,
-    name:"Marta",
-    age:26,
-    city:"Tarragona",
-    photo:"https://i.pravatar.cc/500?img=32",
-    compatibility:88,
-    online:false,
-    bio:"Cafés, fotografía y conocer gente.",
-    interests:[
-      "Cafés",
-      "Fotografía",
-      "Viajes"
-    ]
-  },
-
-  {
-    id:4,
-    name:"David",
-    age:31,
-    city:"Salou",
-    photo:"https://i.pravatar.cc/500?img=11",
-    compatibility:84,
-    online:true,
-    bio:"Deporte, playa y buena música.",
-    interests:[
-      "Deporte",
-      "Playa",
-      "Música"
-    ]
-  }
-
-];
-
-
-const NEXO_PLANS = [
-
-  {
-    id:101,
-    title:"Running 5K",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
-    date:"Hoy",
-    time:"19:00",
-    location:"Tarragona",
-    participants:4,
-    max:10,
-    description:"Salida tranquila de 5 km."
-  },
-
-  {
-    id:102,
-    title:"Café y conocer gente",
-    category:"Ocio",
-    image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80",
-    date:"Hoy",
-    time:"18:30",
-    location:"Tarragona",
-    participants:3,
-    max:8,
-    description:"Tomar algo y conocer gente nueva."
-  },
-
-  {
-    id:103,
-    title:"Partido de fútbol",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80",
-    date:"Mañana",
-    time:"20:30",
-    location:"Tarragona",
-    participants:10,
-    max:16,
-    description:"Partido amistoso."
-  },
-
-  {
-    id:104,
-    title:"Tarde de música",
-    category:"Música",
-    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
-    date:"Viernes",
-    time:"21:00",
-    location:"Salou",
-    participants:8,
-    max:20,
-    description:"Música y buen ambiente."
-  }
-
-];
-
-
-const NEXO_GROUPS = [
-
-  {
-    id:201,
-    name:"Running Tarragona",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
-    members:12438,
-    description:"Entrena y conoce gente."
-  },
-
-  {
-    id:202,
-    name:"Planes Tarragona",
-    category:"Ocio",
-    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
-    members:3200,
-    description:"Planes espontáneos y actividades."
-  },
-
-  {
-    id:203,
-    name:"Viajeros",
-    category:"Viajes",
-    image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80",
-    members:8750,
-    description:"Personas que quieren descubrir lugares."
-  }
-
-];
-
-
-/* =====================================================
-   TARJETA PERSONA
-===================================================== */
-
-function createPersonCard(person){
-
-  return `
-
-    <div class="card">
-
-      <div class="person">
-
-        <img
-          src="${person.photo}"
-          class="avatar"
-          alt="${person.name}">
-
-        <div class="person-main">
-
-          <div
-            style="
-              display:flex;
-              align-items:center;
-              gap:6px;
-            ">
-
-            <strong>
-              ${person.name}, ${person.age}
-            </strong>
-
-            ${
-              person.online
-              ? `<span
-                   style="
-                     width:8px;
-                     height:8px;
-                     border-radius:50%;
-                     background:#22C55E;
-                   ">
-                 </span>`
-              : ""
-            }
-
-          </div>
-
-          <div class="muted">
-            📍 ${person.city}
-          </div>
-
-          <div class="compatibility">
-            ⭐ ${person.compatibility}% compatible
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <p>
-        ${person.bio}
-      </p>
-
-
-      <div class="chips">
-
-        ${person.interests
-          .map(
-            interest =>
-            `<span class="chip">
-              ${interest}
-            </span>`
-          )
-          .join("")
-        }
-
-      </div>
-
-
-      <div
-        style="
-          display:flex;
-          gap:8px;
-          margin-top:13px;
-        ">
-
-        <button
-          class="secondary-btn"
-          style="flex:1"
-          onclick="viewPerson(${person.id})">
-          Ver perfil
-        </button>
-
-        <button
-          class="primary-btn"
-          style="flex:1"
-          onclick="connectPerson(${person.id})">
-          Conectar
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   TARJETA PLAN
-===================================================== */
-
-function createPlanCard(plan){
-
-  const percentage =
-    Math.min(
-      100,
-      Math.round(
-        (plan.participants / plan.max) * 100
-      )
-    );
-
-  return `
-
-    <div class="card">
-
-      <img
-        src="${plan.image}"
-        alt="${plan.title}"
-        style="
-          width:100%;
-          height:190px;
-          object-fit:cover;
-          border-radius:15px;
-          margin-bottom:13px;
-        "
-        loading="lazy"
-      >
-
-
-      <div class="chips">
-
-        <span class="chip">
-          ${plan.category}
-        </span>
-
-        <span class="chip">
-          ${plan.date}
-        </span>
-
-      </div>
-
-
-      <h3 style="margin-top:12px">
-        ${plan.title}
-      </h3>
-
-
-      <p class="muted">
-        ${plan.description}
-      </p>
-
-
-      <div
-        style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:8px;
-          margin:12px 0;
-        ">
-
-        <div class="card"
-             style="
-               margin:0;
-               padding:10px;
-             ">
-
-          🕐
-          <strong>${plan.time}</strong>
-
-        </div>
-
-        <div class="card"
-             style="
-               margin:0;
-               padding:10px;
-             ">
-
-          📍
-          <strong>${plan.location}</strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="muted">
-
-        👥
-        ${plan.participants}/${plan.max}
-        personas
-
-      </div>
-
-
-      <div
-        style="
-          height:7px;
-          background:#EEEAF4;
-          border-radius:99px;
-          overflow:hidden;
-          margin:7px 0 13px;
-        ">
-
-        <div
-          style="
-            width:${percentage}%;
-            height:100%;
-            background:var(--primary);
-          ">
-        </div>
-
-      </div>
-
-
-      <button
-        class="primary-btn"
-        style="width:100%"
-        onclick="joinPlan(${plan.id})">
-
-        Quiero unirme
-
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   TARJETA GRUPO
-===================================================== */
-
-function createGroupCard(group){
-
-  return `
-
-    <div class="card">
-
-      <img
-        src="${group.image}"
-        alt="${group.name}"
-        style="
-          width:100%;
-          height:170px;
-          object-fit:cover;
-          border-radius:15px;
-          margin-bottom:13px;
-        "
-        loading="lazy"
-      >
-
-
-      <div class="chips">
-
-        <span class="chip">
-          ${group.category}
-        </span>
-
-      </div>
-
-
-      <h3 style="margin-top:10px">
-        ${group.name}
-      </h3>
-
-
-      <p class="muted">
-        ${group.description}
-      </p>
-
-
-      <div
-        style="
-          display:flex;
-          align-items:center;
-          justify-content:space-between;
-          gap:8px;
-        ">
-
-        <span class="muted">
-          👥 ${group.members.toLocaleString("es-ES")} miembros
-        </span>
-
-        <button
-          class="primary-btn"
-          onclick="joinGroup(${group.id})">
-
-          Unirme
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   RENDER PERSONAS
-===================================================== */
-
-function renderPeople(){
-
-  const container =
-    document.getElementById(
-      "peopleContainer"
-    );
-
-  if(!container) return;
-
-  container.innerHTML =
-    NEXO_PEOPLE
-      .map(createPersonCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   RENDER PLANES
-===================================================== */
-
-function renderPlans(filter="Todos"){
-
-  const container =
-    document.getElementById(
-      "plansContainer"
-    );
-
-  if(!container) return;
-
-  const list =
-    filter === "Todos"
-      ? NEXO_PLANS
-      : NEXO_PLANS.filter(
-          plan =>
-            plan.category === filter
-        );
-
-  container.innerHTML =
-    list.length
-      ? list.map(createPlanCard).join("")
-      : `
-        <div class="card">
-          <h3>No hay planes</h3>
-          <p class="muted">
-            Prueba otra categoría.
-          </p>
-        </div>
-      `;
-
-}
-
-
-function filterPlans(category){
-
-  renderPlans(category);
-
-}
-
-
-/* =====================================================
-   RENDER GRUPOS
-===================================================== */
-
-function renderGroups(){
-
-  const container =
-    document.getElementById(
-      "groupsContainer"
-    );
-
-  if(!container) return;
-
-  container.innerHTML =
-    NEXO_GROUPS
-      .map(createGroupCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   RENDER EXPLORAR
-===================================================== */
-
-let currentExploreFilter="Todos";
-
-
-function renderExplore(search=""){
-
-  const container =
-    document.getElementById(
-      "exploreResults"
-    );
-
-  if(!container) return;
-
-  const term =
-    search
-      .toLowerCase()
-      .trim();
-
-
-  const people =
-    NEXO_PEOPLE.filter(person => {
-
-      const text =
-        [
-          person.name,
-          person.city,
-          person.bio,
-          ...person.interests
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        person.interests.includes(
-          currentExploreFilter
-        )
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  const plans =
-    NEXO_PLANS.filter(plan => {
-
-      const text =
-        [
-          plan.title,
-          plan.category,
-          plan.location,
-          plan.description
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        plan.category === currentExploreFilter
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  const groups =
-    NEXO_GROUPS.filter(group => {
-
-      const text =
-        [
-          group.name,
-          group.category,
-          group.description
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        group.category === currentExploreFilter
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  container.innerHTML = `
-
-    <div class="section-title">
-      <h2>Personas</h2>
-    </div>
-
-    ${
-      people.length
-      ? people.map(createPersonCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos personas.
-           </p>
-         </div>`
-    }
-
-
-    <div class="section-title">
-      <h2>Planes</h2>
-    </div>
-
-    ${
-      plans.length
-      ? plans.map(createPlanCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos planes.
-           </p>
-         </div>`
-    }
-
-
-    <div class="section-title">
-      <h2>Grupos</h2>
-    </div>
-
-    ${
-      groups.length
-      ? groups.map(createGroupCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos grupos.
-           </p>
-         </div>`
-    }
-
-  `;
-
-}
-
-
-function filterExplore(category){
-
-  currentExploreFilter=category;
-
-  renderExplore(
-    document.getElementById(
-      "exploreSearch"
-    )?.value || ""
-  );
-
-}
-
-
-/* =====================================================
-   ACCIONES
-===================================================== */
-
-function viewPerson(id){
-
-  const person =
-    NEXO_PEOPLE.find(
-      p => p.id === id
-    );
-
-  if(!person) return;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>
-        ${person.name}, ${person.age}
-      </h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()">
-        ✕
-      </button>
-
-    </div>
-
-
-    <img
-      src="${person.photo}"
-      style="
-        width:100%;
-        height:280px;
-        object-fit:cover;
-        border-radius:18px;
-      "
-    >
-
-
-    <p>
-      ${person.bio}
-    </p>
-
-
-    <div class="chips">
-
-      ${person.interests
-        .map(
-          x =>
-          `<span class="chip">
-            ${x}
-          </span>`
-        )
-        .join("")
-      }
-
-    </div>
-
-
-    <button
-      class="primary-btn"
-      style="width:100%;margin-top:15px"
-      onclick="connectPerson(${person.id});closeModal()">
-
-      🤝 Conectar con ${person.name}
-
-    </button>
-
-  `);
-
-}
-
-
-function connectPerson(id){
-
-  const person =
-    NEXO_PEOPLE.find(
-      p => p.id === id
-    );
-
-  if(!person) return;
-
-  alert(
-    `Solicitud enviada a ${person.name} 🤝`
-  );
-
-}
-
-
-function joinPlan(id){
-
-  const plan =
-    NEXO_PLANS.find(
-      p => p.id === id
-    );
-
-  if(!plan) return;
-
-  if(plan.participants >= plan.max){
-
-    alert("Este plan está completo.");
-
-    return;
-
-  }
-
-  plan.participants++;
-
-  renderPlans();
-
-  alert(
-    `Te has unido a "${plan.title}" 🎉`
-  );
-
-}
-
-
-function joinGroup(id){
-
-  const group =
-    NEXO_GROUPS.find(
-      g => g.id === id
-    );
-
-  if(!group) return;
-
-  group.members++;
-
-  alert(
-    `Te has unido a ${group.name} 👥`
-  );
-
-}
-
-
-/* =====================================================
-   INICIO
-===================================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    renderPeople();
-
-    renderPlans();
-
-    renderGroups();
-
-    renderExplore();
-
-  }
-);
-
-</script>
-
-<!-- =====================================================
-     NEXO — BLOQUE 2
-     TARJETAS CON FOTOS + EXPLORAR + CONECTA + PLANES
-===================================================== -->
-
-<section id="explore" class="screen">
-
-  <div class="hero">
-    <div class="muted">Descubre nuevas conexiones</div>
-    <h1>🔎 Explorar</h1>
-
-    <div class="search-box">
-      🔎
-      <input
-        id="exploreSearch"
-        type="search"
-        placeholder="Personas, grupos, planes..."
-        oninput="renderExplore(this.value)"
-      >
-    </div>
-  </div>
-
-  <div class="chips" id="exploreFilters">
-
-    <button class="chip active"
-            onclick="filterExplore('Todos')">
-      Todos
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Deporte')">
-      🏃 Deporte
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Ocio')">
-      🎬 Ocio
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Música')">
-      🎵 Música
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Cafés')">
-      ☕ Cafés
-    </button>
-
-    <button class="chip"
-            onclick="filterExplore('Viajes')">
-      ✈️ Viajes
-    </button>
-
-  </div>
-
-  <div id="exploreResults"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PERSONAS
-===================================================== -->
-
-<section id="people" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Encuentra personas compatibles contigo
-    </div>
-
-    <h1>🤝 Conecta</h1>
-
-    <p>
-      Personas con intereses, objetivos y planes
-      parecidos a los tuyos.
-    </p>
-
-  </div>
-
-  <div id="peopleContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PLANES
-===================================================== -->
-
-<section id="plans" class="screen">
-
-  <div class="section-title">
-
-    <div>
-      <div class="muted">Actividades y quedadas</div>
-
-      <h1 style="margin:4px 0">
-        📅 Planes
-      </h1>
-    </div>
-
-    <button
-      class="primary-btn"
-      onclick="openPlanCreator()">
-      + Crear
-    </button>
-
-  </div>
-
-  <div class="chips">
-
-    <button class="chip"
-            onclick="filterPlans('Todos')">
-      Todos
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Deporte')">
-      🏃 Deporte
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Ocio')">
-      🎬 Ocio
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Música')">
-      🎵 Música
-    </button>
-
-    <button class="chip"
-            onclick="filterPlans('Viajes')">
-      ✈️ Viajes
-    </button>
-
-  </div>
-
-  <div id="plansContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — GRUPOS
-===================================================== -->
-
-<section id="groups" class="screen">
-
-  <div class="section-title">
-
-    <div>
-      <div class="muted">Comunidades</div>
-
-      <h1 style="margin:4px 0">
-        👥 Grupos
-      </h1>
-    </div>
-
-    <button
-      class="primary-btn"
-      onclick="openGroupCreator()">
-      + Crear
-    </button>
-
-  </div>
-
-  <div id="groupsContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — AHORA MISMO
-===================================================== -->
-
-<section id="now" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Actividad en tiempo real
-    </div>
-
-    <h1>🔥 Ahora mismo</h1>
-
-    <p>
-      Cosas que están pasando cerca de ti.
-    </p>
-
-  </div>
-
-  <div id="nowContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — MAPA
-===================================================== -->
-
-<section id="map" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Descubre lo que tienes alrededor
-    </div>
-
-    <h1>🗺️ Cerca de ti</h1>
-
-  </div>
-
-  <div class="map">
-
-    <div
-      class="map-marker"
-      style="left:18%;top:28%"
-      onclick="showMapItem('Running')">
-      🏃
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:70%;top:32%"
-      onclick="showMapItem('Café')">
-      ☕
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:48%;top:68%"
-      onclick="showMapItem('Fútbol')">
-      ⚽
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:78%;top:74%"
-      onclick="showMapItem('Persona')">
-      👤
-    </div>
-
-    <div
-      class="map-marker"
-      style="left:30%;top:78%"
-      onclick="showMapItem('Música')">
-      🎵
-    </div>
-
-  </div>
-
-  <div id="mapResults"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — CALENDARIO
-===================================================== -->
-
-<section id="calendar" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Organiza tus actividades
-    </div>
-
-    <h1>🗓️ Calendario</h1>
-
-    <p>
-      Tus planes, eventos y quedadas.
-    </p>
-
-  </div>
-
-  <div class="card">
-
-    <div class="section-title">
-
-      <button
-        class="icon-btn"
-        onclick="changeMonth(-1)">
-        ‹
-      </button>
-
-      <strong id="calendarTitle">
-        Agosto 2026
-      </strong>
-
-      <button
-        class="icon-btn"
-        onclick="changeMonth(1)">
-        ›
-      </button>
-
-    </div>
-
-    <div
-      id="calendarGrid"
-      class="calendar">
-    </div>
-
-  </div>
-
-  <div id="calendarEvents"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — CHAT
-===================================================== -->
-
-<section id="chat" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Tus conversaciones
-    </div>
-
-    <h1>💬 Chat</h1>
-
-  </div>
-
-  <div id="chatsContainer"></div>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — PERFIL
-===================================================== -->
-
-<section id="profile" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">
-      Tu espacio personal
-    </div>
-
-    <h1>👤 Mi perfil</h1>
-
-  </div>
-
-
-  <!-- FOTO DE PERFIL -->
-
-  <div class="card">
-
-    <div
-      style="
-        text-align:center;
-        padding:10px 0 20px;
-      ">
-
-      <img
-        id="myAvatar"
-        class="profile-large-avatar"
-        src=""
-        alt="Foto de perfil">
-
-      <h2
-        id="myName"
-        style="margin:12px 0 4px">
-      </h2>
-
-      <div
-        id="myBio"
-        class="muted">
-      </div>
-
-    </div>
-
-
-    <div
-      id="myChips"
-      class="chips">
-    </div>
-
-  </div>
-
-
-  <div class="grid">
-
-    <button
-      class="secondary-btn"
-      onclick="openQR()">
-      📷 Mi NEXO
-    </button>
-
-    <button
-      class="secondary-btn"
-      onclick="openProfileEditor()">
-      ✏️ Editar
-    </button>
-
-  </div>
-
-
-  <button
-    class="secondary-btn"
-    style="
-      width:100%;
-      margin-top:10px;
-    "
-    onclick="openSettings()">
-    ⚙️ Ajustes
-  </button>
-
-</section>
-
-
-<!-- =====================================================
-     NEXO — TARJETAS
-===================================================== -->
-
-<script>
-
-const NEXO_PEOPLE = [
-
-  {
-    id:1,
-    name:"Laura",
-    age:27,
-    city:"Tarragona",
-    photo:"https://i.pravatar.cc/500?img=47",
-    compatibility:96,
-    online:true,
-    bio:"Me encanta correr, viajar y descubrir sitios nuevos.",
-    interests:[
-      "Running",
-      "Viajes",
-      "Música"
-    ]
-  },
-
-  {
-    id:2,
-    name:"Alex",
-    age:29,
-    city:"Reus",
-    photo:"https://i.pravatar.cc/500?img=12",
-    compatibility:91,
-    online:true,
-    bio:"Gym, fútbol y planes espontáneos.",
-    interests:[
-      "Gym",
-      "Fútbol",
-      "Ocio"
-    ]
-  },
-
-  {
-    id:3,
-    name:"Marta",
-    age:26,
-    city:"Tarragona",
-    photo:"https://i.pravatar.cc/500?img=32",
-    compatibility:88,
-    online:false,
-    bio:"Cafés, fotografía y conocer gente.",
-    interests:[
-      "Cafés",
-      "Fotografía",
-      "Viajes"
-    ]
-  },
-
-  {
-    id:4,
-    name:"David",
-    age:31,
-    city:"Salou",
-    photo:"https://i.pravatar.cc/500?img=11",
-    compatibility:84,
-    online:true,
-    bio:"Deporte, playa y buena música.",
-    interests:[
-      "Deporte",
-      "Playa",
-      "Música"
-    ]
-  }
-
-];
-
-
-const NEXO_PLANS = [
-
-  {
-    id:101,
-    title:"Running 5K",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
-    date:"Hoy",
-    time:"19:00",
-    location:"Tarragona",
-    participants:4,
-    max:10,
-    description:"Salida tranquila de 5 km."
-  },
-
-  {
-    id:102,
-    title:"Café y conocer gente",
-    category:"Ocio",
-    image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80",
-    date:"Hoy",
-    time:"18:30",
-    location:"Tarragona",
-    participants:3,
-    max:8,
-    description:"Tomar algo y conocer gente nueva."
-  },
-
-  {
-    id:103,
-    title:"Partido de fútbol",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80",
-    date:"Mañana",
-    time:"20:30",
-    location:"Tarragona",
-    participants:10,
-    max:16,
-    description:"Partido amistoso."
-  },
-
-  {
-    id:104,
-    title:"Tarde de música",
-    category:"Música",
-    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
-    date:"Viernes",
-    time:"21:00",
-    location:"Salou",
-    participants:8,
-    max:20,
-    description:"Música y buen ambiente."
-  }
-
-];
-
-
-const NEXO_GROUPS = [
-
-  {
-    id:201,
-    name:"Running Tarragona",
-    category:"Deporte",
-    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
-    members:12438,
-    description:"Entrena y conoce gente."
-  },
-
-  {
-    id:202,
-    name:"Planes Tarragona",
-    category:"Ocio",
-    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
-    members:3200,
-    description:"Planes espontáneos y actividades."
-  },
-
-  {
-    id:203,
-    name:"Viajeros",
-    category:"Viajes",
-    image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80",
-    members:8750,
-    description:"Personas que quieren descubrir lugares."
-  }
-
-];
-
-
-/* =====================================================
-   TARJETA PERSONA
-===================================================== */
-
-function createPersonCard(person){
-
-  return `
-
-    <div class="card">
-
-      <div class="person">
-
-        <img
-          src="${person.photo}"
-          class="avatar"
-          alt="${person.name}">
-
-        <div class="person-main">
-
-          <div
-            style="
-              display:flex;
-              align-items:center;
-              gap:6px;
-            ">
-
-            <strong>
-              ${person.name}, ${person.age}
-            </strong>
-
-            ${
-              person.online
-              ? `<span
-                   style="
-                     width:8px;
-                     height:8px;
-                     border-radius:50%;
-                     background:#22C55E;
-                   ">
-                 </span>`
-              : ""
-            }
-
-          </div>
-
-          <div class="muted">
-            📍 ${person.city}
-          </div>
-
-          <div class="compatibility">
-            ⭐ ${person.compatibility}% compatible
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <p>
-        ${person.bio}
-      </p>
-
-
-      <div class="chips">
-
-        ${person.interests
-          .map(
-            interest =>
-            `<span class="chip">
-              ${interest}
-            </span>`
-          )
-          .join("")
-        }
-
-      </div>
-
-
-      <div
-        style="
-          display:flex;
-          gap:8px;
-          margin-top:13px;
-        ">
-
-        <button
-          class="secondary-btn"
-          style="flex:1"
-          onclick="viewPerson(${person.id})">
-          Ver perfil
-        </button>
-
-        <button
-          class="primary-btn"
-          style="flex:1"
-          onclick="connectPerson(${person.id})">
-          Conectar
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   TARJETA PLAN
-===================================================== */
-
-function createPlanCard(plan){
-
-  const percentage =
-    Math.min(
-      100,
-      Math.round(
-        (plan.participants / plan.max) * 100
-      )
-    );
-
-  return `
-
-    <div class="card">
-
-      <img
-        src="${plan.image}"
-        alt="${plan.title}"
-        style="
-          width:100%;
-          height:190px;
-          object-fit:cover;
-          border-radius:15px;
-          margin-bottom:13px;
-        "
-        loading="lazy"
-      >
-
-
-      <div class="chips">
-
-        <span class="chip">
-          ${plan.category}
-        </span>
-
-        <span class="chip">
-          ${plan.date}
-        </span>
-
-      </div>
-
-
-      <h3 style="margin-top:12px">
-        ${plan.title}
-      </h3>
-
-
-      <p class="muted">
-        ${plan.description}
-      </p>
-
-
-      <div
-        style="
-          display:grid;
-          grid-template-columns:1fr 1fr;
-          gap:8px;
-          margin:12px 0;
-        ">
-
-        <div class="card"
-             style="
-               margin:0;
-               padding:10px;
-             ">
-
-          🕐
-          <strong>${plan.time}</strong>
-
-        </div>
-
-        <div class="card"
-             style="
-               margin:0;
-               padding:10px;
-             ">
-
-          📍
-          <strong>${plan.location}</strong>
-
-        </div>
-
-      </div>
-
-
-      <div class="muted">
-
-        👥
-        ${plan.participants}/${plan.max}
-        personas
-
-      </div>
-
-
-      <div
-        style="
-          height:7px;
-          background:#EEEAF4;
-          border-radius:99px;
-          overflow:hidden;
-          margin:7px 0 13px;
-        ">
-
-        <div
-          style="
-            width:${percentage}%;
-            height:100%;
-            background:var(--primary);
-          ">
-        </div>
-
-      </div>
-
-
-      <button
-        class="primary-btn"
-        style="width:100%"
-        onclick="joinPlan(${plan.id})">
-
-        Quiero unirme
-
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   TARJETA GRUPO
-===================================================== */
-
-function createGroupCard(group){
-
-  return `
-
-    <div class="card">
-
-      <img
-        src="${group.image}"
-        alt="${group.name}"
-        style="
-          width:100%;
-          height:170px;
-          object-fit:cover;
-          border-radius:15px;
-          margin-bottom:13px;
-        "
-        loading="lazy"
-      >
-
-
-      <div class="chips">
-
-        <span class="chip">
-          ${group.category}
-        </span>
-
-      </div>
-
-
-      <h3 style="margin-top:10px">
-        ${group.name}
-      </h3>
-
-
-      <p class="muted">
-        ${group.description}
-      </p>
-
-
-      <div
-        style="
-          display:flex;
-          align-items:center;
-          justify-content:space-between;
-          gap:8px;
-        ">
-
-        <span class="muted">
-          👥 ${group.members.toLocaleString("es-ES")} miembros
-        </span>
-
-        <button
-          class="primary-btn"
-          onclick="joinGroup(${group.id})">
-
-          Unirme
-
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   RENDER PERSONAS
-===================================================== */
-
-function renderPeople(){
-
-  const container =
-    document.getElementById(
-      "peopleContainer"
-    );
-
-  if(!container) return;
-
-  container.innerHTML =
-    NEXO_PEOPLE
-      .map(createPersonCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   RENDER PLANES
-===================================================== */
-
-function renderPlans(filter="Todos"){
-
-  const container =
-    document.getElementById(
-      "plansContainer"
-    );
-
-  if(!container) return;
-
-  const list =
-    filter === "Todos"
-      ? NEXO_PLANS
-      : NEXO_PLANS.filter(
-          plan =>
-            plan.category === filter
-        );
-
-  container.innerHTML =
-    list.length
-      ? list.map(createPlanCard).join("")
-      : `
-        <div class="card">
-          <h3>No hay planes</h3>
-          <p class="muted">
-            Prueba otra categoría.
-          </p>
-        </div>
-      `;
-
-}
-
-
-function filterPlans(category){
-
-  renderPlans(category);
-
-}
-
-
-/* =====================================================
-   RENDER GRUPOS
-===================================================== */
-
-function renderGroups(){
-
-  const container =
-    document.getElementById(
-      "groupsContainer"
-    );
-
-  if(!container) return;
-
-  container.innerHTML =
-    NEXO_GROUPS
-      .map(createGroupCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   RENDER EXPLORAR
-===================================================== */
-
-let currentExploreFilter="Todos";
-
-
-function renderExplore(search=""){
-
-  const container =
-    document.getElementById(
-      "exploreResults"
-    );
-
-  if(!container) return;
-
-  const term =
-    search
-      .toLowerCase()
-      .trim();
-
-
-  const people =
-    NEXO_PEOPLE.filter(person => {
-
-      const text =
-        [
-          person.name,
-          person.city,
-          person.bio,
-          ...person.interests
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        person.interests.includes(
-          currentExploreFilter
-        )
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  const plans =
-    NEXO_PLANS.filter(plan => {
-
-      const text =
-        [
-          plan.title,
-          plan.category,
-          plan.location,
-          plan.description
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        plan.category === currentExploreFilter
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  const groups =
-    NEXO_GROUPS.filter(group => {
-
-      const text =
-        [
-          group.name,
-          group.category,
-          group.description
-        ]
-        .join(" ")
-        .toLowerCase();
-
-      return (
-        currentExploreFilter === "Todos" ||
-        group.category === currentExploreFilter
-      ) &&
-      (!term || text.includes(term));
-
-    });
-
-
-  container.innerHTML = `
-
-    <div class="section-title">
-      <h2>Personas</h2>
-    </div>
-
-    ${
-      people.length
-      ? people.map(createPersonCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos personas.
-           </p>
-         </div>`
-    }
-
-
-    <div class="section-title">
-      <h2>Planes</h2>
-    </div>
-
-    ${
-      plans.length
-      ? plans.map(createPlanCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos planes.
-           </p>
-         </div>`
-    }
-
-
-    <div class="section-title">
-      <h2>Grupos</h2>
-    </div>
-
-    ${
-      groups.length
-      ? groups.map(createGroupCard).join("")
-      : `<div class="card">
-           <p class="muted">
-             No encontramos grupos.
-           </p>
-         </div>`
-    }
-
-  `;
-
-}
-
-
-function filterExplore(category){
-
-  currentExploreFilter=category;
-
-  renderExplore(
-    document.getElementById(
-      "exploreSearch"
-    )?.value || ""
-  );
-
-}
-
-
-/* =====================================================
-   ACCIONES
-===================================================== */
-
-function viewPerson(id){
-
-  const person =
-    NEXO_PEOPLE.find(
-      p => p.id === id
-    );
-
-  if(!person) return;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>
-        ${person.name}, ${person.age}
-      </h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()">
-        ✕
-      </button>
-
-    </div>
-
-
-    <img
-      src="${person.photo}"
-      style="
-        width:100%;
-        height:280px;
-        object-fit:cover;
-        border-radius:18px;
-      "
-    >
-
-
-    <p>
-      ${person.bio}
-    </p>
-
-
-    <div class="chips">
-
-      ${person.interests
-        .map(
-          x =>
-          `<span class="chip">
-            ${x}
-          </span>`
-        )
-        .join("")
-      }
-
-    </div>
-
-
-    <button
-      class="primary-btn"
-      style="width:100%;margin-top:15px"
-      onclick="connectPerson(${person.id});closeModal()">
-
-      🤝 Conectar con ${person.name}
-
-    </button>
-
-  `);
-
-}
-
-
-function connectPerson(id){
-
-  const person =
-    NEXO_PEOPLE.find(
-      p => p.id === id
-    );
-
-  if(!person) return;
-
-  alert(
-    `Solicitud enviada a ${person.name} 🤝`
-  );
-
-}
-
-
-function joinPlan(id){
-
-  const plan =
-    NEXO_PLANS.find(
-      p => p.id === id
-    );
-
-  if(!plan) return;
-
-  if(plan.participants >= plan.max){
-
-    alert("Este plan está completo.");
-
-    return;
-
-  }
-
-  plan.participants++;
-
-  renderPlans();
-
-  alert(
-    `Te has unido a "${plan.title}" 🎉`
-  );
-
-}
-
-
-function joinGroup(id){
-
-  const group =
-    NEXO_GROUPS.find(
-      g => g.id === id
-    );
-
-  if(!group) return;
-
-  group.members++;
-
-  alert(
-    `Te has unido a ${group.name} 👥`
-  );
-
-}
-
-
-/* =====================================================
-   INICIO
-===================================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
-
-    renderPeople();
-
-    renderPlans();
-
-    renderGroups();
-
-    renderExplore();
-
-  }
-);
-
-</script>
-
-<!-- =====================================================
-     NEXO — BLOQUE 4
-     AJUSTES · IDIOMAS · NOTIFICACIONES · PRIVACIDAD
-===================================================== -->
-
-<section id="settings" class="screen">
-
-  <div class="hero">
-
-    <div class="muted">NEXO</div>
-
-    <h1>⚙️ Ajustes</h1>
-
-    <p>
-      Personaliza tu experiencia.
-    </p>
-
-  </div>
-
-
-  <!-- CUENTA -->
-
-  <div class="card">
-
-    <h3>👤 Cuenta</h3>
-
-    <div class="settings-row">
-
-      <div>
-        <strong>Editar perfil</strong>
-
-        <div class="muted">
-          Nombre, foto, descripción e intereses
-        </div>
-      </div>
-
-      <button
-        class="secondary-btn"
-        onclick="openProfileEditor()"
-      >
-        Editar
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- IDIOMA -->
-
-  <div class="card">
-
-    <h3>🌍 Idioma</h3>
-
-    <div class="form-group">
-
-      <label>
-        Idioma de NEXO
-      </label>
-
-      <select
-        id="languageSelector"
-        onchange="changeLanguage(this.value)"
-      >
-
-        <option value="es">
-          🇪🇸 Español
-        </option>
-
-        <option value="ca">
-          🟨 Català
-        </option>
-
-        <option value="en">
-          🇬🇧 English
-        </option>
-
-        <option value="fr">
-          🇫🇷 Français
-        </option>
-
-        <option value="it">
-          🇮🇹 Italiano
-        </option>
-
-        <option value="de">
-          🇩🇪 Deutsch
-        </option>
-
-        <option value="pt">
-          🇵🇹 Português
-        </option>
-
-        <option value="ro">
-          🇷🇴 Română
-        </option>
-
-      </select>
-
-    </div>
-
-  </div>
-
-
-  <!-- APARIENCIA -->
-
-  <div class="card">
-
-    <h3>🎨 Apariencia</h3>
-
-    <div class="settings-row">
-
-      <div>
-
-        <strong>Modo oscuro</strong>
-
-        <div class="muted">
-          Cambia el aspecto de NEXO
-        </div>
-
-      </div>
-
-      <label class="switch">
-
-        <input
-          id="darkModeToggle"
-          type="checkbox"
-          onchange="toggleDarkMode(this.checked)"
-        >
-
-        <span class="slider"></span>
-
-      </label>
-
-    </div>
-
-  </div>
-
-
-  <!-- NOTIFICACIONES -->
-
-  <div class="card">
-
-    <h3>🔔 Notificaciones</h3>
-
-    <div class="settings-row">
-
-      <div>
-
-        <strong>
-          Notificaciones
-        </strong>
-
-        <div class="muted">
-          Mensajes, conexiones y planes
-        </div>
-
-      </div>
-
-      <label class="switch">
-
-        <input
-          id="notificationsToggle"
-          type="checkbox"
-          onchange="toggleNotifications(this.checked)"
-        >
-
-        <span class="slider"></span>
-
-      </label>
-
-    </div>
-
-
-    <div class="settings-row">
-
-      <div>
-
-        <strong>
-          Personas cerca
-        </strong>
-
-        <div class="muted">
-          Avisarme cuando haya actividad
-        </div>
-
-      </div>
-
-      <label class="switch">
-
-        <input
-          id="nearbyToggle"
-          type="checkbox"
-          checked
-        >
-
-        <span class="slider"></span>
-
-      </label>
-
-    </div>
-
-  </div>
-
-
-  <!-- PRIVACIDAD -->
-
-  <div class="card">
-
-    <h3>🔐 Privacidad</h3>
-
-    <div class="settings-row">
-
-      <div>
-
-        <strong>
-          Perfil privado
-        </strong>
-
-        <div class="muted">
-          Solo las personas aceptadas podrán verlo.
-        </div>
-
-      </div>
-
-      <label class="switch">
-
-        <input
-          id="privateProfileToggle"
-          type="checkbox"
-          onchange="togglePrivateProfile(this.checked)"
-        >
-
-        <span class="slider"></span>
-
-      </label>
-
-    </div>
-
-
-    <div class="settings-row">
-
-      <div>
-
-        <strong>
-          Aparecer en Conecta
-        </strong>
-
-        <div class="muted">
-          Permite que otras personas te descubran.
-        </div>
-
-      </div>
-
-      <label class="switch">
-
-        <input
-          id="discoverableToggle"
-          type="checkbox"
-          checked
-          onchange="toggleDiscoverable(this.checked)"
-        >
-
-        <span class="slider"></span>
-
-      </label>
-
-    </div>
-
-  </div>
-
-
-  <!-- DISTANCIA -->
-
-  <div class="card">
-
-    <h3>📍 Distancia</h3>
-
-    <div class="form-group">
-
-      <label>
-        Radio de búsqueda
-      </label>
-
-      <input
-        id="distanceRange"
-        type="range"
-        min="1"
-        max="100"
-        value="25"
-        oninput="updateDistance(this.value)"
-      >
-
-      <div
-        id="distanceValue"
-        class="muted"
-      >
-        25 km
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- SEGURIDAD -->
-
-  <div class="card">
-
-    <h3>🛡️ Seguridad</h3>
-
-    <button
-      class="secondary-btn"
-      style="width:100%;margin-bottom:8px"
-      onclick="showBlockedUsers()"
-    >
-      🚫 Personas bloqueadas
-    </button>
-
-    <button
-      class="secondary-btn"
-      style="width:100%"
-      onclick="showPrivacyInfo()"
-    >
-      ℹ️ Centro de privacidad
-    </button>
-
-  </div>
-
-
-  <!-- DATOS -->
-
-  <div class="card">
-
-    <h3>💾 Datos</h3>
-
-    <button
-      class="secondary-btn"
-      style="width:100%;margin-bottom:8px"
-      onclick="exportNexoData()"
-    >
-      📤 Exportar mis datos
-    </button>
-
-    <button
-      class="danger-btn"
-      style="width:100%"
-      onclick="confirmResetNexo()"
-    >
-      🗑️ Restablecer NEXO
-    </button>
-
-  </div>
-
-
-  <div
-    class="muted"
-    style="text-align:center;padding:20px"
-  >
-    NEXO · Conecta · descubre · hazlo
-    <br>
-    Versión 1.0
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     ESTILOS BLOQUE 4
-===================================================== -->
-
-<style>
-
-.settings-row{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:15px;
-
-  padding:14px 0;
-
-  border-bottom:1px solid var(--border);
-
-}
-
-.settings-row:last-child{
-
-  border-bottom:0;
-
-}
-
-
-/* SWITCH */
-
-.switch{
-
-  position:relative;
-
-  display:inline-block;
-
-  width:48px;
-
-  height:28px;
-
-  flex-shrink:0;
-
-}
-
-.switch input{
-
-  opacity:0;
-
-  width:0;
-
-  height:0;
-
-}
-
-.slider{
-
-  position:absolute;
-
-  inset:0;
-
-  background:#D8D4DF;
-
-  border-radius:999px;
-
-  cursor:pointer;
-
-  transition:.25s;
-
-}
-
-.slider:before{
-
-  content:"";
-
-  position:absolute;
-
-  width:22px;
-
-  height:22px;
-
-  left:3px;
-
-  top:3px;
-
-  background:white;
-
-  border-radius:50%;
-
-  transition:.25s;
-
-  box-shadow:0 2px 5px rgba(0,0,0,.2);
-
-}
-
-.switch input:checked + .slider{
-
-  background:var(--primary);
-
-}
-
-.switch input:checked + .slider:before{
-
-  transform:translateX(20px);
-
-}
-
-
-/* RANGE */
-
-input[type="range"]{
-
-  width:100%;
-
-  accent-color:var(--primary);
-
-}
-
-
-/* FAVORITO */
-
-.photo-card-fav.liked{
-
-  color:#EF4444;
-
-  transform:scale(1.1);
-
-}
-
-</style>
-
-
-<!-- =====================================================
-     FUNCIONES BLOQUE 4
-===================================================== -->
-
-<script>
-
-function toggleDarkMode(enabled){
-
-  document.body.classList.toggle(
-    "dark",
-    enabled
-  );
-
-  localStorage.setItem(
-    STORAGE.theme,
-    enabled ? "dark" : "light"
-  );
-
-}
-
-
-function loadTheme(){
-
-  const theme =
-    localStorage.getItem(
-      STORAGE.theme
-    );
-
-  const enabled =
-    theme === "dark";
-
-  document.body.classList.toggle(
-    "dark",
-    enabled
-  );
-
-  const toggle =
-    document.getElementById(
-      "darkModeToggle"
-    );
-
-  if(toggle){
-
-    toggle.checked=enabled;
-
-  }
-
-}
-
-
-function toggleNotifications(enabled){
-
-  preferences.notifications =
-    enabled;
-
-  localStorage.setItem(
-    STORAGE.preferences,
-    JSON.stringify(preferences)
-  );
-
-  showToast(
-    enabled
-      ? "🔔 Notificaciones activadas"
-      : "🔕 Notificaciones desactivadas"
-  );
-
-}
-
-
-function togglePrivateProfile(enabled){
-
-  preferences.privateProfile =
-    enabled;
-
-  localStorage.setItem(
-    STORAGE.preferences,
-    JSON.stringify(preferences)
-  );
-
-  showToast(
-    enabled
-      ? "🔐 Perfil privado activado"
-      : "🌎 Perfil público"
-  );
-
-}
-
-
-function toggleDiscoverable(enabled){
-
-  preferences.discoverable =
-    enabled;
-
-  localStorage.setItem(
-    STORAGE.preferences,
-    JSON.stringify(preferences)
-  );
-
-  showToast(
-    enabled
-      ? "👋 Ahora apareces en Conecta"
-      : "👤 Ya no apareces en Conecta"
-  );
-
-}
-
-
-function updateDistance(value){
-
-  preferences.distance =
-    Number(value);
-
-  const output =
-    document.getElementById(
-      "distanceValue"
-    );
-
-  if(output){
-
-    output.textContent =
-      value + " km";
-
-  }
-
-  localStorage.setItem(
-    STORAGE.preferences,
-    JSON.stringify(preferences)
-  );
-
-}
-
-
-function showBlockedUsers(){
-
-  const blockedUsers =
-    blocked.length;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>🚫 Bloqueados</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <p class="muted">
-
-      ${
-        blockedUsers
-        ? blockedUsers +
-          " personas bloqueadas."
-        : "No tienes personas bloqueadas."
-      }
-
-    </p>
-
-  `);
-
-}
-
-
-function showPrivacyInfo(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>🔐 Privacidad</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>Tu información</h3>
-
-      <p class="muted">
-
-        Tú decides qué información
-        compartes en NEXO.
-
-      </p>
-
-    </div>
-
-    <div class="card">
-
-      <h3>Ubicación</h3>
-
-      <p class="muted">
-
-        La ubicación debe utilizarse
-        únicamente para funciones
-        que necesiten proximidad.
-
-      </p>
-
-    </div>
-
-  `);
-
-}
-
-
-function exportNexoData(){
-
-  const data={
-
-    profile:profile,
-
-    plans:plans,
-
-    groups:groups,
-
-    chats:chats,
-
-    preferences:preferences,
-
-    notifications:notifications,
-
-    blocked:blocked
-
-  };
-
-  const blob=
-    new Blob(
-      [
-        JSON.stringify(
-          data,
-          null,
-          2
-        )
-      ],
-      {
-        type:
-          "application/json"
-      }
-    );
-
-  const url=
-    URL.createObjectURL(
-      blob
-    );
-
-  const link=
-    document.createElement(
-      "a"
-    );
-
-  link.href=url;
-
-  link.download=
-    "nexo-datos.json";
-
-  link.click();
-
-  URL.revokeObjectURL(url);
-
-  showToast(
-    "📤 Datos exportados"
-  );
-
-}
-
-
-function confirmResetNexo(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>⚠️ Restablecer NEXO</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <p>
-
-      Se eliminarán los datos
-      guardados localmente en este
-      dispositivo.
-
-    </p>
-
-    <button
-      class="danger-btn"
-      style="width:100%"
-      onclick="resetNexo()"
-    >
-      Sí, restablecer
-    </button>
-
-  `);
-
-}
-
-
-function resetNexo(){
-
-  Object.values(STORAGE)
-    .forEach(key=>{
-      localStorage.removeItem(key);
-    });
-
-  location.reload();
-
-}
-
-
-/* =====================================================
-   CARGAR AJUSTES
-===================================================== */
-
-function loadSettings(){
-
-  const language=
-    Object.keys(
-      NEXO_LANGUAGES
-    ).find(
-      key =>
-        NEXO_LANGUAGES[key].name ===
-        preferences.language
-    );
-
-  const languageSelector=
-    document.getElementById(
-      "languageSelector"
-    );
-
-  if(
-    languageSelector &&
-    language
-  ){
-
-    languageSelector.value=
-      language;
-
-  }
-
-
-  const notificationsToggle=
-    document.getElementById(
-      "notificationsToggle"
-    );
-
-  if(notificationsToggle){
-
-    notificationsToggle.checked=
-      preferences.notifications;
-
-  }
-
-
-  const privateToggle=
-    document.getElementById(
-      "privateProfileToggle"
-    );
-
-  if(privateToggle){
-
-    privateToggle.checked=
-      preferences.privateProfile;
-
-  }
-
-
-  const discoverableToggle=
-    document.getElementById(
-      "discoverableToggle"
-    );
-
-  if(discoverableToggle){
-
-    discoverableToggle.checked=
-      preferences.discoverable;
-
-  }
-
-
-  const distance=
-    document.getElementById(
-      "distanceRange"
-    );
-
-  if(distance){
-
-    distance.value=
-      preferences.distance;
-
-    updateDistance(
-      preferences.distance
-    );
-
-  }
-
-}
-
-
-/* =====================================================
-   INICIALIZACIÓN
-===================================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  ()=>{
-
-    loadTheme();
-
-    loadSettings();
-
-  }
-);
-
-</script>
 <div id="app">
 
-<!-- ===================================================
-     HEADER
-=================================================== -->
-
-<header class="app-header">
-
+<header>
   <div>
-
-    <div class="logo">
-      NEXO
-    </div>
-
-    <div class="logo-subtitle">
-      Conecta · descubre · hazlo
-    </div>
-
+    <div class="logo">NEXO</div>
+    <div class="muted">Conecta · descubre · hazlo</div>
   </div>
 
   <div class="header-actions">
-
-    <button
-      class="icon-btn"
-      onclick="openSearch()"
-      aria-label="Buscar"
-    >
-      🔎
-    </button>
-
-    <button
-      class="icon-btn"
-      onclick="openAI()"
-      aria-label="NEXO AI"
-    >
-      ✦
-    </button>
-
-    <button
-      class="icon-btn"
-      onclick="openNotifications()"
-      aria-label="Notificaciones"
-    >
-      🔔
-    </button>
-
+    <button class="icon-btn" onclick="openSearch()">🔎</button>
+    <button class="icon-btn" onclick="openAI()">✦</button>
+    <button class="icon-btn" onclick="openNotifications()">🔔</button>
   </div>
-
 </header>
 
-
-<!-- ===================================================
-     HOME
-=================================================== -->
-
-<section
-  id="home"
-  class="screen active"
->
+<!-- INICIO -->
+<section id="home" class="screen active">
 
   <div class="hero">
+    <div class="muted">Hoy</div>
+    <h1>¿Qué te apetece hacer?</h1>
 
-    <div class="muted">
-      Hoy
-    </div>
-
-    <h1>
-      ¿Qué te apetece hacer?
-    </h1>
-
-    <p>
-      Encuentra personas, planes y experiencias cerca de ti.
-    </p>
-
-    <div
-      class="search-box"
-      style="margin-top:14px"
-    >
-
+    <div class="search">
       🔎
-
-      <input
-        id="homeSearch"
-        placeholder="Buscar personas, grupos o planes..."
-        oninput="searchHome(this.value)"
-      >
-
+      <input placeholder="Buscar personas, grupos o planes..."
+             oninput="homeSearch(this.value)">
     </div>
-
   </div>
 
-
-  <div
-    id="quickActions"
-    class="quick-grid"
-  ></div>
-
+  <div id="quick" class="quick-grid"></div>
 
   <div class="section-title">
-
-    <h2>
-      🔥 Ahora mismo
-    </h2>
-
-    <button
-      class="secondary-btn"
-      onclick="showScreen('now')"
-    >
-      Ver todo
-    </button>
-
+    <h2>🔥 Ahora mismo</h2>
+    <button class="secondary" onclick="showScreen('now')">Ver todo</button>
   </div>
 
-
-  <div id="nowHome"></div>
-
+  <div id="homeNow"></div>
 
   <div class="section-title">
-
-    <h2>
-      ⭐ Recomendado para ti
-    </h2>
-
-    <button
-      class="secondary-btn"
-      onclick="showScreen('connect')"
-    >
-      Ver
-    </button>
-
+    <h2>⭐ Para ti</h2>
+    <button class="secondary" onclick="showScreen('connect')">Ver</button>
   </div>
 
-
-  <div id="recommended"></div>
-
-
-  <div class="section-title">
-
-    <h2>
-      🆕 Nuevos planes
-    </h2>
-
-    <button
-      class="secondary-btn"
-      onclick="showScreen('plans')"
-    >
-      Ver
-    </button>
-
-  </div>
-
-
-  <div id="homePlans"></div>
-
+  <div id="homeRecommended"></div>
 </section>
 
-
-<!-- ===================================================
-     EXPLORE
-=================================================== -->
-
-<section
-  id="explore"
-  class="screen"
->
+<!-- EXPLORAR -->
+<section id="explore" class="screen">
 
   <div class="hero">
+    <h1>🔎 Explorar</h1>
 
-    <h1>
-      🔎 Explorar
-    </h1>
-
-    <p>
-      Descubre personas, grupos, actividades y eventos.
-    </p>
-
-    <div
-      class="search-box"
-      style="margin-top:14px"
-    >
-
+    <div class="search">
       🔎
-
-      <input
-        id="exploreSearch"
-        placeholder="Eventos, grupos, personas..."
-        oninput="globalSearch(this.value)"
-      >
-
+      <input id="exploreInput"
+             placeholder="Eventos, grupos, personas..."
+             oninput="renderExplore()">
     </div>
-
   </div>
 
-
-  <div class="chips">
-
-    <button
-      class="chip"
-      onclick="setExploreFilter('Todos')"
-    >
-      Todos
-    </button>
-
-    <button
-      class="chip"
-      onclick="setExploreFilter('Hoy')"
-    >
-      Hoy
-    </button>
-
-    <button
-      class="chip"
-      onclick="setExploreFilter('Mañana')"
-    >
-      Mañana
-    </button>
-
-    <button
-      class="chip"
-      onclick="setExploreFilter('Cerca')"
-    >
-      Cerca de mí
-    </button>
-
-    <button
-      class="chip"
-      onclick="setExploreFilter('Online')"
-    >
-      Online
-    </button>
-
-  </div>
-
-
-  <div class="section-title">
-
-    <h2>
-      Categorías
-    </h2>
-
-  </div>
-
-
-  <div
-    id="categories"
-    class="quick-grid"
-  ></div>
-
-
-  <div
-    id="exploreResults"
-    style="margin-top:15px"
-  ></div>
-
+  <div id="categories" class="quick-grid"></div>
+  <div id="exploreResults"></div>
 </section>
 
-
-<!-- ===================================================
-     CONNECT
-=================================================== -->
-
-<section
-  id="connect"
-  class="screen"
->
+<!-- CONECTA -->
+<section id="connect" class="screen">
 
   <div class="hero">
-
-    <h1>
-      🤝 Conecta
-    </h1>
-
-    <p>
-      Personas que podrían encajar contigo.
-    </p>
-
+    <h1>🤝 Conecta</h1>
+    <p>Personas que podrían encajar contigo.</p>
   </div>
 
+  <div id="people"></div>
+</section>
+
+<!-- PLANES -->
+<section id="plans" class="screen">
+
+  <div class="section-title">
+    <h1>📅 Planes</h1>
+    <button class="primary" onclick="createPlan()">+ Crear</button>
+  </div>
+
+  <div id="plansList"></div>
+</section>
+
+<!-- CALENDARIO -->
+<section id="calendar" class="screen">
+
+  <div class="hero">
+    <h1>🗓️ Calendario</h1>
+    <p>Tus planes y actividades.</p>
+  </div>
 
   <div class="card">
-
-    <div class="person">
-
-      <div class="now-icon">
-        🧠
-      </div>
-
-      <div class="person-main">
-
-        <strong>
-          ¿Quién está haciendo lo mismo que tú?
-        </strong>
-
-        <div class="muted">
-          Personas compatibles cerca de ti.
-        </div>
-
-      </div>
-
-    </div>
-
+    <h3>Agosto 2026</h3>
+    <div id="calendarGrid" class="calendar"></div>
   </div>
-
-
-  <div id="peopleContainer"></div>
-
-</section>
-
-
-<!-- ===================================================
-     PLANS
-=================================================== -->
-
-<section
-  id="plans"
-  class="screen"
->
-
-  <div class="section-title">
-
-    <h1>
-      📅 Planes
-    </h1>
-
-    <button
-      class="primary-btn"
-      onclick="openPlanCreator()"
-    >
-      + Crear
-    </button>
-
-  </div>
-
-
-  <div class="chips">
-
-    <button
-      class="chip"
-      onclick="filterPlans('Todos')"
-    >
-      Todos
-    </button>
-
-    <button
-      class="chip"
-      onclick="filterPlans('Deporte')"
-    >
-      Deporte
-    </button>
-
-    <button
-      class="chip"
-      onclick="filterPlans('Ocio')"
-    >
-      Ocio
-    </button>
-
-    <button
-      class="chip"
-      onclick="filterPlans('Música')"
-    >
-      Música
-    </button>
-
-  </div>
-
-
-  <div
-    id="plansContainer"
-    style="margin-top:15px"
-  ></div>
-
-</section>
-
-
-<!-- ===================================================
-     CALENDAR
-=================================================== -->
-
-<section
-  id="calendar"
-  class="screen"
->
-
-  <div class="hero">
-
-    <h1>
-      🗓️ Calendario
-    </h1>
-
-    <p>
-      Tus planes, entrenamientos, eventos y quedadas.
-    </p>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>
-      Agosto 2026
-    </h3>
-
-    <div
-      id="calendarGrid"
-      class="calendar"
-    ></div>
-
-  </div>
-
 
   <div id="calendarEvents"></div>
-
 </section>
 
-
-<!-- ===================================================
-     CHAT
-=================================================== -->
-
-<section
-  id="chat"
-  class="screen"
->
+<!-- CHAT -->
+<section id="chat" class="screen">
 
   <div class="hero">
-
-    <h1>
-      💬 Chat
-    </h1>
-
-    <p>
-      Habla con tus conexiones.
-    </p>
-
+    <h1>💬 Chat</h1>
   </div>
 
-
-  <div id="chatsContainer"></div>
-
+  <div id="chatList"></div>
 </section>
 
-
-<!-- ===================================================
-     GROUPS
-=================================================== -->
-
-<section
-  id="groups"
-  class="screen"
->
+<!-- GRUPOS -->
+<section id="groups" class="screen">
 
   <div class="section-title">
-
-    <h1>
-      👥 Grupos
-    </h1>
-
-    <button
-      class="primary-btn"
-      onclick="openGroupCreator()"
-    >
-      + Crear
-    </button>
-
+    <h1>👥 Grupos</h1>
+    <button class="primary" onclick="createGroup()">+ Crear</button>
   </div>
 
-
-  <div id="groupsContainer"></div>
-
+  <div id="groupsList"></div>
 </section>
 
-
-<!-- ===================================================
-     NOW
-=================================================== -->
-
-<section
-  id="now"
-  class="screen"
->
+<!-- AHORA -->
+<section id="now" class="screen">
 
   <div class="hero">
-
-    <h1>
-      🔥 Ahora mismo
-    </h1>
-
-    <p>
-      Lo que está pasando cerca de ti.
-    </p>
-
+    <h1>🔥 Ahora mismo</h1>
+    <p>Lo que está pasando.</p>
   </div>
 
-
-  <div id="nowContainer"></div>
-
+  <div id="nowList"></div>
 </section>
 
-
-<!-- ===================================================
-     MAP
-=================================================== -->
-
-<section
-  id="map"
-  class="screen"
->
+<!-- MAPA -->
+<section id="map" class="screen">
 
   <div class="hero">
-
-    <h1>
-      🗺️ Cerca de ti
-    </h1>
-
-    <p>
-      Personas, grupos y planes.
-    </p>
-
+    <h1>🗺️ Cerca de ti</h1>
+    <p>Planes y personas cerca.</p>
   </div>
-
 
   <div class="map">
-
-    <span
-      class="map-marker"
-      style="left:20%;top:30%"
-    >
-      🏃
-    </span>
-
-    <span
-      class="map-marker"
-      style="left:70%;top:35%"
-    >
-      ☕
-    </span>
-
-    <span
-      class="map-marker"
-      style="left:50%;top:70%"
-    >
-      ⚽
-    </span>
-
-    <span
-      class="map-marker"
-      style="left:80%;top:75%"
-    >
-      👤
-    </span>
-
+    <span class="marker" style="left:20%;top:30%">🏃</span>
+    <span class="marker" style="left:70%;top:35%">☕</span>
+    <span class="marker" style="left:50%;top:70%">⚽</span>
+    <span class="marker" style="left:80%;top:75%">👤</span>
   </div>
 
-
-  <div
-    id="mapResults"
-    style="margin-top:15px"
-  ></div>
-
+  <div id="mapResults"></div>
 </section>
 
-
-<!-- ===================================================
-     PROFILE
-=================================================== -->
-
-<section
-  id="profile"
-  class="screen"
->
+<!-- PERFIL -->
+<section id="profile" class="screen">
 
   <div class="hero">
-
-    <h1>
-      👤 Mi perfil
-    </h1>
-
-    <p>
-      Personaliza cómo apareces en NEXO.
-    </p>
-
+    <h1>👤 Mi perfil</h1>
   </div>
-
 
   <div class="card person">
-
-    <img
-      id="myAvatar"
-      class="avatar"
-      alt="Mi foto"
-    >
-
-    <div class="person-main">
-
-      <h2
-        id="myName"
-        style="margin:0"
-      ></h2>
-
-      <p
-        id="myBio"
-        class="muted"
-      ></p>
-
+    <img id="myAvatar" class="avatar">
+    <div class="grow">
+      <h2 id="myName" style="margin:0"></h2>
+      <p id="myBio" class="muted"></p>
     </div>
-
   </div>
 
+  <div id="myChips" class="chips"></div>
 
-  <div
-    id="myChips"
-    class="chips"
-  ></div>
+  <br>
 
-
-  <div
-    style="
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:8px;
-      margin-top:12px;
-    "
-  >
-
-    <button
-      class="secondary-btn"
-      onclick="openQR()"
-    >
-      📷 Mi NEXO
-    </button>
-
-    <button
-      class="secondary-btn"
-      onclick="openProfileEditor()"
-    >
-      ✏️ Editar
-    </button>
-
+  <div class="grid">
+    <button class="secondary" onclick="editProfile()">✏️ Editar</button>
+    <button class="secondary" onclick="openSettings()">⚙️ Ajustes</button>
   </div>
-
-
-  <button
-    class="secondary-btn"
-    style="width:100%;margin-top:10px"
-    onclick="openSettings()"
-  >
-    ⚙️ Ajustes
-  </button>
-
 </section>
 
-
 </div>
 
-
-<!-- ===================================================
-     BOTTOM NAV
-=================================================== -->
-
+<!-- NAVEGACIÓN -->
 <nav class="bottom-nav">
+  <div class="bottom-inner">
 
-  <div class="bottom-nav-inner">
-
-    <button
-      class="nav-btn active"
-      data-nav="home"
-      onclick="showScreen('home')"
-    >
-      <span>🏠</span>
-      Inicio
+    <button class="nav active" data-nav="home"
+            onclick="showScreen('home')">
+      <span>🏠</span>Inicio
     </button>
 
-    <button
-      class="nav-btn"
-      data-nav="connect"
-      onclick="showScreen('connect')"
-    >
-      <span>🤝</span>
-      Conecta
+    <button class="nav" data-nav="connect"
+            onclick="showScreen('connect')">
+      <span>🤝</span>Conecta
     </button>
 
-    <button
-      class="nav-btn"
-      data-nav="plans"
-      onclick="showScreen('plans')"
-    >
-      <span>📅</span>
-      Planes
+    <button class="nav" data-nav="plans"
+            onclick="showScreen('plans')">
+      <span>📅</span>Planes
     </button>
 
-    <button
-      class="nav-btn"
-      data-nav="calendar"
-      onclick="showScreen('calendar')"
-    >
-      <span>🗓️</span>
-      Calendario
+    <button class="nav" data-nav="calendar"
+            onclick="showScreen('calendar')">
+      <span>🗓️</span>Calendario
     </button>
 
-    <button
-      class="nav-btn"
-      data-nav="chat"
-      onclick="showScreen('chat')"
-    >
-      <span>💬</span>
-      Chat
+    <button class="nav" data-nav="chat"
+            onclick="showScreen('chat')">
+      <span>💬</span>Chat
     </button>
 
   </div>
-
 </nav>
 
-
-<!-- ===================================================
-     MODAL
-=================================================== -->
-
-<div
-  id="modalOverlay"
-  class="modal-overlay"
-  onclick="closeModalOutside(event)"
->
-
-  <div
-    id="modal"
-    class="modal"
-  ></div>
-
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div id="modalBox" class="modal-box"></div>
 </div>
 
+<!-- CHAT -->
+<div id="chatWindow" class="chat-window">
 
-<!-- ===================================================
-     CHAT WINDOW
-=================================================== -->
-
-<div
-  id="chatWindow"
-  class="chat-window"
->
-
-  <div class="chat-header">
-
-    <button
-      class="icon-btn"
-      onclick="closeChat()"
-    >
-      ←
-    </button>
-
-    <img
-      id="chatAvatar"
-      class="avatar"
-      alt="Contacto"
-    >
-
-    <strong id="chatName"></strong>
-
+  <div class="chat-head">
+    <button class="icon-btn" onclick="closeChat()">←</button>
+    <img id="chatAvatar" class="avatar">
+    <strong id="chatTitle"></strong>
   </div>
 
+  <div id="messages" class="messages"></div>
 
-  <div
-    id="chatMessages"
-    class="chat-messages"
-  ></div>
-
-
-  <form
-    class="chat-input"
-    onsubmit="sendMessage(event)"
-  >
-
-    <input
-      id="messageInput"
-      placeholder="Escribe un mensaje..."
-      autocomplete="off"
-    >
-
-    <button
-      class="primary-btn"
-    >
-      Enviar
-    </button>
-
+  <form class="chat-form" onsubmit="sendMessage(event)">
+    <input id="messageInput" placeholder="Escribe un mensaje...">
+    <button class="primary">Enviar</button>
   </form>
-
 </div>
 
+<script>
+const KEY={
+ profile:"nexo_profile",
+ plans:"nexo_plans",
+ groups:"nexo_groups",
+ chats:"nexo_chats",
+ theme:"nexo_theme"
+};
+
+let profile=JSON.parse(localStorage.getItem(KEY.profile))||{
+ name:"Fernando",
+ bio:"Explorando NEXO.",
+ avatar:"https://i.pravatar.cc/300?img=12",
+ interests:["Running","Música","Gym"]
+};
+
+let plans=JSON.parse(localStorage.getItem(KEY.plans))||[
+ {
+  id:1,title:"Running 5K",category:"Running",
+  time:"19:00",location:"Tarragona",
+  people:4,photo:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+  description:"Salida tranquila de 5 km."
+ },
+ {
+  id:2,title:"Café y conocer gente",category:"Ocio",
+  time:"18:30",location:"Tarragona",
+  people:3,photo:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80",
+  description:"Tomar algo y conocer gente nueva."
+ },
+ {
+  id:3,title:"Partido de fútbol",category:"Deporte",
+  time:"20:30",location:"Tarragona",
+  people:10,photo:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80",
+  description:"Partido amistoso."
+ }
+];
+
+let groups=JSON.parse(localStorage.getItem(KEY.groups))||[
+ {
+  id:1,name:"Running Tarragona",category:"Deporte",
+  members:12438,
+  photo:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+  description:"Entrena y conoce gente."
+ },
+ {
+  id:2,name:"Planes Tarragona",category:"Ocio",
+  members:3200,
+  photo:"https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80",
+  description:"Planes espontáneos y actividades."
+ }
+];
+
+let people=[
+ {
+  name:"Laura",age:29,
+  city:"Tarragona",
+  avatar:"https://i.pravatar.cc/200?img=47",
+  interests:["Running","Viajes","Música"],
+  compatibility:96
+ },
+ {
+  name:"Carlos",age:31,
+  city:"Tarragona",
+  avatar:"https://i.pravatar.cc/200?img=11",
+  interests:["Gym","Fútbol","Cine"],
+  compatibility:91
+ },
+ {
+  name:"Marta",age:28,
+  city:"Salou",
+  avatar:"https://i.pravatar.cc/200?img=32",
+  interests:["Café","Viajes","Fotografía"],
+  compatibility:88
+ }
+];
+
+let chats=JSON.parse(localStorage.getItem(KEY.chats))||[
+ {
+  id:1,name:"Laura",
+  avatar:"https://i.pravatar.cc/100?img=47",
+  messages:[{from:"them",text:"¡Hola! 👋"}]
+ }
+];
+
+let currentChat=null;
+
+const categories=[
+ ["🏃","Running"],
+ ["🏋️","Gym"],
+ ["⚽","Fútbol"],
+ ["🎬","Cine"],
+ ["🎵","Música"],
+ ["☕","Café"],
+ ["🚴","Ciclismo"],
+ ["🎮","Gaming"]
+];
+
+function save(){
+ localStorage.setItem(KEY.profile,JSON.stringify(profile));
+ localStorage.setItem(KEY.plans,JSON.stringify(plans));
+ localStorage.setItem(KEY.groups,JSON.stringify(groups));
+ localStorage.setItem(KEY.chats,JSON.stringify(chats));
+}
+
+function showScreen(id){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ const el=document.getElementById(id);
+ if(el)el.classList.add("active");
+
+ document.querySelectorAll(".nav").forEach(x=>{
+   x.classList.toggle("active",x.dataset.nav===id);
+ });
+
+ window.scrollTo(0,0);
+
+ if(id==="home")renderHome();
+ if(id==="explore")renderExplore();
+ if(id==="connect")renderPeople();
+ if(id==="plans")renderPlans();
+ if(id==="calendar")renderCalendar();
+ if(id==="chat")renderChats();
+ if(id==="groups")renderGroups();
+ if(id==="now")renderNow();
+ if(id==="profile")renderProfile();
+}
+
+function renderQuick(){
+ document.getElementById("quick").innerHTML=categories.slice(0,8).map(c=>`
+   <button class="quick" onclick="filterCategory('${c[1]}')">
+     <span>${c[0]}</span>${c[1]}
+   </button>
+ `).join("");
+}
+
+function planCard(p){
+ return `
+ <div class="card photo-card">
+   <img src="${p.photo}" alt="${p.title}">
+   <div class="photo-content">
+     <div class="muted">${p.category} · ${p.time} · ${p.location}</div>
+     <h3>${p.title}</h3>
+     <p class="muted">${p.description}</p>
+     <div class="row">
+       <strong>👥 ${p.people} personas</strong>
+       <span class="grow"></span>
+       <button class="primary" onclick="joinPlan(${p.id})">Me apunto</button>
+     </div>
+   </div>
+ </div>`;
+}
+
+function renderHome(){
+ document.getElementById("homeNow").innerHTML=plans.slice(0,2).map(planCard).join("");
+ document.getElementById("homeRecommended").innerHTML=people.slice(0,2).map(personCard).join("");
+}
+
+function personCard(p){
+ return `
+ <div class="card">
+   <div class="person">
+     <img class="avatar" src="${p.avatar}">
+     <div class="grow">
+       <h3>${p.name}, ${p.age}</h3>
+       <div class="muted">📍 ${p.city}</div>
+       <div class="compatibility">⭐ ${p.compatibility}% compatible</div>
+     </div>
+     <button class="primary" onclick="openPerson('${p.name}')">Conectar</button>
+   </div>
+   <div class="chips">
+     ${p.interests.map(i=>`<span class="chip">${i}</span>`).join("")}
+   </div>
+ </div>`;
+}
+
+function renderPeople(){
+ document.getElementById("people").innerHTML=people.map(personCard).join("");
+}
+
+function renderPlans(){
+ document.getElementById("plansList").innerHTML=plans.map(planCard).join("");
+}
+
+function renderGroups(){
+ document.getElementById("groupsList").innerHTML=groups.map(g=>`
+ <div class="card photo-card">
+   <img src="${g.photo}">
+   <div class="photo-content">
+     <div class="muted">${g.category}</div>
+     <h3>${g.name}</h3>
+     <p class="muted">${g.description}</p>
+     <div class="row">
+       <strong>👥 ${g.members.toLocaleString()} miembros</strong>
+       <span class="grow"></span>
+       <button class="primary" onclick="joinGroup(${g.id})">Unirme</button>
+     </div>
+   </div>
+ </div>`).join("");
+}
+
+function renderNow(){
+ document.getElementById("nowList").innerHTML=plans.map(planCard).join("");
+}
+
+function renderExplore(){
+ const q=(document.getElementById("exploreInput")?.value||"").toLowerCase();
+
+ document.getElementById("categories").innerHTML=categories.map(c=>`
+   <button class="quick" onclick="filterCategory('${c[1]}')">
+     <span>${c[0]}</span>${c[1]}
+   </button>`).join("");
+
+ let result=plans.filter(p=>
+   !q || `${p.title} ${p.category} ${p.location}`.toLowerCase().includes(q)
+ );
+
+ document.getElementById("exploreResults").innerHTML=
+   result.map(planCard).join("");
+}
+
+function filterCategory(category){
+ showScreen("explore");
+ document.getElementById("exploreInput").value=category;
+ renderExplore();
+}
+
+function homeSearch(value){
+ if(value.trim()){
+   showScreen("explore");
+   document.getElementById("exploreInput").value=value;
+   renderExplore();
+ }
+}
+
+function renderCalendar(){
+ const grid=document.getElementById("calendarGrid");
+ grid.innerHTML="";
+
+ for(let i=1;i<=31;i++){
+   const d=document.createElement("div");
+   d.className="day";
+   if([19,20,22,25].includes(i))d.classList.add("event");
+   d.textContent=i;
+   grid.appendChild(d);
+ }
+
+ document.getElementById("calendarEvents").innerHTML=
+   plans.map(planCard).join("");
+}
+
+function renderChats(){
+ document.getElementById("chatList").innerHTML=chats.map(c=>`
+ <div class="card person" onclick="openChat(${c.id})">
+   <img class="avatar" src="${c.avatar}">
+   <div class="grow">
+     <h3>${c.name}</h3>
+     <div class="muted">${c.messages[c.messages.length-1]?.text||""}</div>
+   </div>
+   <span>›</span>
+ </div>`).join("");
+}
+
+function openChat(id){
+ currentChat=chats.find(c=>c.id===id);
+ if(!currentChat)return;
+
+ document.getElementById("chatAvatar").src=currentChat.avatar;
+ document.getElementById("chatTitle").textContent=currentChat.name;
+
+ renderMessages();
+ document.getElementById("chatWindow").classList.add("active");
+}
+
+function renderMessages(){
+ document.getElementById("messages").innerHTML=
+ currentChat.messages.map(m=>`
+   <div class="msg ${m.from==="me"?"me":""}">${m.text}</div>
+ `).join("");
+
+ const box=document.getElementById("messages");
+ box.scrollTop=box.scrollHeight;
+}
+
+function closeChat(){
+ document.getElementById("chatWindow").classList.remove("active");
+}
+
+function sendMessage(e){
+ e.preventDefault();
+
+ const input=document.getElementById("messageInput");
+ const text=input.value.trim();
+
+ if(!text)return;
+
+ currentChat.messages.push({
+   from:"me",
+   text
+ });
+
+ input.value="";
+ save();
+ renderMessages();
+ renderChats();
+}
+
+function renderProfile(){
+ document.getElementById("myAvatar").src=profile.avatar;
+ document.getElementById("myName").textContent=profile.name;
+ document.getElementById("myBio").textContent=profile.bio;
+
+ document.getElementById("myChips").innerHTML=
+ profile.interests.map(i=>`<span class="chip">${i}</span>`).join("");
+}
+
+function editProfile(){
+ openModal(`
+   <div class="modal-head">
+     <h2>Editar perfil</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="form">
+     <label>Nombre</label>
+     <input id="editName" value="${profile.name}">
+   </div>
+
+   <div class="form">
+     <label>Biografía</label>
+     <textarea id="editBio">${profile.bio}</textarea>
+   </div>
+
+   <div class="form">
+     <label>Foto URL</label>
+     <input id="editAvatar" value="${profile.avatar}">
+   </div>
+
+   <button class="primary" onclick="saveProfile()">Guardar</button>
+ `);
+}
+
+function saveProfile(){
+ profile.name=document.getElementById("editName").value;
+ profile.bio=document.getElementById("editBio").value;
+ profile.avatar=document.getElementById("editAvatar").value;
+
+ save();
+ renderProfile();
+ closeModal();
+}
+
+function createPlan(){
+ openModal(`
+   <div class="modal-head">
+     <h2>Crear plan</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="form">
+     <label>Nombre</label>
+     <input id="planTitle" placeholder="Ej. Running 5K">
+   </div>
+
+   <div class="form">
+     <label>Categoría</label>
+     <input id="planCategory" placeholder="Running">
+   </div>
+
+   <div class="form">
+     <label>Hora</label>
+     <input id="planTime" type="time">
+   </div>
+
+   <div class="form">
+     <label>Lugar</label>
+     <input id="planLocation" placeholder="Tarragona">
+   </div>
+
+   <div class="form">
+     <label>Descripción</label>
+     <textarea id="planDescription"></textarea>
+   </div>
+
+   <button class="primary" onclick="savePlan()">Crear plan</button>
+ `);
+}
+
+function savePlan(){
+ const title=document.getElementById("planTitle").value.trim();
+ if(!title)return alert("Pon un nombre al plan.");
+
+ plans.unshift({
+   id:Date.now(),
+   title,
+   category:document.getElementById("planCategory").value||"General",
+   time:document.getElementById("planTime").value||"--:--",
+   location:document.getElementById("planLocation").value||"Sin ubicación",
+   people:1,
+   photo:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+   description:document.getElementById("planDescription").value||"Nuevo plan NEXO."
+ });
+
+ save();
+ renderPlans();
+ renderHome();
+ closeModal();
+}
+
+function createGroup(){
+ openModal(`
+   <div class="modal-head">
+     <h2>Crear grupo</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="form">
+     <label>Nombre</label>
+     <input id="groupName" placeholder="Mi grupo">
+   </div>
+
+   <div class="form">
+     <label>Categoría</label>
+     <input id="groupCategory" placeholder="Deporte">
+   </div>
+
+   <div class="form">
+     <label>Descripción</label>
+     <textarea id="groupDescription"></textarea>
+   </div>
+
+   <button class="primary" onclick="saveGroup()">Crear grupo</button>
+ `);
+}
+
+function saveGroup(){
+ const name=document.getElementById("groupName").value.trim();
+ if(!name)return alert("Pon un nombre.");
+
+ groups.unshift({
+   id:Date.now(),
+   name,
+   category:document.getElementById("groupCategory").value||"General",
+   members:1,
+   photo:"https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=80",
+   description:document.getElementById("groupDescription").value||"Grupo NEXO."
+ });
+
+ save();
+ renderGroups();
+ closeModal();
+}
+
+function joinPlan(id){
+ const p=plans.find(x=>x.id===id);
+ if(p){p.people++;save();renderHome();renderPlans();}
+ alert("¡Te has apuntado al plan! 🎉");
+}
+
+function joinGroup(id){
+ const g=groups.find(x=>x.id===id);
+ if(g){g.members++;save();renderGroups();}
+ alert("¡Te has unido al grupo! 👥");
+}
+
+function openPerson(name){
+ const p=people.find(x=>x.name===name);
+
+ openModal(`
+   <div class="modal-head">
+     <h2>${p.name}</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+   <div style="text-align:center">
+     <img src="${p.avatar}" style="width:120px;height:120px;border-radius:50%;object-fit:cover">
+     <h3>${p.name}, ${p.age}</h3>
+     <p class="muted">📍 ${p.city}</p>
+     <div class="chips">
+       ${p.interests.map(i=>`<span class="chip">${i}</span>`).join("")}
+     </div>
+     <br>
+     <button class="primary" onclick="startChat('${p.name}')">
+       💬 Enviar mensaje
+     </button>
+   </div>
+ `);
+}
+
+function startChat(name){
+ closeModal();
+
+ let c=chats.find(x=>x.name===name);
+
+ if(!c){
+   const p=people.find(x=>x.name===name);
+   c={
+     id:Date.now(),
+     name,
+     avatar:p.avatar,
+     messages:[]
+   };
+   chats.push(c);
+   save();
+ }
+
+ openChat(c.id);
+}
+
+function openSearch(){
+ openModal(`
+   <div class="modal-head">
+     <h2>🔎 Buscar en NEXO</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="search">
+     🔎
+     <input autofocus placeholder="Buscar..." oninput="modalSearch(this.value)">
+   </div>
+
+   <div id="modalResults" style="margin-top:15px"></div>
+ `);
+}
+
+function modalSearch(value){
+ const q=value.toLowerCase();
+
+ const results=[
+   ...plans.map(p=>({type:"Plan",name:p.title})),
+   ...groups.map(g=>({type:"Grupo",name:g.name})),
+   ...people.map(p=>({type:"Persona",name:p.name}))
+ ].filter(x=>x.name.toLowerCase().includes(q));
+
+ document.getElementById("modalResults").innerHTML=
+ results.map(r=>`
+   <div class="card">
+     <strong>${r.name}</strong>
+     <div class="muted">${r.type}</div>
+   </div>`).join("");
+}
+
+function openAI(){
+ openModal(`
+   <div class="modal-head">
+     <h2>✦ NEXO IA</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="card">
+     <strong>¿Qué quieres hacer?</strong>
+     <p class="muted">
+       Puedo ayudarte a encontrar planes, personas y grupos según tus intereses.
+     </p>
+   </div>
+
+   <div class="grid">
+     <button class="secondary" onclick="aiAction('deporte')">🏃 Deporte</button>
+     <button class="secondary" onclick="aiAction('ocio')">🎬 Ocio</button>
+     <button class="secondary" onclick="aiAction('social')">👥 Social</button>
+     <button class="secondary" onclick="aiAction('viajes')">✈️ Viajes</button>
+   </div>
+
+   <div id="aiResult" style="margin-top:15px"></div>
+ `);
+}
+
+function aiAction(type){
+ document.getElementById("aiResult").innerHTML=`
+   <div class="card">
+     <strong>✦ Recomendación NEXO</strong>
+     <p>
+       Para <b>${type}</b>, he encontrado opciones que pueden encajar contigo.
+       Explora los planes y conecta con personas con intereses similares.
+     </p>
+   </div>`;
+}
+
+function openNotifications(){
+ openModal(`
+   <div class="modal-head">
+     <h2>🔔 Notificaciones</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="card">
+     🎉 Tienes nuevos planes cerca de ti.
+   </div>
+
+   <div class="card">
+     🤝 Hay personas compatibles contigo.
+   </div>
+ `);
+}
+
+function openSettings(){
+ openModal(`
+   <div class="modal-head">
+     <h2>⚙️ Ajustes</h2>
+     <button class="close" onclick="closeModal()">✕</button>
+   </div>
+
+   <div class="card">
+     <strong>🌙 Apariencia</strong>
+     <br><br>
+     <button class="secondary" onclick="toggleTheme()">
+       Cambiar modo claro/oscuro
+     </button>
+   </div>
+
+   <div class="card">
+     <strong>🌍 Idioma</strong>
+     <br><br>
+     <select onchange="changeLanguage(this.value)">
+       <option>Español</option>
+       <option>English</option>
+       <option>Català</option>
+       <option>Français</option>
+       <option>Italiano</option>
+       <option>Português</option>
+       <option>Deutsch</option>
+     </select>
+   </div>
+ `);
+}
+
+function changeLanguage(lang){
+ localStorage.setItem("nexo_language",lang);
+ alert("Idioma seleccionado: "+lang);
+}
+
+function toggleTheme(){
+ document.body.classList.toggle("dark");
+ localStorage.setItem(
+   KEY.theme,
+   document.body.classList.contains("dark")?"dark":"light"
+ );
+}
+
+function openModal(html){
+ document.getElementById("modalBox").innerHTML=html;
+ document.getElementById("modal").classList.add("active");
+}
+
+function closeModal(){
+ document.getElementById("modal").classList.remove("active");
+}
+
+function applyTheme(){
+ if(localStorage.getItem(KEY.theme)==="dark"){
+   document.body.classList.add("dark");
+ }
+}
+
+document.getElementById("modal").addEventListener("click",e=>{
+ if(e.target.id==="modal")closeModal();
+});
+
+document.addEventListener("DOMContentLoaded",()=>{
+ applyTheme();
+ renderQuick();
+ renderHome();
+ renderPeople();
+ renderPlans();
+ renderGroups();
+ renderCalendar();
+ renderChats();
+ renderNow();
+ renderExplore();
+ renderProfile();
+});
+</script>
 
 <script>
 
-/* =====================================================
-   NEXO DATA
-===================================================== */
+/* =========================================================
+   NEXO — BLOQUE 2
+   DATOS + UTILIDADES + NAVEGACIÓN
+========================================================= */
+
+/* =========================================================
+   STORAGE
+========================================================= */
 
 const STORAGE = {
-
-  profile:"nexo_profile",
-
-  plans:"nexo_plans",
-
-  groups:"nexo_groups",
-
-  chats:"nexo_chats",
-
-  preferences:"nexo_preferences",
-
-  notifications:"nexo_notifications",
-
-  blocked:"nexo_blocked",
-
-  theme:"nexo_theme"
-
+  profile: "nexo_profile",
+  plans: "nexo_plans",
+  groups: "nexo_groups",
+  chats: "nexo_chats",
+  notifications: "nexo_notifications",
+  preferences: "nexo_preferences",
+  blocked: "nexo_blocked",
+  theme: "nexo_theme",
+  language: "nexo_language"
 };
 
 
-/* =====================================================
+/* =========================================================
+   SAFE STORAGE
+========================================================= */
+
+function loadData(key, fallback) {
+
+  try {
+
+    const data = localStorage.getItem(key);
+
+    return data
+      ? JSON.parse(data)
+      : fallback;
+
+  } catch (error) {
+
+    console.error("NEXO storage error:", error);
+
+    return fallback;
+  }
+}
+
+
+function saveData(key, data) {
+
+  try {
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(data)
+    );
+
+  } catch (error) {
+
+    console.error("NEXO save error:", error);
+
+  }
+
+}
+
+
+/* =========================================================
    PROFILE
-===================================================== */
+========================================================= */
 
-let profile =
-  JSON.parse(
-    localStorage.getItem(STORAGE.profile)
-  ) || {
+let profile = loadData(
+  STORAGE.profile,
+  {
 
-    name:"Fernando",
+    name: "Fernando",
 
-    bio:"Explorando NEXO.",
+    username: "@fernando",
+
+    bio:
+      "Me gusta entrenar, descubrir sitios y conocer gente nueva.",
 
     avatar:
       "https://i.pravatar.cc/300?img=12",
 
-    interests:[
+    cover:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+
+    city: "Tarragona",
+
+    age: 30,
+
+    interests: [
       "Running",
+      "Gym",
       "Música",
-      "Gym"
+      "Viajes",
+      "Cine"
     ]
 
-  };
+  }
+);
 
 
-/* =====================================================
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+let people = [
+
+  {
+    id: 1,
+
+    name: "Laura",
+
+    age: 28,
+
+    city: "Tarragona",
+
+    avatar:
+      "https://i.pravatar.cc/300?img=47",
+
+    cover:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80",
+
+    compatibility: 96,
+
+    online: true,
+
+    interests: [
+      "Running",
+      "Café",
+      "Viajes"
+    ],
+
+    description:
+      "Me encanta salir a correr y descubrir lugares nuevos."
+
+  },
+
+
+  {
+    id: 2,
+
+    name: "Alex",
+
+    age: 31,
+
+    city: "Tarragona",
+
+    avatar:
+      "https://i.pravatar.cc/300?img=11",
+
+    cover:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80",
+
+    compatibility: 91,
+
+    online: true,
+
+    interests: [
+      "Gym",
+      "Fútbol",
+      "Música"
+    ],
+
+    description:
+      "Entreno casi todos los días y siempre estoy buscando planes."
+
+  },
+
+
+  {
+    id: 3,
+
+    name: "Marta",
+
+    age: 27,
+
+    city: "Salou",
+
+    avatar:
+      "https://i.pravatar.cc/300?img=32",
+
+    cover:
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80",
+
+    compatibility: 88,
+
+    online: false,
+
+    interests: [
+      "Cine",
+      "Viajes",
+      "Restaurantes"
+    ],
+
+    description:
+      "Fan del cine, los viajes y los planes improvisados."
+
+  },
+
+
+  {
+    id: 4,
+
+    name: "David",
+
+    age: 30,
+
+    city: "Vila-seca",
+
+    avatar:
+      "https://i.pravatar.cc/300?img=68",
+
+    cover:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80",
+
+    compatibility: 84,
+
+    online: true,
+
+    interests: [
+      "Running",
+      "Senderismo",
+      "Tecnología"
+    ],
+
+    description:
+      "Naturaleza, deporte y tecnología."
+
+  }
+
+];
+
+
+/* =========================================================
    PLANS
-===================================================== */
+========================================================= */
 
-let plans =
-  JSON.parse(
-    localStorage.getItem(STORAGE.plans)
-  ) || [
+let plans = loadData(
+  STORAGE.plans,
+  [
 
     {
-      id:1,
+      id: 1,
 
-      title:"Running 5K",
+      title: "Running 5K",
 
-      category:"Deporte",
+      category: "Running",
 
-      time:"19:00",
-
-      date:"Hoy",
-
-      location:"Tarragona",
-
-      distance:"2,4 km",
-
-      people:4,
-
-      maxPeople:10,
+      emoji: "🏃",
 
       image:
         "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=80",
+
+      date: "Hoy",
+
+      time: "19:00",
+
+      location: "Tarragona",
+
+      people: 4,
+
+      maxPeople: 10,
+
+      distance: "2 km",
 
       description:
         "Salida tranquila de 5 km para entrenar y conocer gente."
 
     },
 
+
     {
-      id:2,
+      id: 2,
 
-      title:"Café y conocer gente",
+      title: "Café y conocer gente",
 
-      category:"Ocio",
+      category: "Café",
 
-      time:"18:30",
-
-      date:"Hoy",
-
-      location:"Tarragona",
-
-      distance:"1,8 km",
-
-      people:3,
-
-      maxPeople:8,
+      emoji: "☕",
 
       image:
         "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
 
+      date: "Hoy",
+
+      time: "18:30",
+
+      location: "Tarragona",
+
+      people: 3,
+
+      maxPeople: 8,
+
+      distance: "1 km",
+
       description:
-        "Tomar algo y conocer gente nueva."
+        "Tomar algo tranquilamente y conocer gente nueva."
 
     },
 
+
     {
-      id:3,
+      id: 3,
 
-      title:"Partido de fútbol",
+      title: "Partido de fútbol",
 
-      category:"Deporte",
+      category: "Deporte",
 
-      time:"20:30",
-
-      date:"Hoy",
-
-      location:"Tarragona",
-
-      distance:"3,1 km",
-
-      people:10,
-
-      maxPeople:14,
+      emoji: "⚽",
 
       image:
         "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
 
+      date: "Hoy",
+
+      time: "20:30",
+
+      location: "Tarragona",
+
+      people: 10,
+
+      maxPeople: 14,
+
+      distance: "3 km",
+
       description:
-        "Partido amistoso. Nivel medio."
+        "Partido amistoso para todos los niveles."
 
     },
 
+
     {
-      id:4,
+      id: 4,
 
-      title:"Tarde de playa",
+      title: "Atardecer en la playa",
 
-      category:"Ocio",
+      category: "Playa",
 
-      time:"17:00",
-
-      date:"Mañana",
-
-      location:"La Pineda",
-
-      distance:"6,5 km",
-
-      people:6,
-
-      maxPeople:15,
+      emoji: "🌅",
 
       image:
         "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
 
+      date: "Mañana",
+
+      time: "20:00",
+
+      location: "La Pineda",
+
+      people: 7,
+
+      maxPeople: 15,
+
+      distance: "5 km",
+
       description:
-        "Playa, música y buen ambiente."
+        "Plan tranquilo para ver el atardecer y tomar algo."
 
     }
 
-  ];
+  ]
+);
 
 
-/* =====================================================
+/* =========================================================
    GROUPS
-===================================================== */
+========================================================= */
 
-let groups =
-  JSON.parse(
-    localStorage.getItem(STORAGE.groups)
-  ) || [
+let groups = loadData(
+  STORAGE.groups,
+  [
 
     {
-      id:1,
+      id: 1,
 
-      name:"Running Tarragona",
+      name: "Running Tarragona",
 
-      category:"Deporte",
+      category: "Deporte",
 
-      members:12438,
+      emoji: "🏃",
 
       image:
         "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=80",
 
+      members: 12438,
+
       description:
-        "Entrena y conoce gente."
+        "Entrena, corre y conoce gente en Tarragona."
 
     },
 
+
     {
-      id:2,
+      id: 2,
 
-      name:"Planes Tarragona",
+      name: "Planes Tarragona",
 
-      category:"Ocio",
+      category: "Ocio",
 
-      members:3200,
+      emoji: "🎉",
 
       image:
-        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1200&q=80",
+
+      members: 3200,
 
       description:
-        "Planes espontáneos y actividades."
+        "Planes espontáneos, actividades y quedadas."
 
     },
 
+
     {
-      id:3,
+      id: 3,
 
-      name:"Gym & Fitness",
+      name: "Gym & Fitness",
 
-      category:"Deporte",
+      category: "Fitness",
 
-      members:8240,
+      emoji: "🏋️",
 
       image:
         "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
 
+      members: 7821,
+
       description:
-        "Entrenamiento, motivación y comunidad."
+        "Entrenamiento, gimnasio y motivación."
+
+    },
+
+
+    {
+      id: 4,
+
+      name: "Viajes y escapadas",
+
+      category: "Viajes",
+
+      emoji: "✈️",
+
+      image:
+        "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1200&q=80",
+
+      members: 5620,
+
+      description:
+        "Encuentra compañeros para viajar."
 
     }
 
-  ];
+  ]
+);
 
 
-/* =====================================================
+/* =========================================================
    CHATS
-===================================================== */
+========================================================= */
 
-let chats =
-  JSON.parse(
-    localStorage.getItem(STORAGE.chats)
-  ) || [
+let chats = loadData(
+  STORAGE.chats,
+  [
 
     {
-      id:1,
 
-      name:"Laura",
+      id: 1,
+
+      name: "Laura",
 
       avatar:
-        "https://i.pravatar.cc/200?img=47",
+        "https://i.pravatar.cc/100?img=47",
 
-      messages:[
+      online: true,
+
+      messages: [
+
         {
-          from:"them",
-          text:"¡Hola! 👋"
+          from: "them",
+
+          text: "¡Hola! 👋",
+
+          time: "18:32"
+        },
+
+        {
+          from: "me",
+
+          text: "¡Hola! ¿Qué tal?",
+
+          time: "18:34"
         }
+
       ]
 
     },
 
-    {
-      id:2,
 
-      name:"Carlos",
+    {
+
+      id: 2,
+
+      name: "Alex",
 
       avatar:
-        "https://i.pravatar.cc/200?img=11",
+        "https://i.pravatar.cc/100?img=11",
 
-      messages:[
+      online: true,
+
+      messages: [
+
         {
-          from:"them",
-          text:"¿Te apuntas al running?"
+          from: "them",
+
+          text: "¿Te apuntas al partido?",
+
+          time: "17:20"
         }
+
       ]
 
     }
 
-  ];
+  ]
+);
 
 
-/* =====================================================
+/* =========================================================
    NOTIFICATIONS
-===================================================== */
+========================================================= */
 
-let notifications =
-  JSON.parse(
-    localStorage.getItem(
-      STORAGE.notifications
-    )
-  ) || [];
+let notifications = loadData(
+  STORAGE.notifications,
+  [
+
+    {
+      id: 1,
+
+      type: "connection",
+
+      title: "Nueva conexión",
+
+      text:
+        "Laura ha mostrado interés en tu perfil.",
+
+      time: "Hace 5 min",
+
+      read: false
+
+    },
 
 
-/* =====================================================
+    {
+      id: 2,
+
+      type: "plan",
+
+      title: "Nuevo plan cerca de ti",
+
+      text:
+        "Running 5K comienza a las 19:00.",
+
+      time: "Hace 15 min",
+
+      read: false
+
+    }
+
+  ]
+);
+
+
+/* =========================================================
    PREFERENCES
-===================================================== */
+========================================================= */
 
-let preferences =
-  JSON.parse(
-    localStorage.getItem(
-      STORAGE.preferences
-    )
-  ) || {
-
-    distance:25,
-
-    notifications:true,
-
-    showOnline:true,
-
-    privateProfile:false,
-
-    discoverable:true,
-
-    language:"Español"
-
-  };
-
-
-/* =====================================================
-   BLOCKED
-===================================================== */
-
-let blocked =
-  JSON.parse(
-    localStorage.getItem(
-      STORAGE.blocked
-    )
-  ) || [];
-
-
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-const people = [
-
+let preferences = loadData(
+  STORAGE.preferences,
   {
-    id:1,
 
-    name:"Laura",
+    distance: 25,
 
-    age:28,
+    notifications: true,
 
-    city:"Tarragona",
+    showOnline: true,
 
-    distance:"1,2 km",
+    privateProfile: false,
 
-    compatibility:94,
+    discoverable: true,
 
-    avatar:
-      "https://i.pravatar.cc/400?img=47",
-
-    interests:[
-      "Running",
-      "Música",
-      "Cafés"
-    ],
-
-    online:true
-
-  },
-
-  {
-    id:2,
-
-    name:"Carlos",
-
-    age:31,
-
-    city:"Tarragona",
-
-    distance:"2,4 km",
-
-    compatibility:91,
-
-    avatar:
-      "https://i.pravatar.cc/400?img=11",
-
-    interests:[
-      "Gym",
-      "Fútbol",
-      "Viajes"
-    ],
-
-    online:true
-
-  },
-
-  {
-    id:3,
-
-    name:"Marta",
-
-    age:29,
-
-    city:"Vila-seca",
-
-    distance:"4,1 km",
-
-    compatibility:88,
-
-    avatar:
-      "https://i.pravatar.cc/400?img=32",
-
-    interests:[
-      "Cine",
-      "Viajes",
-      "Comida"
-    ],
-
-    online:false
-
-  },
-
-  {
-    id:4,
-
-    name:"Alex",
-
-    age:30,
-
-    city:"Salou",
-
-    distance:"6,3 km",
-
-    compatibility:85,
-
-    avatar:
-      "https://i.pravatar.cc/400?img=13",
-
-    interests:[
-      "Gaming",
-      "Música",
-      "Deporte"
-    ],
-
-    online:true
+    language: "Español"
 
   }
-
-];
-
-
-/* =====================================================
-   CATEGORIES
-===================================================== */
-
-const categories = [
-
-  {
-    name:"Deporte",
-    emoji:"🏃",
-    count:"1.240 planes",
-    image:
-      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Cine",
-    emoji:"🎬",
-    count:"320 planes",
-    image:
-      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Música",
-    emoji:"🎵",
-    count:"680 planes",
-    image:
-      "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Comida",
-    emoji:"🍔",
-    count:"540 planes",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Cafés",
-    emoji:"☕",
-    count:"410 planes",
-    image:
-      "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Gaming",
-    emoji:"🎮",
-    count:"230 planes",
-    image:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Viajes",
-    emoji:"✈️",
-    count:"180 planes",
-    image:
-      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80"
-  },
-
-  {
-    name:"Playa",
-    emoji:"🏖️",
-    count:"290 planes",
-    image:
-      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-  }
-
-];
+);
 
 
-/* =====================================================
-   CURRENT STATE
-===================================================== */
+/* =========================================================
+   BLOCKED USERS
+========================================================= */
+
+let blocked = loadData(
+  STORAGE.blocked,
+  []
+);
+
+
+/* =========================================================
+   STATE
+========================================================= */
 
 let currentChat = null;
 
+let currentScreen = "home";
+
 let currentExploreFilter = "Todos";
 
-let currentPlanFilter = "Todos";
+let selectedCategory = "Todos";
 
 
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
+
+const LANGUAGES = {
+
+  es: {
+
+    name: "Español",
+
+    home: "Inicio",
+
+    connect: "Conecta",
+
+    plans: "Planes",
+
+    calendar: "Calendario",
+
+    chat: "Chat",
+
+    explore: "Explorar",
+
+    profile: "Mi perfil",
+
+    groups: "Grupos",
+
+    now: "Ahora mismo",
+
+    search:
+      "Buscar personas, grupos o planes..."
+
+  },
+
+
+  ca: {
+
+    name: "Català",
+
+    home: "Inici",
+
+    connect: "Connecta",
+
+    plans: "Plans",
+
+    calendar: "Calendari",
+
+    chat: "Xat",
+
+    explore: "Explorar",
+
+    profile: "El meu perfil",
+
+    groups: "Grups",
+
+    now: "Ara mateix",
+
+    search:
+      "Buscar persones, grups o plans..."
+
+  },
+
+
+  en: {
+
+    name: "English",
+
+    home: "Home",
+
+    connect: "Connect",
+
+    plans: "Plans",
+
+    calendar: "Calendar",
+
+    chat: "Chat",
+
+    explore: "Explore",
+
+    profile: "My profile",
+
+    groups: "Groups",
+
+    now: "Right now",
+
+    search:
+      "Search people, groups or plans..."
+
+  },
+
+
+  fr: {
+
+    name: "Français",
+
+    home: "Accueil",
+
+    connect: "Connexion",
+
+    plans: "Plans",
+
+    calendar: "Calendrier",
+
+    chat: "Chat",
+
+    explore: "Explorer",
+
+    profile: "Mon profil",
+
+    groups: "Groupes",
+
+    now: "Maintenant",
+
+    search:
+      "Rechercher des personnes, groupes ou plans..."
+
+  },
+
+
+  de: {
+
+    name: "Deutsch",
+
+    home: "Start",
+
+    connect: "Verbinden",
+
+    plans: "Pläne",
+
+    calendar: "Kalender",
+
+    chat: "Chat",
+
+    explore: "Entdecken",
+
+    profile: "Mein Profil",
+
+    groups: "Gruppen",
+
+    now: "Jetzt",
+
+    search:
+      "Personen, Gruppen oder Pläne suchen..."
+
+  },
+
+
+  it: {
+
+    name: "Italiano",
+
+    home: "Home",
+
+    connect: "Connetti",
+
+    plans: "Piani",
+
+    calendar: "Calendario",
+
+    chat: "Chat",
+
+    explore: "Esplora",
+
+    profile: "Il mio profilo",
+
+    groups: "Gruppi",
+
+    now: "Adesso",
+
+    search:
+      "Cerca persone, gruppi o piani..."
+
+  }
+
+};
+
+
+let currentLanguage =
+  localStorage.getItem(
+    STORAGE.language
+  ) || "es";
+
+
+function setLanguage(language) {
+
+  if (!LANGUAGES[language]) return;
+
+  currentLanguage = language;
+
+  localStorage.setItem(
+    STORAGE.language,
+    language
+  );
+
+  preferences.language =
+    LANGUAGES[language].name;
+
+  saveData(
+    STORAGE.preferences,
+    preferences
+  );
+
+  applyLanguage();
+
+}
+
+
+function applyLanguage() {
+
+  const lang =
+    LANGUAGES[currentLanguage];
+
+  if (!lang) return;
+
+  document
+    .querySelectorAll("[data-i18n]")
+    .forEach(element => {
+
+      const key =
+        element.dataset.i18n;
+
+      if (lang[key]) {
+
+        element.textContent =
+          lang[key];
+
+      }
+
+    });
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showScreen(screen) {
+
+  const target =
+    document.getElementById(screen);
+
+  if (!target) return;
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(section => {
+
+      section.classList.remove("active");
+
+    });
+
+  target.classList.add("active");
+
+  currentScreen = screen;
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
+
+      button.classList.remove("active");
+
+    });
+
+  const navButton =
+    document.querySelector(
+      `[data-nav="${screen}"]`
+    );
+
+  if (navButton) {
+
+    navButton.classList.add("active");
+
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  if (screen === "home")
+    renderHome();
+
+  if (screen === "connect")
+    renderPeople();
+
+  if (screen === "plans")
+    renderPlans();
+
+  if (screen === "calendar")
+    renderCalendar();
+
+  if (screen === "chat")
+    renderChats();
+
+  if (screen === "groups")
+    renderGroups();
+
+  if (screen === "now")
+    renderNow();
+
+  if (screen === "map")
+    renderMap();
+
+  if (screen === "profile")
+    renderProfile();
+
+  if (screen === "explore")
+    renderExplore();
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(content) {
+
+  const overlay =
+    document.getElementById(
+      "modalOverlay"
+    );
+
+  const modal =
+    document.getElementById(
+      "modal"
+    );
+
+  if (!overlay || !modal) return;
+
+  modal.innerHTML = content;
+
+  overlay.classList.add("active");
+
+}
+
+
+function closeModal() {
+
+  const overlay =
+    document.getElementById(
+      "modalOverlay"
+    );
+
+  if (!overlay) return;
+
+  overlay.classList.remove("active");
+
+}
+
+
+document.addEventListener(
+  "click",
+  event => {
+
+    const overlay =
+      document.getElementById(
+        "modalOverlay"
+      );
+
+    if (
+      event.target === overlay
+    ) {
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function applyTheme() {
+
+  const theme =
+    localStorage.getItem(
+      STORAGE.theme
+    ) || "light";
+
+  document.body.classList.toggle(
+    "dark",
+    theme === "dark"
+  );
+
+}
+
+
+function toggleTheme() {
+
+  const dark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+  localStorage.setItem(
+    STORAGE.theme,
+    dark ? "light" : "dark"
+  );
+
+  applyTheme();
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function escapeHTML(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
+
+
+function formatMembers(number) {
+
+  if (number >= 1000000)
+    return (
+      (number / 1000000)
+        .toFixed(1)
+        .replace(".0", "") +
+      " M"
+    );
+
+  if (number >= 1000)
+    return (
+      (number / 1000)
+        .toFixed(1)
+        .replace(".0", "") +
+      " K"
+    );
+
+  return number;
+
+}
+
+
+function isBlocked(id) {
+
+  return blocked.includes(id);
+
+}
+
+
+/* =========================================================
+   SEARCH HOME
+========================================================= */
+
+function searchHome(value) {
+
+  const query =
+    value
+      .trim()
+      .toLowerCase();
+
+  if (!query) {
+
+    renderHome();
+
+    return;
+
+  }
+
+  const results = [
+
+    ...people.map(person => ({
+
+      type: "person",
+
+      ...person
+
+    })),
+
+    ...plans.map(plan => ({
+
+      type: "plan",
+
+      ...plan
+
+    })),
+
+    ...groups.map(group => ({
+
+      type: "group",
+
+      ...group
+
+    }))
+
+  ].filter(item => {
+
+    const text =
+      JSON.stringify(item)
+        .toLowerCase();
+
+    return text.includes(query);
+
+  });
+
+  const container =
+    document.getElementById(
+      "recommended"
+    );
+
+  if (!container) return;
+
+  container.innerHTML =
+    results.length
+
+      ? results
+          .slice(0, 10)
+          .map(renderSearchResult)
+          .join("")
+
+      : `
+        <div class="card">
+          <strong>No hemos encontrado resultados.</strong>
+          <div class="muted">
+            Prueba con otra búsqueda.
+          </div>
+        </div>
+      `;
+
+}
+
+
+function renderSearchResult(item) {
+
+  if (item.type === "person") {
+
+    return `
+      <div class="card person"
+           onclick="openPerson(${item.id})">
+
+        <img
+          class="avatar"
+          src="${escapeHTML(item.avatar)}"
+          alt="${escapeHTML(item.name)}"
+        >
+
+        <div class="person-main">
+
+          <strong>
+            ${escapeHTML(item.name)}
+          </strong>
+
+          <div class="muted">
+            ${escapeHTML(item.city)}
+          </div>
+
+          <div class="compatibility">
+            ${item.compatibility}% compatible
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (item.type === "plan") {
+
+    return `
+      <div class="card"
+           onclick="openPlan(${item.id})">
+
+        <strong>
+          ${escapeHTML(item.emoji)}
+          ${escapeHTML(item.title)}
+        </strong>
+
+        <div class="muted">
+          ${escapeHTML(item.date)}
+          ·
+          ${escapeHTML(item.time)}
+          ·
+          ${escapeHTML(item.location)}
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  return `
+    <div class="card"
+         onclick="openGroup(${item.id})">
+
+      <strong>
+        ${escapeHTML(item.emoji)}
+        ${escapeHTML(item.name)}
+      </strong>
+
+      <div class="muted">
+        ${formatMembers(item.members)}
+        miembros
+      </div>
+
+    </div>
+  `;
+
+}
+
+
+/* =========================================================
+   GLOBAL SEARCH
+========================================================= */
+
+function globalSearch(value) {
+
+  const query =
+    value
+      .trim()
+      .toLowerCase();
+
+  const container =
+    document.getElementById(
+      "exploreResults"
+    );
+
+  if (!container) return;
+
+  if (!query) {
+
+    renderExplore();
+
+    return;
+
+  }
+
+  const peopleResults =
+    people.filter(person =>
+      JSON.stringify(person)
+        .toLowerCase()
+        .includes(query)
+    );
+
+  const planResults =
+    plans.filter(plan =>
+      JSON.stringify(plan)
+        .toLowerCase()
+        .includes(query)
+    );
+
+  const groupResults =
+    groups.filter(group =>
+      JSON.stringify(group)
+        .toLowerCase()
+        .includes(query)
+    );
+
+
+  container.innerHTML = `
+
+    ${peopleResults
+      .map(person => renderPersonCard(person))
+      .join("")}
+
+    ${planResults
+      .map(plan => renderPlanCard(plan))
+      .join("")}
+
+    ${groupResults
+      .map(group => renderGroupCard(group))
+      .join("")}
+
+    ${
+      !peopleResults.length &&
+      !planResults.length &&
+      !groupResults.length
+
+        ? `
+          <div class="card">
+            <strong>
+              Sin resultados
+            </strong>
+
+            <div class="muted">
+              No hemos encontrado nada.
+            </div>
+          </div>
+        `
+
+        : ""
+    }
+
+  `;
+
+}
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+function setExploreFilter(filter) {
+
+  currentExploreFilter =
+    filter;
+
+  renderExplore();
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+function markNotificationsRead() {
+
+  notifications =
+    notifications.map(
+      notification => ({
+
+        ...notification,
+
+        read: true
+
+      })
+    );
+
+  saveData(
+    STORAGE.notifications,
+    notifications
+  );
+
+}
+
+
+/* =========================================================
+   INITIAL DATA SAVE
+========================================================= */
+
+saveData(
+  STORAGE.profile,
+  profile
+);
+
+saveData(
+  STORAGE.plans,
+  plans
+);
+
+saveData(
+  STORAGE.groups,
+  groups
+);
+
+saveData(
+  STORAGE.chats,
+  chats
+);
+
+saveData(
+  STORAGE.preferences,
+  preferences
+);
+
+saveData(
+  STORAGE.notifications,
+  notifications
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+applyTheme();
+
+/* =========================================================
+   NEXO — BLOQUE 3
+   RENDERIZADO DE TARJETAS + HOME + EXPLORAR + CONECTA
+========================================================= */
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+function renderQuickActions() {
+
+  const container =
+    document.getElementById("quickActions");
+
+  if (!container) return;
+
+  const actions = [
+
+    {
+      emoji: "🏃",
+      title: "Deporte",
+      category: "Deporte"
+    },
+
+    {
+      emoji: "☕",
+      title: "Café",
+      category: "Café"
+    },
+
+    {
+      emoji: "🎬",
+      title: "Cine",
+      category: "Cine"
+    },
+
+    {
+      emoji: "🎵",
+      title: "Música",
+      category: "Música"
+    },
+
+    {
+      emoji: "✈️",
+      title: "Viajes",
+      category: "Viajes"
+    },
+
+    {
+      emoji: "🍽️",
+      title: "Comida",
+      category: "Comida"
+    },
+
+    {
+      emoji: "🎮",
+      title: "Gaming",
+      category: "Gaming"
+    },
+
+    {
+      emoji: "🌅",
+      title: "Planes",
+      category: "Ocio"
+    }
+
+  ];
+
+  container.innerHTML =
+    actions.map(action => `
+
+      <button
+        class="quick-card"
+        onclick="selectQuickCategory('${action.category}')"
+      >
+
+        <span class="emoji">
+          ${action.emoji}
+        </span>
+
+        ${escapeHTML(action.title)}
+
+      </button>
+
+    `).join("");
+
+}
+
+
+function selectQuickCategory(category) {
+
+  showScreen("explore");
+
+  selectedCategory = category;
+
+  renderExplore();
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function renderHome() {
+
+  renderQuickActions();
+
+  renderNowHome();
+
+  renderRecommended();
+
+}
+
+
+/* =========================================================
+   NOW HOME
+========================================================= */
+
+function renderNowHome() {
+
+  const container =
+    document.getElementById("nowHome");
+
+  if (!container) return;
+
+  const nowPlans =
+    plans.slice(0, 3);
+
+  container.innerHTML =
+    nowPlans.map(plan => `
+
+      <div
+        class="card now-card"
+        onclick="openPlan(${plan.id})"
+      >
+
+        <div class="now-icon">
+
+          ${escapeHTML(plan.emoji)}
+
+        </div>
+
+        <div class="person-main">
+
+          <strong>
+            ${escapeHTML(plan.title)}
+          </strong>
+
+          <div class="muted">
+
+            ${escapeHTML(plan.time)}
+            ·
+            ${escapeHTML(plan.location)}
+
+          </div>
+
+          <div class="compatibility">
+
+            ${plan.people}/${plan.maxPeople}
+            personas
+
+          </div>
+
+        </div>
+
+        <button
+          class="secondary-btn"
+          onclick="event.stopPropagation(); openPlan(${plan.id})"
+        >
+          Ver
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   RECOMMENDED
+========================================================= */
+
+function renderRecommended() {
+
+  const container =
+    document.getElementById("recommended");
+
+  if (!container) return;
+
+  const recommended =
+    people
+      .filter(person =>
+        !isBlocked(person.id)
+      )
+      .sort(
+        (a,b) =>
+          b.compatibility -
+          a.compatibility
+      )
+      .slice(0, 4);
+
+  container.innerHTML =
+    recommended
+      .map(person =>
+        renderPersonCard(person)
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   PERSON CARD
+========================================================= */
+
+function renderPersonCard(person) {
+
+  if (isBlocked(person.id))
+    return "";
+
+  return `
+
+    <article
+      class="card"
+      style="padding:0;overflow:hidden"
+    >
+
+      <!-- FOTO PRINCIPAL -->
+
+      <div
+        style="
+          position:relative;
+          height:210px;
+          overflow:hidden;
+        "
+      >
+
+        <img
+          src="${escapeHTML(person.cover || person.avatar)}"
+          alt="${escapeHTML(person.name)}"
+          style="
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:block;
+          "
+        >
+
+        <div
+          style="
+            position:absolute;
+            left:14px;
+            bottom:14px;
+            display:flex;
+            align-items:center;
+            gap:10px;
+          "
+        >
+
+          <img
+            src="${escapeHTML(person.avatar)}"
+            alt="${escapeHTML(person.name)}"
+            style="
+              width:58px;
+              height:58px;
+              border-radius:50%;
+              border:3px solid white;
+              object-fit:cover;
+            "
+          >
+
+          ${
+            person.online
+              ? `
+                <span
+                  style="
+                    background:#22C55E;
+                    color:white;
+                    border-radius:999px;
+                    padding:5px 8px;
+                    font-size:11px;
+                    font-weight:800;
+                  "
+                >
+                  ● Online
+                </span>
+              `
+              : ""
+          }
+
+        </div>
+
+      </div>
+
+
+      <!-- CONTENIDO -->
+
+      <div style="padding:15px">
+
+        <div
+          style="
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            gap:10px;
+          "
+        >
+
+          <div>
+
+            <h3
+              style="
+                margin:0;
+                font-size:20px;
+              "
+            >
+
+              ${escapeHTML(person.name)}
+              ·
+              ${person.age}
+
+            </h3>
+
+            <div class="muted">
+
+              📍
+              ${escapeHTML(person.city)}
+
+            </div>
+
+          </div>
+
+          <div
+            class="compatibility"
+            style="
+              background:#F0EAFF;
+              padding:7px 9px;
+              border-radius:999px;
+            "
+          >
+
+            ${person.compatibility}%
+
+          </div>
+
+        </div>
+
+
+        <p
+          class="muted"
+          style="
+            font-size:14px;
+            line-height:1.5;
+          "
+        >
+
+          ${escapeHTML(person.description)}
+
+        </p>
+
+
+        <div class="chips">
+
+          ${
+            person.interests
+              .map(interest => `
+
+                <span class="chip">
+
+                  ${escapeHTML(interest)}
+
+                </span>
+
+              `)
+              .join("")
+          }
+
+        </div>
+
+
+        <div
+          style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:8px;
+            margin-top:14px;
+          "
+        >
+
+          <button
+            class="secondary-btn"
+            onclick="openPerson(${person.id})"
+          >
+            Ver perfil
+          </button>
+
+          <button
+            class="primary-btn"
+            onclick="connectPerson(${person.id})"
+          >
+            Conectar
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   CONNECT
+========================================================= */
+
+function renderPeople() {
+
+  const container =
+    document.getElementById(
+      "peopleContainer"
+    );
+
+  if (!container) return;
+
+  const available =
+    people.filter(person =>
+      !isBlocked(person.id)
+    );
+
+  container.innerHTML =
+    available
+      .map(person =>
+        renderPersonCard(person)
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   CONNECT PERSON
+========================================================= */
+
+function connectPerson(id) {
+
+  const person =
+    people.find(
+      item => item.id === id
+    );
+
+  if (!person) return;
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <div>
+
+        <h2 style="margin:0">
+          🤝 Conexión enviada
+        </h2>
+
+        <div class="muted">
+          ${escapeHTML(person.name)}
+        </div>
+
+      </div>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div
+      style="
+        text-align:center;
+        padding:20px 5px;
+      "
+    >
+
+      <img
+        src="${escapeHTML(person.avatar)}"
+        style="
+          width:90px;
+          height:90px;
+          border-radius:50%;
+          object-fit:cover;
+        "
+      >
+
+      <h3>
+        ¡Solicitud enviada!
+      </h3>
+
+      <p class="muted">
+
+        Cuando ${escapeHTML(person.name)}
+        acepte, podréis empezar a hablar.
+
+      </p>
+
+      <button
+        class="primary-btn"
+        onclick="closeModal()"
+      >
+        Perfecto
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =========================================================
+   OPEN PERSON
+========================================================= */
+
+function openPerson(id) {
+
+  const person =
+    people.find(
+      item => item.id === id
+    );
+
+  if (!person) return;
+
+  openModal(`
+
+    <div
+      style="
+        position:relative;
+        margin:-20px -20px 0;
+      "
+    >
+
+      <img
+        src="${escapeHTML(person.cover || person.avatar)}"
+        style="
+          width:100%;
+          height:220px;
+          object-fit:cover;
+          display:block;
+        "
+      >
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+        style="
+          position:absolute;
+          top:12px;
+          right:12px;
+          background:white;
+        "
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div
+      style="
+        text-align:center;
+        margin-top:-45px;
+        position:relative;
+      "
+    >
+
+      <img
+        src="${escapeHTML(person.avatar)}"
+        style="
+          width:90px;
+          height:90px;
+          border-radius:50%;
+          object-fit:cover;
+          border:4px solid white;
+        "
+      >
+
+      <h2 style="margin:8px 0 2px">
+
+        ${escapeHTML(person.name)}
+        ·
+        ${person.age}
+
+      </h2>
+
+      <div class="muted">
+
+        📍 ${escapeHTML(person.city)}
+
+      </div>
+
+      <div
+        class="compatibility"
+        style="margin-top:7px"
+      >
+
+        ${person.compatibility}% compatible contigo
+
+      </div>
+
+    </div>
+
+
+    <div
+      class="card"
+      style="margin-top:18px"
+    >
+
+      <strong>
+        Sobre mí
+      </strong>
+
+      <p class="muted">
+
+        ${escapeHTML(person.description)}
+
+      </p>
+
+    </div>
+
+
+    <h3>
+      Intereses
+    </h3>
+
+    <div class="chips">
+
+      ${
+        person.interests
+          .map(item => `
+
+            <span class="chip">
+              ${escapeHTML(item)}
+            </span>
+
+          `)
+          .join("")
+      }
+
+    </div>
+
+
+    <div
+      style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+        margin-top:18px;
+      "
+    >
+
+      <button
+        class="secondary-btn"
+        onclick="startChatWith(${person.id})"
+      >
+        💬 Mensaje
+      </button>
+
+      <button
+        class="primary-btn"
+        onclick="connectPerson(${person.id})"
+      >
+        🤝 Conectar
+      </button>
+
+    </div>
+
+
+    <button
+      class="danger-btn"
+      style="
+        width:100%;
+        margin-top:10px;
+      "
+      onclick="blockPerson(${person.id})"
+    >
+      🚫 Bloquear
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   BLOCK PERSON
+========================================================= */
+
+function blockPerson(id) {
+
+  if (!blocked.includes(id)) {
+
+    blocked.push(id);
+
+    saveData(
+      STORAGE.blocked,
+      blocked
+    );
+
+  }
+
+  closeModal();
+
+  renderPeople();
+
+  renderRecommended();
+
+}
+
+
+/* =========================================================
+   EXPLORE
+========================================================= */
+
+function renderExplore() {
+
+  const categories =
+    document.getElementById(
+      "categories"
+    );
+
+  const results =
+    document.getElementById(
+      "exploreResults"
+    );
+
+  if (categories) {
+
+    const categoryList = [
+
+      ["🏃", "Deporte"],
+      ["🎬", "Cine"],
+      ["☕", "Café"],
+      ["🎵", "Música"],
+      ["✈️", "Viajes"],
+      ["🍽️", "Comida"],
+      ["🎮", "Gaming"],
+      ["🎨", "Arte"]
+
+    ];
+
+    categories.innerHTML =
+      categoryList
+        .map(([emoji,name]) => `
+
+          <button
+            class="quick-card"
+            onclick="selectExploreCategory('${name}')"
+          >
+
+            <span class="emoji">
+              ${emoji}
+            </span>
+
+            ${name}
+
+          </button>
+
+        `)
+        .join("");
+
+  }
+
+
+  if (!results) return;
+
+
+  let filteredPlans =
+    [...plans];
+
+  let filteredGroups =
+    [...groups];
+
+  let filteredPeople =
+    people.filter(
+      person =>
+        !isBlocked(person.id)
+    );
+
+
+  if (
+    selectedCategory &&
+    selectedCategory !== "Todos"
+  ) {
+
+    const category =
+      selectedCategory
+        .toLowerCase();
+
+    filteredPlans =
+      filteredPlans.filter(item =>
+        (
+          item.category ||
+          ""
+        )
+          .toLowerCase()
+          .includes(category)
+      );
+
+    filteredGroups =
+      filteredGroups.filter(item =>
+        (
+          item.category ||
+          ""
+        )
+          .toLowerCase()
+          .includes(category)
+      );
+
+    filteredPeople =
+      filteredPeople.filter(person =>
+        person.interests.some(
+          interest =>
+            interest
+              .toLowerCase()
+              .includes(category)
+        )
+      );
+
+  }
+
+
+  if (
+    currentExploreFilter ===
+    "Cerca"
+  ) {
+
+    filteredPlans =
+      filteredPlans.filter(
+        plan =>
+          Number(
+            String(
+              plan.distance
+            )
+            .replace(" km","")
+          ) <= 5
+      );
+
+  }
+
+
+  if (
+    currentExploreFilter ===
+    "Online"
+  ) {
+
+    filteredPeople =
+      filteredPeople.filter(
+        person =>
+          person.online
+      );
+
+  }
+
+
+  results.innerHTML = `
+
+    <h2>
+      Personas
+    </h2>
+
+    ${
+      filteredPeople
+        .map(person =>
+          renderPersonCard(person)
+        )
+        .join("")
+    }
+
+
+    <h2>
+      Planes
+    </h2>
+
+    ${
+      filteredPlans
+        .map(plan =>
+          renderPlanCard(plan)
+        )
+        .join("")
+    }
+
+
+    <h2>
+      Grupos
+    </h2>
+
+    ${
+      filteredGroups
+        .map(group =>
+          renderGroupCard(group)
+        )
+        .join("")
+    }
+
+
+    ${
+      !filteredPeople.length &&
+      !filteredPlans.length &&
+      !filteredGroups.length
+
+        ? `
+          <div class="card">
+
+            <strong>
+              No hay resultados
+            </strong>
+
+            <div class="muted">
+              Prueba otra categoría.
+            </div>
+
+          </div>
+        `
+
+        : ""
+    }
+
+  `;
+
+}
+
+
+function selectExploreCategory(
+  category
+) {
+
+  selectedCategory =
+    category;
+
+  renderExplore();
+
+}
+
+
+/* =========================================================
+   PLAN CARD
+========================================================= */
+
+function renderPlanCard(plan) {
+
+  return `
+
+    <article
+      class="card"
+      style="
+        padding:0;
+        overflow:hidden;
+      "
+    >
+
+      <img
+        src="${escapeHTML(plan.image)}"
+        alt="${escapeHTML(plan.title)}"
+        style="
+          width:100%;
+          height:190px;
+          object-fit:cover;
+          display:block;
+        "
+      >
+
+
+      <div style="padding:15px">
+
+        <div
+          style="
+            display:flex;
+            justify-content:space-between;
+            gap:10px;
+          "
+        >
+
+          <div>
+
+            <div
+              class="muted"
+              style="margin-bottom:4px"
+            >
+
+              ${escapeHTML(plan.emoji)}
+              ${escapeHTML(plan.category)}
+
+            </div>
+
+            <h3>
+
+              ${escapeHTML(plan.title)}
+
+            </h3>
+
+          </div>
+
+          <span class="chip">
+
+            ${escapeHTML(plan.date)}
+
+          </span>
+
+        </div>
+
+
+        <div class="muted">
+
+          🕐 ${escapeHTML(plan.time)}
+
+          ·
+
+          📍 ${escapeHTML(plan.location)}
+
+        </div>
+
+
+        <p class="muted">
+
+          ${escapeHTML(plan.description)}
+
+        </p>
+
+
+        <div class="chips">
+
+          <span class="chip">
+
+            👥
+            ${plan.people}/${plan.maxPeople}
+
+          </span>
+
+          <span class="chip">
+
+            📍
+            ${escapeHTML(plan.distance)}
+
+          </span>
+
+        </div>
+
+
+        <button
+          class="primary-btn"
+          style="
+            width:100%;
+            margin-top:12px;
+          "
+          onclick="openPlan(${plan.id})"
+        >
+          Ver plan
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   GROUP CARD
+========================================================= */
+
+function renderGroupCard(group) {
+
+  return `
+
+    <article
+      class="card"
+      style="
+        padding:0;
+        overflow:hidden;
+      "
+    >
+
+      <img
+        src="${escapeHTML(group.image)}"
+        alt="${escapeHTML(group.name)}"
+        style="
+          width:100%;
+          height:180px;
+          object-fit:cover;
+          display:block;
+        "
+      >
+
+
+      <div style="padding:15px">
+
+        <div class="muted">
+
+          ${escapeHTML(group.emoji)}
+          ${escapeHTML(group.category)}
+
+        </div>
+
+        <h3>
+
+          ${escapeHTML(group.name)}
+
+        </h3>
+
+        <p class="muted">
+
+          ${escapeHTML(group.description)}
+
+        </p>
+
+
+        <div
+          style="
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:10px;
+          "
+        >
+
+          <span class="chip">
+
+            👥
+            ${formatMembers(group.members)}
+            miembros
+
+          </span>
+
+          <button
+            class="primary-btn"
+            onclick="openGroup(${group.id})"
+          >
+            Ver grupo
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   PLAN OPEN
+========================================================= */
+
+function openPlan(id) {
+
+  const plan =
+    plans.find(
+      item => item.id === id
+    );
+
+  if (!plan) return;
+
+  openModal(`
+
+    <div
+      style="
+        margin:-20px -20px 15px;
+        position:relative;
+      "
+    >
+
+      <img
+        src="${escapeHTML(plan.image)}"
+        style="
+          width:100%;
+          height:230px;
+          object-fit:cover;
+          display:block;
+        "
+      >
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+        style="
+          position:absolute;
+          right:12px;
+          top:12px;
+          background:white;
+        "
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="muted">
+
+      ${escapeHTML(plan.emoji)}
+      ${escapeHTML(plan.category)}
+
+    </div>
+
+
+    <h2>
+
+      ${escapeHTML(plan.title)}
+
+    </h2>
+
+
+    <div class="chips">
+
+      <span class="chip">
+        📅 ${escapeHTML(plan.date)}
+      </span>
+
+      <span class="chip">
+        🕐 ${escapeHTML(plan.time)}
+      </span>
+
+      <span class="chip">
+        📍 ${escapeHTML(plan.location)}
+      </span>
+
+    </div>
+
+
+    <div class="card">
+
+      <strong>
+        Sobre el plan
+      </strong>
+
+      <p class="muted">
+
+        ${escapeHTML(plan.description)}
+
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <strong>
+        Participantes
+      </strong>
+
+      <div
+        style="
+          margin-top:8px;
+          font-size:24px;
+        "
+      >
+
+        👤 👤 👤 👤
+
+      </div>
+
+      <div class="muted">
+
+        ${plan.people}
+        de
+        ${plan.maxPeople}
+        plazas ocupadas
+
+      </div>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="joinPlan(${plan.id})"
+    >
+      🙌 Me apunto
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   JOIN PLAN
+========================================================= */
+
+function joinPlan(id) {
+
+  const plan =
+    plans.find(
+      item => item.id === id
+    );
+
+  if (!plan) return;
+
+  if (
+    plan.people >=
+    plan.maxPeople
+  ) {
+
+    alert(
+      "Este plan está completo."
+    );
+
+    return;
+
+  }
+
+  plan.people++;
+
+  saveData(
+    STORAGE.plans,
+    plans
+  );
+
+  closeModal();
+
+  renderPlans();
+
+  renderNowHome();
+
+  alert(
+    "¡Te has apuntado al plan! 🎉"
+  );
+
+}
+
+
+/* =========================================================
+   GROUP OPEN
+========================================================= */
+
+function openGroup(id) {
+
+  const group =
+    groups.find(
+      item => item.id === id
+    );
+
+  if (!group) return;
+
+  openModal(`
+
+    <div
+      style="
+        margin:-20px -20px 15px;
+        position:relative;
+      "
+    >
+
+      <img
+        src="${escapeHTML(group.image)}"
+        style="
+          width:100%;
+          height:220px;
+          object-fit:cover;
+        "
+      >
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+        style="
+          position:absolute;
+          top:12px;
+          right:12px;
+          background:white;
+        "
+      >
+        ✕
+      </button>
+
+    </div>
+
+
+    <div class="muted">
+
+      ${escapeHTML(group.emoji)}
+      ${escapeHTML(group.category)}
+
+    </div>
+
+
+    <h2>
+
+      ${escapeHTML(group.name)}
+
+    </h2>
+
+
+    <p class="muted">
+
+      ${escapeHTML(group.description)}
+
+    </p>
+
+
+    <div class="card">
+
+      <strong>
+        Comunidad
+      </strong>
+
+      <p class="muted">
+
+        👥
+        ${formatMembers(group.members)}
+        miembros
+
+      </p>
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      style="width:100%"
+      onclick="joinGroup(${group.id})"
+    >
+      👥 Unirme al grupo
+    </button>
+
+  `);
+
+}
+
+
+/* =========================================================
+   JOIN GROUP
+========================================================= */
+
+function joinGroup(id) {
+
+  const group =
+    groups.find(
+      item => item.id === id
+    );
+
+  if (!group) return;
+
+  group.members++;
+
+  saveData(
+    STORAGE.groups,
+    groups
+  );
+
+  closeModal();
+
+  renderGroups();
+
+  alert(
+    "Te has unido al grupo. 👥"
+  );
+
+}
+
+
+/* =========================================================
+   PLANS SCREEN
+========================================================= */
+
+function renderPlans() {
+
+  const container =
+    document.getElementById(
+      "plansContainer"
+    );
+
+  if (!container) return;
+
+  container.innerHTML =
+    plans
+      .map(plan =>
+        renderPlanCard(plan)
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   GROUPS SCREEN
+========================================================= */
+
+function renderGroups() {
+
+  const container =
+    document.getElementById(
+      "groupsContainer"
+    );
+
+  if (!container) return;
+
+  container.innerHTML =
+    groups
+      .map(group =>
+        renderGroupCard(group)
+      )
+      .join("");
+
+}
+
+
+/* =========================================================
+   NOW SCREEN
+========================================================= */
+
+function renderNow() {
+
+  const container =
+    document.getElementById(
+      "nowContainer"
+    );
+
+  if (!container) return;
+
+  container.innerHTML = `
+
+    <div class="card">
+
+      <strong>
+        🔥 Actividad cerca de ti
+      </strong>
+
+      <p class="muted">
+
+        Estos son algunos de los planes
+        que están activos ahora.
+
+      </p>
+
+    </div>
+
+    ${plans
+      .slice(0, 6)
+      .map(plan =>
+        renderPlanCard(plan)
+      )
+      .join("")}
+
+  `;
+
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+function renderMap() {
+
+  const container =
+    document.getElementById(
+      "mapResults"
+    );
+
+  if (!container) return;
+
+  container.innerHTML = `
+
+    <div class="card">
+
+      <h3>
+        📍 Actividad cerca de ti
+      </h3>
+
+      <p class="muted">
+
+        Hay
+        <strong>${people.length}</strong>
+        personas y
+        <strong>${plans.length}</strong>
+        planes disponibles.
+
+      </p>
+
+    </div>
+
+    ${plans
+      .slice(0, 3)
+      .map(plan =>
+        renderPlanCard(plan)
+      )
+      .join("")}
+
+  `;
+
+}
 /* =====================================================
-   STORAGE SAVE
+   NEXO — BLOQUE 4
+   FINAL · INTERACCIONES · INICIALIZACIÓN
 ===================================================== */
 
-function saveAll(){
+function saveData(){
 
   localStorage.setItem(
     STORAGE.profile,
@@ -6222,128 +4172,635 @@ function saveAll(){
    SCREEN NAVIGATION
 ===================================================== */
 
-function showScreen(id){
+function showScreen(screen){
 
   document
     .querySelectorAll(".screen")
-    .forEach(screen=>{
-      screen.classList.remove("active");
+    .forEach(el=>{
+      el.classList.remove("active");
     });
 
   const target =
-    document.getElementById(id);
+    document.getElementById(screen);
 
-  if(!target){
-    return;
+  if(target){
+    target.classList.add("active");
   }
-
-  target.classList.add("active");
 
   document
     .querySelectorAll(".nav-btn")
     .forEach(btn=>{
       btn.classList.remove("active");
+
+      if(btn.dataset.nav===screen){
+        btn.classList.add("active");
+      }
     });
-
-  const nav =
-    document.querySelector(
-      `[data-nav="${id}"]`
-    );
-
-  if(nav){
-    nav.classList.add("active");
-  }
 
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 
-  renderScreen(id);
-
 }
 
 
 /* =====================================================
-   RENDER SCREEN
+   MODAL
 ===================================================== */
 
-function renderScreen(id){
+function openModal(content){
 
-  if(id==="home"){
-    renderHome();
-  }
+  const overlay =
+    document.getElementById("modalOverlay");
 
-  if(id==="explore"){
-    renderExplore();
-  }
+  const modal =
+    document.getElementById("modal");
 
-  if(id==="connect"){
-    renderPeople();
-  }
+  if(!overlay || !modal) return;
 
-  if(id==="plans"){
-    renderPlans();
-  }
+  modal.innerHTML=content;
 
-  if(id==="calendar"){
-    renderCalendar();
-  }
+  overlay.classList.add("active");
 
-  if(id==="chat"){
-    renderChats();
-  }
+}
 
-  if(id==="groups"){
-    renderGroups();
-  }
 
-  if(id==="now"){
-    renderNow();
-  }
+function closeModal(){
 
-  if(id==="map"){
-    renderMap();
-  }
+  const overlay =
+    document.getElementById("modalOverlay");
 
-  if(id==="profile"){
-    renderProfile();
+  if(overlay){
+    overlay.classList.remove("active");
   }
 
 }
 
 
+document
+  .getElementById("modalOverlay")
+  ?.addEventListener(
+    "click",
+    function(e){
+
+      if(e.target===this){
+        closeModal();
+      }
+
+    }
+  );
+
+
 /* =====================================================
-   INITIALIZATION
+   SEARCH
+===================================================== */
+
+function openSearch(){
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>🔎 Buscar en NEXO</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div class="search-box">
+
+      🔎
+
+      <input
+        id="globalModalSearch"
+        autofocus
+        placeholder="Personas, planes, grupos..."
+        oninput="globalSearch(this.value)"
+      >
+
+    </div>
+
+    <div
+      id="modalSearchResults"
+      style="margin-top:15px"
+    ></div>
+
+  `);
+
+}
+
+
+function searchHome(value){
+
+  if(!value.trim()) return;
+
+  globalSearch(value);
+
+}
+
+
+function globalSearch(value){
+
+  const query =
+    String(value||"")
+      .toLowerCase()
+      .trim();
+
+  const results=[];
+
+  if(!query){
+
+    renderExplore();
+
+    return;
+
+  }
+
+
+  plans.forEach(plan=>{
+
+    if(
+      plan.title.toLowerCase().includes(query) ||
+      plan.category.toLowerCase().includes(query) ||
+      plan.location.toLowerCase().includes(query)
+    ){
+
+      results.push(`
+        <div class="card">
+          <h3>📅 ${escapeHTML(plan.title)}</h3>
+          <div class="muted">
+            ${escapeHTML(plan.category)}
+            ·
+            ${escapeHTML(plan.location)}
+            ·
+            ${escapeHTML(plan.time)}
+          </div>
+        </div>
+      `);
+
+    }
+
+  });
+
+
+  groups.forEach(group=>{
+
+    if(
+      group.name.toLowerCase().includes(query) ||
+      group.category.toLowerCase().includes(query)
+    ){
+
+      results.push(`
+        <div class="card">
+          <h3>👥 ${escapeHTML(group.name)}</h3>
+          <div class="muted">
+            ${escapeHTML(group.category)}
+            ·
+            ${Number(group.members).toLocaleString()}
+            miembros
+          </div>
+        </div>
+      `);
+
+    }
+
+  });
+
+
+  chats.forEach(chat=>{
+
+    if(
+      chat.name.toLowerCase().includes(query)
+    ){
+
+      results.push(`
+        <div class="card person">
+          <img
+            class="avatar"
+            src="${escapeAttribute(chat.avatar)}"
+          >
+          <div class="person-main">
+            <strong>${escapeHTML(chat.name)}</strong>
+            <div class="muted">
+              Conversación
+            </div>
+          </div>
+        </div>
+      `);
+
+    }
+
+  });
+
+
+  const target =
+    document.getElementById("modalSearchResults") ||
+    document.getElementById("exploreResults");
+
+  if(!target) return;
+
+
+  target.innerHTML =
+    results.length
+      ? results.join("")
+      : `
+        <div class="card">
+          <h3>😕 No encontramos nada</h3>
+          <p class="muted">
+            Prueba con otro término.
+          </p>
+        </div>
+      `;
+
+}
+
+
+/* =====================================================
+   EXPLORE FILTERS
+===================================================== */
+
+let currentExploreFilter="Todos";
+
+
+function setExploreFilter(filter){
+
+  currentExploreFilter=filter;
+
+  renderExplore();
+
+}
+
+
+function renderExplore(){
+
+  const container =
+    document.getElementById("exploreResults");
+
+  if(!container) return;
+
+  let filtered=[...plans];
+
+
+  if(currentExploreFilter==="Online"){
+
+    filtered=filtered.filter(
+      p =>
+        String(p.location)
+          .toLowerCase()
+          .includes("online")
+    );
+
+  }
+
+
+  if(currentExploreFilter==="Cerca"){
+
+    filtered=filtered.filter(
+      p =>
+        String(p.location)
+          .toLowerCase()
+          .includes("tarragona")
+    );
+
+  }
+
+
+  container.innerHTML=
+    filtered.map(plan=>`
+
+      <div class="card">
+
+        <h3>
+          ${escapeHTML(plan.title)}
+        </h3>
+
+        <div class="muted">
+          ${escapeHTML(plan.category)}
+          ·
+          ${escapeHTML(plan.location)}
+          ·
+          ${escapeHTML(plan.time)}
+        </div>
+
+        <p>
+          ${escapeHTML(plan.description)}
+        </p>
+
+        <button
+          class="primary-btn"
+          onclick="joinPlan(${plan.id})"
+        >
+          Unirme
+        </button>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =====================================================
+   PLAN ACTION
+===================================================== */
+
+function joinPlan(id){
+
+  const plan =
+    plans.find(p=>p.id===id);
+
+  if(!plan) return;
+
+  plan.people =
+    Number(plan.people||0)+1;
+
+  saveData();
+
+  showToast(
+    `Te has unido a "${plan.title}" 🎉`
+  );
+
+  renderPlans();
+  renderExplore();
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message){
+
+  const old =
+    document.querySelector(".nexo-toast");
+
+  if(old) old.remove();
+
+
+  const toast =
+    document.createElement("div");
+
+  toast.className="nexo-toast";
+
+  toast.textContent=message;
+
+
+  Object.assign(
+    toast.style,
+    {
+
+      position:"fixed",
+      left:"50%",
+      bottom:"100px",
+      transform:"translateX(-50%)",
+      zIndex:"3000",
+      background:"#17151F",
+      color:"#FFFFFF",
+      padding:"12px 18px",
+      borderRadius:"999px",
+      fontWeight:"700",
+      fontSize:"13px",
+      boxShadow:"0 10px 30px rgba(0,0,0,.25)"
+
+    }
+  );
+
+
+  document.body.appendChild(toast);
+
+
+  setTimeout(()=>{
+
+    toast.remove();
+
+  },2500);
+
+}
+
+
+/* =====================================================
+   HTML SECURITY
+===================================================== */
+
+function escapeHTML(value){
+
+  return String(value??"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+  return escapeHTML(value);
+
+}
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+  "keydown",
+  event=>{
+
+    if(event.key==="Escape"){
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   SAVE BEFORE LEAVING
+===================================================== */
+
+window.addEventListener(
+  "beforeunload",
+  ()=>{
+
+    saveData();
+
+  }
+);
+
+
+/* =====================================================
+   FINAL INITIALIZATION
 ===================================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   ()=>{
 
-    applyTheme();
+    try{
 
-    renderHome();
+      applyTheme();
 
-    renderExplore();
+    }catch(error){
+      console.warn(
+        "Theme:",
+        error
+      );
+    }
 
-    renderPeople();
 
-    renderPlans();
+    try{
+      renderHome();
+    }catch(error){
+      console.warn(
+        "Home:",
+        error
+      );
+    }
 
-    renderCalendar();
 
-    renderChats();
+    try{
+      renderExplore();
+    }catch(error){
+      console.warn(
+        "Explore:",
+        error
+      );
+    }
 
-    renderGroups();
 
-    renderNow();
+    try{
+      renderPeople();
+    }catch(error){
+      console.warn(
+        "People:",
+        error
+      );
+    }
 
-    renderMap();
 
-    renderProfile();
+    try{
+      renderPlans();
+    }catch(error){
+      console.warn(
+        "Plans:",
+        error
+      );
+    }
+
+
+    try{
+      renderCalendar();
+    }catch(error){
+      console.warn(
+        "Calendar:",
+        error
+      );
+    }
+
+
+    try{
+      renderChats();
+    }catch(error){
+      console.warn(
+        "Chats:",
+        error
+      );
+    }
+
+
+    try{
+      renderGroups();
+    }catch(error){
+      console.warn(
+        "Groups:",
+        error
+      );
+    }
+
+
+    try{
+      renderNow();
+    }catch(error){
+      console.warn(
+        "Now:",
+        error
+      );
+    }
+
+
+    try{
+      renderMap();
+    }catch(error){
+      console.warn(
+        "Map:",
+        error
+      );
+    }
+
+
+    try{
+      renderProfile();
+    }catch(error){
+      console.warn(
+        "Profile:",
+        error
+      );
+    }
+
+    saveData();
 
   }
 );
 
+
+/* =====================================================
+   PWA
+===================================================== */
+
+if(
+  "serviceWorker" in navigator
+){
+
+  window.addEventListener(
+    "load",
+    ()=>{
+
+      navigator.serviceWorker
+        .register("./sw.js")
+        .then(()=>{
+          console.log(
+            "NEXO PWA activo"
+          );
+        })
+        .catch(error=>{
+          console.warn(
+            "Service Worker:",
+            error
+          );
+        });
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   END NEXO JAVASCRIPT
+===================================================== */
 </script>
+
+</body>
+</html>
