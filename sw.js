@@ -1,37 +1,16 @@
 /* =====================================================
    NEXO — SERVICE WORKER
-   PWA / CACHE / ACTUALIZACIONES
+   VERSIÓN SEGURA
 ===================================================== */
 
-const CACHE_NAME = "nexo-v4";
-
-const APP_FILES = [
-  "./",
-  "./index.html",
-  "./manifest.json"
-];
+const CACHE_NAME = "nexo-v6";
 
 
 /* =====================================================
-   INSTALAR
+   INSTALACIÓN
 ===================================================== */
 
 self.addEventListener("install", event => {
-
-  event.waitUntil(
-
-    caches.open(CACHE_NAME)
-      .then(cache => {
-
-        return cache.addAll(APP_FILES);
-
-      })
-
-  );
-
-  /*
-   * Activa inmediatamente la nueva versión.
-   */
 
   self.skipWaiting();
 
@@ -39,31 +18,26 @@ self.addEventListener("install", event => {
 
 
 /* =====================================================
-   ACTIVAR
+   ACTIVACIÓN
 ===================================================== */
 
 self.addEventListener("activate", event => {
 
   event.waitUntil(
 
-    caches.keys()
-      .then(keys => {
+    caches.keys().then(keys => {
 
-        return Promise.all(
+      return Promise.all(
 
-          keys
-            .filter(key => key !== CACHE_NAME)
-            .map(key => caches.delete(key))
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
 
-        );
+      );
 
-      })
+    })
 
   );
-
-  /*
-   * Controla inmediatamente las páginas abiertas.
-   */
 
   self.clients.claim();
 
@@ -77,7 +51,7 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
 
   /*
-   * Solo gestionamos GET.
+   * Solo GET.
    */
 
   if(event.request.method !== "GET") {
@@ -85,27 +59,17 @@ self.addEventListener("fetch", event => {
   }
 
 
+  /*
+   * Primero Internet.
+   * Así siempre intentamos cargar
+   * la versión actualizada de NEXO.
+   */
+
   event.respondWith(
 
     fetch(event.request)
 
       .then(response => {
-
-        /*
-         * Guardamos la versión más reciente.
-         */
-
-        const copy = response.clone();
-
-        caches.open(CACHE_NAME)
-          .then(cache => {
-
-            cache.put(
-              event.request,
-              copy
-            );
-
-          });
 
         return response;
 
@@ -114,31 +78,14 @@ self.addEventListener("fetch", event => {
       .catch(() => {
 
         /*
-         * Sin conexión:
-         * utilizamos la versión guardada.
+         * Si no hay Internet,
+         * intentamos utilizar caché.
          */
 
-        return caches.match(
-          event.request
-        );
+        return caches.match(event.request);
 
       })
 
   );
-
-});
-
-
-/* =====================================================
-   ACTUALIZACIÓN MANUAL
-===================================================== */
-
-self.addEventListener("message", event => {
-
-  if(event.data === "SKIP_WAITING") {
-
-    self.skipWaiting();
-
-  }
 
 });
