@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 
 <meta
@@ -12,7 +13,7 @@
 
 <meta
   name="description"
-  content="NEXO — conecta, descubre y hazlo."
+  content="NEXO — Conecta, descubre y hazlo."
 >
 
 <link rel="manifest" href="./manifest.json">
@@ -21,9 +22,9 @@
 
 <style>
 
-/* =========================================================
-   NEXO 4.0 — SISTEMA VISUAL
-========================================================= */
+/* =====================================================
+   NEXO 4.0 — BASE
+===================================================== */
 
 :root{
   --primary:#8B5CF6;
@@ -32,7 +33,6 @@
 
   --bg:#F7F5FC;
   --card:#FFFFFF;
-  --card-2:#FAF9FD;
 
   --text:#17151F;
   --muted:#777383;
@@ -40,28 +40,20 @@
   --border:#E8E4F0;
 
   --success:#22C55E;
-  --warning:#F59E0B;
   --danger:#EF4444;
-  --info:#3B82F6;
-
-  --shadow:
-    0 8px 30px rgba(20,10,50,.055);
+  --warning:#F59E0B;
 
   --radius:20px;
-  --radius-small:14px;
 
-  --safe-bottom:env(safe-area-inset-bottom);
-  --safe-top:env(safe-area-inset-top);
+  --shadow:
+    0 8px 30px rgba(31,25,55,.07);
 }
 
 *{
   box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
 }
 
 html{
-  margin:0;
-  padding:0;
   scroll-behavior:smooth;
 }
 
@@ -76,7 +68,6 @@ body{
     BlinkMacSystemFont,
     "Segoe UI",
     Roboto,
-    Helvetica,
     Arial,
     sans-serif;
 
@@ -104,11 +95,6 @@ img{
   max-width:100%;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
-}
-
 .hidden{
   display:none!important;
 }
@@ -117,168 +103,135 @@ a{
   overflow:hidden;
 }
 
-
-/* =========================================================
+/* =====================================================
    APP
-========================================================= */
+===================================================== */
 
 #app{
   width:100%;
   max-width:760px;
 
+  margin:auto;
+
   min-height:100vh;
 
-  margin:0 auto;
-
-  padding-bottom:
-    calc(100px + var(--safe-bottom));
+  padding-bottom:95px;
 }
 
-
-/* =========================================================
+/* =====================================================
    HEADER
-========================================================= */
+===================================================== */
 
 .app-header{
-
   position:sticky;
+
   top:0;
 
   z-index:100;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
+  gap:12px;
+
   padding:
-    calc(12px + var(--safe-top))
-    18px
-    12px;
+    14px
+    18px;
 
   background:
-    rgba(247,245,252,.90);
+    rgba(247,245,252,.92);
 
   backdrop-filter:blur(20px);
+
   -webkit-backdrop-filter:blur(20px);
 
-  border-bottom:1px solid var(--border);
+  border-bottom:
+    1px solid var(--border);
 }
 
 .logo{
-
   font-size:26px;
-  line-height:1;
 
   font-weight:950;
 
   letter-spacing:-1.5px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #8B5CF6,
-      #6D28D9
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
 }
 
-.header-subtitle{
-
-  margin-top:4px;
+.logo-subtitle{
+  color:var(--muted);
 
   font-size:11px;
 
-  color:var(--muted);
+  margin-top:1px;
 }
 
 .header-actions{
-
   display:flex;
-
-  align-items:center;
 
   gap:7px;
 }
 
 .icon-btn{
-
   width:40px;
   height:40px;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border:1px solid var(--border);
+  border:0;
 
   border-radius:50%;
 
   background:var(--card);
 
   box-shadow:
-    0 4px 15px rgba(0,0,0,.045);
+    0 4px 15px rgba(0,0,0,.06);
 
-  transition:
-    transform .15s,
-    background .15s;
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:18px;
 }
 
-.icon-btn:active{
-  transform:scale(.92);
-}
-
-
-/* =========================================================
+/* =====================================================
    SCREENS
-========================================================= */
+===================================================== */
 
 .screen{
-
   display:none;
 
-  padding:
-    18px
-    18px
-    25px;
+  padding:18px;
 }
 
 .screen.active{
   display:block;
 }
 
-
-/* =========================================================
+/* =====================================================
    HERO
-========================================================= */
+===================================================== */
 
 .hero{
-
   padding:
-    7px
+    8px
     2px
     18px;
 }
 
 .hero h1{
+  margin:4px 0 7px;
 
-  margin:
-    5px
-    0
-    8px;
+  font-size:29px;
 
-  font-size:30px;
+  line-height:1.1;
 
-  line-height:1.12;
-
-  letter-spacing:-1px;
+  letter-spacing:-.8px;
 }
 
 .hero p{
-
   margin:0;
 
   color:var(--muted);
@@ -286,29 +239,15 @@ a{
   line-height:1.5;
 }
 
-.eyebrow{
-
-  color:var(--primary);
-
-  font-size:12px;
-
-  font-weight:900;
-
-  text-transform:uppercase;
-
-  letter-spacing:.5px;
-}
-
-
-/* =========================================================
-   SECTION TITLE
-========================================================= */
+/* =====================================================
+   SECTION HEADER
+===================================================== */
 
 .section-title{
-
   display:flex;
 
   align-items:center;
+
   justify-content:space-between;
 
   gap:10px;
@@ -319,68 +258,48 @@ a{
     12px;
 }
 
-.section-title h2{
-
-  margin:0;
-
-  font-size:19px;
-
-  letter-spacing:-.3px;
-}
-
+.section-title h2,
 .section-title h1{
-
   margin:0;
 
-  font-size:27px;
-
-  letter-spacing:-.8px;
+  letter-spacing:-.4px;
 }
 
+.section-title h2{
+  font-size:20px;
+}
 
-/* =========================================================
+/* =====================================================
    SEARCH
-========================================================= */
+===================================================== */
 
 .search-box{
-
   display:flex;
 
   align-items:center;
 
   gap:10px;
 
-  width:100%;
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
 
   padding:
     12px
     15px;
 
-  background:var(--card);
-
-  border:
-    1px
-    solid
-    var(--border);
-
-  border-radius:17px;
-
   box-shadow:
-    0 5px 20px rgba(0,0,0,.025);
-}
-
-.search-icon{
-  flex:none;
-  font-size:19px;
+    0 5px 20px rgba(0,0,0,.035);
 }
 
 .search-box input{
-
   width:100%;
 
-  min-width:0;
-
   border:0;
+
   outline:0;
 
   background:transparent;
@@ -390,80 +309,72 @@ a{
   font-size:14px;
 }
 
-.search-box input::placeholder{
-  color:#9A96A5;
-}
-
-
-/* =========================================================
+/* =====================================================
    CARDS
-========================================================= */
+===================================================== */
 
 .card{
+  background:var(--card);
 
-  position:relative;
+  border:
+    1px solid var(--border);
 
-  width:100%;
+  border-radius:var(--radius);
 
   padding:16px;
 
-  margin-bottom:12px;
+  margin-bottom:13px;
+
+  box-shadow:var(--shadow);
+}
+
+.card h3{
+  margin:
+    0
+    0
+    6px;
+}
+
+.muted{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+/* =====================================================
+   PHOTO CARDS
+===================================================== */
+
+.photo-card{
+  overflow:hidden;
+
+  padding:0;
 
   background:var(--card);
 
   border:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 
-  border-radius:var(--radius);
+  border-radius:22px;
+
+  margin-bottom:15px;
 
   box-shadow:var(--shadow);
-
-  overflow:hidden;
-}
-
-.card h3{
-
-  margin:
-    0
-    0
-    5px;
-
-  font-size:17px;
-}
-
-.card p{
-  margin:0;
-}
-
-
-/* =========================================================
-   PHOTO CARDS
-========================================================= */
-
-.photo-card{
-
-  padding:0;
-
-  overflow:hidden;
 }
 
 .photo-card-image{
-
   position:relative;
 
   width:100%;
 
-  height:185px;
+  aspect-ratio:16 / 10;
 
   overflow:hidden;
 
-  background:#EEEAF7;
+  background:#eee;
 }
 
 .photo-card-image img{
-
   width:100%;
   height:100%;
 
@@ -478,150 +389,117 @@ a{
   transform:scale(1.03);
 }
 
-.photo-card-overlay{
-
-  position:absolute;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  padding:
-    45px
-    15px
-    13px;
-
-  background:
-    linear-gradient(
-      transparent,
-      rgba(0,0,0,.72)
-    );
-
-  color:white;
+.photo-card-content{
+  padding:15px;
 }
 
-.photo-card-overlay h3{
-
-  margin:0;
+.photo-card-title{
+  margin:0 0 5px;
 
   font-size:19px;
-}
-
-.photo-card-overlay p{
-
-  margin:4px 0 0;
-
-  font-size:12px;
-
-  opacity:.9;
-}
-
-.photo-card-body{
-  padding:14px;
-}
-
-
-/* =========================================================
-   AVATARS
-========================================================= */
-
-.avatar{
-
-  width:56px;
-  height:56px;
-
-  flex:none;
-
-  object-fit:cover;
-
-  border-radius:50%;
-
-  background:#EEEAF7;
-
-  border:
-    2px
-    solid
-    var(--card);
-}
-
-.avatar-small{
-
-  width:40px;
-  height:40px;
-}
-
-.avatar-large{
-
-  width:92px;
-  height:92px;
-}
-
-
-/* =========================================================
-   PERSON
-========================================================= */
-
-.person{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-}
-
-.person-main{
-  flex:1;
-  min-width:0;
-}
-
-.person-main h3{
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.person-actions{
-
-  display:flex;
-
-  gap:6px;
-
-  flex:none;
-}
-
-.compatibility{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:3px;
-
-  margin-top:3px;
-
-  color:#7042D8;
-
-  font-size:12px;
 
   font-weight:900;
+
+  letter-spacing:-.3px;
 }
 
+.photo-card-description{
+  margin:
+    6px
+    0
+    11px;
 
-/* =========================================================
-   BUTTONS
-========================================================= */
+  color:var(--muted);
 
-.primary-btn{
+  font-size:13px;
 
-  border:0;
+  line-height:1.45;
+}
+
+.photo-card-meta{
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:7px;
+
+  margin-bottom:12px;
+}
+
+.meta-item{
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.photo-card-actions{
+  display:flex;
+
+  gap:8px;
+}
+
+.photo-card-actions button{
+  flex:1;
+}
+
+/* =====================================================
+   PHOTO BADGES
+===================================================== */
+
+.photo-badge{
+  position:absolute;
+
+  left:11px;
+  top:11px;
+
+  padding:
+    7px
+    10px;
+
+  border-radius:999px;
 
   background:
-    linear-gradient(
-      135deg,
-      var(--primary),
-      var(--primary-dark)
-    );
+    rgba(255,255,255,.94);
+
+  color:#3f2b73;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  backdrop-filter:blur(10px);
+}
+
+.photo-distance{
+  position:absolute;
+
+  right:11px;
+  bottom:11px;
+
+  padding:
+    7px
+    10px;
+
+  border-radius:999px;
+
+  background:
+    rgba(0,0,0,.62);
+
+  color:white;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-btn{
+  border:0;
+
+  background:var(--primary);
 
   color:white;
 
@@ -633,20 +511,20 @@ a{
 
   font-weight:850;
 
-  box-shadow:
-    0 6px 15px rgba(139,92,246,.18);
-
   transition:
     transform .15s,
-    opacity .15s;
+    background .15s;
 }
 
 .primary-btn:active{
-  transform:scale(.96);
+  transform:scale(.97);
+}
+
+.primary-btn:hover{
+  background:var(--primary-dark);
 }
 
 .secondary-btn{
-
   border:0;
 
   background:var(--primary-light);
@@ -662,28 +540,7 @@ a{
   font-weight:750;
 }
 
-.ghost-btn{
-
-  border:
-    1px
-    solid
-    var(--border);
-
-  background:var(--card);
-
-  color:var(--text);
-
-  padding:
-    10px
-    13px;
-
-  border-radius:13px;
-
-  font-weight:700;
-}
-
 .danger-btn{
-
   border:0;
 
   background:#FEE2E2;
@@ -699,33 +556,22 @@ a{
   font-weight:800;
 }
 
-.full-btn{
-  width:100%;
-}
-
-
-/* =========================================================
+/* =====================================================
    QUICK GRID
-========================================================= */
+===================================================== */
 
 .quick-grid{
-
   display:grid;
 
   grid-template-columns:
     repeat(4,1fr);
 
-  gap:8px;
+  gap:9px;
 }
 
 .quick-card{
-
-  min-width:0;
-
   border:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 
   background:var(--card);
 
@@ -740,53 +586,224 @@ a{
   font-size:11px;
 
   box-shadow:
-    0 5px 15px rgba(0,0,0,.025);
-
-  transition:
-    transform .15s;
-}
-
-.quick-card:active{
-  transform:scale(.96);
+    0 4px 16px rgba(0,0,0,.025);
 }
 
 .quick-card .emoji{
-
   display:block;
 
   font-size:25px;
 
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 
-.quick-card .count{
+/* =====================================================
+   CATEGORY IMAGE
+===================================================== */
 
+.category-card{
+  position:relative;
+
+  overflow:hidden;
+
+  min-height:100px;
+
+  border-radius:18px;
+
+  border:
+    1px solid var(--border);
+
+  cursor:pointer;
+
+  background:#ddd;
+}
+
+.category-card img{
+  width:100%;
+  height:100%;
+
+  min-height:100px;
+
+  object-fit:cover;
+}
+
+.category-card::after{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+    linear-gradient(
+      transparent 20%,
+      rgba(0,0,0,.68)
+    );
+}
+
+.category-card-content{
+  position:absolute;
+
+  left:10px;
+  right:10px;
+  bottom:9px;
+
+  z-index:2;
+
+  color:white;
+}
+
+.category-card-content strong{
   display:block;
 
-  margin-top:3px;
-
-  color:var(--muted);
-
-  font-size:9px;
+  font-size:13px;
 }
 
+.category-card-content span{
+  font-size:10px;
 
-/* =========================================================
+  opacity:.85;
+}
+
+/* =====================================================
+   NOW
+===================================================== */
+
+.now-card{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.now-icon{
+  width:52px;
+  height:52px;
+
+  flex:none;
+
+  border-radius:16px;
+
+  background:var(--primary-light);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:25px;
+}
+
+/* =====================================================
+   PEOPLE
+===================================================== */
+
+.person{
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.avatar{
+  width:55px;
+  height:55px;
+
+  flex:none;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  background:#eee;
+}
+
+.person-main{
+  flex:1;
+
+  min-width:0;
+}
+
+.compatibility{
+  color:#7042D8;
+
+  font-size:12px;
+
+  font-weight:850;
+}
+
+/* =====================================================
+   PEOPLE PHOTO CARD
+===================================================== */
+
+.person-photo{
+  display:flex;
+
+  gap:12px;
+
+  align-items:center;
+
+  padding:13px;
+
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:19px;
+
+  margin-bottom:11px;
+
+  box-shadow:
+    0 6px 20px rgba(0,0,0,.035);
+}
+
+.person-photo-avatar{
+  width:70px;
+  height:70px;
+
+  border-radius:18px;
+
+  object-fit:cover;
+
+  flex:none;
+}
+
+.person-actions{
+  display:flex;
+
+  gap:6px;
+
+  margin-top:8px;
+}
+
+.person-actions button{
+  padding:
+    7px
+    10px;
+
+  font-size:11px;
+}
+
+/* =====================================================
    CHIPS
-========================================================= */
+===================================================== */
 
 .chips{
-
   display:flex;
 
   flex-wrap:wrap;
 
-  gap:7px;
-
-  margin-bottom:12px;
+  gap:6px;
 }
 
 .chip{
+  display:inline-flex;
+
+  align-items:center;
 
   border:0;
 
@@ -803,337 +820,20 @@ a{
   font-size:11px;
 
   font-weight:700;
-
-  white-space:nowrap;
 }
 
-.chip.active{
-
-  background:var(--primary);
-
-  color:white;
-}
-
-
-/* =========================================================
-   NOW
-========================================================= */
-
-.now-card{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-}
-
-.now-icon{
-
-  width:52px;
-  height:52px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border-radius:16px;
-
-  background:var(--primary-light);
-
-  font-size:26px;
-}
-
-.grow{
-  flex:1;
-  min-width:0;
-}
-
-
-/* =========================================================
-   META
-========================================================= */
-
-.meta{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin-top:8px;
-
-  color:var(--muted);
-
-  font-size:11px;
-}
-
-.meta span{
-  display:inline-flex;
-  align-items:center;
-  gap:3px;
-}
-
-
-/* =========================================================
-   BADGES
-========================================================= */
-
-.badge{
-
-  display:inline-flex;
-
-  align-items:center;
-
-  gap:4px;
-
-  width:max-content;
-
-  padding:
-    5px
-    8px;
-
-  border-radius:999px;
-
-  font-size:10px;
-
-  font-weight:850;
-
-  background:#F3F1F7;
-
-  color:var(--muted);
-}
-
-.badge.success{
-  background:#DCFCE7;
-  color:#15803D;
-}
-
-.badge.warning{
-  background:#FEF3C7;
-  color:#B45309;
-}
-
-.badge.info{
-  background:#DBEAFE;
-  color:#1D4ED8;
-}
-
-
-/* =========================================================
-   PLAN CARD
-========================================================= */
-
-.plan-card{
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-.plan-top{
-
-  display:flex;
-
-  align-items:flex-start;
-
-  gap:12px;
-}
-
-.plan-category{
-
-  width:52px;
-  height:52px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border-radius:16px;
-
-  background:var(--primary-light);
-
-  font-size:25px;
-}
-
-.plan-info{
-  flex:1;
-  min-width:0;
-}
-
-.plan-info h3{
-
-  margin:0 0 4px;
-
-  font-size:17px;
-}
-
-.plan-info p{
-
-  color:var(--muted);
-
-  font-size:12px;
-
-  line-height:1.4;
-}
-
-.plan-bottom{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:8px;
-
-  margin-top:14px;
-
-  padding-top:12px;
-
-  border-top:1px solid var(--border);
-}
-
-
-/* =========================================================
-   GROUP CARD
-========================================================= */
-
-.group-card{
-
-  display:flex;
-
-  gap:12px;
-
-  align-items:center;
-}
-
-.group-icon{
-
-  width:56px;
-  height:56px;
-
-  flex:none;
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border-radius:17px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #EDE5FF,
-      #F7F1FF
-    );
-
-  font-size:27px;
-}
-
-
-/* =========================================================
-   CALENDAR
-========================================================= */
-
-.calendar{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(7,1fr);
-
-  gap:5px;
-}
-
-.calendar-head{
-
-  text-align:center;
-
-  color:var(--muted);
-
-  font-size:10px;
-
-  font-weight:800;
-
-  padding-bottom:4px;
-}
-
-.calendar-day{
-
-  min-height:47px;
-
-  padding:7px 3px;
-
-  border-radius:10px;
-
-  background:#F3F1F7;
-
-  text-align:center;
-
-  font-size:12px;
-
-  position:relative;
-}
-
-.calendar-day.today{
-
-  outline:
-    2px
-    solid
-    var(--primary);
-}
-
-.calendar-day.event{
-
-  background:#E9DEFF;
-
-  color:#6134C5;
-
-  font-weight:850;
-}
-
-.calendar-day .dot{
-
-  width:5px;
-  height:5px;
-
-  border-radius:50%;
-
-  background:var(--primary);
-
-  position:absolute;
-
-  bottom:4px;
-
-  left:50%;
-
-  transform:translateX(-50%);
-}
-
-
-/* =========================================================
+/* =====================================================
    MAP
-========================================================= */
+===================================================== */
 
 .map{
-
   position:relative;
 
-  width:100%;
-  height:310px;
+  height:300px;
 
   overflow:hidden;
 
-  border-radius:22px;
+  border-radius:21px;
 
   background:
     linear-gradient(
@@ -1142,11 +842,11 @@ a{
       #DFF5E8
     );
 
-  border:1px solid var(--border);
+  border:
+    1px solid var(--border);
 }
 
 .map::before{
-
   content:"";
 
   position:absolute;
@@ -1154,92 +854,103 @@ a{
   inset:0;
 
   background-image:
-
     linear-gradient(
       25deg,
       transparent 47%,
-      rgba(255,255,255,.72) 48%,
+      rgba(255,255,255,.7) 48%,
       transparent 50%
-    ),
-
-    linear-gradient(
-      115deg,
-      transparent 48%,
-      rgba(255,255,255,.62) 49%,
-      transparent 51%
     );
 
-  opacity:.7;
+  opacity:.6;
 }
 
 .map-marker{
-
   position:absolute;
 
-  width:42px;
-  height:42px;
+  font-size:25px;
 
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:white;
-
-  box-shadow:
-    0 6px 18px rgba(0,0,0,.15);
-
-  font-size:22px;
-
-  transform:translate(-50%,-50%);
+  transform:
+    translate(-50%,-50%);
 
   z-index:2;
 }
 
+/* =====================================================
+   CALENDAR
+===================================================== */
 
-/* =========================================================
+.calendar{
+  display:grid;
+
+  grid-template-columns:
+    repeat(7,1fr);
+
+  gap:5px;
+}
+
+.calendar-day{
+  min-height:45px;
+
+  padding:7px;
+
+  border-radius:9px;
+
+  background:#F3F1F7;
+
+  text-align:center;
+
+  font-size:12px;
+}
+
+.calendar-day.event{
+  background:#E9DEFF;
+
+  color:#6134C5;
+
+  font-weight:800;
+}
+
+/* =====================================================
    CHAT LIST
-========================================================= */
+===================================================== */
 
-.chat-list-item{
+.chat-list{
+  display:flex;
 
+  flex-direction:column;
+
+  gap:9px;
+}
+
+.chat-row{
   display:flex;
 
   align-items:center;
 
   gap:12px;
 
-  padding:13px 3px;
+  padding:12px;
 
-  border-bottom:
-    1px
-    solid
-    var(--border);
+  background:var(--card);
+
+  border:
+    1px solid var(--border);
+
+  border-radius:17px;
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,.03);
+
+  cursor:pointer;
 }
 
-.chat-list-item:last-child{
-  border-bottom:0;
-}
-
-.chat-preview{
-
+.chat-row-content{
   flex:1;
+
   min-width:0;
 }
 
-.chat-preview strong{
-
-  display:block;
-
-  margin-bottom:3px;
-}
-
-.chat-preview p{
-
-  margin:0;
-
+.chat-preview{
   color:var(--muted);
 
   font-size:12px;
@@ -1251,31 +962,22 @@ a{
   text-overflow:ellipsis;
 }
 
-.chat-time{
-
-  color:var(--muted);
-
-  font-size:10px;
-}
-
-
-/* =========================================================
+/* =====================================================
    CHAT WINDOW
-========================================================= */
+===================================================== */
 
 .chat-window{
-
   position:fixed;
 
   inset:0;
+
+  background:var(--bg);
 
   z-index:500;
 
   display:none;
 
   flex-direction:column;
-
-  background:var(--bg);
 }
 
 .chat-window.active{
@@ -1283,33 +985,21 @@ a{
 }
 
 .chat-header{
-
   display:flex;
 
   align-items:center;
 
   gap:10px;
 
-  padding:
-    calc(10px + var(--safe-top))
-    14px
-    10px;
+  padding:14px;
 
   background:var(--card);
 
   border-bottom:
-    1px
-    solid
-    var(--border);
-}
-
-.chat-header .icon-btn{
-  width:38px;
-  height:38px;
+    1px solid var(--border);
 }
 
 .chat-messages{
-
   flex:1;
 
   overflow-y:auto;
@@ -1318,7 +1008,6 @@ a{
 }
 
 .message{
-
   width:max-content;
 
   max-width:80%;
@@ -1327,19 +1016,16 @@ a{
     10px
     13px;
 
-  border-radius:17px;
+  border-radius:16px;
 
   background:#EDEAF2;
 
   margin-bottom:8px;
 
-  font-size:14px;
-
   line-height:1.4;
 }
 
 .message.me{
-
   margin-left:auto;
 
   background:var(--primary);
@@ -1347,134 +1033,43 @@ a{
   color:white;
 }
 
-.message-time{
-
-  display:block;
-
-  margin-top:3px;
-
-  font-size:9px;
-
-  opacity:.6;
-
-  text-align:right;
-}
-
 .chat-input{
-
   display:flex;
 
   gap:8px;
 
-  padding:
-    10px
-    10px
-    calc(10px + var(--safe-bottom));
+  padding:10px;
 
   background:var(--card);
 
   border-top:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 }
 
 .chat-input input{
-
   flex:1;
 
   min-width:0;
 
   border:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 
-  border-radius:15px;
+  border-radius:14px;
 
-  padding:11px 13px;
+  padding:11px;
 
-  outline:0;
+  outline:none;
 
   background:var(--card);
 
   color:var(--text);
 }
 
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.profile-header{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:15px;
-
-  padding-bottom:16px;
-}
-
-.profile-info{
-  flex:1;
-}
-
-.profile-info h2{
-  margin:0 0 4px;
-}
-
-.profile-stats{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:8px;
-
-  margin-top:15px;
-}
-
-.stat{
-
-  padding:12px 6px;
-
-  text-align:center;
-
-  background:var(--card-2);
-
-  border-radius:14px;
-
-  border:1px solid var(--border);
-}
-
-.stat strong{
-
-  display:block;
-
-  font-size:18px;
-}
-
-.stat span{
-
-  display:block;
-
-  margin-top:3px;
-
-  color:var(--muted);
-
-  font-size:10px;
-}
-
-
-/* =========================================================
+/* =====================================================
    BOTTOM NAV
-========================================================= */
+===================================================== */
 
 .bottom-nav{
-
   position:fixed;
 
   left:0;
@@ -1484,22 +1079,20 @@ a{
   z-index:200;
 
   background:
-    rgba(255,255,255,.94);
+    rgba(255,255,255,.96);
 
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(18px);
+
+  -webkit-backdrop-filter:blur(18px);
 
   border-top:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 
-  padding-bottom:var(--safe-bottom);
+  padding-bottom:
+    env(safe-area-inset-bottom);
 }
 
 .bottom-nav-inner{
-
-  width:100%;
   max-width:760px;
 
   margin:auto;
@@ -1511,9 +1104,6 @@ a{
 }
 
 .nav-btn{
-
-  position:relative;
-
   border:0;
 
   background:transparent;
@@ -1521,57 +1111,31 @@ a{
   color:var(--muted);
 
   padding:
-    7px
-    3px
-    8px;
+    8px
+    3px;
 
   font-size:10px;
-
-  font-weight:600;
 }
 
 .nav-btn span{
-
   display:block;
-
-  margin-bottom:2px;
 
   font-size:21px;
 
-  line-height:1;
+  margin-bottom:2px;
 }
 
 .nav-btn.active{
-
   color:var(--primary);
 
   font-weight:900;
 }
 
-.nav-btn.active::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:25%;
-  right:25%;
-
-  height:3px;
-
-  border-radius:0 0 5px 5px;
-
-  background:var(--primary);
-}
-
-
-/* =========================================================
-   MODALS
-========================================================= */
+/* =====================================================
+   MODAL
+===================================================== */
 
 .modal-overlay{
-
   position:fixed;
 
   inset:0;
@@ -1584,12 +1148,10 @@ a{
 
   justify-content:center;
 
-  padding:12px;
-
   background:
     rgba(0,0,0,.55);
 
-  backdrop-filter:blur(3px);
+  padding:15px;
 }
 
 .modal-overlay.active{
@@ -1597,93 +1159,57 @@ a{
 }
 
 .modal{
-
   width:100%;
 
   max-width:760px;
 
-  max-height:92vh;
+  max-height:90vh;
 
   overflow-y:auto;
 
   background:var(--card);
 
-  border-radius:
-    25px
-    25px
-    18px
-    18px;
+  border-radius:25px;
 
   padding:20px;
 
-  animation:
-    modalIn .2s ease;
-}
-
-@keyframes modalIn{
-
-  from{
-    transform:translateY(30px);
-    opacity:0;
-  }
-
-  to{
-    transform:translateY(0);
-    opacity:1;
-  }
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.25);
 }
 
 .modal-header{
-
   display:flex;
 
   align-items:center;
 
   justify-content:space-between;
 
-  gap:10px;
-
-  margin-bottom:16px;
-}
-
-.modal-header h2{
-
-  margin:0;
-
-  font-size:21px;
+  margin-bottom:15px;
 }
 
 .close-btn{
-
   border:0;
 
-  width:36px;
-  height:36px;
+  width:35px;
+  height:35px;
 
   border-radius:50%;
 
   background:#F1EFF5;
-
-  color:var(--text);
-
-  font-size:18px;
 }
 
-
-/* =========================================================
+/* =====================================================
    FORMS
-========================================================= */
+===================================================== */
 
 .form-group{
-
-  margin-bottom:13px;
+  margin-bottom:12px;
 }
 
 .form-group label{
-
   display:block;
 
-  margin-bottom:6px;
+  margin-bottom:5px;
 
   font-size:12px;
 
@@ -1693,115 +1219,56 @@ a{
 .form-group input,
 .form-group textarea,
 .form-group select{
-
   width:100%;
 
-  padding:
-    12px
-    13px;
+  padding:12px;
 
   border:
-    1px
-    solid
-    var(--border);
+    1px solid var(--border);
 
-  border-radius:14px;
-
-  outline:0;
+  border-radius:13px;
 
   background:var(--card);
 
   color:var(--text);
-}
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-
-  border-color:var(--primary);
-
-  box-shadow:
-    0 0 0 3px
-    rgba(139,92,246,.10);
+  outline:none;
 }
 
 .form-group textarea{
-
   min-height:100px;
 
   resize:vertical;
 }
 
-
-/* =========================================================
+/* =====================================================
    AI
-========================================================= */
+===================================================== */
 
 .ai-box{
-
-  padding:17px;
-
-  border-radius:21px;
-
   background:
     linear-gradient(
       135deg,
       #F0EAFF,
       #F9F7FF
     );
+
+  border-radius:20px;
+
+  padding:17px;
 }
 
 .ai-title{
+  font-weight:900;
 
-  display:flex;
-
-  align-items:center;
-
-  gap:8px;
-
-  margin-bottom:9px;
-
-  font-weight:950;
-
-  color:#6134C5;
+  margin-bottom:10px;
 }
 
-.ai-response{
-
-  line-height:1.55;
-
-  font-size:14px;
-}
-
-
-/* =========================================================
-   NOTIFICATION DOT
-========================================================= */
-
-.notification-dot{
-
-  position:absolute;
-
-  top:5px;
-  right:5px;
-
-  width:8px;
-  height:8px;
-
-  border-radius:50%;
-
-  background:var(--danger);
-
-  border:2px solid var(--card);
-}
-
-
-/* =========================================================
-   EMPTY STATES
-========================================================= */
+/* =====================================================
+   EMPTY STATE
+===================================================== */
 
 .empty{
-
   padding:30px 15px;
 
   text-align:center;
@@ -1810,106 +1277,3026 @@ a{
 }
 
 .empty-icon{
+  font-size:38px;
 
-  font-size:42px;
-
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
-.empty strong{
+/* =====================================================
+   DARK
+===================================================== */
 
-  display:block;
+body.dark{
+  --bg:#111016;
+  --card:#1C1922;
+  --text:#F5F3FA;
+  --muted:#AAA5B4;
+  --border:#302B38;
 
-  margin-bottom:5px;
-
-  color:var(--text);
+  --primary-light:#2A2044;
 }
 
-
-/* =========================================================
-   LOADER
-========================================================= */
-
-.loader{
-
-  width:25px;
-  height:25px;
-
-  margin:20px auto;
-
-  border:
-    3px
-    solid
-    var(--primary-light);
-
-  border-top-color:var(--primary);
-
-  border-radius:50%;
-
-  animation:
-    spin .8s linear infinite;
+body.dark .bottom-nav{
+  background:
+    rgba(28,25,34,.96);
 }
 
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
+body.dark .app-header{
+  background:
+    rgba(17,16,22,.92);
+}
+
+body.dark .message{
+  background:#302B38;
+}
+
+body.dark .close-btn{
+  background:#302B38;
+
+  color:white;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:500px){
+
+  .quick-grid{
+    grid-template-columns:
+      repeat(3,1fr);
   }
+
+}
+
+@media(max-width:360px){
+
+  .quick-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     NEXO — BLOQUE 2
+     TARJETAS CON FOTOS + EXPLORAR + CONECTA + PLANES
+===================================================== -->
+
+<section id="explore" class="screen">
+
+  <div class="hero">
+    <div class="muted">Descubre nuevas conexiones</div>
+    <h1>🔎 Explorar</h1>
+
+    <div class="search-box">
+      🔎
+      <input
+        id="exploreSearch"
+        type="search"
+        placeholder="Personas, grupos, planes..."
+        oninput="renderExplore(this.value)"
+      >
+    </div>
+  </div>
+
+  <div class="chips" id="exploreFilters">
+
+    <button class="chip active"
+            onclick="filterExplore('Todos')">
+      Todos
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Deporte')">
+      🏃 Deporte
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Ocio')">
+      🎬 Ocio
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Música')">
+      🎵 Música
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Cafés')">
+      ☕ Cafés
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Viajes')">
+      ✈️ Viajes
+    </button>
+
+  </div>
+
+  <div id="exploreResults"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PERSONAS
+===================================================== -->
+
+<section id="people" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Encuentra personas compatibles contigo
+    </div>
+
+    <h1>🤝 Conecta</h1>
+
+    <p>
+      Personas con intereses, objetivos y planes
+      parecidos a los tuyos.
+    </p>
+
+  </div>
+
+  <div id="peopleContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PLANES
+===================================================== -->
+
+<section id="plans" class="screen">
+
+  <div class="section-title">
+
+    <div>
+      <div class="muted">Actividades y quedadas</div>
+
+      <h1 style="margin:4px 0">
+        📅 Planes
+      </h1>
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="openPlanCreator()">
+      + Crear
+    </button>
+
+  </div>
+
+  <div class="chips">
+
+    <button class="chip"
+            onclick="filterPlans('Todos')">
+      Todos
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Deporte')">
+      🏃 Deporte
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Ocio')">
+      🎬 Ocio
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Música')">
+      🎵 Música
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Viajes')">
+      ✈️ Viajes
+    </button>
+
+  </div>
+
+  <div id="plansContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — GRUPOS
+===================================================== -->
+
+<section id="groups" class="screen">
+
+  <div class="section-title">
+
+    <div>
+      <div class="muted">Comunidades</div>
+
+      <h1 style="margin:4px 0">
+        👥 Grupos
+      </h1>
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="openGroupCreator()">
+      + Crear
+    </button>
+
+  </div>
+
+  <div id="groupsContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — AHORA MISMO
+===================================================== -->
+
+<section id="now" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Actividad en tiempo real
+    </div>
+
+    <h1>🔥 Ahora mismo</h1>
+
+    <p>
+      Cosas que están pasando cerca de ti.
+    </p>
+
+  </div>
+
+  <div id="nowContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — MAPA
+===================================================== -->
+
+<section id="map" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Descubre lo que tienes alrededor
+    </div>
+
+    <h1>🗺️ Cerca de ti</h1>
+
+  </div>
+
+  <div class="map">
+
+    <div
+      class="map-marker"
+      style="left:18%;top:28%"
+      onclick="showMapItem('Running')">
+      🏃
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:70%;top:32%"
+      onclick="showMapItem('Café')">
+      ☕
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:48%;top:68%"
+      onclick="showMapItem('Fútbol')">
+      ⚽
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:78%;top:74%"
+      onclick="showMapItem('Persona')">
+      👤
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:30%;top:78%"
+      onclick="showMapItem('Música')">
+      🎵
+    </div>
+
+  </div>
+
+  <div id="mapResults"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — CALENDARIO
+===================================================== -->
+
+<section id="calendar" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Organiza tus actividades
+    </div>
+
+    <h1>🗓️ Calendario</h1>
+
+    <p>
+      Tus planes, eventos y quedadas.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <div class="section-title">
+
+      <button
+        class="icon-btn"
+        onclick="changeMonth(-1)">
+        ‹
+      </button>
+
+      <strong id="calendarTitle">
+        Agosto 2026
+      </strong>
+
+      <button
+        class="icon-btn"
+        onclick="changeMonth(1)">
+        ›
+      </button>
+
+    </div>
+
+    <div
+      id="calendarGrid"
+      class="calendar">
+    </div>
+
+  </div>
+
+  <div id="calendarEvents"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — CHAT
+===================================================== -->
+
+<section id="chat" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Tus conversaciones
+    </div>
+
+    <h1>💬 Chat</h1>
+
+  </div>
+
+  <div id="chatsContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PERFIL
+===================================================== -->
+
+<section id="profile" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Tu espacio personal
+    </div>
+
+    <h1>👤 Mi perfil</h1>
+
+  </div>
+
+
+  <!-- FOTO DE PERFIL -->
+
+  <div class="card">
+
+    <div
+      style="
+        text-align:center;
+        padding:10px 0 20px;
+      ">
+
+      <img
+        id="myAvatar"
+        class="profile-large-avatar"
+        src=""
+        alt="Foto de perfil">
+
+      <h2
+        id="myName"
+        style="margin:12px 0 4px">
+      </h2>
+
+      <div
+        id="myBio"
+        class="muted">
+      </div>
+
+    </div>
+
+
+    <div
+      id="myChips"
+      class="chips">
+    </div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <button
+      class="secondary-btn"
+      onclick="openQR()">
+      📷 Mi NEXO
+    </button>
+
+    <button
+      class="secondary-btn"
+      onclick="openProfileEditor()">
+      ✏️ Editar
+    </button>
+
+  </div>
+
+
+  <button
+    class="secondary-btn"
+    style="
+      width:100%;
+      margin-top:10px;
+    "
+    onclick="openSettings()">
+    ⚙️ Ajustes
+  </button>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — TARJETAS
+===================================================== -->
+
+<script>
+
+const NEXO_PEOPLE = [
+
+  {
+    id:1,
+    name:"Laura",
+    age:27,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=47",
+    compatibility:96,
+    online:true,
+    bio:"Me encanta correr, viajar y descubrir sitios nuevos.",
+    interests:[
+      "Running",
+      "Viajes",
+      "Música"
+    ]
+  },
+
+  {
+    id:2,
+    name:"Alex",
+    age:29,
+    city:"Reus",
+    photo:"https://i.pravatar.cc/500?img=12",
+    compatibility:91,
+    online:true,
+    bio:"Gym, fútbol y planes espontáneos.",
+    interests:[
+      "Gym",
+      "Fútbol",
+      "Ocio"
+    ]
+  },
+
+  {
+    id:3,
+    name:"Marta",
+    age:26,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=32",
+    compatibility:88,
+    online:false,
+    bio:"Cafés, fotografía y conocer gente.",
+    interests:[
+      "Cafés",
+      "Fotografía",
+      "Viajes"
+    ]
+  },
+
+  {
+    id:4,
+    name:"David",
+    age:31,
+    city:"Salou",
+    photo:"https://i.pravatar.cc/500?img=11",
+    compatibility:84,
+    online:true,
+    bio:"Deporte, playa y buena música.",
+    interests:[
+      "Deporte",
+      "Playa",
+      "Música"
+    ]
+  }
+
+];
+
+
+const NEXO_PLANS = [
+
+  {
+    id:101,
+    title:"Running 5K",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+    date:"Hoy",
+    time:"19:00",
+    location:"Tarragona",
+    participants:4,
+    max:10,
+    description:"Salida tranquila de 5 km."
+  },
+
+  {
+    id:102,
+    title:"Café y conocer gente",
+    category:"Ocio",
+    image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80",
+    date:"Hoy",
+    time:"18:30",
+    location:"Tarragona",
+    participants:3,
+    max:8,
+    description:"Tomar algo y conocer gente nueva."
+  },
+
+  {
+    id:103,
+    title:"Partido de fútbol",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80",
+    date:"Mañana",
+    time:"20:30",
+    location:"Tarragona",
+    participants:10,
+    max:16,
+    description:"Partido amistoso."
+  },
+
+  {
+    id:104,
+    title:"Tarde de música",
+    category:"Música",
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
+    date:"Viernes",
+    time:"21:00",
+    location:"Salou",
+    participants:8,
+    max:20,
+    description:"Música y buen ambiente."
+  }
+
+];
+
+
+const NEXO_GROUPS = [
+
+  {
+    id:201,
+    name:"Running Tarragona",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+    members:12438,
+    description:"Entrena y conoce gente."
+  },
+
+  {
+    id:202,
+    name:"Planes Tarragona",
+    category:"Ocio",
+    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+    members:3200,
+    description:"Planes espontáneos y actividades."
+  },
+
+  {
+    id:203,
+    name:"Viajeros",
+    category:"Viajes",
+    image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80",
+    members:8750,
+    description:"Personas que quieren descubrir lugares."
+  }
+
+];
+
+
+/* =====================================================
+   TARJETA PERSONA
+===================================================== */
+
+function createPersonCard(person){
+
+  return `
+
+    <div class="card">
+
+      <div class="person">
+
+        <img
+          src="${person.photo}"
+          class="avatar"
+          alt="${person.name}">
+
+        <div class="person-main">
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:6px;
+            ">
+
+            <strong>
+              ${person.name}, ${person.age}
+            </strong>
+
+            ${
+              person.online
+              ? `<span
+                   style="
+                     width:8px;
+                     height:8px;
+                     border-radius:50%;
+                     background:#22C55E;
+                   ">
+                 </span>`
+              : ""
+            }
+
+          </div>
+
+          <div class="muted">
+            📍 ${person.city}
+          </div>
+
+          <div class="compatibility">
+            ⭐ ${person.compatibility}% compatible
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p>
+        ${person.bio}
+      </p>
+
+
+      <div class="chips">
+
+        ${person.interests
+          .map(
+            interest =>
+            `<span class="chip">
+              ${interest}
+            </span>`
+          )
+          .join("")
+        }
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          gap:8px;
+          margin-top:13px;
+        ">
+
+        <button
+          class="secondary-btn"
+          style="flex:1"
+          onclick="viewPerson(${person.id})">
+          Ver perfil
+        </button>
+
+        <button
+          class="primary-btn"
+          style="flex:1"
+          onclick="connectPerson(${person.id})">
+          Conectar
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
 }
 
 
-/* =========================================================
-   TOGGLE
-========================================================= */
+/* =====================================================
+   TARJETA PLAN
+===================================================== */
 
-.toggle{
+function createPlanCard(plan){
 
-  position:relative;
+  const percentage =
+    Math.min(
+      100,
+      Math.round(
+        (plan.participants / plan.max) * 100
+      )
+    );
 
-  width:48px;
-  height:28px;
+  return `
 
-  flex:none;
+    <div class="card">
 
-  border:0;
+      <img
+        src="${plan.image}"
+        alt="${plan.title}"
+        style="
+          width:100%;
+          height:190px;
+          object-fit:cover;
+          border-radius:15px;
+          margin-bottom:13px;
+        "
+        loading="lazy"
+      >
 
-  border-radius:999px;
 
-  background:#D6D2DE;
+      <div class="chips">
+
+        <span class="chip">
+          ${plan.category}
+        </span>
+
+        <span class="chip">
+          ${plan.date}
+        </span>
+
+      </div>
+
+
+      <h3 style="margin-top:12px">
+        ${plan.title}
+      </h3>
+
+
+      <p class="muted">
+        ${plan.description}
+      </p>
+
+
+      <div
+        style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:8px;
+          margin:12px 0;
+        ">
+
+        <div class="card"
+             style="
+               margin:0;
+               padding:10px;
+             ">
+
+          🕐
+          <strong>${plan.time}</strong>
+
+        </div>
+
+        <div class="card"
+             style="
+               margin:0;
+               padding:10px;
+             ">
+
+          📍
+          <strong>${plan.location}</strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="muted">
+
+        👥
+        ${plan.participants}/${plan.max}
+        personas
+
+      </div>
+
+
+      <div
+        style="
+          height:7px;
+          background:#EEEAF4;
+          border-radius:99px;
+          overflow:hidden;
+          margin:7px 0 13px;
+        ">
+
+        <div
+          style="
+            width:${percentage}%;
+            height:100%;
+            background:var(--primary);
+          ">
+        </div>
+
+      </div>
+
+
+      <button
+        class="primary-btn"
+        style="width:100%"
+        onclick="joinPlan(${plan.id})">
+
+        Quiero unirme
+
+      </button>
+
+    </div>
+
+  `;
+
 }
 
-.toggle::after{
 
-  content:"";
+/* =====================================================
+   TARJETA GRUPO
+===================================================== */
 
-  position:absolute;
+function createGroupCard(group){
 
-  top:3px;
-  left:3px;
+  return `
 
-  width:22px;
-  height:22px;
+    <div class="card">
 
-  border-radius:50%;
+      <img
+        src="${group.image}"
+        alt="${group.name}"
+        style="
+          width:100%;
+          height:170px;
+          object-fit:cover;
+          border-radius:15px;
+          margin-bottom:13px;
+        "
+        loading="lazy"
+      >
 
-  background:white;
 
-  transition:
-    transform .2s;
+      <div class="chips">
+
+        <span class="chip">
+          ${group.category}
+        </span>
+
+      </div>
+
+
+      <h3 style="margin-top:10px">
+        ${group.name}
+      </h3>
+
+
+      <p class="muted">
+        ${group.description}
+      </p>
+
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:8px;
+        ">
+
+        <span class="muted">
+          👥 ${group.members.toLocaleString("es-ES")} miembros
+        </span>
+
+        <button
+          class="primary-btn"
+          onclick="joinGroup(${group.id})">
+
+          Unirme
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
 }
 
-.toggle.on{
 
-  background:var(--primary);
+/* =====================================================
+   RENDER PERSONAS
+===================================================== */
+
+function renderPeople(){
+
+  const container =
+    document.getElementById(
+      "peopleContainer"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    NEXO_PEOPLE
+      .map(createPersonCard)
+      .join("");
+
 }
 
-.toggle.on::after{
-  transform:translateX(20px);
+
+/* =====================================================
+   RENDER PLANES
+===================================================== */
+
+function renderPlans(filter="Todos"){
+
+  const container =
+    document.getElementById(
+      "plansContainer"
+    );
+
+  if(!container) return;
+
+  const list =
+    filter === "Todos"
+      ? NEXO_PLANS
+      : NEXO_PLANS.filter(
+          plan =>
+            plan.category === filter
+        );
+
+  container.innerHTML =
+    list.length
+      ? list.map(createPlanCard).join("")
+      : `
+        <div class="card">
+          <h3>No hay planes</h3>
+          <p class="muted">
+            Prueba otra categoría.
+          </p>
+        </div>
+      `;
+
 }
 
 
-/* =========================================================
-   SETTINGS ROW
-========================================================= */
+function filterPlans(category){
+
+  renderPlans(category);
+
+}
+
+
+/* =====================================================
+   RENDER GRUPOS
+===================================================== */
+
+function renderGroups(){
+
+  const container =
+    document.getElementById(
+      "groupsContainer"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    NEXO_GROUPS
+      .map(createGroupCard)
+      .join("");
+
+}
+
+
+/* =====================================================
+   RENDER EXPLORAR
+===================================================== */
+
+let currentExploreFilter="Todos";
+
+
+function renderExplore(search=""){
+
+  const container =
+    document.getElementById(
+      "exploreResults"
+    );
+
+  if(!container) return;
+
+  const term =
+    search
+      .toLowerCase()
+      .trim();
+
+
+  const people =
+    NEXO_PEOPLE.filter(person => {
+
+      const text =
+        [
+          person.name,
+          person.city,
+          person.bio,
+          ...person.interests
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        person.interests.includes(
+          currentExploreFilter
+        )
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  const plans =
+    NEXO_PLANS.filter(plan => {
+
+      const text =
+        [
+          plan.title,
+          plan.category,
+          plan.location,
+          plan.description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        plan.category === currentExploreFilter
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  const groups =
+    NEXO_GROUPS.filter(group => {
+
+      const text =
+        [
+          group.name,
+          group.category,
+          group.description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        group.category === currentExploreFilter
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  container.innerHTML = `
+
+    <div class="section-title">
+      <h2>Personas</h2>
+    </div>
+
+    ${
+      people.length
+      ? people.map(createPersonCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos personas.
+           </p>
+         </div>`
+    }
+
+
+    <div class="section-title">
+      <h2>Planes</h2>
+    </div>
+
+    ${
+      plans.length
+      ? plans.map(createPlanCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos planes.
+           </p>
+         </div>`
+    }
+
+
+    <div class="section-title">
+      <h2>Grupos</h2>
+    </div>
+
+    ${
+      groups.length
+      ? groups.map(createGroupCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos grupos.
+           </p>
+         </div>`
+    }
+
+  `;
+
+}
+
+
+function filterExplore(category){
+
+  currentExploreFilter=category;
+
+  renderExplore(
+    document.getElementById(
+      "exploreSearch"
+    )?.value || ""
+  );
+
+}
+
+
+/* =====================================================
+   ACCIONES
+===================================================== */
+
+function viewPerson(id){
+
+  const person =
+    NEXO_PEOPLE.find(
+      p => p.id === id
+    );
+
+  if(!person) return;
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>
+        ${person.name}, ${person.age}
+      </h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <img
+      src="${person.photo}"
+      style="
+        width:100%;
+        height:280px;
+        object-fit:cover;
+        border-radius:18px;
+      "
+    >
+
+
+    <p>
+      ${person.bio}
+    </p>
+
+
+    <div class="chips">
+
+      ${person.interests
+        .map(
+          x =>
+          `<span class="chip">
+            ${x}
+          </span>`
+        )
+        .join("")
+      }
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      style="width:100%;margin-top:15px"
+      onclick="connectPerson(${person.id});closeModal()">
+
+      🤝 Conectar con ${person.name}
+
+    </button>
+
+  `);
+
+}
+
+
+function connectPerson(id){
+
+  const person =
+    NEXO_PEOPLE.find(
+      p => p.id === id
+    );
+
+  if(!person) return;
+
+  alert(
+    `Solicitud enviada a ${person.name} 🤝`
+  );
+
+}
+
+
+function joinPlan(id){
+
+  const plan =
+    NEXO_PLANS.find(
+      p => p.id === id
+    );
+
+  if(!plan) return;
+
+  if(plan.participants >= plan.max){
+
+    alert("Este plan está completo.");
+
+    return;
+
+  }
+
+  plan.participants++;
+
+  renderPlans();
+
+  alert(
+    `Te has unido a "${plan.title}" 🎉`
+  );
+
+}
+
+
+function joinGroup(id){
+
+  const group =
+    NEXO_GROUPS.find(
+      g => g.id === id
+    );
+
+  if(!group) return;
+
+  group.members++;
+
+  alert(
+    `Te has unido a ${group.name} 👥`
+  );
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderPeople();
+
+    renderPlans();
+
+    renderGroups();
+
+    renderExplore();
+
+  }
+);
+
+</script>
+
+<!-- =====================================================
+     NEXO — BLOQUE 2
+     TARJETAS CON FOTOS + EXPLORAR + CONECTA + PLANES
+===================================================== -->
+
+<section id="explore" class="screen">
+
+  <div class="hero">
+    <div class="muted">Descubre nuevas conexiones</div>
+    <h1>🔎 Explorar</h1>
+
+    <div class="search-box">
+      🔎
+      <input
+        id="exploreSearch"
+        type="search"
+        placeholder="Personas, grupos, planes..."
+        oninput="renderExplore(this.value)"
+      >
+    </div>
+  </div>
+
+  <div class="chips" id="exploreFilters">
+
+    <button class="chip active"
+            onclick="filterExplore('Todos')">
+      Todos
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Deporte')">
+      🏃 Deporte
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Ocio')">
+      🎬 Ocio
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Música')">
+      🎵 Música
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Cafés')">
+      ☕ Cafés
+    </button>
+
+    <button class="chip"
+            onclick="filterExplore('Viajes')">
+      ✈️ Viajes
+    </button>
+
+  </div>
+
+  <div id="exploreResults"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PERSONAS
+===================================================== -->
+
+<section id="people" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Encuentra personas compatibles contigo
+    </div>
+
+    <h1>🤝 Conecta</h1>
+
+    <p>
+      Personas con intereses, objetivos y planes
+      parecidos a los tuyos.
+    </p>
+
+  </div>
+
+  <div id="peopleContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PLANES
+===================================================== -->
+
+<section id="plans" class="screen">
+
+  <div class="section-title">
+
+    <div>
+      <div class="muted">Actividades y quedadas</div>
+
+      <h1 style="margin:4px 0">
+        📅 Planes
+      </h1>
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="openPlanCreator()">
+      + Crear
+    </button>
+
+  </div>
+
+  <div class="chips">
+
+    <button class="chip"
+            onclick="filterPlans('Todos')">
+      Todos
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Deporte')">
+      🏃 Deporte
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Ocio')">
+      🎬 Ocio
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Música')">
+      🎵 Música
+    </button>
+
+    <button class="chip"
+            onclick="filterPlans('Viajes')">
+      ✈️ Viajes
+    </button>
+
+  </div>
+
+  <div id="plansContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — GRUPOS
+===================================================== -->
+
+<section id="groups" class="screen">
+
+  <div class="section-title">
+
+    <div>
+      <div class="muted">Comunidades</div>
+
+      <h1 style="margin:4px 0">
+        👥 Grupos
+      </h1>
+    </div>
+
+    <button
+      class="primary-btn"
+      onclick="openGroupCreator()">
+      + Crear
+    </button>
+
+  </div>
+
+  <div id="groupsContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — AHORA MISMO
+===================================================== -->
+
+<section id="now" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Actividad en tiempo real
+    </div>
+
+    <h1>🔥 Ahora mismo</h1>
+
+    <p>
+      Cosas que están pasando cerca de ti.
+    </p>
+
+  </div>
+
+  <div id="nowContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — MAPA
+===================================================== -->
+
+<section id="map" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Descubre lo que tienes alrededor
+    </div>
+
+    <h1>🗺️ Cerca de ti</h1>
+
+  </div>
+
+  <div class="map">
+
+    <div
+      class="map-marker"
+      style="left:18%;top:28%"
+      onclick="showMapItem('Running')">
+      🏃
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:70%;top:32%"
+      onclick="showMapItem('Café')">
+      ☕
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:48%;top:68%"
+      onclick="showMapItem('Fútbol')">
+      ⚽
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:78%;top:74%"
+      onclick="showMapItem('Persona')">
+      👤
+    </div>
+
+    <div
+      class="map-marker"
+      style="left:30%;top:78%"
+      onclick="showMapItem('Música')">
+      🎵
+    </div>
+
+  </div>
+
+  <div id="mapResults"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — CALENDARIO
+===================================================== -->
+
+<section id="calendar" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Organiza tus actividades
+    </div>
+
+    <h1>🗓️ Calendario</h1>
+
+    <p>
+      Tus planes, eventos y quedadas.
+    </p>
+
+  </div>
+
+  <div class="card">
+
+    <div class="section-title">
+
+      <button
+        class="icon-btn"
+        onclick="changeMonth(-1)">
+        ‹
+      </button>
+
+      <strong id="calendarTitle">
+        Agosto 2026
+      </strong>
+
+      <button
+        class="icon-btn"
+        onclick="changeMonth(1)">
+        ›
+      </button>
+
+    </div>
+
+    <div
+      id="calendarGrid"
+      class="calendar">
+    </div>
+
+  </div>
+
+  <div id="calendarEvents"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — CHAT
+===================================================== -->
+
+<section id="chat" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Tus conversaciones
+    </div>
+
+    <h1>💬 Chat</h1>
+
+  </div>
+
+  <div id="chatsContainer"></div>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — PERFIL
+===================================================== -->
+
+<section id="profile" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">
+      Tu espacio personal
+    </div>
+
+    <h1>👤 Mi perfil</h1>
+
+  </div>
+
+
+  <!-- FOTO DE PERFIL -->
+
+  <div class="card">
+
+    <div
+      style="
+        text-align:center;
+        padding:10px 0 20px;
+      ">
+
+      <img
+        id="myAvatar"
+        class="profile-large-avatar"
+        src=""
+        alt="Foto de perfil">
+
+      <h2
+        id="myName"
+        style="margin:12px 0 4px">
+      </h2>
+
+      <div
+        id="myBio"
+        class="muted">
+      </div>
+
+    </div>
+
+
+    <div
+      id="myChips"
+      class="chips">
+    </div>
+
+  </div>
+
+
+  <div class="grid">
+
+    <button
+      class="secondary-btn"
+      onclick="openQR()">
+      📷 Mi NEXO
+    </button>
+
+    <button
+      class="secondary-btn"
+      onclick="openProfileEditor()">
+      ✏️ Editar
+    </button>
+
+  </div>
+
+
+  <button
+    class="secondary-btn"
+    style="
+      width:100%;
+      margin-top:10px;
+    "
+    onclick="openSettings()">
+    ⚙️ Ajustes
+  </button>
+
+</section>
+
+
+<!-- =====================================================
+     NEXO — TARJETAS
+===================================================== -->
+
+<script>
+
+const NEXO_PEOPLE = [
+
+  {
+    id:1,
+    name:"Laura",
+    age:27,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=47",
+    compatibility:96,
+    online:true,
+    bio:"Me encanta correr, viajar y descubrir sitios nuevos.",
+    interests:[
+      "Running",
+      "Viajes",
+      "Música"
+    ]
+  },
+
+  {
+    id:2,
+    name:"Alex",
+    age:29,
+    city:"Reus",
+    photo:"https://i.pravatar.cc/500?img=12",
+    compatibility:91,
+    online:true,
+    bio:"Gym, fútbol y planes espontáneos.",
+    interests:[
+      "Gym",
+      "Fútbol",
+      "Ocio"
+    ]
+  },
+
+  {
+    id:3,
+    name:"Marta",
+    age:26,
+    city:"Tarragona",
+    photo:"https://i.pravatar.cc/500?img=32",
+    compatibility:88,
+    online:false,
+    bio:"Cafés, fotografía y conocer gente.",
+    interests:[
+      "Cafés",
+      "Fotografía",
+      "Viajes"
+    ]
+  },
+
+  {
+    id:4,
+    name:"David",
+    age:31,
+    city:"Salou",
+    photo:"https://i.pravatar.cc/500?img=11",
+    compatibility:84,
+    online:true,
+    bio:"Deporte, playa y buena música.",
+    interests:[
+      "Deporte",
+      "Playa",
+      "Música"
+    ]
+  }
+
+];
+
+
+const NEXO_PLANS = [
+
+  {
+    id:101,
+    title:"Running 5K",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+    date:"Hoy",
+    time:"19:00",
+    location:"Tarragona",
+    participants:4,
+    max:10,
+    description:"Salida tranquila de 5 km."
+  },
+
+  {
+    id:102,
+    title:"Café y conocer gente",
+    category:"Ocio",
+    image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80",
+    date:"Hoy",
+    time:"18:30",
+    location:"Tarragona",
+    participants:3,
+    max:8,
+    description:"Tomar algo y conocer gente nueva."
+  },
+
+  {
+    id:103,
+    title:"Partido de fútbol",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80",
+    date:"Mañana",
+    time:"20:30",
+    location:"Tarragona",
+    participants:10,
+    max:16,
+    description:"Partido amistoso."
+  },
+
+  {
+    id:104,
+    title:"Tarde de música",
+    category:"Música",
+    image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&q=80",
+    date:"Viernes",
+    time:"21:00",
+    location:"Salou",
+    participants:8,
+    max:20,
+    description:"Música y buen ambiente."
+  }
+
+];
+
+
+const NEXO_GROUPS = [
+
+  {
+    id:201,
+    name:"Running Tarragona",
+    category:"Deporte",
+    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80",
+    members:12438,
+    description:"Entrena y conoce gente."
+  },
+
+  {
+    id:202,
+    name:"Planes Tarragona",
+    category:"Ocio",
+    image:"https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=80",
+    members:3200,
+    description:"Planes espontáneos y actividades."
+  },
+
+  {
+    id:203,
+    name:"Viajeros",
+    category:"Viajes",
+    image:"https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=900&q=80",
+    members:8750,
+    description:"Personas que quieren descubrir lugares."
+  }
+
+];
+
+
+/* =====================================================
+   TARJETA PERSONA
+===================================================== */
+
+function createPersonCard(person){
+
+  return `
+
+    <div class="card">
+
+      <div class="person">
+
+        <img
+          src="${person.photo}"
+          class="avatar"
+          alt="${person.name}">
+
+        <div class="person-main">
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:6px;
+            ">
+
+            <strong>
+              ${person.name}, ${person.age}
+            </strong>
+
+            ${
+              person.online
+              ? `<span
+                   style="
+                     width:8px;
+                     height:8px;
+                     border-radius:50%;
+                     background:#22C55E;
+                   ">
+                 </span>`
+              : ""
+            }
+
+          </div>
+
+          <div class="muted">
+            📍 ${person.city}
+          </div>
+
+          <div class="compatibility">
+            ⭐ ${person.compatibility}% compatible
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <p>
+        ${person.bio}
+      </p>
+
+
+      <div class="chips">
+
+        ${person.interests
+          .map(
+            interest =>
+            `<span class="chip">
+              ${interest}
+            </span>`
+          )
+          .join("")
+        }
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          gap:8px;
+          margin-top:13px;
+        ">
+
+        <button
+          class="secondary-btn"
+          style="flex:1"
+          onclick="viewPerson(${person.id})">
+          Ver perfil
+        </button>
+
+        <button
+          class="primary-btn"
+          style="flex:1"
+          onclick="connectPerson(${person.id})">
+          Conectar
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TARJETA PLAN
+===================================================== */
+
+function createPlanCard(plan){
+
+  const percentage =
+    Math.min(
+      100,
+      Math.round(
+        (plan.participants / plan.max) * 100
+      )
+    );
+
+  return `
+
+    <div class="card">
+
+      <img
+        src="${plan.image}"
+        alt="${plan.title}"
+        style="
+          width:100%;
+          height:190px;
+          object-fit:cover;
+          border-radius:15px;
+          margin-bottom:13px;
+        "
+        loading="lazy"
+      >
+
+
+      <div class="chips">
+
+        <span class="chip">
+          ${plan.category}
+        </span>
+
+        <span class="chip">
+          ${plan.date}
+        </span>
+
+      </div>
+
+
+      <h3 style="margin-top:12px">
+        ${plan.title}
+      </h3>
+
+
+      <p class="muted">
+        ${plan.description}
+      </p>
+
+
+      <div
+        style="
+          display:grid;
+          grid-template-columns:1fr 1fr;
+          gap:8px;
+          margin:12px 0;
+        ">
+
+        <div class="card"
+             style="
+               margin:0;
+               padding:10px;
+             ">
+
+          🕐
+          <strong>${plan.time}</strong>
+
+        </div>
+
+        <div class="card"
+             style="
+               margin:0;
+               padding:10px;
+             ">
+
+          📍
+          <strong>${plan.location}</strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="muted">
+
+        👥
+        ${plan.participants}/${plan.max}
+        personas
+
+      </div>
+
+
+      <div
+        style="
+          height:7px;
+          background:#EEEAF4;
+          border-radius:99px;
+          overflow:hidden;
+          margin:7px 0 13px;
+        ">
+
+        <div
+          style="
+            width:${percentage}%;
+            height:100%;
+            background:var(--primary);
+          ">
+        </div>
+
+      </div>
+
+
+      <button
+        class="primary-btn"
+        style="width:100%"
+        onclick="joinPlan(${plan.id})">
+
+        Quiero unirme
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   TARJETA GRUPO
+===================================================== */
+
+function createGroupCard(group){
+
+  return `
+
+    <div class="card">
+
+      <img
+        src="${group.image}"
+        alt="${group.name}"
+        style="
+          width:100%;
+          height:170px;
+          object-fit:cover;
+          border-radius:15px;
+          margin-bottom:13px;
+        "
+        loading="lazy"
+      >
+
+
+      <div class="chips">
+
+        <span class="chip">
+          ${group.category}
+        </span>
+
+      </div>
+
+
+      <h3 style="margin-top:10px">
+        ${group.name}
+      </h3>
+
+
+      <p class="muted">
+        ${group.description}
+      </p>
+
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:8px;
+        ">
+
+        <span class="muted">
+          👥 ${group.members.toLocaleString("es-ES")} miembros
+        </span>
+
+        <button
+          class="primary-btn"
+          onclick="joinGroup(${group.id})">
+
+          Unirme
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   RENDER PERSONAS
+===================================================== */
+
+function renderPeople(){
+
+  const container =
+    document.getElementById(
+      "peopleContainer"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    NEXO_PEOPLE
+      .map(createPersonCard)
+      .join("");
+
+}
+
+
+/* =====================================================
+   RENDER PLANES
+===================================================== */
+
+function renderPlans(filter="Todos"){
+
+  const container =
+    document.getElementById(
+      "plansContainer"
+    );
+
+  if(!container) return;
+
+  const list =
+    filter === "Todos"
+      ? NEXO_PLANS
+      : NEXO_PLANS.filter(
+          plan =>
+            plan.category === filter
+        );
+
+  container.innerHTML =
+    list.length
+      ? list.map(createPlanCard).join("")
+      : `
+        <div class="card">
+          <h3>No hay planes</h3>
+          <p class="muted">
+            Prueba otra categoría.
+          </p>
+        </div>
+      `;
+
+}
+
+
+function filterPlans(category){
+
+  renderPlans(category);
+
+}
+
+
+/* =====================================================
+   RENDER GRUPOS
+===================================================== */
+
+function renderGroups(){
+
+  const container =
+    document.getElementById(
+      "groupsContainer"
+    );
+
+  if(!container) return;
+
+  container.innerHTML =
+    NEXO_GROUPS
+      .map(createGroupCard)
+      .join("");
+
+}
+
+
+/* =====================================================
+   RENDER EXPLORAR
+===================================================== */
+
+let currentExploreFilter="Todos";
+
+
+function renderExplore(search=""){
+
+  const container =
+    document.getElementById(
+      "exploreResults"
+    );
+
+  if(!container) return;
+
+  const term =
+    search
+      .toLowerCase()
+      .trim();
+
+
+  const people =
+    NEXO_PEOPLE.filter(person => {
+
+      const text =
+        [
+          person.name,
+          person.city,
+          person.bio,
+          ...person.interests
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        person.interests.includes(
+          currentExploreFilter
+        )
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  const plans =
+    NEXO_PLANS.filter(plan => {
+
+      const text =
+        [
+          plan.title,
+          plan.category,
+          plan.location,
+          plan.description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        plan.category === currentExploreFilter
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  const groups =
+    NEXO_GROUPS.filter(group => {
+
+      const text =
+        [
+          group.name,
+          group.category,
+          group.description
+        ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        currentExploreFilter === "Todos" ||
+        group.category === currentExploreFilter
+      ) &&
+      (!term || text.includes(term));
+
+    });
+
+
+  container.innerHTML = `
+
+    <div class="section-title">
+      <h2>Personas</h2>
+    </div>
+
+    ${
+      people.length
+      ? people.map(createPersonCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos personas.
+           </p>
+         </div>`
+    }
+
+
+    <div class="section-title">
+      <h2>Planes</h2>
+    </div>
+
+    ${
+      plans.length
+      ? plans.map(createPlanCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos planes.
+           </p>
+         </div>`
+    }
+
+
+    <div class="section-title">
+      <h2>Grupos</h2>
+    </div>
+
+    ${
+      groups.length
+      ? groups.map(createGroupCard).join("")
+      : `<div class="card">
+           <p class="muted">
+             No encontramos grupos.
+           </p>
+         </div>`
+    }
+
+  `;
+
+}
+
+
+function filterExplore(category){
+
+  currentExploreFilter=category;
+
+  renderExplore(
+    document.getElementById(
+      "exploreSearch"
+    )?.value || ""
+  );
+
+}
+
+
+/* =====================================================
+   ACCIONES
+===================================================== */
+
+function viewPerson(id){
+
+  const person =
+    NEXO_PEOPLE.find(
+      p => p.id === id
+    );
+
+  if(!person) return;
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>
+        ${person.name}, ${person.age}
+      </h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()">
+        ✕
+      </button>
+
+    </div>
+
+
+    <img
+      src="${person.photo}"
+      style="
+        width:100%;
+        height:280px;
+        object-fit:cover;
+        border-radius:18px;
+      "
+    >
+
+
+    <p>
+      ${person.bio}
+    </p>
+
+
+    <div class="chips">
+
+      ${person.interests
+        .map(
+          x =>
+          `<span class="chip">
+            ${x}
+          </span>`
+        )
+        .join("")
+      }
+
+    </div>
+
+
+    <button
+      class="primary-btn"
+      style="width:100%;margin-top:15px"
+      onclick="connectPerson(${person.id});closeModal()">
+
+      🤝 Conectar con ${person.name}
+
+    </button>
+
+  `);
+
+}
+
+
+function connectPerson(id){
+
+  const person =
+    NEXO_PEOPLE.find(
+      p => p.id === id
+    );
+
+  if(!person) return;
+
+  alert(
+    `Solicitud enviada a ${person.name} 🤝`
+  );
+
+}
+
+
+function joinPlan(id){
+
+  const plan =
+    NEXO_PLANS.find(
+      p => p.id === id
+    );
+
+  if(!plan) return;
+
+  if(plan.participants >= plan.max){
+
+    alert("Este plan está completo.");
+
+    return;
+
+  }
+
+  plan.participants++;
+
+  renderPlans();
+
+  alert(
+    `Te has unido a "${plan.title}" 🎉`
+  );
+
+}
+
+
+function joinGroup(id){
+
+  const group =
+    NEXO_GROUPS.find(
+      g => g.id === id
+    );
+
+  if(!group) return;
+
+  group.members++;
+
+  alert(
+    `Te has unido a ${group.name} 👥`
+  );
+
+}
+
+
+/* =====================================================
+   INICIO
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+
+    renderPeople();
+
+    renderPlans();
+
+    renderGroups();
+
+    renderExplore();
+
+  }
+);
+
+</script>
+
+<!-- =====================================================
+     NEXO — BLOQUE 4
+     AJUSTES · IDIOMAS · NOTIFICACIONES · PRIVACIDAD
+===================================================== -->
+
+<section id="settings" class="screen">
+
+  <div class="hero">
+
+    <div class="muted">NEXO</div>
+
+    <h1>⚙️ Ajustes</h1>
+
+    <p>
+      Personaliza tu experiencia.
+    </p>
+
+  </div>
+
+
+  <!-- CUENTA -->
+
+  <div class="card">
+
+    <h3>👤 Cuenta</h3>
+
+    <div class="settings-row">
+
+      <div>
+        <strong>Editar perfil</strong>
+
+        <div class="muted">
+          Nombre, foto, descripción e intereses
+        </div>
+      </div>
+
+      <button
+        class="secondary-btn"
+        onclick="openProfileEditor()"
+      >
+        Editar
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- IDIOMA -->
+
+  <div class="card">
+
+    <h3>🌍 Idioma</h3>
+
+    <div class="form-group">
+
+      <label>
+        Idioma de NEXO
+      </label>
+
+      <select
+        id="languageSelector"
+        onchange="changeLanguage(this.value)"
+      >
+
+        <option value="es">
+          🇪🇸 Español
+        </option>
+
+        <option value="ca">
+          🟨 Català
+        </option>
+
+        <option value="en">
+          🇬🇧 English
+        </option>
+
+        <option value="fr">
+          🇫🇷 Français
+        </option>
+
+        <option value="it">
+          🇮🇹 Italiano
+        </option>
+
+        <option value="de">
+          🇩🇪 Deutsch
+        </option>
+
+        <option value="pt">
+          🇵🇹 Português
+        </option>
+
+        <option value="ro">
+          🇷🇴 Română
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <!-- APARIENCIA -->
+
+  <div class="card">
+
+    <h3>🎨 Apariencia</h3>
+
+    <div class="settings-row">
+
+      <div>
+
+        <strong>Modo oscuro</strong>
+
+        <div class="muted">
+          Cambia el aspecto de NEXO
+        </div>
+
+      </div>
+
+      <label class="switch">
+
+        <input
+          id="darkModeToggle"
+          type="checkbox"
+          onchange="toggleDarkMode(this.checked)"
+        >
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- NOTIFICACIONES -->
+
+  <div class="card">
+
+    <h3>🔔 Notificaciones</h3>
+
+    <div class="settings-row">
+
+      <div>
+
+        <strong>
+          Notificaciones
+        </strong>
+
+        <div class="muted">
+          Mensajes, conexiones y planes
+        </div>
+
+      </div>
+
+      <label class="switch">
+
+        <input
+          id="notificationsToggle"
+          type="checkbox"
+          onchange="toggleNotifications(this.checked)"
+        >
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+
+    <div class="settings-row">
+
+      <div>
+
+        <strong>
+          Personas cerca
+        </strong>
+
+        <div class="muted">
+          Avisarme cuando haya actividad
+        </div>
+
+      </div>
+
+      <label class="switch">
+
+        <input
+          id="nearbyToggle"
+          type="checkbox"
+          checked
+        >
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- PRIVACIDAD -->
+
+  <div class="card">
+
+    <h3>🔐 Privacidad</h3>
+
+    <div class="settings-row">
+
+      <div>
+
+        <strong>
+          Perfil privado
+        </strong>
+
+        <div class="muted">
+          Solo las personas aceptadas podrán verlo.
+        </div>
+
+      </div>
+
+      <label class="switch">
+
+        <input
+          id="privateProfileToggle"
+          type="checkbox"
+          onchange="togglePrivateProfile(this.checked)"
+        >
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+
+    <div class="settings-row">
+
+      <div>
+
+        <strong>
+          Aparecer en Conecta
+        </strong>
+
+        <div class="muted">
+          Permite que otras personas te descubran.
+        </div>
+
+      </div>
+
+      <label class="switch">
+
+        <input
+          id="discoverableToggle"
+          type="checkbox"
+          checked
+          onchange="toggleDiscoverable(this.checked)"
+        >
+
+        <span class="slider"></span>
+
+      </label>
+
+    </div>
+
+  </div>
+
+
+  <!-- DISTANCIA -->
+
+  <div class="card">
+
+    <h3>📍 Distancia</h3>
+
+    <div class="form-group">
+
+      <label>
+        Radio de búsqueda
+      </label>
+
+      <input
+        id="distanceRange"
+        type="range"
+        min="1"
+        max="100"
+        value="25"
+        oninput="updateDistance(this.value)"
+      >
+
+      <div
+        id="distanceValue"
+        class="muted"
+      >
+        25 km
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SEGURIDAD -->
+
+  <div class="card">
+
+    <h3>🛡️ Seguridad</h3>
+
+    <button
+      class="secondary-btn"
+      style="width:100%;margin-bottom:8px"
+      onclick="showBlockedUsers()"
+    >
+      🚫 Personas bloqueadas
+    </button>
+
+    <button
+      class="secondary-btn"
+      style="width:100%"
+      onclick="showPrivacyInfo()"
+    >
+      ℹ️ Centro de privacidad
+    </button>
+
+  </div>
+
+
+  <!-- DATOS -->
+
+  <div class="card">
+
+    <h3>💾 Datos</h3>
+
+    <button
+      class="secondary-btn"
+      style="width:100%;margin-bottom:8px"
+      onclick="exportNexoData()"
+    >
+      📤 Exportar mis datos
+    </button>
+
+    <button
+      class="danger-btn"
+      style="width:100%"
+      onclick="confirmResetNexo()"
+    >
+      🗑️ Restablecer NEXO
+    </button>
+
+  </div>
+
+
+  <div
+    class="muted"
+    style="text-align:center;padding:20px"
+  >
+    NEXO · Conecta · descubre · hazlo
+    <br>
+    Versión 1.0
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     ESTILOS BLOQUE 4
+===================================================== -->
+
+<style>
 
 .settings-row{
 
@@ -1919,267 +4306,2044 @@ a{
 
   justify-content:space-between;
 
-  gap:12px;
+  gap:15px;
 
   padding:14px 0;
 
-  border-bottom:
-    1px
-    solid
-    var(--border);
+  border-bottom:1px solid var(--border);
+
 }
 
 .settings-row:last-child{
+
   border-bottom:0;
-}
-
-.settings-left{
-  flex:1;
-}
-
-.settings-left strong{
-
-  display:block;
-
-  font-size:14px;
-}
-
-.settings-left span{
-
-  display:block;
-
-  margin-top:3px;
-
-  color:var(--muted);
-
-  font-size:11px;
-
-  line-height:1.4;
-}
-
-
-/* =========================================================
-   GRID UTILITIES
-========================================================= */
-
-.grid{
-  display:grid;
-  gap:10px;
-}
-
-.grid-2{
-  grid-template-columns:repeat(2,1fr);
-}
-
-.grid-3{
-  grid-template-columns:repeat(3,1fr);
-}
-
-.row{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.space-between{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-
-/* =========================================================
-   SCANNER
-========================================================= */
-
-.scanner-options{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:10px;
-}
-
-.scanner-option{
-
-  padding:
-    20px
-    10px;
-
-  border:
-    1px
-    solid
-    var(--border);
-
-  background:var(--card);
-
-  border-radius:18px;
-
-  text-align:center;
-}
-
-.scanner-option .emoji{
-
-  display:block;
-
-  font-size:31px;
-
-  margin-bottom:8px;
-}
-
-
-/* =========================================================
-   DARK MODE
-========================================================= */
-
-body.dark{
-
-  --bg:#111016;
-  --card:#1C1922;
-  --card-2:#211E28;
-
-  --text:#F5F3FA;
-  --muted:#AAA5B4;
-
-  --border:#302B38;
-}
-
-body.dark .bottom-nav{
-
-  background:
-    rgba(28,25,34,.96);
-}
-
-body.dark .app-header{
-
-  background:
-    rgba(17,16,22,.92);
-}
-
-body.dark .message{
-
-  background:#302B38;
-}
-
-body.dark .close-btn{
-
-  background:#302B38;
-}
-
-body.dark .map{
-
-  background:
-    linear-gradient(
-      135deg,
-      #29213D,
-      #183128
-    );
-}
-
-body.dark .quick-card,
-body.dark .card,
-body.dark .search-box{
-  box-shadow:none;
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media(max-width:520px){
-
-  .quick-grid{
-    grid-template-columns:
-      repeat(4,1fr);
-  }
-
-  .hero h1{
-    font-size:28px;
-  }
-}
-
-@media(max-width:430px){
-
-  .screen{
-    padding-left:14px;
-    padding-right:14px;
-  }
-
-  .quick-grid{
-    grid-template-columns:
-      repeat(3,1fr);
-  }
-
-  .profile-stats{
-    gap:5px;
-  }
-
-  .grid-2{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(min-width:761px){
-
-  .bottom-nav{
-    left:50%;
-    right:auto;
-
-    width:760px;
-
-    transform:translateX(-50%);
-  }
 
 }
 
 
-/* =========================================================
-   ACCESSIBILITY
-========================================================= */
+/* SWITCH */
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible{
+.switch{
 
-  outline:
-    3px
-    solid
-    rgba(139,92,246,.35);
+  position:relative;
 
-  outline-offset:2px;
+  display:inline-block;
+
+  width:48px;
+
+  height:28px;
+
+  flex-shrink:0;
+
+}
+
+.switch input{
+
+  opacity:0;
+
+  width:0;
+
+  height:0;
+
+}
+
+.slider{
+
+  position:absolute;
+
+  inset:0;
+
+  background:#D8D4DF;
+
+  border-radius:999px;
+
+  cursor:pointer;
+
+  transition:.25s;
+
+}
+
+.slider:before{
+
+  content:"";
+
+  position:absolute;
+
+  width:22px;
+
+  height:22px;
+
+  left:3px;
+
+  top:3px;
+
+  background:white;
+
+  border-radius:50%;
+
+  transition:.25s;
+
+  box-shadow:0 2px 5px rgba(0,0,0,.2);
+
+}
+
+.switch input:checked + .slider{
+
+  background:var(--primary);
+
+}
+
+.switch input:checked + .slider:before{
+
+  transform:translateX(20px);
+
 }
 
 
-/* =========================================================
-   SAFE IMAGE FALLBACK
-========================================================= */
+/* RANGE */
 
-.image-placeholder{
-
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
+input[type="range"]{
 
   width:100%;
-  height:100%;
 
-  background:
-    linear-gradient(
-      135deg,
-      #EDE7FF,
-      #F5F1FF
-    );
+  accent-color:var(--primary);
 
-  color:var(--primary);
+}
 
-  font-size:40px;
+
+/* FAVORITO */
+
+.photo-card-fav.liked{
+
+  color:#EF4444;
+
+  transform:scale(1.1);
+
 }
 
 </style>
-</head>
+
+
+<!-- =====================================================
+     FUNCIONES BLOQUE 4
+===================================================== -->
+
+<script>
+
+function toggleDarkMode(enabled){
+
+  document.body.classList.toggle(
+    "dark",
+    enabled
+  );
+
+  localStorage.setItem(
+    STORAGE.theme,
+    enabled ? "dark" : "light"
+  );
+
+}
+
+
+function loadTheme(){
+
+  const theme =
+    localStorage.getItem(
+      STORAGE.theme
+    );
+
+  const enabled =
+    theme === "dark";
+
+  document.body.classList.toggle(
+    "dark",
+    enabled
+  );
+
+  const toggle =
+    document.getElementById(
+      "darkModeToggle"
+    );
+
+  if(toggle){
+
+    toggle.checked=enabled;
+
+  }
+
+}
+
+
+function toggleNotifications(enabled){
+
+  preferences.notifications =
+    enabled;
+
+  localStorage.setItem(
+    STORAGE.preferences,
+    JSON.stringify(preferences)
+  );
+
+  showToast(
+    enabled
+      ? "🔔 Notificaciones activadas"
+      : "🔕 Notificaciones desactivadas"
+  );
+
+}
+
+
+function togglePrivateProfile(enabled){
+
+  preferences.privateProfile =
+    enabled;
+
+  localStorage.setItem(
+    STORAGE.preferences,
+    JSON.stringify(preferences)
+  );
+
+  showToast(
+    enabled
+      ? "🔐 Perfil privado activado"
+      : "🌎 Perfil público"
+  );
+
+}
+
+
+function toggleDiscoverable(enabled){
+
+  preferences.discoverable =
+    enabled;
+
+  localStorage.setItem(
+    STORAGE.preferences,
+    JSON.stringify(preferences)
+  );
+
+  showToast(
+    enabled
+      ? "👋 Ahora apareces en Conecta"
+      : "👤 Ya no apareces en Conecta"
+  );
+
+}
+
+
+function updateDistance(value){
+
+  preferences.distance =
+    Number(value);
+
+  const output =
+    document.getElementById(
+      "distanceValue"
+    );
+
+  if(output){
+
+    output.textContent =
+      value + " km";
+
+  }
+
+  localStorage.setItem(
+    STORAGE.preferences,
+    JSON.stringify(preferences)
+  );
+
+}
+
+
+function showBlockedUsers(){
+
+  const blockedUsers =
+    blocked.length;
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>🚫 Bloqueados</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <p class="muted">
+
+      ${
+        blockedUsers
+        ? blockedUsers +
+          " personas bloqueadas."
+        : "No tienes personas bloqueadas."
+      }
+
+    </p>
+
+  `);
+
+}
+
+
+function showPrivacyInfo(){
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>🔐 Privacidad</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Tu información</h3>
+
+      <p class="muted">
+
+        Tú decides qué información
+        compartes en NEXO.
+
+      </p>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Ubicación</h3>
+
+      <p class="muted">
+
+        La ubicación debe utilizarse
+        únicamente para funciones
+        que necesiten proximidad.
+
+      </p>
+
+    </div>
+
+  `);
+
+}
+
+
+function exportNexoData(){
+
+  const data={
+
+    profile:profile,
+
+    plans:plans,
+
+    groups:groups,
+
+    chats:chats,
+
+    preferences:preferences,
+
+    notifications:notifications,
+
+    blocked:blocked
+
+  };
+
+  const blob=
+    new Blob(
+      [
+        JSON.stringify(
+          data,
+          null,
+          2
+        )
+      ],
+      {
+        type:
+          "application/json"
+      }
+    );
+
+  const url=
+    URL.createObjectURL(
+      blob
+    );
+
+  const link=
+    document.createElement(
+      "a"
+    );
+
+  link.href=url;
+
+  link.download=
+    "nexo-datos.json";
+
+  link.click();
+
+  URL.revokeObjectURL(url);
+
+  showToast(
+    "📤 Datos exportados"
+  );
+
+}
+
+
+function confirmResetNexo(){
+
+  openModal(`
+
+    <div class="modal-header">
+
+      <h2>⚠️ Restablecer NEXO</h2>
+
+      <button
+        class="close-btn"
+        onclick="closeModal()"
+      >
+        ✕
+      </button>
+
+    </div>
+
+    <p>
+
+      Se eliminarán los datos
+      guardados localmente en este
+      dispositivo.
+
+    </p>
+
+    <button
+      class="danger-btn"
+      style="width:100%"
+      onclick="resetNexo()"
+    >
+      Sí, restablecer
+    </button>
+
+  `);
+
+}
+
+
+function resetNexo(){
+
+  Object.values(STORAGE)
+    .forEach(key=>{
+      localStorage.removeItem(key);
+    });
+
+  location.reload();
+
+}
+
+
+/* =====================================================
+   CARGAR AJUSTES
+===================================================== */
+
+function loadSettings(){
+
+  const language=
+    Object.keys(
+      NEXO_LANGUAGES
+    ).find(
+      key =>
+        NEXO_LANGUAGES[key].name ===
+        preferences.language
+    );
+
+  const languageSelector=
+    document.getElementById(
+      "languageSelector"
+    );
+
+  if(
+    languageSelector &&
+    language
+  ){
+
+    languageSelector.value=
+      language;
+
+  }
+
+
+  const notificationsToggle=
+    document.getElementById(
+      "notificationsToggle"
+    );
+
+  if(notificationsToggle){
+
+    notificationsToggle.checked=
+      preferences.notifications;
+
+  }
+
+
+  const privateToggle=
+    document.getElementById(
+      "privateProfileToggle"
+    );
+
+  if(privateToggle){
+
+    privateToggle.checked=
+      preferences.privateProfile;
+
+  }
+
+
+  const discoverableToggle=
+    document.getElementById(
+      "discoverableToggle"
+    );
+
+  if(discoverableToggle){
+
+    discoverableToggle.checked=
+      preferences.discoverable;
+
+  }
+
+
+  const distance=
+    document.getElementById(
+      "distanceRange"
+    );
+
+  if(distance){
+
+    distance.value=
+      preferences.distance;
+
+    updateDistance(
+      preferences.distance
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   INICIALIZACIÓN
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    loadTheme();
+
+    loadSettings();
+
+  }
+);
+
+</script>
+<div id="app">
+
+<!-- ===================================================
+     HEADER
+=================================================== -->
+
+<header class="app-header">
+
+  <div>
+
+    <div class="logo">
+      NEXO
+    </div>
+
+    <div class="logo-subtitle">
+      Conecta · descubre · hazlo
+    </div>
+
+  </div>
+
+  <div class="header-actions">
+
+    <button
+      class="icon-btn"
+      onclick="openSearch()"
+      aria-label="Buscar"
+    >
+      🔎
+    </button>
+
+    <button
+      class="icon-btn"
+      onclick="openAI()"
+      aria-label="NEXO AI"
+    >
+      ✦
+    </button>
+
+    <button
+      class="icon-btn"
+      onclick="openNotifications()"
+      aria-label="Notificaciones"
+    >
+      🔔
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- ===================================================
+     HOME
+=================================================== -->
+
+<section
+  id="home"
+  class="screen active"
+>
+
+  <div class="hero">
+
+    <div class="muted">
+      Hoy
+    </div>
+
+    <h1>
+      ¿Qué te apetece hacer?
+    </h1>
+
+    <p>
+      Encuentra personas, planes y experiencias cerca de ti.
+    </p>
+
+    <div
+      class="search-box"
+      style="margin-top:14px"
+    >
+
+      🔎
+
+      <input
+        id="homeSearch"
+        placeholder="Buscar personas, grupos o planes..."
+        oninput="searchHome(this.value)"
+      >
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="quickActions"
+    class="quick-grid"
+  ></div>
+
+
+  <div class="section-title">
+
+    <h2>
+      🔥 Ahora mismo
+    </h2>
+
+    <button
+      class="secondary-btn"
+      onclick="showScreen('now')"
+    >
+      Ver todo
+    </button>
+
+  </div>
+
+
+  <div id="nowHome"></div>
+
+
+  <div class="section-title">
+
+    <h2>
+      ⭐ Recomendado para ti
+    </h2>
+
+    <button
+      class="secondary-btn"
+      onclick="showScreen('connect')"
+    >
+      Ver
+    </button>
+
+  </div>
+
+
+  <div id="recommended"></div>
+
+
+  <div class="section-title">
+
+    <h2>
+      🆕 Nuevos planes
+    </h2>
+
+    <button
+      class="secondary-btn"
+      onclick="showScreen('plans')"
+    >
+      Ver
+    </button>
+
+  </div>
+
+
+  <div id="homePlans"></div>
+
+</section>
+
+
+<!-- ===================================================
+     EXPLORE
+=================================================== -->
+
+<section
+  id="explore"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      🔎 Explorar
+    </h1>
+
+    <p>
+      Descubre personas, grupos, actividades y eventos.
+    </p>
+
+    <div
+      class="search-box"
+      style="margin-top:14px"
+    >
+
+      🔎
+
+      <input
+        id="exploreSearch"
+        placeholder="Eventos, grupos, personas..."
+        oninput="globalSearch(this.value)"
+      >
+
+    </div>
+
+  </div>
+
+
+  <div class="chips">
+
+    <button
+      class="chip"
+      onclick="setExploreFilter('Todos')"
+    >
+      Todos
+    </button>
+
+    <button
+      class="chip"
+      onclick="setExploreFilter('Hoy')"
+    >
+      Hoy
+    </button>
+
+    <button
+      class="chip"
+      onclick="setExploreFilter('Mañana')"
+    >
+      Mañana
+    </button>
+
+    <button
+      class="chip"
+      onclick="setExploreFilter('Cerca')"
+    >
+      Cerca de mí
+    </button>
+
+    <button
+      class="chip"
+      onclick="setExploreFilter('Online')"
+    >
+      Online
+    </button>
+
+  </div>
+
+
+  <div class="section-title">
+
+    <h2>
+      Categorías
+    </h2>
+
+  </div>
+
+
+  <div
+    id="categories"
+    class="quick-grid"
+  ></div>
+
+
+  <div
+    id="exploreResults"
+    style="margin-top:15px"
+  ></div>
+
+</section>
+
+
+<!-- ===================================================
+     CONNECT
+=================================================== -->
+
+<section
+  id="connect"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      🤝 Conecta
+    </h1>
+
+    <p>
+      Personas que podrían encajar contigo.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="person">
+
+      <div class="now-icon">
+        🧠
+      </div>
+
+      <div class="person-main">
+
+        <strong>
+          ¿Quién está haciendo lo mismo que tú?
+        </strong>
+
+        <div class="muted">
+          Personas compatibles cerca de ti.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div id="peopleContainer"></div>
+
+</section>
+
+
+<!-- ===================================================
+     PLANS
+=================================================== -->
+
+<section
+  id="plans"
+  class="screen"
+>
+
+  <div class="section-title">
+
+    <h1>
+      📅 Planes
+    </h1>
+
+    <button
+      class="primary-btn"
+      onclick="openPlanCreator()"
+    >
+      + Crear
+    </button>
+
+  </div>
+
+
+  <div class="chips">
+
+    <button
+      class="chip"
+      onclick="filterPlans('Todos')"
+    >
+      Todos
+    </button>
+
+    <button
+      class="chip"
+      onclick="filterPlans('Deporte')"
+    >
+      Deporte
+    </button>
+
+    <button
+      class="chip"
+      onclick="filterPlans('Ocio')"
+    >
+      Ocio
+    </button>
+
+    <button
+      class="chip"
+      onclick="filterPlans('Música')"
+    >
+      Música
+    </button>
+
+  </div>
+
+
+  <div
+    id="plansContainer"
+    style="margin-top:15px"
+  ></div>
+
+</section>
+
+
+<!-- ===================================================
+     CALENDAR
+=================================================== -->
+
+<section
+  id="calendar"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      🗓️ Calendario
+    </h1>
+
+    <p>
+      Tus planes, entrenamientos, eventos y quedadas.
+    </p>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>
+      Agosto 2026
+    </h3>
+
+    <div
+      id="calendarGrid"
+      class="calendar"
+    ></div>
+
+  </div>
+
+
+  <div id="calendarEvents"></div>
+
+</section>
+
+
+<!-- ===================================================
+     CHAT
+=================================================== -->
+
+<section
+  id="chat"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      💬 Chat
+    </h1>
+
+    <p>
+      Habla con tus conexiones.
+    </p>
+
+  </div>
+
+
+  <div id="chatsContainer"></div>
+
+</section>
+
+
+<!-- ===================================================
+     GROUPS
+=================================================== -->
+
+<section
+  id="groups"
+  class="screen"
+>
+
+  <div class="section-title">
+
+    <h1>
+      👥 Grupos
+    </h1>
+
+    <button
+      class="primary-btn"
+      onclick="openGroupCreator()"
+    >
+      + Crear
+    </button>
+
+  </div>
+
+
+  <div id="groupsContainer"></div>
+
+</section>
+
+
+<!-- ===================================================
+     NOW
+=================================================== -->
+
+<section
+  id="now"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      🔥 Ahora mismo
+    </h1>
+
+    <p>
+      Lo que está pasando cerca de ti.
+    </p>
+
+  </div>
+
+
+  <div id="nowContainer"></div>
+
+</section>
+
+
+<!-- ===================================================
+     MAP
+=================================================== -->
+
+<section
+  id="map"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      🗺️ Cerca de ti
+    </h1>
+
+    <p>
+      Personas, grupos y planes.
+    </p>
+
+  </div>
+
+
+  <div class="map">
+
+    <span
+      class="map-marker"
+      style="left:20%;top:30%"
+    >
+      🏃
+    </span>
+
+    <span
+      class="map-marker"
+      style="left:70%;top:35%"
+    >
+      ☕
+    </span>
+
+    <span
+      class="map-marker"
+      style="left:50%;top:70%"
+    >
+      ⚽
+    </span>
+
+    <span
+      class="map-marker"
+      style="left:80%;top:75%"
+    >
+      👤
+    </span>
+
+  </div>
+
+
+  <div
+    id="mapResults"
+    style="margin-top:15px"
+  ></div>
+
+</section>
+
+
+<!-- ===================================================
+     PROFILE
+=================================================== -->
+
+<section
+  id="profile"
+  class="screen"
+>
+
+  <div class="hero">
+
+    <h1>
+      👤 Mi perfil
+    </h1>
+
+    <p>
+      Personaliza cómo apareces en NEXO.
+    </p>
+
+  </div>
+
+
+  <div class="card person">
+
+    <img
+      id="myAvatar"
+      class="avatar"
+      alt="Mi foto"
+    >
+
+    <div class="person-main">
+
+      <h2
+        id="myName"
+        style="margin:0"
+      ></h2>
+
+      <p
+        id="myBio"
+        class="muted"
+      ></p>
+
+    </div>
+
+  </div>
+
+
+  <div
+    id="myChips"
+    class="chips"
+  ></div>
+
+
+  <div
+    style="
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:8px;
+      margin-top:12px;
+    "
+  >
+
+    <button
+      class="secondary-btn"
+      onclick="openQR()"
+    >
+      📷 Mi NEXO
+    </button>
+
+    <button
+      class="secondary-btn"
+      onclick="openProfileEditor()"
+    >
+      ✏️ Editar
+    </button>
+
+  </div>
+
+
+  <button
+    class="secondary-btn"
+    style="width:100%;margin-top:10px"
+    onclick="openSettings()"
+  >
+    ⚙️ Ajustes
+  </button>
+
+</section>
+
+
+</div>
+
+
+<!-- ===================================================
+     BOTTOM NAV
+=================================================== -->
+
+<nav class="bottom-nav">
+
+  <div class="bottom-nav-inner">
+
+    <button
+      class="nav-btn active"
+      data-nav="home"
+      onclick="showScreen('home')"
+    >
+      <span>🏠</span>
+      Inicio
+    </button>
+
+    <button
+      class="nav-btn"
+      data-nav="connect"
+      onclick="showScreen('connect')"
+    >
+      <span>🤝</span>
+      Conecta
+    </button>
+
+    <button
+      class="nav-btn"
+      data-nav="plans"
+      onclick="showScreen('plans')"
+    >
+      <span>📅</span>
+      Planes
+    </button>
+
+    <button
+      class="nav-btn"
+      data-nav="calendar"
+      onclick="showScreen('calendar')"
+    >
+      <span>🗓️</span>
+      Calendario
+    </button>
+
+    <button
+      class="nav-btn"
+      data-nav="chat"
+      onclick="showScreen('chat')"
+    >
+      <span>💬</span>
+      Chat
+    </button>
+
+  </div>
+
+</nav>
+
+
+<!-- ===================================================
+     MODAL
+=================================================== -->
+
+<div
+  id="modalOverlay"
+  class="modal-overlay"
+  onclick="closeModalOutside(event)"
+>
+
+  <div
+    id="modal"
+    class="modal"
+  ></div>
+
+</div>
+
+
+<!-- ===================================================
+     CHAT WINDOW
+=================================================== -->
+
+<div
+  id="chatWindow"
+  class="chat-window"
+>
+
+  <div class="chat-header">
+
+    <button
+      class="icon-btn"
+      onclick="closeChat()"
+    >
+      ←
+    </button>
+
+    <img
+      id="chatAvatar"
+      class="avatar"
+      alt="Contacto"
+    >
+
+    <strong id="chatName"></strong>
+
+  </div>
+
+
+  <div
+    id="chatMessages"
+    class="chat-messages"
+  ></div>
+
+
+  <form
+    class="chat-input"
+    onsubmit="sendMessage(event)"
+  >
+
+    <input
+      id="messageInput"
+      placeholder="Escribe un mensaje..."
+      autocomplete="off"
+    >
+
+    <button
+      class="primary-btn"
+    >
+      Enviar
+    </button>
+
+  </form>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   NEXO DATA
+===================================================== */
+
+const STORAGE = {
+
+  profile:"nexo_profile",
+
+  plans:"nexo_plans",
+
+  groups:"nexo_groups",
+
+  chats:"nexo_chats",
+
+  preferences:"nexo_preferences",
+
+  notifications:"nexo_notifications",
+
+  blocked:"nexo_blocked",
+
+  theme:"nexo_theme"
+
+};
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+let profile =
+  JSON.parse(
+    localStorage.getItem(STORAGE.profile)
+  ) || {
+
+    name:"Fernando",
+
+    bio:"Explorando NEXO.",
+
+    avatar:
+      "https://i.pravatar.cc/300?img=12",
+
+    interests:[
+      "Running",
+      "Música",
+      "Gym"
+    ]
+
+  };
+
+
+/* =====================================================
+   PLANS
+===================================================== */
+
+let plans =
+  JSON.parse(
+    localStorage.getItem(STORAGE.plans)
+  ) || [
+
+    {
+      id:1,
+
+      title:"Running 5K",
+
+      category:"Deporte",
+
+      time:"19:00",
+
+      date:"Hoy",
+
+      location:"Tarragona",
+
+      distance:"2,4 km",
+
+      people:4,
+
+      maxPeople:10,
+
+      image:
+        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Salida tranquila de 5 km para entrenar y conocer gente."
+
+    },
+
+    {
+      id:2,
+
+      title:"Café y conocer gente",
+
+      category:"Ocio",
+
+      time:"18:30",
+
+      date:"Hoy",
+
+      location:"Tarragona",
+
+      distance:"1,8 km",
+
+      people:3,
+
+      maxPeople:8,
+
+      image:
+        "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Tomar algo y conocer gente nueva."
+
+    },
+
+    {
+      id:3,
+
+      title:"Partido de fútbol",
+
+      category:"Deporte",
+
+      time:"20:30",
+
+      date:"Hoy",
+
+      location:"Tarragona",
+
+      distance:"3,1 km",
+
+      people:10,
+
+      maxPeople:14,
+
+      image:
+        "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Partido amistoso. Nivel medio."
+
+    },
+
+    {
+      id:4,
+
+      title:"Tarde de playa",
+
+      category:"Ocio",
+
+      time:"17:00",
+
+      date:"Mañana",
+
+      location:"La Pineda",
+
+      distance:"6,5 km",
+
+      people:6,
+
+      maxPeople:15,
+
+      image:
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Playa, música y buen ambiente."
+
+    }
+
+  ];
+
+
+/* =====================================================
+   GROUPS
+===================================================== */
+
+let groups =
+  JSON.parse(
+    localStorage.getItem(STORAGE.groups)
+  ) || [
+
+    {
+      id:1,
+
+      name:"Running Tarragona",
+
+      category:"Deporte",
+
+      members:12438,
+
+      image:
+        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Entrena y conoce gente."
+
+    },
+
+    {
+      id:2,
+
+      name:"Planes Tarragona",
+
+      category:"Ocio",
+
+      members:3200,
+
+      image:
+        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Planes espontáneos y actividades."
+
+    },
+
+    {
+      id:3,
+
+      name:"Gym & Fitness",
+
+      category:"Deporte",
+
+      members:8240,
+
+      image:
+        "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80",
+
+      description:
+        "Entrenamiento, motivación y comunidad."
+
+    }
+
+  ];
+
+
+/* =====================================================
+   CHATS
+===================================================== */
+
+let chats =
+  JSON.parse(
+    localStorage.getItem(STORAGE.chats)
+  ) || [
+
+    {
+      id:1,
+
+      name:"Laura",
+
+      avatar:
+        "https://i.pravatar.cc/200?img=47",
+
+      messages:[
+        {
+          from:"them",
+          text:"¡Hola! 👋"
+        }
+      ]
+
+    },
+
+    {
+      id:2,
+
+      name:"Carlos",
+
+      avatar:
+        "https://i.pravatar.cc/200?img=11",
+
+      messages:[
+        {
+          from:"them",
+          text:"¿Te apuntas al running?"
+        }
+      ]
+
+    }
+
+  ];
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+let notifications =
+  JSON.parse(
+    localStorage.getItem(
+      STORAGE.notifications
+    )
+  ) || [];
+
+
+/* =====================================================
+   PREFERENCES
+===================================================== */
+
+let preferences =
+  JSON.parse(
+    localStorage.getItem(
+      STORAGE.preferences
+    )
+  ) || {
+
+    distance:25,
+
+    notifications:true,
+
+    showOnline:true,
+
+    privateProfile:false,
+
+    discoverable:true,
+
+    language:"Español"
+
+  };
+
+
+/* =====================================================
+   BLOCKED
+===================================================== */
+
+let blocked =
+  JSON.parse(
+    localStorage.getItem(
+      STORAGE.blocked
+    )
+  ) || [];
+
+
+/* =====================================================
+   PEOPLE
+===================================================== */
+
+const people = [
+
+  {
+    id:1,
+
+    name:"Laura",
+
+    age:28,
+
+    city:"Tarragona",
+
+    distance:"1,2 km",
+
+    compatibility:94,
+
+    avatar:
+      "https://i.pravatar.cc/400?img=47",
+
+    interests:[
+      "Running",
+      "Música",
+      "Cafés"
+    ],
+
+    online:true
+
+  },
+
+  {
+    id:2,
+
+    name:"Carlos",
+
+    age:31,
+
+    city:"Tarragona",
+
+    distance:"2,4 km",
+
+    compatibility:91,
+
+    avatar:
+      "https://i.pravatar.cc/400?img=11",
+
+    interests:[
+      "Gym",
+      "Fútbol",
+      "Viajes"
+    ],
+
+    online:true
+
+  },
+
+  {
+    id:3,
+
+    name:"Marta",
+
+    age:29,
+
+    city:"Vila-seca",
+
+    distance:"4,1 km",
+
+    compatibility:88,
+
+    avatar:
+      "https://i.pravatar.cc/400?img=32",
+
+    interests:[
+      "Cine",
+      "Viajes",
+      "Comida"
+    ],
+
+    online:false
+
+  },
+
+  {
+    id:4,
+
+    name:"Alex",
+
+    age:30,
+
+    city:"Salou",
+
+    distance:"6,3 km",
+
+    compatibility:85,
+
+    avatar:
+      "https://i.pravatar.cc/400?img=13",
+
+    interests:[
+      "Gaming",
+      "Música",
+      "Deporte"
+    ],
+
+    online:true
+
+  }
+
+];
+
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+const categories = [
+
+  {
+    name:"Deporte",
+    emoji:"🏃",
+    count:"1.240 planes",
+    image:
+      "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Cine",
+    emoji:"🎬",
+    count:"320 planes",
+    image:
+      "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Música",
+    emoji:"🎵",
+    count:"680 planes",
+    image:
+      "https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Comida",
+    emoji:"🍔",
+    count:"540 planes",
+    image:
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Cafés",
+    emoji:"☕",
+    count:"410 planes",
+    image:
+      "https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Gaming",
+    emoji:"🎮",
+    count:"230 planes",
+    image:
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Viajes",
+    emoji:"✈️",
+    count:"180 planes",
+    image:
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=800&q=80"
+  },
+
+  {
+    name:"Playa",
+    emoji:"🏖️",
+    count:"290 planes",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+  }
+
+];
+
+
+/* =====================================================
+   CURRENT STATE
+===================================================== */
+
+let currentChat = null;
+
+let currentExploreFilter = "Todos";
+
+let currentPlanFilter = "Todos";
+
+
+/* =====================================================
+   STORAGE SAVE
+===================================================== */
+
+function saveAll(){
+
+  localStorage.setItem(
+    STORAGE.profile,
+    JSON.stringify(profile)
+  );
+
+  localStorage.setItem(
+    STORAGE.plans,
+    JSON.stringify(plans)
+  );
+
+  localStorage.setItem(
+    STORAGE.groups,
+    JSON.stringify(groups)
+  );
+
+  localStorage.setItem(
+    STORAGE.chats,
+    JSON.stringify(chats)
+  );
+
+  localStorage.setItem(
+    STORAGE.preferences,
+    JSON.stringify(preferences)
+  );
+
+  localStorage.setItem(
+    STORAGE.notifications,
+    JSON.stringify(notifications)
+  );
+
+  localStorage.setItem(
+    STORAGE.blocked,
+    JSON.stringify(blocked)
+  );
+
+}
+
+
+/* =====================================================
+   SCREEN NAVIGATION
+===================================================== */
+
+function showScreen(id){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(screen=>{
+      screen.classList.remove("active");
+    });
+
+  const target =
+    document.getElementById(id);
+
+  if(!target){
+    return;
+  }
+
+  target.classList.add("active");
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  const nav =
+    document.querySelector(
+      `[data-nav="${id}"]`
+    );
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  renderScreen(id);
+
+}
+
+
+/* =====================================================
+   RENDER SCREEN
+===================================================== */
+
+function renderScreen(id){
+
+  if(id==="home"){
+    renderHome();
+  }
+
+  if(id==="explore"){
+    renderExplore();
+  }
+
+  if(id==="connect"){
+    renderPeople();
+  }
+
+  if(id==="plans"){
+    renderPlans();
+  }
+
+  if(id==="calendar"){
+    renderCalendar();
+  }
+
+  if(id==="chat"){
+    renderChats();
+  }
+
+  if(id==="groups"){
+    renderGroups();
+  }
+
+  if(id==="now"){
+    renderNow();
+  }
+
+  if(id==="map"){
+    renderMap();
+  }
+
+  if(id==="profile"){
+    renderProfile();
+  }
+
+}
+
+
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  ()=>{
+
+    applyTheme();
+
+    renderHome();
+
+    renderExplore();
+
+    renderPeople();
+
+    renderPlans();
+
+    renderCalendar();
+
+    renderChats();
+
+    renderGroups();
+
+    renderNow();
+
+    renderMap();
+
+    renderProfile();
+
+  }
+);
+
+</script>
