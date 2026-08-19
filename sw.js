@@ -1,25 +1,37 @@
-/* =====================================================
-   NEXO — SERVICE WORKER
-   VERSIÓN SEGURA
-===================================================== */
+const CACHE_NAME = "nexo-v1000";
 
-const CACHE_NAME = "nexo-v6";
+const APP_FILES = [
+  "./",
+  "./index.html",
+  "./manifest.json",
+  "./sw.js"
+];
 
-
-/* =====================================================
+/* ================================
    INSTALACIÓN
-===================================================== */
+================================ */
 
 self.addEventListener("install", event => {
 
   self.skipWaiting();
 
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(APP_FILES))
+      .catch(error => {
+        console.error(
+          "NEXO: error instalando caché",
+          error
+        );
+      })
+  );
+
 });
 
 
-/* =====================================================
+/* ================================
    ACTIVACIÓN
-===================================================== */
+================================ */
 
 self.addEventListener("activate", event => {
 
@@ -35,41 +47,90 @@ self.addEventListener("activate", event => {
 
       );
 
+    }).then(() => {
+
+      return self.clients.claim();
+
     })
 
   );
 
-  self.clients.claim();
+});
+
+
+/* ================================
+   MENSAJES
+================================ */
+
+self.addEventListener("message", event => {
+
+  if (!event.data) return;
+
+  if (event.data.type === "SKIP_WAITING") {
+
+    self.skipWaiting();
+
+  }
+
+  if (event.data.type === "CLEAR_CACHE") {
+
+    caches.keys().then(keys => {
+
+      return Promise.all(
+        keys.map(key => caches.delete(key))
+      );
+
+    });
+
+  }
 
 });
 
 
-/* =====================================================
-   PETICIONES
-===================================================== */
+/* ================================
+   FETCH
+================================ */
 
 self.addEventListener("fetch", event => {
 
-  /*
-   * Solo GET.
-   */
+  const request = event.request;
 
-  if(event.request.method !== "GET") {
+  if (request.method !== "GET") {
     return;
   }
 
-
   /*
-   * Primero Internet.
-   * Así siempre intentamos cargar
-   * la versión actualizada de NEXO.
+   * HTML:
+   * Siempre intentamos obtener la versión
+   * más reciente del servidor.
    */
 
-  event.respondWith(
+  if (
+    request.mode === "navigate" ||
+    request.destination === "document"
+  ) {
 
-    fetch(event.request)
+    event.respondWith(
+
+      fetch(request, {
+        cache: "no-store"
+      })
 
       .then(response => {
+
+        if (
+          response &&
+          response.status === 200
+        ) {
+
+          const copy = response.clone();
+
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(request, copy);
+            });
+
+        }
 
         return response;
 
@@ -77,12 +138,54 @@ self.addEventListener("fetch", event => {
 
       .catch(() => {
 
-        /*
-         * Si no hay Internet,
-         * intentamos utilizar caché.
-         */
+        return caches.match(request)
+          .then(cached => {
 
-        return caches.match(event.request);
+            return cached ||
+              caches.match("./index.html");
+
+          });
+
+      })
+
+    );
+
+    return;
+  }
+
+
+  /*
+   * CSS / JS / imágenes / manifest:
+   * Primero red → caché como respaldo.
+   */
+
+  event.respondWith(
+
+    fetch(request)
+
+      .then(response => {
+
+        if (
+          response &&
+          response.status === 200
+        ) {
+
+          const copy = response.clone();
+
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(request, copy);
+            });
+
+        }
+
+        return response;
+
+      })
+
+      .catch(() => {
+
+        return caches.match(request);
 
       })
 
