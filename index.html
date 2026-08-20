@@ -2,60 +2,68 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no,
+               viewport-fit=cover">
 
 <meta name="theme-color" content="#8B5CF6">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NEXO">
-<meta name="description"
-      content="NEXO - Conecta con personas, descubre planes y crea experiencias.">
+
+<title>NEXO — Conecta. Comparte. Vive.</title>
 
 <link rel="manifest" href="./manifest.json">
 
-<title>NEXO</title>
-
 <style>
 /* =========================================================
-   NEXO — DISEÑO PRINCIPAL
+   NEXO — SISTEMA VISUAL
    ========================================================= */
 
-:root {
-    --primary: #8B5CF6;
-    --primary-dark: #6D28D9;
-    --primary-light: #A78BFA;
-    --secondary: #EC4899;
-    --blue: #3B82F6;
-    --green: #10B981;
-    --orange: #F59E0B;
-    --red: #EF4444;
+:root{
+    --primary:#8B5CF6;
+    --primary-dark:#6D28D9;
+    --primary-light:#A78BFA;
+    --secondary:#EC4899;
 
-    --bg: #F6F5FA;
-    --card: #FFFFFF;
-    --text: #18181B;
-    --text-soft: #71717A;
-    --border: #E4E4E7;
+    --bg:#F6F5FA;
+    --surface:#FFFFFF;
+    --surface-2:#F1EFF8;
 
-    --shadow:
-        0 10px 30px rgba(0,0,0,.07);
+    --text:#17151F;
+    --muted:#77727F;
+    --border:#E8E4EF;
 
-    --radius: 22px;
-    --nav-height: 76px;
+    --success:#22C55E;
+    --warning:#F59E0B;
+    --danger:#EF4444;
+    --info:#3B82F6;
+
+    --shadow:0 8px 30px rgba(30,20,60,.08);
+    --shadow-lg:0 15px 50px rgba(30,20,60,.14);
+
+    --radius:20px;
+    --radius-sm:14px;
+
+    --nav-height:76px;
 }
 
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
+body{
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -65,2814 +73,2401 @@ body {
         Roboto,
         Arial,
         sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
+
+    background:var(--bg);
+    color:var(--text);
+
+    min-height:100vh;
+    overflow-x:hidden;
 }
 
 button,
 input,
 textarea,
-select {
-    font: inherit;
+select{
+    font:inherit;
 }
 
-button {
-    border: 0;
-    cursor: pointer;
+button{
+    border:0;
+    cursor:pointer;
 }
 
-img {
-    display: block;
-    max-width: 100%;
+img{
+    display:block;
+    width:100%;
+    object-fit:cover;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+    display:none!important;
 }
 
 /* =========================================================
    APP
    ========================================================= */
 
-.app {
-    min-height: 100vh;
-    padding-bottom: calc(var(--nav-height) + 18px);
+#app{
+    width:100%;
+    max-width:760px;
+    min-height:100vh;
+    margin:auto;
+    background:var(--bg);
+    position:relative;
 }
 
-.page {
-    display: none;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 18px 16px 30px;
-    animation: pageIn .25s ease;
+.page{
+    min-height:100vh;
+    padding-bottom:calc(var(--nav-height) + 24px);
 }
 
-.page.active {
-    display: block;
-}
-
-@keyframes pageIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.page-content{
+    padding:18px;
 }
 
 /* =========================================================
-   TOP BAR
+   HEADER
    ========================================================= */
 
-.topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
+.top-header{
+    position:sticky;
+    top:0;
+    z-index:50;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:
+        calc(12px + env(safe-area-inset-top))
+        18px
+        12px;
+
+    background:rgba(246,245,250,.90);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-bottom:1px solid rgba(232,228,239,.7);
 }
 
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.logo{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-weight:900;
+    letter-spacing:-1px;
+    font-size:25px;
 }
 
-.brand-logo {
-    width: 46px;
-    height: 46px;
-    border-radius: 15px;
+.logo-mark{
+    width:36px;
+    height:36px;
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
     background:
-        linear-gradient(135deg, #8B5CF6, #EC4899);
-    display: grid;
-    place-items: center;
-    color: white;
-    font-size: 22px;
-    font-weight: 900;
-    box-shadow: 0 8px 20px rgba(139,92,246,.28);
+        linear-gradient(135deg,
+        #A78BFA,
+        #8B5CF6,
+        #EC4899);
+
+    box-shadow:
+        0 7px 20px rgba(139,92,246,.25);
 }
 
-.brand-name {
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: -1px;
+.header-actions{
+    display:flex;
+    gap:8px;
 }
 
-.brand-subtitle {
-    color: var(--text-soft);
-    font-size: 12px;
+.icon-btn{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--surface);
+    color:var(--text);
+
+    box-shadow:0 3px 14px rgba(0,0,0,.06);
+    position:relative;
 }
 
-.top-actions {
-    display: flex;
-    gap: 8px;
+.icon-btn:active{
+    transform:scale(.94);
 }
 
-.icon-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 15px;
-    background: var(--card);
-    color: var(--text);
-    box-shadow: var(--shadow);
-    display: grid;
-    place-items: center;
-    font-size: 19px;
-    position: relative;
-}
+.badge{
+    position:absolute;
+    top:-3px;
+    right:-3px;
 
-.badge {
-    position: absolute;
-    top: -3px;
-    right: -3px;
-    min-width: 18px;
-    height: 18px;
-    padding: 0 5px;
-    border-radius: 20px;
-    background: var(--red);
-    color: white;
-    font-size: 10px;
-    font-weight: 800;
-    display: grid;
-    place-items: center;
-}
+    min-width:18px;
+    height:18px;
+    padding:0 5px;
 
-/* =========================================================
-   HEADINGS
-   ========================================================= */
+    border-radius:99px;
 
-.eyebrow {
-    color: var(--primary);
-    font-weight: 800;
-    font-size: 13px;
-    margin-bottom: 5px;
-}
+    background:var(--danger);
+    color:white;
 
-h1 {
-    margin: 0;
-    font-size: clamp(28px, 7vw, 42px);
-    line-height: 1.05;
-    letter-spacing: -1.4px;
-}
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-h2 {
-    margin: 0;
-    font-size: 24px;
-    letter-spacing: -.7px;
-}
+    font-size:10px;
+    font-weight:800;
 
-h3 {
-    margin: 0;
-    font-size: 17px;
-}
-
-.section-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 26px 0 12px;
-}
-
-.section-title button {
-    color: var(--primary);
-    background: transparent;
-    font-weight: 800;
-    font-size: 13px;
+    border:2px solid var(--bg);
 }
 
 /* =========================================================
    HERO
    ========================================================= */
 
-.hero {
-    position: relative;
-    min-height: 280px;
-    border-radius: 30px;
-    overflow: hidden;
-    color: white;
-    box-shadow: 0 15px 40px rgba(0,0,0,.16);
+.hero{
+    position:relative;
+    overflow:hidden;
+
+    min-height:225px;
+
+    border-radius:28px;
+
     background:
         linear-gradient(
-            110deg,
-            rgba(31,18,58,.92),
-            rgba(88,48,148,.60),
-            rgba(236,72,153,.18)
-        ),
-        url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 28px 24px;
-    min-height: 280px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.hero h1 {
-    max-width: 560px;
-}
-
-.hero p {
-    max-width: 540px;
-    line-height: 1.5;
-    color: rgba(255,255,255,.85);
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin-top: 8px;
-}
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-.btn {
-    min-height: 46px;
-    padding: 0 18px;
-    border-radius: 15px;
-    font-weight: 800;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 7px;
-    transition: .2s ease;
-}
-
-.btn:active {
-    transform: scale(.96);
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-white {
-    background: white;
-    color: var(--primary-dark);
-}
-
-.btn-soft {
-    background: #F0EAFE;
-    color: var(--primary-dark);
-}
-
-.btn-danger {
-    background: #FEE2E2;
-    color: #B91C1C;
-}
-
-.btn-green {
-    background: #D1FAE5;
-    color: #047857;
-}
-
-.btn-dark {
-    background: #18181B;
-    color: white;
-}
-
-/* =========================================================
-   QUICK ACTIONS
-   ========================================================= */
-
-.quick-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 9px;
-}
-
-.quick-card {
-    background: var(--card);
-    border-radius: 19px;
-    padding: 14px 8px;
-    text-align: center;
-    box-shadow: var(--shadow);
-    transition: .2s;
-}
-
-.quick-card:active {
-    transform: scale(.96);
-}
-
-.quick-icon {
-    width: 44px;
-    height: 44px;
-    margin: 0 auto 7px;
-    border-radius: 15px;
-    display: grid;
-    place-items: center;
-    font-size: 20px;
-}
-
-.quick-card strong {
-    font-size: 12px;
-}
-
-/* =========================================================
-   HORIZONTAL SCROLL
-   ========================================================= */
-
-.horizontal {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 3px 1px 8px;
-}
-
-.horizontal::-webkit-scrollbar {
-    display: none;
-}
-
-/* =========================================================
-   CATEGORY CARDS
-   ========================================================= */
-
-.category-card {
-    min-width: 132px;
-    height: 165px;
-    border-radius: 22px;
-    overflow: hidden;
-    position: relative;
-    flex: 0 0 auto;
-    box-shadow: var(--shadow);
-}
-
-.category-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.category-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            transparent 30%,
-            rgba(0,0,0,.72)
+            135deg,
+            rgba(109,40,217,.95),
+            rgba(139,92,246,.88),
+            rgba(236,72,153,.80)
         );
+
+    color:white;
+
+    padding:25px;
+
+    box-shadow:var(--shadow-lg);
+    margin-bottom:22px;
 }
 
-.category-info {
-    position: absolute;
-    z-index: 2;
-    left: 12px;
-    right: 10px;
-    bottom: 11px;
-    color: white;
+.hero::before{
+    content:"";
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,.10);
+    right:-80px;
+    top:-70px;
 }
 
-.category-info strong {
-    display: block;
-    font-size: 15px;
+.hero::after{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(255,255,255,.07);
+    left:-70px;
+    bottom:-80px;
 }
 
-.category-info span {
-    font-size: 11px;
-    opacity: .82;
+.hero-content{
+    position:relative;
+    z-index:2;
 }
 
-/* =========================================================
-   PEOPLE CARDS
-   ========================================================= */
-
-.people-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 13px;
+.hero h1{
+    font-size:32px;
+    line-height:1.05;
+    letter-spacing:-1.4px;
+    margin-bottom:10px;
 }
 
-.person-card {
-    background: var(--card);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+.hero p{
+    max-width:450px;
+    color:rgba(255,255,255,.87);
+    line-height:1.5;
 }
 
-.person-photo {
-    height: 230px;
-    position: relative;
-    overflow: hidden;
-}
+.hero-btn{
+    margin-top:20px;
 
-.person-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    padding:12px 18px;
+    border-radius:14px;
 
-.online-dot {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    width: 12px;
-    height: 12px;
-    border: 2px solid white;
-    background: #10B981;
-    border-radius: 50%;
-}
+    background:white;
+    color:var(--primary-dark);
 
-.photo-gradient {
-    position: absolute;
-    inset: 35% 0 0;
-    background: linear-gradient(transparent, rgba(0,0,0,.55));
-}
+    font-weight:800;
 
-.person-distance {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    padding: 5px 9px;
-    border-radius: 20px;
-    background: rgba(0,0,0,.5);
-    color: white;
-    backdrop-filter: blur(8px);
-    font-size: 11px;
-}
-
-.person-body {
-    padding: 13px;
-}
-
-.person-name {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.verified {
-    color: #3B82F6;
-    font-size: 14px;
-}
-
-.person-meta {
-    color: var(--text-soft);
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin: 10px 0;
-}
-
-.tag {
-    background: #F4F4F5;
-    color: #52525B;
-    border-radius: 20px;
-    padding: 5px 8px;
-    font-size: 10px;
-    font-weight: 700;
-}
-
-.person-actions {
-    display: grid;
-    grid-template-columns: 1fr 42px;
-    gap: 7px;
-}
-
-.small-btn {
-    height: 40px;
-    border-radius: 13px;
-    font-weight: 800;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
 
 /* =========================================================
-   PLAN CARDS
+   SECTION
    ========================================================= */
 
-.plan-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
+.section{
+    margin-bottom:24px;
 }
 
-.plan-card {
-    background: var(--card);
-    border-radius: 25px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
+.section-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:13px;
 }
 
-.plan-image {
-    height: 210px;
-    position: relative;
+.section-title{
+    font-size:20px;
+    font-weight:850;
+    letter-spacing:-.5px;
 }
 
-.plan-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.plan-category {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: rgba(255,255,255,.92);
-    padding: 7px 10px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 900;
-}
-
-.plan-favorite {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: rgba(0,0,0,.35);
-    color: white;
-    backdrop-filter: blur(8px);
-}
-
-.plan-body {
-    padding: 15px;
-}
-
-.plan-title {
-    font-size: 18px;
-    font-weight: 900;
-}
-
-.plan-description {
-    color: var(--text-soft);
-    font-size: 13px;
-    line-height: 1.45;
-    margin: 7px 0;
-}
-
-.plan-details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 7px;
-    margin: 11px 0;
-}
-
-.plan-detail {
-    background: #F8F8FA;
-    padding: 9px;
-    border-radius: 13px;
-    font-size: 11px;
-}
-
-.plan-detail strong {
-    display: block;
-    font-size: 12px;
-    color: var(--text);
-}
-
-.plan-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.avatar-stack {
-    display: flex;
-}
-
-.avatar-stack img {
-    width: 32px;
-    height: 32px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 2px solid white;
-    margin-left: -8px;
-}
-
-.avatar-stack img:first-child {
-    margin-left: 0;
-}
-
-/* =========================================================
-   GROUP CARDS
-   ========================================================= */
-
-.group-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 13px;
-}
-
-.group-card {
-    background: var(--card);
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    display: grid;
-    grid-template-columns: 105px 1fr;
-}
-
-.group-card img {
-    width: 105px;
-    height: 125px;
-    object-fit: cover;
-}
-
-.group-content {
-    padding: 13px;
-}
-
-.group-content p {
-    color: var(--text-soft);
-    font-size: 12px;
-    line-height: 1.35;
-}
-
-.group-members {
-    font-size: 11px;
-    color: var(--primary);
-    font-weight: 800;
-}
-
-/* =========================================================
-   CHAT
-   ========================================================= */
-
-.chat-list {
-    display: grid;
-    gap: 8px;
-}
-
-.chat-card {
-    background: var(--card);
-    border-radius: 19px;
-    padding: 11px;
-    display: grid;
-    grid-template-columns: 53px 1fr auto;
-    gap: 11px;
-    align-items: center;
-    box-shadow: var(--shadow);
-}
-
-.chat-avatar {
-    width: 53px;
-    height: 53px;
-    object-fit: cover;
-    border-radius: 18px;
-}
-
-.chat-text {
-    min-width: 0;
-}
-
-.chat-text strong {
-    display: block;
-}
-
-.chat-text span {
-    display: block;
-    color: var(--text-soft);
-    font-size: 12px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-top: 4px;
-}
-
-.chat-time {
-    color: var(--text-soft);
-    font-size: 10px;
-}
-
-.unread {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: white;
-    display: grid;
-    place-items: center;
-    font-size: 9px;
-    font-weight: 900;
-}
-
-/* =========================================================
-   PROFILE
-   ========================================================= */
-
-.profile-cover {
-    height: 170px;
-    border-radius: 28px;
-    overflow: hidden;
-    position: relative;
-    background:
-        url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
-}
-
-.profile-cover::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,.35));
-}
-
-.profile-photo-wrap {
-    position: relative;
-    margin-top: -58px;
-    margin-left: 20px;
-    z-index: 3;
-}
-
-.profile-photo {
-    width: 116px;
-    height: 116px;
-    object-fit: cover;
-    border-radius: 35px;
-    border: 5px solid var(--bg);
-}
-
-.profile-main {
-    background: var(--card);
-    margin-top: -2px;
-    padding: 20px;
-    border-radius: 24px;
-    box-shadow: var(--shadow);
-}
-
-.profile-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.profile-name {
-    font-size: 25px;
-    font-weight: 900;
-}
-
-.profile-bio {
-    color: var(--text-soft);
-    line-height: 1.5;
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.profile-stats {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    margin: 15px 0;
-}
-
-.stat {
-    text-align: center;
-    padding: 13px 5px;
-}
-
-.stat + .stat {
-    border-left: 1px solid var(--border);
-}
-
-.stat strong {
-    display: block;
-    font-size: 18px;
-}
-
-.stat span {
-    color: var(--text-soft);
-    font-size: 10px;
+.see-all{
+    color:var(--primary);
+    font-weight:700;
+    font-size:13px;
 }
 
 /* =========================================================
    SEARCH
    ========================================================= */
 
-.search-box {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    min-height: 49px;
-    padding: 0 15px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    box-shadow: var(--shadow);
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    background:var(--surface);
+    border:1px solid var(--border);
+
+    border-radius:17px;
+    padding:12px 14px;
+
+    margin-bottom:18px;
 }
 
-.search-box span {
-    color: var(--text-soft);
+.search-box input{
+    border:0;
+    outline:0;
+    width:100%;
+    background:transparent;
+    color:var(--text);
 }
 
-.search-box input {
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    color: var(--text);
-}
-
-/* =========================================================
-   FILTERS
-   ========================================================= */
-
-.filters {
-    display: flex;
-    gap: 7px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 12px 0;
-}
-
-.filters::-webkit-scrollbar {
-    display: none;
-}
-
-.filter {
-    white-space: nowrap;
-    border-radius: 20px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 8px 12px;
-    font-size: 11px;
-    font-weight: 800;
-}
-
-.filter.active {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
+.search-box svg{
+    flex:none;
+    color:var(--muted);
 }
 
 /* =========================================================
-   MAP
+   CATEGORIES
    ========================================================= */
 
-.map-box {
-    min-height: 430px;
-    border-radius: 28px;
-    overflow: hidden;
-    position: relative;
+.categories{
+    display:flex;
+    gap:11px;
+    overflow-x:auto;
+    padding-bottom:5px;
+
+    scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+    display:none;
+}
+
+.category{
+    min-width:82px;
+
+    padding:11px 9px;
+
+    border-radius:17px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:7px;
+
+    box-shadow:0 3px 12px rgba(0,0,0,.035);
+}
+
+.category.active{
+    background:var(--primary);
+    color:white;
+    border-color:var(--primary);
+}
+
+.category-icon{
+    width:39px;
+    height:39px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--surface-2);
+
+    font-size:20px;
+}
+
+.category.active .category-icon{
+    background:rgba(255,255,255,.18);
+}
+
+.category span{
+    font-size:11px;
+    font-weight:750;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.cards-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.card{
+    background:var(--surface);
+    border-radius:20px;
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    box-shadow:0 5px 20px rgba(30,20,60,.055);
+
+    transition:.2s ease;
+}
+
+.card:active{
+    transform:scale(.985);
+}
+
+.card-image{
+    height:155px;
+    position:relative;
+    overflow:hidden;
+}
+
+.card-image img{
+    height:100%;
+    transition:transform .4s ease;
+}
+
+.card:hover .card-image img{
+    transform:scale(1.05);
+}
+
+.card-gradient{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0),
+            rgba(0,0,0,.48)
+        );
+}
+
+.card-tag{
+    position:absolute;
+    top:10px;
+    left:10px;
+
+    padding:6px 9px;
+    border-radius:9px;
+
+    background:rgba(255,255,255,.92);
+
+    color:var(--primary-dark);
+
+    font-size:10px;
+    font-weight:850;
+}
+
+.card-fav{
+    position:absolute;
+    right:9px;
+    top:9px;
+
+    width:32px;
+    height:32px;
+
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.9);
+
+    color:#555;
+}
+
+.card-fav.active{
+    color:#EC4899;
+}
+
+.card-image-info{
+    position:absolute;
+    bottom:10px;
+    left:11px;
+    right:11px;
+
+    color:white;
+}
+
+.card-image-info h3{
+    font-size:16px;
+    font-weight:850;
+}
+
+.card-body{
+    padding:12px;
+}
+
+.card-description{
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.4;
+
+    display:-webkit-box;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+
+    margin-bottom:10px;
+}
+
+.card-meta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    color:var(--muted);
+    font-size:11px;
+
+    margin-bottom:10px;
+}
+
+.card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.avatar-stack{
+    display:flex;
+}
+
+.avatar-stack img{
+    width:27px;
+    height:27px;
+    border-radius:50%;
+    border:2px solid white;
+    margin-left:-7px;
+}
+
+.avatar-stack img:first-child{
+    margin-left:0;
+}
+
+.join-btn{
+    padding:8px 11px;
+    border-radius:10px;
+
+    background:var(--primary);
+    color:white;
+
+    font-size:11px;
+    font-weight:800;
+}
+
+/* =========================================================
+   FEATURED CARD
+   ========================================================= */
+
+.featured-list{
+    display:flex;
+    gap:14px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.featured-list::-webkit-scrollbar{
+    display:none;
+}
+
+.featured-card{
+    min-width:285px;
+    height:190px;
+
+    border-radius:23px;
+
+    position:relative;
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+}
+
+.featured-card img{
+    height:100%;
+}
+
+.featured-card-overlay{
+    position:absolute;
+    inset:0;
+
+    padding:17px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,.75),
+            rgba(0,0,0,.05)
+        );
+}
+
+.featured-card h3{
+    font-size:20px;
+    margin-bottom:4px;
+}
+
+.featured-card p{
+    font-size:12px;
+    color:rgba(255,255,255,.85);
+}
+
+/* =========================================================
+   PEOPLE
+   ========================================================= */
+
+.people-list{
+    display:flex;
+    gap:13px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+.people-list::-webkit-scrollbar{
+    display:none;
+}
+
+.person-card{
+    min-width:145px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:20px;
+
+    padding:10px;
+
+    text-align:center;
+}
+
+.person-image{
+    width:92px;
+    height:92px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:4px solid #EFE9FF;
+}
+
+.online{
+    width:12px;
+    height:12px;
+
+    background:var(--success);
+
+    border:2px solid white;
+
+    border-radius:50%;
+
+    position:absolute;
+    right:3px;
+    bottom:8px;
+}
+
+.person-photo{
+    position:relative;
+    width:max-content;
+    margin:auto;
+}
+
+.person-name{
+    font-size:14px;
+    font-weight:850;
+    margin-top:9px;
+}
+
+.person-info{
+    font-size:11px;
+    color:var(--muted);
+    margin:4px 0 10px;
+}
+
+.connect-btn{
+    width:100%;
+
+    padding:9px;
+
+    border-radius:11px;
+
+    background:#F0EBFF;
+    color:var(--primary-dark);
+
+    font-size:11px;
+    font-weight:850;
+}
+
+.connect-btn.connected{
+    background:var(--primary);
+    color:white;
+}
+
+/* =========================================================
+   PLAN DETAIL
+   ========================================================= */
+
+.plan-page{
+    padding-bottom:120px;
+}
+
+.plan-cover{
+    height:280px;
+    position:relative;
+}
+
+.plan-cover img{
+    height:100%;
+}
+
+.plan-cover::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.15),
+            rgba(0,0,0,.75)
+        );
+}
+
+.back-button{
+    position:absolute;
+    z-index:3;
+
+    top:calc(15px + env(safe-area-inset-top));
+    left:15px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:13px;
+
+    background:rgba(255,255,255,.9);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.plan-cover-title{
+    position:absolute;
+    z-index:2;
+
+    bottom:22px;
+    left:18px;
+    right:18px;
+
+    color:white;
+}
+
+.plan-cover-title h1{
+    font-size:29px;
+    letter-spacing:-1px;
+}
+
+.plan-info{
+    padding:20px;
+}
+
+.info-row{
+    display:flex;
+    gap:13px;
+
+    padding:13px 0;
+
+    border-bottom:1px solid var(--border);
+}
+
+.info-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    background:#F0EBFF;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.info-content strong{
+    display:block;
+    font-size:13px;
+}
+
+.info-content span{
+    font-size:12px;
+    color:var(--muted);
+}
+
+.primary-full{
+    width:100%;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:var(--primary);
+    color:white;
+
+    font-weight:850;
+
+    box-shadow:0 8px 20px rgba(139,92,246,.2);
+}
+
+/* =========================================================
+   CHAT
+   ========================================================= */
+
+.chat-list{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.chat-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:13px;
+
+    background:var(--surface);
+
+    border-radius:17px;
+}
+
+.chat-avatar{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+
+    object-fit:cover;
+
+    flex:none;
+}
+
+.chat-content{
+    flex:1;
+    min-width:0;
+}
+
+.chat-top{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.chat-name{
+    font-weight:850;
+    font-size:14px;
+}
+
+.chat-time{
+    font-size:10px;
+    color:var(--muted);
+}
+
+.chat-preview{
+    margin-top:4px;
+    color:var(--muted);
+    font-size:12px;
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+/* =========================================================
+   CHAT ROOM
+   ========================================================= */
+
+.chat-room{
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+
+    background:#F8F7FB;
+}
+
+.chat-room-header{
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    padding:
+        calc(10px + env(safe-area-inset-top))
+        14px
+        10px;
+
+    background:white;
+
+    border-bottom:1px solid var(--border);
+}
+
+.chat-room-header img{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+}
+
+.chat-room-user{
+    flex:1;
+}
+
+.chat-room-user strong{
+    display:block;
+    font-size:14px;
+}
+
+.chat-room-user span{
+    color:var(--success);
+    font-size:10px;
+}
+
+.messages{
+    flex:1;
+
+    padding:18px;
+
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+
+    overflow-y:auto;
+}
+
+.message{
+    max-width:78%;
+
+    padding:10px 13px;
+
+    border-radius:17px;
+
+    font-size:13px;
+    line-height:1.4;
+}
+
+.message.received{
+    align-self:flex-start;
+    background:white;
+    border-bottom-left-radius:5px;
+}
+
+.message.sent{
+    align-self:flex-end;
+    background:var(--primary);
+    color:white;
+    border-bottom-right-radius:5px;
+}
+
+.message-time{
+    font-size:9px;
+    opacity:.55;
+    margin-top:4px;
+    text-align:right;
+}
+
+.chat-input{
+    display:flex;
+    gap:8px;
+
+    padding:
+        10px
+        12px
+        calc(10px + env(safe-area-inset-bottom));
+
+    background:white;
+
+    border-top:1px solid var(--border);
+}
+
+.chat-input input{
+    flex:1;
+
+    border:0;
+    outline:0;
+
+    background:#F2F0F6;
+
+    padding:12px 14px;
+
+    border-radius:14px;
+}
+
+.send-btn{
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    background:var(--primary);
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile-cover{
+    height:170px;
+
     background:
         linear-gradient(
             135deg,
-            rgba(139,92,246,.22),
-            rgba(59,130,246,.16)
-        ),
-        url("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=85")
-        center/cover;
-    box-shadow: var(--shadow);
+            #8B5CF6,
+            #EC4899
+        );
+
+    position:relative;
 }
 
-.map-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,.17);
-    backdrop-filter: blur(2px);
+.profile-content{
+    margin-top:-55px;
+    position:relative;
+    z-index:2;
+    padding:0 18px;
 }
 
-.map-pin {
-    position: absolute;
-    width: 45px;
-    height: 45px;
-    border-radius: 50% 50% 50% 5px;
-    transform: rotate(-45deg);
-    background: var(--primary);
-    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+.profile-photo{
+    width:110px;
+    height:110px;
+
+    border-radius:50%;
+
+    border:5px solid var(--bg);
+
+    object-fit:cover;
 }
 
-.map-pin span {
-    transform: rotate(45deg);
-    display: grid;
-    place-items: center;
-    height: 100%;
-    color: white;
+.profile-name{
+    font-size:26px;
+    font-weight:900;
+    margin-top:10px;
 }
 
-.map-info {
-    position: absolute;
-    bottom: 14px;
-    left: 14px;
-    right: 14px;
-    background: rgba(255,255,255,.93);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 14px;
+.profile-handle{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.profile-bio{
+    margin-top:12px;
+    line-height:1.5;
+    font-size:13px;
+}
+
+.profile-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    margin:20px 0;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.stat{
+    padding:15px 8px;
+    text-align:center;
+}
+
+.stat:not(:last-child){
+    border-right:1px solid var(--border);
+}
+
+.stat strong{
+    display:block;
+    font-size:19px;
+}
+
+.stat span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.profile-actions{
+    display:flex;
+    gap:9px;
+}
+
+.profile-actions button{
+    flex:1;
+    padding:12px;
+    border-radius:13px;
+    font-weight:800;
+}
+
+.edit-profile{
+    background:var(--primary);
+    color:white;
+}
+
+.share-profile{
+    background:var(--surface);
+    border:1px solid var(--border);
 }
 
 /* =========================================================
    SETTINGS
    ========================================================= */
 
-.settings-list {
-    display: grid;
-    gap: 8px;
+.settings-list{
+    display:flex;
+    flex-direction:column;
+    gap:9px;
 }
 
-.setting {
-    background: var(--card);
-    border-radius: 18px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    box-shadow: var(--shadow);
+.setting-group{
+    margin-bottom:20px;
 }
 
-.setting-icon {
-    width: 43px;
-    height: 43px;
-    border-radius: 14px;
-    background: #F1EEFF;
-    color: var(--primary);
-    display: grid;
-    place-items: center;
-    flex: 0 0 auto;
+.setting-group-title{
+    color:var(--muted);
+    font-size:12px;
+    font-weight:800;
+    text-transform:uppercase;
+    margin:0 5px 8px;
 }
 
-.setting-text {
-    flex: 1;
+.setting{
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    background:var(--surface);
+
+    padding:14px;
+
+    border-radius:15px;
+
+    border:1px solid var(--border);
 }
 
-.setting-text strong {
-    display: block;
+.setting-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:12px;
+
+    background:#F1EDFF;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.setting-text span {
-    color: var(--text-soft);
-    font-size: 11px;
+.setting-info{
+    flex:1;
 }
 
-.toggle {
-    width: 48px;
-    height: 28px;
-    border-radius: 20px;
-    background: #D4D4D8;
-    padding: 3px;
-    transition: .2s;
+.setting-info strong{
+    display:block;
+    font-size:13px;
 }
 
-.toggle::after {
-    content: "";
-    display: block;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: white;
-    transition: .2s;
+.setting-info span{
+    color:var(--muted);
+    font-size:10px;
 }
 
-.toggle.on {
-    background: var(--primary);
+.chevron{
+    color:#AAA;
 }
 
-.toggle.on::after {
-    transform: translateX(20px);
+/* =========================================================
+   TOGGLE
+   ========================================================= */
+
+.toggle{
+    width:45px;
+    height:26px;
+
+    background:#D6D2DC;
+
+    border-radius:99px;
+
+    padding:3px;
+
+    transition:.2s;
+}
+
+.toggle span{
+    display:block;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    background:white;
+
+    transition:.2s;
+}
+
+.toggle.active{
+    background:var(--primary);
+}
+
+.toggle.active span{
+    transform:translateX(19px);
 }
 
 /* =========================================================
    BOTTOM NAV
    ========================================================= */
 
-.bottom-nav {
-    position: fixed;
-    z-index: 100;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: calc(var(--nav-height) + env(safe-area-inset-bottom));
-    padding:
-        8px
-        8px
-        calc(8px + env(safe-area-inset-bottom));
-    background: rgba(255,255,255,.93);
-    backdrop-filter: blur(22px);
-    border-top: 1px solid rgba(0,0,0,.07);
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
+.bottom-nav{
+    position:fixed;
+
+    left:50%;
+    transform:translateX(-50%);
+
+    bottom:0;
+
+    z-index:100;
+
+    width:min(760px,100%);
+
+    height:calc(var(--nav-height) + env(safe-area-inset-bottom));
+
+    padding-bottom:env(safe-area-inset-bottom);
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border-top:1px solid var(--border);
+
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
 }
 
-.nav-item {
-    background: transparent;
-    color: #71717A;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    border-radius: 15px;
-    font-size: 10px;
-    font-weight: 700;
+.nav-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:4px;
+
+    background:transparent;
+
+    color:#89838F;
+
+    font-size:10px;
+    font-weight:700;
 }
 
-.nav-item .nav-icon {
-    font-size: 21px;
-    line-height: 1;
+.nav-item.active{
+    color:var(--primary);
 }
 
-.nav-item.active {
-    color: var(--primary);
+.nav-icon{
+    width:34px;
+    height:30px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:11px;
 }
 
-.nav-center {
-    width: 52px;
-    height: 52px;
-    margin: -18px auto 0;
-    border-radius: 19px;
-    color: white;
+.nav-item.active .nav-icon{
+    background:#F0EBFF;
+}
+
+/* =========================================================
+   FAB
+   ========================================================= */
+
+.fab{
+    position:fixed;
+
+    right:20px;
+    bottom:calc(var(--nav-height) + 18px);
+
+    z-index:90;
+
+    width:56px;
+    height:56px;
+
+    border-radius:18px;
+
     background:
-        linear-gradient(135deg,var(--primary),var(--secondary));
-    box-shadow: 0 8px 22px rgba(139,92,246,.35);
-    font-size: 24px;
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color:white;
+
+    font-size:25px;
+
+    box-shadow:
+        0 12px 28px rgba(139,92,246,.3);
 }
 
 /* =========================================================
-   MODALS
+   MODAL
    ========================================================= */
 
-.modal {
-    position: fixed;
-    inset: 0;
-    z-index: 500;
-    background: rgba(0,0,0,.52);
-    backdrop-filter: blur(8px);
-    display: none;
-    align-items: flex-end;
-    justify-content: center;
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:200;
+
+    background:rgba(20,15,30,.5);
+
+    backdrop-filter:blur(5px);
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
 }
 
-.modal.show {
-    display: flex;
+.modal-card{
+    width:min(760px,100%);
+
+    max-height:92vh;
+
+    overflow-y:auto;
+
+    background:var(--surface);
+
+    border-radius:28px 28px 0 0;
+
+    padding:20px;
+
+    animation:slideUp .25s ease;
 }
 
-.modal-box {
-    width: min(650px,100%);
-    max-height: 90vh;
-    overflow-y: auto;
-    background: var(--card);
-    border-radius: 30px 30px 0 0;
-    padding: 20px;
-    animation: modalIn .25s ease;
-}
-
-@keyframes modalIn {
-    from {
-        transform: translateY(100%);
+@keyframes slideUp{
+    from{
+        transform:translateY(100%);
     }
-    to {
-        transform: translateY(0);
+    to{
+        transform:translateY(0);
     }
 }
 
-.modal-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
+.modal-handle{
+    width:42px;
+    height:5px;
+
+    border-radius:99px;
+
+    background:#D8D4DE;
+
+    margin:0 auto 18px;
 }
 
-.close {
-    width: 38px;
-    height: 38px;
-    border-radius: 13px;
-    background: #F4F4F5;
+.modal-title{
+    font-size:22px;
+    font-weight:900;
+    margin-bottom:16px;
 }
 
-/* =========================================================
-   FORMS
-   ========================================================= */
-
-.form-group {
-    margin-bottom: 13px;
+.form-group{
+    margin-bottom:14px;
 }
 
-.form-group label {
-    display: block;
-    font-weight: 800;
-    font-size: 12px;
-    margin-bottom: 6px;
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:6px;
 }
 
-.form-input,
-.form-textarea,
-.form-select {
-    width: 100%;
-    border: 1px solid var(--border);
-    background: #FAFAFA;
-    color: var(--text);
-    border-radius: 14px;
-    padding: 12px;
-    outline: 0;
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+
+    border:1px solid var(--border);
+    outline:0;
+
+    background:#FAF9FC;
+
+    border-radius:13px;
+
+    padding:12px;
+
+    color:var(--text);
 }
 
-.form-textarea {
-    min-height: 100px;
-    resize: vertical;
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.modal-actions{
+    display:flex;
+    gap:9px;
+    margin-top:18px;
+}
+
+.modal-actions button{
+    flex:1;
+    padding:13px;
+    border-radius:13px;
+    font-weight:800;
+}
+
+.cancel-btn{
+    background:#F1EFF4;
+}
+
+.confirm-btn{
+    background:var(--primary);
+    color:white;
 }
 
 /* =========================================================
    TOAST
    ========================================================= */
 
-.toast-container {
-    position: fixed;
-    z-index: 1000;
-    top: calc(12px + env(safe-area-inset-top));
-    left: 14px;
-    right: 14px;
-    pointer-events: none;
+.toast{
+    position:fixed;
+
+    z-index:500;
+
+    left:50%;
+    bottom:calc(var(--nav-height) + 25px);
+
+    transform:translate(-50%,20px);
+
+    background:#17151F;
+    color:white;
+
+    padding:12px 17px;
+
+    border-radius:13px;
+
+    font-size:12px;
+    font-weight:700;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.25s;
+
+    box-shadow:var(--shadow-lg);
+
+    max-width:90%;
+    text-align:center;
 }
 
-.toast {
-    background: #18181B;
-    color: white;
-    padding: 13px 15px;
-    border-radius: 15px;
-    margin-bottom: 8px;
-    box-shadow: 0 12px 30px rgba(0,0,0,.22);
-    animation: toastIn .25s ease;
-    font-size: 13px;
-}
-
-@keyframes toastIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================================================
-   EMPTY STATE
-   ========================================================= */
-
-.empty {
-    text-align: center;
-    padding: 45px 20px;
-    color: var(--text-soft);
-}
-
-.empty-icon {
-    font-size: 50px;
-    margin-bottom: 10px;
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
 }
 
 /* =========================================================
-   DARK MODE
+   EMPTY
    ========================================================= */
 
-body.dark {
-    --bg: #09090B;
-    --card: #18181B;
-    --text: #FAFAFA;
-    --text-soft: #A1A1AA;
-    --border: #27272A;
+.empty{
+    text-align:center;
+    padding:45px 20px;
+    color:var(--muted);
 }
 
-body.dark .tag,
-body.dark .plan-detail,
-body.dark .search-box,
-body.dark .form-input,
-body.dark .form-textarea,
-body.dark .form-select {
-    background: #27272A;
-    color: #D4D4D8;
+.empty-icon{
+    font-size:45px;
+    margin-bottom:10px;
 }
 
-body.dark .bottom-nav {
-    background: rgba(24,24,27,.94);
-    border-color: #27272A;
-}
-
-body.dark .map-info {
-    background: rgba(24,24,27,.92);
-}
-
-body.dark .close {
-    background: #27272A;
+.empty strong{
+    display:block;
+    color:var(--text);
+    margin-bottom:5px;
 }
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
-@media (min-width: 700px) {
+@media(min-width:600px){
 
-    .people-grid {
-        grid-template-columns: repeat(3,1fr);
+    .page-content{
+        padding:24px;
     }
 
-    .plan-grid {
-        grid-template-columns: repeat(2,1fr);
+    .cards-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 
-    .quick-grid {
-        grid-template-columns: repeat(8,1fr);
-    }
-
-    .bottom-nav {
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%);
-        width: min(700px,100%);
-        border: 1px solid var(--border);
-        border-radius: 25px 25px 0 0;
+    .card-image{
+        height:175px;
     }
 }
 
-@media (max-width: 380px) {
+@media(max-width:370px){
 
-    .people-grid {
-        grid-template-columns: 1fr;
+    .cards-grid{
+        gap:9px;
     }
 
-    .person-photo {
-        height: 280px;
+    .card-image{
+        height:135px;
     }
 
-    .quick-grid {
-        grid-template-columns: repeat(2,1fr);
+    .hero h1{
+        font-size:28px;
     }
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+body.dark{
+    --bg:#0F0D14;
+    --surface:#18151F;
+    --surface-2:#24202D;
+
+    --text:#F7F5FA;
+    --muted:#A7A1B0;
+    --border:#2D2937;
+}
+
+body.dark .top-header{
+    background:rgba(15,13,20,.9);
+}
+
+body.dark .bottom-nav{
+    background:rgba(24,21,31,.96);
+}
+
+body.dark .search-box input,
+body.dark .form-group input,
+body.dark .form-group textarea,
+body.dark .form-group select{
+    color:white;
+    background:#211D29;
+}
+
+body.dark .chat-room{
+    background:#0F0D14;
+}
+
+body.dark .message.received{
+    background:#211D29;
+}
+
+body.dark .chat-input{
+    background:#18151F;
 }
 </style>
 </head>
 
 <body>
 
-<div id="toastContainer" class="toast-container"></div>
+<div id="app">
 
-<div class="app">
+    <!-- =====================================================
+         INICIO
+         ===================================================== -->
 
-<!-- =======================================================
-     INICIO
-     ======================================================= -->
+    <main id="homePage" class="page">
 
-<section id="page-home" class="page active">
+        <header class="top-header">
 
-    <div class="topbar">
-
-        <div class="brand">
-            <div class="brand-logo">N</div>
-
-            <div>
-                <div class="brand-name">NEXO</div>
-                <div class="brand-subtitle">
-                    Conecta. Descubre. Vive.
-                </div>
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                NEXO
             </div>
+
+            <div class="header-actions">
+
+                <button class="icon-btn"
+                        onclick="openSearch()"
+                        aria-label="Buscar">
+                    🔎
+                </button>
+
+                <button class="icon-btn"
+                        onclick="showNotifications()"
+                        aria-label="Notificaciones">
+
+                    🔔
+
+                    <span class="badge">3</span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <div class="page-content">
+
+            <section class="hero">
+
+                <div class="hero-content">
+
+                    <h1>Conecta con gente que comparte tu mundo.</h1>
+
+                    <p>
+                        Descubre personas, crea planes, únete a actividades
+                        y construye nuevas conexiones.
+                    </p>
+
+                    <button class="hero-btn"
+                            onclick="navigate('connect')">
+                        Explorar personas
+                    </button>
+
+                </div>
+
+            </section>
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    id="homeSearch"
+                    type="search"
+                    placeholder="Buscar personas, planes, grupos..."
+                    oninput="globalSearch(this.value)">
+
+            </div>
+
+            <section class="section">
+
+                <div class="section-head">
+                    <h2 class="section-title">Explora</h2>
+                    <button class="see-all"
+                            onclick="navigate('plans')">
+                        Ver todo
+                    </button>
+                </div>
+
+                <div class="categories">
+
+                    <button class="category active"
+                            onclick="filterCategory('Todos',this)">
+                        <div class="category-icon">✨</div>
+                        <span>Todos</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Deporte',this)">
+                        <div class="category-icon">🏃</div>
+                        <span>Deporte</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Gym',this)">
+                        <div class="category-icon">🏋️</div>
+                        <span>Gym</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Cine',this)">
+                        <div class="category-icon">🎬</div>
+                        <span>Cine</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Comida',this)">
+                        <div class="category-icon">🍔</div>
+                        <span>Comida</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Viajes',this)">
+                        <div class="category-icon">✈️</div>
+                        <span>Viajes</span>
+                    </button>
+
+                    <button class="category"
+                            onclick="filterCategory('Gaming',this)">
+                        <div class="category-icon">🎮</div>
+                        <span>Gaming</span>
+                    </button>
+
+                </div>
+
+            </section>
+
+            <section class="section">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Planes destacados
+                    </h2>
+
+                    <button class="see-all"
+                            onclick="navigate('plans')">
+                        Ver todos
+                    </button>
+
+                </div>
+
+                <div id="featuredPlans"
+                     class="featured-list">
+                </div>
+
+            </section>
+
+            <section class="section">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Cerca de ti
+                    </h2>
+
+                    <button class="see-all"
+                            onclick="navigate('plans')">
+                        Mapa
+                    </button>
+
+                </div>
+
+                <div id="homePlans"
+                     class="cards-grid">
+                </div>
+
+            </section>
+
+            <section class="section">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Personas para ti
+                    </h2>
+
+                    <button class="see-all"
+                            onclick="navigate('connect')">
+                        Ver todas
+                    </button>
+
+                </div>
+
+                <div id="homePeople"
+                     class="people-list">
+                </div>
+
+            </section>
+
         </div>
 
-        <div class="top-actions">
+    </main>
+
+
+    <!-- =====================================================
+         CONECTAR
+         ===================================================== -->
+
+    <main id="connectPage"
+          class="page hidden">
+
+        <header class="top-header">
+
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                Conectar
+            </div>
 
             <button class="icon-btn"
-                    onclick="openModal('notificationsModal')">
-                🔔
-                <span class="badge">3</span>
+                    onclick="openSearch()">
+                🔎
             </button>
+
+        </header>
+
+        <div class="page-content">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    id="peopleSearch"
+                    type="search"
+                    placeholder="Busca personas..."
+                    oninput="renderPeople(this.value)">
+
+            </div>
+
+            <section class="section">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Personas compatibles
+                    </h2>
+
+                </div>
+
+                <div id="peopleGrid"
+                     class="cards-grid">
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         PLANES
+         ===================================================== -->
+
+    <main id="plansPage"
+          class="page hidden">
+
+        <header class="top-header">
+
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                Planes
+            </div>
+
+            <button class="icon-btn"
+                    onclick="openCreatePlan()">
+                ＋
+            </button>
+
+        </header>
+
+        <div class="page-content">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    id="planSearch"
+                    type="search"
+                    placeholder="Buscar planes..."
+                    oninput="renderPlans(this.value)">
+
+            </div>
+
+            <section class="section">
+
+                <div class="section-head">
+
+                    <h2 class="section-title">
+                        Descubre planes
+                    </h2>
+
+                    <span id="planCounter"
+                          class="see-all">
+                    </span>
+
+                </div>
+
+                <div id="plansGrid"
+                     class="cards-grid">
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         CHAT
+         ===================================================== -->
+
+    <main id="chatPage"
+          class="page hidden">
+
+        <header class="top-header">
+
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                Chats
+            </div>
+
+            <button class="icon-btn"
+                    onclick="showToast('Nuevo chat')">
+                ✎
+            </button>
+
+        </header>
+
+        <div class="page-content">
+
+            <div class="search-box">
+
+                <span>🔎</span>
+
+                <input
+                    type="search"
+                    placeholder="Buscar conversaciones..."
+                    oninput="renderChats(this.value)">
+
+            </div>
+
+            <div id="chatList"
+                 class="chat-list">
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         PERFIL
+         ===================================================== -->
+
+    <main id="profilePage"
+          class="page hidden">
+
+        <header class="top-header">
+
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                Perfil
+            </div>
+
+            <button class="icon-btn"
+                    onclick="navigate('settings')">
+                ⚙️
+            </button>
+
+        </header>
+
+        <div class="profile-cover"></div>
+
+        <div class="profile-content">
+
+            <img
+                class="profile-photo"
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
+                alt="Fernando">
+
+            <h1 class="profile-name">
+                Fernando
+            </h1>
+
+            <div class="profile-handle">
+                @fernando
+            </div>
+
+            <p class="profile-bio">
+                Me gusta el deporte, descubrir sitios nuevos,
+                viajar, entrenar y conocer gente con buenas energías.
+            </p>
+
+            <div class="profile-stats">
+
+                <div class="stat">
+                    <strong id="followersCount">248</strong>
+                    <span>Conexiones</span>
+                </div>
+
+                <div class="stat">
+                    <strong>32</strong>
+                    <span>Planes</span>
+                </div>
+
+                <div class="stat">
+                    <strong>4.9</strong>
+                    <span>Valoración</span>
+                </div>
+
+            </div>
+
+            <div class="profile-actions">
+
+                <button class="edit-profile"
+                        onclick="openEditProfile()">
+                    Editar perfil
+                </button>
+
+                <button class="share-profile"
+                        onclick="shareProfile()">
+                    Compartir
+                </button>
+
+            </div>
+
+            <section class="section"
+                     style="margin-top:25px">
+
+                <div class="section-head">
+                    <h2 class="section-title">
+                        Mis planes
+                    </h2>
+                </div>
+
+                <div id="myPlans"
+                     class="cards-grid">
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         AJUSTES
+         ===================================================== -->
+
+    <main id="settingsPage"
+          class="page hidden">
+
+        <header class="top-header">
+
+            <div class="logo">
+                <div class="logo-mark">N</div>
+                Ajustes
+            </div>
 
             <button class="icon-btn"
                     onclick="navigate('profile')">
-                👤
+                ←
             </button>
 
-        </div>
+        </header>
 
-    </div>
+        <div class="page-content">
 
-    <div class="hero">
+            <div class="setting-group">
 
-        <div class="hero-content">
-
-            <div class="eyebrow"
-                 style="color:#DDD6FE">
-                TU NUEVA COMUNIDAD
-            </div>
-
-            <h1>
-                Encuentra gente que encaja contigo.
-            </h1>
-
-            <p>
-                Descubre personas, crea planes, únete a grupos
-                y encuentra nuevas experiencias cerca de ti.
-            </p>
-
-            <div class="hero-buttons">
-
-                <button class="btn btn-white"
-                        onclick="navigate('connect')">
-                    🤝 Conectar
-                </button>
-
-                <button class="btn"
-                        style="background:rgba(255,255,255,.15);color:white"
-                        onclick="navigate('plans')">
-                    📅 Ver planes
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="section-title">
-        <h2>Acceso rápido</h2>
-    </div>
-
-    <div class="quick-grid">
-
-        <button class="quick-card"
-                onclick="navigate('connect')">
-            <div class="quick-icon"
-                 style="background:#EDE9FE">🤝</div>
-            <strong>Conecta</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="navigate('plans')">
-            <div class="quick-icon"
-                 style="background:#DBEAFE">📅</div>
-            <strong>Planes</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="navigate('groups')">
-            <div class="quick-icon"
-                 style="background:#D1FAE5">👥</div>
-            <strong>Grupos</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="navigate('explore')">
-            <div class="quick-icon"
-                 style="background:#FCE7F3">🔎</div>
-            <strong>Explorar</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="navigate('map')">
-            <div class="quick-icon"
-                 style="background:#FEF3C7">🗺️</div>
-            <strong>Mapa</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="navigate('chat')">
-            <div class="quick-icon"
-                 style="background:#DBEAFE">💬</div>
-            <strong>Chat</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="openModal('qrModal')">
-            <div class="quick-icon"
-                 style="background:#F4F4F5">📱</div>
-            <strong>QR</strong>
-        </button>
-
-        <button class="quick-card"
-                onclick="openModal('aiModal')">
-            <div class="quick-icon"
-                 style="background:#EDE9FE">🤖</div>
-            <strong>NEXO IA</strong>
-        </button>
-
-    </div>
-
-    <div class="section-title">
-
-        <h2>Categorías</h2>
-
-        <button onclick="navigate('explore')">
-            Ver todas
-        </button>
-
-    </div>
-
-    <div id="categories" class="horizontal"></div>
-
-    <div class="section-title">
-
-        <h2>Personas para ti</h2>
-
-        <button onclick="navigate('connect')">
-            Ver más
-        </button>
-
-    </div>
-
-    <div id="homePeople" class="people-grid"></div>
-
-    <div class="section-title">
-
-        <h2>Planes cerca de ti</h2>
-
-        <button onclick="navigate('plans')">
-            Ver todos
-        </button>
-
-    </div>
-
-    <div id="homePlans" class="plan-grid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     CONECTA
-     ======================================================= -->
-
-<section id="page-connect" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">NEXO</div>
-            <h1>Conecta</h1>
-        </div>
-
-        <button class="icon-btn"
-                onclick="openModal('filterModal')">
-            ⚙️
-        </button>
-
-    </div>
-
-    <div class="search-box">
-
-        <span>🔎</span>
-
-        <input id="peopleSearch"
-               type="search"
-               placeholder="Buscar personas..."
-               oninput="renderPeople()">
-
-    </div>
-
-    <div class="filters">
-
-        <button class="filter active"
-                onclick="setPeopleFilter(this,'Todos')">
-            Todos
-        </button>
-
-        <button class="filter"
-                onclick="setPeopleFilter(this,'Deporte')">
-            🏃 Deporte
-        </button>
-
-        <button class="filter"
-                onclick="setPeopleFilter(this,'Música')">
-            🎵 Música
-        </button>
-
-        <button class="filter"
-                onclick="setPeopleFilter(this,'Gaming')">
-            🎮 Gaming
-        </button>
-
-        <button class="filter"
-                onclick="setPeopleFilter(this,'Viajes')">
-            ✈️ Viajes
-        </button>
-
-        <button class="filter"
-                onclick="setPeopleFilter(this,'Cine')">
-            🎬 Cine
-        </button>
-
-    </div>
-
-    <div id="connectPeople"
-         class="people-grid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     PLANES
-     ======================================================= -->
-
-<section id="page-plans" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">EXPERIENCIAS</div>
-            <h1>Planes</h1>
-        </div>
-
-        <button class="btn btn-primary"
-                onclick="openModal('createPlanModal')">
-            + Crear
-        </button>
-
-    </div>
-
-    <div class="search-box">
-
-        <span>🔎</span>
-
-        <input id="planSearch"
-               type="search"
-               placeholder="Buscar planes..."
-               oninput="renderPlans()">
-
-    </div>
-
-    <div class="filters">
-
-        <button class="filter active"
-                onclick="setPlanFilter(this,'Todos')">
-            Todos
-        </button>
-
-        <button class="filter"
-                onclick="setPlanFilter(this,'Deporte')">
-            🏃 Deporte
-        </button>
-
-        <button class="filter"
-                onclick="setPlanFilter(this,'Gastronomía')">
-            🍔 Gastronomía
-        </button>
-
-        <button class="filter"
-                onclick="setPlanFilter(this,'Música')">
-            🎵 Música
-        </button>
-
-        <button class="filter"
-                onclick="setPlanFilter(this,'Viajes')">
-            ✈️ Viajes
-        </button>
-
-    </div>
-
-    <div id="plansContainer"
-         class="plan-grid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     EXPLORAR
-     ======================================================= -->
-
-<section id="page-explore" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">DESCUBRE</div>
-            <h1>Explorar</h1>
-        </div>
-
-        <button class="icon-btn"
-                onclick="openModal('filterModal')">
-            ⚙️
-        </button>
-
-    </div>
-
-    <div class="section-title">
-        <h2>Descubre por interés</h2>
-    </div>
-
-    <div id="exploreCategories"
-         class="horizontal"></div>
-
-    <div class="section-title">
-        <h2>Personas destacadas</h2>
-    </div>
-
-    <div id="explorePeople"
-         class="people-grid"></div>
-
-    <div class="section-title">
-        <h2>Experiencias</h2>
-    </div>
-
-    <div id="explorePlans"
-         class="plan-grid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     GRUPOS
-     ======================================================= -->
-
-<section id="page-groups" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">COMUNIDAD</div>
-            <h1>Grupos</h1>
-        </div>
-
-        <button class="btn btn-primary"
-                onclick="openModal('createGroupModal')">
-            + Crear
-        </button>
-
-    </div>
-
-    <div class="search-box">
-
-        <span>🔎</span>
-
-        <input type="search"
-               placeholder="Buscar grupos..."
-               oninput="renderGroups(this.value)">
-
-    </div>
-
-    <div style="height:14px"></div>
-
-    <div id="groupsContainer"
-         class="group-grid"></div>
-
-</section>
-
-
-<!-- =======================================================
-     CHAT
-     ======================================================= -->
-
-<section id="page-chat" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">MENSAJES</div>
-            <h1>Chat</h1>
-        </div>
-
-        <button class="icon-btn"
-                onclick="toast('Nuevo chat')">
-            ✏️
-        </button>
-
-    </div>
-
-    <div class="search-box">
-
-        <span>🔎</span>
-
-        <input type="search"
-               placeholder="Buscar conversaciones..."
-               oninput="renderChats(this.value)">
-
-    </div>
-
-    <div style="height:14px"></div>
-
-    <div id="chatContainer"
-         class="chat-list"></div>
-
-</section>
-
-
-<!-- =======================================================
-     MAPA
-     ======================================================= -->
-
-<section id="page-map" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">CERCA DE TI</div>
-            <h1>Mapa</h1>
-        </div>
-
-        <button class="icon-btn"
-                onclick="locateUser()">
-            📍
-        </button>
-
-    </div>
-
-    <div class="map-box">
-
-        <div class="map-overlay"></div>
-
-        <div class="map-pin"
-             style="left:24%;top:30%">
-            <span>🏃</span>
-        </div>
-
-        <div class="map-pin"
-             style="left:62%;top:20%">
-            <span>🍔</span>
-        </div>
-
-        <div class="map-pin"
-             style="left:72%;top:55%">
-            <span>🎵</span>
-        </div>
-
-        <div class="map-pin"
-             style="left:35%;top:65%">
-            <span>⚽</span>
-        </div>
-
-        <div class="map-info">
-
-            <strong>📍 Actividad cerca de ti</strong>
-
-            <div style="font-size:12px;color:var(--text-soft);margin-top:4px">
-                Hay 24 personas y 8 planes cerca.
-            </div>
-
-            <button class="btn btn-primary"
-                    style="margin-top:10px;width:100%"
-                    onclick="navigate('plans')">
-                Explorar planes
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =======================================================
-     PERFIL
-     ======================================================= -->
-
-<section id="page-profile" class="page">
-
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">MI CUENTA</div>
-            <h1>Perfil</h1>
-        </div>
-
-        <button class="icon-btn"
-                onclick="navigate('settings')">
-            ⚙️
-        </button>
-
-    </div>
-
-    <div class="profile-cover"></div>
-
-    <div class="profile-photo-wrap">
-
-        <img id="profileImage"
-             class="profile-photo"
-             src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
-             alt="Foto de perfil">
-
-    </div>
-
-    <div class="profile-main">
-
-        <div class="profile-header">
-
-            <div>
-
-                <div class="profile-name">
-                    Fernando <span class="verified">✓</span>
+                <div class="setting-group-title">
+                    Cuenta
                 </div>
 
-                <div class="person-meta">
-                    📍 Tarragona · España
+                <div class="settings-list">
+
+                    <button class="setting"
+                            onclick="openEditProfile()">
+
+                        <div class="setting-icon">👤</div>
+
+                        <div class="setting-info">
+                            <strong>Editar perfil</strong>
+                            <span>Nombre, foto y descripción</span>
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </button>
+
+                    <button class="setting"
+                            onclick="showToast('Preferencias abiertas')">
+
+                        <div class="setting-icon">🎯</div>
+
+                        <div class="setting-info">
+                            <strong>Preferencias</strong>
+                            <span>Intereses y planes recomendados</span>
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </button>
+
                 </div>
 
             </div>
 
-            <button class="btn btn-soft"
-                    onclick="openModal('editProfileModal')">
-                Editar
-            </button>
+
+            <div class="setting-group">
+
+                <div class="setting-group-title">
+                    Aplicación
+                </div>
+
+                <div class="settings-list">
+
+                    <div class="setting">
+
+                        <div class="setting-icon">🌙</div>
+
+                        <div class="setting-info">
+                            <strong>Modo oscuro</strong>
+                            <span>Cambiar apariencia</span>
+                        </div>
+
+                        <button
+                            id="darkToggle"
+                            class="toggle"
+                            onclick="toggleDarkMode()">
+                            <span></span>
+                        </button>
+
+                    </div>
+
+                    <div class="setting">
+
+                        <div class="setting-icon">🔔</div>
+
+                        <div class="setting-info">
+                            <strong>Notificaciones</strong>
+                            <span>Recibir avisos de NEXO</span>
+                        </div>
+
+                        <button
+                            id="notificationToggle"
+                            class="toggle active"
+                            onclick="toggleSetting(this)">
+                            <span></span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <div class="setting-group-title">
+                    Privacidad y seguridad
+                </div>
+
+                <div class="settings-list">
+
+                    <button class="setting"
+                            onclick="showToast('Privacidad')">
+
+                        <div class="setting-icon">🔒</div>
+
+                        <div class="setting-info">
+                            <strong>Privacidad</strong>
+                            <span>Controla quién puede verte</span>
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </button>
+
+                    <button class="setting"
+                            onclick="showToast('Seguridad')">
+
+                        <div class="setting-icon">🛡️</div>
+
+                        <div class="setting-info">
+                            <strong>Seguridad</strong>
+                            <span>Protección de tu cuenta</span>
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-group">
+
+                <div class="setting-group-title">
+                    Información
+                </div>
+
+                <div class="settings-list">
+
+                    <button class="setting"
+                            onclick="showToast('NEXO v1.0')">
+
+                        <div class="setting-icon">ℹ️</div>
+
+                        <div class="setting-info">
+                            <strong>Sobre NEXO</strong>
+                            <span>Versión 1.0</span>
+                        </div>
+
+                        <span class="chevron">›</span>
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <p class="profile-bio">
-            Me gusta conocer gente, hacer deporte,
-            descubrir sitios nuevos y crear buenos planes.
-        </p>
-
-        <div class="tags">
-            <span class="tag">🏃 Running</span>
-            <span class="tag">🏋️ Gym</span>
-            <span class="tag">🎵 Música</span>
-            <span class="tag">🚗 Motor</span>
-            <span class="tag">🍔 Gastronomía</span>
-            <span class="tag">✈️ Viajes</span>
-        </div>
-
-        <div class="profile-stats">
-
-            <div class="stat">
-                <strong>128</strong>
-                <span>Conexiones</span>
-            </div>
-
-            <div class="stat">
-                <strong>24</strong>
-                <span>Planes</span>
-            </div>
-
-            <div class="stat">
-                <strong>18</strong>
-                <span>Grupos</span>
-            </div>
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="openModal('shareProfileModal')">
-            🔗 Compartir perfil
-        </button>
-
-    </div>
-
-</section>
+    </main>
 
 
-<!-- =======================================================
-     AJUSTES
-     ======================================================= -->
+    <!-- =====================================================
+         NAVEGACIÓN
+         ===================================================== -->
 
-<section id="page-settings" class="page">
+    <nav class="bottom-nav">
 
-    <div class="topbar">
-
-        <div>
-            <div class="eyebrow">NEXO</div>
-            <h1>Ajustes</h1>
-        </div>
-
-    </div>
-
-    <div class="settings-list">
-
-        <button class="setting"
-                onclick="openModal('editProfileModal')">
-
-            <div class="setting-icon">👤</div>
-
-            <div class="setting-text">
-                <strong>Mi perfil</strong>
-                <span>Nombre, foto, biografía e intereses</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-        <button class="setting"
-                onclick="toggleSetting('notifications')">
-
-            <div class="setting-icon">🔔</div>
-
-            <div class="setting-text">
-                <strong>Notificaciones</strong>
-                <span>Mensajes, conexiones y planes</span>
-            </div>
-
-            <div id="toggleNotifications"
-                 class="toggle on"></div>
-
-        </button>
-
-        <button class="setting"
-                onclick="toggleDarkMode()">
-
-            <div class="setting-icon">🌙</div>
-
-            <div class="setting-text">
-                <strong>Modo oscuro</strong>
-                <span>Cambia la apariencia de NEXO</span>
-            </div>
-
-            <div id="toggleDark"
-                 class="toggle"></div>
-
-        </button>
-
-        <button class="setting"
-                onclick="openModal('privacyModal')">
-
-            <div class="setting-icon">🔐</div>
-
-            <div class="setting-text">
-                <strong>Privacidad y seguridad</strong>
-                <span>Controla quién puede encontrarte</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-        <button class="setting"
-                onclick="openModal('languageModal')">
-
-            <div class="setting-icon">🌐</div>
-
-            <div class="setting-text">
-                <strong>Idioma</strong>
-                <span>Español</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-        <button class="setting"
-                onclick="openModal('helpModal')">
-
-            <div class="setting-icon">❓</div>
-
-            <div class="setting-text">
-                <strong>Ayuda</strong>
-                <span>Preguntas frecuentes y soporte</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-        <button class="setting"
-                onclick="openModal('legalModal')">
-
-            <div class="setting-icon">⚖️</div>
-
-            <div class="setting-text">
-                <strong>Legal</strong>
-                <span>Términos y privacidad</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-        <button class="setting"
-                onclick="clearLocalData()">
-
-            <div class="setting-icon">🗑️</div>
-
-            <div class="setting-text">
-                <strong>Restablecer datos locales</strong>
-                <span>Borra los datos guardados en este dispositivo</span>
-            </div>
-
-            <span>›</span>
-
-        </button>
-
-    </div>
-
-</section>
-
-</div>
-
-
-<!-- =======================================================
-     NAVEGACIÓN
-     ======================================================= -->
-
-<nav class="bottom-nav">
-
-    <button class="nav-item active"
+        <button
+            class="nav-item active"
             data-page="home"
             onclick="navigate('home')">
-        <span class="nav-icon">🏠</span>
-        Inicio
-    </button>
 
-    <button class="nav-item"
-            data-page="explore"
-            onclick="navigate('explore')">
-        <span class="nav-icon">🔎</span>
-        Explorar
-    </button>
+            <div class="nav-icon">⌂</div>
+            <span>Inicio</span>
 
-    <button class="nav-item nav-center"
+        </button>
+
+        <button
+            class="nav-item"
             data-page="connect"
             onclick="navigate('connect')">
-        N
-    </button>
 
-    <button class="nav-item"
+            <div class="nav-icon">👥</div>
+            <span>Conectar</span>
+
+        </button>
+
+        <button
+            class="nav-item"
             data-page="plans"
             onclick="navigate('plans')">
-        <span class="nav-icon">📅</span>
-        Planes
-    </button>
 
-    <button class="nav-item"
+            <div class="nav-icon">📍</div>
+            <span>Planes</span>
+
+        </button>
+
+        <button
+            class="nav-item"
+            data-page="chat"
+            onclick="navigate('chat')">
+
+            <div class="nav-icon">
+                💬
+            </div>
+
+            <span>Chat</span>
+
+        </button>
+
+        <button
+            class="nav-item"
             data-page="profile"
             onclick="navigate('profile')">
-        <span class="nav-icon">👤</span>
-        Perfil
+
+            <div class="nav-icon">👤</div>
+            <span>Perfil</span>
+
+        </button>
+
+    </nav>
+
+
+    <button class="fab"
+            onclick="openCreatePlan()">
+        ＋
     </button>
 
-</nav>
+</div>
 
 
-<!-- =======================================================
-     MODAL NOTIFICACIONES
-     ======================================================= -->
+<!-- =========================================================
+     MODAL
+     ========================================================= -->
 
-<div id="notificationsModal" class="modal"
-     onclick="closeModalOutside(event,'notificationsModal')">
+<div id="modal"
+     class="modal hidden"
+     onclick="closeModalOutside(event)">
 
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Notificaciones</h2>
-
-            <button class="close"
-                    onclick="closeModal('notificationsModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="chat-list">
-
-            <div class="chat-card">
-                <img class="chat-avatar"
-                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80">
-                <div class="chat-text">
-                    <strong>Laura se ha conectado contigo</strong>
-                    <span>Hace 4 minutos</span>
-                </div>
-                <span>❤️</span>
-            </div>
-
-            <div class="chat-card">
-                <img class="chat-avatar"
-                     src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80">
-                <div class="chat-text">
-                    <strong>Mario te ha enviado un mensaje</strong>
-                    <span>¿Te apuntas al plan?</span>
-                </div>
-                <span>💬</span>
-            </div>
-
-            <div class="chat-card">
-                <img class="chat-avatar"
-                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80">
-                <div class="chat-text">
-                    <strong>Nuevo plan cerca de ti</strong>
-                    <span>Running por la playa</span>
-                </div>
-                <span>📅</span>
-            </div>
-
-        </div>
+    <div id="modalCard"
+         class="modal-card">
 
     </div>
 
 </div>
 
 
-<!-- =======================================================
-     MODAL IA
-     ======================================================= -->
-
-<div id="aiModal" class="modal"
-     onclick="closeModalOutside(event,'aiModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>🤖 NEXO IA</h2>
-
-            <button class="close"
-                    onclick="closeModal('aiModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <p style="color:var(--text-soft)">
-            Cuéntame qué quieres hacer y NEXO puede ayudarte
-            a encontrar personas, planes o grupos adecuados.
-        </p>
-
-        <div class="form-group">
-
-            <textarea id="aiInput"
-                      class="form-textarea"
-                      placeholder="Ej.: Quiero encontrar gente para correr el sábado..."></textarea>
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="runAI()">
-            ✨ Buscar con NEXO IA
-        </button>
-
-        <div id="aiResult"
-             style="margin-top:15px"></div>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL QR
-     ======================================================= -->
-
-<div id="qrModal" class="modal"
-     onclick="closeModalOutside(event,'qrModal')">
-
-    <div class="modal-box"
-         style="text-align:center">
-
-        <div class="modal-head">
-
-            <h2>📱 NEXO QR</h2>
-
-            <button class="close"
-                    onclick="closeModal('qrModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div id="qrFake"
-             style="
-                width:210px;
-                height:210px;
-                margin:10px auto 20px;
-                border-radius:20px;
-                background:
-                repeating-linear-gradient(
-                    45deg,
-                    #111 0 5px,
-                    white 5px 10px
-                );
-                border:12px solid white;
-                box-shadow:0 5px 25px rgba(0,0,0,.15);
-             ">
-        </div>
-
-        <strong>Comparte tu perfil NEXO</strong>
-
-        <p style="color:var(--text-soft);font-size:12px">
-            El lector QR real se conectará posteriormente
-            al sistema de usuarios de NEXO.
-        </p>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL CREAR PLAN
-     ======================================================= -->
-
-<div id="createPlanModal" class="modal"
-     onclick="closeModalOutside(event,'createPlanModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Crear plan</h2>
-
-            <button class="close"
-                    onclick="closeModal('createPlanModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="form-group">
-            <label>Título</label>
-            <input id="newPlanTitle"
-                   class="form-input"
-                   placeholder="Ej.: Running por la playa">
-        </div>
-
-        <div class="form-group">
-            <label>Categoría</label>
-            <select id="newPlanCategory"
-                    class="form-select">
-                <option>Deporte</option>
-                <option>Música</option>
-                <option>Gastronomía</option>
-                <option>Viajes</option>
-                <option>Cine</option>
-                <option>Gaming</option>
-                <option>Otros</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Fecha</label>
-            <input id="newPlanDate"
-                   class="form-input"
-                   type="date">
-        </div>
-
-        <div class="form-group">
-            <label>Lugar</label>
-            <input id="newPlanLocation"
-                   class="form-input"
-                   placeholder="Ej.: Tarragona">
-        </div>
-
-        <div class="form-group">
-            <label>Descripción</label>
-            <textarea id="newPlanDescription"
-                      class="form-textarea"
-                      placeholder="Describe tu plan..."></textarea>
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="createPlan()">
-            Crear plan
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL CREAR GRUPO
-     ======================================================= -->
-
-<div id="createGroupModal" class="modal"
-     onclick="closeModalOutside(event,'createGroupModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Crear grupo</h2>
-
-            <button class="close"
-                    onclick="closeModal('createGroupModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Nombre</label>
-
-            <input id="newGroupName"
-                   class="form-input"
-                   placeholder="Ej.: Running Tarragona">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Descripción</label>
-
-            <textarea id="newGroupDescription"
-                      class="form-textarea"
-                      placeholder="¿De qué trata el grupo?"></textarea>
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="createGroup()">
-            Crear grupo
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL EDITAR PERFIL
-     ======================================================= -->
-
-<div id="editProfileModal" class="modal"
-     onclick="closeModalOutside(event,'editProfileModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Editar perfil</h2>
-
-            <button class="close"
-                    onclick="closeModal('editProfileModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Nombre</label>
-
-            <input id="editName"
-                   class="form-input"
-                   value="Fernando">
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Biografía</label>
-
-            <textarea id="editBio"
-                      class="form-textarea">Me gusta conocer gente, hacer deporte, descubrir sitios nuevos y crear buenos planes.</textarea>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Foto de perfil</label>
-
-            <input id="editPhoto"
-                   class="form-input"
-                   placeholder="URL de imagen">
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="saveProfile()">
-            Guardar cambios
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL PRIVACIDAD
-     ======================================================= -->
-
-<div id="privacyModal" class="modal"
-     onclick="closeModalOutside(event,'privacyModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>🔐 Privacidad</h2>
-
-            <button class="close"
-                    onclick="closeModal('privacyModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="settings-list">
-
-            <div class="setting">
-
-                <div class="setting-icon">📍</div>
-
-                <div class="setting-text">
-                    <strong>Mostrar distancia</strong>
-                    <span>Permite mostrar una distancia aproximada</span>
-                </div>
-
-                <div class="toggle on"></div>
-
-            </div>
-
-            <div class="setting">
-
-                <div class="setting-icon">👁️</div>
-
-                <div class="setting-text">
-                    <strong>Perfil visible</strong>
-                    <span>Otros usuarios podrán descubrirte</span>
-                </div>
-
-                <div class="toggle on"></div>
-
-            </div>
-
-            <div class="setting">
-
-                <div class="setting-icon">💬</div>
-
-                <div class="setting-text">
-                    <strong>Mensajes</strong>
-                    <span>Permitir mensajes de nuevas conexiones</span>
-                </div>
-
-                <div class="toggle on"></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL IDIOMA
-     ======================================================= -->
-
-<div id="languageModal" class="modal"
-     onclick="closeModalOutside(event,'languageModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>🌐 Idioma</h2>
-
-            <button class="close"
-                    onclick="closeModal('languageModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <button class="setting"
-                onclick="selectLanguage('Español')">
-            🇪🇸 Español
-        </button>
-
-        <br>
-
-        <button class="setting"
-                onclick="selectLanguage('Català')">
-            🟨 Català
-        </button>
-
-        <br>
-
-        <button class="setting"
-                onclick="selectLanguage('English')">
-            🇬🇧 English
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL AYUDA
-     ======================================================= -->
-
-<div id="helpModal" class="modal"
-     onclick="closeModalOutside(event,'helpModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>❓ Ayuda</h2>
-
-            <button class="close"
-                    onclick="closeModal('helpModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="setting">
-            <div class="setting-icon">🤝</div>
-            <div class="setting-text">
-                <strong>¿Cómo conecto?</strong>
-                <span>Busca personas y pulsa Conectar.</span>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="setting">
-            <div class="setting-icon">📅</div>
-            <div class="setting-text">
-                <strong>¿Cómo creo un plan?</strong>
-                <span>En Planes pulsa el botón Crear.</span>
-            </div>
-        </div>
-
-        <br>
-
-        <div class="setting">
-            <div class="setting-icon">💬</div>
-            <div class="setting-text">
-                <strong>¿Cómo envío mensajes?</strong>
-                <span>Abre una conversación desde Chat.</span>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL LEGAL
-     ======================================================= -->
-
-<div id="legalModal" class="modal"
-     onclick="closeModalOutside(event,'legalModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>⚖️ Información legal</h2>
-
-            <button class="close"
-                    onclick="closeModal('legalModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <h3>Términos de uso</h3>
-
-        <p style="color:var(--text-soft);line-height:1.5;font-size:13px">
-            NEXO es una plataforma diseñada para facilitar
-            conexiones entre personas y la creación de planes
-            y comunidades.
-        </p>
-
-        <h3>Privacidad</h3>
-
-        <p style="color:var(--text-soft);line-height:1.5;font-size:13px">
-            La versión de demostración guarda determinados datos
-            únicamente en el almacenamiento local del dispositivo.
-        </p>
-
-        <p style="font-size:11px;color:var(--text-soft)">
-            Antes de publicar NEXO será necesario incorporar
-            los textos legales definitivos y el sistema real
-            de protección de datos.
-        </p>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL COMPARTIR
-     ======================================================= -->
-
-<div id="shareProfileModal" class="modal"
-     onclick="closeModalOutside(event,'shareProfileModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Compartir perfil</h2>
-
-            <button class="close"
-                    onclick="closeModal('shareProfileModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="shareProfile()">
-            🔗 Compartir NEXO
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =======================================================
-     MODAL FILTROS
-     ======================================================= -->
-
-<div id="filterModal" class="modal"
-     onclick="closeModalOutside(event,'filterModal')">
-
-    <div class="modal-box">
-
-        <div class="modal-head">
-
-            <h2>Filtros</h2>
-
-            <button class="close"
-                    onclick="closeModal('filterModal')">
-                ✕
-            </button>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Distancia máxima</label>
-
-            <select class="form-select">
-                <option>5 km</option>
-                <option>10 km</option>
-                <option>25 km</option>
-                <option>50 km</option>
-                <option>Cualquier distancia</option>
-            </select>
-
-        </div>
-
-        <div class="form-group">
-
-            <label>Interés principal</label>
-
-            <select class="form-select">
-                <option>Cualquiera</option>
-                <option>Deporte</option>
-                <option>Música</option>
-                <option>Gaming</option>
-                <option>Viajes</option>
-                <option>Cine</option>
-            </select>
-
-        </div>
-
-        <button class="btn btn-primary"
-                style="width:100%"
-                onclick="closeModal('filterModal');toast('Filtros aplicados')">
-            Aplicar filtros
-        </button>
-
-    </div>
-
+<!-- =========================================================
+     TOAST
+     ========================================================= -->
+
+<div id="toast"
+     class="toast">
 </div>
 
 
 <script>
+
 /* =========================================================
-   NEXO — JAVASCRIPT PRINCIPAL
+   NEXO — DATOS
    ========================================================= */
 
-const IMAGE = {
-    people: [
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=85",
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=85",
-        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=700&q=85",
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85"
-    ],
+const IMG = {
+    running:
+    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=85",
 
-    categories: [
-        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=85"
-    ],
+    gym:
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85",
 
-    plans: [
-        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85",
-        "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1000&q=85",
-        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85",
-        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85",
-        "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=85"
-    ],
+    football:
+    "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85",
 
-    groups: [
-        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=85",
-        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=85"
-    ]
+    cinema:
+    "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=85",
+
+    food:
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85",
+
+    beach:
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85",
+
+    travel:
+    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
+
+    gaming:
+    "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=85"
 };
 
 
 const people = [
 
     {
-        id: 1,
-        name: "Laura",
-        age: 28,
-        city: "Tarragona",
-        distance: "2,4 km",
-        image: IMAGE.people[0],
-        verified: true,
-        online: true,
-        interests: ["Deporte","Música","Viajes"],
-        bio: "Running, música y descubrir sitios nuevos."
+        id:1,
+        name:"Laura",
+        age:27,
+        city:"Tarragona",
+        interest:"Running · Viajes",
+        image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=85",
+        online:true
     },
 
     {
-        id: 2,
-        name: "Mario",
-        age: 31,
-        city: "Salou",
-        distance: "5,1 km",
-        image: IMAGE.people[1],
-        verified: true,
-        online: true,
-        interests: ["Gaming","Cine","Motor"],
-        bio: "Gaming, motor y buen cine."
+        id:2,
+        name:"Marc",
+        age:29,
+        city:"Reus",
+        interest:"Gym · Fútbol",
+        image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=85",
+        online:true
     },
 
     {
-        id: 3,
-        name: "Sofía",
-        age: 27,
-        city: "Reus",
-        distance: "8,2 km",
-        image: IMAGE.people[2],
-        verified: false,
-        online: false,
-        interests: ["Viajes","Gastronomía","Cine"],
-        bio: "Viajar, comer bien y conocer gente."
+        id:3,
+        name:"Sara",
+        age:25,
+        city:"Salou",
+        interest:"Cine · Comida",
+        image:
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=85",
+        online:false
     },
 
     {
-        id: 4,
-        name: "David",
-        age: 30,
-        city: "Tarragona",
-        distance: "3,7 km",
-        image: IMAGE.people[3],
-        verified: true,
-        online: true,
-        interests: ["Deporte","Motor","Gaming"],
-        bio: "Gym, coches y videojuegos."
+        id:4,
+        name:"David",
+        age:31,
+        city:"Vila-seca",
+        interest:"Gaming · Gym",
+        image:
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=85",
+        online:true
     },
 
     {
-        id: 5,
-        name: "Andrea",
-        age: 29,
-        city: "Vila-seca",
-        distance: "4,2 km",
-        image: IMAGE.people[4],
-        verified: true,
-        online: true,
-        interests: ["Música","Viajes","Arte"],
-        bio: "Música, viajes y fotografía."
+        id:5,
+        name:"Clara",
+        age:28,
+        city:"Tarragona",
+        interest:"Viajes · Playa",
+        image:
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=85",
+        online:true
     },
 
     {
-        id: 6,
-        name: "Alex",
-        age: 32,
-        city: "Cambrils",
-        distance: "11 km",
-        image: IMAGE.people[5],
-        verified: false,
-        online: true,
-        interests: ["Gastronomía","Deporte","Cine"],
-        bio: "Deporte, restaurantes y películas."
+        id:6,
+        name:"Alex",
+        age:30,
+        city:"Reus",
+        interest:"Fútbol · Running",
+        image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=85",
+        online:false
     }
 
-];
-
-
-const categories = [
-    {name:"Deporte",emoji:"🏃",image:IMAGE.categories[0]},
-    {name:"Música",emoji:"🎵",image:IMAGE.categories[1]},
-    {name:"Gaming",emoji:"🎮",image:IMAGE.categories[2]},
-    {name:"Viajes",emoji:"✈️",image:IMAGE.categories[3]},
-    {name:"Cine",emoji:"🎬",image:IMAGE.categories[4]},
-    {name:"Gastronomía",emoji:"🍔",image:IMAGE.categories[5]},
-    {name:"Playa",emoji:"🏖️",image:IMAGE.categories[6]},
-    {name:"Eventos",emoji:"🎉",image:IMAGE.categories[7]}
 ];
 
 
@@ -2880,99 +2475,106 @@ let plans = [
 
     {
         id:1,
-        title:"Running por la playa",
+        title:"Running al atardecer",
         category:"Deporte",
-        location:"La Pineda",
-        date:"Sábado · 10:00",
+        location:"Tarragona",
+        date:"Hoy · 19:30",
         participants:8,
-        image:IMAGE.plans[0],
-        description:"Ruta tranquila para correr, conocer gente y terminar tomando algo.",
-        joined:false
+        max:12,
+        image:IMG.running,
+        description:
+        "Ruta tranquila para correr y conocer gente nueva."
     },
 
     {
         id:2,
-        title:"Tarde de música",
-        category:"Música",
-        location:"Tarragona",
-        date:"Viernes · 21:00",
-        participants:15,
-        image:IMAGE.plans[1],
-        description:"Una tarde para escuchar música, charlar y conocer gente nueva.",
-        joined:false
+        title:"Entreno de gym",
+        category:"Gym",
+        location:"Vila-seca",
+        date:"Mañana · 18:00",
+        participants:5,
+        max:8,
+        image:IMG.gym,
+        description:
+        "Entrenamiento conjunto y motivación."
     },
 
     {
         id:3,
-        title:"Cena NEXO",
-        category:"Gastronomía",
-        location:"Tarragona",
-        date:"Sábado · 20:30",
-        participants:12,
-        image:IMAGE.plans[2],
-        description:"Cena entre personas de la comunidad.",
-        joined:false
+        title:"Partido de fútbol",
+        category:"Deporte",
+        location:"Reus",
+        date:"Sábado · 17:00",
+        participants:10,
+        max:14,
+        image:IMG.football,
+        description:
+        "Partido amateur. Todos los niveles."
     },
 
     {
         id:4,
-        title:"Excursión de fin de semana",
-        category:"Viajes",
-        location:"Costa Dorada",
-        date:"Domingo · 09:00",
-        participants:10,
-        image:IMAGE.plans[3],
-        description:"Naturaleza, paseo y buen ambiente.",
-        joined:false
+        title:"Cine + cena",
+        category:"Cine",
+        location:"Tarragona",
+        date:"Viernes · 20:30",
+        participants:4,
+        max:8,
+        image:IMG.cinema,
+        description:
+        "Película y algo para cenar después."
     },
 
     {
         id:5,
-        title:"Cine + cena",
-        category:"Cine",
+        title:"Cena entre gente nueva",
+        category:"Comida",
         location:"Tarragona",
-        date:"Jueves · 19:30",
+        date:"Domingo · 21:00",
         participants:7,
-        image:IMAGE.plans[4],
-        description:"Película y después algo para comer.",
-        joined:false
-    }
-
-];
-
-
-let groups = [
-
-    {
-        id:1,
-        name:"Running Tarragona",
-        description:"Personas que salen a correr por Tarragona y alrededores.",
-        members:126,
-        image:IMAGE.groups[0]
+        max:10,
+        image:IMG.food,
+        description:
+        "Una cena para ampliar tu círculo."
     },
 
     {
-        id:2,
-        name:"Planes de fin de semana",
-        description:"Organizamos planes para conocer gente nueva.",
-        members:248,
-        image:IMAGE.groups[1]
+        id:6,
+        title:"Tarde de playa",
+        category:"Viajes",
+        location:"La Pineda",
+        date:"Domingo · 16:00",
+        participants:6,
+        max:10,
+        image:IMG.beach,
+        description:
+        "Playa, música y buen ambiente."
     },
 
     {
-        id:3,
-        name:"Gaming NEXO",
-        description:"Videojuegos, partidas online y quedadas.",
-        members:94,
-        image:IMAGE.groups[2]
+        id:7,
+        title:"Escapada de fin de semana",
+        category:"Viajes",
+        location:"Costa Brava",
+        date:"Próximo sábado",
+        participants:5,
+        max:8,
+        image:IMG.travel,
+        description:
+        "Organizamos una pequeña escapada."
     },
 
     {
-        id:4,
-        name:"Música y eventos",
-        description:"Conciertos, festivales, sesiones y eventos.",
-        members:182,
-        image:IMAGE.groups[3]
+        id:8,
+        title:"Gaming Night",
+        category:"Gaming",
+        location:"Tarragona",
+        date:"Viernes · 22:00",
+        participants:9,
+        max:12,
+        image:IMG.gaming,
+        description:
+        "Noche gaming y competición."
     }
 
 ];
@@ -2983,134 +2585,1610 @@ const chats = [
     {
         id:1,
         name:"Laura",
-        message:"¿Te apuntas al running?",
+        image:people[0].image,
         time:"12:42",
-        unread:2,
-        image:IMAGE.people[0]
+        preview:"¿Al final salimos a correr?",
+        messages:[
+            {
+                from:"received",
+                text:"¿Al final salimos a correr?",
+                time:"12:40"
+            },
+            {
+                from:"sent",
+                text:"Sí, sobre las 19:30.",
+                time:"12:42"
+            }
+        ]
     },
 
     {
         id:2,
-        name:"Mario",
-        message:"He creado un nuevo plan.",
-        time:"11:30",
-        unread:1,
-        image:IMAGE.people[1]
+        name:"Marc",
+        image:people[1].image,
+        time:"11:15",
+        preview:"Te paso el plan del gym.",
+        messages:[
+            {
+                from:"received",
+                text:"Te paso el plan del gym.",
+                time:"11:15"
+            }
+        ]
     },
 
     {
         id:3,
-        name:"Sofía",
-        message:"¡Perfecto! Nos vemos allí.",
+        name:"Sara",
+        image:people[2].image,
         time:"Ayer",
-        unread:0,
-        image:IMAGE.people[2]
-    },
-
-    {
-        id:4,
-        name:"Andrea",
-        message:"¿Conoces algún sitio para cenar?",
-        time:"Ayer",
-        unread:0,
-        image:IMAGE.people[4]
+        preview:"La película empieza a las 20:30.",
+        messages:[
+            {
+                from:"received",
+                text:"La película empieza a las 20:30.",
+                time:"Ayer"
+            }
+        ]
     }
 
 ];
 
 
-let peopleFilter = "Todos";
-let planFilter = "Todos";
+/* =========================================================
+   ESTADO
+   ========================================================= */
+
+let currentPage = "home";
+let selectedCategory = "Todos";
+let currentChat = null;
 
 
 /* =========================================================
    NAVEGACIÓN
    ========================================================= */
 
-function navigate(page) {
+function navigate(page){
+
+    if(page === "settings"){
+        document.querySelectorAll(".page")
+            .forEach(el => el.classList.add("hidden"));
+
+        document.getElementById("settingsPage")
+            .classList.remove("hidden");
+
+        document.querySelectorAll(".nav-item")
+            .forEach(el => el.classList.remove("active"));
+
+        currentPage = page;
+
+        window.scrollTo(0,0);
+
+        return;
+    }
 
     document.querySelectorAll(".page")
-        .forEach(el => el.classList.remove("active"));
+        .forEach(el => el.classList.add("hidden"));
 
-    const target = document.getElementById("page-" + page);
+    const target =
+        document.getElementById(page + "Page");
 
-    if (!target) return;
-
-    target.classList.add("active");
+    if(target){
+        target.classList.remove("hidden");
+    }
 
     document.querySelectorAll(".nav-item")
-        .forEach(el => el.classList.remove("active"));
+        .forEach(el => {
 
-    const nav = document.querySelector(
-        `.nav-item[data-page="${page}"]`
-    );
+            el.classList.toggle(
+                "active",
+                el.dataset.page === page
+            );
 
-    if (nav) nav.classList.add("active");
+        });
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+    currentPage = page;
 
-    if (page === "home") {
+    window.scrollTo(0,0);
+
+    if(page === "home"){
         renderHome();
     }
 
-    if (page === "connect") {
+    if(page === "connect"){
         renderPeople();
     }
 
-    if (page === "plans") {
+    if(page === "plans"){
         renderPlans();
     }
 
-    if (page === "explore") {
-        renderExplore();
-    }
-
-    if (page === "groups") {
-        renderGroups();
-    }
-
-    if (page === "chat") {
+    if(page === "chat"){
         renderChats();
+    }
+
+    if(page === "profile"){
+        renderMyPlans();
+    }
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+function renderHome(){
+
+    renderFeaturedPlans();
+    renderHomePlans();
+    renderHomePeople();
+
+}
+
+
+/* =========================================================
+   FEATURED
+   ========================================================= */
+
+function renderFeaturedPlans(){
+
+    const container =
+        document.getElementById("featuredPlans");
+
+    container.innerHTML =
+        plans.slice(0,5).map(plan => `
+
+            <article
+                class="featured-card"
+                onclick="openPlan(${plan.id})">
+
+                <img
+                    src="${plan.image}"
+                    alt="${escapeHTML(plan.title)}">
+
+                <div class="featured-card-overlay">
+
+                    <h3>
+                        ${escapeHTML(plan.title)}
+                    </h3>
+
+                    <p>
+                        ${plan.date} · ${plan.location}
+                    </p>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   HOME PLANS
+   ========================================================= */
+
+function renderHomePlans(){
+
+    const container =
+        document.getElementById("homePlans");
+
+    container.innerHTML =
+        plans.slice(0,4)
+        .map(createPlanCard)
+        .join("");
+
+}
+
+
+/* =========================================================
+   HOME PEOPLE
+   ========================================================= */
+
+function renderHomePeople(){
+
+    const container =
+        document.getElementById("homePeople");
+
+    container.innerHTML =
+        people.slice(0,6)
+        .map(person => `
+
+            <article class="person-card">
+
+                <div class="person-photo">
+
+                    <img
+                        class="person-image"
+                        src="${person.image}"
+                        alt="${escapeHTML(person.name)}">
+
+                    ${
+                        person.online
+                        ? `<span class="online"></span>`
+                        : ""
+                    }
+
+                </div>
+
+                <div class="person-name">
+                    ${escapeHTML(person.name)}, ${person.age}
+                </div>
+
+                <div class="person-info">
+                    ${escapeHTML(person.city)}
+                </div>
+
+                <button
+                    class="connect-btn"
+                    onclick="connectPerson(${person.id},this)">
+                    Conectar
+                </button>
+
+            </article>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   PLAN CARD
+   ========================================================= */
+
+function createPlanCard(plan){
+
+    return `
+
+        <article
+            class="card"
+            onclick="openPlan(${plan.id})">
+
+            <div class="card-image">
+
+                <img
+                    src="${plan.image}"
+                    alt="${escapeHTML(plan.title)}">
+
+                <div class="card-gradient"></div>
+
+                <span class="card-tag">
+                    ${escapeHTML(plan.category)}
+                </span>
+
+                <button
+                    class="card-fav"
+                    onclick="toggleFavorite(event,this,${plan.id})">
+                    ♡
+                </button>
+
+                <div class="card-image-info">
+
+                    <h3>
+                        ${escapeHTML(plan.title)}
+                    </h3>
+
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <p class="card-description">
+                    ${escapeHTML(plan.description)}
+                </p>
+
+                <div class="card-meta">
+                    📍 ${escapeHTML(plan.location)}
+                </div>
+
+                <div class="card-meta">
+                    🕐 ${escapeHTML(plan.date)}
+                </div>
+
+                <div class="card-footer">
+
+                    <div class="avatar-stack">
+
+                        ${people.slice(0,3).map(p => `
+                            <img
+                                src="${p.image}"
+                                alt="">
+                        `).join("")}
+
+                    </div>
+
+                    <button
+                        class="join-btn"
+                        onclick="joinPlan(event,${plan.id})">
+                        Unirme
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PLANES
+   ========================================================= */
+
+function renderPlans(search = ""){
+
+    const container =
+        document.getElementById("plansGrid");
+
+    let filtered = plans;
+
+    if(selectedCategory !== "Todos"){
+
+        filtered =
+            filtered.filter(
+                p => p.category === selectedCategory
+            );
+
+    }
+
+    if(search){
+
+        const q =
+            search.toLowerCase();
+
+        filtered =
+            filtered.filter(p =>
+                `${p.title}
+                 ${p.category}
+                 ${p.location}
+                 ${p.description}`
+                .toLowerCase()
+                .includes(q)
+            );
+
+    }
+
+    document.getElementById("planCounter")
+        .textContent =
+        `${filtered.length} planes`;
+
+    if(!filtered.length){
+
+        container.innerHTML = `
+
+            <div class="empty"
+                 style="grid-column:1/-1">
+
+                <div class="empty-icon">
+                    🔎
+                </div>
+
+                <strong>
+                    No encontramos planes
+                </strong>
+
+                <span>
+                    Prueba con otra búsqueda.
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        filtered.map(createPlanCard).join("");
+
+}
+
+
+/* =========================================================
+   FILTRO CATEGORÍA
+   ========================================================= */
+
+function filterCategory(category,button){
+
+    selectedCategory = category;
+
+    document.querySelectorAll(".category")
+        .forEach(el =>
+            el.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    renderPlans();
+
+    if(currentPage !== "plans"){
+        navigate("plans");
     }
 
 }
 
 
 /* =========================================================
-   MODALES
+   ABRIR PLAN
    ========================================================= */
 
-function openModal(id) {
+function openPlan(id){
 
-    const modal = document.getElementById(id);
+    const plan =
+        plans.find(p => p.id === id);
 
-    if (modal) {
-        modal.classList.add("show");
-        document.body.style.overflow = "hidden";
+    if(!plan) return;
+
+    openModal(`
+
+        <div class="modal-handle"></div>
+
+        <img
+            src="${plan.image}"
+            style="
+                height:210px;
+                border-radius:18px;
+                margin-bottom:16px;
+            "
+            alt="${escapeHTML(plan.title)}">
+
+        <div class="modal-title">
+            ${escapeHTML(plan.title)}
+        </div>
+
+        <p style="
+            color:var(--muted);
+            font-size:13px;
+            line-height:1.5;
+            margin-bottom:16px;
+        ">
+            ${escapeHTML(plan.description)}
+        </p>
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                📍
+            </div>
+
+            <div class="info-content">
+                <strong>Ubicación</strong>
+                <span>${escapeHTML(plan.location)}</span>
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                🕐
+            </div>
+
+            <div class="info-content">
+                <strong>Fecha</strong>
+                <span>${escapeHTML(plan.date)}</span>
+            </div>
+
+        </div>
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                👥
+            </div>
+
+            <div class="info-content">
+                <strong>Participantes</strong>
+                <span>
+                    ${plan.participants}/${plan.max}
+                </span>
+            </div>
+
+        </div>
+
+        <div style="margin-top:18px">
+
+            <button
+                class="primary-full"
+                onclick="joinPlanFromModal(${plan.id})">
+
+                Unirme al plan
+
+            </button>
+
+        </div>
+
+    `);
+
+}
+
+
+/* =========================================================
+   JOIN PLAN
+   ========================================================= */
+
+function joinPlan(event,id){
+
+    if(event){
+        event.stopPropagation();
+    }
+
+    const plan =
+        plans.find(p => p.id === id);
+
+    if(!plan) return;
+
+    if(plan.participants >= plan.max){
+
+        showToast("Este plan está completo.");
+
+        return;
+    }
+
+    plan.participants++;
+
+    showToast(
+        `Te has unido a "${plan.title}" 🎉`
+    );
+
+    renderHome();
+    renderPlans();
+
+}
+
+
+function joinPlanFromModal(id){
+
+    closeModal();
+
+    joinPlan(null,id);
+
+}
+
+
+/* =========================================================
+   FAVORITOS
+   ========================================================= */
+
+function toggleFavorite(event,button,id){
+
+    event.stopPropagation();
+
+    button.classList.toggle("active");
+
+    button.textContent =
+        button.classList.contains("active")
+        ? "♥"
+        : "♡";
+
+    showToast(
+        button.classList.contains("active")
+        ? "Añadido a favoritos"
+        : "Eliminado de favoritos"
+    );
+
+}
+
+
+/* =========================================================
+   PEOPLE
+   ========================================================= */
+
+function renderPeople(search = ""){
+
+    const container =
+        document.getElementById("peopleGrid");
+
+    let result = people;
+
+    if(search){
+
+        const q =
+            search.toLowerCase();
+
+        result =
+            result.filter(p =>
+                `${p.name}
+                 ${p.city}
+                 ${p.interest}`
+                .toLowerCase()
+                .includes(q)
+            );
+
+    }
+
+    container.innerHTML =
+        result.map(person => `
+
+            <article class="card">
+
+                <div class="card-image">
+
+                    <img
+                        src="${person.image}"
+                        alt="${escapeHTML(person.name)}"
+                        style="height:100%">
+
+                    <div class="card-gradient"></div>
+
+                    <div class="card-image-info">
+
+                        <h3>
+                            ${escapeHTML(person.name)}, ${person.age}
+                        </h3>
+
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="card-meta">
+                        📍 ${escapeHTML(person.city)}
+                    </div>
+
+                    <p class="card-description">
+                        ${escapeHTML(person.interest)}
+                    </p>
+
+                    <button
+                        class="primary-full"
+                        onclick="connectPerson(${person.id},this)">
+
+                        Conectar
+
+                    </button>
+
+                </div>
+
+            </article>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   CONNECT
+   ========================================================= */
+
+function connectPerson(id,button){
+
+    const person =
+        people.find(p => p.id === id);
+
+    if(!person) return;
+
+    button.classList.toggle("connected");
+
+    if(button.classList.contains("connected")){
+
+        button.textContent = "✓ Conectado";
+
+        showToast(
+            `Ahora estás conectado con ${person.name}`
+        );
+
+    }else{
+
+        button.textContent = "Conectar";
+
     }
 
 }
 
 
-function closeModal(id) {
+/* =========================================================
+   CHAT
+   ========================================================= */
 
-    const modal = document.getElementById(id);
+function renderChats(search = ""){
 
-    if (modal) {
-        modal.classList.remove("show");
-        document.body.style.overflow = "";
+    const container =
+        document.getElementById("chatList");
+
+    let result = chats;
+
+    if(search){
+
+        const q =
+            search.toLowerCase();
+
+        result =
+            result.filter(chat =>
+                `${chat.name} ${chat.preview}`
+                .toLowerCase()
+                .includes(q)
+            );
+
+    }
+
+    if(!result.length){
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    💬
+                </div>
+
+                <strong>
+                    No hay conversaciones
+                </strong>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        result.map(chat => `
+
+            <button
+                class="chat-item"
+                onclick="openChat(${chat.id})">
+
+                <img
+                    class="chat-avatar"
+                    src="${chat.image}"
+                    alt="${escapeHTML(chat.name)}">
+
+                <div class="chat-content">
+
+                    <div class="chat-top">
+
+                        <span class="chat-name">
+                            ${escapeHTML(chat.name)}
+                        </span>
+
+                        <span class="chat-time">
+                            ${escapeHTML(chat.time)}
+                        </span>
+
+                    </div>
+
+                    <div class="chat-preview">
+                        ${escapeHTML(chat.preview)}
+                    </div>
+
+                </div>
+
+            </button>
+
+        `).join("");
+
+}
+
+
+/* =========================================================
+   OPEN CHAT
+   ========================================================= */
+
+function openChat(id){
+
+    currentChat =
+        chats.find(c => c.id === id);
+
+    if(!currentChat) return;
+
+    openModal(`
+
+        <div class="chat-room"
+             style="
+                margin:-20px;
+                min-height:85vh;
+             ">
+
+            <div class="chat-room-header">
+
+                <button
+                    class="icon-btn"
+                    onclick="closeModal()">
+                    ←
+                </button>
+
+                <img
+                    src="${currentChat.image}"
+                    alt="">
+
+                <div class="chat-room-user">
+
+                    <strong>
+                        ${escapeHTML(currentChat.name)}
+                    </strong>
+
+                    <span>
+                        ● En línea
+                    </span>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    onclick="showToast('Llamada próximamente')">
+                    📞
+                </button>
+
+                <button
+                    class="icon-btn"
+                    onclick="showToast('Videollamada próximamente')">
+                    📹
+                </button>
+
+            </div>
+
+            <div id="messages"
+                 class="messages">
+
+                ${currentChat.messages.map(m => `
+
+                    <div class="message ${m.from}">
+
+                        ${escapeHTML(m.text)}
+
+                        <div class="message-time">
+                            ${escapeHTML(m.time)}
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+            <form
+                class="chat-input"
+                onsubmit="sendMessage(event)">
+
+                <input
+                    id="messageInput"
+                    autocomplete="off"
+                    placeholder="Escribe un mensaje...">
+
+                <button
+                    class="send-btn"
+                    type="submit">
+                    ➤
+                </button>
+
+            </form>
+
+        </div>
+
+    `);
+
+}
+
+
+/* =========================================================
+   SEND MESSAGE
+   ========================================================= */
+
+function sendMessage(event){
+
+    event.preventDefault();
+
+    const input =
+        document.getElementById("messageInput");
+
+    if(!input || !currentChat) return;
+
+    const text =
+        input.value.trim();
+
+    if(!text) return;
+
+    const now =
+        new Date().toLocaleTimeString(
+            "es-ES",
+            {
+                hour:"2-digit",
+                minute:"2-digit"
+            }
+        );
+
+    currentChat.messages.push({
+        from:"sent",
+        text,
+        time:now
+    });
+
+    currentChat.preview = text;
+    currentChat.time = now;
+
+    input.value = "";
+
+    openChat(currentChat.id);
+
+}
+
+
+/* =========================================================
+   CREAR PLAN
+   ========================================================= */
+
+function openCreatePlan(){
+
+    openModal(`
+
+        <div class="modal-handle"></div>
+
+        <div class="modal-title">
+            Crear un plan
+        </div>
+
+        <form onsubmit="createPlan(event)">
+
+            <div class="form-group">
+
+                <label>
+                    Nombre del plan
+                </label>
+
+                <input
+                    id="newPlanTitle"
+                    required
+                    placeholder="Ej. Running al atardecer">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Categoría
+                </label>
+
+                <select id="newPlanCategory">
+
+                    <option>Deporte</option>
+                    <option>Gym</option>
+                    <option>Cine</option>
+                    <option>Comida</option>
+                    <option>Viajes</option>
+                    <option>Gaming</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Ubicación
+                </label>
+
+                <input
+                    id="newPlanLocation"
+                    required
+                    placeholder="Tarragona">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Fecha
+                </label>
+
+                <input
+                    id="newPlanDate"
+                    required
+                    placeholder="Sábado · 18:00">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Descripción
+                </label>
+
+                <textarea
+                    id="newPlanDescription"
+                    required
+                    placeholder="Describe el plan..."></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Imagen
+                </label>
+
+                <select id="newPlanImage">
+
+                    <option value="${IMG.running}">
+                        Running
+                    </option>
+
+                    <option value="${IMG.gym}">
+                        Gym
+                    </option>
+
+                    <option value="${IMG.football}">
+                        Fútbol
+                    </option>
+
+                    <option value="${IMG.cinema}">
+                        Cine
+                    </option>
+
+                    <option value="${IMG.food}">
+                        Comida
+                    </option>
+
+                    <option value="${IMG.beach}">
+                        Playa
+                    </option>
+
+                    <option value="${IMG.travel}">
+                        Viajes
+                    </option>
+
+                    <option value="${IMG.gaming}">
+                        Gaming
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="confirm-btn">
+                    Crear plan
+                </button>
+
+            </div>
+
+        </form>
+
+    `);
+
+}
+
+
+function createPlan(event){
+
+    event.preventDefault();
+
+    const title =
+        document.getElementById("newPlanTitle").value.trim();
+
+    const category =
+        document.getElementById("newPlanCategory").value;
+
+    const location =
+        document.getElementById("newPlanLocation").value.trim();
+
+    const date =
+        document.getElementById("newPlanDate").value.trim();
+
+    const description =
+        document.getElementById("newPlanDescription").value.trim();
+
+    const image =
+        document.getElementById("newPlanImage").value;
+
+    const newPlan = {
+
+        id:Date.now(),
+
+        title,
+
+        category,
+
+        location,
+
+        date,
+
+        participants:1,
+
+        max:10,
+
+        image,
+
+        description
+
+    };
+
+    plans.unshift(newPlan);
+
+    saveData();
+
+    closeModal();
+
+    showToast("Plan creado correctamente 🎉");
+
+    renderHome();
+    renderPlans();
+    renderMyPlans();
+
+}
+
+
+/* =========================================================
+   MY PLANS
+   ========================================================= */
+
+function renderMyPlans(){
+
+    const container =
+        document.getElementById("myPlans");
+
+    if(!container) return;
+
+    container.innerHTML =
+        plans.slice(0,3)
+        .map(createPlanCard)
+        .join("");
+
+}
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+function openSearch(){
+
+    openModal(`
+
+        <div class="modal-handle"></div>
+
+        <div class="modal-title">
+            Buscar en NEXO
+        </div>
+
+        <div class="search-box">
+
+            <span>🔎</span>
+
+            <input
+                id="globalSearchInput"
+                autofocus
+                placeholder="Personas, planes, grupos..."
+                oninput="globalSearch(this.value)">
+
+        </div>
+
+        <div id="globalResults"></div>
+
+    `);
+
+}
+
+
+function globalSearch(query){
+
+    const resultBox =
+        document.getElementById("globalResults");
+
+    if(!resultBox) return;
+
+    const q =
+        query.trim().toLowerCase();
+
+    if(!q){
+
+        resultBox.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🔎
+                </div>
+
+                <strong>
+                    Busca algo en NEXO
+                </strong>
+
+                <span>
+                    Personas, planes, lugares...
+                </span>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+    const matchingPlans =
+        plans.filter(p =>
+            `${p.title} ${p.category} ${p.location}`
+            .toLowerCase()
+            .includes(q)
+        );
+
+    const matchingPeople =
+        people.filter(p =>
+            `${p.name} ${p.city} ${p.interest}`
+            .toLowerCase()
+            .includes(q)
+        );
+
+    resultBox.innerHTML = `
+
+        <div class="section">
+
+            <div class="section-head">
+                <h3 class="section-title">
+                    Planes
+                </h3>
+            </div>
+
+            <div class="cards-grid">
+
+                ${
+                    matchingPlans.length
+                    ? matchingPlans
+                        .slice(0,4)
+                        .map(createPlanCard)
+                        .join("")
+                    : `
+                        <div class="empty"
+                             style="grid-column:1/-1">
+                            No hay planes.
+                        </div>
+                    `
+                }
+
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <div class="section-head">
+                <h3 class="section-title">
+                    Personas
+                </h3>
+            </div>
+
+            ${
+                matchingPeople.length
+                ? `
+                    <div class="people-list">
+
+                        ${matchingPeople.map(p => `
+
+                            <div class="person-card">
+
+                                <img
+                                    class="person-image"
+                                    src="${p.image}"
+                                    alt="">
+
+                                <div class="person-name">
+                                    ${escapeHTML(p.name)}
+                                </div>
+
+                                <div class="person-info">
+                                    ${escapeHTML(p.city)}
+                                </div>
+
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+                `
+                : `
+                    <div class="empty">
+                        No hay personas.
+                    </div>
+                `
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   NOTIFICACIONES
+   ========================================================= */
+
+function showNotifications(){
+
+    openModal(`
+
+        <div class="modal-handle"></div>
+
+        <div class="modal-title">
+            Notificaciones
+        </div>
+
+        <div class="chat-list">
+
+            <div class="chat-item">
+
+                <div class="setting-icon">
+                    👥
+                </div>
+
+                <div class="chat-content">
+
+                    <strong>
+                        Laura quiere conectar contigo
+                    </strong>
+
+                    <div class="chat-preview">
+                        Hace 5 minutos
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chat-item">
+
+                <div class="setting-icon">
+                    📍
+                </div>
+
+                <div class="chat-content">
+
+                    <strong>
+                        Tu plan tiene un nuevo participante
+                    </strong>
+
+                    <div class="chat-preview">
+                        Hace 20 minutos
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="chat-item">
+
+                <div class="setting-icon">
+                    💬
+                </div>
+
+                <div class="chat-content">
+
+                    <strong>
+                        Tienes un mensaje nuevo
+                    </strong>
+
+                    <div class="chat-preview">
+                        Hace 1 hora
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `);
+
+}
+
+
+/* =========================================================
+   EDIT PROFILE
+   ========================================================= */
+
+function openEditProfile(){
+
+    openModal(`
+
+        <div class="modal-handle"></div>
+
+        <div class="modal-title">
+            Editar perfil
+        </div>
+
+        <form onsubmit="saveProfile(event)">
+
+            <div class="form-group">
+
+                <label>
+                    Nombre
+                </label>
+
+                <input
+                    id="profileNameInput"
+                    value="Fernando"
+                    required>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Usuario
+                </label>
+
+                <input
+                    value="@fernando">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Biografía
+                </label>
+
+                <textarea
+                    id="profileBioInput">Me gusta el deporte, descubrir sitios nuevos, viajar, entrenar y conocer gente con buenas energías.</textarea>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="closeModal()">
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="confirm-btn">
+                    Guardar
+                </button>
+
+            </div>
+
+        </form>
+
+    `);
+
+}
+
+
+function saveProfile(event){
+
+    event.preventDefault();
+
+    const name =
+        document.getElementById("profileNameInput").value;
+
+    const bio =
+        document.getElementById("profileBioInput").value;
+
+    document.querySelector(".profile-name")
+        .textContent = name;
+
+    document.querySelector(".profile-bio")
+        .textContent = bio;
+
+    closeModal();
+
+    showToast("Perfil actualizado ✓");
+
+}
+
+
+/* =========================================================
+   SHARE PROFILE
+   ========================================================= */
+
+async function shareProfile(){
+
+    const data = {
+        title:"Mi perfil de NEXO",
+        text:"Conecta conmigo en NEXO."
+    };
+
+    try{
+
+        if(navigator.share){
+
+            await navigator.share(data);
+
+        }else{
+
+            showToast("Perfil preparado para compartir");
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
     }
 
 }
 
 
-function closeModalOutside(event,id) {
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
-    if (event.target.id === id) {
-        closeModal(id);
+function toggleDarkMode(){
+
+    document.body.classList.toggle("dark");
+
+    const active =
+        document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "nexo_dark",
+        active ? "1" : "0"
+    );
+
+    document
+        .getElementById("darkToggle")
+        .classList.toggle("active",active);
+
+}
+
+
+/* =========================================================
+   TOGGLE
+   ========================================================= */
+
+function toggleSetting(button){
+
+    button.classList.toggle("active");
+
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+function openModal(html){
+
+    const modal =
+        document.getElementById("modal");
+
+    const card =
+        document.getElementById("modalCard");
+
+    card.innerHTML = html;
+
+    modal.classList.remove("hidden");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+function closeModal(){
+
+    document
+        .getElementById("modal")
+        .classList.add("hidden");
+
+    document.body.style.overflow = "";
+
+}
+
+
+function closeModalOutside(event){
+
+    if(event.target.id === "modal"){
+        closeModal();
     }
 
 }
@@ -3120,777 +4198,133 @@ function closeModalOutside(event,id) {
    TOAST
    ========================================================= */
 
-function toast(message) {
+let toastTimer;
 
-    const container =
-        document.getElementById("toastContainer");
+function showToast(message){
 
-    const item =
-        document.createElement("div");
+    const toast =
+        document.getElementById("toast");
 
-    item.className = "toast";
+    toast.textContent = message;
 
-    item.textContent = message;
+    toast.classList.add("show");
 
-    container.appendChild(item);
+    clearTimeout(toastTimer);
 
-    setTimeout(() => {
+    toastTimer =
+        setTimeout(() => {
 
-        item.style.opacity = "0";
+            toast.classList.remove("show");
 
-        setTimeout(() => item.remove(),250);
-
-    },2600);
+        },2500);
 
 }
 
 
 /* =========================================================
-   CATEGORÍAS
+   STORAGE
    ========================================================= */
 
-function categoryHTML(category) {
+function saveData(){
 
-    return `
-        <button class="category-card"
-                onclick="filterCategory('${category.name}')">
+    try{
 
-            <img src="${category.image}"
-                 alt="${category.name}"
-                 loading="lazy">
+        localStorage.setItem(
+            "nexo_plans",
+            JSON.stringify(plans)
+        );
 
-            <div class="category-info">
+    }catch(error){
 
-                <strong>
-                    ${category.emoji}
-                    ${category.name}
-                </strong>
+        console.log(error);
 
-                <span>
-                    Descubrir
-                </span>
-
-            </div>
-
-        </button>
-    `;
-
-}
-
-
-function renderCategories() {
-
-    const html =
-        categories
-        .map(categoryHTML)
-        .join("");
-
-    document.getElementById("categories").innerHTML = html;
-
-    document.getElementById("exploreCategories")
-        .innerHTML = html;
-
-}
-
-
-/* =========================================================
-   PERSONAS
-   ========================================================= */
-
-function personHTML(person) {
-
-    const tags =
-        person.interests
-        .map(x => `<span class="tag">${x}</span>`)
-        .join("");
-
-    return `
-        <article class="person-card">
-
-            <div class="person-photo">
-
-                <img
-                    src="${person.image}"
-                    alt="${person.name}"
-                    loading="lazy">
-
-                ${person.online
-                    ? `<span class="online-dot"></span>`
-                    : ""}
-
-                <div class="photo-gradient"></div>
-
-                <span class="person-distance">
-                    📍 ${person.distance}
-                </span>
-
-            </div>
-
-            <div class="person-body">
-
-                <div class="person-name">
-
-                    <h3>
-                        ${person.name}, ${person.age}
-                    </h3>
-
-                    ${person.verified
-                        ? `<span class="verified">✓</span>`
-                        : ""}
-
-                </div>
-
-                <div class="person-meta">
-                    ${person.city}
-                </div>
-
-                <div class="tags">
-                    ${tags}
-                </div>
-
-                <div class="person-actions">
-
-                    <button class="small-btn btn-primary"
-                            onclick="connectPerson(${person.id})">
-                        🤝 Conectar
-                    </button>
-
-                    <button class="small-btn btn-soft"
-                            onclick="likePerson(${person.id})">
-                        ❤️
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-    `;
-
-}
-
-
-function renderPeople() {
-
-    const search =
-        (document.getElementById("peopleSearch")?.value || "")
-        .toLowerCase()
-        .trim();
-
-    let result = people.filter(person => {
-
-        const matchesFilter =
-            peopleFilter === "Todos" ||
-            person.interests.includes(peopleFilter);
-
-        const matchesSearch =
-            !search ||
-            person.name.toLowerCase().includes(search) ||
-            person.city.toLowerCase().includes(search) ||
-            person.interests.some(
-                x => x.toLowerCase().includes(search)
-            );
-
-        return matchesFilter && matchesSearch;
-
-    });
-
-    const html =
-        result.length
-            ? result.map(personHTML).join("")
-            : `
-                <div class="empty"
-                     style="grid-column:1/-1">
-                    <div class="empty-icon">🔎</div>
-                    <strong>No hemos encontrado personas</strong>
-                    <p>Prueba otro filtro o búsqueda.</p>
-                </div>
-            `;
-
-    const connect =
-        document.getElementById("connectPeople");
-
-    if (connect) {
-        connect.innerHTML = html;
     }
 
 }
 
 
-function renderHomePeople() {
+function loadData(){
 
-    document.getElementById("homePeople")
-        .innerHTML =
-        people.slice(0,4)
-        .map(personHTML)
-        .join("");
+    try{
 
-}
+        const stored =
+            localStorage.getItem("nexo_plans");
 
+        if(stored){
 
-function connectPerson(id) {
+            const parsed =
+                JSON.parse(stored);
 
-    const person =
-        people.find(x => x.id === id);
+            if(Array.isArray(parsed)){
+                plans = parsed;
+            }
 
-    if (!person) return;
+        }
 
-    toast(`🤝 Te has conectado con ${person.name}`);
+        const dark =
+            localStorage.getItem("nexo_dark");
 
-    saveData();
+        if(dark === "1"){
 
-}
+            document.body.classList.add("dark");
 
+            const toggle =
+                document.getElementById("darkToggle");
 
-function likePerson(id) {
+            if(toggle){
+                toggle.classList.add("active");
+            }
 
-    const person =
-        people.find(x => x.id === id);
+        }
 
-    if (!person) return;
+    }catch(error){
 
-    toast(`❤️ Has añadido a ${person.name} a favoritos`);
+        console.log(error);
 
-}
-
-
-/* =========================================================
-   FILTRO PERSONAS
-   ========================================================= */
-
-function setPeopleFilter(button,value) {
-
-    peopleFilter = value;
-
-    document.querySelectorAll(
-        "#page-connect .filter"
-    ).forEach(el => el.classList.remove("active"));
-
-    button.classList.add("active");
-
-    renderPeople();
-
-}
-
-
-function filterCategory(category) {
-
-    peopleFilter = category;
-
-    navigate("connect");
-
-    document.querySelectorAll(
-        "#page-connect .filter"
-    ).forEach(el => {
-
-        el.classList.toggle(
-            "active",
-            el.textContent.trim().includes(category)
-        );
-
-    });
-
-    renderPeople();
+    }
 
 }
 
 
 /* =========================================================
-   PLANES
+   ESCAPE HTML
    ========================================================= */
 
-function planHTML(plan) {
+function escapeHTML(value){
 
-    return `
-        <article class="plan-card">
-
-            <div class="plan-image">
-
-                <img
-                    src="${plan.image}"
-                    alt="${plan.title}"
-                    loading="lazy">
-
-                <span class="plan-category">
-                    ${plan.category}
-                </span>
-
-                <button class="plan-favorite"
-                        onclick="favoritePlan(${plan.id})">
-                    ${plan.favorite ? "❤️" : "♡"}
-                </button>
-
-            </div>
-
-            <div class="plan-body">
-
-                <div class="plan-title">
-                    ${plan.title}
-                </div>
-
-                <div class="plan-description">
-                    ${plan.description}
-                </div>
-
-                <div class="plan-details">
-
-                    <div class="plan-detail">
-                        📍
-                        <strong>${plan.location}</strong>
-                    </div>
-
-                    <div class="plan-detail">
-                        📅
-                        <strong>${plan.date}</strong>
-                    </div>
-
-                </div>
-
-                <div class="plan-footer">
-
-                    <div class="avatar-stack">
-
-                        <img src="${IMAGE.people[0]}">
-
-                        <img src="${IMAGE.people[1]}">
-
-                        <img src="${IMAGE.people[2]}">
-
-                    </div>
-
-                    <span style="font-size:11px;color:var(--text-soft)">
-                        👥 ${plan.participants} personas
-                    </span>
-
-                    <button class="btn ${plan.joined ? "btn-green" : "btn-primary"}"
-                            onclick="joinPlan(${plan.id})">
-                        ${plan.joined ? "✓ Unido" : "Unirme"}
-                    </button>
-
-                </div>
-
-            </div>
-
-        </article>
-    `;
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
 
-function renderPlans() {
+/* =========================================================
+   SERVICE WORKER
+   ========================================================= */
 
-    const search =
-        (document.getElementById("planSearch")?.value || "")
-        .toLowerCase()
-        .trim();
+if("serviceWorker" in navigator){
 
-    const result =
-        plans.filter(plan => {
+    window.addEventListener(
+        "load",
+        () => {
 
-            const categoryMatch =
-                planFilter === "Todos" ||
-                plan.category === planFilter;
+            navigator.serviceWorker
+                .register("./sw.js")
+                .catch(error => {
 
-            const searchMatch =
-                !search ||
-                plan.title.toLowerCase().includes(search) ||
-                plan.location.toLowerCase().includes(search) ||
-                plan.category.toLowerCase().includes(search);
+                    console.log(
+                        "Service Worker:",
+                        error
+                    );
 
-            return categoryMatch && searchMatch;
+                });
 
-        });
-
-    document.getElementById("plansContainer")
-        .innerHTML =
-        result.length
-            ? result.map(planHTML).join("")
-            : `
-                <div class="empty">
-                    <div class="empty-icon">📅</div>
-                    <strong>No hay planes</strong>
-                    <p>Prueba otro filtro.</p>
-                </div>
-            `;
-
-}
-
-
-function renderHomePlans() {
-
-    document.getElementById("homePlans")
-        .innerHTML =
-        plans.slice(0,2)
-        .map(planHTML)
-        .join("");
-
-}
-
-
-function setPlanFilter(button,value) {
-
-    planFilter = value;
-
-    document.querySelectorAll(
-        "#page-plans .filter"
-    ).forEach(el =>
-        el.classList.remove("active")
+        }
     );
-
-    button.classList.add("active");
-
-    renderPlans();
-
-}
-
-
-function joinPlan(id) {
-
-    const plan =
-        plans.find(x => x.id === id);
-
-    if (!plan) return;
-
-    plan.joined = !plan.joined;
-
-    if (plan.joined) {
-
-        plan.participants++;
-
-        toast(`📅 Te has unido a "${plan.title}"`);
-
-    } else {
-
-        plan.participants--;
-
-        toast("Has salido del plan");
-
-    }
-
-    saveData();
-    renderPlans();
-    renderHomePlans();
-
-}
-
-
-function favoritePlan(id) {
-
-    const plan =
-        plans.find(x => x.id === id);
-
-    if (!plan) return;
-
-    plan.favorite = !plan.favorite;
-
-    toast(
-        plan.favorite
-            ? "❤️ Plan guardado"
-            : "Plan eliminado de favoritos"
-    );
-
-    saveData();
-    renderPlans();
-
-}
-
-
-/* =========================================================
-   CREAR PLAN
-   ========================================================= */
-
-function createPlan() {
-
-    const title =
-        document.getElementById("newPlanTitle").value.trim();
-
-    const category =
-        document.getElementById("newPlanCategory").value;
-
-    const date =
-        document.getElementById("newPlanDate").value;
-
-    const location =
-        document.getElementById("newPlanLocation").value.trim();
-
-    const description =
-        document.getElementById("newPlanDescription").value.trim();
-
-    if (!title || !location) {
-
-        toast("Completa el título y el lugar");
-
-        return;
-
-    }
-
-    const newPlan = {
-
-        id: Date.now(),
-
-        title,
-
-        category,
-
-        location,
-
-        date: date || "Fecha por definir",
-
-        participants:1,
-
-        image:
-            IMAGE.plans[
-                Math.floor(
-                    Math.random() * IMAGE.plans.length
-                )
-            ],
-
-        description:
-            description ||
-            "Nuevo plan creado en NEXO.",
-
-        joined:true
-
-    };
-
-    plans.unshift(newPlan);
-
-    saveData();
-
-    closeModal("createPlanModal");
-
-    renderPlans();
-
-    renderHomePlans();
-
-    toast("🎉 Plan creado correctamente");
-
-}
-
-
-/* =========================================================
-   GRUPOS
-   ========================================================= */
-
-function groupHTML(group) {
-
-    return `
-        <article class="group-card">
-
-            <img
-                src="${group.image}"
-                alt="${group.name}"
-                loading="lazy">
-
-            <div class="group-content">
-
-                <h3>
-                    ${group.name}
-                </h3>
-
-                <p>
-                    ${group.description}
-                </p>
-
-                <div class="group-members">
-                    👥 ${group.members} miembros
-                </div>
-
-                <button class="btn btn-soft"
-                        style="margin-top:9px;width:100%;height:38px"
-                        onclick="joinGroup(${group.id})">
-                    Unirme
-                </button>
-
-            </div>
-
-        </article>
-    `;
-
-}
-
-
-function renderGroups(search="") {
-
-    search =
-        search.toLowerCase().trim();
-
-    const result =
-        groups.filter(group =>
-            !search ||
-            group.name.toLowerCase().includes(search) ||
-            group.description.toLowerCase().includes(search)
-        );
-
-    document.getElementById("groupsContainer")
-        .innerHTML =
-        result.map(groupHTML).join("");
-
-}
-
-
-function joinGroup(id) {
-
-    const group =
-        groups.find(x => x.id === id);
-
-    if (!group) return;
-
-    group.members++;
-
-    toast(`👥 Te has unido a ${group.name}`);
-
-    saveData();
-
-    renderGroups();
-
-}
-
-
-/* =========================================================
-   CREAR GRUPO
-   ========================================================= */
-
-function createGroup() {
-
-    const name =
-        document.getElementById("newGroupName")
-            .value.trim();
-
-    const description =
-        document.getElementById("newGroupDescription")
-            .value.trim();
-
-    if (!name) {
-
-        toast("Escribe un nombre para el grupo");
-
-        return;
-
-    }
-
-    groups.unshift({
-
-        id:Date.now(),
-
-        name,
-
-        description:
-            description ||
-            "Nuevo grupo de la comunidad NEXO.",
-
-        members:1,
-
-        image:
-            IMAGE.groups[
-                Math.floor(
-                    Math.random() * IMAGE.groups.length
-                )
-            ]
-
-    });
-
-    saveData();
-
-    closeModal("createGroupModal");
-
-    renderGroups();
-
-    toast("👥 Grupo creado");
-
-}
-
-
-/* =========================================================
-   CHAT
-   ========================================================= */
-
-function chatHTML(chat) {
-
-    return `
-        <button class="chat-card"
-                onclick="openChat('${chat.name}')">
-
-            <img
-                class="chat-avatar"
-                src="${chat.image}"
-                alt="${chat.name}">
-
-            <div class="chat-text">
-
-                <strong>
-                    ${chat.name}
-                </strong>
-
-                <span>
-                    ${chat.message}
-                </span>
-
-            </div>
-
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px">
-
-                <span class="chat-time">
-                    ${chat.time}
-                </span>
-
-                ${
-                    chat.unread
-                    ? `<span class="unread">${chat.unread}</span>`
-                    : ""
-                }
-
-            </div>
-
-        </button>
-    `;
-
-}
-
-
-function renderChats(search="") {
-
-    search =
-        search.toLowerCase().trim();
-
-    const result =
-        chats.filter(chat =>
-            !search ||
-            chat.name.toLowerCase().includes(search) ||
-            chat.message.toLowerCase().includes(search)
-        );
-
-    document.getElementById("chatContainer")
-        .innerHTML =
-        result.map(chatHTML).join("");
-
-}
-
-
-function openChat(name) {
-
-    toast(`💬 Abriendo conversación con ${name}`);
-
-}
-
-
-/* =========================================================
-   EXPLORAR
-   ========================================================= */
-
-function renderExplore() {
-
-    document.getElementById("explorePeople")
-        .innerHTML =
-        people.slice(0,6)
-        .map(personHTML)
-        .join("");
-
-    document.getElementById("explorePlans")
-        .innerHTML =
-        plans.slice(0,4)
-        .map(planHTML)
-        .join("");
 
 }
 
@@ -3899,497 +4333,48 @@ function renderExplore() {
    INICIO
    ========================================================= */
 
-function renderHome() {
-
-    renderCategories();
-
-    renderHomePeople();
-
-    renderHomePlans();
-
-}
-
-
-/* =========================================================
-   IA DEMO
-   ========================================================= */
-
-function runAI() {
-
-    const input =
-        document.getElementById("aiInput")
-            .value.trim();
-
-    if (!input) {
-
-        toast("Escribe qué estás buscando");
-
-        return;
-
-    }
-
-    const result =
-        document.getElementById("aiResult");
-
-    const recommendedPeople =
-        people.slice(0,3)
-        .map(personHTML)
-        .join("");
-
-    result.innerHTML = `
-
-        <div style="
-            background:#F4F0FF;
-            border-radius:18px;
-            padding:14px;
-            margin-bottom:14px;
-        ">
-
-            <strong>✨ NEXO IA recomienda</strong>
-
-            <p style="font-size:12px;color:#71717A">
-                Basándome en tu búsqueda,
-                estas personas y planes podrían encajar contigo.
-            </p>
-
-        </div>
-
-        <div class="people-grid">
-            ${recommendedPeople}
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PERFIL
-   ========================================================= */
-
-function saveProfile() {
-
-    const name =
-        document.getElementById("editName").value.trim();
-
-    const bio =
-        document.getElementById("editBio").value.trim();
-
-    const photo =
-        document.getElementById("editPhoto").value.trim();
-
-    if (name) {
-
-        document.querySelector(".profile-name")
-            .innerHTML =
-            `${name} <span class="verified">✓</span>`;
-
-    }
-
-    const bioElement =
-        document.querySelector(".profile-bio");
-
-    if (bio) {
-        bioElement.textContent = bio;
-    }
-
-    if (photo) {
-
-        document.getElementById("profileImage")
-            .src = photo;
-
-    }
-
-    localStorage.setItem(
-        "nexoProfile",
-        JSON.stringify({
-            name,
-            bio,
-            photo
-        })
-    );
-
-    closeModal("editProfileModal");
-
-    toast("✓ Perfil actualizado");
-
-}
-
-
-function loadProfile() {
-
-    try {
-
-        const saved =
-            JSON.parse(
-                localStorage.getItem("nexoProfile")
-            );
-
-        if (!saved) return;
-
-        if (saved.name) {
-
-            document.querySelector(".profile-name")
-                .innerHTML =
-                `${saved.name} <span class="verified">✓</span>`;
-
-            document.getElementById("editName")
-                .value = saved.name;
-
-        }
-
-        if (saved.bio) {
-
-            document.querySelector(".profile-bio")
-                .textContent = saved.bio;
-
-            document.getElementById("editBio")
-                .value = saved.bio;
-
-        }
-
-        if (saved.photo) {
-
-            document.getElementById("profileImage")
-                .src = saved.photo;
-
-            document.getElementById("editPhoto")
-                .value = saved.photo;
-
-        }
-
-    } catch(e) {
-
-        console.log("No hay perfil guardado");
-
-    }
-
-}
-
-
-/* =========================================================
-   COMPARTIR
-   ========================================================= */
-
-async function shareProfile() {
-
-    const data = {
-        title:"Mi perfil NEXO",
-        text:"Conecta conmigo en NEXO."
-    };
-
-    if (navigator.share) {
-
-        try {
-
-            await navigator.share(data);
-
-            toast("Perfil compartido");
-
-        } catch(e) {}
-
-    } else {
-
-        try {
-
-            await navigator.clipboard.writeText(
-                "Mi perfil NEXO"
-            );
-
-            toast("🔗 Copiado al portapapeles");
-
-        } catch(e) {
-
-            toast("Comparte tu perfil NEXO");
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   IDIOMA
-   ========================================================= */
-
-function selectLanguage(language) {
-
-    closeModal("languageModal");
-
-    toast(`🌐 Idioma seleccionado: ${language}`);
-
-}
-
-
-/* =========================================================
-   DARK MODE
-   ========================================================= */
-
-function toggleDarkMode() {
-
-    document.body.classList.toggle("dark");
-
-    const enabled =
-        document.body.classList.contains("dark");
-
-    document.getElementById("toggleDark")
-        .classList.toggle("on",enabled);
-
-    localStorage.setItem(
-        "nexoDark",
-        enabled ? "1" : "0"
-    );
-
-}
-
-
-function loadTheme() {
-
-    const dark =
-        localStorage.getItem("nexoDark") === "1";
-
-    if (dark) {
-
-        document.body.classList.add("dark");
-
-        document.getElementById("toggleDark")
-            .classList.add("on");
-
-    }
-
-}
-
-
-/* =========================================================
-   NOTIFICACIONES
-   ========================================================= */
-
-function toggleSetting(type) {
-
-    if (type === "notifications") {
-
-        const element =
-            document.getElementById("toggleNotifications");
-
-        element.classList.toggle("on");
-
-        toast(
-            element.classList.contains("on")
-                ? "🔔 Notificaciones activadas"
-                : "🔕 Notificaciones desactivadas"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   GEOLOCALIZACIÓN
-   ========================================================= */
-
-function locateUser() {
-
-    if (!navigator.geolocation) {
-
-        toast("La geolocalización no está disponible");
-
-        return;
-
-    }
-
-    toast("📍 Buscando tu ubicación...");
-
-    navigator.geolocation.getCurrentPosition(
-
-        position => {
-
-            console.log(
-                position.coords.latitude,
-                position.coords.longitude
-            );
-
-            toast("📍 Ubicación encontrada");
-
-        },
-
-        () => {
-
-            toast("No se pudo obtener la ubicación");
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   DATOS LOCALES
-   ========================================================= */
-
-function saveData() {
-
-    try {
-
-        localStorage.setItem(
-            "nexoPlans",
-            JSON.stringify(plans)
-        );
-
-        localStorage.setItem(
-            "nexoGroups",
-            JSON.stringify(groups)
-        );
-
-    } catch(e) {
-
-        console.log("No se pudieron guardar los datos");
-
-    }
-
-}
-
-
-function loadData() {
-
-    try {
-
-        const savedPlans =
-            JSON.parse(
-                localStorage.getItem("nexoPlans")
-            );
-
-        const savedGroups =
-            JSON.parse(
-                localStorage.getItem("nexoGroups")
-            );
-
-        if (Array.isArray(savedPlans)) {
-            plans = savedPlans;
-        }
-
-        if (Array.isArray(savedGroups)) {
-            groups = savedGroups;
-        }
-
-    } catch(e) {
-
-        console.log("Datos iniciales utilizados");
-
-    }
-
-}
-
-
-function clearLocalData() {
-
-    const confirmed =
-        confirm(
-            "¿Quieres borrar los datos locales de NEXO?"
-        );
-
-    if (!confirmed) return;
-
-    localStorage.removeItem("nexoPlans");
-    localStorage.removeItem("nexoGroups");
-    localStorage.removeItem("nexoProfile");
-    localStorage.removeItem("nexoDark");
-
-    toast("Datos locales eliminados");
-
-    setTimeout(() => {
-        location.reload();
-    },800);
-
-}
-
-
-/* =========================================================
-   PREVENIR ERRORES DE IMAGEN
-   ========================================================= */
-
-document.addEventListener(
-    "error",
-    function(event) {
-
-        if (
-            event.target &&
-            event.target.tagName === "IMG"
-        ) {
-
-            event.target.src =
-                "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80";
-
-        }
-
-    },
-    true
-);
-
-
-/* =========================================================
-   INICIALIZACIÓN
-   ========================================================= */
-
-function initNexo() {
-
-    loadData();
-
-    loadTheme();
-
-    loadProfile();
-
-    renderCategories();
-
-    renderHome();
-
-    renderPeople();
-
-    renderPlans();
-
-    renderGroups();
-
-    renderChats();
-
-    renderExplore();
-
-}
-
-
 document.addEventListener(
     "DOMContentLoaded",
-    initNexo
+    () => {
+
+        loadData();
+
+        renderHome();
+
+        renderChats();
+
+        renderPeople();
+
+        renderPlans();
+
+        renderMyPlans();
+
+    }
 );
 
 
 /* =========================================================
-   SERVICE WORKER
+   PREVENIR DOBLE CLICK / ZOOM
    ========================================================= */
 
-if ("serviceWorker" in navigator) {
+let lastTouchEnd = 0;
 
-    window.addEventListener(
-        "load",
-        () => {
+document.addEventListener(
+    "touchend",
+    function(event){
 
-            navigator.serviceWorker
-                .register("./sw.js")
-                .then(() => {
-                    console.log("NEXO Service Worker activo");
-                })
-                .catch(error => {
-                    console.log(
-                        "Service Worker no disponible:",
-                        error
-                    );
-                });
+        const now =
+            Date.now();
 
+        if(now - lastTouchEnd <= 300){
+            event.preventDefault();
         }
-    );
 
-}
+        lastTouchEnd = now;
+
+    },
+    {passive:false}
+);
 
 </script>
 
