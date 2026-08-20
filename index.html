@@ -1,4390 +1,3785 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<!-- aquí sigue todo tu código actual -->
-
-<link rel="stylesheet" href="./conecta/conecta.css">
-
-<script src="./conecta/conecta-data.js"></script>
-<script src="./conecta/conecta-images.js"></script>
-<script src="./conecta/conecta-theme.js"></script>
-<script src="./conecta/conecta-ui.js"></script>
-
-</head>
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no,
-               viewport-fit=cover">
+      content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 
-<meta name="theme-color" content="#8B5CF6">
+<meta name="theme-color" content="#7C3AED">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NEXO">
-
-<title>NEXO — Conecta. Comparte. Vive.</title>
+<meta name="apple-mobile-web-app-title" content="Conecta">
 
 <link rel="manifest" href="./manifest.json">
 
+<title>Conecta</title>
+
 <style>
+
 /* =========================================================
-   NEXO — SISTEMA VISUAL
-   ========================================================= */
+   VARIABLES
+========================================================= */
 
 :root{
-    --primary:#8B5CF6;
-    --primary-dark:#6D28D9;
-    --primary-light:#A78BFA;
-    --secondary:#EC4899;
+ --primary:#7c3aed;
+ --primary-dark:#5b21b6;
+ --purple:#8b5cf6;
+ --violet:#a855f7;
+ --pink:#ec4899;
+ --rose:#f43f5e;
+ --blue:#3b82f6;
+ --cyan:#06b6d4;
+ --green:#10b981;
+ --yellow:#f59e0b;
+ --orange:#f97316;
+ --red:#ef4444;
 
-    --bg:#F6F5FA;
-    --surface:#FFFFFF;
-    --surface-2:#F1EFF8;
+ --bg:#f5f3fa;
+ --card:#ffffff;
+ --card2:#faf9ff;
+ --text:#17131f;
+ --muted:#77727f;
+ --border:#ebe7f2;
 
-    --text:#17151F;
-    --muted:#77727F;
-    --border:#E8E4EF;
+ --shadow:0 10px 30px rgba(53,25,90,.09);
+ --shadow2:0 20px 50px rgba(91,33,182,.18);
 
-    --success:#22C55E;
-    --warning:#F59E0B;
-    --danger:#EF4444;
-    --info:#3B82F6;
-
-    --shadow:0 8px 30px rgba(30,20,60,.08);
-    --shadow-lg:0 15px 50px rgba(30,20,60,.14);
-
-    --radius:20px;
-    --radius-sm:14px;
-
-    --nav-height:76px;
+ --radius:24px;
 }
 
+/* =========================================================
+   RESET
+========================================================= */
+
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+ scroll-behavior:smooth;
 }
 
 body{
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+ font-family:
+ -apple-system,
+ BlinkMacSystemFont,
+ "SF Pro Display",
+ "SF Pro Text",
+ "Segoe UI",
+ Roboto,
+ Arial,
+ sans-serif;
 
-    background:var(--bg);
-    color:var(--text);
+ background:
+ radial-gradient(circle at 10% 0%,rgba(168,85,247,.08),transparent 25%),
+ radial-gradient(circle at 100% 20%,rgba(236,72,153,.06),transparent 25%),
+ var(--bg);
 
-    min-height:100vh;
-    overflow-x:hidden;
+ color:var(--text);
+ min-height:100vh;
+ overflow-x:hidden;
 }
 
 button,
-input,
-textarea,
-select{
-    font:inherit;
+input{
+ font:inherit;
 }
 
 button{
-    border:0;
-    cursor:pointer;
+ border:0;
+ cursor:pointer;
 }
 
 img{
-    display:block;
-    width:100%;
-    object-fit:cover;
+ max-width:100%;
+ display:block;
 }
 
-.hidden{
-    display:none!important;
-}
-
-/* =========================================================
-   APP
-   ========================================================= */
-
-#app{
-    width:100%;
-    max-width:760px;
-    min-height:100vh;
-    margin:auto;
-    background:var(--bg);
-    position:relative;
-}
-
-.page{
-    min-height:100vh;
-    padding-bottom:calc(var(--nav-height) + 24px);
-}
-
-.page-content{
-    padding:18px;
+.app{
+ width:100%;
+ max-width:700px;
+ min-height:100vh;
+ margin:auto;
+ padding-bottom:110px;
 }
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
-.top-header{
-    position:sticky;
-    top:0;
-    z-index:50;
+.header{
+ position:sticky;
+ top:0;
+ z-index:100;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+ padding:
+ calc(11px + env(safe-area-inset-top))
+ 16px
+ 10px;
 
-    padding:
-        calc(12px + env(safe-area-inset-top))
-        18px
-        12px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
 
-    background:rgba(246,245,250,.90);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+ background:rgba(245,243,250,.82);
 
-    border-bottom:1px solid rgba(232,228,239,.7);
+ backdrop-filter:blur(25px);
+ -webkit-backdrop-filter:blur(25px);
+
+ border-bottom:1px solid rgba(124,58,237,.06);
+}
+
+body.dark .header{
+ background:rgba(12,10,16,.86);
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:10px;
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:9px;
-    font-weight:900;
-    letter-spacing:-1px;
-    font-size:25px;
+ width:47px;
+ height:47px;
+
+ border-radius:17px;
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ background:
+ linear-gradient(
+  135deg,
+  #5b21b6,
+  #7c3aed 45%,
+  #ec4899
+ );
+
+ color:white;
+
+ font-size:22px;
+ font-weight:950;
+
+ box-shadow:
+  0 10px 25px rgba(124,58,237,.3),
+  inset 0 1px rgba(255,255,255,.3);
+
+ position:relative;
+ overflow:hidden;
 }
 
-.logo-mark{
-    width:36px;
-    height:36px;
-    border-radius:12px;
+.logo:after{
+ content:"";
+ position:absolute;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ width:30px;
+ height:30px;
 
-    color:white;
-    background:
-        linear-gradient(135deg,
-        #A78BFA,
-        #8B5CF6,
-        #EC4899);
+ border-radius:50%;
 
-    box-shadow:
-        0 7px 20px rgba(139,92,246,.25);
+ background:rgba(255,255,255,.15);
+
+ top:-12px;
+ right:-10px;
+}
+
+.brand h1{
+ font-size:20px;
+ font-weight:950;
+ letter-spacing:-.8px;
+}
+
+.brand span{
+ display:block;
+ color:var(--muted);
+ font-size:10px;
+ margin-top:2px;
 }
 
 .header-actions{
-    display:flex;
-    gap:8px;
+ display:flex;
+ gap:8px;
 }
 
 .icon-btn{
-    width:42px;
-    height:42px;
-    border-radius:14px;
+ width:43px;
+ height:43px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ border-radius:15px;
 
-    background:var(--surface);
-    color:var(--text);
+ background:var(--card);
+ color:var(--text);
 
-    box-shadow:0 3px 14px rgba(0,0,0,.06);
-    position:relative;
+ box-shadow:var(--shadow);
+
+ display:flex;
+ align-items:center;
+ justify-content:center;
+
+ font-size:18px;
+
+ transition:.2s;
 }
 
 .icon-btn:active{
-    transform:scale(.94);
+ transform:scale(.9);
 }
 
-.badge{
-    position:absolute;
-    top:-3px;
-    right:-3px;
+/* =========================================================
+   VIEWS
+========================================================= */
 
-    min-width:18px;
-    height:18px;
-    padding:0 5px;
+.view{
+ display:none;
+ animation:fade .25s ease;
+}
 
-    border-radius:99px;
+.view.active{
+ display:block;
+}
 
-    background:var(--danger);
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:10px;
-    font-weight:800;
-
-    border:2px solid var(--bg);
+@keyframes fade{
+ from{
+  opacity:0;
+  transform:translateY(8px);
+ }
+ to{
+  opacity:1;
+  transform:none;
+ }
 }
 
 /* =========================================================
    HERO
-   ========================================================= */
+========================================================= */
 
 .hero{
-    position:relative;
-    overflow:hidden;
+ margin:12px 16px 22px;
 
-    min-height:225px;
+ min-height:275px;
 
-    border-radius:28px;
+ padding:28px 22px;
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(109,40,217,.95),
-            rgba(139,92,246,.88),
-            rgba(236,72,153,.80)
-        );
+ border-radius:32px;
 
-    color:white;
+ position:relative;
+ overflow:hidden;
 
-    padding:25px;
+ color:white;
 
-    box-shadow:var(--shadow-lg);
-    margin-bottom:22px;
+ background:
+ radial-gradient(
+  circle at 90% 10%,
+  rgba(255,255,255,.3),
+  transparent 25%
+ ),
+ radial-gradient(
+  circle at 0% 100%,
+  rgba(6,182,212,.25),
+  transparent 30%
+ ),
+ linear-gradient(
+  135deg,
+  #4c1d95,
+  #7c3aed 42%,
+  #c026d3 72%,
+  #ec4899
+ );
+
+ box-shadow:var(--shadow2);
 }
 
-.hero::before{
-    content:"";
-    position:absolute;
-    width:220px;
-    height:220px;
-    border-radius:50%;
-    background:rgba(255,255,255,.10);
-    right:-80px;
-    top:-70px;
+.hero:before{
+ content:"";
+
+ position:absolute;
+
+ width:280px;
+ height:280px;
+
+ border-radius:50%;
+
+ right:-110px;
+ bottom:-150px;
+
+ background:rgba(255,255,255,.1);
 }
 
-.hero::after{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    background:rgba(255,255,255,.07);
-    left:-70px;
-    bottom:-80px;
+.hero:after{
+ content:"";
+
+ position:absolute;
+
+ width:120px;
+ height:120px;
+
+ border-radius:50%;
+
+ right:70px;
+ top:-65px;
+
+ background:rgba(255,255,255,.1);
 }
 
 .hero-content{
-    position:relative;
-    z-index:2;
+ position:relative;
+ z-index:2;
 }
 
-.hero h1{
-    font-size:32px;
-    line-height:1.05;
-    letter-spacing:-1.4px;
-    margin-bottom:10px;
+.hero-badge{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+
+ padding:7px 10px;
+
+ border-radius:12px;
+
+ background:rgba(255,255,255,.15);
+ border:1px solid rgba(255,255,255,.18);
+
+ font-size:10px;
+ font-weight:900;
+}
+
+.hero h2{
+ margin-top:12px;
+
+ font-size:34px;
+ line-height:1.02;
+
+ letter-spacing:-1.7px;
+
+ max-width:470px;
 }
 
 .hero p{
-    max-width:450px;
-    color:rgba(255,255,255,.87);
-    line-height:1.5;
+ margin-top:13px;
+
+ line-height:1.45;
+
+ font-size:14px;
+
+ opacity:.92;
+
+ max-width:420px;
+}
+
+.hero-buttons{
+ display:flex;
+ gap:9px;
+
+ flex-wrap:wrap;
+
+ margin-top:20px;
 }
 
 .hero-btn{
-    margin-top:20px;
+ padding:13px 17px;
 
-    padding:12px 18px;
-    border-radius:14px;
+ border-radius:15px;
 
-    background:white;
-    color:var(--primary-dark);
+ background:white;
 
-    font-weight:800;
+ color:#6d28d9;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
+ font-weight:950;
+
+ box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+ transition:.2s;
 }
 
-/* =========================================================
-   SECTION
-   ========================================================= */
-
-.section{
-    margin-bottom:24px;
+.hero-btn:active{
+ transform:scale(.95);
 }
 
-.section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.hero-btn.secondary{
+ background:rgba(255,255,255,.15);
 
-    margin-bottom:13px;
-}
+ color:white;
 
-.section-title{
-    font-size:20px;
-    font-weight:850;
-    letter-spacing:-.5px;
-}
+ border:1px solid rgba(255,255,255,.25);
 
-.see-all{
-    color:var(--primary);
-    font-weight:700;
-    font-size:13px;
+ box-shadow:none;
 }
 
 /* =========================================================
    SEARCH
-   ========================================================= */
+========================================================= */
 
-.search-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.search{
+ margin:0 16px 22px;
 
-    background:var(--surface);
-    border:1px solid var(--border);
+ min-height:55px;
 
-    border-radius:17px;
-    padding:12px 14px;
+ padding:0 15px;
 
-    margin-bottom:18px;
+ border-radius:19px;
+
+ background:var(--card);
+
+ border:1px solid var(--border);
+
+ display:flex;
+ align-items:center;
+
+ gap:10px;
+
+ box-shadow:var(--shadow);
 }
 
-.search-box input{
-    border:0;
-    outline:0;
-    width:100%;
-    background:transparent;
-    color:var(--text);
+.search-icon{
+ font-size:20px;
 }
 
-.search-box svg{
-    flex:none;
-    color:var(--muted);
+.search input{
+ width:100%;
+
+ border:0;
+ outline:0;
+
+ background:transparent;
+
+ color:var(--text);
+
+ font-size:15px;
+}
+
+.search input::placeholder{
+ color:#aaa4b1;
 }
 
 /* =========================================================
-   CATEGORIES
-   ========================================================= */
+   SECTION
+========================================================= */
+
+.section{
+ margin:0 16px 29px;
+}
+
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+
+ margin-bottom:14px;
+}
+
+.section-head h2{
+ font-size:20px;
+
+ letter-spacing:-.7px;
+}
+
+.section-head button{
+ background:transparent;
+
+ color:var(--primary);
+
+ font-size:13px;
+
+ font-weight:900;
+}
+
+/* =========================================================
+   CATEGORY CARDS
+========================================================= */
 
 .categories{
-    display:flex;
-    gap:11px;
-    overflow-x:auto;
-    padding-bottom:5px;
+ display:flex;
 
-    scrollbar-width:none;
+ gap:12px;
+
+ overflow-x:auto;
+
+ padding:2px 2px 9px;
+
+ scrollbar-width:none;
 }
 
 .categories::-webkit-scrollbar{
-    display:none;
+ display:none;
 }
 
 .category{
-    min-width:82px;
+ min-width:132px;
+ height:155px;
 
-    padding:11px 9px;
+ border-radius:24px;
 
-    border-radius:17px;
+ overflow:hidden;
 
-    background:var(--surface);
+ position:relative;
 
-    border:1px solid var(--border);
+ flex-shrink:0;
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:7px;
+ background:#ddd;
 
-    box-shadow:0 3px 12px rgba(0,0,0,.035);
+ box-shadow:var(--shadow);
+
+ transition:.2s;
 }
 
-.category.active{
-    background:var(--primary);
-    color:white;
-    border-color:var(--primary);
+.category:active{
+ transform:scale(.95);
+}
+
+.category img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+
+ transition:.35s;
+}
+
+.category:hover img{
+ transform:scale(1.06);
+}
+
+.category:after{
+ content:"";
+
+ position:absolute;
+
+ inset:0;
+
+ background:
+ linear-gradient(
+  transparent 25%,
+  rgba(0,0,0,.8)
+ );
+}
+
+.category-info{
+ position:absolute;
+
+ z-index:2;
+
+ left:12px;
+ right:8px;
+ bottom:11px;
+
+ color:white;
+
+ text-align:left;
 }
 
 .category-icon{
-    width:39px;
-    height:39px;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:var(--surface-2);
-
-    font-size:20px;
+ font-size:22px;
 }
 
-.category.active .category-icon{
-    background:rgba(255,255,255,.18);
-}
+.category-title{
+ font-size:14px;
 
-.category span{
-    font-size:11px;
-    font-weight:750;
-}
+ font-weight:950;
 
-/* =========================================================
-   CARDS
-   ========================================================= */
-
-.cards-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-}
-
-.card{
-    background:var(--surface);
-    border-radius:20px;
-    overflow:hidden;
-
-    border:1px solid var(--border);
-
-    box-shadow:0 5px 20px rgba(30,20,60,.055);
-
-    transition:.2s ease;
-}
-
-.card:active{
-    transform:scale(.985);
-}
-
-.card-image{
-    height:155px;
-    position:relative;
-    overflow:hidden;
-}
-
-.card-image img{
-    height:100%;
-    transition:transform .4s ease;
-}
-
-.card:hover .card-image img{
-    transform:scale(1.05);
-}
-
-.card-gradient{
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0),
-            rgba(0,0,0,.48)
-        );
-}
-
-.card-tag{
-    position:absolute;
-    top:10px;
-    left:10px;
-
-    padding:6px 9px;
-    border-radius:9px;
-
-    background:rgba(255,255,255,.92);
-
-    color:var(--primary-dark);
-
-    font-size:10px;
-    font-weight:850;
-}
-
-.card-fav{
-    position:absolute;
-    right:9px;
-    top:9px;
-
-    width:32px;
-    height:32px;
-
-    border-radius:10px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:rgba(255,255,255,.9);
-
-    color:#555;
-}
-
-.card-fav.active{
-    color:#EC4899;
-}
-
-.card-image-info{
-    position:absolute;
-    bottom:10px;
-    left:11px;
-    right:11px;
-
-    color:white;
-}
-
-.card-image-info h3{
-    font-size:16px;
-    font-weight:850;
-}
-
-.card-body{
-    padding:12px;
-}
-
-.card-description{
-    font-size:12px;
-    color:var(--muted);
-    line-height:1.4;
-
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-
-    margin-bottom:10px;
-}
-
-.card-meta{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
-    color:var(--muted);
-    font-size:11px;
-
-    margin-bottom:10px;
-}
-
-.card-footer{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.avatar-stack{
-    display:flex;
-}
-
-.avatar-stack img{
-    width:27px;
-    height:27px;
-    border-radius:50%;
-    border:2px solid white;
-    margin-left:-7px;
-}
-
-.avatar-stack img:first-child{
-    margin-left:0;
-}
-
-.join-btn{
-    padding:8px 11px;
-    border-radius:10px;
-
-    background:var(--primary);
-    color:white;
-
-    font-size:11px;
-    font-weight:800;
-}
-
-/* =========================================================
-   FEATURED CARD
-   ========================================================= */
-
-.featured-list{
-    display:flex;
-    gap:14px;
-    overflow-x:auto;
-    scrollbar-width:none;
-}
-
-.featured-list::-webkit-scrollbar{
-    display:none;
-}
-
-.featured-card{
-    min-width:285px;
-    height:190px;
-
-    border-radius:23px;
-
-    position:relative;
-    overflow:hidden;
-
-    box-shadow:var(--shadow);
-}
-
-.featured-card img{
-    height:100%;
-}
-
-.featured-card-overlay{
-    position:absolute;
-    inset:0;
-
-    padding:17px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,.75),
-            rgba(0,0,0,.05)
-        );
-}
-
-.featured-card h3{
-    font-size:20px;
-    margin-bottom:4px;
-}
-
-.featured-card p{
-    font-size:12px;
-    color:rgba(255,255,255,.85);
+ margin-top:2px;
 }
 
 /* =========================================================
    PEOPLE
-   ========================================================= */
+========================================================= */
 
-.people-list{
-    display:flex;
-    gap:13px;
-    overflow-x:auto;
-    scrollbar-width:none;
+.people{
+ display:flex;
+
+ gap:13px;
+
+ overflow-x:auto;
+
+ padding:2px 2px 9px;
+
+ scrollbar-width:none;
 }
 
-.people-list::-webkit-scrollbar{
-    display:none;
+.people::-webkit-scrollbar{
+ display:none;
 }
 
-.person-card{
-    min-width:145px;
+.person{
+ min-width:184px;
 
-    background:var(--surface);
+ background:var(--card);
 
-    border:1px solid var(--border);
+ border-radius:24px;
 
-    border-radius:20px;
+ padding:9px;
 
-    padding:10px;
+ box-shadow:var(--shadow);
 
-    text-align:center;
+ overflow:hidden;
+
+ border:1px solid rgba(124,58,237,.04);
 }
 
-.person-image{
-    width:92px;
-    height:92px;
+.person-img{
+ height:165px;
 
-    margin:auto;
+ border-radius:19px;
 
-    border-radius:50%;
+ overflow:hidden;
 
-    object-fit:cover;
+ position:relative;
 
-    border:4px solid #EFE9FF;
+ background:#eee;
+}
+
+.person-img img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+
+ transition:.4s;
+}
+
+.person:hover .person-img img{
+ transform:scale(1.05);
 }
 
 .online{
-    width:12px;
-    height:12px;
+ position:absolute;
 
-    background:var(--success);
+ right:9px;
+ top:9px;
 
-    border:2px solid white;
+ width:14px;
+ height:14px;
 
-    border-radius:50%;
+ border-radius:50%;
 
-    position:absolute;
-    right:3px;
-    bottom:8px;
-}
+ background:#22c55e;
 
-.person-photo{
-    position:relative;
-    width:max-content;
-    margin:auto;
-}
+ border:3px solid white;
 
-.person-name{
-    font-size:14px;
-    font-weight:850;
-    margin-top:9px;
+ box-shadow:0 0 0 4px rgba(34,197,94,.18);
 }
 
 .person-info{
-    font-size:11px;
-    color:var(--muted);
-    margin:4px 0 10px;
+ padding:10px 3px 3px;
+}
+
+.person-name{
+ font-size:15px;
+
+ font-weight:950;
+}
+
+.person-meta{
+ margin-top:4px;
+
+ color:var(--muted);
+
+ font-size:12px;
 }
 
 .connect-btn{
-    width:100%;
+ width:100%;
+ height:40px;
 
-    padding:9px;
+ margin-top:10px;
 
-    border-radius:11px;
+ border-radius:14px;
 
-    background:#F0EBFF;
-    color:var(--primary-dark);
+ background:
+ linear-gradient(
+  135deg,
+  #ede9fe,
+  #f5e8ff
+ );
 
-    font-size:11px;
-    font-weight:850;
+ color:var(--primary);
+
+ font-weight:950;
+
+ transition:.2s;
+}
+
+.connect-btn:active{
+ transform:scale(.96);
 }
 
 .connect-btn.connected{
-    background:var(--primary);
-    color:white;
+ background:
+ linear-gradient(
+  135deg,
+  #dcfce7,
+  #d1fae5
+ );
+
+ color:#15803d;
 }
 
 /* =========================================================
-   PLAN DETAIL
-   ========================================================= */
+   PLANS
+========================================================= */
 
-.plan-page{
-    padding-bottom:120px;
+.plans{
+ display:flex;
+
+ flex-direction:column;
+
+ gap:15px;
 }
 
-.plan-cover{
-    height:280px;
-    position:relative;
+.plan{
+ background:var(--card);
+
+ border-radius:25px;
+
+ overflow:hidden;
+
+ box-shadow:var(--shadow);
+
+ border:1px solid rgba(124,58,237,.05);
 }
 
-.plan-cover img{
-    height:100%;
+.plan-img{
+ height:185px;
+
+ position:relative;
+
+ overflow:hidden;
 }
 
-.plan-cover::after{
-    content:"";
-    position:absolute;
-    inset:0;
+.plan-img img{
+ width:100%;
+ height:100%;
 
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.15),
-            rgba(0,0,0,.75)
-        );
+ object-fit:cover;
+
+ transition:.4s;
 }
 
-.back-button{
-    position:absolute;
-    z-index:3;
-
-    top:calc(15px + env(safe-area-inset-top));
-    left:15px;
-
-    width:42px;
-    height:42px;
-
-    border-radius:13px;
-
-    background:rgba(255,255,255,.9);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.plan:hover .plan-img img{
+ transform:scale(1.05);
 }
 
-.plan-cover-title{
-    position:absolute;
-    z-index:2;
+.plan-img:after{
+ content:"";
 
-    bottom:22px;
-    left:18px;
-    right:18px;
+ position:absolute;
 
-    color:white;
+ inset:0;
+
+ background:
+ linear-gradient(
+  transparent 50%,
+  rgba(0,0,0,.25)
+ );
 }
 
-.plan-cover-title h1{
-    font-size:29px;
-    letter-spacing:-1px;
+.plan-tag{
+ position:absolute;
+
+ z-index:2;
+
+ left:12px;
+ top:12px;
+
+ padding:8px 11px;
+
+ border-radius:12px;
+
+ background:rgba(255,255,255,.94);
+
+ color:var(--primary);
+
+ font-size:10px;
+
+ font-weight:950;
+
+ box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.plan-heart{
+ position:absolute;
+
+ z-index:3;
+
+ right:12px;
+ top:12px;
+
+ width:39px;
+ height:39px;
+
+ border-radius:50%;
+
+ background:rgba(255,255,255,.94);
+
+ font-size:19px;
+
+ box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+ transition:.2s;
+}
+
+.plan-heart.liked{
+ color:#ef4444;
+}
+
+.plan-content{
+ padding:16px;
+}
+
+.plan-title{
+ font-size:19px;
+
+ font-weight:950;
+
+ letter-spacing:-.5px;
 }
 
 .plan-info{
-    padding:20px;
+ margin-top:7px;
+
+ color:var(--muted);
+
+ font-size:12px;
+
+ line-height:1.55;
 }
 
-.info-row{
-    display:flex;
-    gap:13px;
+.plan-footer{
+ margin-top:15px;
 
-    padding:13px 0;
+ display:flex;
 
-    border-bottom:1px solid var(--border);
+ align-items:center;
+
+ justify-content:space-between;
 }
 
-.info-icon{
-    width:40px;
-    height:40px;
-
-    border-radius:12px;
-
-    background:#F0EBFF;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.plan-users{
+ display:flex;
 }
 
-.info-content strong{
-    display:block;
-    font-size:13px;
+.plan-users img{
+ width:31px;
+ height:31px;
+
+ object-fit:cover;
+
+ border-radius:50%;
+
+ border:2px solid var(--card);
+
+ margin-left:-7px;
 }
 
-.info-content span{
-    font-size:12px;
-    color:var(--muted);
+.plan-users img:first-child{
+ margin-left:0;
 }
 
-.primary-full{
-    width:100%;
+.join-btn{
+ padding:11px 17px;
 
-    padding:15px;
+ border-radius:14px;
 
-    border-radius:15px;
+ background:
+ linear-gradient(
+  135deg,
+  #6d28d9,
+  #8b5cf6
+ );
 
-    background:var(--primary);
-    color:white;
+ color:white;
 
-    font-weight:850;
+ font-weight:950;
 
-    box-shadow:0 8px 20px rgba(139,92,246,.2);
+ box-shadow:
+  0 8px 18px rgba(124,58,237,.25);
+
+ transition:.2s;
+}
+
+.join-btn:active{
+ transform:scale(.95);
+}
+
+/* =========================================================
+   QUICK CARDS
+========================================================= */
+
+.quick{
+ display:grid;
+
+ grid-template-columns:repeat(4,1fr);
+
+ gap:9px;
+}
+
+.quick-card{
+ min-height:96px;
+
+ background:var(--card);
+
+ border-radius:20px;
+
+ padding:13px 6px;
+
+ box-shadow:var(--shadow);
+
+ color:var(--text);
+
+ border:1px solid rgba(124,58,237,.04);
+
+ transition:.2s;
+}
+
+.quick-card:active{
+ transform:scale(.94);
+}
+
+.quick-card:nth-child(1){
+ background:linear-gradient(145deg,#fff7ed,#ffedd5);
+}
+
+.quick-card:nth-child(2){
+ background:linear-gradient(145deg,#f5f3ff,#ede9fe);
+}
+
+.quick-card:nth-child(3){
+ background:linear-gradient(145deg,#eff6ff,#dbeafe);
+}
+
+.quick-card:nth-child(4){
+ background:linear-gradient(145deg,#fdf2f8,#fce7f3);
+}
+
+.quick-icon{
+ font-size:25px;
+}
+
+.quick-card span{
+ display:block;
+
+ margin-top:7px;
+
+ font-size:10px;
+
+ font-weight:900;
+}
+
+/* =========================================================
+   FEATURED
+========================================================= */
+
+.featured{
+ display:grid;
+
+ grid-template-columns:1fr 1fr;
+
+ gap:11px;
+}
+
+.feature-card{
+ height:165px;
+
+ border-radius:22px;
+
+ overflow:hidden;
+
+ position:relative;
+
+ color:white;
+
+ box-shadow:var(--shadow);
+}
+
+.feature-card img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+
+ transition:.4s;
+}
+
+.feature-card:hover img{
+ transform:scale(1.06);
+}
+
+.feature-card:after{
+ content:"";
+
+ position:absolute;
+
+ inset:0;
+
+ background:
+ linear-gradient(
+  transparent 30%,
+  rgba(0,0,0,.8)
+ );
+}
+
+.feature-info{
+ position:absolute;
+
+ z-index:2;
+
+ bottom:12px;
+
+ left:12px;
+
+ right:8px;
+}
+
+.feature-info strong{
+ display:block;
+
+ font-size:14px;
+}
+
+.feature-info span{
+ font-size:11px;
+
+ opacity:.9;
 }
 
 /* =========================================================
    CHAT
-   ========================================================= */
+========================================================= */
 
 .chat-list{
-    display:flex;
-    flex-direction:column;
-    gap:7px;
+ display:flex;
+
+ flex-direction:column;
+
+ gap:10px;
 }
 
-.chat-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
+.chat{
+ width:100%;
 
-    padding:13px;
+ background:var(--card);
 
-    background:var(--surface);
+ border-radius:21px;
 
-    border-radius:17px;
+ padding:12px;
+
+ display:flex;
+
+ align-items:center;
+
+ gap:12px;
+
+ box-shadow:var(--shadow);
+
+ color:var(--text);
+
+ text-align:left;
 }
 
-.chat-avatar{
-    width:52px;
-    height:52px;
-    border-radius:50%;
+.chat img{
+ width:58px;
+ height:58px;
 
-    object-fit:cover;
+ border-radius:50%;
 
-    flex:none;
+ object-fit:cover;
+
+ border:3px solid #ede9fe;
 }
 
-.chat-content{
-    flex:1;
-    min-width:0;
+.chat-info{
+ flex:1;
+
+ min-width:0;
 }
 
-.chat-top{
-    display:flex;
-    justify-content:space-between;
-    gap:8px;
+.chat-info strong{
+ font-size:14px;
 }
 
-.chat-name{
-    font-weight:850;
-    font-size:14px;
+.chat-info p{
+ margin-top:4px;
+
+ color:var(--muted);
+
+ font-size:12px;
+
+ white-space:nowrap;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 }
 
 .chat-time{
-    font-size:10px;
-    color:var(--muted);
-}
+ color:#999;
 
-.chat-preview{
-    margin-top:4px;
-    color:var(--muted);
-    font-size:12px;
-
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
-
-/* =========================================================
-   CHAT ROOM
-   ========================================================= */
-
-.chat-room{
-    min-height:100vh;
-
-    display:flex;
-    flex-direction:column;
-
-    background:#F8F7FB;
-}
-
-.chat-room-header{
-    display:flex;
-    align-items:center;
-    gap:11px;
-
-    padding:
-        calc(10px + env(safe-area-inset-top))
-        14px
-        10px;
-
-    background:white;
-
-    border-bottom:1px solid var(--border);
-}
-
-.chat-room-header img{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-}
-
-.chat-room-user{
-    flex:1;
-}
-
-.chat-room-user strong{
-    display:block;
-    font-size:14px;
-}
-
-.chat-room-user span{
-    color:var(--success);
-    font-size:10px;
-}
-
-.messages{
-    flex:1;
-
-    padding:18px;
-
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-
-    overflow-y:auto;
-}
-
-.message{
-    max-width:78%;
-
-    padding:10px 13px;
-
-    border-radius:17px;
-
-    font-size:13px;
-    line-height:1.4;
-}
-
-.message.received{
-    align-self:flex-start;
-    background:white;
-    border-bottom-left-radius:5px;
-}
-
-.message.sent{
-    align-self:flex-end;
-    background:var(--primary);
-    color:white;
-    border-bottom-right-radius:5px;
-}
-
-.message-time{
-    font-size:9px;
-    opacity:.55;
-    margin-top:4px;
-    text-align:right;
-}
-
-.chat-input{
-    display:flex;
-    gap:8px;
-
-    padding:
-        10px
-        12px
-        calc(10px + env(safe-area-inset-bottom));
-
-    background:white;
-
-    border-top:1px solid var(--border);
-}
-
-.chat-input input{
-    flex:1;
-
-    border:0;
-    outline:0;
-
-    background:#F2F0F6;
-
-    padding:12px 14px;
-
-    border-radius:14px;
-}
-
-.send-btn{
-    width:45px;
-    height:45px;
-
-    border-radius:14px;
-
-    background:var(--primary);
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ font-size:10px;
 }
 
 /* =========================================================
    PROFILE
-   ========================================================= */
+========================================================= */
 
 .profile-cover{
-    height:170px;
+ height:190px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #8B5CF6,
-            #EC4899
-        );
+ background:
+ radial-gradient(
+  circle at 85% 15%,
+  rgba(255,255,255,.25),
+  transparent 20%
+ ),
+ linear-gradient(
+  135deg,
+  #5b21b6,
+  #7c3aed,
+  #a855f7,
+  #ec4899
+ );
 
-    position:relative;
+ position:relative;
+
+ border-radius:0 0 32px 32px;
+
+ overflow:hidden;
 }
 
-.profile-content{
-    margin-top:-55px;
-    position:relative;
-    z-index:2;
-    padding:0 18px;
+.profile-cover:after{
+ content:"";
+
+ position:absolute;
+
+ width:220px;
+ height:220px;
+
+ border-radius:50%;
+
+ right:-100px;
+ bottom:-130px;
+
+ background:rgba(255,255,255,.12);
 }
 
 .profile-photo{
-    width:110px;
-    height:110px;
+ width:112px;
+ height:112px;
 
-    border-radius:50%;
+ padding:4px;
 
-    border:5px solid var(--bg);
+ position:absolute;
 
-    object-fit:cover;
+ left:50%;
+ bottom:-56px;
+
+ transform:translateX(-50%);
+
+ border-radius:50%;
+
+ background:
+ linear-gradient(
+  135deg,
+  #7c3aed,
+  #ec4899
+ );
+
+ box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
-.profile-name{
-    font-size:26px;
-    font-weight:900;
-    margin-top:10px;
+.profile-photo img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+
+ border-radius:50%;
+
+ border:4px solid var(--card);
 }
 
-.profile-handle{
-    color:var(--muted);
-    font-size:13px;
+.profile-info{
+ text-align:center;
+
+ padding:68px 16px 10px;
 }
 
-.profile-bio{
-    margin-top:12px;
-    line-height:1.5;
-    font-size:13px;
+.profile-info h2{
+ font-size:24px;
+
+ letter-spacing:-.7px;
+}
+
+.profile-info p{
+ margin-top:5px;
+
+ color:var(--muted);
+
+ font-size:13px;
+}
+
+.profile-badges{
+ display:flex;
+
+ justify-content:center;
+
+ gap:7px;
+
+ margin-top:12px;
+}
+
+.profile-badge{
+ padding:7px 10px;
+
+ border-radius:12px;
+
+ background:#ede9fe;
+
+ color:var(--primary);
+
+ font-size:10px;
+
+ font-weight:900;
 }
 
 .profile-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+ margin:15px 16px 22px;
 
-    margin:20px 0;
+ padding:18px;
 
-    background:var(--surface);
+ background:var(--card);
 
-    border:1px solid var(--border);
+ border-radius:22px;
 
-    border-radius:18px;
-    overflow:hidden;
+ display:grid;
+
+ grid-template-columns:repeat(3,1fr);
+
+ box-shadow:var(--shadow);
 }
 
 .stat{
-    padding:15px 8px;
-    text-align:center;
+ text-align:center;
+
+ position:relative;
 }
 
-.stat:not(:last-child){
-    border-right:1px solid var(--border);
+.stat:not(:last-child):after{
+ content:"";
+
+ position:absolute;
+
+ right:0;
+
+ top:5px;
+
+ height:32px;
+
+ width:1px;
+
+ background:var(--border);
 }
 
 .stat strong{
-    display:block;
-    font-size:19px;
+ display:block;
+
+ font-size:20px;
 }
 
 .stat span{
-    color:var(--muted);
-    font-size:10px;
-}
+ color:var(--muted);
 
-.profile-actions{
-    display:flex;
-    gap:9px;
-}
-
-.profile-actions button{
-    flex:1;
-    padding:12px;
-    border-radius:13px;
-    font-weight:800;
-}
-
-.edit-profile{
-    background:var(--primary);
-    color:white;
-}
-
-.share-profile{
-    background:var(--surface);
-    border:1px solid var(--border);
+ font-size:11px;
 }
 
 /* =========================================================
    SETTINGS
-   ========================================================= */
+========================================================= */
 
 .settings-list{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
+ display:flex;
 
-.setting-group{
-    margin-bottom:20px;
-}
+ flex-direction:column;
 
-.setting-group-title{
-    color:var(--muted);
-    font-size:12px;
-    font-weight:800;
-    text-transform:uppercase;
-    margin:0 5px 8px;
+ gap:9px;
 }
 
 .setting{
-    display:flex;
-    align-items:center;
-    gap:13px;
+ width:100%;
 
-    background:var(--surface);
+ background:var(--card);
 
-    padding:14px;
+ border-radius:19px;
 
-    border-radius:15px;
+ padding:15px;
 
-    border:1px solid var(--border);
+ display:flex;
+
+ align-items:center;
+
+ gap:13px;
+
+ color:var(--text);
+
+ text-align:left;
+
+ box-shadow:var(--shadow);
 }
 
 .setting-icon{
-    width:40px;
-    height:40px;
+ width:42px;
+ height:42px;
 
-    border-radius:12px;
+ flex-shrink:0;
 
-    background:#F1EDFF;
+ border-radius:14px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ background:
+ linear-gradient(
+  135deg,
+  #ede9fe,
+  #fce7f3
+ );
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ font-size:19px;
 }
 
-.setting-info{
-    flex:1;
+.setting div:nth-child(2){
+ flex:1;
 }
 
-.setting-info strong{
-    display:block;
-    font-size:13px;
+.setting strong{
+ display:block;
+
+ font-size:13px;
 }
 
-.setting-info span{
-    color:var(--muted);
-    font-size:10px;
+.setting small{
+ display:block;
+
+ margin-top:3px;
+
+ color:var(--muted);
+
+ font-size:11px;
 }
 
-.chevron{
-    color:#AAA;
-}
+.setting b{
+ color:#aaa;
 
-/* =========================================================
-   TOGGLE
-   ========================================================= */
-
-.toggle{
-    width:45px;
-    height:26px;
-
-    background:#D6D2DC;
-
-    border-radius:99px;
-
-    padding:3px;
-
-    transition:.2s;
-}
-
-.toggle span{
-    display:block;
-
-    width:20px;
-    height:20px;
-
-    border-radius:50%;
-
-    background:white;
-
-    transition:.2s;
-}
-
-.toggle.active{
-    background:var(--primary);
-}
-
-.toggle.active span{
-    transform:translateX(19px);
+ font-size:20px;
 }
 
 /* =========================================================
-   BOTTOM NAV
-   ========================================================= */
+   NAVIGATION
+========================================================= */
 
 .bottom-nav{
-    position:fixed;
+ position:fixed;
 
-    left:50%;
-    transform:translateX(-50%);
+ z-index:200;
 
-    bottom:0;
+ left:50%;
 
-    z-index:100;
+ bottom:0;
 
-    width:min(760px,100%);
+ transform:translateX(-50%);
 
-    height:calc(var(--nav-height) + env(safe-area-inset-bottom));
+ width:100%;
 
-    padding-bottom:env(safe-area-inset-bottom);
+ max-width:700px;
 
-    background:rgba(255,255,255,.95);
+ padding:
+ 9px
+ 8px
+ calc(9px + env(safe-area-inset-bottom));
 
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
+ display:grid;
 
-    border-top:1px solid var(--border);
+ grid-template-columns:repeat(5,1fr);
 
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
+ background:rgba(255,255,255,.92);
+
+ backdrop-filter:blur(25px);
+
+ -webkit-backdrop-filter:blur(25px);
+
+ border-top:1px solid rgba(0,0,0,.06);
 }
 
-.nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+.nav-btn{
+ position:relative;
 
-    gap:4px;
+ background:transparent;
 
-    background:transparent;
+ color:#918b98;
 
-    color:#89838F;
+ display:flex;
 
-    font-size:10px;
-    font-weight:700;
-}
+ flex-direction:column;
 
-.nav-item.active{
-    color:var(--primary);
+ align-items:center;
+
+ gap:4px;
+
+ font-size:10px;
+
+ font-weight:900;
 }
 
 .nav-icon{
-    width:34px;
-    height:30px;
+ font-size:21px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:11px;
+ line-height:1;
 }
 
-.nav-item.active .nav-icon{
-    background:#F0EBFF;
+.nav-btn.active{
+ color:var(--primary);
 }
 
-/* =========================================================
-   FAB
-   ========================================================= */
+.nav-btn.active:before{
+ content:"";
 
-.fab{
-    position:fixed;
+ position:absolute;
 
-    right:20px;
-    bottom:calc(var(--nav-height) + 18px);
+ top:-9px;
 
-    z-index:90;
+ width:35px;
 
-    width:56px;
-    height:56px;
+ height:4px;
 
-    border-radius:18px;
+ border-radius:0 0 8px 8px;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--secondary)
-        );
-
-    color:white;
-
-    font-size:25px;
-
-    box-shadow:
-        0 12px 28px rgba(139,92,246,.3);
+ background:
+ linear-gradient(
+  90deg,
+  #7c3aed,
+  #ec4899
+ );
 }
 
 /* =========================================================
    MODAL
-   ========================================================= */
+========================================================= */
 
 .modal{
-    position:fixed;
-    inset:0;
+ position:fixed;
 
-    z-index:200;
+ inset:0;
 
-    background:rgba(20,15,30,.5);
+ z-index:500;
 
-    backdrop-filter:blur(5px);
+ display:none;
 
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
+ align-items:flex-end;
+
+ padding:10px;
+
+ background:rgba(0,0,0,.55);
+
+ backdrop-filter:blur(4px);
 }
 
-.modal-card{
-    width:min(760px,100%);
-
-    max-height:92vh;
-
-    overflow-y:auto;
-
-    background:var(--surface);
-
-    border-radius:28px 28px 0 0;
-
-    padding:20px;
-
-    animation:slideUp .25s ease;
+.modal.show{
+ display:flex;
 }
 
-@keyframes slideUp{
-    from{
-        transform:translateY(100%);
-    }
-    to{
-        transform:translateY(0);
-    }
+.modal-box{
+ width:100%;
+
+ max-width:680px;
+
+ margin:auto;
+
+ padding:22px;
+
+ border-radius:30px;
+
+ background:var(--card);
+
+ box-shadow:0 -10px 50px rgba(0,0,0,.2);
+
+ animation:up .25s ease;
+
+ max-height:90vh;
+
+ overflow:auto;
 }
 
-.modal-handle{
-    width:42px;
-    height:5px;
-
-    border-radius:99px;
-
-    background:#D8D4DE;
-
-    margin:0 auto 18px;
+@keyframes up{
+ from{
+  opacity:0;
+  transform:translateY(40px);
+ }
+ to{
+  opacity:1;
+  transform:none;
+ }
 }
 
-.modal-title{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:16px;
+.modal-close{
+ float:right;
+
+ width:37px;
+ height:37px;
+
+ border-radius:50%;
+
+ background:#f1eef4;
+
+ color:var(--text);
 }
 
-.form-group{
-    margin-bottom:14px;
+.modal-box h2{
+ margin-top:24px;
+
+ font-size:22px;
 }
 
-.form-group label{
-    display:block;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:6px;
-}
+.modal-box p{
+ color:var(--muted);
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-    width:100%;
+ margin-top:8px;
 
-    border:1px solid var(--border);
-    outline:0;
+ line-height:1.5;
 
-    background:#FAF9FC;
-
-    border-radius:13px;
-
-    padding:12px;
-
-    color:var(--text);
-}
-
-.form-group textarea{
-    min-height:100px;
-    resize:vertical;
-}
-
-.modal-actions{
-    display:flex;
-    gap:9px;
-    margin-top:18px;
-}
-
-.modal-actions button{
-    flex:1;
-    padding:13px;
-    border-radius:13px;
-    font-weight:800;
-}
-
-.cancel-btn{
-    background:#F1EFF4;
-}
-
-.confirm-btn{
-    background:var(--primary);
-    color:white;
+ font-size:13px;
 }
 
 /* =========================================================
    TOAST
-   ========================================================= */
+========================================================= */
 
 .toast{
-    position:fixed;
+ position:fixed;
 
-    z-index:500;
+ z-index:800;
 
-    left:50%;
-    bottom:calc(var(--nav-height) + 25px);
+ left:50%;
 
-    transform:translate(-50%,20px);
+ bottom:105px;
 
-    background:#17151F;
-    color:white;
+ transform:translate(-50%,20px);
 
-    padding:12px 17px;
+ background:#17131f;
 
-    border-radius:13px;
+ color:white;
 
-    font-size:12px;
-    font-weight:700;
+ padding:13px 18px;
 
-    opacity:0;
-    pointer-events:none;
+ border-radius:16px;
 
-    transition:.25s;
+ font-size:13px;
 
-    box-shadow:var(--shadow-lg);
+ font-weight:850;
 
-    max-width:90%;
-    text-align:center;
+ opacity:0;
+
+ pointer-events:none;
+
+ transition:.25s;
+
+ white-space:nowrap;
+
+ box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 .toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+ opacity:1;
+
+ transform:translate(-50%,0);
 }
 
 /* =========================================================
    EMPTY
-   ========================================================= */
+========================================================= */
 
 .empty{
-    text-align:center;
-    padding:45px 20px;
-    color:var(--muted);
+ width:100%;
+
+ padding:40px 20px;
+
+ text-align:center;
+
+ color:var(--muted);
 }
 
-.empty-icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
+.empty div{
+ font-size:43px;
 
-.empty strong{
-    display:block;
-    color:var(--text);
-    margin-bottom:5px;
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(min-width:600px){
-
-    .page-content{
-        padding:24px;
-    }
-
-    .cards-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .card-image{
-        height:175px;
-    }
-}
-
-@media(max-width:370px){
-
-    .cards-grid{
-        gap:9px;
-    }
-
-    .card-image{
-        height:135px;
-    }
-
-    .hero h1{
-        font-size:28px;
-    }
+ margin-bottom:8px;
 }
 
 /* =========================================================
    DARK MODE
-   ========================================================= */
+========================================================= */
 
 body.dark{
-    --bg:#0F0D14;
-    --surface:#18151F;
-    --surface-2:#24202D;
+ --bg:#0b0910;
+ --card:#17131e;
+ --card2:#1c1725;
+ --text:#f8f5fc;
+ --muted:#aaa3b3;
+ --border:#2b2435;
 
-    --text:#F7F5FA;
-    --muted:#A7A1B0;
-    --border:#2D2937;
-}
-
-body.dark .top-header{
-    background:rgba(15,13,20,.9);
+ background:
+ radial-gradient(
+  circle at 10% 0%,
+  rgba(124,58,237,.12),
+  transparent 25%
+ ),
+ #0b0910;
 }
 
 body.dark .bottom-nav{
-    background:rgba(24,21,31,.96);
+ background:rgba(23,19,30,.94);
+ border-top-color:#292331;
 }
 
-body.dark .search-box input,
-body.dark .form-group input,
-body.dark .form-group textarea,
-body.dark .form-group select{
-    color:white;
-    background:#211D29;
+body.dark .setting-icon{
+ background:#281d3b;
 }
 
-body.dark .chat-room{
-    background:#0F0D14;
+body.dark .profile-badge{
+ background:#281d3b;
 }
 
-body.dark .message.received{
-    background:#211D29;
+body.dark .modal-close{
+ background:#292331;
+ color:white;
 }
 
-body.dark .chat-input{
-    background:#18151F;
+body.dark .hero-btn{
+ color:#6d28d9;
 }
+
+body.dark .chat img{
+ border-color:#35284c;
+}
+
+/* =========================================================
+   DESKTOP
+========================================================= */
+
+@media(min-width:700px){
+
+ body{
+  background:#e8e4ee;
+ }
+
+ .app{
+  box-shadow:0 0 80px rgba(0,0,0,.13);
+  background:var(--bg);
+ }
+
+ .bottom-nav{
+  border-radius:24px 24px 0 0;
+ }
+
+}
+
+/* =========================================================
+   SMALL SCREEN
+========================================================= */
+
+@media(max-width:380px){
+
+ .hero h2{
+  font-size:30px;
+ }
+
+ .category{
+  min-width:120px;
+ }
+
+ .person{
+  min-width:170px;
+ }
+
+ .quick{
+  gap:6px;
+ }
+
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+ *{
+  scroll-behavior:auto!important;
+  animation:none!important;
+  transition:none!important;
+ }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div id="app">
+<div class="app">
 
-    <!-- =====================================================
-         INICIO
-         ===================================================== -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-    <main id="homePage" class="page">
+<header class="header">
 
-        <header class="top-header">
+ <div class="brand">
 
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                NEXO
-            </div>
+  <div class="logo">
+   C
+  </div>
 
-            <div class="header-actions">
+  <div>
 
-                <button class="icon-btn"
-                        onclick="openSearch()"
-                        aria-label="Buscar">
-                    🔎
-                </button>
+   <h1>CONECTA</h1>
 
-                <button class="icon-btn"
-                        onclick="showNotifications()"
-                        aria-label="Notificaciones">
+   <span>
+    Personas · Planes · Experiencias
+   </span>
 
-                    🔔
+  </div>
 
-                    <span class="badge">3</span>
+ </div>
 
-                </button>
 
-            </div>
+ <div class="header-actions">
 
-        </header>
+  <button
+   class="icon-btn"
+   onclick="toggleDark()"
+   aria-label="Modo oscuro">
 
-        <div class="page-content">
+   🌙
 
-            <section class="hero">
+  </button>
 
-                <div class="hero-content">
 
-                    <h1>Conecta con gente que comparte tu mundo.</h1>
+  <button
+   class="icon-btn"
+   onclick="showToast('No tienes notificaciones nuevas 🔔')"
+   aria-label="Notificaciones">
 
-                    <p>
-                        Descubre personas, crea planes, únete a actividades
-                        y construye nuevas conexiones.
-                    </p>
+   🔔
 
-                    <button class="hero-btn"
-                            onclick="navigate('connect')">
-                        Explorar personas
-                    </button>
+  </button>
 
-                </div>
+ </div>
 
-            </section>
+</header>
 
-            <div class="search-box">
 
-                <span>🔎</span>
+<!-- =====================================================
+     INICIO
+===================================================== -->
 
-                <input
-                    id="homeSearch"
-                    type="search"
-                    placeholder="Buscar personas, planes, grupos..."
-                    oninput="globalSearch(this.value)">
+<main id="homeView" class="view active">
 
-            </div>
 
-            <section class="section">
+<section class="hero">
 
-                <div class="section-head">
-                    <h2 class="section-title">Explora</h2>
-                    <button class="see-all"
-                            onclick="navigate('plans')">
-                        Ver todo
-                    </button>
-                </div>
+ <div class="hero-content">
 
-                <div class="categories">
+  <div class="hero-badge">
+   ✨ BIENVENIDO A CONECTA
+  </div>
 
-                    <button class="category active"
-                            onclick="filterCategory('Todos',this)">
-                        <div class="category-icon">✨</div>
-                        <span>Todos</span>
-                    </button>
+  <h2>
+   Conoce gente.<br>
+   Comparte planes.<br>
+   Vive más.
+  </h2>
 
-                    <button class="category"
-                            onclick="filterCategory('Deporte',this)">
-                        <div class="category-icon">🏃</div>
-                        <span>Deporte</span>
-                    </button>
+  <p>
+   Encuentra personas, actividades y experiencias
+   que encajan contigo.
+  </p>
 
-                    <button class="category"
-                            onclick="filterCategory('Gym',this)">
-                        <div class="category-icon">🏋️</div>
-                        <span>Gym</span>
-                    </button>
+  <div class="hero-buttons">
 
-                    <button class="category"
-                            onclick="filterCategory('Cine',this)">
-                        <div class="category-icon">🎬</div>
-                        <span>Cine</span>
-                    </button>
+   <button
+    class="hero-btn"
+    onclick="goTo('connect')">
 
-                    <button class="category"
-                            onclick="filterCategory('Comida',this)">
-                        <div class="category-icon">🍔</div>
-                        <span>Comida</span>
-                    </button>
+    Empezar a conectar →
 
-                    <button class="category"
-                            onclick="filterCategory('Viajes',this)">
-                        <div class="category-icon">✈️</div>
-                        <span>Viajes</span>
-                    </button>
+   </button>
 
-                    <button class="category"
-                            onclick="filterCategory('Gaming',this)">
-                        <div class="category-icon">🎮</div>
-                        <span>Gaming</span>
-                    </button>
 
-                </div>
+   <button
+    class="hero-btn secondary"
+    onclick="goTo('plans')">
 
-            </section>
+    Ver planes
 
-            <section class="section">
+   </button>
 
-                <div class="section-head">
+  </div>
 
-                    <h2 class="section-title">
-                        Planes destacados
-                    </h2>
+ </div>
 
-                    <button class="see-all"
-                            onclick="navigate('plans')">
-                        Ver todos
-                    </button>
+</section>
 
-                </div>
 
-                <div id="featuredPlans"
-                     class="featured-list">
-                </div>
+<!-- BUSCADOR -->
 
-            </section>
+<div class="search">
 
-            <section class="section">
+ <span class="search-icon">
+  🔎
+ </span>
 
-                <div class="section-head">
-
-                    <h2 class="section-title">
-                        Cerca de ti
-                    </h2>
-
-                    <button class="see-all"
-                            onclick="navigate('plans')">
-                        Mapa
-                    </button>
-
-                </div>
-
-                <div id="homePlans"
-                     class="cards-grid">
-                </div>
-
-            </section>
-
-            <section class="section">
-
-                <div class="section-head">
-
-                    <h2 class="section-title">
-                        Personas para ti
-                    </h2>
-
-                    <button class="see-all"
-                            onclick="navigate('connect')">
-                        Ver todas
-                    </button>
-
-                </div>
-
-                <div id="homePeople"
-                     class="people-list">
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         CONECTAR
-         ===================================================== -->
-
-    <main id="connectPage"
-          class="page hidden">
-
-        <header class="top-header">
-
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                Conectar
-            </div>
-
-            <button class="icon-btn"
-                    onclick="openSearch()">
-                🔎
-            </button>
-
-        </header>
-
-        <div class="page-content">
-
-            <div class="search-box">
-
-                <span>🔎</span>
-
-                <input
-                    id="peopleSearch"
-                    type="search"
-                    placeholder="Busca personas..."
-                    oninput="renderPeople(this.value)">
-
-            </div>
-
-            <section class="section">
-
-                <div class="section-head">
-
-                    <h2 class="section-title">
-                        Personas compatibles
-                    </h2>
-
-                </div>
-
-                <div id="peopleGrid"
-                     class="cards-grid">
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         PLANES
-         ===================================================== -->
-
-    <main id="plansPage"
-          class="page hidden">
-
-        <header class="top-header">
-
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                Planes
-            </div>
-
-            <button class="icon-btn"
-                    onclick="openCreatePlan()">
-                ＋
-            </button>
-
-        </header>
-
-        <div class="page-content">
-
-            <div class="search-box">
-
-                <span>🔎</span>
-
-                <input
-                    id="planSearch"
-                    type="search"
-                    placeholder="Buscar planes..."
-                    oninput="renderPlans(this.value)">
-
-            </div>
-
-            <section class="section">
-
-                <div class="section-head">
-
-                    <h2 class="section-title">
-                        Descubre planes
-                    </h2>
-
-                    <span id="planCounter"
-                          class="see-all">
-                    </span>
-
-                </div>
-
-                <div id="plansGrid"
-                     class="cards-grid">
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         CHAT
-         ===================================================== -->
-
-    <main id="chatPage"
-          class="page hidden">
-
-        <header class="top-header">
-
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                Chats
-            </div>
-
-            <button class="icon-btn"
-                    onclick="showToast('Nuevo chat')">
-                ✎
-            </button>
-
-        </header>
-
-        <div class="page-content">
-
-            <div class="search-box">
-
-                <span>🔎</span>
-
-                <input
-                    type="search"
-                    placeholder="Buscar conversaciones..."
-                    oninput="renderChats(this.value)">
-
-            </div>
-
-            <div id="chatList"
-                 class="chat-list">
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         PERFIL
-         ===================================================== -->
-
-    <main id="profilePage"
-          class="page hidden">
-
-        <header class="top-header">
-
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                Perfil
-            </div>
-
-            <button class="icon-btn"
-                    onclick="navigate('settings')">
-                ⚙️
-            </button>
-
-        </header>
-
-        <div class="profile-cover"></div>
-
-        <div class="profile-content">
-
-            <img
-                class="profile-photo"
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
-                alt="Fernando">
-
-            <h1 class="profile-name">
-                Fernando
-            </h1>
-
-            <div class="profile-handle">
-                @fernando
-            </div>
-
-            <p class="profile-bio">
-                Me gusta el deporte, descubrir sitios nuevos,
-                viajar, entrenar y conocer gente con buenas energías.
-            </p>
-
-            <div class="profile-stats">
-
-                <div class="stat">
-                    <strong id="followersCount">248</strong>
-                    <span>Conexiones</span>
-                </div>
-
-                <div class="stat">
-                    <strong>32</strong>
-                    <span>Planes</span>
-                </div>
-
-                <div class="stat">
-                    <strong>4.9</strong>
-                    <span>Valoración</span>
-                </div>
-
-            </div>
-
-            <div class="profile-actions">
-
-                <button class="edit-profile"
-                        onclick="openEditProfile()">
-                    Editar perfil
-                </button>
-
-                <button class="share-profile"
-                        onclick="shareProfile()">
-                    Compartir
-                </button>
-
-            </div>
-
-            <section class="section"
-                     style="margin-top:25px">
-
-                <div class="section-head">
-                    <h2 class="section-title">
-                        Mis planes
-                    </h2>
-                </div>
-
-                <div id="myPlans"
-                     class="cards-grid">
-                </div>
-
-            </section>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         AJUSTES
-         ===================================================== -->
-
-    <main id="settingsPage"
-          class="page hidden">
-
-        <header class="top-header">
-
-            <div class="logo">
-                <div class="logo-mark">N</div>
-                Ajustes
-            </div>
-
-            <button class="icon-btn"
-                    onclick="navigate('profile')">
-                ←
-            </button>
-
-        </header>
-
-        <div class="page-content">
-
-            <div class="setting-group">
-
-                <div class="setting-group-title">
-                    Cuenta
-                </div>
-
-                <div class="settings-list">
-
-                    <button class="setting"
-                            onclick="openEditProfile()">
-
-                        <div class="setting-icon">👤</div>
-
-                        <div class="setting-info">
-                            <strong>Editar perfil</strong>
-                            <span>Nombre, foto y descripción</span>
-                        </div>
-
-                        <span class="chevron">›</span>
-
-                    </button>
-
-                    <button class="setting"
-                            onclick="showToast('Preferencias abiertas')">
-
-                        <div class="setting-icon">🎯</div>
-
-                        <div class="setting-info">
-                            <strong>Preferencias</strong>
-                            <span>Intereses y planes recomendados</span>
-                        </div>
-
-                        <span class="chevron">›</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="setting-group">
-
-                <div class="setting-group-title">
-                    Aplicación
-                </div>
-
-                <div class="settings-list">
-
-                    <div class="setting">
-
-                        <div class="setting-icon">🌙</div>
-
-                        <div class="setting-info">
-                            <strong>Modo oscuro</strong>
-                            <span>Cambiar apariencia</span>
-                        </div>
-
-                        <button
-                            id="darkToggle"
-                            class="toggle"
-                            onclick="toggleDarkMode()">
-                            <span></span>
-                        </button>
-
-                    </div>
-
-                    <div class="setting">
-
-                        <div class="setting-icon">🔔</div>
-
-                        <div class="setting-info">
-                            <strong>Notificaciones</strong>
-                            <span>Recibir avisos de NEXO</span>
-                        </div>
-
-                        <button
-                            id="notificationToggle"
-                            class="toggle active"
-                            onclick="toggleSetting(this)">
-                            <span></span>
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="setting-group">
-
-                <div class="setting-group-title">
-                    Privacidad y seguridad
-                </div>
-
-                <div class="settings-list">
-
-                    <button class="setting"
-                            onclick="showToast('Privacidad')">
-
-                        <div class="setting-icon">🔒</div>
-
-                        <div class="setting-info">
-                            <strong>Privacidad</strong>
-                            <span>Controla quién puede verte</span>
-                        </div>
-
-                        <span class="chevron">›</span>
-
-                    </button>
-
-                    <button class="setting"
-                            onclick="showToast('Seguridad')">
-
-                        <div class="setting-icon">🛡️</div>
-
-                        <div class="setting-info">
-                            <strong>Seguridad</strong>
-                            <span>Protección de tu cuenta</span>
-                        </div>
-
-                        <span class="chevron">›</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="setting-group">
-
-                <div class="setting-group-title">
-                    Información
-                </div>
-
-                <div class="settings-list">
-
-                    <button class="setting"
-                            onclick="showToast('NEXO v1.0')">
-
-                        <div class="setting-icon">ℹ️</div>
-
-                        <div class="setting-info">
-                            <strong>Sobre NEXO</strong>
-                            <span>Versión 1.0</span>
-                        </div>
-
-                        <span class="chevron">›</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </main>
-
-
-    <!-- =====================================================
-         NAVEGACIÓN
-         ===================================================== -->
-
-    <nav class="bottom-nav">
-
-        <button
-            class="nav-item active"
-            data-page="home"
-            onclick="navigate('home')">
-
-            <div class="nav-icon">⌂</div>
-            <span>Inicio</span>
-
-        </button>
-
-        <button
-            class="nav-item"
-            data-page="connect"
-            onclick="navigate('connect')">
-
-            <div class="nav-icon">👥</div>
-            <span>Conectar</span>
-
-        </button>
-
-        <button
-            class="nav-item"
-            data-page="plans"
-            onclick="navigate('plans')">
-
-            <div class="nav-icon">📍</div>
-            <span>Planes</span>
-
-        </button>
-
-        <button
-            class="nav-item"
-            data-page="chat"
-            onclick="navigate('chat')">
-
-            <div class="nav-icon">
-                💬
-            </div>
-
-            <span>Chat</span>
-
-        </button>
-
-        <button
-            class="nav-item"
-            data-page="profile"
-            onclick="navigate('profile')">
-
-            <div class="nav-icon">👤</div>
-            <span>Perfil</span>
-
-        </button>
-
-    </nav>
-
-
-    <button class="fab"
-            onclick="openCreatePlan()">
-        ＋
-    </button>
+ <input
+  id="searchInput"
+  type="search"
+  placeholder="Buscar personas, planes o actividades..."
+  oninput="searchAll()">
 
 </div>
 
 
-<!-- =========================================================
-     MODAL
-     ========================================================= -->
+<!-- CATEGORÍAS -->
 
-<div id="modal"
-     class="modal hidden"
-     onclick="closeModalOutside(event)">
+<section class="section">
 
-    <div id="modalCard"
-         class="modal-card">
+ <div class="section-head">
 
-    </div>
+  <h2>
+   🔥 Explora
+  </h2>
+
+  <button onclick="showAllCategories()">
+   Ver todas
+  </button>
+
+ </div>
+
+ <div
+  id="categories"
+  class="categories">
+ </div>
+
+</section>
+
+
+<!-- PERSONAS -->
+
+<section class="section">
+
+ <div class="section-head">
+
+  <h2>
+   ✨ Descubre personas
+  </h2>
+
+  <button onclick="goTo('connect')">
+   Ver más
+  </button>
+
+ </div>
+
+ <div
+  id="people"
+  class="people">
+ </div>
+
+</section>
+
+
+<!-- PLANES -->
+
+<section class="section">
+
+ <div class="section-head">
+
+  <h2>
+   📅 Planes para ti
+  </h2>
+
+  <button onclick="goTo('plans')">
+   Ver todos
+  </button>
+
+ </div>
+
+ <div
+  id="homePlans"
+  class="plans">
+ </div>
+
+</section>
+
+
+<!-- EXPERIENCIAS -->
+
+<section class="section">
+
+ <div class="section-head">
+
+  <h2>
+   🌟 Experiencias
+  </h2>
+
+ </div>
+
+ <div
+  id="featured"
+  class="featured">
+ </div>
+
+</section>
+
+
+<!-- ACCESOS -->
+
+<section class="section">
+
+ <div class="section-head">
+
+  <h2>
+   ⚡ Accesos rápidos
+  </h2>
+
+ </div>
+
+ <div class="quick">
+
+
+  <button
+   class="quick-card"
+   onclick="createPlan()">
+
+   <div class="quick-icon">
+    ➕
+   </div>
+
+   <span>
+    Crear plan
+   </span>
+
+  </button>
+
+
+  <button
+   class="quick-card"
+   onclick="goTo('connect')">
+
+   <div class="quick-icon">
+    🤝
+   </div>
+
+   <span>
+    Conectar
+   </span>
+
+  </button>
+
+
+  <button
+   class="quick-card"
+   onclick="goTo('chat')">
+
+   <div class="quick-icon">
+    💬
+   </div>
+
+   <span>
+    Chats
+   </span>
+
+  </button>
+
+
+  <button
+   class="quick-card"
+   onclick="goTo('profile')">
+
+   <div class="quick-icon">
+    👤
+   </div>
+
+   <span>
+    Perfil
+   </span>
+
+  </button>
+
+
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     CONECTA
+===================================================== -->
+
+<main
+ id="connectView"
+ class="view">
+
+<section
+ class="section"
+ style="padding-top:20px">
+
+ <div class="section-head">
+
+  <h2>
+   🤝 Conecta
+  </h2>
+
+ </div>
+
+
+ <div
+  class="search"
+  style="margin:0 0 18px">
+
+  <span class="search-icon">
+   🔎
+  </span>
+
+  <input
+   placeholder="Buscar personas..."
+   oninput="filterPeople(this.value)">
+
+ </div>
+
+
+ <div
+  id="connectPeople"
+  class="people"
+  style="
+   display:grid;
+   grid-template-columns:1fr 1fr;
+   overflow:visible;
+  ">
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     PLANES
+===================================================== -->
+
+<main
+ id="plansView"
+ class="view">
+
+<section
+ class="section"
+ style="padding-top:20px">
+
+ <div class="section-head">
+
+  <h2>
+   📅 Planes
+  </h2>
+
+  <button onclick="createPlan()">
+   + Crear
+  </button>
+
+ </div>
+
+
+ <div
+  class="search"
+  style="margin:0 0 18px">
+
+  <span class="search-icon">
+   🔎
+  </span>
+
+  <input
+   placeholder="Buscar planes..."
+   oninput="filterPlans(this.value)">
+
+ </div>
+
+
+ <div
+  id="allPlans"
+  class="plans">
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     CHAT
+===================================================== -->
+
+<main
+ id="chatView"
+ class="view">
+
+<section
+ class="section"
+ style="padding-top:20px">
+
+ <div class="section-head">
+
+  <h2>
+   💬 Chats
+  </h2>
+
+ </div>
+
+
+ <div
+  id="chatList"
+  class="chat-list">
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     PERFIL
+===================================================== -->
+
+<main
+ id="profileView"
+ class="view">
+
+
+<div class="profile-cover">
+
+ <div class="profile-photo">
+
+  <img
+   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
+   alt="Perfil">
+
+ </div>
 
 </div>
 
 
-<!-- =========================================================
+<div class="profile-info">
+
+ <h2>
+  Tu perfil
+ </h2>
+
+ <p>
+  Descubre · Conecta · Comparte
+ </p>
+
+
+ <div class="profile-badges">
+
+  <span class="profile-badge">
+   🏃 Running
+  </span>
+
+  <span class="profile-badge">
+   ✈️ Viajes
+  </span>
+
+  <span class="profile-badge">
+   🎵 Música
+  </span>
+
+ </div>
+
+</div>
+
+
+<div class="profile-stats">
+
+ <div class="stat">
+
+  <strong>
+   128
+  </strong>
+
+  <span>
+   Conexiones
+  </span>
+
+ </div>
+
+
+ <div class="stat">
+
+  <strong>
+   24
+  </strong>
+
+  <span>
+   Planes
+  </span>
+
+ </div>
+
+
+ <div class="stat">
+
+  <strong>
+   8
+  </strong>
+
+  <span>
+   Intereses
+  </span>
+
+ </div>
+
+</div>
+
+
+<section class="section">
+
+ <div class="settings-list">
+
+
+  <button
+   class="setting"
+   onclick="showToast('Editor de perfil próximamente ✨')">
+
+   <div class="setting-icon">
+    ✏️
+   </div>
+
+   <div>
+
+    <strong>
+     Editar perfil
+    </strong>
+
+    <small>
+     Foto, nombre, descripción e intereses
+    </small>
+
+   </div>
+
+   <b>
+    ›
+   </b>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="showToast('Tus intereses están guardados ❤️')">
+
+   <div class="setting-icon">
+    ❤️
+   </div>
+
+   <div>
+
+    <strong>
+     Mis intereses
+    </strong>
+
+    <small>
+     Running · Gym · Viajes · Música
+    </small>
+
+   </div>
+
+   <b>
+    ›
+   </b>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="showToast('Ajustes de privacidad 🔒')">
+
+   <div class="setting-icon">
+    🔒
+   </div>
+
+   <div>
+
+    <strong>
+     Privacidad
+    </strong>
+
+    <small>
+     Controla quién puede encontrarte
+    </small>
+
+   </div>
+
+   <b>
+    ›
+   </b>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="showToast('Ajustes de notificaciones 🔔')">
+
+   <div class="setting-icon">
+    🔔
+   </div>
+
+   <div>
+
+    <strong>
+     Notificaciones
+    </strong>
+
+    <small>
+     Mensajes, conexiones y planes
+    </small>
+
+   </div>
+
+   <b>
+    ›
+   </b>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="toggleDark()">
+
+   <div class="setting-icon">
+    🌙
+   </div>
+
+   <div>
+
+    <strong>
+     Apariencia
+    </strong>
+
+    <small>
+     Modo claro / oscuro
+    </small>
+
+   </div>
+
+   <b>
+    ›
+   </b>
+
+  </button>
+
+
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+ <button
+  class="nav-btn active"
+  data-view="home"
+  onclick="goTo('home')">
+
+  <span class="nav-icon">
+   ⌂
+  </span>
+
+  Inicio
+
+ </button>
+
+
+ <button
+  class="nav-btn"
+  data-view="connect"
+  onclick="goTo('connect')">
+
+  <span class="nav-icon">
+   🤝
+  </span>
+
+  Conecta
+
+ </button>
+
+
+ <button
+  class="nav-btn"
+  data-view="plans"
+  onclick="goTo('plans')">
+
+  <span class="nav-icon">
+   📅
+  </span>
+
+  Planes
+
+ </button>
+
+
+ <button
+  class="nav-btn"
+  data-view="chat"
+  onclick="goTo('chat')">
+
+  <span class="nav-icon">
+   💬
+  </span>
+
+  Chat
+
+ </button>
+
+
+ <button
+  class="nav-btn"
+  data-view="profile"
+  onclick="goTo('profile')">
+
+  <span class="nav-icon">
+   👤
+  </span>
+
+  Perfil
+
+ </button>
+
+
+</nav>
+
+</div>
+
+
+<!-- =====================================================
      TOAST
-     ========================================================= -->
+===================================================== -->
 
-<div id="toast"
-     class="toast">
+<div
+ id="toast"
+ class="toast">
+</div>
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+ id="modal"
+ class="modal"
+ onclick="closeModal(event)">
+
+ <div class="modal-box">
+
+  <button
+   class="modal-close"
+   onclick="closeModal()">
+
+   ✕
+
+  </button>
+
+  <div id="modalContent"></div>
+
+ </div>
+
 </div>
 
 
 <script>
 
 /* =========================================================
-   NEXO — DATOS
-   ========================================================= */
+   DATOS
+========================================================= */
 
-const IMG = {
-    running:
-    "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=85",
+const categories = [
 
-    gym:
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Running",
+  icon:"🏃",
+  image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=90"
+ },
 
-    football:
-    "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Gym",
+  icon:"💪",
+  image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=90"
+ },
 
-    cinema:
-    "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Fútbol",
+  icon:"⚽",
+  image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=90"
+ },
 
-    food:
-    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Ciclismo",
+  icon:"🚴",
+  image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=90"
+ },
 
-    beach:
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Senderismo",
+  icon:"🥾",
+  image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=90"
+ },
 
-    travel:
-    "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85",
+ {
+  name:"Viajes",
+  icon:"✈️",
+  image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=90"
+ },
 
-    gaming:
-    "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=85"
-};
+ {
+  name:"Cine",
+  icon:"🎬",
+  image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=90"
+ },
 
+ {
+  name:"Música",
+  icon:"🎵",
+  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Gaming",
+  icon:"🎮",
+  image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Comida",
+  icon:"🍔",
+  image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Playa",
+  icon:"🏖️",
+  image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Fotografía",
+  icon:"📸",
+  image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Pádel",
+  icon:"🎾",
+  image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Natación",
+  icon:"🏊",
+  image:"https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Cocina",
+  icon:"👨‍🍳",
+  image:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Arte",
+  icon:"🎨",
+  image:"https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Naturaleza",
+  icon:"🌿",
+  image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=90"
+ },
+
+ {
+  name:"Mascotas",
+  icon:"🐶",
+  image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=90"
+ }
+
+];
+
+
+/* =========================================================
+   PERSONAS
+========================================================= */
 
 const people = [
 
-    {
-        id:1,
-        name:"Laura",
-        age:27,
-        city:"Tarragona",
-        interest:"Running · Viajes",
-        image:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=85",
-        online:true
-    },
+ {
+  name:"Laura",
+  age:27,
+  city:"Tarragona",
+  interest:"Running",
+  image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=90"
+ },
 
-    {
-        id:2,
-        name:"Marc",
-        age:29,
-        city:"Reus",
-        interest:"Gym · Fútbol",
-        image:
-        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=85",
-        online:true
-    },
+ {
+  name:"Marc",
+  age:29,
+  city:"Reus",
+  interest:"Gym",
+  image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=90"
+ },
 
-    {
-        id:3,
-        name:"Sara",
-        age:25,
-        city:"Salou",
-        interest:"Cine · Comida",
-        image:
-        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=85",
-        online:false
-    },
+ {
+  name:"Sergio",
+  age:31,
+  city:"Salou",
+  interest:"Fútbol",
+  image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=90"
+ },
 
-    {
-        id:4,
-        name:"David",
-        age:31,
-        city:"Vila-seca",
-        interest:"Gaming · Gym",
-        image:
-        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=85",
-        online:true
-    },
+ {
+  name:"Claudia",
+  age:25,
+  city:"Vila-seca",
+  interest:"Viajes",
+  image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=90"
+ },
 
-    {
-        id:5,
-        name:"Clara",
-        age:28,
-        city:"Tarragona",
-        interest:"Viajes · Playa",
-        image:
-        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=85",
-        online:true
-    },
+ {
+  name:"David",
+  age:28,
+  city:"Tarragona",
+  interest:"Ciclismo",
+  image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=90"
+ },
 
-    {
-        id:6,
-        name:"Alex",
-        age:30,
-        city:"Reus",
-        interest:"Fútbol · Running",
-        image:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=85",
-        online:false
-    }
+ {
+  name:"Nerea",
+  age:26,
+  city:"Cambrils",
+  interest:"Cine",
+  image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=90"
+ },
+
+ {
+  name:"Alex",
+  age:30,
+  city:"Salou",
+  interest:"Pádel",
+  image:"https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=90"
+ },
+
+ {
+  name:"Marta",
+  age:28,
+  city:"Reus",
+  interest:"Fotografía",
+  image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=90"
+ }
 
 ];
 
 
-let plans = [
+/* =========================================================
+   PLANES
+========================================================= */
 
-    {
-        id:1,
-        title:"Running al atardecer",
-        category:"Deporte",
-        location:"Tarragona",
-        date:"Hoy · 19:30",
-        participants:8,
-        max:12,
-        image:IMG.running,
-        description:
-        "Ruta tranquila para correr y conocer gente nueva."
-    },
+const plans = [
 
-    {
-        id:2,
-        title:"Entreno de gym",
-        category:"Gym",
-        location:"Vila-seca",
-        date:"Mañana · 18:00",
-        participants:5,
-        max:8,
-        image:IMG.gym,
-        description:
-        "Entrenamiento conjunto y motivación."
-    },
+ {
+  title:"Running por la playa",
+  tag:"RUNNING",
+  info:"🏃 7 km · 📍 La Pineda · Hoy",
+  image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:3,
-        title:"Partido de fútbol",
-        category:"Deporte",
-        location:"Reus",
-        date:"Sábado · 17:00",
-        participants:10,
-        max:14,
-        image:IMG.football,
-        description:
-        "Partido amateur. Todos los niveles."
-    },
+ {
+  title:"Entrenamiento de gym",
+  tag:"GYM",
+  info:"💪 Entrenamiento · 📍 Tarragona · Mañana",
+  image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:4,
-        title:"Cine + cena",
-        category:"Cine",
-        location:"Tarragona",
-        date:"Viernes · 20:30",
-        participants:4,
-        max:8,
-        image:IMG.cinema,
-        description:
-        "Película y algo para cenar después."
-    },
+ {
+  title:"Partido de fútbol",
+  tag:"FÚTBOL",
+  info:"⚽ 5 vs 5 · 📍 Reus · Sábado",
+  image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:5,
-        title:"Cena entre gente nueva",
-        category:"Comida",
-        location:"Tarragona",
-        date:"Domingo · 21:00",
-        participants:7,
-        max:10,
-        image:IMG.food,
-        description:
-        "Una cena para ampliar tu círculo."
-    },
+ {
+  title:"Ruta en bicicleta",
+  tag:"CICLISMO",
+  info:"🚴 25 km · 📍 Tarragona · Domingo",
+  image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:6,
-        title:"Tarde de playa",
-        category:"Viajes",
-        location:"La Pineda",
-        date:"Domingo · 16:00",
-        participants:6,
-        max:10,
-        image:IMG.beach,
-        description:
-        "Playa, música y buen ambiente."
-    },
+ {
+  title:"Senderismo por la montaña",
+  tag:"NATURALEZA",
+  info:"🥾 10 km · 📍 Montañas · Domingo",
+  image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:7,
-        title:"Escapada de fin de semana",
-        category:"Viajes",
-        location:"Costa Brava",
-        date:"Próximo sábado",
-        participants:5,
-        max:8,
-        image:IMG.travel,
-        description:
-        "Organizamos una pequeña escapada."
-    },
+ {
+  title:"Tarde de cine",
+  tag:"CINE",
+  info:"🎬 Película · 📍 Tarragona · Viernes",
+  image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=90"
+ },
 
-    {
-        id:8,
-        title:"Gaming Night",
-        category:"Gaming",
-        location:"Tarragona",
-        date:"Viernes · 22:00",
-        participants:9,
-        max:12,
-        image:IMG.gaming,
-        description:
-        "Noche gaming y competición."
-    }
+ {
+  title:"Partida de pádel",
+  tag:"PÁDEL",
+  info:"🎾 4 personas · 📍 Reus · Sábado",
+  image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=90"
+ }
 
 ];
 
+
+/* =========================================================
+   CHATS
+========================================================= */
 
 const chats = [
 
-    {
-        id:1,
-        name:"Laura",
-        image:people[0].image,
-        time:"12:42",
-        preview:"¿Al final salimos a correr?",
-        messages:[
-            {
-                from:"received",
-                text:"¿Al final salimos a correr?",
-                time:"12:40"
-            },
-            {
-                from:"sent",
-                text:"Sí, sobre las 19:30.",
-                time:"12:42"
-            }
-        ]
-    },
+ {
+  name:"Laura",
+  message:"¿Hacemos el running mañana?",
+  time:"12:42",
+  image:people[0].image
+ },
 
-    {
-        id:2,
-        name:"Marc",
-        image:people[1].image,
-        time:"11:15",
-        preview:"Te paso el plan del gym.",
-        messages:[
-            {
-                from:"received",
-                text:"Te paso el plan del gym.",
-                time:"11:15"
-            }
-        ]
-    },
+ {
+  name:"Marc",
+  message:"Perfecto, nos vemos en el gym.",
+  time:"11:30",
+  image:people[1].image
+ },
 
-    {
-        id:3,
-        name:"Sara",
-        image:people[2].image,
-        time:"Ayer",
-        preview:"La película empieza a las 20:30.",
-        messages:[
-            {
-                from:"received",
-                text:"La película empieza a las 20:30.",
-                time:"Ayer"
-            }
-        ]
-    }
+ {
+  name:"Claudia",
+  message:"He encontrado un plan increíble.",
+  time:"Ayer",
+  image:people[3].image
+ },
+
+ {
+  name:"Nerea",
+  message:"¿Qué película vemos?",
+  time:"Ayer",
+  image:people[5].image
+ }
 
 ];
 
 
 /* =========================================================
-   ESTADO
-   ========================================================= */
+   EXPERIENCIAS
+========================================================= */
 
-let currentPage = "home";
-let selectedCategory = "Todos";
-let currentChat = null;
+const featured = [
 
+ {
+  title:"Atardecer en la playa",
+  subtitle:"Conoce gente nueva",
+  image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=90"
+ },
 
-/* =========================================================
-   NAVEGACIÓN
-   ========================================================= */
+ {
+  title:"Ruta de montaña",
+  subtitle:"Naturaleza + aventura",
+  image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=90"
+ },
 
-function navigate(page){
+ {
+  title:"Música en directo",
+  subtitle:"Disfruta y conecta",
+  image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=90"
+ },
 
-    if(page === "settings"){
-        document.querySelectorAll(".page")
-            .forEach(el => el.classList.add("hidden"));
+ {
+  title:"Gastronomía",
+  subtitle:"Descubre nuevos sabores",
+  image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=90"
+ }
 
-        document.getElementById("settingsPage")
-            .classList.remove("hidden");
-
-        document.querySelectorAll(".nav-item")
-            .forEach(el => el.classList.remove("active"));
-
-        currentPage = page;
-
-        window.scrollTo(0,0);
-
-        return;
-    }
-
-    document.querySelectorAll(".page")
-        .forEach(el => el.classList.add("hidden"));
-
-    const target =
-        document.getElementById(page + "Page");
-
-    if(target){
-        target.classList.remove("hidden");
-    }
-
-    document.querySelectorAll(".nav-item")
-        .forEach(el => {
-
-            el.classList.toggle(
-                "active",
-                el.dataset.page === page
-            );
-
-        });
-
-    currentPage = page;
-
-    window.scrollTo(0,0);
-
-    if(page === "home"){
-        renderHome();
-    }
-
-    if(page === "connect"){
-        renderPeople();
-    }
-
-    if(page === "plans"){
-        renderPlans();
-    }
-
-    if(page === "chat"){
-        renderChats();
-    }
-
-    if(page === "profile"){
-        renderMyPlans();
-    }
-}
+];
 
 
 /* =========================================================
-   HOME
-   ========================================================= */
+   CATEGORÍAS
+========================================================= */
 
-function renderHome(){
+function renderCategories(list=categories){
 
-    renderFeaturedPlans();
-    renderHomePlans();
-    renderHomePeople();
+ const container=document.getElementById("categories");
+
+ if(!container)return;
+
+ container.innerHTML=list.map(c=>`
+
+  <button
+   class="category"
+   onclick="selectCategory('${c.name}')">
+
+   <img
+    src="${c.image}"
+    alt="${c.name}"
+    loading="lazy">
+
+   <div class="category-info">
+
+    <div class="category-icon">
+     ${c.icon}
+    </div>
+
+    <div class="category-title">
+     ${c.name}
+    </div>
+
+   </div>
+
+  </button>
+
+ `).join("");
 
 }
 
 
 /* =========================================================
-   FEATURED
-   ========================================================= */
+   TODAS LAS CATEGORÍAS
+========================================================= */
 
-function renderFeaturedPlans(){
+function showAllCategories(){
 
-    const container =
-        document.getElementById("featuredPlans");
+ openModal(`
 
-    container.innerHTML =
-        plans.slice(0,5).map(plan => `
+  <h2>
+   🔥 Explora Conecta
+  </h2>
 
-            <article
-                class="featured-card"
-                onclick="openPlan(${plan.id})">
+  <p>
+   Encuentra una actividad que te guste.
+  </p>
 
-                <img
-                    src="${plan.image}"
-                    alt="${escapeHTML(plan.title)}">
+  <div style="
+   display:grid;
+   grid-template-columns:repeat(2,1fr);
+   gap:10px;
+   margin-top:18px;
+   max-height:55vh;
+   overflow:auto;
+  ">
 
-                <div class="featured-card-overlay">
+   ${categories.map(c=>`
 
-                    <h3>
-                        ${escapeHTML(plan.title)}
-                    </h3>
+    <button
+     onclick="closeModal();selectCategory('${c.name}')"
+     style="
+      border-radius:18px;
+      overflow:hidden;
+      height:115px;
+      position:relative;
+      color:white;
+      background:#ddd;
+     ">
 
-                    <p>
-                        ${plan.date} · ${plan.location}
-                    </p>
+     <img
+      src="${c.image}"
+      alt="${c.name}"
+      style="
+       width:100%;
+       height:100%;
+       object-fit:cover;
+      ">
 
-                </div>
+     <span style="
+      position:absolute;
+      inset:auto 9px 9px;
+      font-weight:950;
+      text-align:left;
+      text-shadow:0 2px 8px #000;
+     ">
+      ${c.icon} ${c.name}
+     </span>
 
-            </article>
+    </button>
 
-        `).join("");
+   `).join("")}
 
-}
+  </div>
 
-
-/* =========================================================
-   HOME PLANS
-   ========================================================= */
-
-function renderHomePlans(){
-
-    const container =
-        document.getElementById("homePlans");
-
-    container.innerHTML =
-        plans.slice(0,4)
-        .map(createPlanCard)
-        .join("");
-
-}
-
-
-/* =========================================================
-   HOME PEOPLE
-   ========================================================= */
-
-function renderHomePeople(){
-
-    const container =
-        document.getElementById("homePeople");
-
-    container.innerHTML =
-        people.slice(0,6)
-        .map(person => `
-
-            <article class="person-card">
-
-                <div class="person-photo">
-
-                    <img
-                        class="person-image"
-                        src="${person.image}"
-                        alt="${escapeHTML(person.name)}">
-
-                    ${
-                        person.online
-                        ? `<span class="online"></span>`
-                        : ""
-                    }
-
-                </div>
-
-                <div class="person-name">
-                    ${escapeHTML(person.name)}, ${person.age}
-                </div>
-
-                <div class="person-info">
-                    ${escapeHTML(person.city)}
-                </div>
-
-                <button
-                    class="connect-btn"
-                    onclick="connectPerson(${person.id},this)">
-                    Conectar
-                </button>
-
-            </article>
-
-        `).join("");
+ `);
 
 }
 
 
 /* =========================================================
-   PLAN CARD
-   ========================================================= */
+   PERSONAS
+========================================================= */
 
-function createPlanCard(plan){
+function personHTML(p){
 
-    return `
+ return `
 
-        <article
-            class="card"
-            onclick="openPlan(${plan.id})">
+  <article class="person">
 
-            <div class="card-image">
+   <div class="person-img">
 
-                <img
-                    src="${plan.image}"
-                    alt="${escapeHTML(plan.title)}">
+    <img
+     src="${p.image}"
+     alt="${p.name}"
+     loading="lazy">
 
-                <div class="card-gradient"></div>
+    <span class="online"></span>
 
-                <span class="card-tag">
-                    ${escapeHTML(plan.category)}
-                </span>
+   </div>
 
-                <button
-                    class="card-fav"
-                    onclick="toggleFavorite(event,this,${plan.id})">
-                    ♡
-                </button>
+   <div class="person-info">
 
-                <div class="card-image-info">
+    <div class="person-name">
+     ${p.name}, ${p.age}
+    </div>
 
-                    <h3>
-                        ${escapeHTML(plan.title)}
-                    </h3>
+    <div class="person-meta">
+     📍 ${p.city}
+    </div>
 
-                </div>
+    <div class="person-meta">
+     ✨ ${p.interest}
+    </div>
 
-            </div>
+    <button
+     class="connect-btn"
+     onclick="connectPerson(this,'${p.name}')">
 
-            <div class="card-body">
+     + Conectar
 
-                <p class="card-description">
-                    ${escapeHTML(plan.description)}
-                </p>
+    </button>
 
-                <div class="card-meta">
-                    📍 ${escapeHTML(plan.location)}
-                </div>
+   </div>
 
-                <div class="card-meta">
-                    🕐 ${escapeHTML(plan.date)}
-                </div>
+  </article>
 
-                <div class="card-footer">
+ `;
 
-                    <div class="avatar-stack">
+}
 
-                        ${people.slice(0,3).map(p => `
-                            <img
-                                src="${p.image}"
-                                alt="">
-                        `).join("")}
 
-                    </div>
+function renderPeople(list=people){
 
-                    <button
-                        class="join-btn"
-                        onclick="joinPlan(event,${plan.id})">
-                        Unirme
-                    </button>
+ const home=document.getElementById("people");
+ const connect=document.getElementById("connectPeople");
 
-                </div>
+ if(home){
+  home.innerHTML=list.map(personHTML).join("");
+ }
 
-            </div>
+ if(connect){
+  connect.innerHTML=list.map(personHTML).join("");
+ }
 
-        </article>
+}
 
-    `;
+
+function filterPeople(value){
+
+ value=value.toLowerCase().trim();
+
+ const results=people.filter(p=>
+  p.name.toLowerCase().includes(value) ||
+  p.city.toLowerCase().includes(value) ||
+  p.interest.toLowerCase().includes(value)
+ );
+
+ const container=document.getElementById("connectPeople");
+
+ if(!container)return;
+
+ container.innerHTML=results.length
+  ?results.map(personHTML).join("")
+  :`
+   <div class="empty">
+    <div>🔎</div>
+    No encontramos personas.
+   </div>
+  `;
 
 }
 
 
 /* =========================================================
    PLANES
-   ========================================================= */
+========================================================= */
 
-function renderPlans(search = ""){
+function planHTML(p){
 
-    const container =
-        document.getElementById("plansGrid");
+ return `
 
-    let filtered = plans;
+  <article class="plan">
 
-    if(selectedCategory !== "Todos"){
+   <div class="plan-img">
 
-        filtered =
-            filtered.filter(
-                p => p.category === selectedCategory
-            );
+    <img
+     src="${p.image}"
+     alt="${p.title}"
+     loading="lazy">
 
-    }
+    <span class="plan-tag">
+     ${p.tag}
+    </span>
 
-    if(search){
+    <button
+     class="plan-heart"
+     onclick="favoritePlan(this)"
+     aria-label="Favorito">
 
-        const q =
-            search.toLowerCase();
+     ♡
 
-        filtered =
-            filtered.filter(p =>
-                `${p.title}
-                 ${p.category}
-                 ${p.location}
-                 ${p.description}`
-                .toLowerCase()
-                .includes(q)
-            );
+    </button>
 
-    }
-
-    document.getElementById("planCounter")
-        .textContent =
-        `${filtered.length} planes`;
-
-    if(!filtered.length){
-
-        container.innerHTML = `
-
-            <div class="empty"
-                 style="grid-column:1/-1">
-
-                <div class="empty-icon">
-                    🔎
-                </div>
-
-                <strong>
-                    No encontramos planes
-                </strong>
-
-                <span>
-                    Prueba con otra búsqueda.
-                </span>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    container.innerHTML =
-        filtered.map(createPlanCard).join("");
-
-}
+   </div>
 
 
-/* =========================================================
-   FILTRO CATEGORÍA
-   ========================================================= */
+   <div class="plan-content">
 
-function filterCategory(category,button){
+    <div class="plan-title">
+     ${p.title}
+    </div>
 
-    selectedCategory = category;
+    <div class="plan-info">
+     ${p.info}
+    </div>
 
-    document.querySelectorAll(".category")
-        .forEach(el =>
-            el.classList.remove("active")
-        );
 
-    button.classList.add("active");
+    <div class="plan-footer">
 
-    renderPlans();
+     <div class="plan-users">
 
-    if(currentPage !== "plans"){
-        navigate("plans");
-    }
+      <img
+       src="${people[0].image}"
+       alt="Usuario">
+
+      <img
+       src="${people[1].image}"
+       alt="Usuario">
+
+      <img
+       src="${people[2].image}"
+       alt="Usuario">
+
+     </div>
+
+
+     <button
+      class="join-btn"
+      onclick="joinPlan('${p.title}')">
+
+      Unirme
+
+     </button>
+
+    </div>
+
+   </div>
+
+  </article>
+
+ `;
 
 }
 
 
-/* =========================================================
-   ABRIR PLAN
-   ========================================================= */
+function renderPlans(list=plans){
 
-function openPlan(id){
+ const home=document.getElementById("homePlans");
+ const all=document.getElementById("allPlans");
 
-    const plan =
-        plans.find(p => p.id === id);
+ if(home){
 
-    if(!plan) return;
+  home.innerHTML=list
+   .slice(0,3)
+   .map(planHTML)
+   .join("");
 
-    openModal(`
+ }
 
-        <div class="modal-handle"></div>
+ if(all){
 
-        <img
-            src="${plan.image}"
-            style="
-                height:210px;
-                border-radius:18px;
-                margin-bottom:16px;
-            "
-            alt="${escapeHTML(plan.title)}">
+  all.innerHTML=list
+   .map(planHTML)
+   .join("");
 
-        <div class="modal-title">
-            ${escapeHTML(plan.title)}
-        </div>
-
-        <p style="
-            color:var(--muted);
-            font-size:13px;
-            line-height:1.5;
-            margin-bottom:16px;
-        ">
-            ${escapeHTML(plan.description)}
-        </p>
-
-        <div class="info-row">
-
-            <div class="info-icon">
-                📍
-            </div>
-
-            <div class="info-content">
-                <strong>Ubicación</strong>
-                <span>${escapeHTML(plan.location)}</span>
-            </div>
-
-        </div>
-
-        <div class="info-row">
-
-            <div class="info-icon">
-                🕐
-            </div>
-
-            <div class="info-content">
-                <strong>Fecha</strong>
-                <span>${escapeHTML(plan.date)}</span>
-            </div>
-
-        </div>
-
-        <div class="info-row">
-
-            <div class="info-icon">
-                👥
-            </div>
-
-            <div class="info-content">
-                <strong>Participantes</strong>
-                <span>
-                    ${plan.participants}/${plan.max}
-                </span>
-            </div>
-
-        </div>
-
-        <div style="margin-top:18px">
-
-            <button
-                class="primary-full"
-                onclick="joinPlanFromModal(${plan.id})">
-
-                Unirme al plan
-
-            </button>
-
-        </div>
-
-    `);
+ }
 
 }
 
 
-/* =========================================================
-   JOIN PLAN
-   ========================================================= */
+function filterPlans(value){
 
-function joinPlan(event,id){
+ value=value.toLowerCase().trim();
 
-    if(event){
-        event.stopPropagation();
-    }
+ const results=plans.filter(p=>
+  p.title.toLowerCase().includes(value) ||
+  p.tag.toLowerCase().includes(value) ||
+  p.info.toLowerCase().includes(value)
+ );
 
-    const plan =
-        plans.find(p => p.id === id);
+ const container=document.getElementById("allPlans");
 
-    if(!plan) return;
+ if(!container)return;
 
-    if(plan.participants >= plan.max){
-
-        showToast("Este plan está completo.");
-
-        return;
-    }
-
-    plan.participants++;
-
-    showToast(
-        `Te has unido a "${plan.title}" 🎉`
-    );
-
-    renderHome();
-    renderPlans();
-
-}
-
-
-function joinPlanFromModal(id){
-
-    closeModal();
-
-    joinPlan(null,id);
+ container.innerHTML=results.length
+  ?results.map(planHTML).join("")
+  :`
+   <div class="empty">
+    <div>📅</div>
+    No encontramos planes.
+   </div>
+  `;
 
 }
 
 
 /* =========================================================
    FAVORITOS
-   ========================================================= */
+========================================================= */
 
-function toggleFavorite(event,button,id){
+function favoritePlan(button){
 
-    event.stopPropagation();
+ const liked=button.classList.toggle("liked");
 
-    button.classList.toggle("active");
+ button.textContent=liked
+  ?"♥"
+  :"♡";
 
-    button.textContent =
-        button.classList.contains("active")
-        ? "♥"
-        : "♡";
-
-    showToast(
-        button.classList.contains("active")
-        ? "Añadido a favoritos"
-        : "Eliminado de favoritos"
-    );
+ showToast(
+  liked
+   ?"Plan guardado ❤️"
+   :"Plan eliminado"
+ );
 
 }
 
 
 /* =========================================================
-   PEOPLE
-   ========================================================= */
+   UNIRSE
+========================================================= */
 
-function renderPeople(search = ""){
+function joinPlan(title){
 
-    const container =
-        document.getElementById("peopleGrid");
-
-    let result = people;
-
-    if(search){
-
-        const q =
-            search.toLowerCase();
-
-        result =
-            result.filter(p =>
-                `${p.name}
-                 ${p.city}
-                 ${p.interest}`
-                .toLowerCase()
-                .includes(q)
-            );
-
-    }
-
-    container.innerHTML =
-        result.map(person => `
-
-            <article class="card">
-
-                <div class="card-image">
-
-                    <img
-                        src="${person.image}"
-                        alt="${escapeHTML(person.name)}"
-                        style="height:100%">
-
-                    <div class="card-gradient"></div>
-
-                    <div class="card-image-info">
-
-                        <h3>
-                            ${escapeHTML(person.name)}, ${person.age}
-                        </h3>
-
-                    </div>
-
-                </div>
-
-                <div class="card-body">
-
-                    <div class="card-meta">
-                        📍 ${escapeHTML(person.city)}
-                    </div>
-
-                    <p class="card-description">
-                        ${escapeHTML(person.interest)}
-                    </p>
-
-                    <button
-                        class="primary-full"
-                        onclick="connectPerson(${person.id},this)">
-
-                        Conectar
-
-                    </button>
-
-                </div>
-
-            </article>
-
-        `).join("");
+ showToast(
+  `Te has unido a "${title}" 🎉`
+ );
 
 }
 
 
 /* =========================================================
-   CONNECT
-   ========================================================= */
+   EXPERIENCIAS
+========================================================= */
 
-function connectPerson(id,button){
+function renderFeatured(){
 
-    const person =
-        people.find(p => p.id === id);
+ const container=document.getElementById("featured");
 
-    if(!person) return;
+ if(!container)return;
 
-    button.classList.toggle("connected");
+ container.innerHTML=featured.map(x=>`
 
-    if(button.classList.contains("connected")){
+  <article
+   class="feature-card">
 
-        button.textContent = "✓ Conectado";
+   <img
+    src="${x.image}"
+    alt="${x.title}"
+    loading="lazy">
 
-        showToast(
-            `Ahora estás conectado con ${person.name}`
-        );
+   <div class="feature-info">
 
-    }else{
+    <strong>
+     ${x.title}
+    </strong>
 
-        button.textContent = "Conectar";
+    <span>
+     ${x.subtitle}
+    </span>
 
-    }
+   </div>
+
+  </article>
+
+ `).join("");
 
 }
 
 
 /* =========================================================
    CHAT
-   ========================================================= */
+========================================================= */
 
-function renderChats(search = ""){
+function renderChats(){
 
-    const container =
-        document.getElementById("chatList");
+ const container=document.getElementById("chatList");
 
-    let result = chats;
+ if(!container)return;
 
-    if(search){
+ container.innerHTML=chats.map(c=>`
 
-        const q =
-            search.toLowerCase();
+  <button
+   class="chat"
+   onclick="openChat('${c.name}')">
 
-        result =
-            result.filter(chat =>
-                `${chat.name} ${chat.preview}`
-                .toLowerCase()
-                .includes(q)
-            );
+   <img
+    src="${c.image}"
+    alt="${c.name}">
 
-    }
+   <div class="chat-info">
 
-    if(!result.length){
+    <strong>
+     ${c.name}
+    </strong>
 
-        container.innerHTML = `
+    <p>
+     ${c.message}
+    </p>
 
-            <div class="empty">
+   </div>
 
-                <div class="empty-icon">
-                    💬
-                </div>
+   <span class="chat-time">
+    ${c.time}
+   </span>
 
-                <strong>
-                    No hay conversaciones
-                </strong>
+  </button>
 
-            </div>
+ `).join("");
 
-        `;
+}
 
-        return;
-    }
 
-    container.innerHTML =
-        result.map(chat => `
+function openChat(name){
 
-            <button
-                class="chat-item"
-                onclick="openChat(${chat.id})">
+ openModal(`
 
-                <img
-                    class="chat-avatar"
-                    src="${chat.image}"
-                    alt="${escapeHTML(chat.name)}">
+  <h2>
+   💬 ${name}
+  </h2>
 
-                <div class="chat-content">
+  <p>
+   Tu conversación con ${name}.
+  </p>
 
-                    <div class="chat-top">
 
-                        <span class="chat-name">
-                            ${escapeHTML(chat.name)}
-                        </span>
+  <div style="
+   margin-top:18px;
+   background:var(--bg);
+   border-radius:18px;
+   padding:13px;
+  ">
 
-                        <span class="chat-time">
-                            ${escapeHTML(chat.time)}
-                        </span>
+   ¡Hola! 👋
 
-                    </div>
+  </div>
 
-                    <div class="chat-preview">
-                        ${escapeHTML(chat.preview)}
-                    </div>
 
-                </div>
+  <div
+   class="search"
+   style="margin:14px 0 0">
 
-            </button>
+   <input
+    id="messageInput"
+    placeholder="Escribe un mensaje...">
 
-        `).join("");
+   <button
+    onclick="sendMessage('${name}')">
+
+    ➤
+
+   </button>
+
+  </div>
+
+ `);
+
+}
+
+
+function sendMessage(name){
+
+ const input=
+  document.getElementById("messageInput");
+
+ if(!input || !input.value.trim()){
+
+  showToast("Escribe un mensaje 💬");
+
+  return;
+
+ }
+
+ showToast(
+  `Mensaje enviado a ${name} 💬`
+ );
+
+ closeModal();
 
 }
 
 
 /* =========================================================
-   OPEN CHAT
-   ========================================================= */
+   NAVEGACIÓN
+========================================================= */
 
-function openChat(id){
+function goTo(view){
 
-    currentChat =
-        chats.find(c => c.id === id);
+ document.querySelectorAll(".view")
+  .forEach(v=>{
+   v.classList.remove("active");
+  });
 
-    if(!currentChat) return;
 
-    openModal(`
+ const target=
+  document.getElementById(view+"View");
 
-        <div class="chat-room"
-             style="
-                margin:-20px;
-                min-height:85vh;
-             ">
+ if(target){
+  target.classList.add("active");
+ }
 
-            <div class="chat-room-header">
 
-                <button
-                    class="icon-btn"
-                    onclick="closeModal()">
-                    ←
-                </button>
+ document.querySelectorAll(".nav-btn")
+  .forEach(b=>{
+   b.classList.remove("active");
+  });
 
-                <img
-                    src="${currentChat.image}"
-                    alt="">
 
-                <div class="chat-room-user">
+ const nav=
+  document.querySelector(
+   `.nav-btn[data-view="${view}"]`
+  );
 
-                    <strong>
-                        ${escapeHTML(currentChat.name)}
-                    </strong>
+ if(nav){
+  nav.classList.add("active");
+ }
 
-                    <span>
-                        ● En línea
-                    </span>
 
-                </div>
-
-                <button
-                    class="icon-btn"
-                    onclick="showToast('Llamada próximamente')">
-                    📞
-                </button>
-
-                <button
-                    class="icon-btn"
-                    onclick="showToast('Videollamada próximamente')">
-                    📹
-                </button>
-
-            </div>
-
-            <div id="messages"
-                 class="messages">
-
-                ${currentChat.messages.map(m => `
-
-                    <div class="message ${m.from}">
-
-                        ${escapeHTML(m.text)}
-
-                        <div class="message-time">
-                            ${escapeHTML(m.time)}
-                        </div>
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-
-            <form
-                class="chat-input"
-                onsubmit="sendMessage(event)">
-
-                <input
-                    id="messageInput"
-                    autocomplete="off"
-                    placeholder="Escribe un mensaje...">
-
-                <button
-                    class="send-btn"
-                    type="submit">
-                    ➤
-                </button>
-
-            </form>
-
-        </div>
-
-    `);
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
 
 }
 
 
 /* =========================================================
-   SEND MESSAGE
-   ========================================================= */
+   CONECTAR PERSONA
+========================================================= */
 
-function sendMessage(event){
+function connectPerson(button,name){
 
-    event.preventDefault();
+ const connected=
+  button.classList.toggle("connected");
 
-    const input =
-        document.getElementById("messageInput");
+ button.textContent=
+  connected
+   ?"✓ Conectado"
+   :"+ Conectar";
 
-    if(!input || !currentChat) return;
 
-    const text =
-        input.value.trim();
-
-    if(!text) return;
-
-    const now =
-        new Date().toLocaleTimeString(
-            "es-ES",
-            {
-                hour:"2-digit",
-                minute:"2-digit"
-            }
-        );
-
-    currentChat.messages.push({
-        from:"sent",
-        text,
-        time:now
-    });
-
-    currentChat.preview = text;
-    currentChat.time = now;
-
-    input.value = "";
-
-    openChat(currentChat.id);
+ showToast(
+  connected
+   ?`Conectado con ${name} 🤝`
+   :`Has eliminado a ${name}`
+ );
 
 }
 
 
 /* =========================================================
    CREAR PLAN
-   ========================================================= */
+========================================================= */
 
-function openCreatePlan(){
+function createPlan(){
 
-    openModal(`
+ openModal(`
 
-        <div class="modal-handle"></div>
+  <h2>
+   ➕ Crear un plan
+  </h2>
 
-        <div class="modal-title">
-            Crear un plan
-        </div>
+  <p>
+   Crea una actividad y encuentra personas
+   que quieran compartirla contigo.
+  </p>
 
-        <form onsubmit="createPlan(event)">
 
-            <div class="form-group">
+  <div style="margin-top:18px">
 
-                <label>
-                    Nombre del plan
-                </label>
+   <input
+    id="newPlanName"
+    placeholder="Nombre del plan"
+    style="
+     width:100%;
+     height:52px;
+     border:1px solid var(--border);
+     border-radius:15px;
+     padding:0 14px;
+     outline:none;
+     background:var(--bg);
+     color:var(--text);
+    ">
 
-                <input
-                    id="newPlanTitle"
-                    required
-                    placeholder="Ej. Running al atardecer">
 
-            </div>
+   <button
+    class="join-btn"
+    style="
+     width:100%;
+     margin-top:12px;
+    "
+    onclick="saveNewPlan()">
 
-            <div class="form-group">
+    Crear plan
 
-                <label>
-                    Categoría
-                </label>
+   </button>
 
-                <select id="newPlanCategory">
+  </div>
 
-                    <option>Deporte</option>
-                    <option>Gym</option>
-                    <option>Cine</option>
-                    <option>Comida</option>
-                    <option>Viajes</option>
-                    <option>Gaming</option>
-
-                </select>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Ubicación
-                </label>
-
-                <input
-                    id="newPlanLocation"
-                    required
-                    placeholder="Tarragona">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Fecha
-                </label>
-
-                <input
-                    id="newPlanDate"
-                    required
-                    placeholder="Sábado · 18:00">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Descripción
-                </label>
-
-                <textarea
-                    id="newPlanDescription"
-                    required
-                    placeholder="Describe el plan..."></textarea>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Imagen
-                </label>
-
-                <select id="newPlanImage">
-
-                    <option value="${IMG.running}">
-                        Running
-                    </option>
-
-                    <option value="${IMG.gym}">
-                        Gym
-                    </option>
-
-                    <option value="${IMG.football}">
-                        Fútbol
-                    </option>
-
-                    <option value="${IMG.cinema}">
-                        Cine
-                    </option>
-
-                    <option value="${IMG.food}">
-                        Comida
-                    </option>
-
-                    <option value="${IMG.beach}">
-                        Playa
-                    </option>
-
-                    <option value="${IMG.travel}">
-                        Viajes
-                    </option>
-
-                    <option value="${IMG.gaming}">
-                        Gaming
-                    </option>
-
-                </select>
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    type="button"
-                    class="cancel-btn"
-                    onclick="closeModal()">
-                    Cancelar
-                </button>
-
-                <button
-                    type="submit"
-                    class="confirm-btn">
-                    Crear plan
-                </button>
-
-            </div>
-
-        </form>
-
-    `);
+ `);
 
 }
 
 
-function createPlan(event){
+function saveNewPlan(){
 
-    event.preventDefault();
+ const input=
+  document.getElementById("newPlanName");
 
-    const title =
-        document.getElementById("newPlanTitle").value.trim();
+ if(!input || !input.value.trim()){
 
-    const category =
-        document.getElementById("newPlanCategory").value;
+  showToast(
+   "Escribe un nombre para el plan"
+  );
 
-    const location =
-        document.getElementById("newPlanLocation").value.trim();
+  return;
 
-    const date =
-        document.getElementById("newPlanDate").value.trim();
+ }
 
-    const description =
-        document.getElementById("newPlanDescription").value.trim();
+ const name=
+  input.value.trim();
 
-    const image =
-        document.getElementById("newPlanImage").value;
+ closeModal();
 
-    const newPlan = {
-
-        id:Date.now(),
-
-        title,
-
-        category,
-
-        location,
-
-        date,
-
-        participants:1,
-
-        max:10,
-
-        image,
-
-        description
-
-    };
-
-    plans.unshift(newPlan);
-
-    saveData();
-
-    closeModal();
-
-    showToast("Plan creado correctamente 🎉");
-
-    renderHome();
-    renderPlans();
-    renderMyPlans();
+ showToast(
+  `Plan "${name}" creado 🎉`
+ );
 
 }
 
 
 /* =========================================================
-   MY PLANS
-   ========================================================= */
+   CATEGORÍA
+========================================================= */
 
-function renderMyPlans(){
+function selectCategory(name){
 
-    const container =
-        document.getElementById("myPlans");
+ const category=
+  categories.find(c=>c.name===name);
 
-    if(!container) return;
+ showToast(
+  `${category?.icon || "✨"} Explorando ${name}`
+ );
 
-    container.innerHTML =
-        plans.slice(0,3)
-        .map(createPlanCard)
-        .join("");
-
-}
-
-
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-function openSearch(){
-
-    openModal(`
-
-        <div class="modal-handle"></div>
-
-        <div class="modal-title">
-            Buscar en NEXO
-        </div>
-
-        <div class="search-box">
-
-            <span>🔎</span>
-
-            <input
-                id="globalSearchInput"
-                autofocus
-                placeholder="Personas, planes, grupos..."
-                oninput="globalSearch(this.value)">
-
-        </div>
-
-        <div id="globalResults"></div>
-
-    `);
-
-}
-
-
-function globalSearch(query){
-
-    const resultBox =
-        document.getElementById("globalResults");
-
-    if(!resultBox) return;
-
-    const q =
-        query.trim().toLowerCase();
-
-    if(!q){
-
-        resultBox.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    🔎
-                </div>
-
-                <strong>
-                    Busca algo en NEXO
-                </strong>
-
-                <span>
-                    Personas, planes, lugares...
-                </span>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    const matchingPlans =
-        plans.filter(p =>
-            `${p.title} ${p.category} ${p.location}`
-            .toLowerCase()
-            .includes(q)
-        );
-
-    const matchingPeople =
-        people.filter(p =>
-            `${p.name} ${p.city} ${p.interest}`
-            .toLowerCase()
-            .includes(q)
-        );
-
-    resultBox.innerHTML = `
-
-        <div class="section">
-
-            <div class="section-head">
-                <h3 class="section-title">
-                    Planes
-                </h3>
-            </div>
-
-            <div class="cards-grid">
-
-                ${
-                    matchingPlans.length
-                    ? matchingPlans
-                        .slice(0,4)
-                        .map(createPlanCard)
-                        .join("")
-                    : `
-                        <div class="empty"
-                             style="grid-column:1/-1">
-                            No hay planes.
-                        </div>
-                    `
-                }
-
-            </div>
-
-        </div>
-
-        <div class="section">
-
-            <div class="section-head">
-                <h3 class="section-title">
-                    Personas
-                </h3>
-            </div>
-
-            ${
-                matchingPeople.length
-                ? `
-                    <div class="people-list">
-
-                        ${matchingPeople.map(p => `
-
-                            <div class="person-card">
-
-                                <img
-                                    class="person-image"
-                                    src="${p.image}"
-                                    alt="">
-
-                                <div class="person-name">
-                                    ${escapeHTML(p.name)}
-                                </div>
-
-                                <div class="person-info">
-                                    ${escapeHTML(p.city)}
-                                </div>
-
-                            </div>
-
-                        `).join("")}
-
-                    </div>
-                `
-                : `
-                    <div class="empty">
-                        No hay personas.
-                    </div>
-                `
-            }
-
-        </div>
-
-    `;
+ goTo("plans");
 
 }
 
 
 /* =========================================================
-   NOTIFICACIONES
-   ========================================================= */
+   BÚSQUEDA GENERAL
+========================================================= */
 
-function showNotifications(){
+function searchAll(){
 
-    openModal(`
+ const input=
+  document.getElementById("searchInput");
 
-        <div class="modal-handle"></div>
+ if(!input)return;
 
-        <div class="modal-title">
-            Notificaciones
-        </div>
+ const value=
+  input.value
+   .toLowerCase()
+   .trim();
 
-        <div class="chat-list">
 
-            <div class="chat-item">
+ if(!value){
 
-                <div class="setting-icon">
-                    👥
-                </div>
+  renderPeople();
+  renderPlans();
 
-                <div class="chat-content">
+  return;
 
-                    <strong>
-                        Laura quiere conectar contigo
-                    </strong>
+ }
 
-                    <div class="chat-preview">
-                        Hace 5 minutos
-                    </div>
 
-                </div>
+ const peopleResults=
+  people.filter(p=>
+   p.name.toLowerCase().includes(value) ||
+   p.city.toLowerCase().includes(value) ||
+   p.interest.toLowerCase().includes(value)
+  );
 
-            </div>
 
-            <div class="chat-item">
+ const planResults=
+  plans.filter(p=>
+   p.title.toLowerCase().includes(value) ||
+   p.tag.toLowerCase().includes(value) ||
+   p.info.toLowerCase().includes(value)
+  );
 
-                <div class="setting-icon">
-                    📍
-                </div>
 
-                <div class="chat-content">
+ const peopleContainer=
+  document.getElementById("people");
 
-                    <strong>
-                        Tu plan tiene un nuevo participante
-                    </strong>
+ const plansContainer=
+  document.getElementById("homePlans");
 
-                    <div class="chat-preview">
-                        Hace 20 minutos
-                    </div>
 
-                </div>
+ if(peopleContainer){
 
-            </div>
+  peopleContainer.innerHTML=
+   peopleResults.length
+   ?peopleResults.map(personHTML).join("")
+   :`
+    <div class="empty">
+     <div>🔎</div>
+     No hay personas.
+    </div>
+   `;
 
-            <div class="chat-item">
+ }
 
-                <div class="setting-icon">
-                    💬
-                </div>
 
-                <div class="chat-content">
+ if(plansContainer){
 
-                    <strong>
-                        Tienes un mensaje nuevo
-                    </strong>
+  plansContainer.innerHTML=
+   planResults.length
+   ?planResults
+      .slice(0,3)
+      .map(planHTML)
+      .join("")
+   :`
+    <div class="empty">
+     <div>📅</div>
+     No hay planes.
+    </div>
+   `;
 
-                    <div class="chat-preview">
-                        Hace 1 hora
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `);
+ }
 
 }
 
 
 /* =========================================================
-   EDIT PROFILE
-   ========================================================= */
+   MODO OSCURO
+========================================================= */
 
-function openEditProfile(){
+function toggleDark(){
 
-    openModal(`
+ document.body.classList.toggle("dark");
 
-        <div class="modal-handle"></div>
+ const dark=
+  document.body.classList.contains("dark");
 
-        <div class="modal-title">
-            Editar perfil
-        </div>
 
-        <form onsubmit="saveProfile(event)">
+ localStorage.setItem(
+  "conecta-dark",
+  dark
+   ?"1"
+   :"0"
+ );
 
-            <div class="form-group">
 
-                <label>
-                    Nombre
-                </label>
-
-                <input
-                    id="profileNameInput"
-                    value="Fernando"
-                    required>
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Usuario
-                </label>
-
-                <input
-                    value="@fernando">
-
-            </div>
-
-            <div class="form-group">
-
-                <label>
-                    Biografía
-                </label>
-
-                <textarea
-                    id="profileBioInput">Me gusta el deporte, descubrir sitios nuevos, viajar, entrenar y conocer gente con buenas energías.</textarea>
-
-            </div>
-
-            <div class="modal-actions">
-
-                <button
-                    type="button"
-                    class="cancel-btn"
-                    onclick="closeModal()">
-                    Cancelar
-                </button>
-
-                <button
-                    type="submit"
-                    class="confirm-btn">
-                    Guardar
-                </button>
-
-            </div>
-
-        </form>
-
-    `);
+ showToast(
+  dark
+   ?"Modo oscuro activado 🌙"
+   :"Modo claro activado ☀️"
+ );
 
 }
 
 
-function saveProfile(event){
+if(
+ localStorage.getItem("conecta-dark")==="1"
+){
 
-    event.preventDefault();
-
-    const name =
-        document.getElementById("profileNameInput").value;
-
-    const bio =
-        document.getElementById("profileBioInput").value;
-
-    document.querySelector(".profile-name")
-        .textContent = name;
-
-    document.querySelector(".profile-bio")
-        .textContent = bio;
-
-    closeModal();
-
-    showToast("Perfil actualizado ✓");
-
-}
-
-
-/* =========================================================
-   SHARE PROFILE
-   ========================================================= */
-
-async function shareProfile(){
-
-    const data = {
-        title:"Mi perfil de NEXO",
-        text:"Conecta conmigo en NEXO."
-    };
-
-    try{
-
-        if(navigator.share){
-
-            await navigator.share(data);
-
-        }else{
-
-            showToast("Perfil preparado para compartir");
-
-        }
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-
-}
-
-
-/* =========================================================
-   DARK MODE
-   ========================================================= */
-
-function toggleDarkMode(){
-
-    document.body.classList.toggle("dark");
-
-    const active =
-        document.body.classList.contains("dark");
-
-    localStorage.setItem(
-        "nexo_dark",
-        active ? "1" : "0"
-    );
-
-    document
-        .getElementById("darkToggle")
-        .classList.toggle("active",active);
-
-}
-
-
-/* =========================================================
-   TOGGLE
-   ========================================================= */
-
-function toggleSetting(button){
-
-    button.classList.toggle("active");
+ document.body.classList.add("dark");
 
 }
 
 
 /* =========================================================
    MODAL
-   ========================================================= */
+========================================================= */
 
-function openModal(html){
+function openModal(content){
 
-    const modal =
-        document.getElementById("modal");
+ const contentBox=
+  document.getElementById("modalContent");
 
-    const card =
-        document.getElementById("modalCard");
+ const modal=
+  document.getElementById("modal");
 
-    card.innerHTML = html;
+ if(!contentBox || !modal)return;
 
-    modal.classList.remove("hidden");
+ contentBox.innerHTML=content;
 
-    document.body.style.overflow = "hidden";
-
-}
-
-
-function closeModal(){
-
-    document
-        .getElementById("modal")
-        .classList.add("hidden");
-
-    document.body.style.overflow = "";
+ modal.classList.add("show");
 
 }
 
 
-function closeModalOutside(event){
+function closeModal(event){
 
-    if(event.target.id === "modal"){
-        closeModal();
-    }
+ const modal=
+  document.getElementById("modal");
+
+ if(!modal)return;
+
+
+ if(
+  event &&
+  event.target!==modal
+ ){
+  return;
+ }
+
+
+ modal.classList.remove("show");
 
 }
 
 
 /* =========================================================
    TOAST
-   ========================================================= */
+========================================================= */
 
 let toastTimer;
 
 function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
+ const toast=
+  document.getElementById("toast");
 
-    toast.textContent = message;
+ if(!toast)return;
 
-    toast.classList.add("show");
+ toast.textContent=message;
 
-    clearTimeout(toastTimer);
+ toast.classList.add("show");
 
-    toastTimer =
-        setTimeout(() => {
+ clearTimeout(toastTimer);
 
-            toast.classList.remove("show");
-
-        },2500);
-
-}
-
-
-/* =========================================================
-   STORAGE
-   ========================================================= */
-
-function saveData(){
-
-    try{
-
-        localStorage.setItem(
-            "nexo_plans",
-            JSON.stringify(plans)
-        );
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-
-}
-
-
-function loadData(){
-
-    try{
-
-        const stored =
-            localStorage.getItem("nexo_plans");
-
-        if(stored){
-
-            const parsed =
-                JSON.parse(stored);
-
-            if(Array.isArray(parsed)){
-                plans = parsed;
-            }
-
-        }
-
-        const dark =
-            localStorage.getItem("nexo_dark");
-
-        if(dark === "1"){
-
-            document.body.classList.add("dark");
-
-            const toggle =
-                document.getElementById("darkToggle");
-
-            if(toggle){
-                toggle.classList.add("active");
-            }
-
-        }
-
-    }catch(error){
-
-        console.log(error);
-
-    }
+ toastTimer=
+  setTimeout(()=>{
+   toast.classList.remove("show");
+  },2500);
 
 }
 
 
 /* =========================================================
-   ESCAPE HTML
-   ========================================================= */
+   TECLADO
+========================================================= */
 
-function escapeHTML(value){
+document.addEventListener(
+ "keydown",
+ event=>{
 
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+  if(event.key==="Escape"){
+   closeModal();
+  }
 
-}
-
-
-/* =========================================================
-   SERVICE WORKER
-   ========================================================= */
-
-if("serviceWorker" in navigator){
-
-    window.addEventListener(
-        "load",
-        () => {
-
-            navigator.serviceWorker
-                .register("./sw.js")
-                .catch(error => {
-
-                    console.log(
-                        "Service Worker:",
-                        error
-                    );
-
-                });
-
-        }
-    );
-
-}
+ }
+);
 
 
 /* =========================================================
    INICIO
-   ========================================================= */
+========================================================= */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+ "DOMContentLoaded",
+ ()=>{
 
-        loadData();
+  renderCategories();
 
-        renderHome();
+  renderPeople();
 
-        renderChats();
+  renderPlans();
 
-        renderPeople();
+  renderFeatured();
 
-        renderPlans();
+  renderChats();
 
-        renderMyPlans();
-
-    }
+ }
 );
 
 
 /* =========================================================
-   PREVENIR DOBLE CLICK / ZOOM
-   ========================================================= */
+   SERVICE WORKER
+========================================================= */
 
-let lastTouchEnd = 0;
+if("serviceWorker" in navigator){
 
-document.addEventListener(
-    "touchend",
-    function(event){
+ window.addEventListener(
+  "load",
+  ()=>{
 
-        const now =
-            Date.now();
+   navigator.serviceWorker
+    .register("./sw.js")
+    .catch(error=>{
 
-        if(now - lastTouchEnd <= 300){
-            event.preventDefault();
-        }
+     console.log(
+      "Service Worker:",
+      error
+     );
 
-        lastTouchEnd = now;
+    });
 
-    },
-    {passive:false}
-);
+  }
+ );
+
+}
 
 </script>
 
