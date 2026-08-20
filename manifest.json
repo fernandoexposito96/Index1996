@@ -1,12 +1,13 @@
 {
-  "name": "NEXO — Conecta · Descubre · Hazlo",
+  "name": "NEXO",
   "short_name": "NEXO",
-  "description": "Conecta con personas, descubre planes, crea grupos y comparte experiencias.",
+  "description": "NEXO — conecta personas, descubre planes, crea grupos y encuentra nuevas experiencias.",
+  "id": "./",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#F7F5FC",
+  "orientation": "portrait-primary",
+  "background_color": "#0b0714",
   "theme_color": "#8B5CF6",
   "lang": "es",
   "dir": "ltr",
@@ -14,33 +15,99 @@
   "categories": [
     "social",
     "lifestyle",
-    "entertainment"
+    "entertainment",
+    "sports"
   ],
 
   "icons": [
     {
-      "src": "./icon-192.png",
-      "sizes": "192x192",
+      "src": "./icons/icon-72.png",
+      "sizes": "72x72",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "./icon-512.png",
+      "src": "./icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any",
+      "platform": "web"
+    },
+    {
+      "src": "./icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
 
+  "screenshots": [
+    {
+      "src": "./screenshots/nexo-home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "./screenshots/nexo-explorar.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+
   "shortcuts": [
     {
-      "name": "Conecta",
-      "short_name": "Conecta",
-      "description": "Encuentra personas compatibles.",
-      "url": "./index.html#connect",
+      "name": "Explorar",
+      "short_name": "Explorar",
+      "description": "Descubre personas, planes y actividades.",
+      "url": "./index.html#explorar",
       "icons": [
         {
-          "src": "./icon-192.png",
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Conectar",
+      "short_name": "Conectar",
+      "description": "Encuentra personas compatibles contigo.",
+      "url": "./index.html#conectar",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -49,28 +116,30 @@
     {
       "name": "Planes",
       "short_name": "Planes",
-      "description": "Descubre y crea planes.",
-      "url": "./index.html#plans",
+      "description": "Busca y crea planes.",
+      "url": "./index.html#planes",
       "icons": [
         {
-          "src": "./icon-192.png",
+          "src": "./icons/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     },
     {
-      "name": "Chat",
-      "short_name": "Chat",
-      "description": "Habla con tus contactos.",
+      "name": "Chats",
+      "short_name": "Chats",
+      "description": "Habla con tus conexiones y grupos.",
       "url": "./index.html#chat",
       "icons": [
         {
-          "src": "./icon-192.png",
+          "src": "./icons/icon-192.png",
           "sizes": "192x192",
           "type": "image/png"
         }
       ]
     }
-  ]
+  ],
+
+  "prefer_related_applications": false
 }
