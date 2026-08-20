@@ -4,1847 +4,1917 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 
 <meta name="theme-color" content="#7C3AED">
-
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Conecta">
 
 <link rel="manifest" href="./manifest.json">
 
-<title>Conecta · Personas · Planes · Experiencias</title>
+<title>CONECTA · Personas · Experiencias · Comunidad</title>
 
 <style>
 
-/* =========================================================
-   CONECTA — DESIGN SYSTEM
-========================================================= */
-
 :root{
-    --primary:#7c3aed;
-    --primary2:#a855f7;
-    --primary3:#c084fc;
-    --pink:#ec4899;
-    --blue:#3b82f6;
-    --cyan:#06b6d4;
-    --green:#10b981;
-    --orange:#f97316;
-    --yellow:#f59e0b;
-    --red:#ef4444;
+ --primary:#7c3aed;
+ --primary-dark:#5b21b6;
+ --primary2:#a855f7;
+ --pink:#ec4899;
+ --blue:#3b82f6;
+ --green:#10b981;
+ --orange:#f97316;
+ --red:#ef4444;
 
-    --bg:#f6f4fb;
-    --bg2:#eeeafd;
-    --card:#ffffff;
-    --card2:#faf9ff;
+ --bg:#f6f4fb;
+ --bg2:#eeeafd;
+ --card:#ffffff;
+ --card2:#faf9ff;
+ --text:#17131f;
+ --muted:#77727f;
+ --border:#ebe7f2;
 
-    --text:#17131f;
-    --muted:#77727f;
-    --border:#ebe7f2;
+ --shadow:0 8px 25px rgba(45,20,80,.08);
+ --shadow2:0 18px 50px rgba(82,40,140,.15);
 
-    --shadow:0 10px 30px rgba(45,20,80,.08);
-    --shadow2:0 18px 50px rgba(82,40,140,.15);
-    --shadow3:0 25px 70px rgba(30,15,60,.20);
-
-    --radius:24px;
-    --radius2:30px;
-
-    --nav-height:76px;
+ --nav:76px;
+ --radius:22px;
 }
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
 }
 
 html{
-    scroll-behavior:smooth;
+ scroll-behavior:smooth;
 }
 
 body{
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "SF Pro Display",
-        "SF Pro Text",
-        "Segoe UI",
-        Roboto,
-        Arial,
-        sans-serif;
+ font-family:
+ -apple-system,
+ BlinkMacSystemFont,
+ "SF Pro Display",
+ "Segoe UI",
+ Roboto,
+ Arial,
+ sans-serif;
 
-    background:
-        radial-gradient(
-            circle at 10% 0%,
-            rgba(168,85,247,.09),
-            transparent 25%
-        ),
-        var(--bg);
+ background:var(--bg);
+ color:var(--text);
 
-    color:var(--text);
-    min-height:100vh;
-    overflow-x:hidden;
-    transition:background .3s,color .3s;
+ min-height:100vh;
+ overflow-x:hidden;
+
+ transition:
+ background .25s ease,
+ color .25s ease;
 }
 
 body.dark{
-    --bg:#0b0910;
-    --bg2:#171126;
-    --card:#17131f;
-    --card2:#1d1827;
+ --bg:#0b0910;
+ --bg2:#181222;
+ --card:#17131f;
+ --card2:#1d1827;
+ --text:#faf7ff;
+ --muted:#aaa3b5;
+ --border:#2b2535;
 
-    --text:#faf7ff;
-    --muted:#aaa3b5;
-    --border:#2b2535;
-
-    --shadow:0 10px 35px rgba(0,0,0,.25);
-    --shadow2:0 20px 55px rgba(0,0,0,.35);
+ --shadow:0 8px 25px rgba(0,0,0,.25);
+ --shadow2:0 18px 50px rgba(0,0,0,.35);
 }
 
 button,
 input,
 textarea,
 select{
-    font:inherit;
+ font:inherit;
 }
 
 button{
-    border:0;
-    cursor:pointer;
+ border:0;
+ cursor:pointer;
 }
 
 img{
-    display:block;
-    max-width:100%;
+ display:block;
+ max-width:100%;
 }
 
 a{
-    color:inherit;
-    text-decoration:none;
+ color:inherit;
+ text-decoration:none;
 }
 
-::-webkit-scrollbar{
-    width:5px;
-    height:5px;
+.hidden{
+ display:none!important;
 }
-
-::-webkit-scrollbar-thumb{
-    background:#c7bdd8;
-    border-radius:99px;
-}
-
-/* =========================================================
-   APP
-========================================================= */
 
 .app{
-    width:100%;
-    max-width:720px;
-    min-height:100vh;
-    margin:auto;
-    padding-bottom:calc(
-        var(--nav-height) +
-        env(safe-area-inset-bottom) +
-        20px
-    );
+ width:100%;
+ max-width:720px;
+ min-height:100vh;
+ margin:auto;
+ padding-bottom:
+ calc(var(--nav) + env(safe-area-inset-bottom) + 20px);
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* =========================
+ HEADER
+========================= */
 
 .header{
-    position:sticky;
-    top:0;
-    z-index:100;
+ position:sticky;
+ top:0;
+ z-index:100;
 
-    padding:
-        calc(10px + env(safe-area-inset-top))
-        16px
-        10px;
+ padding:
+ calc(9px + env(safe-area-inset-top))
+ 15px
+ 9px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
 
-    background:rgba(246,244,251,.84);
+ background:rgba(246,244,251,.88);
 
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
+ backdrop-filter:blur(25px);
 
-    border-bottom:1px solid rgba(120,100,150,.05);
+ border-bottom:1px solid var(--border);
+
+ transition:.25s;
 }
 
 body.dark .header{
-    background:rgba(11,9,16,.84);
+ background:rgba(11,9,16,.88);
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
+ display:flex;
+ align-items:center;
+ gap:10px;
 }
 
 .logo{
-    width:46px;
-    height:46px;
+ width:45px;
+ height:45px;
 
-    border-radius:16px;
+ border-radius:16px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #5b21b6,
-            #7c3aed 45%,
-            #ec4899
-        );
+ background:
+ linear-gradient(
+  135deg,
+  #4c1d95,
+  #7c3aed,
+  #ec4899
+ );
 
-    color:white;
+ color:#fff;
 
-    font-size:21px;
-    font-weight:1000;
+ font-size:21px;
+ font-weight:1000;
 
-    box-shadow:
-        0 12px 28px rgba(124,58,237,.30);
-
-    position:relative;
-    overflow:hidden;
-}
-
-.logo:after{
-    content:"";
-    position:absolute;
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:rgba(255,255,255,.15);
-    top:-25px;
-    right:-15px;
+ box-shadow:
+ 0 8px 20px rgba(124,58,237,.25);
 }
 
 .brand h1{
-    font-size:20px;
-    font-weight:1000;
-    letter-spacing:-.8px;
+ font-size:20px;
+ letter-spacing:-.8px;
 }
 
 .brand span{
-    display:block;
-    margin-top:2px;
-    color:var(--muted);
-    font-size:10px;
-    font-weight:700;
+ color:var(--muted);
+ font-size:9px;
+ font-weight:700;
 }
 
 .header-actions{
-    display:flex;
-    gap:8px;
+ display:flex;
+ gap:8px;
 }
 
 .icon-btn{
-    width:43px;
-    height:43px;
+ width:42px;
+ height:42px;
 
-    border-radius:15px;
+ border-radius:14px;
 
-    background:var(--card);
-    color:var(--text);
+ background:var(--card);
+ color:var(--text);
 
-    box-shadow:var(--shadow);
+ box-shadow:var(--shadow);
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:18px;
-
-    transition:.2s;
+ transition:.2s;
 }
 
 .icon-btn:active{
-    transform:scale(.91);
+ transform:scale(.92);
 }
 
-/* =========================================================
-   VIEWS
-========================================================= */
+/* =========================
+ VIEWS
+========================= */
 
 .view{
-    display:none;
-    animation:viewIn .3s ease;
+ display:none;
+ animation:appear .25s ease;
 }
 
 .view.active{
-    display:block;
+ display:block;
 }
 
-@keyframes viewIn{
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
+@keyframes appear{
+ from{
+  opacity:0;
+  transform:translateY(7px);
+ }
+
+ to{
+  opacity:1;
+  transform:none;
+ }
 }
 
-/* =========================================================
-   HERO
-========================================================= */
-
-.hero{
-    margin:12px 15px 20px;
-
-    min-height:285px;
-
-    padding:28px 22px;
-
-    border-radius:32px;
-
-    position:relative;
-    overflow:hidden;
-
-    color:white;
-
-    background:
-        radial-gradient(
-            circle at 85% 10%,
-            rgba(255,255,255,.28),
-            transparent 22%
-        ),
-        radial-gradient(
-            circle at 15% 100%,
-            rgba(59,130,246,.30),
-            transparent 32%
-        ),
-        linear-gradient(
-            135deg,
-            #4c1d95,
-            #7c3aed 42%,
-            #a855f7 68%,
-            #ec4899
-        );
-
-    box-shadow:var(--shadow3);
-}
-
-.hero:before{
-    content:"";
-
-    position:absolute;
-
-    width:270px;
-    height:270px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.075);
-
-    right:-100px;
-    bottom:-130px;
-}
-
-.hero:after{
-    content:"";
-
-    position:absolute;
-
-    width:120px;
-    height:120px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.08);
-
-    right:90px;
-    top:-65px;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-}
-
-.hero-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-
-    padding:7px 10px;
-
-    border-radius:99px;
-
-    background:rgba(255,255,255,.13);
-    border:1px solid rgba(255,255,255,.16);
-
-    font-size:10px;
-    font-weight:900;
-}
-
-.hero h2{
-    margin-top:15px;
-
-    font-size:35px;
-    line-height:1.02;
-
-    letter-spacing:-1.8px;
-
-    max-width:470px;
-}
-
-.hero p{
-    margin-top:13px;
-
-    line-height:1.5;
-
-    font-size:14px;
-
-    opacity:.91;
-
-    max-width:430px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:9px;
-    flex-wrap:wrap;
-    margin-top:21px;
-}
-
-.hero-btn{
-    padding:13px 17px;
-
-    border-radius:15px;
-
-    background:white;
-    color:#6d28d9;
-
-    font-weight:950;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.12);
-}
-
-.hero-btn.secondary{
-    background:rgba(255,255,255,.14);
-    color:white;
-    border:1px solid rgba(255,255,255,.24);
-}
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-.search{
-    margin:0 15px 22px;
-
-    min-height:54px;
-
-    padding:0 15px;
-
-    border-radius:18px;
-
-    background:var(--card);
-
-    border:1px solid var(--border);
-
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    box-shadow:var(--shadow);
-
-    transition:.2s;
-}
-
-.search:focus-within{
-    border-color:rgba(124,58,237,.45);
-    box-shadow:
-        0 0 0 4px rgba(124,58,237,.08),
-        var(--shadow);
-}
-
-.search span{
-    font-size:19px;
-}
-
-.search input{
-    width:100%;
-    border:0;
-    outline:0;
-
-    background:transparent;
-    color:var(--text);
-
-    font-size:14px;
-}
-
-.search input::placeholder{
-    color:#aaa4b0;
-}
-
-/* =========================================================
-   SECTION
-========================================================= */
+/* =========================
+ COMMON
+========================= */
 
 .section{
-    margin:0 15px 28px;
+ margin:0 15px 25px;
 }
 
 .section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
 
-    margin-bottom:13px;
+ margin-bottom:13px;
 }
 
 .section-head h2{
-    font-size:20px;
-    letter-spacing:-.7px;
+ font-size:20px;
+ letter-spacing:-.6px;
 }
 
 .section-head p{
-    color:var(--muted);
-    font-size:12px;
+ margin-top:3px;
+ color:var(--muted);
+ font-size:11px;
 }
 
 .section-head button{
-    background:transparent;
-    color:var(--primary);
-    font-size:12px;
-    font-weight:950;
+ background:transparent;
+ color:var(--primary);
+ font-size:12px;
+ font-weight:900;
 }
 
-/* =========================================================
-   CATEGORY CARDS
-========================================================= */
+/* =========================
+ HERO
+========================= */
 
-.categories{
-    display:flex;
-    gap:12px;
+.hero{
+ margin:12px 15px 18px;
 
-    overflow-x:auto;
+ padding:25px 21px;
 
-    padding:
-        2px
-        2px
-        10px;
+ min-height:270px;
 
-    scrollbar-width:none;
+ border-radius:30px;
+
+ color:#fff;
+
+ background:
+ radial-gradient(
+  circle at 85% 10%,
+  rgba(255,255,255,.25),
+  transparent 22%
+ ),
+ radial-gradient(
+  circle at 10% 100%,
+  rgba(236,72,153,.35),
+  transparent 28%
+ ),
+ linear-gradient(
+  135deg,
+  #4c1d95,
+  #7c3aed,
+  #a855f7,
+  #ec4899
+ );
+
+ box-shadow:var(--shadow2);
+
+ position:relative;
+ overflow:hidden;
 }
 
-.categories::-webkit-scrollbar{
-    display:none;
+.hero:after{
+ content:"";
+
+ position:absolute;
+
+ width:180px;
+ height:180px;
+
+ right:-70px;
+ bottom:-80px;
+
+ border-radius:50%;
+
+ background:rgba(255,255,255,.08);
 }
 
-.category{
-    min-width:132px;
-    height:155px;
+.hero-badge{
+ display:inline-block;
 
-    border-radius:24px;
+ padding:7px 10px;
 
-    overflow:hidden;
+ border-radius:99px;
 
-    position:relative;
+ background:rgba(255,255,255,.15);
 
-    flex-shrink:0;
-
-    background:#ddd;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.10);
-
-    transition:.22s;
+ font-size:10px;
+ font-weight:900;
 }
 
-.category:active{
-    transform:scale(.95);
+.hero h2{
+ margin-top:14px;
+
+ font-size:34px;
+ line-height:1.03;
+
+ letter-spacing:-1.7px;
+
+ position:relative;
+ z-index:2;
 }
 
-.category img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.hero p{
+ margin-top:12px;
 
-    transition:.4s;
+ max-width:430px;
+
+ font-size:13px;
+ line-height:1.5;
+
+ opacity:.92;
+
+ position:relative;
+ z-index:2;
 }
 
-.category:hover img{
-    transform:scale(1.06);
+.hero-buttons{
+ display:flex;
+ gap:8px;
+
+ margin-top:20px;
+
+ flex-wrap:wrap;
+
+ position:relative;
+ z-index:2;
 }
 
-.category:after{
-    content:"";
+.hero-btn{
+ padding:12px 15px;
 
-    position:absolute;
-    inset:0;
+ border-radius:14px;
 
-    background:
-        linear-gradient(
-            transparent 25%,
-            rgba(0,0,0,.82)
-        );
+ background:#fff;
+ color:#6d28d9;
+
+ font-weight:900;
+
+ transition:.2s;
 }
 
-.category-info{
-    position:absolute;
-    z-index:2;
-
-    left:13px;
-    right:8px;
-    bottom:12px;
-
-    color:white;
+.hero-btn:active{
+ transform:scale(.96);
 }
 
-.category-icon{
-    font-size:22px;
+.hero-btn.secondary{
+ background:rgba(255,255,255,.15);
+ color:#fff;
+
+ border:1px solid rgba(255,255,255,.25);
 }
 
-.category-title{
-    margin-top:3px;
+/* =========================
+ SEARCH
+========================= */
 
-    font-size:14px;
-    font-weight:950;
+.search{
+ min-height:52px;
+
+ margin:0 15px 20px;
+
+ padding:0 14px;
+
+ display:flex;
+ align-items:center;
+ gap:9px;
+
+ border-radius:17px;
+
+ background:var(--card);
+
+ border:1px solid var(--border);
+
+ box-shadow:var(--shadow);
+
+ transition:.2s;
 }
 
-/* =========================================================
-   PEOPLE
-========================================================= */
+.search:focus-within{
+ border-color:var(--primary);
 
-.people{
-    display:flex;
-    gap:13px;
-
-    overflow-x:auto;
-
-    padding:
-        2px
-        2px
-        10px;
-
-    scrollbar-width:none;
+ box-shadow:
+ 0 0 0 3px rgba(124,58,237,.1);
 }
 
-.people::-webkit-scrollbar{
-    display:none;
+.search input{
+ width:100%;
+
+ border:0;
+ outline:0;
+
+ background:transparent;
+
+ color:var(--text);
 }
 
-.person{
-    min-width:185px;
-
-    background:var(--card);
-
-    border-radius:24px;
-
-    padding:9px;
-
-    box-shadow:var(--shadow);
-
-    overflow:hidden;
-
-    border:1px solid rgba(124,58,237,.04);
+.search input::placeholder{
+ color:#aaa4b0;
 }
 
-.person-img{
-    height:170px;
-
-    border-radius:19px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    background:#eee;
-}
-
-.person-img img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-
-    transition:.4s;
-}
-
-.person:hover .person-img img{
-    transform:scale(1.05);
-}
-
-.online{
-    position:absolute;
-
-    right:9px;
-    top:9px;
-
-    width:14px;
-    height:14px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    border:2px solid white;
-
-    box-shadow:
-        0 0 0 4px rgba(34,197,94,.18);
-}
-
-.person-info{
-    padding:10px 3px 3px;
-}
-
-.person-name{
-    font-size:15px;
-    font-weight:950;
-}
-
-.person-meta{
-    margin-top:4px;
-
-    color:var(--muted);
-
-    font-size:11px;
-}
-
-.connect-btn{
-    width:100%;
-    height:40px;
-
-    margin-top:10px;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f1eaff,
-            #eee5ff
-        );
-
-    color:var(--primary);
-
-    font-weight:950;
-
-    transition:.2s;
-}
-
-.connect-btn:active{
-    transform:scale(.97);
-}
-
-.connect-btn.connected{
-    background:#dcfce7;
-    color:#15803d;
-}
-
-/* =========================================================
-   GRID PEOPLE
-========================================================= */
-
-.people-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.people-grid .person{
-    min-width:0;
-}
-
-.people-grid .person-img{
-    height:190px;
-}
-
-/* =========================================================
-   PLAN CARDS
-========================================================= */
-
-.plans{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.plan{
-    background:var(--card);
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    box-shadow:var(--shadow);
-
-    border:1px solid rgba(124,58,237,.04);
-}
-
-.plan-img{
-    height:185px;
-
-    position:relative;
-    overflow:hidden;
-}
-
-.plan-img img{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    transition:.45s;
-}
-
-.plan:hover .plan-img img{
-    transform:scale(1.05);
-}
-
-.plan-img:after{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            transparent 50%,
-            rgba(0,0,0,.18)
-        );
-
-    pointer-events:none;
-}
-
-.plan-tag{
-    position:absolute;
-
-    left:12px;
-    top:12px;
-
-    z-index:2;
-
-    padding:7px 10px;
-
-    border-radius:11px;
-
-    background:rgba(255,255,255,.94);
-
-    color:var(--primary);
-
-    font-size:10px;
-    font-weight:1000;
-}
-
-.plan-heart{
-    position:absolute;
-
-    z-index:3;
-
-    right:12px;
-    top:12px;
-
-    width:39px;
-    height:39px;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.94);
-
-    font-size:19px;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.10);
-}
-
-.plan-content{
-    padding:16px;
-}
-
-.plan-title{
-    font-size:18px;
-    font-weight:1000;
-
-    letter-spacing:-.4px;
-}
-
-.plan-info{
-    margin-top:7px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.5;
-}
-
-.plan-description{
-    margin-top:8px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.45;
-}
-
-.plan-footer{
-    margin-top:15px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.plan-users{
-    display:flex;
-}
-
-.plan-users img{
-    width:31px;
-    height:31px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:2px solid var(--card);
-
-    margin-left:-7px;
-}
-
-.plan-users img:first-child{
-    margin-left:0;
-}
-
-.join-btn{
-    padding:10px 16px;
-
-    border-radius:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
-
-    color:white;
-
-    font-weight:950;
-
-    box-shadow:
-        0 7px 18px rgba(124,58,237,.20);
-}
-
-/* =========================================================
-   QUICK ACTIONS
-========================================================= */
+/* =========================
+ QUICK
+========================= */
 
 .quick{
-    display:grid;
+ display:grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+ grid-template-columns:
+ repeat(4,1fr);
 
-    gap:9px;
+ gap:8px;
 }
 
 .quick-card{
-    background:var(--card);
+ padding:12px 4px;
 
-    border-radius:20px;
+ border-radius:19px;
 
-    padding:14px 5px;
+ background:var(--card);
+ color:var(--text);
 
-    box-shadow:var(--shadow);
+ box-shadow:var(--shadow);
 
-    color:var(--text);
+ border:1px solid var(--border);
 
-    border:1px solid var(--border);
-
-    transition:.2s;
+ transition:.2s;
 }
 
 .quick-card:active{
-    transform:scale(.95);
+ transform:scale(.95);
 }
 
 .quick-icon{
-    width:38px;
-    height:38px;
+ width:38px;
+ height:38px;
 
-    margin:auto;
+ margin:auto;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ border-radius:13px;
 
-    border-radius:13px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 
-    background:
-        linear-gradient(
-            135deg,
-            #f1eaff,
-            #fce7f3
-        );
+ background:var(--bg2);
 
-    font-size:20px;
-}
-
-.quick-card:nth-child(2) .quick-icon{
-    background:#e0f2fe;
-}
-
-.quick-card:nth-child(3) .quick-icon{
-    background:#dcfce7;
-}
-
-.quick-card:nth-child(4) .quick-icon{
-    background:#fef3c7;
+ font-size:19px;
 }
 
 .quick-card span{
-    display:block;
+ display:block;
 
-    margin-top:7px;
+ margin-top:7px;
 
-    font-size:10px;
-    font-weight:900;
+ font-size:9px;
+ font-weight:900;
 }
 
-/* =========================================================
-   FEATURED
-========================================================= */
+/* =========================
+ STORIES
+========================= */
 
-.featured{
-    display:grid;
+.stories{
+ display:flex;
 
-    grid-template-columns:1fr 1fr;
+ gap:11px;
 
-    gap:11px;
+ overflow-x:auto;
+
+ padding-bottom:5px;
+
+ scrollbar-width:none;
 }
 
-.feature-card{
-    height:165px;
-
-    border-radius:23px;
-
-    overflow:hidden;
-
-    position:relative;
-
-    color:white;
-
-    box-shadow:var(--shadow);
-
-    background:#ddd;
+.stories::-webkit-scrollbar{
+ display:none;
 }
 
-.feature-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.story{
+ min-width:72px;
 
-    transition:.4s;
+ text-align:center;
+
+ background:transparent;
+
+ color:var(--text);
 }
 
-.feature-card:hover img{
-    transform:scale(1.05);
+.story-ring{
+ width:67px;
+ height:67px;
+
+ padding:3px;
+
+ margin:auto;
+
+ border-radius:50%;
+
+ background:
+ linear-gradient(
+  135deg,
+  #7c3aed,
+  #ec4899,
+  #f59e0b
+ );
 }
 
-.feature-card:after{
-    content:"";
+.story-ring img{
+ width:100%;
+ height:100%;
 
-    position:absolute;
-    inset:0;
+ border-radius:50%;
 
-    background:
-        linear-gradient(
-            transparent 35%,
-            rgba(0,0,0,.82)
-        );
+ object-fit:cover;
+
+ border:3px solid var(--card);
 }
 
-.feature-info{
-    position:absolute;
+.story span{
+ display:block;
 
-    z-index:2;
+ margin-top:5px;
 
-    bottom:13px;
-    left:13px;
-    right:8px;
+ font-size:9px;
+ font-weight:800;
+
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
 }
 
-.feature-info strong{
-    display:block;
-    font-size:14px;
+/* =========================
+ FEED
+========================= */
+
+.feed{
+ display:flex;
+ flex-direction:column;
+ gap:14px;
 }
 
-.feature-info span{
-    display:block;
+.post{
+ background:var(--card);
 
-    margin-top:3px;
+ border:1px solid var(--border);
 
-    font-size:10px;
-    opacity:.88;
+ border-radius:23px;
+
+ overflow:hidden;
+
+ box-shadow:var(--shadow);
+
+ transition:.2s;
 }
 
-/* =========================================================
-   CHAT
-========================================================= */
+.post-head{
+ padding:12px;
+
+ display:flex;
+ align-items:center;
+ gap:10px;
+}
+
+.avatar{
+ width:43px;
+ height:43px;
+
+ border-radius:50%;
+
+ object-fit:cover;
+
+ border:2px solid var(--bg2);
+}
+
+.post-user{
+ flex:1;
+}
+
+.post-user strong{
+ display:block;
+ font-size:13px;
+}
+
+.post-user span{
+ display:block;
+
+ margin-top:2px;
+
+ color:var(--muted);
+
+ font-size:10px;
+}
+
+.post-more{
+ background:transparent;
+ color:var(--muted);
+ font-size:20px;
+}
+
+.post-photo{
+ width:100%;
+ height:310px;
+
+ object-fit:cover;
+
+ background:var(--bg2);
+}
+
+.post-content{
+ padding:12px;
+}
+
+.post-title{
+ font-size:15px;
+ font-weight:950;
+}
+
+.post-text{
+ margin-top:6px;
+
+ color:var(--muted);
+
+ font-size:12px;
+
+ line-height:1.45;
+}
+
+.activity{
+ margin-top:10px;
+
+ padding:11px;
+
+ border-radius:15px;
+
+ background:var(--bg2);
+
+ display:flex;
+
+ justify-content:space-between;
+
+ gap:8px;
+}
+
+.activity div{
+ text-align:center;
+ flex:1;
+}
+
+.activity strong{
+ display:block;
+ font-size:13px;
+}
+
+.activity span{
+ display:block;
+
+ margin-top:3px;
+
+ color:var(--muted);
+
+ font-size:9px;
+}
+
+.post-actions{
+ padding:0 12px 13px;
+
+ display:flex;
+
+ gap:18px;
+}
+
+.post-action{
+ background:transparent;
+
+ color:var(--muted);
+
+ font-size:12px;
+
+ font-weight:800;
+}
+
+.post-action.liked{
+ color:var(--red);
+}
+
+/* =========================
+ CATEGORIES
+========================= */
+
+.categories{
+ display:flex;
+
+ gap:10px;
+
+ overflow-x:auto;
+
+ scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+ display:none;
+}
+
+.category{
+ min-width:125px;
+ height:145px;
+
+ border-radius:22px;
+
+ overflow:hidden;
+
+ position:relative;
+
+ color:#fff;
+
+ background:#ddd;
+
+ flex-shrink:0;
+
+ padding:0;
+}
+
+.category img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+}
+
+.category:after{
+ content:"";
+
+ position:absolute;
+
+ inset:0;
+
+ background:
+ linear-gradient(
+  transparent 30%,
+  rgba(0,0,0,.85)
+ );
+}
+
+.category-info{
+ position:absolute;
+
+ z-index:2;
+
+ left:11px;
+ bottom:11px;
+
+ text-align:left;
+}
+
+.category-icon{
+ font-size:20px;
+}
+
+.category-title{
+ margin-top:2px;
+
+ font-size:13px;
+ font-weight:950;
+}
+
+/* =========================
+ PLANS
+========================= */
+
+.plans{
+ display:flex;
+
+ flex-direction:column;
+
+ gap:13px;
+}
+
+.plan{
+ overflow:hidden;
+
+ border-radius:23px;
+
+ background:var(--card);
+
+ border:1px solid var(--border);
+
+ box-shadow:var(--shadow);
+}
+
+.plan-img{
+ height:175px;
+
+ position:relative;
+}
+
+.plan-img img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+}
+
+.plan-tag{
+ position:absolute;
+
+ top:11px;
+ left:11px;
+
+ padding:6px 9px;
+
+ border-radius:10px;
+
+ background:#fff;
+
+ color:var(--primary);
+
+ font-size:9px;
+ font-weight:1000;
+}
+
+.plan-heart{
+ position:absolute;
+
+ top:10px;
+ right:10px;
+
+ width:38px;
+ height:38px;
+
+ border-radius:50%;
+
+ background:#fff;
+
+ color:#222;
+
+ font-size:18px;
+}
+
+.plan-heart.favorite{
+ color:#ef4444;
+}
+
+.plan-content{
+ padding:14px;
+}
+
+.plan-title{
+ font-size:17px;
+ font-weight:1000;
+}
+
+.plan-info,
+.plan-description{
+ margin-top:6px;
+
+ color:var(--muted);
+
+ font-size:11px;
+
+ line-height:1.45;
+}
+
+.plan-footer{
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:center;
+
+ gap:8px;
+
+ margin-top:13px;
+}
+
+.join-btn{
+ padding:10px 14px;
+
+ border-radius:12px;
+
+ background:
+ linear-gradient(
+  135deg,
+  var(--primary),
+  var(--primary2)
+ );
+
+ color:#fff;
+
+ font-weight:900;
+
+ transition:.2s;
+}
+
+.join-btn:active{
+ transform:scale(.95);
+}
+
+/* =========================
+ PEOPLE
+========================= */
+
+.people-grid{
+ display:grid;
+
+ grid-template-columns:
+ 1fr 1fr;
+
+ gap:11px;
+}
+
+.person{
+ overflow:hidden;
+
+ background:var(--card);
+
+ border-radius:21px;
+
+ border:1px solid var(--border);
+
+ box-shadow:var(--shadow);
+
+ padding:8px;
+}
+
+.person-img{
+ height:170px;
+
+ border-radius:17px;
+
+ overflow:hidden;
+
+ position:relative;
+}
+
+.person-img img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+}
+
+.online{
+ position:absolute;
+
+ right:8px;
+ top:8px;
+
+ width:13px;
+ height:13px;
+
+ border-radius:50%;
+
+ background:#22c55e;
+
+ border:2px solid #fff;
+}
+
+.person-info{
+ padding:9px 2px 2px;
+}
+
+.person-name{
+ font-size:14px;
+ font-weight:950;
+}
+
+.person-meta{
+ margin-top:4px;
+
+ color:var(--muted);
+
+ font-size:10px;
+}
+
+.connect-btn{
+ width:100%;
+ height:37px;
+
+ margin-top:9px;
+
+ border-radius:12px;
+
+ background:var(--bg2);
+
+ color:var(--primary);
+
+ font-size:11px;
+
+ font-weight:900;
+
+ transition:.2s;
+}
+
+.connect-btn.connected{
+ background:#dcfce7;
+ color:#15803d;
+}
+
+/* =========================
+ GROUPS
+========================= */
+
+.groups{
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+}
+
+.group{
+ display:flex;
+
+ align-items:center;
+
+ gap:11px;
+
+ width:100%;
+
+ padding:12px;
+
+ background:var(--card);
+
+ color:var(--text);
+
+ border-radius:19px;
+
+ border:1px solid var(--border);
+
+ box-shadow:var(--shadow);
+
+ text-align:left;
+}
+
+.group-icon{
+ width:48px;
+ height:48px;
+
+ border-radius:15px;
+
+ display:flex;
+
+ align-items:center;
+ justify-content:center;
+
+ background:var(--bg2);
+
+ font-size:22px;
+
+ flex-shrink:0;
+}
+
+.group-info{
+ flex:1;
+}
+
+.group-info strong{
+ display:block;
+
+ font-size:13px;
+}
+
+.group-info span{
+ display:block;
+
+ color:var(--muted);
+
+ font-size:10px;
+
+ margin-top:3px;
+}
+
+/* =========================
+ CHAT
+========================= */
 
 .chat-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
+ display:flex;
+
+ flex-direction:column;
+
+ gap:9px;
 }
 
 .chat{
-    width:100%;
+ display:flex;
 
-    background:var(--card);
+ align-items:center;
 
-    border-radius:20px;
+ gap:11px;
 
-    padding:12px;
+ width:100%;
 
-    display:flex;
-    align-items:center;
+ padding:11px;
 
-    gap:12px;
+ background:var(--card);
 
-    box-shadow:var(--shadow);
+ color:var(--text);
 
-    color:var(--text);
+ border-radius:19px;
 
-    text-align:left;
+ border:1px solid var(--border);
 
-    border:1px solid var(--border);
+ box-shadow:var(--shadow);
+
+ text-align:left;
 }
 
 .chat img{
-    width:57px;
-    height:57px;
+ width:55px;
+ height:55px;
 
-    border-radius:50%;
+ border-radius:50%;
 
-    object-fit:cover;
+ object-fit:cover;
 }
 
 .chat-info{
-    flex:1;
-    min-width:0;
+ flex:1;
+
+ min-width:0;
 }
 
 .chat-info strong{
-    font-size:14px;
+ font-size:13px;
 }
 
 .chat-info p{
-    margin-top:4px;
+ margin-top:4px;
 
-    color:var(--muted);
+ color:var(--muted);
 
-    font-size:12px;
+ font-size:11px;
 
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+ white-space:nowrap;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 }
 
 .chat-time{
-    color:#999;
+ color:var(--muted);
 
-    font-size:10px;
+ font-size:9px;
 }
 
-/* =========================================================
-   CHAT WINDOW
-========================================================= */
-
-.chat-window{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-
-    margin-top:18px;
-}
-
-.message{
-    max-width:80%;
-
-    padding:11px 13px;
-
-    border-radius:17px;
-
-    font-size:13px;
-    line-height:1.4;
-}
-
-.message.received{
-    align-self:flex-start;
-
-    background:var(--bg2);
-
-    border-bottom-left-radius:5px;
-}
-
-.message.sent{
-    align-self:flex-end;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--pink)
-        );
-
-    border-bottom-right-radius:5px;
-}
-
-/* =========================================================
-   PROFILE
-========================================================= */
+/* =========================
+ PROFILE
+========================= */
 
 .profile-cover{
-    height:205px;
+ height:190px;
 
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(255,255,255,.25),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(59,130,246,.35),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #4c1d95,
-            #7c3aed,
-            #a855f7,
-            #ec4899
-        );
+ background:
+ linear-gradient(
+  135deg,
+  #4c1d95,
+  #7c3aed,
+  #ec4899
+ );
 
-    border-radius:0 0 34px 34px;
+ border-radius:
+ 0 0 30px 30px;
 
-    position:relative;
+ position:relative;
 }
 
 .profile-photo{
-    width:116px;
-    height:116px;
+ position:absolute;
 
-    padding:4px;
+ width:108px;
+ height:108px;
 
-    position:absolute;
+ left:50%;
+ bottom:-54px;
 
-    left:50%;
-    bottom:-58px;
+ transform:translateX(-50%);
 
-    transform:translateX(-50%);
+ padding:4px;
 
-    border-radius:50%;
+ border-radius:50%;
 
-    background:
-        linear-gradient(
-            135deg,
-            #7c3aed,
-            #ec4899
-        );
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.18);
+ background:
+ linear-gradient(
+  135deg,
+  #7c3aed,
+  #ec4899
+ );
 }
 
 .profile-photo img{
-    width:100%;
-    height:100%;
+ width:100%;
+ height:100%;
 
-    object-fit:cover;
+ object-fit:cover;
 
-    border-radius:50%;
+ border-radius:50%;
 
-    border:4px solid var(--card);
-}
-
-.profile-edit{
-    position:absolute;
-
-    right:15px;
-    bottom:-20px;
-
-    width:42px;
-    height:42px;
-
-    border-radius:50%;
-
-    background:var(--card);
-
-    box-shadow:var(--shadow);
-
-    font-size:18px;
+ border:4px solid var(--card);
 }
 
 .profile-info{
-    text-align:center;
+ padding:66px 15px 12px;
 
-    padding:
-        73px
-        16px
-        10px;
+ text-align:center;
 }
 
 .profile-info h2{
-    font-size:24px;
-    letter-spacing:-.7px;
+ font-size:23px;
 }
 
 .profile-info p{
-    margin-top:4px;
+ margin-top:4px;
 
-    color:var(--muted);
+ color:var(--muted);
 
-    font-size:13px;
-}
-
-.profile-badges{
-    display:flex;
-    justify-content:center;
-    gap:7px;
-    flex-wrap:wrap;
-
-    margin-top:10px;
-}
-
-.profile-badge{
-    padding:6px 9px;
-
-    border-radius:99px;
-
-    background:var(--bg2);
-
-    color:var(--primary);
-
-    font-size:10px;
-    font-weight:900;
+ font-size:12px;
 }
 
 .profile-stats{
-    margin:15px;
+ margin:10px 15px 20px;
 
-    padding:17px;
+ padding:15px;
 
-    background:var(--card);
+ display:grid;
 
-    border-radius:22px;
+ grid-template-columns:
+ repeat(3,1fr);
 
-    display:grid;
+ background:var(--card);
 
-    grid-template-columns:
-        repeat(3,1fr);
+ border-radius:20px;
 
-    box-shadow:var(--shadow);
+ border:1px solid var(--border);
 
-    border:1px solid var(--border);
+ box-shadow:var(--shadow);
 }
 
 .stat{
-    text-align:center;
+ text-align:center;
 }
 
 .stat strong{
-    display:block;
-    font-size:19px;
+ display:block;
+
+ font-size:19px;
 }
 
 .stat span{
-    color:var(--muted);
-    font-size:11px;
+ color:var(--muted);
+
+ font-size:9px;
 }
 
-/* =========================================================
-   SETTINGS
-========================================================= */
+/* =========================
+ ALBUMS
+========================= */
 
-.settings-list{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
+.albums{
+ display:grid;
+
+ grid-template-columns:
+ repeat(3,1fr);
+
+ gap:5px;
+}
+
+.album{
+ height:115px;
+
+ overflow:hidden;
+
+ border-radius:13px;
+
+ position:relative;
+}
+
+.album img{
+ width:100%;
+ height:100%;
+
+ object-fit:cover;
+}
+
+.album span{
+ position:absolute;
+
+ bottom:7px;
+ left:7px;
+
+ color:#fff;
+
+ font-size:9px;
+ font-weight:900;
+
+ text-shadow:0 2px 5px #000;
+}
+
+/* =========================
+ CALENDAR
+========================= */
+
+.calendar-card{
+ background:var(--card);
+
+ border:1px solid var(--border);
+
+ border-radius:23px;
+
+ padding:15px;
+
+ box-shadow:var(--shadow);
+}
+
+.calendar-top{
+ display:flex;
+
+ justify-content:space-between;
+
+ align-items:center;
+
+ margin-bottom:15px;
+}
+
+.calendar-top strong{
+ font-size:17px;
+}
+
+.calendar-top button{
+ background:var(--bg2);
+
+ color:var(--primary);
+
+ width:32px;
+ height:32px;
+
+ border-radius:10px;
+}
+
+.calendar-grid{
+ display:grid;
+
+ grid-template-columns:
+ repeat(7,1fr);
+
+ gap:5px;
+}
+
+.calendar-day{
+ min-height:43px;
+
+ border-radius:11px;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center;
+
+ font-size:11px;
+
+ color:var(--muted);
+
+ position:relative;
+}
+
+.calendar-day.active{
+ background:var(--bg2);
+
+ color:var(--primary);
+
+ font-weight:900;
+}
+
+.calendar-day.today{
+ background:
+ linear-gradient(
+  135deg,
+  var(--primary),
+  var(--pink)
+ );
+
+ color:#fff;
+
+ font-weight:1000;
+}
+
+.calendar-dot{
+ position:absolute;
+
+ bottom:5px;
+
+ width:4px;
+ height:4px;
+
+ border-radius:50%;
+
+ background:var(--green);
+}
+
+/* =========================
+ STATS
+========================= */
+
+.stats-grid{
+ display:grid;
+
+ grid-template-columns:
+ 1fr 1fr;
+
+ gap:10px;
+}
+
+.stat-card{
+ padding:15px;
+
+ border-radius:20px;
+
+ background:var(--card);
+
+ border:1px solid var(--border);
+
+ box-shadow:var(--shadow);
+}
+
+.stat-icon{
+ font-size:22px;
+}
+
+.stat-card strong{
+ display:block;
+
+ margin-top:7px;
+
+ font-size:22px;
+}
+
+.stat-card span{
+ display:block;
+
+ margin-top:2px;
+
+ color:var(--muted);
+
+ font-size:10px;
+}
+
+/* =========================
+ SETTINGS
+========================= */
+
+.settings{
+ display:flex;
+
+ flex-direction:column;
+
+ gap:9px;
 }
 
 .setting{
-    width:100%;
+ display:flex;
 
-    background:var(--card);
+ align-items:center;
 
-    border-radius:19px;
+ gap:11px;
 
-    padding:14px;
+ width:100%;
 
-    display:flex;
-    align-items:center;
+ padding:13px;
 
-    gap:13px;
+ background:var(--card);
 
-    color:var(--text);
+ color:var(--text);
 
-    text-align:left;
+ border-radius:18px;
 
-    box-shadow:var(--shadow);
+ border:1px solid var(--border);
 
-    border:1px solid var(--border);
+ text-align:left;
 }
 
 .setting-icon{
-    width:42px;
-    height:42px;
+ width:40px;
+ height:40px;
 
-    border-radius:14px;
+ border-radius:13px;
 
-    background:#f1eaff;
+ background:var(--bg2);
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+ display:flex;
 
-    font-size:19px;
-}
+ align-items:center;
+ justify-content:center;
 
-.setting:nth-child(2) .setting-icon{
-    background:#fce7f3;
-}
-
-.setting:nth-child(3) .setting-icon{
-    background:#e0f2fe;
-}
-
-.setting:nth-child(4) .setting-icon{
-    background:#dcfce7;
-}
-
-.setting:nth-child(5) .setting-icon{
-    background:#fef3c7;
+ font-size:18px;
 }
 
 .setting div:nth-child(2){
-    flex:1;
+ flex:1;
 }
 
 .setting strong{
-    display:block;
-    font-size:13px;
+ display:block;
+
+ font-size:12px;
 }
 
 .setting small{
-    display:block;
+ display:block;
 
-    margin-top:3px;
+ margin-top:3px;
 
-    color:var(--muted);
+ color:var(--muted);
 
-    font-size:10px;
+ font-size:9px;
 }
 
-.setting b{
-    color:#aaa;
-    font-size:20px;
-}
-
-/* =========================================================
-   BOTTOM NAV
-========================================================= */
+/* =========================
+ NAV
+========================= */
 
 .bottom-nav{
-    position:fixed;
+ position:fixed;
 
-    z-index:200;
+ z-index:300;
 
-    left:50%;
-    bottom:0;
+ bottom:0;
 
-    transform:translateX(-50%);
+ left:50%;
 
-    width:100%;
-    max-width:720px;
+ transform:translateX(-50%);
 
-    padding:
-        8px
-        8px
-        calc(8px + env(safe-area-inset-bottom));
+ width:100%;
 
-    display:grid;
+ max-width:720px;
 
-    grid-template-columns:
-        repeat(5,1fr);
+ padding:
+ 8px
+ 7px
+ calc(8px + env(safe-area-inset-bottom));
 
-    background:
-        rgba(255,255,255,.91);
+ display:grid;
 
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
+ grid-template-columns:
+ repeat(6,1fr);
 
-    border-top:1px solid rgba(0,0,0,.06);
+ background:
+ rgba(255,255,255,.93);
+
+ backdrop-filter:blur(25px);
+
+ border-top:1px solid var(--border);
 }
 
 body.dark .bottom-nav{
-    background:rgba(23,19,31,.94);
+ background:rgba(23,19,31,.95);
 }
 
 .nav-btn{
-    position:relative;
+ background:transparent;
 
-    background:transparent;
+ color:#918b98;
 
-    color:#918b98;
+ display:flex;
 
-    display:flex;
-    flex-direction:column;
+ flex-direction:column;
 
-    align-items:center;
+ align-items:center;
 
-    gap:4px;
+ gap:3px;
 
-    font-size:9px;
-    font-weight:900;
+ font-size:8px;
 
-    padding:3px 0;
+ font-weight:900;
 }
 
 .nav-icon{
-    font-size:21px;
-    line-height:1;
+ font-size:19px;
 }
 
 .nav-btn.active{
-    color:var(--primary);
+ color:var(--primary);
 }
 
-.nav-btn.active:before{
-    content:"";
-
-    position:absolute;
-
-    top:-8px;
-
-    width:26px;
-    height:3px;
-
-    border-radius:99px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--pink)
-        );
-}
-
-/* =========================================================
-   MODAL
-========================================================= */
+/* =========================
+ MODAL
+========================= */
 
 .modal{
-    position:fixed;
+ position:fixed;
 
-    inset:0;
+ inset:0;
 
-    z-index:500;
+ z-index:600;
 
-    display:none;
+ display:none;
 
-    align-items:flex-end;
+ align-items:flex-end;
 
-    padding:10px;
+ padding:10px;
 
-    background:rgba(0,0,0,.52);
+ background:rgba(0,0,0,.55);
 
-    backdrop-filter:blur(5px);
+ backdrop-filter:blur(5px);
 }
 
 .modal.show{
-    display:flex;
+ display:flex;
 }
 
 .modal-box{
-    width:100%;
-    max-width:700px;
+ width:100%;
 
-    margin:auto;
+ max-width:700px;
 
-    padding:22px;
+ max-height:90vh;
 
-    border-radius:30px;
+ overflow:auto;
 
-    background:var(--card);
+ margin:auto;
 
-    color:var(--text);
+ padding:21px;
 
-    box-shadow:var(--shadow3);
+ border-radius:28px;
 
-    animation:modalUp .28s ease;
+ background:var(--card);
 
-    max-height:88vh;
-    overflow:auto;
+ color:var(--text);
+
+ box-shadow:
+ 0 25px 70px rgba(0,0,0,.3);
+
+ animation:modalIn .22s ease;
 }
 
-@keyframes modalUp{
-    from{
-        opacity:0;
-        transform:translateY(45px);
-    }
+@keyframes modalIn{
+ from{
+  opacity:0;
+  transform:translateY(30px);
+ }
 
-    to{
-        opacity:1;
-        transform:none;
-    }
+ to{
+  opacity:1;
+  transform:none;
+ }
 }
 
 .modal-close{
-    float:right;
+ float:right;
 
-    width:37px;
-    height:37px;
+ width:36px;
+ height:36px;
 
-    border-radius:50%;
+ border-radius:50%;
 
-    background:var(--bg2);
+ background:var(--bg2);
 
-    color:var(--text);
+ color:var(--text);
 }
 
 .modal-box h2{
-    margin-top:25px;
+ margin-top:25px;
 
-    font-size:22px;
+ font-size:21px;
 }
 
 .modal-box p{
-    color:var(--muted);
+ margin-top:7px;
 
-    margin-top:8px;
+ color:var(--muted);
 
-    line-height:1.5;
+ font-size:12px;
 
-    font-size:13px;
+ line-height:1.5;
 }
 
-/* =========================================================
-   FORM
-========================================================= */
-
 .form-group{
-    margin-top:13px;
+ margin-top:13px;
 }
 
 .form-label{
-    display:block;
+ display:block;
 
-    margin-bottom:6px;
+ margin-bottom:6px;
 
-    font-size:11px;
-    font-weight:900;
+ font-size:10px;
+
+ font-weight:900;
 }
 
-.form-input{
-    width:100%;
+.form-input,
+.form-textarea,
+.form-select{
+ width:100%;
 
-    height:49px;
+ border:1px solid var(--border);
 
-    border:1px solid var(--border);
+ border-radius:13px;
 
-    border-radius:14px;
+ background:var(--bg);
 
-    padding:0 13px;
+ color:var(--text);
 
-    outline:none;
+ padding:11px;
 
-    background:var(--bg);
-
-    color:var(--text);
-}
-
-.form-textarea{
-    width:100%;
-
-    min-height:90px;
-
-    border:1px solid var(--border);
-
-    border-radius:14px;
-
-    padding:13px;
-
-    outline:none;
-
-    resize:none;
-
-    background:var(--bg);
-
-    color:var(--text);
+ outline:none;
 }
 
 .form-input:focus,
-.form-textarea:focus{
-    border-color:var(--primary);
+.form-textarea:focus,
+.form-select:focus{
+ border-color:var(--primary);
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
+.form-textarea{
+ min-height:90px;
+
+ resize:none;
+}
+
+/* =========================
+ TOAST
+========================= */
 
 .toast{
-    position:fixed;
+ position:fixed;
 
-    z-index:800;
+ z-index:1000;
 
-    left:50%;
-    bottom:calc(
-        var(--nav-height) +
-        env(safe-area-inset-bottom) +
-        20px
-    );
+ left:50%;
 
-    transform:translate(-50%,20px);
+ bottom:
+ calc(var(--nav) + 20px);
 
-    background:#17131f;
+ transform:
+ translate(-50%,20px);
 
-    color:white;
+ padding:12px 17px;
 
-    padding:13px 18px;
+ border-radius:14px;
 
-    border-radius:15px;
+ background:#17131f;
 
-    font-size:12px;
+ color:#fff;
 
-    font-weight:850;
+ font-size:11px;
 
-    opacity:0;
+ font-weight:850;
 
-    pointer-events:none;
+ opacity:0;
 
-    transition:.25s;
+ pointer-events:none;
 
-    white-space:nowrap;
+ transition:.25s;
 
-    box-shadow:var(--shadow3);
+ white-space:nowrap;
+
+ max-width:90vw;
+
+ overflow:hidden;
+
+ text-overflow:ellipsis;
 }
 
 .toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
+ opacity:1;
+
+ transform:
+ translate(-50%,0);
 }
 
-/* =========================================================
-   EMPTY
-========================================================= */
+/* =========================
+ EMPTY
+========================= */
 
 .empty{
-    padding:42px 20px;
+ padding:35px 10px;
 
-    text-align:center;
+ text-align:center;
 
-    color:var(--muted);
+ color:var(--muted);
 
-    grid-column:1/-1;
+ grid-column:1/-1;
 }
 
 .empty div{
-    font-size:43px;
-    margin-bottom:8px;
+ font-size:38px;
+
+ margin-bottom:8px;
 }
 
-/* =========================================================
-   LOADING
-========================================================= */
+/* =========================
+ BADGE
+========================= */
 
-.skeleton{
-    background:
-        linear-gradient(
-            90deg,
-            var(--card),
-            var(--bg2),
-            var(--card)
-        );
+.notification-badge{
+ position:absolute;
 
-    background-size:200% 100%;
+ top:4px;
+ right:3px;
 
-    animation:loading 1.3s infinite;
+ min-width:16px;
+ height:16px;
+
+ padding:0 4px;
+
+ border-radius:99px;
+
+ display:flex;
+
+ align-items:center;
+ justify-content:center;
+
+ background:var(--red);
+
+ color:white;
+
+ font-size:8px;
+
+ font-weight:1000;
 }
 
-@keyframes loading{
-    from{
-        background-position:200% 0;
-    }
-
-    to{
-        background-position:-200% 0;
-    }
+.header-actions .icon-btn{
+ position:relative;
 }
 
-/* =========================================================
-   DESKTOP
-========================================================= */
-
-@media(min-width:700px){
-
-    body{
-        background:#e9e5ef;
-    }
-
-    body.dark{
-        background:#07060a;
-    }
-
-    .app{
-        background:var(--bg);
-
-        box-shadow:
-            0 0 90px rgba(0,0,0,.14);
-    }
-
-    .bottom-nav{
-        border-radius:23px 23px 0 0;
-    }
-}
+/* =========================
+ RESPONSIVE
+========================= */
 
 @media(max-width:380px){
 
-    .hero h2{
-        font-size:31px;
-    }
+ .hero h2{
+  font-size:30px;
+ }
 
-    .quick{
-        gap:6px;
-    }
+ .post-photo{
+  height:280px;
+ }
 
-    .quick-card{
-        padding-left:2px;
-        padding-right:2px;
-    }
+ .quick-card span{
+  font-size:8px;
+ }
 
 }
 
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
+@media(min-width:700px){
 
-@media(prefers-reduced-motion:reduce){
+ body{
+  background:#e9e5ef;
+ }
 
-    *,
-    *:before,
-    *:after{
-        scroll-behavior:auto!important;
-        animation:none!important;
-        transition:none!important;
-    }
+ .app{
+  background:var(--bg);
+
+  box-shadow:
+  0 0 90px rgba(0,0,0,.12);
+ }
 
 }
 
@@ -1855,2054 +1925,3880 @@ body.dark .bottom-nav{
 
 <div class="app">
 
-<!-- =======================================================
-     HEADER
-======================================================= -->
+<!-- =========================
+ HEADER
+========================= -->
 
 <header class="header">
 
-    <div class="brand">
+ <div class="brand">
 
-        <div class="logo">
-            C
-        </div>
+  <div class="logo">C</div>
 
-        <div>
-            <h1>CONECTA</h1>
-            <span>Personas · Planes · Experiencias</span>
-        </div>
+  <div>
+   <h1>CONECTA</h1>
+   <span>Personas · Experiencias · Comunidad</span>
+  </div>
 
-    </div>
+ </div>
 
-    <div class="header-actions">
+ <div class="header-actions">
 
-        <button
-            class="icon-btn"
-            onclick="toggleDark()"
-            aria-label="Cambiar apariencia">
-            🌙
-        </button>
+  <button
+   class="icon-btn"
+   onclick="toggleDark()">
+   🌙
+  </button>
 
-        <button
-            class="icon-btn"
-            onclick="showToast('Todo está al día 🔔')"
-            aria-label="Notificaciones">
-            🔔
-        </button>
+  <button
+   class="icon-btn"
+   onclick="showNotifications()">
 
-    </div>
+   🔔
+
+   <span
+    id="notificationBadge"
+    class="notification-badge">
+    3
+   </span>
+
+  </button>
+
+ </div>
 
 </header>
 
 
-<!-- =======================================================
-     INICIO
-======================================================= -->
+<!-- =====================================================
+ INICIO
+===================================================== -->
 
 <main id="homeView" class="view active">
 
-    <section class="hero">
+<section class="hero">
 
-        <div class="hero-content">
+ <div class="hero-badge">
+  ✨ TU COMUNIDAD
+ </div>
 
-            <div class="hero-badge">
-                ✨ NUEVA EXPERIENCIA
-            </div>
+ <h2>
+  Conecta.<br>
+  Comparte.<br>
+  Vive.
+ </h2>
 
-            <h2>
-                Conoce gente.<br>
-                Comparte planes.<br>
-                Vive más.
-            </h2>
+ <p>
+  Descubre personas, comparte experiencias,
+  crea actividades y encuentra nuevos planes
+  cerca de ti.
+ </p>
 
-            <p>
-                Descubre personas con tus mismos intereses,
-                crea planes y encuentra nuevas experiencias.
-            </p>
+ <div class="hero-buttons">
 
-            <div class="hero-buttons">
+  <button
+   class="hero-btn"
+   onclick="goTo('feed')">
+   Ver actividad →
+  </button>
 
-                <button
-                    class="hero-btn"
-                    onclick="goTo('connect')">
-                    Empezar a conectar →
-                </button>
+  <button
+   class="hero-btn secondary"
+   onclick="goTo('plans')">
+   Explorar planes
+  </button>
 
-                <button
-                    class="hero-btn secondary"
-                    onclick="goTo('plans')">
-                    Ver planes
-                </button>
+ </div>
 
-            </div>
+</section>
 
-        </div>
 
-    </section>
+<div class="search">
 
+ <span>🔎</span>
 
-    <div class="search">
+ <input
+  id="globalSearch"
+  type="search"
+  placeholder="Buscar personas, actividades o planes..."
+  oninput="globalSearch(this.value)">
 
-        <span>🔎</span>
+</div>
 
-        <input
-            id="searchInput"
-            type="search"
-            placeholder="Buscar personas, planes o actividades..."
-            oninput="searchAll(this.value)">
 
-    </div>
+<!-- HISTORIAS -->
 
+<section class="section">
 
-    <!-- CATEGORÍAS -->
+ <div class="section-head">
 
-    <section class="section">
+  <div>
+   <h2>⭕ Historias</h2>
+   <p>Lo que está pasando hoy</p>
+  </div>
 
-        <div class="section-head">
+  <button onclick="createStory()">
+   + Tu historia
+  </button>
 
-            <div>
-                <h2>🔥 Explora</h2>
-                <p>Encuentra algo que te guste</p>
-            </div>
+ </div>
 
-            <button onclick="showAllCategories()">
-                Ver todas
-            </button>
+ <div
+  id="stories"
+  class="stories">
+ </div>
 
-        </div>
+</section>
 
-        <div
-            id="categories"
-            class="categories">
-        </div>
 
-    </section>
+<!-- ACTIVIDAD -->
 
+<section class="section">
 
-    <!-- PERSONAS -->
+ <div class="section-head">
 
-    <section class="section">
+  <div>
+   <h2>📸 Actividad de hoy</h2>
+   <p>Lo que comparte la comunidad</p>
+  </div>
 
-        <div class="section-head">
+  <button onclick="goTo('feed')">
+   Ver todo
+  </button>
 
-            <div>
-                <h2>✨ Descubre personas</h2>
-                <p>Gente cerca de ti</p>
-            </div>
+ </div>
 
-            <button onclick="goTo('connect')">
-                Ver más
-            </button>
+ <div
+  id="homeFeed"
+  class="feed">
+ </div>
 
-        </div>
+</section>
 
-        <div
-            id="people"
-            class="people">
-        </div>
 
-    </section>
+<!-- EXPLORA -->
 
+<section class="section">
 
-    <!-- PLANES -->
+ <div class="section-head">
 
-    <section class="section">
+  <div>
+   <h2>🔥 Explora</h2>
+   <p>Encuentra algo que te guste</p>
+  </div>
 
-        <div class="section-head">
+  <button onclick="showCategories()">
+   Todas
+  </button>
 
-            <div>
-                <h2>📅 Planes para ti</h2>
-                <p>Actividades que podrían gustarte</p>
-            </div>
+ </div>
 
-            <button onclick="goTo('plans')">
-                Ver todos
-            </button>
+ <div
+  id="categories"
+  class="categories">
+ </div>
 
-        </div>
+</section>
 
-        <div
-            id="homePlans"
-            class="plans">
-        </div>
 
-    </section>
+<!-- ESTADÍSTICAS -->
 
+<section class="section">
 
-    <!-- EXPERIENCIAS -->
+ <div class="section-head">
 
-    <section class="section">
+  <div>
+   <h2>📊 Tu actividad</h2>
+   <p>Resumen de este mes</p>
+  </div>
 
-        <div class="section-head">
+  <button onclick="goTo('calendar')">
+   Ver calendario
+  </button>
 
-            <div>
-                <h2>🌟 Experiencias</h2>
-                <p>Descubre algo diferente</p>
-            </div>
+ </div>
 
-        </div>
+ <div class="stats-grid">
 
-        <div
-            id="featured"
-            class="featured">
-        </div>
+  <div class="stat-card">
+   <div class="stat-icon">🏃</div>
+   <strong id="statActivities">12</strong>
+   <span>Actividades</span>
+  </div>
 
-    </section>
+  <div class="stat-card">
+   <div class="stat-icon">⏱️</div>
+   <strong>8h 42m</strong>
+   <span>Tiempo activo</span>
+  </div>
 
+  <div class="stat-card">
+   <div class="stat-icon">🤝</div>
+   <strong id="statConnections">14</strong>
+   <span>Conexiones nuevas</span>
+  </div>
 
-    <!-- ACCESOS -->
+  <div class="stat-card">
+   <div class="stat-icon">📸</div>
+   <strong id="statPosts">23</strong>
+   <span>Publicaciones</span>
+  </div>
 
-    <section class="section">
+ </div>
 
-        <div class="section-head">
+</section>
 
-            <div>
-                <h2>⚡ Accesos rápidos</h2>
-                <p>Todo a un toque</p>
-            </div>
 
-        </div>
+<!-- ACCESOS -->
 
-        <div class="quick">
+<section class="section">
 
-            <button
-                class="quick-card"
-                onclick="createPlan()">
+ <div class="section-head">
 
-                <div class="quick-icon">
-                    ➕
-                </div>
+  <div>
+   <h2>⚡ Accesos rápidos</h2>
+  </div>
 
-                <span>
-                    Crear plan
-                </span>
+ </div>
 
-            </button>
+ <div class="quick">
 
+  <button
+   class="quick-card"
+   onclick="createPost()">
 
-            <button
-                class="quick-card"
-                onclick="goTo('connect')">
+   <div class="quick-icon">
+    📸
+   </div>
 
-                <div class="quick-icon">
-                    🤝
-                </div>
+   <span>
+    Publicar
+   </span>
 
-                <span>
-                    Conectar
-                </span>
+  </button>
 
-            </button>
 
+  <button
+   class="quick-card"
+   onclick="createPlan()">
 
-            <button
-                class="quick-card"
-                onclick="goTo('chat')">
+   <div class="quick-icon">
+    📅
+   </div>
 
-                <div class="quick-icon">
-                    💬
-                </div>
+   <span>
+    Plan
+   </span>
 
-                <span>
-                    Chats
-                </span>
+  </button>
 
-            </button>
 
+  <button
+   class="quick-card"
+   onclick="goTo('connect')">
 
-            <button
-                class="quick-card"
-                onclick="goTo('profile')">
+   <div class="quick-icon">
+    🤝
+   </div>
 
-                <div class="quick-icon">
-                    👤
-                </div>
+   <span>
+    Conectar
+   </span>
 
-                <span>
-                    Perfil
-                </span>
+  </button>
 
-            </button>
 
-        </div>
+  <button
+   class="quick-card"
+   onclick="goTo('groups')">
 
-    </section>
+   <div class="quick-icon">
+    👥
+   </div>
+
+   <span>
+    Grupos
+   </span>
+
+  </button>
+
+ </div>
+
+</section>
 
 </main>
 
 
-<!-- =======================================================
-     CONECTA
-======================================================= -->
+<!-- =====================================================
+ FEED
+===================================================== -->
 
-<main
-    id="connectView"
-    class="view">
+<main id="feedView" class="view">
 
-    <section
-        class="section"
-        style="padding-top:20px">
+<section
+ class="section"
+ style="padding-top:20px">
 
-        <div class="section-head">
+ <div class="section-head">
 
-            <div>
-                <h2>🤝 Conecta</h2>
-                <p>Personas con intereses compatibles</p>
-            </div>
+  <div>
+   <h2>📸 Actividad</h2>
+   <p>La comunidad está compartiendo</p>
+  </div>
 
-        </div>
+  <button onclick="createPost()">
+   + Publicar
+  </button>
 
-        <div
-            class="search"
-            style="margin:0 0 18px">
+ </div>
 
-            <span>🔎</span>
+ <div
+  class="stories"
+  id="feedStories">
+ </div>
 
-            <input
-                id="peopleSearch"
-                placeholder="Buscar personas..."
-                oninput="filterPeople(this.value)">
+</section>
 
-        </div>
+<section class="section">
 
-        <div
-            id="connectPeople"
-            class="people-grid">
-        </div>
+ <div
+  id="fullFeed"
+  class="feed">
+ </div>
 
-    </section>
+</section>
 
 </main>
 
 
-<!-- =======================================================
-     PLANES
-======================================================= -->
+<!-- =====================================================
+ CALENDARIO
+===================================================== -->
 
-<main
-    id="plansView"
-    class="view">
+<main id="calendarView" class="view">
 
-    <section
-        class="section"
-        style="padding-top:20px">
+<section
+ class="section"
+ style="padding-top:20px">
 
-        <div class="section-head">
+ <div class="section-head">
 
-            <div>
-                <h2>📅 Planes</h2>
-                <p>Haz algo. Conoce a alguien.</p>
-            </div>
+  <div>
+   <h2>📅 Calendario</h2>
+   <p>Tu actividad</p>
+  </div>
 
-            <button onclick="createPlan()">
-                + Crear
-            </button>
+ </div>
 
-        </div>
+ <div class="calendar-card">
 
-        <div
-            class="search"
-            style="margin:0 0 18px">
+  <div class="calendar-top">
 
-            <span>🔎</span>
+   <button
+    onclick="changeMonth(-1)">
+    ‹
+   </button>
 
-            <input
-                id="plansSearch"
-                placeholder="Buscar planes..."
-                oninput="filterPlans(this.value)">
+   <strong id="calendarTitle">
+    Agosto 2026
+   </strong>
 
-        </div>
+   <button
+    onclick="changeMonth(1)">
+    ›
+   </button>
 
-        <div
-            id="allPlans"
-            class="plans">
-        </div>
+  </div>
 
-    </section>
+  <div
+   class="calendar-grid"
+   id="calendar">
+  </div>
+
+ </div>
+
+</section>
+
+
+<section class="section">
+
+ <div class="section-head">
+
+  <div>
+   <h2>📊 Resumen</h2>
+   <p>Tu actividad del mes</p>
+  </div>
+
+ </div>
+
+ <div class="stats-grid">
+
+  <div class="stat-card">
+   <div class="stat-icon">🤝</div>
+   <strong>14</strong>
+   <span>Conexiones</span>
+  </div>
+
+  <div class="stat-card">
+   <div class="stat-icon">⏱️</div>
+   <strong>8h 42m</strong>
+   <span>Tiempo conectado</span>
+  </div>
+
+  <div class="stat-card">
+   <div class="stat-icon">👥</div>
+   <strong>5</strong>
+   <span>Grupos</span>
+  </div>
+
+  <div class="stat-card">
+   <div class="stat-icon">❤️</div>
+   <strong>187</strong>
+   <span>Interacciones</span>
+  </div>
+
+ </div>
+
+</section>
+
+
+<section class="section">
+
+ <div class="section-head">
+
+  <div>
+   <h2>🗓️ Historial</h2>
+   <p>Tus últimos días</p>
+  </div>
+
+ </div>
+
+ <div
+  id="history"
+  class="connection-list">
+ </div>
+
+</section>
 
 </main>
 
 
-<!-- =======================================================
-     CHAT
-======================================================= -->
+<!-- =====================================================
+ CONECTA
+===================================================== -->
 
-<main
-    id="chatView"
-    class="view">
+<main id="connectView" class="view">
 
-    <section
-        class="section"
-        style="padding-top:20px">
+<section
+ class="section"
+ style="padding-top:20px">
 
-        <div class="section-head">
+ <div class="section-head">
 
-            <div>
-                <h2>💬 Chats</h2>
-                <p>Habla con tus conexiones</p>
-            </div>
+  <div>
+   <h2>🤝 Conecta</h2>
+   <p>Personas compatibles contigo</p>
+  </div>
 
-        </div>
+ </div>
 
-        <div
-            class="chat-list"
-            id="chatList">
-        </div>
+ <div
+  class="search"
+  style="margin:0 0 15px">
 
-    </section>
+  <span>🔎</span>
+
+  <input
+   id="peopleSearch"
+   placeholder="Buscar personas..."
+   oninput="filterPeople(this.value)">
+
+ </div>
+
+ <div
+  id="peopleGrid"
+  class="people-grid">
+ </div>
+
+</section>
 
 </main>
 
 
-<!-- =======================================================
-     PERFIL
-======================================================= -->
+<!-- =====================================================
+ PLANES
+===================================================== -->
 
-<main
-    id="profileView"
-    class="view">
+<main id="plansView" class="view">
 
-    <div class="profile-cover">
+<section
+ class="section"
+ style="padding-top:20px">
 
-        <div class="profile-photo">
+ <div class="section-head">
 
-            <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
-                alt="Perfil">
+  <div>
+   <h2>📅 Planes</h2>
+   <p>Descubre actividades nuevas</p>
+  </div>
 
-        </div>
+  <button onclick="createPlan()">
+   + Crear
+  </button>
 
-        <button
-            class="profile-edit"
-            onclick="showToast('Editor de perfil próximamente ✨')">
-            ✏️
-        </button>
+ </div>
 
-    </div>
+ <div
+  class="search"
+  style="margin:0 0 15px">
 
+  <span>🔎</span>
 
-    <div class="profile-info">
+  <input
+   id="plansSearch"
+   placeholder="Buscar planes..."
+   oninput="filterPlans(this.value)">
 
-        <h2>Tu perfil</h2>
+ </div>
 
-        <p>
-            Descubre · Conecta · Comparte
-        </p>
+ <div
+  id="plans"
+  class="plans">
+ </div>
 
-        <div class="profile-badges">
-
-            <span class="profile-badge">
-                🏃 Running
-            </span>
-
-            <span class="profile-badge">
-                💪 Gym
-            </span>
-
-            <span class="profile-badge">
-                ✈️ Viajes
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="profile-stats">
-
-        <div class="stat">
-
-            <strong>128</strong>
-
-            <span>
-                Conexiones
-            </span>
-
-        </div>
-
-        <div class="stat">
-
-            <strong>24</strong>
-
-            <span>
-                Planes
-            </span>
-
-        </div>
-
-        <div class="stat">
-
-            <strong>8</strong>
-
-            <span>
-                Intereses
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <section class="section">
-
-        <div class="settings-list">
-
-            <button
-                class="setting"
-                onclick="showToast('Editor de perfil próximamente ✨')">
-
-                <div class="setting-icon">
-                    ✏️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Editar perfil
-                    </strong>
-
-                    <small>
-                        Foto, nombre, descripción e intereses
-                    </small>
-
-                </div>
-
-                <b>›</b>
-
-            </button>
-
-
-            <button
-                class="setting"
-                onclick="showToast('Tus intereses están guardados ❤️')">
-
-                <div class="setting-icon">
-                    ❤️
-                </div>
-
-                <div>
-
-                    <strong>
-                        Mis intereses
-                    </strong>
-
-                    <small>
-                        Running · Gym · Viajes · Música
-                    </small>
-
-                </div>
-
-                <b>›</b>
-
-            </button>
-
-
-            <button
-                class="setting"
-                onclick="showToast('Ajustes de privacidad 🔒')">
-
-                <div class="setting-icon">
-                    🔒
-                </div>
-
-                <div>
-
-                    <strong>
-                        Privacidad
-                    </strong>
-
-                    <small>
-                        Controla quién puede encontrarte
-                    </small>
-
-                </div>
-
-                <b>›</b>
-
-            </button>
-
-
-            <button
-                class="setting"
-                onclick="showToast('Ajustes de notificaciones 🔔')">
-
-                <div class="setting-icon">
-                    🔔
-                </div>
-
-                <div>
-
-                    <strong>
-                        Notificaciones
-                    </strong>
-
-                    <small>
-                        Mensajes, conexiones y planes
-                    </small>
-
-                </div>
-
-                <b>›</b>
-
-            </button>
-
-
-            <button
-                class="setting"
-                onclick="toggleDark()">
-
-                <div class="setting-icon">
-                    🌙
-                </div>
-
-                <div>
-
-                    <strong>
-                        Apariencia
-                    </strong>
-
-                    <small>
-                        Modo claro / oscuro
-                    </small>
-
-                </div>
-
-                <b>›</b>
-
-            </button>
-
-        </div>
-
-    </section>
+</section>
 
 </main>
 
 
-<!-- =======================================================
-     NAV
-======================================================= -->
+<!-- =====================================================
+ GRUPOS
+===================================================== -->
+
+<main id="groupsView" class="view">
+
+<section
+ class="section"
+ style="padding-top:20px">
+
+ <div class="section-head">
+
+  <div>
+   <h2>👥 Grupos</h2>
+   <p>Tus comunidades</p>
+  </div>
+
+  <button onclick="createGroup()">
+   + Crear
+  </button>
+
+ </div>
+
+ <div
+  id="groups"
+  class="groups">
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+ CHAT
+===================================================== -->
+
+<main id="chatView" class="view">
+
+<section
+ class="section"
+ style="padding-top:20px">
+
+ <div class="section-head">
+
+  <div>
+   <h2>💬 Chat</h2>
+   <p>Tus conversaciones</p>
+  </div>
+
+ </div>
+
+ <div
+  id="chats"
+  class="chat-list">
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+ PERFIL
+===================================================== -->
+
+<main id="profileView" class="view">
+
+<div class="profile-cover">
+
+ <div class="profile-photo">
+
+  <img
+   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85">
+
+ </div>
+
+</div>
+
+
+<div class="profile-info">
+
+ <h2 id="profileName">
+  Tu perfil
+ </h2>
+
+ <p>
+  Conecta · Comparte · Descubre
+ </p>
+
+</div>
+
+
+<div class="profile-stats">
+
+ <div class="stat">
+  <strong id="profileConnections">
+   128
+  </strong>
+  <span>Conexiones</span>
+ </div>
+
+ <div class="stat">
+  <strong id="profilePosts">
+   23
+  </strong>
+  <span>Publicaciones</span>
+ </div>
+
+ <div class="stat">
+  <strong id="profilePlans">
+   14
+  </strong>
+  <span>Planes</span>
+ </div>
+
+</div>
+
+
+<section class="section">
+
+ <div class="section-head">
+
+  <div>
+   <h2>📸 Mis álbumes</h2>
+   <p>Tus recuerdos y experiencias</p>
+  </div>
+
+  <button onclick="showToast('Álbumes próximamente 📸')">
+   + Álbum
+  </button>
+
+ </div>
+
+ <div
+  id="albums"
+  class="albums">
+ </div>
+
+</section>
+
+
+<section class="section">
+
+ <div class="section-head">
+
+  <div>
+   <h2>⚙️ Ajustes</h2>
+  </div>
+
+ </div>
+
+ <div class="settings">
+
+
+  <button
+   class="setting"
+   onclick="editProfile()">
+
+   <div class="setting-icon">
+    ✏️
+   </div>
+
+   <div>
+    <strong>Editar perfil</strong>
+    <small>
+     Foto, nombre e información
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="goTo('calendar')">
+
+   <div class="setting-icon">
+    📊
+   </div>
+
+   <div>
+    <strong>Mi actividad</strong>
+    <small>
+     Calendario y estadísticas
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="privacySettings()">
+
+   <div class="setting-icon">
+    🔒
+   </div>
+
+   <div>
+    <strong>Privacidad</strong>
+    <small>
+     Controla quién puede verte
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="toggleDark()">
+
+   <div class="setting-icon">
+    🌙
+   </div>
+
+   <div>
+    <strong>Apariencia</strong>
+    <small>
+     Modo claro / oscuro
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="showToast('Seguridad próximamente 🔐')">
+
+   <div class="setting-icon">
+    🛡️
+   </div>
+
+   <div>
+    <strong>Seguridad</strong>
+    <small>
+     Protege tu cuenta
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+
+  <button
+   class="setting"
+   onclick="showToast('Ayuda próximamente 💜')">
+
+   <div class="setting-icon">
+    ❓
+   </div>
+
+   <div>
+    <strong>Ayuda</strong>
+    <small>
+     Preguntas frecuentes
+    </small>
+   </div>
+
+   <span>›</span>
+
+  </button>
+
+ </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+ NAV
+===================================================== -->
 
 <nav class="bottom-nav">
 
-    <button
-        class="nav-btn active"
-        data-view="home"
-        onclick="goTo('home')">
+ <button
+  class="nav-btn active"
+  data-view="home"
+  onclick="goTo('home')">
 
-        <span class="nav-icon">
-            ⌂
-        </span>
+  <span class="nav-icon">⌂</span>
+  Inicio
 
-        Inicio
-
-    </button>
+ </button>
 
 
-    <button
-        class="nav-btn"
-        data-view="connect"
-        onclick="goTo('connect')">
+ <button
+  class="nav-btn"
+  data-view="feed"
+  onclick="goTo('feed')">
 
-        <span class="nav-icon">
-            🤝
-        </span>
+  <span class="nav-icon">📸</span>
+  Actividad
 
-        Conecta
-
-    </button>
+ </button>
 
 
-    <button
-        class="nav-btn"
-        data-view="plans"
-        onclick="goTo('plans')">
+ <button
+  class="nav-btn"
+  data-view="calendar"
+  onclick="goTo('calendar')">
 
-        <span class="nav-icon">
-            📅
-        </span>
+  <span class="nav-icon">📅</span>
+  Calendario
 
-        Planes
-
-    </button>
+ </button>
 
 
-    <button
-        class="nav-btn"
-        data-view="chat"
-        onclick="goTo('chat')">
+ <button
+  class="nav-btn"
+  data-view="connect"
+  onclick="goTo('connect')">
 
-        <span class="nav-icon">
-            💬
-        </span>
+  <span class="nav-icon">🤝</span>
+  Conecta
 
-        Chat
-
-    </button>
+ </button>
 
 
-    <button
-        class="nav-btn"
-        data-view="profile"
-        onclick="goTo('profile')">
+ <button
+  class="nav-btn"
+  data-view="chat"
+  onclick="goTo('chat')">
 
-        <span class="nav-icon">
-            👤
-        </span>
+  <span class="nav-icon">💬</span>
+  Chat
 
-        Perfil
+ </button>
 
-    </button>
+
+ <button
+  class="nav-btn"
+  data-view="profile"
+  onclick="goTo('profile')">
+
+  <span class="nav-icon">👤</span>
+  Perfil
+
+ </button>
 
 </nav>
 
 </div>
 
 
-<!-- =======================================================
-     TOAST
-======================================================= -->
+<!-- =====================================================
+ MODAL
+===================================================== -->
 
 <div
-    id="toast"
-    class="toast">
+ id="modal"
+ class="modal"
+ onclick="closeModal(event)">
+
+ <div class="modal-box">
+
+  <button
+   class="modal-close"
+   onclick="closeModal()">
+   ✕
+  </button>
+
+  <div id="modalContent"></div>
+
+ </div>
+
 </div>
 
 
-<!-- =======================================================
-     MODAL
-======================================================= -->
+<!-- TOAST -->
 
 <div
-    id="modal"
-    class="modal"
-    onclick="closeModal(event)">
-
-    <div class="modal-box">
-
-        <button
-            class="modal-close"
-            onclick="closeModal()">
-            ✕
-        </button>
-
-        <div id="modalContent"></div>
-
-    </div>
-
+ id="toast"
+ class="toast">
 </div>
 
 
 <script>
 
 /* =========================================================
-   DATOS
+ CONFIGURACIÓN
 ========================================================= */
 
-const categories = [
+const STORAGE_KEY="conecta-data-v2";
 
-    {
-        name:"Running",
-        icon:"🏃",
-        image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=700&q=85"
-    },
 
-    {
-        name:"Gym",
-        icon:"💪",
-        image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=85"
-    },
+/* =========================================================
+ DATOS
+========================================================= */
 
-    {
-        name:"Fútbol",
-        icon:"⚽",
-        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Ciclismo",
-        icon:"🚴",
-        image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Senderismo",
-        icon:"🥾",
-        image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Viajes",
-        icon:"✈️",
-        image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Cine",
-        icon:"🎬",
-        image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Música",
-        icon:"🎵",
-        image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Gaming",
-        icon:"🎮",
-        image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Comida",
-        icon:"🍔",
-        image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Playa",
-        icon:"🏖️",
-        image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Fotografía",
-        icon:"📸",
-        image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Padel",
-        icon:"🎾",
-        image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Natación",
-        icon:"🏊",
-        image:"https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Cocina",
-        icon:"👨‍🍳",
-        image:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Arte",
-        icon:"🎨",
-        image:"https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Naturaleza",
-        icon:"🌿",
-        image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=85"
-    },
-
-    {
-        name:"Mascotas",
-        icon:"🐶",
-        image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=85"
-    }
-
+const categories=[
+ ["🏃","Running","https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=700&q=85"],
+ ["💪","Gym","https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=85"],
+ ["⚽","Fútbol","https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85"],
+ ["🚴","Ciclismo","https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=700&q=85"],
+ ["🥾","Senderismo","https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=85"],
+ ["✈️","Viajes","https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85"],
+ ["🎬","Cine","https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=85"],
+ ["🎵","Música","https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=700&q=85"],
+ ["🎮","Gaming","https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85"],
+ ["🍔","Comida","https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=85"],
+ ["🏖️","Playa","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=85"],
+ ["📸","Fotografía","https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=700&q=85"],
+ ["🎾","Pádel","https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=700&q=85"],
+ ["🏊","Natación","https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=700&q=85"]
 ];
 
 
-const people = [
-
-    {
-        name:"Laura",
-        age:27,
-        city:"Tarragona",
-        interest:"Running",
-        image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Marc",
-        age:29,
-        city:"Reus",
-        interest:"Gym",
-        image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Sergio",
-        age:31,
-        city:"Salou",
-        interest:"Fútbol",
-        image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Claudia",
-        age:25,
-        city:"Vila-seca",
-        interest:"Viajes",
-        image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"David",
-        age:28,
-        city:"Tarragona",
-        interest:"Ciclismo",
-        image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Nerea",
-        age:26,
-        city:"Cambrils",
-        interest:"Cine",
-        image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Alex",
-        age:30,
-        city:"Salou",
-        interest:"Padel",
-        image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85"
-    },
-
-    {
-        name:"Marta",
-        age:28,
-        city:"Reus",
-        interest:"Fotografía",
-        image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85"
-    }
-
+const people=[
+ {
+  id:1,
+  name:"Laura",
+  age:27,
+  city:"Tarragona",
+  interest:"Running",
+  image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=85"
+ },
+ {
+  id:2,
+  name:"Marc",
+  age:29,
+  city:"Reus",
+  interest:"Gym",
+  image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85"
+ },
+ {
+  id:3,
+  name:"Sergio",
+  age:31,
+  city:"Salou",
+  interest:"Fútbol",
+  image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85"
+ },
+ {
+  id:4,
+  name:"Claudia",
+  age:25,
+  city:"Vila-seca",
+  interest:"Viajes",
+  image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85"
+ },
+ {
+  id:5,
+  name:"Nerea",
+  age:26,
+  city:"Cambrils",
+  interest:"Cine",
+  image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=85"
+ },
+ {
+  id:6,
+  name:"Marta",
+  age:28,
+  city:"Reus",
+  interest:"Fotografía",
+  image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85"
+ }
 ];
 
 
-const plans = [
-
-    {
-        title:"Running por la playa",
-        tag:"RUNNING",
-        info:"🏃 7 km · 📍 La Pineda · Hoy",
-        description:"Salimos a correr tranquilos y terminamos tomando algo.",
-        image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Entrenamiento de gym",
-        tag:"GYM",
-        info:"💪 Entrenamiento · 📍 Tarragona · Mañana",
-        description:"Entrenamiento conjunto para motivarnos y mejorar.",
-        image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Partido de fútbol",
-        tag:"FÚTBOL",
-        info:"⚽ 5 vs 5 · 📍 Reus · Sábado",
-        description:"Partido amistoso para conocer gente nueva.",
-        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Ruta en bicicleta",
-        tag:"CICLISMO",
-        info:"🚴 25 km · 📍 Tarragona · Domingo",
-        description:"Ruta por carretera con un grupo abierto.",
-        image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Senderismo por la montaña",
-        tag:"NATURALEZA",
-        info:"🥾 10 km · 📍 Montañas · Domingo",
-        description:"Naturaleza, deporte y buenas vistas.",
-        image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Tarde de cine",
-        tag:"CINE",
-        info:"🎬 Película · 📍 Tarragona · Viernes",
-        description:"Elegimos película entre todos y después comentamos.",
-        image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
-    },
-
-    {
-        title:"Partida de pádel",
-        tag:"PADEL",
-        info:"🎾 4 personas · 📍 Reus · Sábado",
-        description:"Buscamos jugadores para completar la partida.",
-        image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1000&q=85"
-    }
-
+let posts=[
+ {
+  id:1,
+  user:"Laura",
+  time:"Hace 25 min",
+  image:people[0].image,
+  photo:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85",
+  title:"Entrenamiento de hoy 🏃",
+  text:"Hoy tocaban 7,4 km por la playa. ¡Cada día un poco más!",
+  activity:["7,4 km","42 min","5:40/km"],
+  likes:24,
+  comments:6,
+  liked:false
+ },
+ {
+  id:2,
+  user:"Marc",
+  time:"Hace 1 h",
+  image:people[1].image,
+  photo:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85",
+  title:"Entrenamiento terminado 💪",
+  text:"Sesión completa. Hoy tocaba pecho y espalda.",
+  activity:["1h 08m","Gym","5 ejercicios"],
+  likes:31,
+  comments:4,
+  liked:false
+ },
+ {
+  id:3,
+  user:"Claudia",
+  time:"Hace 2 h",
+  image:people[3].image,
+  photo:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85",
+  title:"Nuevo viaje ✈️",
+  text:"Preparando la próxima aventura. ¿Alguna recomendación?",
+  activity:["Viaje","4 días","🌍"],
+  likes:42,
+  comments:12,
+  liked:false
+ },
+ {
+  id:4,
+  user:"Marta",
+  time:"Hace 3 h",
+  image:people[5].image,
+  photo:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=1000&q=85",
+  title:"Fotografía del día 📸",
+  text:"Me encanta cómo ha quedado esta foto.",
+  activity:["Fotografía","Atardecer","📍 Tarragona"],
+  likes:18,
+  comments:3,
+  liked:false
+ }
 ];
 
 
-const chats = [
-
-    {
-        name:"Laura",
-        message:"¿Hacemos el running mañana?",
-        time:"12:42",
-        image:people[0].image
-    },
-
-    {
-        name:"Marc",
-        message:"Perfecto, nos vemos en el gym.",
-        time:"11:30",
-        image:people[1].image
-    },
-
-    {
-        name:"Claudia",
-        message:"He encontrado un plan increíble.",
-        time:"Ayer",
-        image:people[3].image
-    },
-
-    {
-        name:"Nerea",
-        message:"¿Qué película vemos?",
-        time:"Ayer",
-        image:people[5].image
-    }
-
+let plans=[
+ {
+  id:1,
+  title:"Running por la playa",
+  tag:"RUNNING",
+  info:"🏃 7 km · 📍 La Pineda · Hoy",
+  description:"Salida tranquila para correr y terminar tomando algo.",
+  image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85",
+  favorite:false,
+  joined:false
+ },
+ {
+  id:2,
+  title:"Entrenamiento de gym",
+  tag:"GYM",
+  info:"💪 Entrenamiento · 📍 Tarragona · Mañana",
+  description:"Entrenamiento conjunto.",
+  image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85",
+  favorite:false,
+  joined:false
+ },
+ {
+  id:3,
+  title:"Partido de fútbol",
+  tag:"FÚTBOL",
+  info:"⚽ 5 vs 5 · 📍 Reus · Sábado",
+  description:"Partido amistoso.",
+  image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85",
+  favorite:false,
+  joined:false
+ },
+ {
+  id:4,
+  title:"Ruta en bicicleta",
+  tag:"CICLISMO",
+  info:"🚴 25 km · 📍 Tarragona · Domingo",
+  description:"Ruta abierta para todos los niveles.",
+  image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1000&q=85",
+  favorite:false,
+  joined:false
+ }
 ];
 
 
-const featured = [
+let groups=[
+ ["🏃","Running Tarragona","126 miembros"],
+ ["💪","Gym & Fitness","84 miembros"],
+ ["🎮","Gaming Catalunya","312 miembros"],
+ ["📸","Fotografía","67 miembros"],
+ ["✈️","Viajes","194 miembros"]
+];
 
-    {
-        title:"Atardecer en la playa",
-        subtitle:"Conoce gente nueva",
-        image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
-    },
 
-    {
-        title:"Ruta de montaña",
-        subtitle:"Naturaleza + aventura",
-        image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85"
-    },
+const chats=[
+ ["Laura","¿Hacemos el running mañana?","12:42",people[0].image],
+ ["Marc","Perfecto, nos vemos en el gym.","11:30",people[1].image],
+ ["Claudia","He encontrado un plan increíble.","Ayer",people[3].image],
+ ["Nerea","¿Qué película vemos?","Ayer",people[4].image]
+];
 
-    {
-        title:"Música en directo",
-        subtitle:"Disfruta y conecta",
-        image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85"
-    },
 
-    {
-        title:"Gastronomía",
-        subtitle:"Descubre nuevos sabores",
-        image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
-    }
-
+const albums=[
+ ["Verano","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=85"],
+ ["Running","https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=500&q=85"],
+ ["Viajes","https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=500&q=85"],
+ ["Naturaleza","https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=500&q=85"],
+ ["Amigos","https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=500&q=85"],
+ ["Fotos","https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=500&q=85"]
 ];
 
 
 /* =========================================================
-   CATEGORÍAS
+ STORAGE
 ========================================================= */
 
-function renderCategories(list=categories){
+function saveData(){
 
-    const container =
-        document.getElementById("categories");
+ try{
 
-    if(!container) return;
+  localStorage.setItem(
+   STORAGE_KEY,
+   JSON.stringify({
+    posts,
+    plans,
+    groups
+   })
+  );
 
-    container.innerHTML =
-        list.map(c=>`
+ }catch(error){
 
-            <button
-                class="category"
-                onclick="selectCategory('${c.name}')">
+  console.log("No se pudo guardar:",error);
 
-                <img
-                    src="${c.image}"
-                    alt="${c.name}"
-                    loading="lazy">
+ }
 
-                <div class="category-info">
-
-                    <div class="category-icon">
-                        ${c.icon}
-                    </div>
-
-                    <div class="category-title">
-                        ${c.name}
-                    </div>
-
-                </div>
-
-            </button>
-
-        `).join("");
 }
 
 
-function showAllCategories(){
+function loadData(){
 
-    openModal(`
+ try{
 
-        <h2>🔥 Explora Conecta</h2>
+  const saved=
+   JSON.parse(
+    localStorage.getItem(STORAGE_KEY)
+   );
 
-        <p>
-            Encuentra una actividad que te guste
-            y descubre personas con intereses similares.
-        </p>
+  if(!saved) return;
 
-        <div style="
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:10px;
-            margin-top:18px;
-            max-height:55vh;
-            overflow:auto;
-        ">
+  if(Array.isArray(saved.posts)){
+   posts=saved.posts;
+  }
 
-            ${categories.map(c=>`
+  if(Array.isArray(saved.plans)){
+   plans=saved.plans;
+  }
 
-                <button
-                    onclick="closeModal();selectCategory('${c.name}')"
-                    style="
-                        border-radius:18px;
-                        overflow:hidden;
-                        height:115px;
-                        position:relative;
-                        color:white;
-                        background:#ddd;
-                    ">
+  if(Array.isArray(saved.groups)){
+   groups=saved.groups;
+  }
 
-                    <img
-                        src="${c.image}"
-                        alt="${c.name}"
-                        style="
-                            width:100%;
-                            height:100%;
-                            object-fit:cover;
-                        ">
+ }catch(error){
 
-                    <span style="
-                        position:absolute;
-                        inset:auto 9px 9px;
-                        font-weight:950;
-                        text-align:left;
-                        text-shadow:0 2px 8px #000;
-                    ">
-                        ${c.icon} ${c.name}
-                    </span>
+  console.log("Datos locales inválidos");
 
-                </button>
-
-            `).join("")}
-
-        </div>
-
-    `);
+ }
 
 }
 
 
 /* =========================================================
-   PERSONAS
+ RENDER CATEGORÍAS
+========================================================= */
+
+function renderCategories(){
+
+ const el=
+  document.getElementById("categories");
+
+ if(!el) return;
+
+ el.innerHTML=
+ categories
+ .slice(0,8)
+ .map(c=>`
+
+  <button
+   class="category"
+   onclick="category('${c[1]}')">
+
+   <img
+    src="${c[2]}"
+    loading="lazy"
+    alt="${c[1]}">
+
+   <div class="category-info">
+
+    <div class="category-icon">
+     ${c[0]}
+    </div>
+
+    <div class="category-title">
+     ${c[1]}
+    </div>
+
+   </div>
+
+  </button>
+
+ `)
+ .join("");
+
+}
+
+
+/* =========================================================
+ STORIES
+========================================================= */
+
+function renderStories(){
+
+ const html=
+ people
+ .map(p=>`
+
+  <button
+   class="story"
+   onclick="openProfile('${p.name}')">
+
+   <div class="story-ring">
+
+    <img
+     src="${p.image}"
+     loading="lazy"
+     alt="${p.name}">
+
+   </div>
+
+   <span>
+    ${p.name}
+   </span>
+
+  </button>
+
+ `)
+ .join("");
+
+ document.getElementById("stories").innerHTML=html;
+
+ document.getElementById("feedStories").innerHTML=html;
+
+}
+
+
+/* =========================================================
+ POSTS
+========================================================= */
+
+function postHTML(p){
+
+ return `
+ <article class="post">
+
+  <div class="post-head">
+
+   <img
+    class="avatar"
+    src="${p.image}"
+    loading="lazy">
+
+   <div class="post-user">
+
+    <strong>
+     ${escapeHTML(p.user)}
+    </strong>
+
+    <span>
+     ${escapeHTML(p.time)}
+    </span>
+
+   </div>
+
+   <button
+    class="post-more"
+    onclick="postOptions(${p.id})">
+    •••
+   </button>
+
+  </div>
+
+
+  <img
+   class="post-photo"
+   src="${p.photo}"
+   loading="lazy"
+   alt="${escapeHTML(p.title)}">
+
+
+  <div class="post-content">
+
+   <div class="post-title">
+    ${escapeHTML(p.title)}
+   </div>
+
+   <div class="post-text">
+    ${escapeHTML(p.text)}
+   </div>
+
+   <div class="activity">
+
+    ${p.activity.map(x=>`
+
+     <div>
+
+      <strong>
+       ${escapeHTML(x)}
+      </strong>
+
+      <span>
+       Actividad
+      </span>
+
+     </div>
+
+    `).join("")}
+
+   </div>
+
+  </div>
+
+
+  <div class="post-actions">
+
+   <button
+    class="post-action ${p.liked?'liked':''}"
+    onclick="likePost(${p.id})">
+
+    ${p.liked?'❤️':'♡'}
+    ${p.likes}
+
+   </button>
+
+
+   <button
+    class="post-action"
+    onclick="commentPost(${p.id})">
+
+    💬
+    ${p.comments}
+
+   </button>
+
+
+   <button
+    class="post-action"
+    onclick="sharePost('${escapeHTML(p.user)}')">
+
+    ↗ Compartir
+
+   </button>
+
+  </div>
+
+ </article>
+ `;
+
+}
+
+
+function renderFeed(){
+
+ const home=
+  document.getElementById("homeFeed");
+
+ const full=
+  document.getElementById("fullFeed");
+
+ if(home){
+
+  home.innerHTML=
+   posts
+   .slice(0,2)
+   .map(postHTML)
+   .join("");
+
+ }
+
+ if(full){
+
+  full.innerHTML=
+   posts
+   .map(postHTML)
+   .join("");
+
+ }
+
+ updateStats();
+
+}
+
+
+/* =========================================================
+ LIKE
+========================================================= */
+
+function likePost(id){
+
+ const post=
+  posts.find(p=>p.id===id);
+
+ if(!post) return;
+
+ post.liked=!post.liked;
+
+ post.likes+=
+  post.liked
+  ?1
+  :-1;
+
+ saveData();
+
+ renderFeed();
+
+ showToast(
+  post.liked
+  ?"Te gusta esta publicación ❤️"
+  :"Has quitado tu Me gusta"
+ );
+
+}
+
+
+/* =========================================================
+ COMENTARIOS
+========================================================= */
+
+function commentPost(id){
+
+ const post=
+  posts.find(p=>p.id===id);
+
+ if(!post) return;
+
+ openModal(`
+
+  <h2>
+   💬 Comentarios
+  </h2>
+
+  <p>
+   Comentarios de ${escapeHTML(post.user)}.
+  </p>
+
+  <div
+   style="
+    margin-top:15px;
+    padding:12px;
+    background:var(--bg2);
+    border-radius:15px;
+   ">
+
+   <strong>
+    Marc
+   </strong>
+
+   <br>
+
+   <span
+    style="
+     color:var(--muted);
+     font-size:11px;
+    ">
+
+    ¡Muy buena actividad! 🔥
+
+   </span>
+
+  </div>
+
+  <div class="form-group">
+
+   <textarea
+    id="commentInput"
+    class="form-textarea"
+    placeholder="Escribe un comentario...">
+   </textarea>
+
+  </div>
+
+  <button
+   class="join-btn"
+   style="width:100%;margin-top:10px"
+   onclick="sendComment(${id})">
+
+   Comentar
+
+  </button>
+
+ `);
+
+}
+
+
+function sendComment(id){
+
+ const input=
+  document.getElementById("commentInput");
+
+ if(!input || !input.value.trim()){
+
+  showToast("Escribe algo primero");
+
+  return;
+
+ }
+
+ const post=
+  posts.find(p=>p.id===id);
+
+ if(post){
+
+  post.comments++;
+
+  saveData();
+
+  renderFeed();
+
+ }
+
+ closeModal();
+
+ showToast("Comentario publicado 💬");
+
+}
+
+
+/* =========================================================
+ SHARE
+========================================================= */
+
+function sharePost(name){
+
+ if(navigator.share){
+
+  navigator.share({
+
+   title:"Conecta",
+
+   text:
+   `Mira la publicación de ${name} en Conecta`
+
+  }).catch(()=>{});
+
+ }else{
+
+  showToast(
+   "Publicación preparada para compartir ↗"
+  );
+
+ }
+
+}
+
+
+/* =========================================================
+ POST OPTIONS
+========================================================= */
+
+function postOptions(id){
+
+ const post=
+  posts.find(p=>p.id===id);
+
+ if(!post) return;
+
+ openModal(`
+
+  <h2>
+   ⚙️ Publicación
+  </h2>
+
+  <p>
+   ¿Qué quieres hacer con esta publicación?
+  </p>
+
+  <button
+   class="setting"
+   style="margin-top:15px"
+   onclick="closeModal();showToast('Publicación guardada 📌')">
+
+   <div class="setting-icon">
+    📌
+   </div>
+
+   <div>
+    <strong>
+     Guardar
+    </strong>
+
+    <small>
+     Guardarla para verla después
+    </small>
+   </div>
+
+  </button>
+
+
+  <button
+   class="setting"
+   style="margin-top:9px"
+   onclick="closeModal();showToast('Publicación denunciada')">
+
+   <div class="setting-icon">
+    ⚠️
+   </div>
+
+   <div>
+    <strong>
+     Reportar
+    </strong>
+
+    <small>
+     Informar de un problema
+    </small>
+   </div>
+
+  </button>
+
+ `);
+
+}
+
+
+/* =========================================================
+ PEOPLE
 ========================================================= */
 
 function personHTML(p){
 
-    return `
+ const connected=
+  localStorage.getItem(
+   `conecta-connected-${p.id}`
+  )==="1";
 
-        <article class="person">
+ return `
+ <article class="person">
 
-            <div class="person-img">
+  <div class="person-img">
 
-                <img
-                    src="${p.image}"
-                    alt="${p.name}"
-                    loading="lazy">
+   <img
+    src="${p.image}"
+    loading="lazy"
+    alt="${p.name}">
 
-                <span class="online"></span>
+   <span class="online"></span>
 
-            </div>
+  </div>
 
-            <div class="person-info">
 
-                <div class="person-name">
-                    ${p.name}, ${p.age}
-                </div>
+  <div class="person-info">
 
-                <div class="person-meta">
-                    📍 ${p.city}
-                </div>
+   <div class="person-name">
+    ${escapeHTML(p.name)}, ${p.age}
+   </div>
 
-                <div class="person-meta">
-                    ✨ ${p.interest}
-                </div>
+   <div class="person-meta">
+    📍 ${escapeHTML(p.city)}
+   </div>
 
-                <button
-                    class="connect-btn"
-                    onclick="connectPerson(this,'${p.name}')">
+   <div class="person-meta">
+    ✨ ${escapeHTML(p.interest)}
+   </div>
 
-                    + Conectar
 
-                </button>
+   <button
+    class="connect-btn ${connected?'connected':''}"
+    onclick="connectPerson(this,${p.id})">
 
-            </div>
+    ${connected?'✓ Conectado':'+ Conectar'}
 
-        </article>
+   </button>
 
-    `;
+  </div>
+
+ </article>
+ `;
+
 }
 
 
 function renderPeople(list=people){
 
-    const home =
-        document.getElementById("people");
+ const el=
+  document.getElementById("peopleGrid");
 
-    const connect =
-        document.getElementById("connectPeople");
+ if(!el) return;
 
-    if(home){
+ el.innerHTML=
+  list.length
+  ?list.map(personHTML).join("")
+  :`
+   <div class="empty">
 
-        home.innerHTML =
-            list
-                .slice(0,5)
-                .map(personHTML)
-                .join("");
+    <div>🔎</div>
 
-    }
+    No encontramos personas.
 
-    if(connect){
-
-        connect.innerHTML =
-            list
-                .map(personHTML)
-                .join("");
-
-    }
+   </div>
+  `;
 
 }
 
 
-function filterPeople(value){
+function connectPerson(button,id){
 
-    value =
-        String(value || "")
-            .toLowerCase()
-            .trim();
+ const person=
+  people.find(p=>p.id===id);
 
-    const results =
-        people.filter(p=>
+ if(!person) return;
 
-            p.name.toLowerCase().includes(value) ||
-            p.city.toLowerCase().includes(value) ||
-            p.interest.toLowerCase().includes(value)
+ const active=
+  button.classList.toggle("connected");
 
-        );
+ button.textContent=
+  active
+  ?"✓ Conectado"
+  :"+ Conectar";
 
-    const container =
-        document.getElementById("connectPeople");
+ localStorage.setItem(
+  `conecta-connected-${id}`,
+  active?"1":"0"
+ );
 
-    if(!container) return;
+ showToast(
+  active
+  ?`Conectado con ${person.name} 🤝`
+  :`Has eliminado a ${person.name}`
+ );
 
-    container.innerHTML =
-        results.length
-        ? results.map(personHTML).join("")
-        : `
-            <div class="empty">
-                <div>🔎</div>
-                No encontramos personas.
-            </div>
-        `;
+ updateStats();
 
 }
 
 
 /* =========================================================
-   PLANES
+ FILTER PEOPLE
+========================================================= */
+
+function filterPeople(value){
+
+ value=
+  value.toLowerCase().trim();
+
+ const result=
+  people.filter(p=>
+   p.name.toLowerCase().includes(value) ||
+   p.city.toLowerCase().includes(value) ||
+   p.interest.toLowerCase().includes(value)
+  );
+
+ renderPeople(result);
+
+}
+
+
+/* =========================================================
+ PLANS
 ========================================================= */
 
 function planHTML(p){
 
-    return `
+ return `
+ <article class="plan">
 
-        <article class="plan">
+  <div class="plan-img">
 
-            <div class="plan-img">
+   <img
+    src="${p.image}"
+    loading="lazy"
+    alt="${escapeHTML(p.title)}">
 
-                <img
-                    src="${p.image}"
-                    alt="${p.title}"
-                    loading="lazy">
+   <span class="plan-tag">
+    ${escapeHTML(p.tag)}
+   </span>
 
-                <span class="plan-tag">
-                    ${p.tag}
-                </span>
+   <button
+    class="plan-heart ${p.favorite?'favorite':''}"
+    onclick="favoritePlan(${p.id})">
 
-                <button
-                    class="plan-heart"
-                    onclick="favoritePlan(this)">
-                    ♡
-                </button>
+    ${p.favorite?'♥':'♡'}
 
-            </div>
+   </button>
 
-            <div class="plan-content">
+  </div>
 
-                <div class="plan-title">
-                    ${p.title}
-                </div>
 
-                <div class="plan-info">
-                    ${p.info}
-                </div>
+  <div class="plan-content">
 
-                <div class="plan-description">
-                    ${p.description}
-                </div>
+   <div class="plan-title">
+    ${escapeHTML(p.title)}
+   </div>
 
-                <div class="plan-footer">
+   <div class="plan-info">
+    ${escapeHTML(p.info)}
+   </div>
 
-                    <div class="plan-users">
+   <div class="plan-description">
+    ${escapeHTML(p.description)}
+   </div>
 
-                        <img
-                            src="${people[0].image}"
-                            alt="Usuario">
 
-                        <img
-                            src="${people[1].image}"
-                            alt="Usuario">
+   <div class="plan-footer">
 
-                        <img
-                            src="${people[2].image}"
-                            alt="Usuario">
+    <span
+     style="
+      font-size:10px;
+      color:var(--muted)
+     ">
 
-                    </div>
+     👥 Personas interesadas
 
-                    <button
-                        class="join-btn"
-                        onclick="joinPlan('${p.title}')">
+    </span>
 
-                        Unirme
 
-                    </button>
+    <button
+     class="join-btn"
+     onclick="joinPlan(${p.id})">
 
-                </div>
+     ${p.joined?'✓ Unido':'Unirme'}
 
-            </div>
+    </button>
 
-        </article>
+   </div>
 
-    `;
+  </div>
+
+ </article>
+ `;
+
 }
 
 
 function renderPlans(list=plans){
 
-    const home =
-        document.getElementById("homePlans");
+ const el=
+  document.getElementById("plans");
 
-    const all =
-        document.getElementById("allPlans");
+ if(!el) return;
 
-    if(home){
+ el.innerHTML=
+  list.length
+  ?list.map(planHTML).join("")
+  :`
+   <div class="empty">
 
-        home.innerHTML =
-            list
-                .slice(0,3)
-                .map(planHTML)
-                .join("");
+    <div>📅</div>
 
-    }
+    No encontramos planes.
 
-    if(all){
-
-        all.innerHTML =
-            list
-                .map(planHTML)
-                .join("");
-
-    }
+   </div>
+  `;
 
 }
 
+
+/* =========================================================
+ PLAN SEARCH
+========================================================= */
 
 function filterPlans(value){
 
-    value =
-        String(value || "")
-            .toLowerCase()
-            .trim();
+ value=
+  value.toLowerCase().trim();
 
-    const results =
-        plans.filter(p=>
+ const result=
+  plans.filter(p=>
+   p.title.toLowerCase().includes(value) ||
+   p.tag.toLowerCase().includes(value) ||
+   p.info.toLowerCase().includes(value) ||
+   p.description.toLowerCase().includes(value)
+  );
 
-            p.title.toLowerCase().includes(value) ||
-            p.tag.toLowerCase().includes(value) ||
-            p.info.toLowerCase().includes(value)
-
-        );
-
-    const container =
-        document.getElementById("allPlans");
-
-    if(!container) return;
-
-    container.innerHTML =
-        results.length
-        ? results.map(planHTML).join("")
-        : `
-            <div class="empty">
-                <div>📅</div>
-                No encontramos planes.
-            </div>
-        `;
-
-}
-
-
-function favoritePlan(button){
-
-    const active =
-        button.textContent.trim()==="♡";
-
-    button.textContent =
-        active ? "♥" : "♡";
-
-    showToast(
-        active
-        ? "Plan guardado ❤️"
-        : "Plan eliminado"
-    );
+ renderPlans(result);
 
 }
 
 
 /* =========================================================
-   UNIRSE A PLAN
+ FAVORITE PLAN
 ========================================================= */
 
-function joinPlan(title){
+function favoritePlan(id){
 
-    showToast(
-        `Te has unido a "${title}" 🎉`
-    );
+ const plan=
+  plans.find(p=>p.id===id);
+
+ if(!plan) return;
+
+ plan.favorite=!plan.favorite;
+
+ saveData();
+
+ renderPlans();
+
+ showToast(
+  plan.favorite
+  ?"Plan guardado ❤️"
+  :"Plan eliminado de favoritos"
+ );
 
 }
 
 
 /* =========================================================
-   DESTACADOS
+ JOIN PLAN
 ========================================================= */
 
-function renderFeatured(){
+function joinPlan(id){
 
-    const container =
-        document.getElementById("featured");
+ const plan=
+  plans.find(p=>p.id===id);
 
-    if(!container) return;
+ if(!plan) return;
 
-    container.innerHTML =
-        featured.map(x=>`
+ plan.joined=!plan.joined;
 
-            <article class="feature-card">
+ saveData();
 
-                <img
-                    src="${x.image}"
-                    alt="${x.title}"
-                    loading="lazy">
+ renderPlans();
 
-                <div class="feature-info">
-
-                    <strong>
-                        ${x.title}
-                    </strong>
-
-                    <span>
-                        ${x.subtitle}
-                    </span>
-
-                </div>
-
-            </article>
-
-        `).join("");
+ showToast(
+  plan.joined
+  ?`Te has unido a "${plan.title}" 🎉`
+  :"Has salido del plan"
+ );
 
 }
 
 
 /* =========================================================
-   CHAT
+ CREAR POST
+========================================================= */
+
+function createPost(){
+
+ openModal(`
+
+  <h2>
+   📸 Crear publicación
+  </h2>
+
+  <p>
+   Comparte una foto, experiencia,
+   entrenamiento o momento del día.
+  </p>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Título
+   </label>
+
+   <input
+    id="postTitle"
+    class="form-input"
+    placeholder="Ej. Running de hoy">
+
+  </div>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    ¿Qué has hecho?
+   </label>
+
+   <textarea
+    id="postText"
+    class="form-textarea"
+    placeholder="Cuéntale algo a la comunidad...">
+   </textarea>
+
+  </div>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Categoría
+   </label>
+
+   <select
+    id="postCategory"
+    class="form-select">
+
+    <option>
+     Experiencia
+    </option>
+
+    <option>
+     Running
+    </option>
+
+    <option>
+     Gym
+    </option>
+
+    <option>
+     Viajes
+    </option>
+
+    <option>
+     Fútbol
+    </option>
+
+    <option>
+     Fotografía
+    </option>
+
+    <option>
+     Música
+    </option>
+
+   </select>
+
+  </div>
+
+
+  <button
+   class="join-btn"
+   style="width:100%;margin-top:15px"
+   onclick="savePost()">
+
+   Publicar 📸
+
+  </button>
+
+ `);
+
+}
+
+
+function savePost(){
+
+ const title=
+  document.getElementById("postTitle");
+
+ if(!title || !title.value.trim()){
+
+  showToast("Pon un título");
+
+  return;
+
+ }
+
+ const text=
+  document.getElementById("postText");
+
+ const category=
+  document.getElementById("postCategory");
+
+
+ posts.unshift({
+
+  id:Date.now(),
+
+  user:"Tú",
+
+  time:"Ahora",
+
+  image:
+   "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85",
+
+  photo:
+   "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=85",
+
+  title:title.value.trim(),
+
+  text:
+   text?.value.trim()
+   ||
+   "Nueva experiencia compartida en Conecta.",
+
+  activity:[
+   "Hoy",
+   category?.value||"Experiencia",
+   "📍 Cerca de ti"
+  ],
+
+  likes:0,
+
+  comments:0,
+
+  liked:false
+
+ });
+
+
+ saveData();
+
+ closeModal();
+
+ renderFeed();
+
+ updateStats();
+
+ showToast(
+  "Publicación creada 📸"
+ );
+
+ goTo("feed");
+
+}
+
+
+/* =========================================================
+ CREATE PLAN
+========================================================= */
+
+function createPlan(){
+
+ openModal(`
+
+  <h2>
+   ➕ Crear plan
+  </h2>
+
+  <p>
+   Crea una actividad y deja que otras
+   personas se unan.
+  </p>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Nombre
+   </label>
+
+   <input
+    id="planName"
+    class="form-input"
+    placeholder="Running por la playa">
+
+  </div>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Descripción
+   </label>
+
+   <textarea
+    id="planDescription"
+    class="form-textarea"
+    placeholder="Describe el plan...">
+   </textarea>
+
+  </div>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Categoría
+   </label>
+
+   <select
+    id="planCategory"
+    class="form-select">
+
+    <option>
+     RUNNING
+    </option>
+
+    <option>
+     GYM
+    </option>
+
+    <option>
+     FÚTBOL
+    </option>
+
+    <option>
+     CICLISMO
+    </option>
+
+    <option>
+     SENDERISMO
+    </option>
+
+    <option>
+     VIAJES
+    </option>
+
+    <option>
+     CINE
+    </option>
+
+   </select>
+
+  </div>
+
+
+  <button
+   class="join-btn"
+   style="width:100%;margin-top:15px"
+   onclick="savePlan()">
+
+   Crear plan 🎉
+
+  </button>
+
+ `);
+
+}
+
+
+function savePlan(){
+
+ const input=
+  document.getElementById("planName");
+
+ if(!input || !input.value.trim()){
+
+  showToast("Escribe un nombre");
+
+  return;
+
+ }
+
+ const description=
+  document.getElementById("planDescription");
+
+ const category=
+  document.getElementById("planCategory");
+
+
+ plans.unshift({
+
+  id:Date.now(),
+
+  title:input.value.trim(),
+
+  tag:
+   category?.value||"NUEVO",
+
+  info:
+   "📍 Cerca de ti · Próximamente",
+
+  description:
+   description?.value.trim()
+   ||
+   "Nuevo plan creado por la comunidad.",
+
+  image:
+   "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1000&q=85",
+
+  favorite:false,
+
+  joined:false
+
+ });
+
+
+ saveData();
+
+ closeModal();
+
+ renderPlans();
+
+ showToast(
+  "Plan creado 🎉"
+ );
+
+}
+
+
+/* =========================================================
+ GROUPS
+========================================================= */
+
+function renderGroups(){
+
+ const el=
+  document.getElementById("groups");
+
+ if(!el) return;
+
+ el.innerHTML=
+  groups
+  .map(g=>`
+
+   <button
+    class="group"
+    onclick="openGroup('${escapeHTML(g[1])}')">
+
+    <div class="group-icon">
+     ${g[0]}
+    </div>
+
+    <div class="group-info">
+
+     <strong>
+      ${escapeHTML(g[1])}
+     </strong>
+
+     <span>
+      ${escapeHTML(g[2])}
+     </span>
+
+    </div>
+
+    <span>›</span>
+
+   </button>
+
+  `)
+  .join("");
+
+}
+
+
+function createGroup(){
+
+ openModal(`
+
+  <h2>
+   👥 Crear grupo
+  </h2>
+
+  <p>
+   Crea una comunidad sobre cualquier interés.
+  </p>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Nombre del grupo
+   </label>
+
+   <input
+    id="groupName"
+    class="form-input"
+    placeholder="Ej. Running Tarragona">
+
+  </div>
+
+
+  <button
+   class="join-btn"
+   style="width:100%;margin-top:15px"
+   onclick="saveGroup()">
+
+   Crear grupo 👥
+
+  </button>
+
+ `);
+
+}
+
+
+function saveGroup(){
+
+ const input=
+  document.getElementById("groupName");
+
+ if(!input || !input.value.trim()){
+
+  showToast("Escribe un nombre");
+
+  return;
+
+ }
+
+ groups.unshift([
+
+  "👥",
+
+  input.value.trim(),
+
+  "1 miembro"
+
+ ]);
+
+ saveData();
+
+ closeModal();
+
+ renderGroups();
+
+ showToast(
+  "Grupo creado 👥"
+ );
+
+}
+
+
+function openGroup(name){
+
+ openModal(`
+
+  <h2>
+   👥 ${escapeHTML(name)}
+  </h2>
+
+  <p>
+   Bienvenido a esta comunidad de Conecta.
+  </p>
+
+  <div
+   style="
+    margin-top:20px;
+    padding:20px;
+    background:var(--bg2);
+    border-radius:18px;
+    text-align:center;
+   ">
+
+   <div style="font-size:40px">
+    👥
+   </div>
+
+   <strong>
+    Comunidad activa
+   </strong>
+
+   <p>
+    Próximamente podrás publicar,
+    comentar y hablar con los miembros.
+   </p>
+
+  </div>
+
+ `);
+
+}
+
+
+/* =========================================================
+ CHAT
 ========================================================= */
 
 function renderChats(){
 
-    const container =
-        document.getElementById("chatList");
+ document.getElementById("chats").innerHTML=
+ chats.map(c=>`
 
-    if(!container) return;
+  <button
+   class="chat"
+   onclick="openChat('${escapeHTML(c[0])}')">
 
-    container.innerHTML =
-        chats.map(c=>`
+   <img
+    src="${c[3]}"
+    loading="lazy">
 
-            <button
-                class="chat"
-                onclick="openChat('${c.name}')">
+   <div class="chat-info">
 
-                <img
-                    src="${c.image}"
-                    alt="${c.name}">
+    <strong>
+     ${escapeHTML(c[0])}
+    </strong>
 
-                <div class="chat-info">
+    <p>
+     ${escapeHTML(c[1])}
+    </p>
 
-                    <strong>
-                        ${c.name}
-                    </strong>
+   </div>
 
-                    <p>
-                        ${c.message}
-                    </p>
+   <span class="chat-time">
+    ${escapeHTML(c[2])}
+   </span>
 
-                </div>
+  </button>
 
-                <span class="chat-time">
-                    ${c.time}
-                </span>
-
-            </button>
-
-        `).join("");
+ `)
+ .join("");
 
 }
 
 
 function openChat(name){
 
-    openModal(`
+ openModal(`
 
-        <h2>💬 ${name}</h2>
+  <h2>
+   💬 ${escapeHTML(name)}
+  </h2>
 
-        <p>
-            Tu conversación con ${name}.
-        </p>
+  <p>
+   Conversación privada.
+  </p>
 
-        <div class="chat-window">
 
-            <div class="message received">
-                ¡Hola! 👋
-            </div>
+  <div
+   style="
+    margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+   ">
 
-            <div class="message sent">
-                ¡Hola! ¿Qué tal?
-            </div>
+   <div
+    style="
+     align-self:flex-start;
+     padding:10px 13px;
+     background:var(--bg2);
+     border-radius:15px;
+     font-size:12px;
+    ">
 
-            <div class="message received">
-                Todo genial. ¿Hacemos algún plan?
-            </div>
+    ¡Hola! 👋
 
-        </div>
+   </div>
 
-        <div
-            class="search"
-            style="
-                margin:16px 0 0;
-            ">
 
-            <input
-                id="messageInput"
-                placeholder="Escribe un mensaje...">
+   <div
+    style="
+     align-self:flex-end;
+     padding:10px 13px;
+     background:linear-gradient(135deg,var(--primary),var(--pink));
+     color:white;
+     border-radius:15px;
+     font-size:12px;
+    ">
 
-            <button
-                onclick="sendMessage('${name}')"
-                style="
-                    font-size:20px;
-                    background:transparent;
-                    color:var(--primary);
-                ">
-                ➤
-            </button>
+    ¡Hola! ¿Qué tal?
 
-        </div>
+   </div>
 
-    `);
+  </div>
+
+
+  <div
+   class="search"
+   style="margin:15px 0 0">
+
+   <input
+    id="message"
+    placeholder="Escribe un mensaje...">
+
+   <button
+    onclick="sendMessage('${escapeHTML(name)}')"
+    style="
+     background:transparent;
+     color:var(--primary);
+    ">
+
+    ➤
+
+   </button>
+
+  </div>
+
+ `);
 
 }
 
 
 function sendMessage(name){
 
-    const input =
-        document.getElementById("messageInput");
+ const input=
+  document.getElementById("message");
 
-    if(!input || !input.value.trim()){
+ if(!input || !input.value.trim()){
 
-        showToast(
-            "Escribe un mensaje"
-        );
+  showToast("Escribe un mensaje");
 
-        return;
-    }
+  return;
 
-    showToast(
-        `Mensaje enviado a ${name} 💬`
-    );
+ }
 
-    closeModal();
+ closeModal();
+
+ showToast(
+  `Mensaje enviado a ${name} 💬`
+ );
 
 }
 
 
 /* =========================================================
-   NAVEGACIÓN
+ PROFILE
 ========================================================= */
 
-function goTo(view){
+function openProfile(name){
 
-    document
-        .querySelectorAll(".view")
-        .forEach(v=>{
-            v.classList.remove("active");
-        });
+ const person=
+  people.find(p=>p.name===name);
 
-    const target =
-        document.getElementById(view+"View");
+ if(!person) return;
 
-    if(target){
-        target.classList.add("active");
-    }
+ openModal(`
 
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(b=>{
-            b.classList.remove("active");
-        });
+  <div style="text-align:center">
 
-    const nav =
-        document.querySelector(
-            `.nav-btn[data-view="${view}"]`
-        );
+   <img
+    src="${person.image}"
+    style="
+     width:100px;
+     height:100px;
+     object-fit:cover;
+     border-radius:50%;
+     margin:auto;
+    ">
 
-    if(nav){
-        nav.classList.add("active");
-    }
+   <h2>
+    ${escapeHTML(person.name)}, ${person.age}
+   </h2>
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+   <p>
+    📍 ${escapeHTML(person.city)}
+    <br>
+    ✨ ${escapeHTML(person.interest)}
+   </p>
+
+
+   <button
+    class="join-btn"
+    style="width:100%;margin-top:15px"
+    onclick="closeModal();connectFromProfile(${person.id})">
+
+    + Conectar
+
+   </button>
+
+  </div>
+
+ `);
+
+}
+
+
+function connectFromProfile(id){
+
+ const person=
+  people.find(p=>p.id===id);
+
+ if(!person) return;
+
+ localStorage.setItem(
+  `conecta-connected-${id}`,
+  "1"
+ );
+
+ renderPeople();
+
+ showToast(
+  `Solicitud enviada a ${person.name} 🤝`
+ );
+
+}
+
+
+function editProfile(){
+
+ openModal(`
+
+  <h2>
+   ✏️ Editar perfil
+  </h2>
+
+  <p>
+   Personaliza la información que verá la comunidad.
+  </p>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Nombre
+   </label>
+
+   <input
+    id="profileEditName"
+    class="form-input"
+    placeholder="Tu nombre">
+
+  </div>
+
+
+  <div class="form-group">
+
+   <label class="form-label">
+    Presentación
+   </label>
+
+   <textarea
+    id="profileEditBio"
+    class="form-textarea"
+    placeholder="Cuéntanos algo sobre ti...">
+   </textarea>
+
+  </div>
+
+
+  <button
+   class="join-btn"
+   style="width:100%;margin-top:15px"
+   onclick="saveProfile()">
+
+   Guardar cambios
+
+  </button>
+
+ `);
+
+}
+
+
+function saveProfile(){
+
+ const name=
+  document.getElementById("profileEditName");
+
+ const bio=
+  document.getElementById("profileEditBio");
+
+ if(name?.value.trim()){
+
+  localStorage.setItem(
+   "conecta-profile-name",
+   name.value.trim()
+  );
+
+  document.getElementById(
+   "profileName"
+  ).textContent=
+   name.value.trim();
+
+ }
+
+ if(bio?.value.trim()){
+
+  localStorage.setItem(
+   "conecta-profile-bio",
+   bio.value.trim()
+  );
+
+ }
+
+ closeModal();
+
+ showToast(
+  "Perfil actualizado ✨"
+ );
 
 }
 
 
 /* =========================================================
-   CONECTAR
+ ALBUMS
 ========================================================= */
 
-function connectPerson(button,name){
+function renderAlbums(){
 
-    const connected =
-        button.classList.toggle("connected");
+ document.getElementById("albums").innerHTML=
+ albums.map(a=>`
 
-    button.textContent =
-        connected
-        ? "✓ Conectado"
-        : "+ Conectar";
+  <button
+   class="album"
+   onclick="showToast('Álbum: ${escapeHTML(a[0])} 📸')">
 
-    showToast(
-        connected
-        ? `Conectado con ${name} 🤝`
-        : `Has eliminado a ${name}`
-    );
+   <img
+    src="${a[1]}"
+    loading="lazy">
+
+   <span>
+    ${escapeHTML(a[0])}
+   </span>
+
+  </button>
+
+ `)
+ .join("");
 
 }
 
 
 /* =========================================================
-   CREAR PLAN
+ CALENDAR
 ========================================================= */
 
-function createPlan(){
+let calendarDate=
+ new Date(2026,7,20);
 
-    openModal(`
 
-        <h2>➕ Crear un plan</h2>
+function renderCalendar(){
 
-        <p>
-            Crea una actividad y encuentra personas
-            que quieran compartirla contigo.
-        </p>
+ const el=
+  document.getElementById("calendar");
 
-        <div class="form-group">
+ const title=
+  document.getElementById("calendarTitle");
 
-            <label class="form-label">
-                Nombre del plan
-            </label>
+ if(!el || !title) return;
 
-            <input
-                id="newPlanName"
-                class="form-input"
-                placeholder="Ej. Running por la playa">
 
-        </div>
+ const year=
+  calendarDate.getFullYear();
 
-        <div class="form-group">
+ const month=
+  calendarDate.getMonth();
 
-            <label class="form-label">
-                Descripción
-            </label>
 
-            <textarea
-                id="newPlanDescription"
-                class="form-textarea"
-                placeholder="Cuenta un poco sobre el plan..."></textarea>
+ const monthNames=[
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre"
+ ];
 
-        </div>
 
-        <div class="form-group">
+ title.textContent=
+  `${monthNames[month]} ${year}`;
 
-            <label class="form-label">
-                Categoría
-            </label>
 
-            <select
-                id="newPlanCategory"
-                class="form-input">
+ const firstDay=
+  new Date(year,month,1)
+  .getDay();
 
-                ${categories
-                    .slice(0,10)
-                    .map(c=>`
-                        <option>
-                            ${c.name}
-                        </option>
-                    `)
-                    .join("")}
 
-            </select>
+ const daysInMonth=
+  new Date(year,month+1,0)
+  .getDate();
 
-        </div>
 
-        <button
-            class="join-btn"
-            style="
-                width:100%;
-                margin-top:16px;
-            "
-            onclick="saveNewPlan()">
+ let start=
+  firstDay===0
+  ?6
+  :firstDay-1;
 
-            Crear plan 🎉
 
-        </button>
+ let html=
+  ["L","M","X","J","V","S","D"]
+  .map(d=>`
 
-    `);
+   <div
+    class="calendar-day"
+    style="
+     font-weight:900;
+     color:var(--text)
+    ">
+
+    ${d}
+
+   </div>
+
+  `)
+  .join("");
+
+
+ for(let i=0;i<start;i++){
+
+  html+=`
+   <div class="calendar-day"></div>
+  `;
+
+ }
+
+
+ const active=[
+  2,4,6,9,12,15,
+  18,20,21,24,27,29
+ ];
+
+
+ for(let day=1;day<=daysInMonth;day++){
+
+  const activeDay=
+   active.includes(day);
+
+  const today=
+   year===2026 &&
+   month===7 &&
+   day===20;
+
+
+  html+=`
+
+   <div
+    class="
+     calendar-day
+     ${activeDay?'active':''}
+     ${today?'today':''}
+    ">
+
+    ${day}
+
+    ${
+     activeDay
+     ?'<span class="calendar-dot"></span>'
+     :''
+    }
+
+   </div>
+
+  `;
+
+ }
+
+
+ el.innerHTML=html;
 
 }
 
 
-function saveNewPlan(){
+function changeMonth(amount){
 
-    const input =
-        document.getElementById("newPlanName");
+ calendarDate.setMonth(
+  calendarDate.getMonth()+amount
+ );
 
-    if(
-        !input ||
-        !input.value.trim()
-    ){
-
-        showToast(
-            "Escribe un nombre para el plan"
-        );
-
-        return;
-    }
-
-    const name =
-        input.value.trim();
-
-    closeModal();
-
-    showToast(
-        `Plan "${name}" creado 🎉`
-    );
+ renderCalendar();
 
 }
 
 
 /* =========================================================
-   CATEGORÍAS
+ HISTORY
 ========================================================= */
 
-function selectCategory(name){
+function renderHistory(){
 
-    const category =
-        categories.find(
-            c=>c.name===name
-        );
+ const data=[
+  ["Hoy","🏃 Running","7,4 km · 42 min"],
+  ["Ayer","💪 Gym","1 h 08 min"],
+  ["18 agosto","🤝 Conexión","Laura"],
+  ["17 agosto","📸 Publicación","Foto de actividad"],
+  ["16 agosto","👥 Grupo","Running Tarragona"],
+  ["15 agosto","🎬 Cine","Tarde de cine"]
+ ];
 
-    showToast(
-        `${category?.icon || "✨"} Explorando ${name}`
-    );
 
-    goTo("plans");
+ document.getElementById("history").innerHTML=
+  data.map(x=>`
+
+   <div class="connection">
+
+    <div class="group-icon">
+     ${x[1].split(" ")[0]}
+    </div>
+
+    <div class="connection-info">
+
+     <strong>
+      ${escapeHTML(x[0])}
+     </strong>
+
+     <span>
+      ${escapeHTML(x[1])}
+      ·
+      ${escapeHTML(x[2])}
+     </span>
+
+    </div>
+
+    <span class="connected-badge">
+     ✓
+    </span>
+
+   </div>
+
+  `)
+  .join("");
 
 }
 
 
 /* =========================================================
-   BÚSQUEDA GENERAL
+ GLOBAL SEARCH
 ========================================================= */
 
-function searchAll(value){
+function globalSearch(value){
 
-    value =
-        String(value || "")
-            .toLowerCase()
-            .trim();
+ value=
+  value.toLowerCase().trim();
 
-    if(!value){
 
-        renderPeople();
-        renderPlans();
+ if(!value){
 
-        return;
-    }
+  renderFeed();
 
-    const peopleResults =
-        people.filter(p=>
+  return;
 
-            p.name.toLowerCase().includes(value) ||
-            p.city.toLowerCase().includes(value) ||
-            p.interest.toLowerCase().includes(value)
+ }
 
-        );
 
-    const planResults =
-        plans.filter(p=>
+ const postResults=
+  posts.filter(p=>
+   p.user.toLowerCase().includes(value) ||
+   p.title.toLowerCase().includes(value) ||
+   p.text.toLowerCase().includes(value)
+  );
 
-            p.title.toLowerCase().includes(value) ||
-            p.tag.toLowerCase().includes(value) ||
-            p.info.toLowerCase().includes(value)
 
-        );
+ const personResults=
+  people.filter(p=>
+   p.name.toLowerCase().includes(value) ||
+   p.city.toLowerCase().includes(value) ||
+   p.interest.toLowerCase().includes(value)
+  );
 
-    const peopleContainer =
-        document.getElementById("people");
 
-    const plansContainer =
-        document.getElementById("homePlans");
+ const planResults=
+  plans.filter(p=>
+   p.title.toLowerCase().includes(value) ||
+   p.tag.toLowerCase().includes(value)
+  );
 
-    if(peopleContainer){
 
-        peopleContainer.innerHTML =
-            peopleResults.length
-            ? peopleResults
-                .slice(0,5)
-                .map(personHTML)
-                .join("")
-            : `
-                <div class="empty">
-                    <div>🔎</div>
-                    No hay personas.
-                </div>
-            `;
+ document.getElementById("homeFeed").innerHTML=`
 
-    }
+  ${
+   personResults.length
+   ?`
 
-    if(plansContainer){
+    <div
+     style="
+      margin-bottom:12px;
+      font-size:13px;
+      font-weight:900;
+     ">
 
-        plansContainer.innerHTML =
-            planResults.length
-            ? planResults
-                .slice(0,3)
-                .map(planHTML)
-                .join("")
-            : `
-                <div class="empty">
-                    <div>📅</div>
-                    No hay planes.
-                </div>
-            `;
+     👥 Personas encontradas
 
-    }
+    </div>
+
+    <div class="people-grid">
+
+     ${personResults.map(personHTML).join("")}
+
+    </div>
+
+   `
+   :''
+  }
+
+
+  ${
+   planResults.length
+   ?`
+
+    <div
+     style="
+      margin:20px 0 12px;
+      font-size:13px;
+      font-weight:900;
+     ">
+
+     📅 Planes encontrados
+
+    </div>
+
+    <div class="plans">
+
+     ${planResults.map(planHTML).join("")}
+
+    </div>
+
+   `
+   :''
+  }
+
+
+  ${
+   postResults.length
+   ?`
+
+    <div
+     style="
+      margin:20px 0 12px;
+      font-size:13px;
+      font-weight:900;
+     ">
+
+     📸 Publicaciones
+
+    </div>
+
+    <div class="feed">
+
+     ${postResults.map(postHTML).join("")}
+
+    </div>
+
+   `
+   :''
+  }
+
+
+  ${
+   !personResults.length &&
+   !planResults.length &&
+   !postResults.length
+   ?`
+
+    <div class="empty">
+
+     <div>🔎</div>
+
+     No encontramos resultados para
+     <strong>
+      "${escapeHTML(value)}"
+     </strong>
+
+    </div>
+
+   `
+   :''
+  }
+
+ `;
 
 }
 
 
 /* =========================================================
-   MODO OSCURO
+ CATEGORÍAS
+========================================================= */
+
+function category(name){
+
+ const input=
+  document.getElementById("plansSearch");
+
+ goTo("plans");
+
+ if(input){
+
+  input.value=name;
+
+  filterPlans(name);
+
+ }
+
+ showToast(
+  `Explorando ${name} 🔥`
+ );
+
+}
+
+
+function showCategories(){
+
+ openModal(`
+
+  <h2>
+   🔥 Todas las categorías
+  </h2>
+
+  <p>
+   Explora todas las comunidades y actividades.
+  </p>
+
+  <div
+   style="
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:16px;
+   ">
+
+   ${categories.map(c=>`
+
+    <button
+     onclick="closeModal();category('${c[1]}')"
+     style="
+      height:100px;
+      position:relative;
+      overflow:hidden;
+      border-radius:16px;
+      color:white;
+      padding:0;
+     ">
+
+     <img
+      src="${c[2]}"
+      style="
+       width:100%;
+       height:100%;
+       object-fit:cover;
+      ">
+
+     <span
+      style="
+       position:absolute;
+       bottom:8px;
+       left:8px;
+       font-weight:900;
+       text-shadow:0 2px 6px #000;
+      ">
+
+      ${c[0]}
+      ${c[1]}
+
+     </span>
+
+    </button>
+
+   `).join("")}
+
+  </div>
+
+ `);
+
+}
+
+
+/* =========================================================
+ STORY
+========================================================= */
+
+function createStory(){
+
+ openModal(`
+
+  <h2>
+   📸 Tu historia
+  </h2>
+
+  <p>
+   Comparte algo con las personas que te siguen.
+  </p>
+
+
+  <div
+   style="
+    margin-top:18px;
+    padding:25px;
+    border-radius:20px;
+    background:var(--bg2);
+    text-align:center;
+   ">
+
+   <div style="font-size:45px">
+    📸
+   </div>
+
+   <strong>
+    Historias próximamente
+   </strong>
+
+   <p>
+    Podrás subir fotos y vídeos que desaparecerán
+    después de 24 horas.
+   </p>
+
+  </div>
+
+ `);
+
+}
+
+
+/* =========================================================
+ NOTIFICACIONES
+========================================================= */
+
+function showNotifications(){
+
+ openModal(`
+
+  <h2>
+   🔔 Notificaciones
+  </h2>
+
+  <div
+   class="connection-list"
+   style="margin-top:15px">
+
+   <div class="connection">
+
+    <div class="group-icon">
+     ❤️
+    </div>
+
+    <div class="connection-info">
+
+     <strong>
+      Laura ha indicado que le gusta tu actividad
+     </strong>
+
+     <span>
+      Hace 12 minutos
+     </span>
+
+    </div>
+
+   </div>
+
+
+   <div class="connection">
+
+    <div class="group-icon">
+     🤝
+    </div>
+
+    <div class="connection-info">
+
+     <strong>
+      Tienes una nueva recomendación
+     </strong>
+
+     <span>
+      Hace 35 minutos
+     </span>
+
+    </div>
+
+   </div>
+
+
+   <div class="connection">
+
+    <div class="group-icon">
+     📅
+    </div>
+
+    <div class="connection-info">
+
+     <strong>
+      Nuevo plan cerca de ti
+     </strong>
+
+     <span>
+      Hace 1 hora
+     </span>
+
+    </div>
+
+   </div>
+
+  </div>
+
+ `);
+
+
+ const badge=
+  document.getElementById(
+   "notificationBadge"
+  );
+
+ if(badge){
+  badge.style.display="none";
+ }
+
+}
+
+
+/* =========================================================
+ PRIVACIDAD
+========================================================= */
+
+function privacySettings(){
+
+ openModal(`
+
+  <h2>
+   🔒 Privacidad
+  </h2>
+
+  <p>
+   Controla quién puede encontrar y contactar contigo.
+  </p>
+
+
+  <div
+   class="settings"
+   style="margin-top:15px">
+
+   <button
+    class="setting"
+    onclick="showToast('Perfil visible para todos')">
+
+    <div class="setting-icon">
+     👁️
+    </div>
+
+    <div>
+
+     <strong>
+      Perfil visible
+     </strong>
+
+     <small>
+      Otros usuarios pueden encontrarte
+     </small>
+
+    </div>
+
+   </button>
+
+
+   <button
+    class="setting"
+    onclick="showToast('Ubicación aproximada activada')">
+
+    <div class="setting-icon">
+     📍
+    </div>
+
+    <div>
+
+     <strong>
+      Ubicación aproximada
+     </strong>
+
+     <small>
+      Nunca mostramos tu dirección exacta
+     </small>
+
+    </div>
+
+   </button>
+
+
+   <button
+    class="setting"
+    onclick="showToast('Mensajes permitidos')">
+
+    <div class="setting-icon">
+     💬
+    </div>
+
+    <div>
+
+     <strong>
+      Mensajes
+     </strong>
+
+     <small>
+      Controla quién puede escribirte
+     </small>
+
+    </div>
+
+   </button>
+
+  </div>
+
+ `);
+
+}
+
+
+/* =========================================================
+ DARK MODE
 ========================================================= */
 
 function toggleDark(){
 
-    document.body.classList.toggle("dark");
+ document.body.classList.toggle("dark");
 
-    const dark =
-        document.body.classList.contains("dark");
+ const active=
+  document.body.classList.contains("dark");
 
-    localStorage.setItem(
-        "conecta-dark",
-        dark ? "1" : "0"
-    );
+ localStorage.setItem(
+  "conecta-dark",
+  active?"1":"0"
+ );
 
-    showToast(
-        dark
-        ? "Modo oscuro activado 🌙"
-        : "Modo claro activado ☀️"
-    );
+ showToast(
+  active
+  ?"Modo oscuro 🌙"
+  :"Modo claro ☀️"
+ );
 
 }
 
 
-if(
-    localStorage.getItem("conecta-dark")==="1"
-){
+function loadTheme(){
 
-    document.body.classList.add("dark");
+ if(
+  localStorage.getItem(
+   "conecta-dark"
+  )==="1"
+ ){
+
+  document.body.classList.add("dark");
+
+ }
 
 }
 
 
 /* =========================================================
-   MODAL
+ NAVEGACIÓN
+========================================================= */
+
+function goTo(view){
+
+ document.querySelectorAll(".view")
+ .forEach(v=>
+  v.classList.remove("active")
+ );
+
+
+ const target=
+  document.getElementById(
+   view+"View"
+  );
+
+
+ if(target){
+
+  target.classList.add("active");
+
+ }
+
+
+ document.querySelectorAll(".nav-btn")
+ .forEach(b=>
+  b.classList.remove("active")
+ );
+
+
+ const nav=
+  document.querySelector(
+   `.nav-btn[data-view="${view}"]`
+  );
+
+
+ if(nav){
+
+  nav.classList.add("active");
+
+ }
+
+
+ window.scrollTo({
+  top:0,
+  behavior:"smooth"
+ });
+
+}
+
+
+/* =========================================================
+ MODAL
 ========================================================= */
 
 function openModal(content){
 
-    const contentBox =
-        document.getElementById("modalContent");
+ document.getElementById(
+  "modalContent"
+ ).innerHTML=content;
 
-    const modal =
-        document.getElementById("modal");
+ document.getElementById(
+  "modal"
+ ).classList.add("show");
 
-    if(!contentBox || !modal) return;
-
-    contentBox.innerHTML =
-        content;
-
-    modal.classList.add("show");
-
-    document.body.style.overflow =
-        "hidden";
+ document.body.style.overflow="hidden";
 
 }
 
 
 function closeModal(event){
 
-    const modal =
-        document.getElementById("modal");
+ const modal=
+  document.getElementById("modal");
 
-    if(!modal) return;
 
-    if(
-        event &&
-        event.target!==modal
-    ){
-        return;
-    }
+ if(
+  event &&
+  event.target!==modal
+ ){
 
-    modal.classList.remove("show");
+  return;
 
-    document.body.style.overflow =
-        "";
+ }
+
+
+ modal.classList.remove("show");
+
+ document.body.style.overflow="";
 
 }
 
 
 /* =========================================================
-   TOAST
+ TOAST
 ========================================================= */
 
 let toastTimer;
 
+
 function showToast(message){
 
-    const toast =
-        document.getElementById("toast");
+ const toast=
+  document.getElementById("toast");
 
-    if(!toast) return;
+ toast.textContent=message;
 
-    toast.textContent =
-        message;
+ toast.classList.add("show");
 
-    toast.classList.add("show");
+ clearTimeout(toastTimer);
 
-    clearTimeout(toastTimer);
+ toastTimer=
+  setTimeout(()=>{
 
-    toastTimer =
-        setTimeout(()=>{
-            toast.classList.remove("show");
-        },2500);
+   toast.classList.remove("show");
+
+  },2300);
 
 }
 
 
 /* =========================================================
-   TECLADO
+ ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+ return String(value)
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+ ESTADÍSTICAS
+========================================================= */
+
+function updateStats(){
+
+ const postsCount=
+  posts.filter(
+   p=>p.user==="Tú"
+  ).length;
+
+
+ const connections=
+  people.filter(
+   p=>
+    localStorage.getItem(
+     `conecta-connected-${p.id}`
+    )==="1"
+  ).length;
+
+
+ const statPosts=
+  document.getElementById(
+   "statPosts"
+  );
+
+
+ const statConnections=
+  document.getElementById(
+   "statConnections"
+  );
+
+
+ if(statPosts){
+
+  statPosts.textContent=
+   23+postsCount;
+
+ }
+
+
+ if(statConnections){
+
+  statConnections.textContent=
+   14+connections;
+
+ }
+
+
+ const profilePosts=
+  document.getElementById(
+   "profilePosts"
+  );
+
+
+ const profileConnections=
+  document.getElementById(
+   "profileConnections"
+  );
+
+
+ if(profilePosts){
+
+  profilePosts.textContent=
+   23+postsCount;
+
+ }
+
+
+ if(profileConnections){
+
+  profileConnections.textContent=
+   128+connections;
+
+ }
+
+}
+
+
+/* =========================================================
+ LOAD PROFILE
+========================================================= */
+
+function loadProfile(){
+
+ const name=
+  localStorage.getItem(
+   "conecta-profile-name"
+  );
+
+
+ const bio=
+  localStorage.getItem(
+   "conecta-profile-bio"
+  );
+
+
+ if(name){
+
+  document.getElementById(
+   "profileName"
+  ).textContent=name;
+
+ }
+
+ if(bio){
+
+  const p=
+   document.querySelector(
+    ".profile-info p"
+   );
+
+  if(p){
+
+   p.textContent=bio;
+
+  }
+
+ }
+
+}
+
+
+/* =========================================================
+ KEYBOARD
 ========================================================= */
 
 document.addEventListener(
-    "keydown",
-    event=>{
+ "keydown",
+ event=>{
 
-        if(event.key==="Escape"){
-            closeModal();
-        }
+  if(event.key==="Escape"){
 
-    }
+   closeModal();
+
+  }
+
+ }
 );
 
 
 /* =========================================================
-   INICIO
+ START
 ========================================================= */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
+ "DOMContentLoaded",
+ ()=>{
 
-        renderCategories();
+  loadData();
 
-        renderPeople();
+  loadTheme();
 
-        renderPlans();
+  loadProfile();
 
-        renderFeatured();
+  renderCategories();
 
-        renderChats();
+  renderStories();
 
-    }
+  renderFeed();
+
+  renderPeople();
+
+  renderPlans();
+
+  renderGroups();
+
+  renderChats();
+
+  renderAlbums();
+
+  renderCalendar();
+
+  renderHistory();
+
+  updateStats();
+
+ }
 );
 
 
 /* =========================================================
-   SERVICE WORKER
+ SERVICE WORKER
 ========================================================= */
 
-if(
-    "serviceWorker" in navigator
-){
+if("serviceWorker" in navigator){
 
-    window.addEventListener(
-        "load",
-        ()=>{
+ window.addEventListener(
+  "load",
+  ()=>{
 
-            navigator.serviceWorker
-                .register("./sw.js")
-                .catch(error=>{
-
-                    console.log(
-                        "Service Worker:",
-                        error
-                    );
-
-                });
-
-        }
+   navigator.serviceWorker
+   .register("./sw.js")
+   .then(()=>{
+    console.log(
+     "CONECTA: Service Worker activo"
     );
+   })
+   .catch(error=>{
+    console.log(
+     "Service Worker:",
+     error
+    );
+   });
+
+  }
+ );
 
 }
 
