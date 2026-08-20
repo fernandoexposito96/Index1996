@@ -1,11 +1,15 @@
 /* ============================================================
    NEXO — SERVICE WORKER
-   Versión 1.0.0
-   PWA / Caché / Offline / Actualizaciones
+   PWA / CACHE / OFFLINE / UPDATES / PUSH
    ============================================================ */
 
-const CACHE_NAME = "nexo-v1.0.0";
+const CACHE_NAME = "nexo-v2.0.0";
 
+/*
+ * Archivos principales de NEXO.
+ * Añade aquí cualquier archivo local importante que quieras
+ * disponible inmediatamente después de instalar la PWA.
+ */
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -17,22 +21,14 @@ const APP_SHELL = [
    ============================================================ */
 
 self.addEventListener("install", (event) => {
-  console.log("[NEXO SW] Instalando Service Worker...");
+  console.log("[NEXO SW] Instalando:", CACHE_NAME);
 
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(APP_SHELL);
-      })
-      .then(() => {
-        console.log("[NEXO SW] Archivos principales almacenados.");
-        return self.skipWaiting();
-      })
+      .then((cache) => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
       .catch((error) => {
-        console.error(
-          "[NEXO SW] Error durante la instalación:",
-          error
-        );
+        console.error("[NEXO SW] Error de instalación:", error);
       })
   );
 });
@@ -43,18 +39,18 @@ self.addEventListener("install", (event) => {
    ============================================================ */
 
 self.addEventListener("activate", (event) => {
-  console.log("[NEXO SW] Activando Service Worker...");
+  console.log("[NEXO SW] Activando:", CACHE_NAME);
 
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
-
         return Promise.all(
           cacheNames
-            .filter((cacheName) => {
-              return cacheName.startsWith("nexo-") &&
-                     cacheName !== CACHE_NAME;
-            })
+            .filter(
+              (cacheName) =>
+                cacheName.startsWith("nexo-") &&
+                cacheName !== CACHE_NAME
+            )
             .map((cacheName) => {
               console.log(
                 "[NEXO SW] Eliminando caché antigua:",
@@ -64,40 +60,31 @@ self.addEventListener("activate", (event) => {
               return caches.delete(cacheName);
             })
         );
-
       })
-      .then(() => {
-        return self.clients.claim();
-      })
+      .then(() => self.clients.claim())
   );
 });
 
 
 /* ============================================================
-   PETICIONES
+   FETCH
    ============================================================ */
 
 self.addEventListener("fetch", (event) => {
 
   const request = event.request;
 
-  /*
-   * Solo gestionamos peticiones GET.
-   */
+  /* Solo GET */
   if (request.method !== "GET") {
     return;
   }
 
-  /*
-   * Algunas peticiones externas pueden no ser adecuadas
-   * para ser interceptadas por este Service Worker.
-   */
   const url = new URL(request.url);
 
-  /*
-   * Navegación principal:
-   * primero intenta red y, si falla, utiliza index.html.
-   */
+  /* ==========================================================
+     NAVEGACIÓN
+     ========================================================== */
+
   if (request.mode === "navigate") {
 
     event.respondWith(
@@ -105,19 +92,23 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
 
-          /*
-           * Guardamos una copia actualizada.
-           */
-          const responseClone = response.clone();
+          if (
+            response &&
+            response.ok
+          ) {
 
-          caches.open(CACHE_NAME)
-            .then((cache) => {
-              cache.put("./index.html", responseClone);
-            });
+            const clone = response.clone();
+
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put("./index.html", clone);
+              });
+
+          }
 
           return response;
-        })
 
+        })
         .catch(() => {
 
           return caches.match("./index.html")
@@ -127,18 +118,12 @@ self.addEventListener("fetch", (event) => {
                 return cachedResponse;
               }
 
-              return new Response(
-                offlinePage(),
-                {
-                  headers: {
-                    "Content-Type": "text/html; charset=utf-8"
-                  }
-                }
-              );
+              return offlineResponse();
 
             });
 
         })
+
     );
 
     return;
@@ -146,7 +131,7 @@ self.addEventListener("fetch", (event) => {
 
 
   /* ==========================================================
-     ARCHIVOS LOCALES
+     RECURSOS LOCALES
      ========================================================== */
 
   if (url.origin === self.location.origin) {
@@ -156,22 +141,16 @@ self.addEventListener("fetch", (event) => {
       caches.match(request)
         .then((cachedResponse) => {
 
-          /*
-           * Si existe en caché:
-           * lo mostramos inmediatamente y tratamos de
-           * actualizarlo desde internet.
-           */
-
-          const networkFetch = fetch(request)
-            .then((networkResponse) => {
+          const networkRequest = fetch(request)
+            .then((response) => {
 
               if (
-                networkResponse &&
-                networkResponse.status === 200 &&
-                networkResponse.type === "basic"
+                response &&
+                response.ok &&
+                response.type === "basic"
               ) {
 
-                const clone = networkResponse.clone();
+                const clone = response.clone();
 
                 caches.open(CACHE_NAME)
                   .then((cache) => {
@@ -180,45 +159,49 @@ self.addEventListener("fetch", (event) => {
 
               }
 
-              return networkResponse;
+              return response;
 
             })
             .catch(() => null);
 
 
+          /*
+           * Si tenemos caché:
+           * mostramos inmediatamente el recurso.
+           */
+
           if (cachedResponse) {
 
             /*
-             * Actualización en segundo plano.
+             * La red actualiza la caché en segundo plano.
              */
-            networkFetch.catch(() => {});
+
+            event.waitUntil(
+              networkRequest.catch(() => {})
+            );
 
             return cachedResponse;
           }
 
 
           /*
-           * Si no está en caché, usamos la red.
+           * Si no hay caché:
+           * esperamos a Internet.
            */
 
-          return networkFetch.then((response) => {
+          return networkRequest
+            .then((response) => {
 
-            if (response) {
-              return response;
-            }
-
-            return new Response(
-              offlinePage(),
-              {
-                headers: {
-                  "Content-Type": "text/html; charset=utf-8"
-                }
+              if (response) {
+                return response;
               }
-            );
 
-          });
+              return offlineResponse();
+
+            });
 
         })
+
     );
 
     return;
@@ -229,18 +212,17 @@ self.addEventListener("fetch", (event) => {
      RECURSOS EXTERNOS
      ========================================================== */
 
-  /*
-   * Imágenes externas, fuentes, APIs, etc.
-   *
-   * Se utiliza una estrategia:
-   * NETWORK → CACHE
-   */
+  const externalDestinations = [
+    "image",
+    "font",
+    "style",
+    "script"
+  ];
 
   if (
-    request.destination === "image" ||
-    request.destination === "font" ||
-    request.destination === "style" ||
-    request.destination === "script"
+    externalDestinations.includes(
+      request.destination
+    )
   ) {
 
     event.respondWith(
@@ -248,10 +230,13 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
 
+          /*
+           * Guardamos únicamente respuestas válidas.
+           */
+
           if (
             response &&
-            response.status === 200 &&
-            response.type !== "opaque"
+            response.ok
           ) {
 
             const clone = response.clone();
@@ -275,25 +260,24 @@ self.addEventListener("fetch", (event) => {
                 return cachedResponse;
               }
 
-              return new Response(
-                "",
-                {
-                  status: 503,
-                  statusText: "Offline"
-                }
-              );
+              return new Response("", {
+                status: 503,
+                statusText: "Offline"
+              });
 
             });
 
         })
+
     );
+
   }
 
 });
 
 
 /* ============================================================
-   MENSAJE DESDE LA APLICACIÓN
+   MENSAJES
    ============================================================ */
 
 self.addEventListener("message", (event) => {
@@ -304,10 +288,13 @@ self.addEventListener("message", (event) => {
 
 
   /* ----------------------------------------------------------
-     FORZAR ACTUALIZACIÓN
+     ACTUALIZACIÓN
      ---------------------------------------------------------- */
 
-  if (event.data.type === "SKIP_WAITING") {
+  if (
+    event.data.type ===
+    "SKIP_WAITING"
+  ) {
 
     self.skipWaiting();
 
@@ -318,7 +305,10 @@ self.addEventListener("message", (event) => {
      LIMPIAR CACHÉ
      ---------------------------------------------------------- */
 
-  if (event.data.type === "CLEAR_CACHE") {
+  if (
+    event.data.type ===
+    "CLEAR_CACHE"
+  ) {
 
     event.waitUntil(
 
@@ -326,9 +316,10 @@ self.addEventListener("message", (event) => {
         .then((cacheNames) => {
 
           return Promise.all(
-            cacheNames.map((cacheName) => {
-              return caches.delete(cacheName);
-            })
+            cacheNames.map(
+              (cacheName) =>
+                caches.delete(cacheName)
+            )
           );
 
         })
@@ -342,7 +333,10 @@ self.addEventListener("message", (event) => {
      OBTENER VERSIÓN
      ---------------------------------------------------------- */
 
-  if (event.data.type === "GET_VERSION") {
+  if (
+    event.data.type ===
+    "GET_VERSION"
+  ) {
 
     if (event.source) {
 
@@ -359,7 +353,7 @@ self.addEventListener("message", (event) => {
 
 
 /* ============================================================
-   NOTIFICACIONES PUSH
+   PUSH NOTIFICATIONS
    ============================================================ */
 
 self.addEventListener("push", (event) => {
@@ -414,7 +408,9 @@ self.addEventListener("push", (event) => {
     ],
 
     actions:
-      data.actions || []
+      Array.isArray(data.actions)
+        ? data.actions
+        : []
 
   };
 
@@ -432,41 +428,39 @@ self.addEventListener("push", (event) => {
 
 
 /* ============================================================
-   CLICK EN NOTIFICACIONES
+   CLICK NOTIFICACIÓN
    ============================================================ */
 
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener(
+  "notificationclick",
+  (event) => {
 
-  event.notification.close();
+    event.notification.close();
+
+    const notificationData =
+      event.notification.data || {};
+
+    const targetUrl =
+      notificationData.url ||
+      "./index.html";
 
 
-  const notificationData =
-    event.notification.data || {};
+    event.waitUntil(
 
+      clients.matchAll({
+        type: "window",
+        includeUncontrolled: true
+      })
 
-  const targetUrl =
-    notificationData.url ||
-    "./index.html";
-
-
-  event.waitUntil(
-
-    clients.matchAll({
-      type: "window",
-      includeUncontrolled: true
-    })
       .then((clientList) => {
-
-        /*
-         * Si NEXO ya está abierto, intentamos reutilizar
-         * la ventana existente.
-         */
 
         for (const client of clientList) {
 
           if (
             "focus" in client &&
-            client.url.includes(self.location.origin)
+            client.url.includes(
+              self.location.origin
+            )
           ) {
 
             return client
@@ -478,33 +472,64 @@ self.addEventListener("notificationclick", (event) => {
         }
 
 
-        /*
-         * Si no está abierto, creamos una ventana nueva.
-         */
+        if (
+          clients.openWindow
+        ) {
 
-        if (clients.openWindow) {
-          return clients.openWindow(targetUrl);
+          return clients.openWindow(
+            targetUrl
+          );
+
         }
 
       })
 
-  );
+    );
 
-});
+  }
+);
 
 
 /* ============================================================
    CERRAR NOTIFICACIÓN
    ============================================================ */
 
-self.addEventListener("notificationclose", (event) => {
+self.addEventListener(
+  "notificationclose",
+  (event) => {
 
-  console.log(
-    "[NEXO SW] Notificación cerrada:",
-    event.notification.tag
+    console.log(
+      "[NEXO SW] Notificación cerrada:",
+      event.notification.tag
+    );
+
+  }
+);
+
+
+/* ============================================================
+   RESPUESTA OFFLINE
+   ============================================================ */
+
+function offlineResponse() {
+
+  return new Response(
+
+    offlinePage(),
+
+    {
+      status: 503,
+
+      headers: {
+        "Content-Type":
+          "text/html; charset=utf-8"
+      }
+
+    }
+
   );
 
-});
+}
 
 
 /* ============================================================
@@ -525,7 +550,8 @@ function offlinePage() {
 <meta
   name="viewport"
   content="width=device-width,
-           initial-scale=1.0"
+           initial-scale=1.0,
+           viewport-fit=cover"
 >
 
 <meta
@@ -543,19 +569,9 @@ function offlinePage() {
 
 html,
 body {
-
   margin: 0;
-  padding: 0;
-
   width: 100%;
   min-height: 100%;
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-
 }
 
 body {
@@ -565,8 +581,17 @@ body {
   display: flex;
 
   align-items: center;
-
   justify-content: center;
+
+  padding: 24px;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: white;
 
   background:
     linear-gradient(
@@ -575,29 +600,25 @@ body {
       #171024
     );
 
-  color: white;
-
-  padding: 24px;
-
 }
 
 .container {
 
   width: 100%;
-  max-width: 420px;
+  max-width: 430px;
+
+  padding: 40px 26px;
 
   text-align: center;
-
-  padding: 40px 25px;
 
   border-radius: 28px;
 
   background:
-    rgba(255,255,255,0.06);
+    rgba(255,255,255,.06);
 
   border:
     1px solid
-    rgba(255,255,255,0.10);
+    rgba(255,255,255,.10);
 
   backdrop-filter:
     blur(20px);
@@ -612,12 +633,12 @@ body {
   margin:
     0 auto 24px;
 
-  border-radius: 24px;
-
   display: flex;
 
   align-items: center;
   justify-content: center;
+
+  border-radius: 24px;
 
   background:
     linear-gradient(
@@ -627,7 +648,6 @@ body {
     );
 
   font-size: 34px;
-
   font-weight: 900;
 
   box-shadow:
@@ -672,11 +692,14 @@ button {
   color: white;
 
   font-size: 16px;
-
   font-weight: 700;
 
   cursor: pointer;
 
+}
+
+button:active {
+  transform: scale(.97);
 }
 
 </style>
@@ -717,5 +740,5 @@ button {
 
 
 /* ============================================================
-   FIN DEL SERVICE WORKER
+   FIN SERVICE WORKER NEXO
    ============================================================ */
