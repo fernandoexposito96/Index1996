@@ -7,103 +7,147 @@
       content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
 
 <meta name="theme-color" content="#7C3AED">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Conecta">
 
 <link rel="manifest" href="./manifest.json">
 
-<title>Conecta</title>
+<title>Conecta · Personas · Planes · Experiencias</title>
 
 <style>
 
 /* =========================================================
-   VARIABLES
+   CONECTA — DESIGN SYSTEM
 ========================================================= */
 
 :root{
- --primary:#7c3aed;
- --primary-dark:#5b21b6;
- --purple:#8b5cf6;
- --violet:#a855f7;
- --pink:#ec4899;
- --rose:#f43f5e;
- --blue:#3b82f6;
- --cyan:#06b6d4;
- --green:#10b981;
- --yellow:#f59e0b;
- --orange:#f97316;
- --red:#ef4444;
+    --primary:#7c3aed;
+    --primary2:#a855f7;
+    --primary3:#c084fc;
+    --pink:#ec4899;
+    --blue:#3b82f6;
+    --cyan:#06b6d4;
+    --green:#10b981;
+    --orange:#f97316;
+    --yellow:#f59e0b;
+    --red:#ef4444;
 
- --bg:#f5f3fa;
- --card:#ffffff;
- --card2:#faf9ff;
- --text:#17131f;
- --muted:#77727f;
- --border:#ebe7f2;
+    --bg:#f6f4fb;
+    --bg2:#eeeafd;
+    --card:#ffffff;
+    --card2:#faf9ff;
 
- --shadow:0 10px 30px rgba(53,25,90,.09);
- --shadow2:0 20px 50px rgba(91,33,182,.18);
+    --text:#17131f;
+    --muted:#77727f;
+    --border:#ebe7f2;
 
- --radius:24px;
+    --shadow:0 10px 30px rgba(45,20,80,.08);
+    --shadow2:0 18px 50px rgba(82,40,140,.15);
+    --shadow3:0 25px 70px rgba(30,15,60,.20);
+
+    --radius:24px;
+    --radius2:30px;
+
+    --nav-height:76px;
 }
 
-/* =========================================================
-   RESET
-========================================================= */
-
 *{
- box-sizing:border-box;
- margin:0;
- padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 html{
- scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
- font-family:
- -apple-system,
- BlinkMacSystemFont,
- "SF Pro Display",
- "SF Pro Text",
- "Segoe UI",
- Roboto,
- Arial,
- sans-serif;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
 
- background:
- radial-gradient(circle at 10% 0%,rgba(168,85,247,.08),transparent 25%),
- radial-gradient(circle at 100% 20%,rgba(236,72,153,.06),transparent 25%),
- var(--bg);
+    background:
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(168,85,247,.09),
+            transparent 25%
+        ),
+        var(--bg);
 
- color:var(--text);
- min-height:100vh;
- overflow-x:hidden;
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+    transition:background .3s,color .3s;
+}
+
+body.dark{
+    --bg:#0b0910;
+    --bg2:#171126;
+    --card:#17131f;
+    --card2:#1d1827;
+
+    --text:#faf7ff;
+    --muted:#aaa3b5;
+    --border:#2b2535;
+
+    --shadow:0 10px 35px rgba(0,0,0,.25);
+    --shadow2:0 20px 55px rgba(0,0,0,.35);
 }
 
 button,
-input{
- font:inherit;
+input,
+textarea,
+select{
+    font:inherit;
 }
 
 button{
- border:0;
- cursor:pointer;
+    border:0;
+    cursor:pointer;
 }
 
 img{
- max-width:100%;
- display:block;
+    display:block;
+    max-width:100%;
 }
 
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+::-webkit-scrollbar{
+    width:5px;
+    height:5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#c7bdd8;
+    border-radius:99px;
+}
+
+/* =========================================================
+   APP
+========================================================= */
+
 .app{
- width:100%;
- max-width:700px;
- min-height:100vh;
- margin:auto;
- padding-bottom:110px;
+    width:100%;
+    max-width:720px;
+    min-height:100vh;
+    margin:auto;
+    padding-bottom:calc(
+        var(--nav-height) +
+        env(safe-area-inset-bottom) +
+        20px
+    );
 }
 
 /* =========================================================
@@ -111,123 +155,119 @@ img{
 ========================================================= */
 
 .header{
- position:sticky;
- top:0;
- z-index:100;
+    position:sticky;
+    top:0;
+    z-index:100;
 
- padding:
- calc(11px + env(safe-area-inset-top))
- 16px
- 10px;
+    padding:
+        calc(10px + env(safe-area-inset-top))
+        16px
+        10px;
 
- display:flex;
- align-items:center;
- justify-content:space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
- background:rgba(245,243,250,.82);
+    background:rgba(246,244,251,.84);
 
- backdrop-filter:blur(25px);
- -webkit-backdrop-filter:blur(25px);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 
- border-bottom:1px solid rgba(124,58,237,.06);
+    border-bottom:1px solid rgba(120,100,150,.05);
 }
 
 body.dark .header{
- background:rgba(12,10,16,.86);
+    background:rgba(11,9,16,.84);
 }
 
 .brand{
- display:flex;
- align-items:center;
- gap:10px;
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
 .logo{
- width:47px;
- height:47px;
+    width:46px;
+    height:46px;
 
- border-radius:17px;
+    border-radius:16px;
 
- display:flex;
- align-items:center;
- justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
- background:
- linear-gradient(
-  135deg,
-  #5b21b6,
-  #7c3aed 45%,
-  #ec4899
- );
+    background:
+        linear-gradient(
+            135deg,
+            #5b21b6,
+            #7c3aed 45%,
+            #ec4899
+        );
 
- color:white;
+    color:white;
 
- font-size:22px;
- font-weight:950;
+    font-size:21px;
+    font-weight:1000;
 
- box-shadow:
-  0 10px 25px rgba(124,58,237,.3),
-  inset 0 1px rgba(255,255,255,.3);
+    box-shadow:
+        0 12px 28px rgba(124,58,237,.30);
 
- position:relative;
- overflow:hidden;
+    position:relative;
+    overflow:hidden;
 }
 
 .logo:after{
- content:"";
- position:absolute;
-
- width:30px;
- height:30px;
-
- border-radius:50%;
-
- background:rgba(255,255,255,.15);
-
- top:-12px;
- right:-10px;
+    content:"";
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    top:-25px;
+    right:-15px;
 }
 
 .brand h1{
- font-size:20px;
- font-weight:950;
- letter-spacing:-.8px;
+    font-size:20px;
+    font-weight:1000;
+    letter-spacing:-.8px;
 }
 
 .brand span{
- display:block;
- color:var(--muted);
- font-size:10px;
- margin-top:2px;
+    display:block;
+    margin-top:2px;
+    color:var(--muted);
+    font-size:10px;
+    font-weight:700;
 }
 
 .header-actions{
- display:flex;
- gap:8px;
+    display:flex;
+    gap:8px;
 }
 
 .icon-btn{
- width:43px;
- height:43px;
+    width:43px;
+    height:43px;
 
- border-radius:15px;
+    border-radius:15px;
 
- background:var(--card);
- color:var(--text);
+    background:var(--card);
+    color:var(--text);
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
 
- display:flex;
- align-items:center;
- justify-content:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
- font-size:18px;
+    font-size:18px;
 
- transition:.2s;
+    transition:.2s;
 }
 
 .icon-btn:active{
- transform:scale(.9);
+    transform:scale(.91);
 }
 
 /* =========================================================
@@ -235,23 +275,23 @@ body.dark .header{
 ========================================================= */
 
 .view{
- display:none;
- animation:fade .25s ease;
+    display:none;
+    animation:viewIn .3s ease;
 }
 
 .view.active{
- display:block;
+    display:block;
 }
 
-@keyframes fade{
- from{
-  opacity:0;
-  transform:translateY(8px);
- }
- to{
-  opacity:1;
-  transform:none;
- }
+@keyframes viewIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 /* =========================================================
@@ -259,154 +299,141 @@ body.dark .header{
 ========================================================= */
 
 .hero{
- margin:12px 16px 22px;
+    margin:12px 15px 20px;
 
- min-height:275px;
+    min-height:285px;
 
- padding:28px 22px;
+    padding:28px 22px;
 
- border-radius:32px;
+    border-radius:32px;
 
- position:relative;
- overflow:hidden;
+    position:relative;
+    overflow:hidden;
 
- color:white;
+    color:white;
 
- background:
- radial-gradient(
-  circle at 90% 10%,
-  rgba(255,255,255,.3),
-  transparent 25%
- ),
- radial-gradient(
-  circle at 0% 100%,
-  rgba(6,182,212,.25),
-  transparent 30%
- ),
- linear-gradient(
-  135deg,
-  #4c1d95,
-  #7c3aed 42%,
-  #c026d3 72%,
-  #ec4899
- );
+    background:
+        radial-gradient(
+            circle at 85% 10%,
+            rgba(255,255,255,.28),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 15% 100%,
+            rgba(59,130,246,.30),
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #4c1d95,
+            #7c3aed 42%,
+            #a855f7 68%,
+            #ec4899
+        );
 
- box-shadow:var(--shadow2);
+    box-shadow:var(--shadow3);
 }
 
 .hero:before{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
 
- width:280px;
- height:280px;
+    width:270px;
+    height:270px;
 
- border-radius:50%;
+    border-radius:50%;
 
- right:-110px;
- bottom:-150px;
+    background:rgba(255,255,255,.075);
 
- background:rgba(255,255,255,.1);
+    right:-100px;
+    bottom:-130px;
 }
 
 .hero:after{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
 
- width:120px;
- height:120px;
+    width:120px;
+    height:120px;
 
- border-radius:50%;
+    border-radius:50%;
 
- right:70px;
- top:-65px;
+    background:rgba(255,255,255,.08);
 
- background:rgba(255,255,255,.1);
+    right:90px;
+    top:-65px;
 }
 
 .hero-content{
- position:relative;
- z-index:2;
+    position:relative;
+    z-index:2;
 }
 
 .hero-badge{
- display:inline-flex;
- align-items:center;
- gap:6px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
 
- padding:7px 10px;
+    padding:7px 10px;
 
- border-radius:12px;
+    border-radius:99px;
 
- background:rgba(255,255,255,.15);
- border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.16);
 
- font-size:10px;
- font-weight:900;
+    font-size:10px;
+    font-weight:900;
 }
 
 .hero h2{
- margin-top:12px;
+    margin-top:15px;
 
- font-size:34px;
- line-height:1.02;
+    font-size:35px;
+    line-height:1.02;
 
- letter-spacing:-1.7px;
+    letter-spacing:-1.8px;
 
- max-width:470px;
+    max-width:470px;
 }
 
 .hero p{
- margin-top:13px;
+    margin-top:13px;
 
- line-height:1.45;
+    line-height:1.5;
 
- font-size:14px;
+    font-size:14px;
 
- opacity:.92;
+    opacity:.91;
 
- max-width:420px;
+    max-width:430px;
 }
 
 .hero-buttons{
- display:flex;
- gap:9px;
-
- flex-wrap:wrap;
-
- margin-top:20px;
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:21px;
 }
 
 .hero-btn{
- padding:13px 17px;
+    padding:13px 17px;
 
- border-radius:15px;
+    border-radius:15px;
 
- background:white;
+    background:white;
+    color:#6d28d9;
 
- color:#6d28d9;
+    font-weight:950;
 
- font-weight:950;
-
- box-shadow:0 8px 20px rgba(0,0,0,.12);
-
- transition:.2s;
-}
-
-.hero-btn:active{
- transform:scale(.95);
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
 }
 
 .hero-btn.secondary{
- background:rgba(255,255,255,.15);
-
- color:white;
-
- border:1px solid rgba(255,255,255,.25);
-
- box-shadow:none;
+    background:rgba(255,255,255,.14);
+    color:white;
+    border:1px solid rgba(255,255,255,.24);
 }
 
 /* =========================================================
@@ -414,45 +441,52 @@ body.dark .header{
 ========================================================= */
 
 .search{
- margin:0 16px 22px;
+    margin:0 15px 22px;
 
- min-height:55px;
+    min-height:54px;
 
- padding:0 15px;
+    padding:0 15px;
 
- border-radius:19px;
+    border-radius:18px;
 
- background:var(--card);
+    background:var(--card);
 
- border:1px solid var(--border);
+    border:1px solid var(--border);
 
- display:flex;
- align-items:center;
+    display:flex;
+    align-items:center;
 
- gap:10px;
+    gap:10px;
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
+
+    transition:.2s;
 }
 
-.search-icon{
- font-size:20px;
+.search:focus-within{
+    border-color:rgba(124,58,237,.45);
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.08),
+        var(--shadow);
+}
+
+.search span{
+    font-size:19px;
 }
 
 .search input{
- width:100%;
+    width:100%;
+    border:0;
+    outline:0;
 
- border:0;
- outline:0;
+    background:transparent;
+    color:var(--text);
 
- background:transparent;
-
- color:var(--text);
-
- font-size:15px;
+    font-size:14px;
 }
 
 .search input::placeholder{
- color:#aaa4b1;
+    color:#aaa4b0;
 }
 
 /* =========================================================
@@ -460,31 +494,32 @@ body.dark .header{
 ========================================================= */
 
 .section{
- margin:0 16px 29px;
+    margin:0 15px 28px;
 }
 
 .section-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
- margin-bottom:14px;
+    margin-bottom:13px;
 }
 
 .section-head h2{
- font-size:20px;
+    font-size:20px;
+    letter-spacing:-.7px;
+}
 
- letter-spacing:-.7px;
+.section-head p{
+    color:var(--muted);
+    font-size:12px;
 }
 
 .section-head button{
- background:transparent;
-
- color:var(--primary);
-
- font-size:13px;
-
- font-weight:900;
+    background:transparent;
+    color:var(--primary);
+    font-size:12px;
+    font-weight:950;
 }
 
 /* =========================================================
@@ -492,95 +527,92 @@ body.dark .header{
 ========================================================= */
 
 .categories{
- display:flex;
+    display:flex;
+    gap:12px;
 
- gap:12px;
+    overflow-x:auto;
 
- overflow-x:auto;
+    padding:
+        2px
+        2px
+        10px;
 
- padding:2px 2px 9px;
-
- scrollbar-width:none;
+    scrollbar-width:none;
 }
 
 .categories::-webkit-scrollbar{
- display:none;
+    display:none;
 }
 
 .category{
- min-width:132px;
- height:155px;
+    min-width:132px;
+    height:155px;
 
- border-radius:24px;
+    border-radius:24px;
 
- overflow:hidden;
+    overflow:hidden;
 
- position:relative;
+    position:relative;
 
- flex-shrink:0;
+    flex-shrink:0;
 
- background:#ddd;
+    background:#ddd;
 
- box-shadow:var(--shadow);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.10);
 
- transition:.2s;
+    transition:.22s;
 }
 
 .category:active{
- transform:scale(.95);
+    transform:scale(.95);
 }
 
 .category img{
- width:100%;
- height:100%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 
- object-fit:cover;
-
- transition:.35s;
+    transition:.4s;
 }
 
 .category:hover img{
- transform:scale(1.06);
+    transform:scale(1.06);
 }
 
 .category:after{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
+    inset:0;
 
- inset:0;
-
- background:
- linear-gradient(
-  transparent 25%,
-  rgba(0,0,0,.8)
- );
+    background:
+        linear-gradient(
+            transparent 25%,
+            rgba(0,0,0,.82)
+        );
 }
 
 .category-info{
- position:absolute;
+    position:absolute;
+    z-index:2;
 
- z-index:2;
+    left:13px;
+    right:8px;
+    bottom:12px;
 
- left:12px;
- right:8px;
- bottom:11px;
-
- color:white;
-
- text-align:left;
+    color:white;
 }
 
 .category-icon{
- font-size:22px;
+    font-size:22px;
 }
 
 .category-title{
- font-size:14px;
+    margin-top:3px;
 
- font-weight:950;
-
- margin-top:2px;
+    font-size:14px;
+    font-weight:950;
 }
 
 /* =========================================================
@@ -588,384 +620,399 @@ body.dark .header{
 ========================================================= */
 
 .people{
- display:flex;
+    display:flex;
+    gap:13px;
 
- gap:13px;
+    overflow-x:auto;
 
- overflow-x:auto;
+    padding:
+        2px
+        2px
+        10px;
 
- padding:2px 2px 9px;
-
- scrollbar-width:none;
+    scrollbar-width:none;
 }
 
 .people::-webkit-scrollbar{
- display:none;
+    display:none;
 }
 
 .person{
- min-width:184px;
+    min-width:185px;
 
- background:var(--card);
+    background:var(--card);
 
- border-radius:24px;
+    border-radius:24px;
 
- padding:9px;
+    padding:9px;
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
 
- overflow:hidden;
+    overflow:hidden;
 
- border:1px solid rgba(124,58,237,.04);
+    border:1px solid rgba(124,58,237,.04);
 }
 
 .person-img{
- height:165px;
+    height:170px;
 
- border-radius:19px;
+    border-radius:19px;
 
- overflow:hidden;
+    overflow:hidden;
 
- position:relative;
+    position:relative;
 
- background:#eee;
+    background:#eee;
 }
 
 .person-img img{
- width:100%;
- height:100%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 
- object-fit:cover;
-
- transition:.4s;
+    transition:.4s;
 }
 
 .person:hover .person-img img{
- transform:scale(1.05);
+    transform:scale(1.05);
 }
 
 .online{
- position:absolute;
+    position:absolute;
 
- right:9px;
- top:9px;
+    right:9px;
+    top:9px;
 
- width:14px;
- height:14px;
+    width:14px;
+    height:14px;
 
- border-radius:50%;
+    border-radius:50%;
 
- background:#22c55e;
+    background:#22c55e;
 
- border:3px solid white;
+    border:2px solid white;
 
- box-shadow:0 0 0 4px rgba(34,197,94,.18);
+    box-shadow:
+        0 0 0 4px rgba(34,197,94,.18);
 }
 
 .person-info{
- padding:10px 3px 3px;
+    padding:10px 3px 3px;
 }
 
 .person-name{
- font-size:15px;
-
- font-weight:950;
+    font-size:15px;
+    font-weight:950;
 }
 
 .person-meta{
- margin-top:4px;
+    margin-top:4px;
 
- color:var(--muted);
+    color:var(--muted);
 
- font-size:12px;
+    font-size:11px;
 }
 
 .connect-btn{
- width:100%;
- height:40px;
+    width:100%;
+    height:40px;
 
- margin-top:10px;
+    margin-top:10px;
 
- border-radius:14px;
+    border-radius:13px;
 
- background:
- linear-gradient(
-  135deg,
-  #ede9fe,
-  #f5e8ff
- );
+    background:
+        linear-gradient(
+            135deg,
+            #f1eaff,
+            #eee5ff
+        );
 
- color:var(--primary);
+    color:var(--primary);
 
- font-weight:950;
+    font-weight:950;
 
- transition:.2s;
+    transition:.2s;
 }
 
 .connect-btn:active{
- transform:scale(.96);
+    transform:scale(.97);
 }
 
 .connect-btn.connected{
- background:
- linear-gradient(
-  135deg,
-  #dcfce7,
-  #d1fae5
- );
-
- color:#15803d;
+    background:#dcfce7;
+    color:#15803d;
 }
 
 /* =========================================================
-   PLANS
+   GRID PEOPLE
+========================================================= */
+
+.people-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.people-grid .person{
+    min-width:0;
+}
+
+.people-grid .person-img{
+    height:190px;
+}
+
+/* =========================================================
+   PLAN CARDS
 ========================================================= */
 
 .plans{
- display:flex;
-
- flex-direction:column;
-
- gap:15px;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
 }
 
 .plan{
- background:var(--card);
+    background:var(--card);
 
- border-radius:25px;
+    border-radius:25px;
 
- overflow:hidden;
+    overflow:hidden;
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
 
- border:1px solid rgba(124,58,237,.05);
+    border:1px solid rgba(124,58,237,.04);
 }
 
 .plan-img{
- height:185px;
+    height:185px;
 
- position:relative;
-
- overflow:hidden;
+    position:relative;
+    overflow:hidden;
 }
 
 .plan-img img{
- width:100%;
- height:100%;
+    width:100%;
+    height:100%;
 
- object-fit:cover;
+    object-fit:cover;
 
- transition:.4s;
+    transition:.45s;
 }
 
 .plan:hover .plan-img img{
- transform:scale(1.05);
+    transform:scale(1.05);
 }
 
 .plan-img:after{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
+    inset:0;
 
- inset:0;
+    background:
+        linear-gradient(
+            transparent 50%,
+            rgba(0,0,0,.18)
+        );
 
- background:
- linear-gradient(
-  transparent 50%,
-  rgba(0,0,0,.25)
- );
+    pointer-events:none;
 }
 
 .plan-tag{
- position:absolute;
+    position:absolute;
 
- z-index:2;
+    left:12px;
+    top:12px;
 
- left:12px;
- top:12px;
+    z-index:2;
 
- padding:8px 11px;
+    padding:7px 10px;
 
- border-radius:12px;
+    border-radius:11px;
 
- background:rgba(255,255,255,.94);
+    background:rgba(255,255,255,.94);
 
- color:var(--primary);
+    color:var(--primary);
 
- font-size:10px;
-
- font-weight:950;
-
- box-shadow:0 5px 15px rgba(0,0,0,.1);
+    font-size:10px;
+    font-weight:1000;
 }
 
 .plan-heart{
- position:absolute;
+    position:absolute;
 
- z-index:3;
+    z-index:3;
 
- right:12px;
- top:12px;
+    right:12px;
+    top:12px;
 
- width:39px;
- height:39px;
+    width:39px;
+    height:39px;
 
- border-radius:50%;
+    border-radius:50%;
 
- background:rgba(255,255,255,.94);
+    background:rgba(255,255,255,.94);
 
- font-size:19px;
+    font-size:19px;
 
- box-shadow:0 5px 15px rgba(0,0,0,.1);
-
- transition:.2s;
-}
-
-.plan-heart.liked{
- color:#ef4444;
+    box-shadow:0 5px 15px rgba(0,0,0,.10);
 }
 
 .plan-content{
- padding:16px;
+    padding:16px;
 }
 
 .plan-title{
- font-size:19px;
+    font-size:18px;
+    font-weight:1000;
 
- font-weight:950;
-
- letter-spacing:-.5px;
+    letter-spacing:-.4px;
 }
 
 .plan-info{
- margin-top:7px;
+    margin-top:7px;
 
- color:var(--muted);
+    color:var(--muted);
 
- font-size:12px;
+    font-size:12px;
 
- line-height:1.55;
+    line-height:1.5;
+}
+
+.plan-description{
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.45;
 }
 
 .plan-footer{
- margin-top:15px;
+    margin-top:15px;
 
- display:flex;
-
- align-items:center;
-
- justify-content:space-between;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .plan-users{
- display:flex;
+    display:flex;
 }
 
 .plan-users img{
- width:31px;
- height:31px;
+    width:31px;
+    height:31px;
 
- object-fit:cover;
+    object-fit:cover;
 
- border-radius:50%;
+    border-radius:50%;
 
- border:2px solid var(--card);
+    border:2px solid var(--card);
 
- margin-left:-7px;
+    margin-left:-7px;
 }
 
 .plan-users img:first-child{
- margin-left:0;
+    margin-left:0;
 }
 
 .join-btn{
- padding:11px 17px;
+    padding:10px 16px;
 
- border-radius:14px;
+    border-radius:13px;
 
- background:
- linear-gradient(
-  135deg,
-  #6d28d9,
-  #8b5cf6
- );
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
 
- color:white;
+    color:white;
 
- font-weight:950;
+    font-weight:950;
 
- box-shadow:
-  0 8px 18px rgba(124,58,237,.25);
-
- transition:.2s;
-}
-
-.join-btn:active{
- transform:scale(.95);
+    box-shadow:
+        0 7px 18px rgba(124,58,237,.20);
 }
 
 /* =========================================================
-   QUICK CARDS
+   QUICK ACTIONS
 ========================================================= */
 
 .quick{
- display:grid;
+    display:grid;
 
- grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+        repeat(4,1fr);
 
- gap:9px;
+    gap:9px;
 }
 
 .quick-card{
- min-height:96px;
+    background:var(--card);
 
- background:var(--card);
+    border-radius:20px;
 
- border-radius:20px;
+    padding:14px 5px;
 
- padding:13px 6px;
+    box-shadow:var(--shadow);
 
- box-shadow:var(--shadow);
+    color:var(--text);
 
- color:var(--text);
+    border:1px solid var(--border);
 
- border:1px solid rgba(124,58,237,.04);
-
- transition:.2s;
+    transition:.2s;
 }
 
 .quick-card:active{
- transform:scale(.94);
-}
-
-.quick-card:nth-child(1){
- background:linear-gradient(145deg,#fff7ed,#ffedd5);
-}
-
-.quick-card:nth-child(2){
- background:linear-gradient(145deg,#f5f3ff,#ede9fe);
-}
-
-.quick-card:nth-child(3){
- background:linear-gradient(145deg,#eff6ff,#dbeafe);
-}
-
-.quick-card:nth-child(4){
- background:linear-gradient(145deg,#fdf2f8,#fce7f3);
+    transform:scale(.95);
 }
 
 .quick-icon{
- font-size:25px;
+    width:38px;
+    height:38px;
+
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1eaff,
+            #fce7f3
+        );
+
+    font-size:20px;
+}
+
+.quick-card:nth-child(2) .quick-icon{
+    background:#e0f2fe;
+}
+
+.quick-card:nth-child(3) .quick-icon{
+    background:#dcfce7;
+}
+
+.quick-card:nth-child(4) .quick-icon{
+    background:#fef3c7;
 }
 
 .quick-card span{
- display:block;
+    display:block;
 
- margin-top:7px;
+    margin-top:7px;
 
- font-size:10px;
-
- font-weight:900;
+    font-size:10px;
+    font-weight:900;
 }
 
 /* =========================================================
@@ -973,76 +1020,76 @@ body.dark .header{
 ========================================================= */
 
 .featured{
- display:grid;
+    display:grid;
 
- grid-template-columns:1fr 1fr;
+    grid-template-columns:1fr 1fr;
 
- gap:11px;
+    gap:11px;
 }
 
 .feature-card{
- height:165px;
+    height:165px;
 
- border-radius:22px;
+    border-radius:23px;
 
- overflow:hidden;
+    overflow:hidden;
 
- position:relative;
+    position:relative;
 
- color:white;
+    color:white;
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
+
+    background:#ddd;
 }
 
 .feature-card img{
- width:100%;
- height:100%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
 
- object-fit:cover;
-
- transition:.4s;
+    transition:.4s;
 }
 
 .feature-card:hover img{
- transform:scale(1.06);
+    transform:scale(1.05);
 }
 
 .feature-card:after{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
+    inset:0;
 
- inset:0;
-
- background:
- linear-gradient(
-  transparent 30%,
-  rgba(0,0,0,.8)
- );
+    background:
+        linear-gradient(
+            transparent 35%,
+            rgba(0,0,0,.82)
+        );
 }
 
 .feature-info{
- position:absolute;
+    position:absolute;
 
- z-index:2;
+    z-index:2;
 
- bottom:12px;
-
- left:12px;
-
- right:8px;
+    bottom:13px;
+    left:13px;
+    right:8px;
 }
 
 .feature-info strong{
- display:block;
-
- font-size:14px;
+    display:block;
+    font-size:14px;
 }
 
 .feature-info span{
- font-size:11px;
+    display:block;
 
- opacity:.9;
+    margin-top:3px;
+
+    font-size:10px;
+    opacity:.88;
 }
 
 /* =========================================================
@@ -1050,74 +1097,114 @@ body.dark .header{
 ========================================================= */
 
 .chat-list{
- display:flex;
-
- flex-direction:column;
-
- gap:10px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
 .chat{
- width:100%;
+    width:100%;
 
- background:var(--card);
+    background:var(--card);
 
- border-radius:21px;
+    border-radius:20px;
 
- padding:12px;
+    padding:12px;
 
- display:flex;
+    display:flex;
+    align-items:center;
 
- align-items:center;
+    gap:12px;
 
- gap:12px;
+    box-shadow:var(--shadow);
 
- box-shadow:var(--shadow);
+    color:var(--text);
 
- color:var(--text);
+    text-align:left;
 
- text-align:left;
+    border:1px solid var(--border);
 }
 
 .chat img{
- width:58px;
- height:58px;
+    width:57px;
+    height:57px;
 
- border-radius:50%;
+    border-radius:50%;
 
- object-fit:cover;
-
- border:3px solid #ede9fe;
+    object-fit:cover;
 }
 
 .chat-info{
- flex:1;
-
- min-width:0;
+    flex:1;
+    min-width:0;
 }
 
 .chat-info strong{
- font-size:14px;
+    font-size:14px;
 }
 
 .chat-info p{
- margin-top:4px;
+    margin-top:4px;
 
- color:var(--muted);
+    color:var(--muted);
 
- font-size:12px;
+    font-size:12px;
 
- white-space:nowrap;
-
- overflow:hidden;
-
- text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .chat-time{
- color:#999;
+    color:#999;
 
- font-size:10px;
+    font-size:10px;
+}
+
+/* =========================================================
+   CHAT WINDOW
+========================================================= */
+
+.chat-window{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+
+    margin-top:18px;
+}
+
+.message{
+    max-width:80%;
+
+    padding:11px 13px;
+
+    border-radius:17px;
+
+    font-size:13px;
+    line-height:1.4;
+}
+
+.message.received{
+    align-self:flex-start;
+
+    background:var(--bg2);
+
+    border-bottom-left-radius:5px;
+}
+
+.message.sent{
+    align-self:flex-end;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--pink)
+        );
+
+    border-bottom-right-radius:5px;
 }
 
 /* =========================================================
@@ -1125,173 +1212,162 @@ body.dark .header{
 ========================================================= */
 
 .profile-cover{
- height:190px;
+    height:205px;
 
- background:
- radial-gradient(
-  circle at 85% 15%,
-  rgba(255,255,255,.25),
-  transparent 20%
- ),
- linear-gradient(
-  135deg,
-  #5b21b6,
-  #7c3aed,
-  #a855f7,
-  #ec4899
- );
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.25),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(59,130,246,.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #4c1d95,
+            #7c3aed,
+            #a855f7,
+            #ec4899
+        );
 
- position:relative;
+    border-radius:0 0 34px 34px;
 
- border-radius:0 0 32px 32px;
-
- overflow:hidden;
-}
-
-.profile-cover:after{
- content:"";
-
- position:absolute;
-
- width:220px;
- height:220px;
-
- border-radius:50%;
-
- right:-100px;
- bottom:-130px;
-
- background:rgba(255,255,255,.12);
+    position:relative;
 }
 
 .profile-photo{
- width:112px;
- height:112px;
+    width:116px;
+    height:116px;
 
- padding:4px;
+    padding:4px;
 
- position:absolute;
+    position:absolute;
 
- left:50%;
- bottom:-56px;
+    left:50%;
+    bottom:-58px;
 
- transform:translateX(-50%);
+    transform:translateX(-50%);
 
- border-radius:50%;
+    border-radius:50%;
 
- background:
- linear-gradient(
-  135deg,
-  #7c3aed,
-  #ec4899
- );
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #ec4899
+        );
 
- box-shadow:0 10px 30px rgba(0,0,0,.2);
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.18);
 }
 
 .profile-photo img{
- width:100%;
- height:100%;
+    width:100%;
+    height:100%;
 
- object-fit:cover;
+    object-fit:cover;
 
- border-radius:50%;
+    border-radius:50%;
 
- border:4px solid var(--card);
+    border:4px solid var(--card);
+}
+
+.profile-edit{
+    position:absolute;
+
+    right:15px;
+    bottom:-20px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:var(--card);
+
+    box-shadow:var(--shadow);
+
+    font-size:18px;
 }
 
 .profile-info{
- text-align:center;
+    text-align:center;
 
- padding:68px 16px 10px;
+    padding:
+        73px
+        16px
+        10px;
 }
 
 .profile-info h2{
- font-size:24px;
-
- letter-spacing:-.7px;
+    font-size:24px;
+    letter-spacing:-.7px;
 }
 
 .profile-info p{
- margin-top:5px;
+    margin-top:4px;
 
- color:var(--muted);
+    color:var(--muted);
 
- font-size:13px;
+    font-size:13px;
 }
 
 .profile-badges{
- display:flex;
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    flex-wrap:wrap;
 
- justify-content:center;
-
- gap:7px;
-
- margin-top:12px;
+    margin-top:10px;
 }
 
 .profile-badge{
- padding:7px 10px;
+    padding:6px 9px;
 
- border-radius:12px;
+    border-radius:99px;
 
- background:#ede9fe;
+    background:var(--bg2);
 
- color:var(--primary);
+    color:var(--primary);
 
- font-size:10px;
-
- font-weight:900;
+    font-size:10px;
+    font-weight:900;
 }
 
 .profile-stats{
- margin:15px 16px 22px;
+    margin:15px;
 
- padding:18px;
+    padding:17px;
 
- background:var(--card);
+    background:var(--card);
 
- border-radius:22px;
+    border-radius:22px;
 
- display:grid;
+    display:grid;
 
- grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+        repeat(3,1fr);
 
- box-shadow:var(--shadow);
+    box-shadow:var(--shadow);
+
+    border:1px solid var(--border);
 }
 
 .stat{
- text-align:center;
-
- position:relative;
-}
-
-.stat:not(:last-child):after{
- content:"";
-
- position:absolute;
-
- right:0;
-
- top:5px;
-
- height:32px;
-
- width:1px;
-
- background:var(--border);
+    text-align:center;
 }
 
 .stat strong{
- display:block;
-
- font-size:20px;
+    display:block;
+    font-size:19px;
 }
 
 .stat span{
- color:var(--muted);
-
- font-size:11px;
+    color:var(--muted);
+    font-size:11px;
 }
 
 /* =========================================================
@@ -1299,171 +1375,176 @@ body.dark .header{
 ========================================================= */
 
 .settings-list{
- display:flex;
-
- flex-direction:column;
-
- gap:9px;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
 }
 
 .setting{
- width:100%;
+    width:100%;
 
- background:var(--card);
+    background:var(--card);
 
- border-radius:19px;
+    border-radius:19px;
 
- padding:15px;
+    padding:14px;
 
- display:flex;
+    display:flex;
+    align-items:center;
 
- align-items:center;
+    gap:13px;
 
- gap:13px;
+    color:var(--text);
 
- color:var(--text);
+    text-align:left;
 
- text-align:left;
+    box-shadow:var(--shadow);
 
- box-shadow:var(--shadow);
+    border:1px solid var(--border);
 }
 
 .setting-icon{
- width:42px;
- height:42px;
+    width:42px;
+    height:42px;
 
- flex-shrink:0;
+    border-radius:14px;
 
- border-radius:14px;
+    background:#f1eaff;
 
- background:
- linear-gradient(
-  135deg,
-  #ede9fe,
-  #fce7f3
- );
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
- display:flex;
+    font-size:19px;
+}
 
- align-items:center;
+.setting:nth-child(2) .setting-icon{
+    background:#fce7f3;
+}
 
- justify-content:center;
+.setting:nth-child(3) .setting-icon{
+    background:#e0f2fe;
+}
 
- font-size:19px;
+.setting:nth-child(4) .setting-icon{
+    background:#dcfce7;
+}
+
+.setting:nth-child(5) .setting-icon{
+    background:#fef3c7;
 }
 
 .setting div:nth-child(2){
- flex:1;
+    flex:1;
 }
 
 .setting strong{
- display:block;
-
- font-size:13px;
+    display:block;
+    font-size:13px;
 }
 
 .setting small{
- display:block;
+    display:block;
 
- margin-top:3px;
+    margin-top:3px;
 
- color:var(--muted);
+    color:var(--muted);
 
- font-size:11px;
+    font-size:10px;
 }
 
 .setting b{
- color:#aaa;
-
- font-size:20px;
+    color:#aaa;
+    font-size:20px;
 }
 
 /* =========================================================
-   NAVIGATION
+   BOTTOM NAV
 ========================================================= */
 
 .bottom-nav{
- position:fixed;
+    position:fixed;
 
- z-index:200;
+    z-index:200;
 
- left:50%;
+    left:50%;
+    bottom:0;
 
- bottom:0;
+    transform:translateX(-50%);
 
- transform:translateX(-50%);
+    width:100%;
+    max-width:720px;
 
- width:100%;
+    padding:
+        8px
+        8px
+        calc(8px + env(safe-area-inset-bottom));
 
- max-width:700px;
+    display:grid;
 
- padding:
- 9px
- 8px
- calc(9px + env(safe-area-inset-bottom));
+    grid-template-columns:
+        repeat(5,1fr);
 
- display:grid;
+    background:
+        rgba(255,255,255,.91);
 
- grid-template-columns:repeat(5,1fr);
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
 
- background:rgba(255,255,255,.92);
+    border-top:1px solid rgba(0,0,0,.06);
+}
 
- backdrop-filter:blur(25px);
-
- -webkit-backdrop-filter:blur(25px);
-
- border-top:1px solid rgba(0,0,0,.06);
+body.dark .bottom-nav{
+    background:rgba(23,19,31,.94);
 }
 
 .nav-btn{
- position:relative;
+    position:relative;
 
- background:transparent;
+    background:transparent;
 
- color:#918b98;
+    color:#918b98;
 
- display:flex;
+    display:flex;
+    flex-direction:column;
 
- flex-direction:column;
+    align-items:center;
 
- align-items:center;
+    gap:4px;
 
- gap:4px;
+    font-size:9px;
+    font-weight:900;
 
- font-size:10px;
-
- font-weight:900;
+    padding:3px 0;
 }
 
 .nav-icon{
- font-size:21px;
-
- line-height:1;
+    font-size:21px;
+    line-height:1;
 }
 
 .nav-btn.active{
- color:var(--primary);
+    color:var(--primary);
 }
 
 .nav-btn.active:before{
- content:"";
+    content:"";
 
- position:absolute;
+    position:absolute;
 
- top:-9px;
+    top:-8px;
 
- width:35px;
+    width:26px;
+    height:3px;
 
- height:4px;
+    border-radius:99px;
 
- border-radius:0 0 8px 8px;
-
- background:
- linear-gradient(
-  90deg,
-  #7c3aed,
-  #ec4899
- );
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary),
+            var(--pink)
+        );
 }
 
 /* =========================================================
@@ -1471,87 +1552,148 @@ body.dark .header{
 ========================================================= */
 
 .modal{
- position:fixed;
+    position:fixed;
 
- inset:0;
+    inset:0;
 
- z-index:500;
+    z-index:500;
 
- display:none;
+    display:none;
 
- align-items:flex-end;
+    align-items:flex-end;
 
- padding:10px;
+    padding:10px;
 
- background:rgba(0,0,0,.55);
+    background:rgba(0,0,0,.52);
 
- backdrop-filter:blur(4px);
+    backdrop-filter:blur(5px);
 }
 
 .modal.show{
- display:flex;
+    display:flex;
 }
 
 .modal-box{
- width:100%;
+    width:100%;
+    max-width:700px;
 
- max-width:680px;
+    margin:auto;
 
- margin:auto;
+    padding:22px;
 
- padding:22px;
+    border-radius:30px;
 
- border-radius:30px;
+    background:var(--card);
 
- background:var(--card);
+    color:var(--text);
 
- box-shadow:0 -10px 50px rgba(0,0,0,.2);
+    box-shadow:var(--shadow3);
 
- animation:up .25s ease;
+    animation:modalUp .28s ease;
 
- max-height:90vh;
-
- overflow:auto;
+    max-height:88vh;
+    overflow:auto;
 }
 
-@keyframes up{
- from{
-  opacity:0;
-  transform:translateY(40px);
- }
- to{
-  opacity:1;
-  transform:none;
- }
+@keyframes modalUp{
+    from{
+        opacity:0;
+        transform:translateY(45px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .modal-close{
- float:right;
+    float:right;
 
- width:37px;
- height:37px;
+    width:37px;
+    height:37px;
 
- border-radius:50%;
+    border-radius:50%;
 
- background:#f1eef4;
+    background:var(--bg2);
 
- color:var(--text);
+    color:var(--text);
 }
 
 .modal-box h2{
- margin-top:24px;
+    margin-top:25px;
 
- font-size:22px;
+    font-size:22px;
 }
 
 .modal-box p{
- color:var(--muted);
+    color:var(--muted);
 
- margin-top:8px;
+    margin-top:8px;
 
- line-height:1.5;
+    line-height:1.5;
 
- font-size:13px;
+    font-size:13px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-group{
+    margin-top:13px;
+}
+
+.form-label{
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:11px;
+    font-weight:900;
+}
+
+.form-input{
+    width:100%;
+
+    height:49px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:0 13px;
+
+    outline:none;
+
+    background:var(--bg);
+
+    color:var(--text);
+}
+
+.form-textarea{
+    width:100%;
+
+    min-height:90px;
+
+    border:1px solid var(--border);
+
+    border-radius:14px;
+
+    padding:13px;
+
+    outline:none;
+
+    resize:none;
+
+    background:var(--bg);
+
+    color:var(--text);
+}
+
+.form-input:focus,
+.form-textarea:focus{
+    border-color:var(--primary);
 }
 
 /* =========================================================
@@ -1559,43 +1701,45 @@ body.dark .header{
 ========================================================= */
 
 .toast{
- position:fixed;
+    position:fixed;
 
- z-index:800;
+    z-index:800;
 
- left:50%;
+    left:50%;
+    bottom:calc(
+        var(--nav-height) +
+        env(safe-area-inset-bottom) +
+        20px
+    );
 
- bottom:105px;
+    transform:translate(-50%,20px);
 
- transform:translate(-50%,20px);
+    background:#17131f;
 
- background:#17131f;
+    color:white;
 
- color:white;
+    padding:13px 18px;
 
- padding:13px 18px;
+    border-radius:15px;
 
- border-radius:16px;
+    font-size:12px;
 
- font-size:13px;
+    font-weight:850;
 
- font-weight:850;
+    opacity:0;
 
- opacity:0;
+    pointer-events:none;
 
- pointer-events:none;
+    transition:.25s;
 
- transition:.25s;
+    white-space:nowrap;
 
- white-space:nowrap;
-
- box-shadow:0 10px 30px rgba(0,0,0,.2);
+    box-shadow:var(--shadow3);
 }
 
 .toast.show{
- opacity:1;
-
- transform:translate(-50%,0);
+    opacity:1;
+    transform:translate(-50%,0);
 }
 
 /* =========================================================
@@ -1603,66 +1747,46 @@ body.dark .header{
 ========================================================= */
 
 .empty{
- width:100%;
+    padding:42px 20px;
 
- padding:40px 20px;
+    text-align:center;
 
- text-align:center;
+    color:var(--muted);
 
- color:var(--muted);
+    grid-column:1/-1;
 }
 
 .empty div{
- font-size:43px;
-
- margin-bottom:8px;
+    font-size:43px;
+    margin-bottom:8px;
 }
 
 /* =========================================================
-   DARK MODE
+   LOADING
 ========================================================= */
 
-body.dark{
- --bg:#0b0910;
- --card:#17131e;
- --card2:#1c1725;
- --text:#f8f5fc;
- --muted:#aaa3b3;
- --border:#2b2435;
+.skeleton{
+    background:
+        linear-gradient(
+            90deg,
+            var(--card),
+            var(--bg2),
+            var(--card)
+        );
 
- background:
- radial-gradient(
-  circle at 10% 0%,
-  rgba(124,58,237,.12),
-  transparent 25%
- ),
- #0b0910;
+    background-size:200% 100%;
+
+    animation:loading 1.3s infinite;
 }
 
-body.dark .bottom-nav{
- background:rgba(23,19,30,.94);
- border-top-color:#292331;
-}
+@keyframes loading{
+    from{
+        background-position:200% 0;
+    }
 
-body.dark .setting-icon{
- background:#281d3b;
-}
-
-body.dark .profile-badge{
- background:#281d3b;
-}
-
-body.dark .modal-close{
- background:#292331;
- color:white;
-}
-
-body.dark .hero-btn{
- color:#6d28d9;
-}
-
-body.dark .chat img{
- border-color:#35284c;
+    to{
+        background-position:-200% 0;
+    }
 }
 
 /* =========================================================
@@ -1671,42 +1795,40 @@ body.dark .chat img{
 
 @media(min-width:700px){
 
- body{
-  background:#e8e4ee;
- }
+    body{
+        background:#e9e5ef;
+    }
 
- .app{
-  box-shadow:0 0 80px rgba(0,0,0,.13);
-  background:var(--bg);
- }
+    body.dark{
+        background:#07060a;
+    }
 
- .bottom-nav{
-  border-radius:24px 24px 0 0;
- }
+    .app{
+        background:var(--bg);
 
+        box-shadow:
+            0 0 90px rgba(0,0,0,.14);
+    }
+
+    .bottom-nav{
+        border-radius:23px 23px 0 0;
+    }
 }
-
-/* =========================================================
-   SMALL SCREEN
-========================================================= */
 
 @media(max-width:380px){
 
- .hero h2{
-  font-size:30px;
- }
+    .hero h2{
+        font-size:31px;
+    }
 
- .category{
-  min-width:120px;
- }
+    .quick{
+        gap:6px;
+    }
 
- .person{
-  min-width:170px;
- }
-
- .quick{
-  gap:6px;
- }
+    .quick-card{
+        padding-left:2px;
+        padding-right:2px;
+    }
 
 }
 
@@ -1716,804 +1838,756 @@ body.dark .chat img{
 
 @media(prefers-reduced-motion:reduce){
 
- *{
-  scroll-behavior:auto!important;
-  animation:none!important;
-  transition:none!important;
- }
+    *,
+    *:before,
+    *:after{
+        scroll-behavior:auto!important;
+        animation:none!important;
+        transition:none!important;
+    }
 
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
 
-<!-- =====================================================
+<!-- =======================================================
      HEADER
-===================================================== -->
+======================================================= -->
 
 <header class="header">
 
- <div class="brand">
+    <div class="brand">
 
-  <div class="logo">
-   C
-  </div>
+        <div class="logo">
+            C
+        </div>
 
-  <div>
+        <div>
+            <h1>CONECTA</h1>
+            <span>Personas · Planes · Experiencias</span>
+        </div>
 
-   <h1>CONECTA</h1>
+    </div>
 
-   <span>
-    Personas · Planes · Experiencias
-   </span>
+    <div class="header-actions">
 
-  </div>
+        <button
+            class="icon-btn"
+            onclick="toggleDark()"
+            aria-label="Cambiar apariencia">
+            🌙
+        </button>
 
- </div>
+        <button
+            class="icon-btn"
+            onclick="showToast('Todo está al día 🔔')"
+            aria-label="Notificaciones">
+            🔔
+        </button>
 
-
- <div class="header-actions">
-
-  <button
-   class="icon-btn"
-   onclick="toggleDark()"
-   aria-label="Modo oscuro">
-
-   🌙
-
-  </button>
-
-
-  <button
-   class="icon-btn"
-   onclick="showToast('No tienes notificaciones nuevas 🔔')"
-   aria-label="Notificaciones">
-
-   🔔
-
-  </button>
-
- </div>
+    </div>
 
 </header>
 
 
-<!-- =====================================================
+<!-- =======================================================
      INICIO
-===================================================== -->
+======================================================= -->
 
 <main id="homeView" class="view active">
 
+    <section class="hero">
 
-<section class="hero">
+        <div class="hero-content">
 
- <div class="hero-content">
+            <div class="hero-badge">
+                ✨ NUEVA EXPERIENCIA
+            </div>
 
-  <div class="hero-badge">
-   ✨ BIENVENIDO A CONECTA
-  </div>
+            <h2>
+                Conoce gente.<br>
+                Comparte planes.<br>
+                Vive más.
+            </h2>
 
-  <h2>
-   Conoce gente.<br>
-   Comparte planes.<br>
-   Vive más.
-  </h2>
+            <p>
+                Descubre personas con tus mismos intereses,
+                crea planes y encuentra nuevas experiencias.
+            </p>
 
-  <p>
-   Encuentra personas, actividades y experiencias
-   que encajan contigo.
-  </p>
+            <div class="hero-buttons">
 
-  <div class="hero-buttons">
+                <button
+                    class="hero-btn"
+                    onclick="goTo('connect')">
+                    Empezar a conectar →
+                </button>
 
-   <button
-    class="hero-btn"
-    onclick="goTo('connect')">
+                <button
+                    class="hero-btn secondary"
+                    onclick="goTo('plans')">
+                    Ver planes
+                </button>
 
-    Empezar a conectar →
+            </div>
 
-   </button>
+        </div>
 
+    </section>
 
-   <button
-    class="hero-btn secondary"
-    onclick="goTo('plans')">
 
-    Ver planes
+    <div class="search">
 
-   </button>
+        <span>🔎</span>
 
-  </div>
+        <input
+            id="searchInput"
+            type="search"
+            placeholder="Buscar personas, planes o actividades..."
+            oninput="searchAll(this.value)">
 
- </div>
+    </div>
 
-</section>
 
+    <!-- CATEGORÍAS -->
 
-<!-- BUSCADOR -->
+    <section class="section">
 
-<div class="search">
+        <div class="section-head">
 
- <span class="search-icon">
-  🔎
- </span>
+            <div>
+                <h2>🔥 Explora</h2>
+                <p>Encuentra algo que te guste</p>
+            </div>
 
- <input
-  id="searchInput"
-  type="search"
-  placeholder="Buscar personas, planes o actividades..."
-  oninput="searchAll()">
+            <button onclick="showAllCategories()">
+                Ver todas
+            </button>
 
-</div>
+        </div>
 
+        <div
+            id="categories"
+            class="categories">
+        </div>
 
-<!-- CATEGORÍAS -->
+    </section>
 
-<section class="section">
 
- <div class="section-head">
+    <!-- PERSONAS -->
 
-  <h2>
-   🔥 Explora
-  </h2>
+    <section class="section">
 
-  <button onclick="showAllCategories()">
-   Ver todas
-  </button>
+        <div class="section-head">
 
- </div>
+            <div>
+                <h2>✨ Descubre personas</h2>
+                <p>Gente cerca de ti</p>
+            </div>
 
- <div
-  id="categories"
-  class="categories">
- </div>
+            <button onclick="goTo('connect')">
+                Ver más
+            </button>
 
-</section>
+        </div>
 
+        <div
+            id="people"
+            class="people">
+        </div>
 
-<!-- PERSONAS -->
+    </section>
 
-<section class="section">
 
- <div class="section-head">
+    <!-- PLANES -->
 
-  <h2>
-   ✨ Descubre personas
-  </h2>
+    <section class="section">
 
-  <button onclick="goTo('connect')">
-   Ver más
-  </button>
+        <div class="section-head">
 
- </div>
+            <div>
+                <h2>📅 Planes para ti</h2>
+                <p>Actividades que podrían gustarte</p>
+            </div>
 
- <div
-  id="people"
-  class="people">
- </div>
+            <button onclick="goTo('plans')">
+                Ver todos
+            </button>
 
-</section>
+        </div>
 
+        <div
+            id="homePlans"
+            class="plans">
+        </div>
 
-<!-- PLANES -->
+    </section>
 
-<section class="section">
 
- <div class="section-head">
+    <!-- EXPERIENCIAS -->
 
-  <h2>
-   📅 Planes para ti
-  </h2>
+    <section class="section">
 
-  <button onclick="goTo('plans')">
-   Ver todos
-  </button>
+        <div class="section-head">
 
- </div>
+            <div>
+                <h2>🌟 Experiencias</h2>
+                <p>Descubre algo diferente</p>
+            </div>
 
- <div
-  id="homePlans"
-  class="plans">
- </div>
+        </div>
 
-</section>
+        <div
+            id="featured"
+            class="featured">
+        </div>
 
+    </section>
 
-<!-- EXPERIENCIAS -->
 
-<section class="section">
+    <!-- ACCESOS -->
 
- <div class="section-head">
+    <section class="section">
 
-  <h2>
-   🌟 Experiencias
-  </h2>
+        <div class="section-head">
 
- </div>
+            <div>
+                <h2>⚡ Accesos rápidos</h2>
+                <p>Todo a un toque</p>
+            </div>
 
- <div
-  id="featured"
-  class="featured">
- </div>
+        </div>
 
-</section>
+        <div class="quick">
 
+            <button
+                class="quick-card"
+                onclick="createPlan()">
 
-<!-- ACCESOS -->
+                <div class="quick-icon">
+                    ➕
+                </div>
 
-<section class="section">
+                <span>
+                    Crear plan
+                </span>
 
- <div class="section-head">
+            </button>
 
-  <h2>
-   ⚡ Accesos rápidos
-  </h2>
 
- </div>
+            <button
+                class="quick-card"
+                onclick="goTo('connect')">
 
- <div class="quick">
+                <div class="quick-icon">
+                    🤝
+                </div>
 
+                <span>
+                    Conectar
+                </span>
 
-  <button
-   class="quick-card"
-   onclick="createPlan()">
+            </button>
 
-   <div class="quick-icon">
-    ➕
-   </div>
 
-   <span>
-    Crear plan
-   </span>
+            <button
+                class="quick-card"
+                onclick="goTo('chat')">
 
-  </button>
+                <div class="quick-icon">
+                    💬
+                </div>
 
+                <span>
+                    Chats
+                </span>
 
-  <button
-   class="quick-card"
-   onclick="goTo('connect')">
+            </button>
 
-   <div class="quick-icon">
-    🤝
-   </div>
 
-   <span>
-    Conectar
-   </span>
+            <button
+                class="quick-card"
+                onclick="goTo('profile')">
 
-  </button>
+                <div class="quick-icon">
+                    👤
+                </div>
 
+                <span>
+                    Perfil
+                </span>
 
-  <button
-   class="quick-card"
-   onclick="goTo('chat')">
+            </button>
 
-   <div class="quick-icon">
-    💬
-   </div>
+        </div>
 
-   <span>
-    Chats
-   </span>
-
-  </button>
-
-
-  <button
-   class="quick-card"
-   onclick="goTo('profile')">
-
-   <div class="quick-icon">
-    👤
-   </div>
-
-   <span>
-    Perfil
-   </span>
-
-  </button>
-
-
- </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      CONECTA
-===================================================== -->
+======================================================= -->
 
 <main
- id="connectView"
- class="view">
+    id="connectView"
+    class="view">
 
-<section
- class="section"
- style="padding-top:20px">
+    <section
+        class="section"
+        style="padding-top:20px">
 
- <div class="section-head">
+        <div class="section-head">
 
-  <h2>
-   🤝 Conecta
-  </h2>
+            <div>
+                <h2>🤝 Conecta</h2>
+                <p>Personas con intereses compatibles</p>
+            </div>
 
- </div>
+        </div>
 
+        <div
+            class="search"
+            style="margin:0 0 18px">
 
- <div
-  class="search"
-  style="margin:0 0 18px">
+            <span>🔎</span>
 
-  <span class="search-icon">
-   🔎
-  </span>
+            <input
+                id="peopleSearch"
+                placeholder="Buscar personas..."
+                oninput="filterPeople(this.value)">
 
-  <input
-   placeholder="Buscar personas..."
-   oninput="filterPeople(this.value)">
+        </div>
 
- </div>
+        <div
+            id="connectPeople"
+            class="people-grid">
+        </div>
 
-
- <div
-  id="connectPeople"
-  class="people"
-  style="
-   display:grid;
-   grid-template-columns:1fr 1fr;
-   overflow:visible;
-  ">
- </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      PLANES
-===================================================== -->
+======================================================= -->
 
 <main
- id="plansView"
- class="view">
+    id="plansView"
+    class="view">
 
-<section
- class="section"
- style="padding-top:20px">
+    <section
+        class="section"
+        style="padding-top:20px">
 
- <div class="section-head">
+        <div class="section-head">
 
-  <h2>
-   📅 Planes
-  </h2>
+            <div>
+                <h2>📅 Planes</h2>
+                <p>Haz algo. Conoce a alguien.</p>
+            </div>
 
-  <button onclick="createPlan()">
-   + Crear
-  </button>
+            <button onclick="createPlan()">
+                + Crear
+            </button>
 
- </div>
+        </div>
 
+        <div
+            class="search"
+            style="margin:0 0 18px">
 
- <div
-  class="search"
-  style="margin:0 0 18px">
+            <span>🔎</span>
 
-  <span class="search-icon">
-   🔎
-  </span>
+            <input
+                id="plansSearch"
+                placeholder="Buscar planes..."
+                oninput="filterPlans(this.value)">
 
-  <input
-   placeholder="Buscar planes..."
-   oninput="filterPlans(this.value)">
+        </div>
 
- </div>
+        <div
+            id="allPlans"
+            class="plans">
+        </div>
 
-
- <div
-  id="allPlans"
-  class="plans">
- </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      CHAT
-===================================================== -->
+======================================================= -->
 
 <main
- id="chatView"
- class="view">
+    id="chatView"
+    class="view">
 
-<section
- class="section"
- style="padding-top:20px">
+    <section
+        class="section"
+        style="padding-top:20px">
 
- <div class="section-head">
+        <div class="section-head">
 
-  <h2>
-   💬 Chats
-  </h2>
+            <div>
+                <h2>💬 Chats</h2>
+                <p>Habla con tus conexiones</p>
+            </div>
 
- </div>
+        </div>
 
+        <div
+            class="chat-list"
+            id="chatList">
+        </div>
 
- <div
-  id="chatList"
-  class="chat-list">
- </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      PERFIL
-===================================================== -->
+======================================================= -->
 
 <main
- id="profileView"
- class="view">
+    id="profileView"
+    class="view">
 
+    <div class="profile-cover">
 
-<div class="profile-cover">
+        <div class="profile-photo">
 
- <div class="profile-photo">
+            <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
+                alt="Perfil">
 
-  <img
-   src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
-   alt="Perfil">
+        </div>
 
- </div>
+        <button
+            class="profile-edit"
+            onclick="showToast('Editor de perfil próximamente ✨')">
+            ✏️
+        </button>
 
-</div>
+    </div>
 
 
-<div class="profile-info">
+    <div class="profile-info">
 
- <h2>
-  Tu perfil
- </h2>
+        <h2>Tu perfil</h2>
 
- <p>
-  Descubre · Conecta · Comparte
- </p>
+        <p>
+            Descubre · Conecta · Comparte
+        </p>
 
+        <div class="profile-badges">
 
- <div class="profile-badges">
+            <span class="profile-badge">
+                🏃 Running
+            </span>
 
-  <span class="profile-badge">
-   🏃 Running
-  </span>
+            <span class="profile-badge">
+                💪 Gym
+            </span>
 
-  <span class="profile-badge">
-   ✈️ Viajes
-  </span>
+            <span class="profile-badge">
+                ✈️ Viajes
+            </span>
 
-  <span class="profile-badge">
-   🎵 Música
-  </span>
+        </div>
 
- </div>
+    </div>
 
-</div>
 
+    <div class="profile-stats">
 
-<div class="profile-stats">
+        <div class="stat">
 
- <div class="stat">
+            <strong>128</strong>
 
-  <strong>
-   128
-  </strong>
+            <span>
+                Conexiones
+            </span>
 
-  <span>
-   Conexiones
-  </span>
+        </div>
 
- </div>
+        <div class="stat">
 
+            <strong>24</strong>
 
- <div class="stat">
+            <span>
+                Planes
+            </span>
 
-  <strong>
-   24
-  </strong>
+        </div>
 
-  <span>
-   Planes
-  </span>
+        <div class="stat">
 
- </div>
+            <strong>8</strong>
 
+            <span>
+                Intereses
+            </span>
 
- <div class="stat">
+        </div>
 
-  <strong>
-   8
-  </strong>
+    </div>
 
-  <span>
-   Intereses
-  </span>
 
- </div>
+    <section class="section">
 
-</div>
+        <div class="settings-list">
 
+            <button
+                class="setting"
+                onclick="showToast('Editor de perfil próximamente ✨')">
 
-<section class="section">
+                <div class="setting-icon">
+                    ✏️
+                </div>
 
- <div class="settings-list">
+                <div>
 
+                    <strong>
+                        Editar perfil
+                    </strong>
 
-  <button
-   class="setting"
-   onclick="showToast('Editor de perfil próximamente ✨')">
+                    <small>
+                        Foto, nombre, descripción e intereses
+                    </small>
 
-   <div class="setting-icon">
-    ✏️
-   </div>
+                </div>
 
-   <div>
+                <b>›</b>
 
-    <strong>
-     Editar perfil
-    </strong>
+            </button>
 
-    <small>
-     Foto, nombre, descripción e intereses
-    </small>
 
-   </div>
+            <button
+                class="setting"
+                onclick="showToast('Tus intereses están guardados ❤️')">
 
-   <b>
-    ›
-   </b>
+                <div class="setting-icon">
+                    ❤️
+                </div>
 
-  </button>
+                <div>
 
+                    <strong>
+                        Mis intereses
+                    </strong>
 
-  <button
-   class="setting"
-   onclick="showToast('Tus intereses están guardados ❤️')">
+                    <small>
+                        Running · Gym · Viajes · Música
+                    </small>
 
-   <div class="setting-icon">
-    ❤️
-   </div>
+                </div>
 
-   <div>
+                <b>›</b>
 
-    <strong>
-     Mis intereses
-    </strong>
+            </button>
 
-    <small>
-     Running · Gym · Viajes · Música
-    </small>
 
-   </div>
+            <button
+                class="setting"
+                onclick="showToast('Ajustes de privacidad 🔒')">
 
-   <b>
-    ›
-   </b>
+                <div class="setting-icon">
+                    🔒
+                </div>
 
-  </button>
+                <div>
 
+                    <strong>
+                        Privacidad
+                    </strong>
 
-  <button
-   class="setting"
-   onclick="showToast('Ajustes de privacidad 🔒')">
+                    <small>
+                        Controla quién puede encontrarte
+                    </small>
 
-   <div class="setting-icon">
-    🔒
-   </div>
+                </div>
 
-   <div>
+                <b>›</b>
 
-    <strong>
-     Privacidad
-    </strong>
+            </button>
 
-    <small>
-     Controla quién puede encontrarte
-    </small>
 
-   </div>
+            <button
+                class="setting"
+                onclick="showToast('Ajustes de notificaciones 🔔')">
 
-   <b>
-    ›
-   </b>
+                <div class="setting-icon">
+                    🔔
+                </div>
 
-  </button>
+                <div>
 
+                    <strong>
+                        Notificaciones
+                    </strong>
 
-  <button
-   class="setting"
-   onclick="showToast('Ajustes de notificaciones 🔔')">
+                    <small>
+                        Mensajes, conexiones y planes
+                    </small>
 
-   <div class="setting-icon">
-    🔔
-   </div>
+                </div>
 
-   <div>
+                <b>›</b>
 
-    <strong>
-     Notificaciones
-    </strong>
+            </button>
 
-    <small>
-     Mensajes, conexiones y planes
-    </small>
 
-   </div>
+            <button
+                class="setting"
+                onclick="toggleDark()">
 
-   <b>
-    ›
-   </b>
+                <div class="setting-icon">
+                    🌙
+                </div>
 
-  </button>
+                <div>
 
+                    <strong>
+                        Apariencia
+                    </strong>
 
-  <button
-   class="setting"
-   onclick="toggleDark()">
+                    <small>
+                        Modo claro / oscuro
+                    </small>
 
-   <div class="setting-icon">
-    🌙
-   </div>
+                </div>
 
-   <div>
+                <b>›</b>
 
-    <strong>
-     Apariencia
-    </strong>
+            </button>
 
-    <small>
-     Modo claro / oscuro
-    </small>
+        </div>
 
-   </div>
-
-   <b>
-    ›
-   </b>
-
-  </button>
-
-
- </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<!-- =====================================================
+<!-- =======================================================
      NAV
-===================================================== -->
+======================================================= -->
 
 <nav class="bottom-nav">
 
+    <button
+        class="nav-btn active"
+        data-view="home"
+        onclick="goTo('home')">
 
- <button
-  class="nav-btn active"
-  data-view="home"
-  onclick="goTo('home')">
+        <span class="nav-icon">
+            ⌂
+        </span>
 
-  <span class="nav-icon">
-   ⌂
-  </span>
+        Inicio
 
-  Inicio
-
- </button>
-
-
- <button
-  class="nav-btn"
-  data-view="connect"
-  onclick="goTo('connect')">
-
-  <span class="nav-icon">
-   🤝
-  </span>
-
-  Conecta
-
- </button>
+    </button>
 
 
- <button
-  class="nav-btn"
-  data-view="plans"
-  onclick="goTo('plans')">
+    <button
+        class="nav-btn"
+        data-view="connect"
+        onclick="goTo('connect')">
 
-  <span class="nav-icon">
-   📅
-  </span>
+        <span class="nav-icon">
+            🤝
+        </span>
 
-  Planes
+        Conecta
 
- </button>
-
-
- <button
-  class="nav-btn"
-  data-view="chat"
-  onclick="goTo('chat')">
-
-  <span class="nav-icon">
-   💬
-  </span>
-
-  Chat
-
- </button>
+    </button>
 
 
- <button
-  class="nav-btn"
-  data-view="profile"
-  onclick="goTo('profile')">
+    <button
+        class="nav-btn"
+        data-view="plans"
+        onclick="goTo('plans')">
 
-  <span class="nav-icon">
-   👤
-  </span>
+        <span class="nav-icon">
+            📅
+        </span>
 
-  Perfil
+        Planes
 
- </button>
+    </button>
 
+
+    <button
+        class="nav-btn"
+        data-view="chat"
+        onclick="goTo('chat')">
+
+        <span class="nav-icon">
+            💬
+        </span>
+
+        Chat
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-view="profile"
+        onclick="goTo('profile')">
+
+        <span class="nav-icon">
+            👤
+        </span>
+
+        Perfil
+
+    </button>
 
 </nav>
 
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      TOAST
-===================================================== -->
+======================================================= -->
 
 <div
- id="toast"
- class="toast">
+    id="toast"
+    class="toast">
 </div>
 
 
-<!-- =====================================================
+<!-- =======================================================
      MODAL
-===================================================== -->
+======================================================= -->
 
 <div
- id="modal"
- class="modal"
- onclick="closeModal(event)">
+    id="modal"
+    class="modal"
+    onclick="closeModal(event)">
 
- <div class="modal-box">
+    <div class="modal-box">
 
-  <button
-   class="modal-close"
-   onclick="closeModal()">
+        <button
+            class="modal-close"
+            onclick="closeModal()">
+            ✕
+        </button>
 
-   ✕
+        <div id="modalContent"></div>
 
-  </button>
-
-  <div id="modalContent"></div>
-
- </div>
+    </div>
 
 </div>
 
@@ -2526,314 +2600,305 @@ body.dark .chat img{
 
 const categories = [
 
- {
-  name:"Running",
-  icon:"🏃",
-  image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Running",
+        icon:"🏃",
+        image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Gym",
-  icon:"💪",
-  image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Gym",
+        icon:"💪",
+        image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Fútbol",
-  icon:"⚽",
-  image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Fútbol",
+        icon:"⚽",
+        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Ciclismo",
-  icon:"🚴",
-  image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Ciclismo",
+        icon:"🚴",
+        image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Senderismo",
-  icon:"🥾",
-  image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Senderismo",
+        icon:"🥾",
+        image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Viajes",
-  icon:"✈️",
-  image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Viajes",
+        icon:"✈️",
+        image:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Cine",
-  icon:"🎬",
-  image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Cine",
+        icon:"🎬",
+        image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Música",
-  icon:"🎵",
-  image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Música",
+        icon:"🎵",
+        image:"https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Gaming",
-  icon:"🎮",
-  image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Gaming",
+        icon:"🎮",
+        image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Comida",
-  icon:"🍔",
-  image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Comida",
+        icon:"🍔",
+        image:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Playa",
-  icon:"🏖️",
-  image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Playa",
+        icon:"🏖️",
+        image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Fotografía",
-  icon:"📸",
-  image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Fotografía",
+        icon:"📸",
+        image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Pádel",
-  icon:"🎾",
-  image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Padel",
+        icon:"🎾",
+        image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Natación",
-  icon:"🏊",
-  image:"https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Natación",
+        icon:"🏊",
+        image:"https://images.unsplash.com/photo-1600965962361-9035dbfd1c50?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Cocina",
-  icon:"👨‍🍳",
-  image:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Cocina",
+        icon:"👨‍🍳",
+        image:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Arte",
-  icon:"🎨",
-  image:"https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Arte",
+        icon:"🎨",
+        image:"https://images.unsplash.com/photo-1547891654-e66ed7ebb968?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Naturaleza",
-  icon:"🌿",
-  image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=90"
- },
+    {
+        name:"Naturaleza",
+        icon:"🌿",
+        image:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=85"
+    },
 
- {
-  name:"Mascotas",
-  icon:"🐶",
-  image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=90"
- }
+    {
+        name:"Mascotas",
+        icon:"🐶",
+        image:"https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=85"
+    }
 
 ];
 
-
-/* =========================================================
-   PERSONAS
-========================================================= */
 
 const people = [
 
- {
-  name:"Laura",
-  age:27,
-  city:"Tarragona",
-  interest:"Running",
-  image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Laura",
+        age:27,
+        city:"Tarragona",
+        interest:"Running",
+        image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Marc",
-  age:29,
-  city:"Reus",
-  interest:"Gym",
-  image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Marc",
+        age:29,
+        city:"Reus",
+        interest:"Gym",
+        image:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Sergio",
-  age:31,
-  city:"Salou",
-  interest:"Fútbol",
-  image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Sergio",
+        age:31,
+        city:"Salou",
+        interest:"Fútbol",
+        image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Claudia",
-  age:25,
-  city:"Vila-seca",
-  interest:"Viajes",
-  image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Claudia",
+        age:25,
+        city:"Vila-seca",
+        interest:"Viajes",
+        image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"David",
-  age:28,
-  city:"Tarragona",
-  interest:"Ciclismo",
-  image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"David",
+        age:28,
+        city:"Tarragona",
+        interest:"Ciclismo",
+        image:"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Nerea",
-  age:26,
-  city:"Cambrils",
-  interest:"Cine",
-  image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Nerea",
+        age:26,
+        city:"Cambrils",
+        interest:"Cine",
+        image:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Alex",
-  age:30,
-  city:"Salou",
-  interest:"Pádel",
-  image:"https://images.unsplash.com/photo-1519345182560-3f2917c472ef?auto=format&fit=crop&w=700&q=90"
- },
+    {
+        name:"Alex",
+        age:30,
+        city:"Salou",
+        interest:"Padel",
+        image:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85"
+    },
 
- {
-  name:"Marta",
-  age:28,
-  city:"Reus",
-  interest:"Fotografía",
-  image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=90"
- }
+    {
+        name:"Marta",
+        age:28,
+        city:"Reus",
+        interest:"Fotografía",
+        image:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85"
+    }
 
 ];
 
-
-/* =========================================================
-   PLANES
-========================================================= */
 
 const plans = [
 
- {
-  title:"Running por la playa",
-  tag:"RUNNING",
-  info:"🏃 7 km · 📍 La Pineda · Hoy",
-  image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Running por la playa",
+        tag:"RUNNING",
+        info:"🏃 7 km · 📍 La Pineda · Hoy",
+        description:"Salimos a correr tranquilos y terminamos tomando algo.",
+        image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Entrenamiento de gym",
-  tag:"GYM",
-  info:"💪 Entrenamiento · 📍 Tarragona · Mañana",
-  image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Entrenamiento de gym",
+        tag:"GYM",
+        info:"💪 Entrenamiento · 📍 Tarragona · Mañana",
+        description:"Entrenamiento conjunto para motivarnos y mejorar.",
+        image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Partido de fútbol",
-  tag:"FÚTBOL",
-  info:"⚽ 5 vs 5 · 📍 Reus · Sábado",
-  image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Partido de fútbol",
+        tag:"FÚTBOL",
+        info:"⚽ 5 vs 5 · 📍 Reus · Sábado",
+        description:"Partido amistoso para conocer gente nueva.",
+        image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Ruta en bicicleta",
-  tag:"CICLISMO",
-  info:"🚴 25 km · 📍 Tarragona · Domingo",
-  image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Ruta en bicicleta",
+        tag:"CICLISMO",
+        info:"🚴 25 km · 📍 Tarragona · Domingo",
+        description:"Ruta por carretera con un grupo abierto.",
+        image:"https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Senderismo por la montaña",
-  tag:"NATURALEZA",
-  info:"🥾 10 km · 📍 Montañas · Domingo",
-  image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Senderismo por la montaña",
+        tag:"NATURALEZA",
+        info:"🥾 10 km · 📍 Montañas · Domingo",
+        description:"Naturaleza, deporte y buenas vistas.",
+        image:"https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Tarde de cine",
-  tag:"CINE",
-  info:"🎬 Película · 📍 Tarragona · Viernes",
-  image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1200&q=90"
- },
+    {
+        title:"Tarde de cine",
+        tag:"CINE",
+        info:"🎬 Película · 📍 Tarragona · Viernes",
+        description:"Elegimos película entre todos y después comentamos.",
+        image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
+    },
 
- {
-  title:"Partida de pádel",
-  tag:"PÁDEL",
-  info:"🎾 4 personas · 📍 Reus · Sábado",
-  image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1200&q=90"
- }
+    {
+        title:"Partida de pádel",
+        tag:"PADEL",
+        info:"🎾 4 personas · 📍 Reus · Sábado",
+        description:"Buscamos jugadores para completar la partida.",
+        image:"https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?auto=format&fit=crop&w=1000&q=85"
+    }
 
 ];
 
-
-/* =========================================================
-   CHATS
-========================================================= */
 
 const chats = [
 
- {
-  name:"Laura",
-  message:"¿Hacemos el running mañana?",
-  time:"12:42",
-  image:people[0].image
- },
+    {
+        name:"Laura",
+        message:"¿Hacemos el running mañana?",
+        time:"12:42",
+        image:people[0].image
+    },
 
- {
-  name:"Marc",
-  message:"Perfecto, nos vemos en el gym.",
-  time:"11:30",
-  image:people[1].image
- },
+    {
+        name:"Marc",
+        message:"Perfecto, nos vemos en el gym.",
+        time:"11:30",
+        image:people[1].image
+    },
 
- {
-  name:"Claudia",
-  message:"He encontrado un plan increíble.",
-  time:"Ayer",
-  image:people[3].image
- },
+    {
+        name:"Claudia",
+        message:"He encontrado un plan increíble.",
+        time:"Ayer",
+        image:people[3].image
+    },
 
- {
-  name:"Nerea",
-  message:"¿Qué película vemos?",
-  time:"Ayer",
-  image:people[5].image
- }
+    {
+        name:"Nerea",
+        message:"¿Qué película vemos?",
+        time:"Ayer",
+        image:people[5].image
+    }
 
 ];
 
 
-/* =========================================================
-   EXPERIENCIAS
-========================================================= */
-
 const featured = [
 
- {
-  title:"Atardecer en la playa",
-  subtitle:"Conoce gente nueva",
-  image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=90"
- },
+    {
+        title:"Atardecer en la playa",
+        subtitle:"Conoce gente nueva",
+        image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
+    },
 
- {
-  title:"Ruta de montaña",
-  subtitle:"Naturaleza + aventura",
-  image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1000&q=90"
- },
+    {
+        title:"Ruta de montaña",
+        subtitle:"Naturaleza + aventura",
+        image:"https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=85"
+    },
 
- {
-  title:"Música en directo",
-  subtitle:"Disfruta y conecta",
-  image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1000&q=90"
- },
+    {
+        title:"Música en directo",
+        subtitle:"Disfruta y conecta",
+        image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=85"
+    },
 
- {
-  title:"Gastronomía",
-  subtitle:"Descubre nuevos sabores",
-  image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=90"
- }
+    {
+        title:"Gastronomía",
+        subtitle:"Descubre nuevos sabores",
+        image:"https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=85"
+    }
 
 ];
 
@@ -2844,104 +2909,100 @@ const featured = [
 
 function renderCategories(list=categories){
 
- const container=document.getElementById("categories");
+    const container =
+        document.getElementById("categories");
 
- if(!container)return;
+    if(!container) return;
 
- container.innerHTML=list.map(c=>`
+    container.innerHTML =
+        list.map(c=>`
 
-  <button
-   class="category"
-   onclick="selectCategory('${c.name}')">
+            <button
+                class="category"
+                onclick="selectCategory('${c.name}')">
 
-   <img
-    src="${c.image}"
-    alt="${c.name}"
-    loading="lazy">
+                <img
+                    src="${c.image}"
+                    alt="${c.name}"
+                    loading="lazy">
 
-   <div class="category-info">
+                <div class="category-info">
 
-    <div class="category-icon">
-     ${c.icon}
-    </div>
+                    <div class="category-icon">
+                        ${c.icon}
+                    </div>
 
-    <div class="category-title">
-     ${c.name}
-    </div>
+                    <div class="category-title">
+                        ${c.name}
+                    </div>
 
-   </div>
+                </div>
 
-  </button>
+            </button>
 
- `).join("");
-
+        `).join("");
 }
 
 
-/* =========================================================
-   TODAS LAS CATEGORÍAS
-========================================================= */
-
 function showAllCategories(){
 
- openModal(`
+    openModal(`
 
-  <h2>
-   🔥 Explora Conecta
-  </h2>
+        <h2>🔥 Explora Conecta</h2>
 
-  <p>
-   Encuentra una actividad que te guste.
-  </p>
+        <p>
+            Encuentra una actividad que te guste
+            y descubre personas con intereses similares.
+        </p>
 
-  <div style="
-   display:grid;
-   grid-template-columns:repeat(2,1fr);
-   gap:10px;
-   margin-top:18px;
-   max-height:55vh;
-   overflow:auto;
-  ">
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:10px;
+            margin-top:18px;
+            max-height:55vh;
+            overflow:auto;
+        ">
 
-   ${categories.map(c=>`
+            ${categories.map(c=>`
 
-    <button
-     onclick="closeModal();selectCategory('${c.name}')"
-     style="
-      border-radius:18px;
-      overflow:hidden;
-      height:115px;
-      position:relative;
-      color:white;
-      background:#ddd;
-     ">
+                <button
+                    onclick="closeModal();selectCategory('${c.name}')"
+                    style="
+                        border-radius:18px;
+                        overflow:hidden;
+                        height:115px;
+                        position:relative;
+                        color:white;
+                        background:#ddd;
+                    ">
 
-     <img
-      src="${c.image}"
-      alt="${c.name}"
-      style="
-       width:100%;
-       height:100%;
-       object-fit:cover;
-      ">
+                    <img
+                        src="${c.image}"
+                        alt="${c.name}"
+                        style="
+                            width:100%;
+                            height:100%;
+                            object-fit:cover;
+                        ">
 
-     <span style="
-      position:absolute;
-      inset:auto 9px 9px;
-      font-weight:950;
-      text-align:left;
-      text-shadow:0 2px 8px #000;
-     ">
-      ${c.icon} ${c.name}
-     </span>
+                    <span style="
+                        position:absolute;
+                        inset:auto 9px 9px;
+                        font-weight:950;
+                        text-align:left;
+                        text-shadow:0 2px 8px #000;
+                    ">
+                        ${c.icon} ${c.name}
+                    </span>
 
-    </button>
+                </button>
 
-   `).join("")}
+            `).join("")}
 
-  </div>
+        </div>
 
- `);
+    `);
 
 }
 
@@ -2952,90 +3013,111 @@ function showAllCategories(){
 
 function personHTML(p){
 
- return `
+    return `
 
-  <article class="person">
+        <article class="person">
 
-   <div class="person-img">
+            <div class="person-img">
 
-    <img
-     src="${p.image}"
-     alt="${p.name}"
-     loading="lazy">
+                <img
+                    src="${p.image}"
+                    alt="${p.name}"
+                    loading="lazy">
 
-    <span class="online"></span>
+                <span class="online"></span>
 
-   </div>
+            </div>
 
-   <div class="person-info">
+            <div class="person-info">
 
-    <div class="person-name">
-     ${p.name}, ${p.age}
-    </div>
+                <div class="person-name">
+                    ${p.name}, ${p.age}
+                </div>
 
-    <div class="person-meta">
-     📍 ${p.city}
-    </div>
+                <div class="person-meta">
+                    📍 ${p.city}
+                </div>
 
-    <div class="person-meta">
-     ✨ ${p.interest}
-    </div>
+                <div class="person-meta">
+                    ✨ ${p.interest}
+                </div>
 
-    <button
-     class="connect-btn"
-     onclick="connectPerson(this,'${p.name}')">
+                <button
+                    class="connect-btn"
+                    onclick="connectPerson(this,'${p.name}')">
 
-     + Conectar
+                    + Conectar
 
-    </button>
+                </button>
 
-   </div>
+            </div>
 
-  </article>
+        </article>
 
- `;
-
+    `;
 }
 
 
 function renderPeople(list=people){
 
- const home=document.getElementById("people");
- const connect=document.getElementById("connectPeople");
+    const home =
+        document.getElementById("people");
 
- if(home){
-  home.innerHTML=list.map(personHTML).join("");
- }
+    const connect =
+        document.getElementById("connectPeople");
 
- if(connect){
-  connect.innerHTML=list.map(personHTML).join("");
- }
+    if(home){
+
+        home.innerHTML =
+            list
+                .slice(0,5)
+                .map(personHTML)
+                .join("");
+
+    }
+
+    if(connect){
+
+        connect.innerHTML =
+            list
+                .map(personHTML)
+                .join("");
+
+    }
 
 }
 
 
 function filterPeople(value){
 
- value=value.toLowerCase().trim();
+    value =
+        String(value || "")
+            .toLowerCase()
+            .trim();
 
- const results=people.filter(p=>
-  p.name.toLowerCase().includes(value) ||
-  p.city.toLowerCase().includes(value) ||
-  p.interest.toLowerCase().includes(value)
- );
+    const results =
+        people.filter(p=>
 
- const container=document.getElementById("connectPeople");
+            p.name.toLowerCase().includes(value) ||
+            p.city.toLowerCase().includes(value) ||
+            p.interest.toLowerCase().includes(value)
 
- if(!container)return;
+        );
 
- container.innerHTML=results.length
-  ?results.map(personHTML).join("")
-  :`
-   <div class="empty">
-    <div>🔎</div>
-    No encontramos personas.
-   </div>
-  `;
+    const container =
+        document.getElementById("connectPeople");
+
+    if(!container) return;
+
+    container.innerHTML =
+        results.length
+        ? results.map(personHTML).join("")
+        : `
+            <div class="empty">
+                <div>🔎</div>
+                No encontramos personas.
+            </div>
+        `;
 
 }
 
@@ -3046,202 +3128,209 @@ function filterPeople(value){
 
 function planHTML(p){
 
- return `
+    return `
 
-  <article class="plan">
+        <article class="plan">
 
-   <div class="plan-img">
+            <div class="plan-img">
 
-    <img
-     src="${p.image}"
-     alt="${p.title}"
-     loading="lazy">
+                <img
+                    src="${p.image}"
+                    alt="${p.title}"
+                    loading="lazy">
 
-    <span class="plan-tag">
-     ${p.tag}
-    </span>
+                <span class="plan-tag">
+                    ${p.tag}
+                </span>
 
-    <button
-     class="plan-heart"
-     onclick="favoritePlan(this)"
-     aria-label="Favorito">
+                <button
+                    class="plan-heart"
+                    onclick="favoritePlan(this)">
+                    ♡
+                </button>
 
-     ♡
+            </div>
 
-    </button>
+            <div class="plan-content">
 
-   </div>
+                <div class="plan-title">
+                    ${p.title}
+                </div>
 
+                <div class="plan-info">
+                    ${p.info}
+                </div>
 
-   <div class="plan-content">
+                <div class="plan-description">
+                    ${p.description}
+                </div>
 
-    <div class="plan-title">
-     ${p.title}
-    </div>
+                <div class="plan-footer">
 
-    <div class="plan-info">
-     ${p.info}
-    </div>
+                    <div class="plan-users">
 
+                        <img
+                            src="${people[0].image}"
+                            alt="Usuario">
 
-    <div class="plan-footer">
+                        <img
+                            src="${people[1].image}"
+                            alt="Usuario">
 
-     <div class="plan-users">
+                        <img
+                            src="${people[2].image}"
+                            alt="Usuario">
 
-      <img
-       src="${people[0].image}"
-       alt="Usuario">
+                    </div>
 
-      <img
-       src="${people[1].image}"
-       alt="Usuario">
+                    <button
+                        class="join-btn"
+                        onclick="joinPlan('${p.title}')">
 
-      <img
-       src="${people[2].image}"
-       alt="Usuario">
+                        Unirme
 
-     </div>
+                    </button>
 
+                </div>
 
-     <button
-      class="join-btn"
-      onclick="joinPlan('${p.title}')">
+            </div>
 
-      Unirme
+        </article>
 
-     </button>
-
-    </div>
-
-   </div>
-
-  </article>
-
- `;
-
+    `;
 }
 
 
 function renderPlans(list=plans){
 
- const home=document.getElementById("homePlans");
- const all=document.getElementById("allPlans");
+    const home =
+        document.getElementById("homePlans");
 
- if(home){
+    const all =
+        document.getElementById("allPlans");
 
-  home.innerHTML=list
-   .slice(0,3)
-   .map(planHTML)
-   .join("");
+    if(home){
 
- }
+        home.innerHTML =
+            list
+                .slice(0,3)
+                .map(planHTML)
+                .join("");
 
- if(all){
+    }
 
-  all.innerHTML=list
-   .map(planHTML)
-   .join("");
+    if(all){
 
- }
+        all.innerHTML =
+            list
+                .map(planHTML)
+                .join("");
+
+    }
 
 }
 
 
 function filterPlans(value){
 
- value=value.toLowerCase().trim();
+    value =
+        String(value || "")
+            .toLowerCase()
+            .trim();
 
- const results=plans.filter(p=>
-  p.title.toLowerCase().includes(value) ||
-  p.tag.toLowerCase().includes(value) ||
-  p.info.toLowerCase().includes(value)
- );
+    const results =
+        plans.filter(p=>
 
- const container=document.getElementById("allPlans");
+            p.title.toLowerCase().includes(value) ||
+            p.tag.toLowerCase().includes(value) ||
+            p.info.toLowerCase().includes(value)
 
- if(!container)return;
+        );
 
- container.innerHTML=results.length
-  ?results.map(planHTML).join("")
-  :`
-   <div class="empty">
-    <div>📅</div>
-    No encontramos planes.
-   </div>
-  `;
+    const container =
+        document.getElementById("allPlans");
+
+    if(!container) return;
+
+    container.innerHTML =
+        results.length
+        ? results.map(planHTML).join("")
+        : `
+            <div class="empty">
+                <div>📅</div>
+                No encontramos planes.
+            </div>
+        `;
 
 }
 
-
-/* =========================================================
-   FAVORITOS
-========================================================= */
 
 function favoritePlan(button){
 
- const liked=button.classList.toggle("liked");
+    const active =
+        button.textContent.trim()==="♡";
 
- button.textContent=liked
-  ?"♥"
-  :"♡";
+    button.textContent =
+        active ? "♥" : "♡";
 
- showToast(
-  liked
-   ?"Plan guardado ❤️"
-   :"Plan eliminado"
- );
+    showToast(
+        active
+        ? "Plan guardado ❤️"
+        : "Plan eliminado"
+    );
 
 }
 
 
 /* =========================================================
-   UNIRSE
+   UNIRSE A PLAN
 ========================================================= */
 
 function joinPlan(title){
 
- showToast(
-  `Te has unido a "${title}" 🎉`
- );
+    showToast(
+        `Te has unido a "${title}" 🎉`
+    );
 
 }
 
 
 /* =========================================================
-   EXPERIENCIAS
+   DESTACADOS
 ========================================================= */
 
 function renderFeatured(){
 
- const container=document.getElementById("featured");
+    const container =
+        document.getElementById("featured");
 
- if(!container)return;
+    if(!container) return;
 
- container.innerHTML=featured.map(x=>`
+    container.innerHTML =
+        featured.map(x=>`
 
-  <article
-   class="feature-card">
+            <article class="feature-card">
 
-   <img
-    src="${x.image}"
-    alt="${x.title}"
-    loading="lazy">
+                <img
+                    src="${x.image}"
+                    alt="${x.title}"
+                    loading="lazy">
 
-   <div class="feature-info">
+                <div class="feature-info">
 
-    <strong>
-     ${x.title}
-    </strong>
+                    <strong>
+                        ${x.title}
+                    </strong>
 
-    <span>
-     ${x.subtitle}
-    </span>
+                    <span>
+                        ${x.subtitle}
+                    </span>
 
-   </div>
+                </div>
 
-  </article>
+            </article>
 
- `).join("");
+        `).join("");
 
 }
 
@@ -3252,108 +3341,117 @@ function renderFeatured(){
 
 function renderChats(){
 
- const container=document.getElementById("chatList");
+    const container =
+        document.getElementById("chatList");
 
- if(!container)return;
+    if(!container) return;
 
- container.innerHTML=chats.map(c=>`
+    container.innerHTML =
+        chats.map(c=>`
 
-  <button
-   class="chat"
-   onclick="openChat('${c.name}')">
+            <button
+                class="chat"
+                onclick="openChat('${c.name}')">
 
-   <img
-    src="${c.image}"
-    alt="${c.name}">
+                <img
+                    src="${c.image}"
+                    alt="${c.name}">
 
-   <div class="chat-info">
+                <div class="chat-info">
 
-    <strong>
-     ${c.name}
-    </strong>
+                    <strong>
+                        ${c.name}
+                    </strong>
 
-    <p>
-     ${c.message}
-    </p>
+                    <p>
+                        ${c.message}
+                    </p>
 
-   </div>
+                </div>
 
-   <span class="chat-time">
-    ${c.time}
-   </span>
+                <span class="chat-time">
+                    ${c.time}
+                </span>
 
-  </button>
+            </button>
 
- `).join("");
+        `).join("");
 
 }
 
 
 function openChat(name){
 
- openModal(`
+    openModal(`
 
-  <h2>
-   💬 ${name}
-  </h2>
+        <h2>💬 ${name}</h2>
 
-  <p>
-   Tu conversación con ${name}.
-  </p>
+        <p>
+            Tu conversación con ${name}.
+        </p>
 
+        <div class="chat-window">
 
-  <div style="
-   margin-top:18px;
-   background:var(--bg);
-   border-radius:18px;
-   padding:13px;
-  ">
+            <div class="message received">
+                ¡Hola! 👋
+            </div>
 
-   ¡Hola! 👋
+            <div class="message sent">
+                ¡Hola! ¿Qué tal?
+            </div>
 
-  </div>
+            <div class="message received">
+                Todo genial. ¿Hacemos algún plan?
+            </div>
 
+        </div>
 
-  <div
-   class="search"
-   style="margin:14px 0 0">
+        <div
+            class="search"
+            style="
+                margin:16px 0 0;
+            ">
 
-   <input
-    id="messageInput"
-    placeholder="Escribe un mensaje...">
+            <input
+                id="messageInput"
+                placeholder="Escribe un mensaje...">
 
-   <button
-    onclick="sendMessage('${name}')">
+            <button
+                onclick="sendMessage('${name}')"
+                style="
+                    font-size:20px;
+                    background:transparent;
+                    color:var(--primary);
+                ">
+                ➤
+            </button>
 
-    ➤
+        </div>
 
-   </button>
-
-  </div>
-
- `);
+    `);
 
 }
 
 
 function sendMessage(name){
 
- const input=
-  document.getElementById("messageInput");
+    const input =
+        document.getElementById("messageInput");
 
- if(!input || !input.value.trim()){
+    if(!input || !input.value.trim()){
 
-  showToast("Escribe un mensaje 💬");
+        showToast(
+            "Escribe un mensaje"
+        );
 
-  return;
+        return;
+    }
 
- }
+    showToast(
+        `Mensaje enviado a ${name} 💬`
+    );
 
- showToast(
-  `Mensaje enviado a ${name} 💬`
- );
-
- closeModal();
+    closeModal();
 
 }
 
@@ -3364,64 +3462,61 @@ function sendMessage(name){
 
 function goTo(view){
 
- document.querySelectorAll(".view")
-  .forEach(v=>{
-   v.classList.remove("active");
-  });
+    document
+        .querySelectorAll(".view")
+        .forEach(v=>{
+            v.classList.remove("active");
+        });
 
+    const target =
+        document.getElementById(view+"View");
 
- const target=
-  document.getElementById(view+"View");
+    if(target){
+        target.classList.add("active");
+    }
 
- if(target){
-  target.classList.add("active");
- }
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b=>{
+            b.classList.remove("active");
+        });
 
+    const nav =
+        document.querySelector(
+            `.nav-btn[data-view="${view}"]`
+        );
 
- document.querySelectorAll(".nav-btn")
-  .forEach(b=>{
-   b.classList.remove("active");
-  });
+    if(nav){
+        nav.classList.add("active");
+    }
 
-
- const nav=
-  document.querySelector(
-   `.nav-btn[data-view="${view}"]`
-  );
-
- if(nav){
-  nav.classList.add("active");
- }
-
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
 /* =========================================================
-   CONECTAR PERSONA
+   CONECTAR
 ========================================================= */
 
 function connectPerson(button,name){
 
- const connected=
-  button.classList.toggle("connected");
+    const connected =
+        button.classList.toggle("connected");
 
- button.textContent=
-  connected
-   ?"✓ Conectado"
-   :"+ Conectar";
+    button.textContent =
+        connected
+        ? "✓ Conectado"
+        : "+ Conectar";
 
-
- showToast(
-  connected
-   ?`Conectado con ${name} 🤝`
-   :`Has eliminado a ${name}`
- );
+    showToast(
+        connected
+        ? `Conectado con ${name} 🤝`
+        : `Has eliminado a ${name}`
+    );
 
 }
 
@@ -3432,95 +3527,126 @@ function connectPerson(button,name){
 
 function createPlan(){
 
- openModal(`
+    openModal(`
 
-  <h2>
-   ➕ Crear un plan
-  </h2>
+        <h2>➕ Crear un plan</h2>
 
-  <p>
-   Crea una actividad y encuentra personas
-   que quieran compartirla contigo.
-  </p>
+        <p>
+            Crea una actividad y encuentra personas
+            que quieran compartirla contigo.
+        </p>
 
+        <div class="form-group">
 
-  <div style="margin-top:18px">
+            <label class="form-label">
+                Nombre del plan
+            </label>
 
-   <input
-    id="newPlanName"
-    placeholder="Nombre del plan"
-    style="
-     width:100%;
-     height:52px;
-     border:1px solid var(--border);
-     border-radius:15px;
-     padding:0 14px;
-     outline:none;
-     background:var(--bg);
-     color:var(--text);
-    ">
+            <input
+                id="newPlanName"
+                class="form-input"
+                placeholder="Ej. Running por la playa">
 
+        </div>
 
-   <button
-    class="join-btn"
-    style="
-     width:100%;
-     margin-top:12px;
-    "
-    onclick="saveNewPlan()">
+        <div class="form-group">
 
-    Crear plan
+            <label class="form-label">
+                Descripción
+            </label>
 
-   </button>
+            <textarea
+                id="newPlanDescription"
+                class="form-textarea"
+                placeholder="Cuenta un poco sobre el plan..."></textarea>
 
-  </div>
+        </div>
 
- `);
+        <div class="form-group">
+
+            <label class="form-label">
+                Categoría
+            </label>
+
+            <select
+                id="newPlanCategory"
+                class="form-input">
+
+                ${categories
+                    .slice(0,10)
+                    .map(c=>`
+                        <option>
+                            ${c.name}
+                        </option>
+                    `)
+                    .join("")}
+
+            </select>
+
+        </div>
+
+        <button
+            class="join-btn"
+            style="
+                width:100%;
+                margin-top:16px;
+            "
+            onclick="saveNewPlan()">
+
+            Crear plan 🎉
+
+        </button>
+
+    `);
 
 }
 
 
 function saveNewPlan(){
 
- const input=
-  document.getElementById("newPlanName");
+    const input =
+        document.getElementById("newPlanName");
 
- if(!input || !input.value.trim()){
+    if(
+        !input ||
+        !input.value.trim()
+    ){
 
-  showToast(
-   "Escribe un nombre para el plan"
-  );
+        showToast(
+            "Escribe un nombre para el plan"
+        );
 
-  return;
+        return;
+    }
 
- }
+    const name =
+        input.value.trim();
 
- const name=
-  input.value.trim();
+    closeModal();
 
- closeModal();
-
- showToast(
-  `Plan "${name}" creado 🎉`
- );
+    showToast(
+        `Plan "${name}" creado 🎉`
+    );
 
 }
 
 
 /* =========================================================
-   CATEGORÍA
+   CATEGORÍAS
 ========================================================= */
 
 function selectCategory(name){
 
- const category=
-  categories.find(c=>c.name===name);
+    const category =
+        categories.find(
+            c=>c.name===name
+        );
 
- showToast(
-  `${category?.icon || "✨"} Explorando ${name}`
- );
+    showToast(
+        `${category?.icon || "✨"} Explorando ${name}`
+    );
 
- goTo("plans");
+    goTo("plans");
 
 }
 
@@ -3529,83 +3655,78 @@ function selectCategory(name){
    BÚSQUEDA GENERAL
 ========================================================= */
 
-function searchAll(){
+function searchAll(value){
 
- const input=
-  document.getElementById("searchInput");
+    value =
+        String(value || "")
+            .toLowerCase()
+            .trim();
 
- if(!input)return;
+    if(!value){
 
- const value=
-  input.value
-   .toLowerCase()
-   .trim();
+        renderPeople();
+        renderPlans();
 
+        return;
+    }
 
- if(!value){
+    const peopleResults =
+        people.filter(p=>
 
-  renderPeople();
-  renderPlans();
+            p.name.toLowerCase().includes(value) ||
+            p.city.toLowerCase().includes(value) ||
+            p.interest.toLowerCase().includes(value)
 
-  return;
+        );
 
- }
+    const planResults =
+        plans.filter(p=>
 
+            p.title.toLowerCase().includes(value) ||
+            p.tag.toLowerCase().includes(value) ||
+            p.info.toLowerCase().includes(value)
 
- const peopleResults=
-  people.filter(p=>
-   p.name.toLowerCase().includes(value) ||
-   p.city.toLowerCase().includes(value) ||
-   p.interest.toLowerCase().includes(value)
-  );
+        );
 
+    const peopleContainer =
+        document.getElementById("people");
 
- const planResults=
-  plans.filter(p=>
-   p.title.toLowerCase().includes(value) ||
-   p.tag.toLowerCase().includes(value) ||
-   p.info.toLowerCase().includes(value)
-  );
+    const plansContainer =
+        document.getElementById("homePlans");
 
+    if(peopleContainer){
 
- const peopleContainer=
-  document.getElementById("people");
+        peopleContainer.innerHTML =
+            peopleResults.length
+            ? peopleResults
+                .slice(0,5)
+                .map(personHTML)
+                .join("")
+            : `
+                <div class="empty">
+                    <div>🔎</div>
+                    No hay personas.
+                </div>
+            `;
 
- const plansContainer=
-  document.getElementById("homePlans");
+    }
 
+    if(plansContainer){
 
- if(peopleContainer){
+        plansContainer.innerHTML =
+            planResults.length
+            ? planResults
+                .slice(0,3)
+                .map(planHTML)
+                .join("")
+            : `
+                <div class="empty">
+                    <div>📅</div>
+                    No hay planes.
+                </div>
+            `;
 
-  peopleContainer.innerHTML=
-   peopleResults.length
-   ?peopleResults.map(personHTML).join("")
-   :`
-    <div class="empty">
-     <div>🔎</div>
-     No hay personas.
-    </div>
-   `;
-
- }
-
-
- if(plansContainer){
-
-  plansContainer.innerHTML=
-   planResults.length
-   ?planResults
-      .slice(0,3)
-      .map(planHTML)
-      .join("")
-   :`
-    <div class="empty">
-     <div>📅</div>
-     No hay planes.
-    </div>
-   `;
-
- }
+    }
 
 }
 
@@ -3616,34 +3737,30 @@ function searchAll(){
 
 function toggleDark(){
 
- document.body.classList.toggle("dark");
+    document.body.classList.toggle("dark");
 
- const dark=
-  document.body.classList.contains("dark");
+    const dark =
+        document.body.classList.contains("dark");
 
+    localStorage.setItem(
+        "conecta-dark",
+        dark ? "1" : "0"
+    );
 
- localStorage.setItem(
-  "conecta-dark",
-  dark
-   ?"1"
-   :"0"
- );
-
-
- showToast(
-  dark
-   ?"Modo oscuro activado 🌙"
-   :"Modo claro activado ☀️"
- );
+    showToast(
+        dark
+        ? "Modo oscuro activado 🌙"
+        : "Modo claro activado ☀️"
+    );
 
 }
 
 
 if(
- localStorage.getItem("conecta-dark")==="1"
+    localStorage.getItem("conecta-dark")==="1"
 ){
 
- document.body.classList.add("dark");
+    document.body.classList.add("dark");
 
 }
 
@@ -3654,38 +3771,43 @@ if(
 
 function openModal(content){
 
- const contentBox=
-  document.getElementById("modalContent");
+    const contentBox =
+        document.getElementById("modalContent");
 
- const modal=
-  document.getElementById("modal");
+    const modal =
+        document.getElementById("modal");
 
- if(!contentBox || !modal)return;
+    if(!contentBox || !modal) return;
 
- contentBox.innerHTML=content;
+    contentBox.innerHTML =
+        content;
 
- modal.classList.add("show");
+    modal.classList.add("show");
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
 
 function closeModal(event){
 
- const modal=
-  document.getElementById("modal");
+    const modal =
+        document.getElementById("modal");
 
- if(!modal)return;
+    if(!modal) return;
 
+    if(
+        event &&
+        event.target!==modal
+    ){
+        return;
+    }
 
- if(
-  event &&
-  event.target!==modal
- ){
-  return;
- }
+    modal.classList.remove("show");
 
-
- modal.classList.remove("show");
+    document.body.style.overflow =
+        "";
 
 }
 
@@ -3698,21 +3820,22 @@ let toastTimer;
 
 function showToast(message){
 
- const toast=
-  document.getElementById("toast");
+    const toast =
+        document.getElementById("toast");
 
- if(!toast)return;
+    if(!toast) return;
 
- toast.textContent=message;
+    toast.textContent =
+        message;
 
- toast.classList.add("show");
+    toast.classList.add("show");
 
- clearTimeout(toastTimer);
+    clearTimeout(toastTimer);
 
- toastTimer=
-  setTimeout(()=>{
-   toast.classList.remove("show");
-  },2500);
+    toastTimer =
+        setTimeout(()=>{
+            toast.classList.remove("show");
+        },2500);
 
 }
 
@@ -3722,14 +3845,14 @@ function showToast(message){
 ========================================================= */
 
 document.addEventListener(
- "keydown",
- event=>{
+    "keydown",
+    event=>{
 
-  if(event.key==="Escape"){
-   closeModal();
-  }
+        if(event.key==="Escape"){
+            closeModal();
+        }
 
- }
+    }
 );
 
 
@@ -3738,20 +3861,20 @@ document.addEventListener(
 ========================================================= */
 
 document.addEventListener(
- "DOMContentLoaded",
- ()=>{
+    "DOMContentLoaded",
+    ()=>{
 
-  renderCategories();
+        renderCategories();
 
-  renderPeople();
+        renderPeople();
 
-  renderPlans();
+        renderPlans();
 
-  renderFeatured();
+        renderFeatured();
 
-  renderChats();
+        renderChats();
 
- }
+    }
 );
 
 
@@ -3759,25 +3882,27 @@ document.addEventListener(
    SERVICE WORKER
 ========================================================= */
 
-if("serviceWorker" in navigator){
+if(
+    "serviceWorker" in navigator
+){
 
- window.addEventListener(
-  "load",
-  ()=>{
+    window.addEventListener(
+        "load",
+        ()=>{
 
-   navigator.serviceWorker
-    .register("./sw.js")
-    .catch(error=>{
+            navigator.serviceWorker
+                .register("./sw.js")
+                .catch(error=>{
 
-     console.log(
-      "Service Worker:",
-      error
-     );
+                    console.log(
+                        "Service Worker:",
+                        error
+                    );
 
-    });
+                });
 
-  }
- );
+        }
+    );
 
 }
 
