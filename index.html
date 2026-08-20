@@ -2,5312 +2,4394 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 
 <meta name="theme-color" content="#8B5CF6">
-<meta name="description" content="NEXO — Conecta, descubre y hazlo.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEXO">
+<meta name="description"
+      content="NEXO - Conecta con personas, descubre planes y crea experiencias.">
 
 <link rel="manifest" href="./manifest.json">
 
 <title>NEXO</title>
 
 <style>
-:root{
-  --primary:#8B5CF6;
-  --primary-dark:#6D28D9;
-  --primary-soft:#F0EAFF;
-  --bg:#F7F5FC;
-  --card:#FFFFFF;
-  --text:#17151F;
-  --muted:#777383;
-  --border:#E8E4F0;
-  --success:#22C55E;
-  --danger:#EF4444;
-  --warning:#F59E0B;
-  --radius:20px;
-  --shadow:0 8px 28px rgba(0,0,0,.055);
+/* =========================================================
+   NEXO — DISEÑO PRINCIPAL
+   ========================================================= */
+
+:root {
+    --primary: #8B5CF6;
+    --primary-dark: #6D28D9;
+    --primary-light: #A78BFA;
+    --secondary: #EC4899;
+    --blue: #3B82F6;
+    --green: #10B981;
+    --orange: #F59E0B;
+    --red: #EF4444;
+
+    --bg: #F6F5FA;
+    --card: #FFFFFF;
+    --text: #18181B;
+    --text-soft: #71717A;
+    --border: #E4E4E7;
+
+    --shadow:
+        0 10px 30px rgba(0,0,0,.07);
+
+    --radius: 22px;
+    --nav-height: 76px;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "SF Pro Text",
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+    min-height: 100vh;
+    padding-bottom: calc(var(--nav-height) + 18px);
+}
+
+.page {
+    display: none;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 18px 16px 30px;
+    animation: pageIn .25s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes pageIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    background:
+        linear-gradient(135deg, #8B5CF6, #EC4899);
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 900;
+    box-shadow: 0 8px 20px rgba(139,92,246,.28);
+}
+
+.brand-name {
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.brand-subtitle {
+    color: var(--text-soft);
+    font-size: 12px;
+}
+
+.top-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    background: var(--card);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    display: grid;
+    place-items: center;
+    font-size: 19px;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 20px;
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+}
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.eyebrow {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(28px, 7vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: -.7px;
+}
+
+h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 26px 0 12px;
+}
+
+.section-title button {
+    color: var(--primary);
+    background: transparent;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+    position: relative;
+    min-height: 280px;
+    border-radius: 30px;
+    overflow: hidden;
+    color: white;
+    box-shadow: 0 15px 40px rgba(0,0,0,.16);
+    background:
+        linear-gradient(
+            110deg,
+            rgba(31,18,58,.92),
+            rgba(88,48,148,.60),
+            rgba(236,72,153,.18)
+        ),
+        url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 28px 24px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.hero h1 {
+    max-width: 560px;
+}
+
+.hero p {
+    max-width: 540px;
+    line-height: 1.5;
+    color: rgba(255,255,255,.85);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 15px;
+    font-weight: 800;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    transition: .2s ease;
+}
+
+.btn:active {
+    transform: scale(.96);
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-white {
+    background: white;
+    color: var(--primary-dark);
+}
+
+.btn-soft {
+    background: #F0EAFE;
+    color: var(--primary-dark);
+}
+
+.btn-danger {
+    background: #FEE2E2;
+    color: #B91C1C;
+}
+
+.btn-green {
+    background: #D1FAE5;
+    color: #047857;
+}
+
+.btn-dark {
+    background: #18181B;
+    color: white;
+}
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+}
+
+.quick-card {
+    background: var(--card);
+    border-radius: 19px;
+    padding: 14px 8px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: .2s;
+}
+
+.quick-card:active {
+    transform: scale(.96);
+}
+
+.quick-icon {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 7px;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+}
+
+.quick-card strong {
+    font-size: 12px;
+}
+
+/* =========================================================
+   HORIZONTAL SCROLL
+   ========================================================= */
+
+.horizontal {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 3px 1px 8px;
+}
+
+.horizontal::-webkit-scrollbar {
+    display: none;
+}
+
+/* =========================================================
+   CATEGORY CARDS
+   ========================================================= */
+
+.category-card {
+    min-width: 132px;
+    height: 165px;
+    border-radius: 22px;
+    overflow: hidden;
+    position: relative;
+    flex: 0 0 auto;
+    box-shadow: var(--shadow);
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            transparent 30%,
+            rgba(0,0,0,.72)
+        );
+}
+
+.category-info {
+    position: absolute;
+    z-index: 2;
+    left: 12px;
+    right: 10px;
+    bottom: 11px;
+    color: white;
+}
+
+.category-info strong {
+    display: block;
+    font-size: 15px;
+}
+
+.category-info span {
+    font-size: 11px;
+    opacity: .82;
 }
 
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
+/* =========================================================
+   PEOPLE CARDS
+   ========================================================= */
+
+.people-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+}
+
+.person-card {
+    background: var(--card);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
+.person-photo {
+    height: 230px;
+    position: relative;
+    overflow: hidden;
 }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  transition:.25s;
+.person-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-button,input,textarea,select{
-  font:inherit;
+.online-dot {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    background: #10B981;
+    border-radius: 50%;
 }
 
-button{
-  cursor:pointer;
+.photo-gradient {
+    position: absolute;
+    inset: 35% 0 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.55));
 }
 
-img{
-  display:block;
-  max-width:100%;
+.person-distance {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding: 5px 9px;
+    border-radius: 20px;
+    background: rgba(0,0,0,.5);
+    color: white;
+    backdrop-filter: blur(8px);
+    font-size: 11px;
 }
 
-.hidden{
-  display:none!important;
+.person-body {
+    padding: 13px;
 }
 
-#app{
-  max-width:760px;
-  min-height:100vh;
-  margin:auto;
-  padding-bottom:100px;
+.person-name {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* HEADER */
+.verified {
+    color: #3B82F6;
+    font-size: 14px;
+}
+
+.person-meta {
+    color: var(--text-soft);
+    font-size: 12px;
+    margin-top: 4px;
+}
 
-.app-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:14px 18px;
-  background:rgba(247,245,252,.94);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 10px 0;
 }
 
-.logo{
-  font-size:26px;
-  font-weight:950;
-  letter-spacing:-1.2px;
+.tag {
+    background: #F4F4F5;
+    color: #52525B;
+    border-radius: 20px;
+    padding: 5px 8px;
+    font-size: 10px;
+    font-weight: 700;
 }
 
-.header-actions{
-  display:flex;
-  gap:7px;
+.person-actions {
+    display: grid;
+    grid-template-columns: 1fr 42px;
+    gap: 7px;
 }
 
-.icon-btn{
-  width:40px;
-  height:40px;
-  border:0;
-  border-radius:50%;
-  background:var(--card);
-  box-shadow:0 4px 15px rgba(0,0,0,.06);
+.small-btn {
+    height: 40px;
+    border-radius: 13px;
+    font-weight: 800;
 }
+
+/* =========================================================
+   PLAN CARDS
+   ========================================================= */
 
-/* SCREENS */
+.plan-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
 
-.screen{
-  display:none;
-  padding:18px;
+.plan-card {
+    background: var(--card);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
 }
 
-.screen.active{
-  display:block;
+.plan-image {
+    height: 210px;
+    position: relative;
 }
 
-.hero{
-  padding:8px 2px 18px;
+.plan-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.hero h1{
-  margin:5px 0;
-  font-size:29px;
-  letter-spacing:-.7px;
+.plan-category {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(255,255,255,.92);
+    padding: 7px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
 }
 
-.hero p{
-  color:var(--muted);
-  line-height:1.5;
+.plan-favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(0,0,0,.35);
+    color: white;
+    backdrop-filter: blur(8px);
 }
 
-/* COMMON */
+.plan-body {
+    padding: 15px;
+}
 
-.section-title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  margin:20px 0 12px;
+.plan-title {
+    font-size: 18px;
+    font-weight: 900;
 }
 
-.section-title h2,
-.section-title h1{
-  margin:0;
+.plan-description {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.45;
+    margin: 7px 0;
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:16px;
-  margin-bottom:12px;
-  box-shadow:var(--shadow);
+.plan-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+    margin: 11px 0;
 }
 
-.card h3{
-  margin:0 0 6px;
+.plan-detail {
+    background: #F8F8FA;
+    padding: 9px;
+    border-radius: 13px;
+    font-size: 11px;
 }
 
-.muted{
-  color:var(--muted);
-  font-size:13px;
+.plan-detail strong {
+    display: block;
+    font-size: 12px;
+    color: var(--text);
 }
 
-.row{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.plan-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
-.grow{
-  flex:1;
+.avatar-stack {
+    display: flex;
 }
 
-.primary-btn,
-.secondary-btn,
-.danger-btn{
-  border:0;
-  padding:11px 15px;
-  border-radius:13px;
-  font-weight:800;
+.avatar-stack img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid white;
+    margin-left: -8px;
 }
 
-.primary-btn{
-  background:var(--primary);
-  color:white;
+.avatar-stack img:first-child {
+    margin-left: 0;
 }
+
+/* =========================================================
+   GROUP CARDS
+   ========================================================= */
 
-.primary-btn:active{
-  transform:scale(.97);
+.group-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 13px;
 }
 
-.secondary-btn{
-  background:var(--primary-soft);
-  color:#6237C7;
+.group-card {
+    background: var(--card);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: grid;
+    grid-template-columns: 105px 1fr;
 }
 
-.danger-btn{
-  background:#FEE2E2;
-  color:#B91C1C;
+.group-card img {
+    width: 105px;
+    height: 125px;
+    object-fit: cover;
 }
 
-/* SEARCH */
+.group-content {
+    padding: 13px;
+}
 
-.search-box{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:12px 15px;
-  box-shadow:0 5px 20px rgba(0,0,0,.025);
+.group-content p {
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.35;
 }
 
-.search-box input{
-  width:100%;
-  border:0;
-  outline:0;
-  background:transparent;
-  color:var(--text);
+.group-members {
+    font-size: 11px;
+    color: var(--primary);
+    font-weight: 800;
 }
+
+/* =========================================================
+   CHAT
+   ========================================================= */
 
-/* QUICK */
+.chat-list {
+    display: grid;
+    gap: 8px;
+}
 
-.quick-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
+.chat-card {
+    background: var(--card);
+    border-radius: 19px;
+    padding: 11px;
+    display: grid;
+    grid-template-columns: 53px 1fr auto;
+    gap: 11px;
+    align-items: center;
+    box-shadow: var(--shadow);
 }
 
-.quick-card{
-  border:1px solid var(--border);
-  background:var(--card);
-  border-radius:16px;
-  padding:12px 5px;
-  text-align:center;
-  font-size:11px;
-  box-shadow:0 5px 18px rgba(0,0,0,.025);
+.chat-avatar {
+    width: 53px;
+    height: 53px;
+    object-fit: cover;
+    border-radius: 18px;
 }
 
-.quick-card .emoji{
-  display:block;
-  font-size:25px;
-  margin-bottom:5px;
+.chat-text {
+    min-width: 0;
 }
 
-/* VISUAL GRID */
+.chat-text strong {
+    display: block;
+}
 
-.visual-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+.chat-text span {
+    display: block;
+    color: var(--text-soft);
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 4px;
 }
 
-.visual-card{
-  overflow:hidden;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:var(--shadow);
+.chat-time {
+    color: var(--text-soft);
+    font-size: 10px;
 }
 
-.visual-image{
-  width:100%;
-  height:145px;
-  object-fit:cover;
+.unread {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-size: 9px;
+    font-weight: 900;
 }
 
-.visual-content{
-  padding:12px;
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile-cover {
+    height: 170px;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    background:
+        url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
 }
 
-.visual-content h3{
-  margin:0 0 5px;
-  font-size:15px;
+.profile-cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,.35));
 }
 
-.visual-content p{
-  margin:0 0 9px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.4;
+.profile-photo-wrap {
+    position: relative;
+    margin-top: -58px;
+    margin-left: 20px;
+    z-index: 3;
 }
 
-.visual-meta{
-  display:flex;
-  justify-content:space-between;
-  gap:5px;
-  color:var(--muted);
-  font-size:11px;
+.profile-photo {
+    width: 116px;
+    height: 116px;
+    object-fit: cover;
+    border-radius: 35px;
+    border: 5px solid var(--bg);
 }
 
-.more-container{
-  text-align:center;
-  padding:16px 0;
+.profile-main {
+    background: var(--card);
+    margin-top: -2px;
+    padding: 20px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
 }
 
-/* PEOPLE */
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
 
-.person{
-  display:flex;
-  align-items:center;
-  gap:12px;
+.profile-name {
+    font-size: 25px;
+    font-weight: 900;
 }
 
-.avatar{
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  object-fit:cover;
-  background:var(--primary-soft);
+.profile-bio {
+    color: var(--text-soft);
+    line-height: 1.5;
+    font-size: 14px;
+    margin: 10px 0;
 }
 
-.person-main{
-  flex:1;
-  min-width:0;
+.profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 15px 0;
 }
 
-.person-main h3{
-  margin:0 0 3px;
+.stat {
+    text-align: center;
+    padding: 13px 5px;
 }
 
-.compatibility{
-  color:#7042D8;
-  font-size:12px;
-  font-weight:800;
+.stat + .stat {
+    border-left: 1px solid var(--border);
 }
 
-.chips{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
+.stat strong {
+    display: block;
+    font-size: 18px;
 }
 
-.chip{
-  border:0;
-  background:var(--primary-soft);
-  color:#6439C7;
-  padding:7px 10px;
-  border-radius:999px;
-  font-size:11px;
+.stat span {
+    color: var(--text-soft);
+    font-size: 10px;
 }
 
-/* PLAN */
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
-.plan-image{
-  width:100%;
-  height:170px;
-  object-fit:cover;
-  border-radius:15px;
-  margin-bottom:12px;
+.search-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    min-height: 49px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    box-shadow: var(--shadow);
 }
 
-.plan-info{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin:9px 0;
+.search-box span {
+    color: var(--text-soft);
 }
 
-.info-pill{
-  background:#F3F1F7;
-  padding:6px 9px;
-  border-radius:999px;
-  font-size:11px;
-  color:var(--muted);
+.search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--text);
 }
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
 
-/* MAP */
+.filters {
+    display: flex;
+    gap: 7px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 12px 0;
+}
 
-.map{
-  position:relative;
-  height:300px;
-  overflow:hidden;
-  border-radius:20px;
-  background:linear-gradient(135deg,#EDE7FF,#DFF5E8);
+.filters::-webkit-scrollbar {
+    display: none;
 }
 
-.map::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(25deg,transparent 47%,rgba(255,255,255,.7) 48%,transparent 50%),
-    linear-gradient(145deg,transparent 48%,rgba(255,255,255,.5) 49%,transparent 51%);
+.filter {
+    white-space: nowrap;
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 800;
 }
 
-.map-marker{
-  position:absolute;
-  z-index:2;
-  font-size:25px;
-  transform:translate(-50%,-50%);
-  background:white;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 5px 15px rgba(0,0,0,.15);
+.filter.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
 }
+
+/* =========================================================
+   MAP
+   ========================================================= */
 
-/* CALENDAR */
+.map-box {
+    min-height: 430px;
+    border-radius: 28px;
+    overflow: hidden;
+    position: relative;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(139,92,246,.22),
+            rgba(59,130,246,.16)
+        ),
+        url("https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1200&q=85")
+        center/cover;
+    box-shadow: var(--shadow);
+}
 
-.calendar{
-  display:grid;
-  grid-template-columns:repeat(7,1fr);
-  gap:5px;
+.map-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,.17);
+    backdrop-filter: blur(2px);
 }
 
-.calendar-head{
-  text-align:center;
-  color:var(--muted);
-  font-size:10px;
-  padding:5px;
+.map-pin {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50% 50% 50% 5px;
+    transform: rotate(-45deg);
+    background: var(--primary);
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
 }
 
-.calendar-day{
-  min-height:45px;
-  padding:7px;
-  border-radius:9px;
-  background:#F3F1F7;
-  text-align:center;
-  font-size:12px;
+.map-pin span {
+    transform: rotate(45deg);
+    display: grid;
+    place-items: center;
+    height: 100%;
+    color: white;
 }
 
-.calendar-day.event{
-  background:#E9DEFF;
-  color:#6134C5;
-  font-weight:800;
+.map-info {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    background: rgba(255,255,255,.93);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 14px;
 }
 
-/* CHAT */
+/* =========================================================
+   SETTINGS
+   ========================================================= */
 
-.chat-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:13px 4px;
-  border-bottom:1px solid var(--border);
+.settings-list {
+    display: grid;
+    gap: 8px;
 }
 
-.chat-item:last-child{
-  border-bottom:0;
+.setting {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: var(--shadow);
 }
 
-.chat-window{
-  position:fixed;
-  inset:0;
-  background:var(--bg);
-  z-index:500;
-  display:none;
-  flex-direction:column;
+.setting-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 14px;
+    background: #F1EEFF;
+    color: var(--primary);
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
 }
 
-.chat-window.active{
-  display:flex;
+.setting-text {
+    flex: 1;
 }
 
-.chat-header{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:14px;
-  background:var(--card);
-  border-bottom:1px solid var(--border);
+.setting-text strong {
+    display: block;
 }
 
-.chat-messages{
-  flex:1;
-  overflow-y:auto;
-  padding:15px;
+.setting-text span {
+    color: var(--text-soft);
+    font-size: 11px;
 }
 
-.message{
-  width:max-content;
-  max-width:80%;
-  padding:10px 13px;
-  border-radius:16px;
-  background:#EDEAF2;
-  margin-bottom:8px;
+.toggle {
+    width: 48px;
+    height: 28px;
+    border-radius: 20px;
+    background: #D4D4D8;
+    padding: 3px;
+    transition: .2s;
 }
 
-.message.me{
-  margin-left:auto;
-  background:var(--primary);
-  color:white;
+.toggle::after {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    transition: .2s;
 }
 
-.chat-input{
-  display:flex;
-  gap:8px;
-  padding:10px;
-  background:var(--card);
-  border-top:1px solid var(--border);
+.toggle.on {
+    background: var(--primary);
 }
 
-.chat-input input{
-  flex:1;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:11px;
-  outline:0;
-  background:var(--card);
-  color:var(--text);
+.toggle.on::after {
+    transform: translateX(20px);
 }
 
-/* GROUP */
+/* =========================================================
+   BOTTOM NAV
+   ========================================================= */
 
-.group-card{
-  display:flex;
-  gap:13px;
-  align-items:center;
+.bottom-nav {
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+    padding:
+        8px
+        8px
+        calc(8px + env(safe-area-inset-bottom));
+    background: rgba(255,255,255,.93);
+    backdrop-filter: blur(22px);
+    border-top: 1px solid rgba(0,0,0,.07);
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
 }
 
-.group-icon{
-  width:60px;
-  height:60px;
-  border-radius:17px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:28px;
-  background:var(--primary-soft);
+.nav-item {
+    background: transparent;
+    color: #71717A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: 700;
 }
 
-/* AI */
+.nav-item .nav-icon {
+    font-size: 21px;
+    line-height: 1;
+}
 
-.ai-box{
-  background:linear-gradient(135deg,#F0EAFF,#F9F7FF);
-  border-radius:20px;
-  padding:17px;
+.nav-item.active {
+    color: var(--primary);
 }
 
-.ai-title{
-  font-weight:900;
-  margin-bottom:10px;
+.nav-center {
+    width: 52px;
+    height: 52px;
+    margin: -18px auto 0;
+    border-radius: 19px;
+    color: white;
+    background:
+        linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow: 0 8px 22px rgba(139,92,246,.35);
+    font-size: 24px;
 }
 
-/* FORM */
+/* =========================================================
+   MODALS
+   ========================================================= */
 
-.form-group{
-  margin-bottom:13px;
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    background: rgba(0,0,0,.52);
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
 }
 
-.form-group label{
-  display:block;
-  margin-bottom:5px;
-  font-size:12px;
-  font-weight:800;
+.modal.show {
+    display: flex;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  padding:12px;
-  border:1px solid var(--border);
-  border-radius:13px;
-  background:var(--card);
-  color:var(--text);
-  outline:0;
+.modal-box {
+    width: min(650px,100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--card);
+    border-radius: 30px 30px 0 0;
+    padding: 20px;
+    animation: modalIn .25s ease;
 }
 
-.form-group textarea{
-  min-height:100px;
-  resize:vertical;
+@keyframes modalIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
 
-/* MODAL */
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
 
-.modal-overlay{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:none;
-  align-items:flex-end;
-  justify-content:center;
-  background:rgba(0,0,0,.55);
-  padding:15px;
+.close {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
+    background: #F4F4F5;
 }
+
+/* =========================================================
+   FORMS
+   ========================================================= */
 
-.modal-overlay.active{
-  display:flex;
+.form-group {
+    margin-bottom: 13px;
 }
 
-.modal{
-  width:100%;
-  max-width:760px;
-  max-height:90vh;
-  overflow-y:auto;
-  background:var(--card);
-  border-radius:24px;
-  padding:20px;
+.form-group label {
+    display: block;
+    font-weight: 800;
+    font-size: 12px;
+    margin-bottom: 6px;
 }
 
-.modal-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:15px;
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: #FAFAFA;
+    color: var(--text);
+    border-radius: 14px;
+    padding: 12px;
+    outline: 0;
 }
 
-.close-btn{
-  border:0;
-  width:35px;
-  height:35px;
-  border-radius:50%;
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
-/* NAV */
+/* =========================================================
+   TOAST
+   ========================================================= */
 
-.bottom-nav{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:200;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(18px);
-  border-top:1px solid var(--border);
+.toast-container {
+    position: fixed;
+    z-index: 1000;
+    top: calc(12px + env(safe-area-inset-top));
+    left: 14px;
+    right: 14px;
+    pointer-events: none;
 }
 
-.bottom-nav-inner{
-  max-width:760px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
+.toast {
+    background: #18181B;
+    color: white;
+    padding: 13px 15px;
+    border-radius: 15px;
+    margin-bottom: 8px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.22);
+    animation: toastIn .25s ease;
+    font-size: 13px;
 }
 
-.nav-btn{
-  border:0;
-  background:transparent;
-  color:var(--muted);
-  padding:8px 3px;
-  font-size:10px;
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.nav-btn span{
-  display:block;
-  font-size:21px;
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty {
+    text-align: center;
+    padding: 45px 20px;
+    color: var(--text-soft);
 }
 
-.nav-btn.active{
-  color:var(--primary);
-  font-weight:900;
+.empty-icon {
+    font-size: 50px;
+    margin-bottom: 10px;
 }
 
-/* DARK */
+/* =========================================================
+   DARK MODE
+   ========================================================= */
 
-body.dark{
-  --bg:#111016;
-  --card:#1C1922;
-  --text:#F5F3FA;
-  --muted:#AAA5B4;
-  --border:#302B38;
+body.dark {
+    --bg: #09090B;
+    --card: #18181B;
+    --text: #FAFAFA;
+    --text-soft: #A1A1AA;
+    --border: #27272A;
 }
 
-body.dark .bottom-nav{
-  background:rgba(28,25,34,.96);
+body.dark .tag,
+body.dark .plan-detail,
+body.dark .search-box,
+body.dark .form-input,
+body.dark .form-textarea,
+body.dark .form-select {
+    background: #27272A;
+    color: #D4D4D8;
 }
 
-body.dark .app-header{
-  background:rgba(17,16,22,.94);
+body.dark .bottom-nav {
+    background: rgba(24,24,27,.94);
+    border-color: #27272A;
 }
 
-body.dark .message{
-  background:#302B38;
+body.dark .map-info {
+    background: rgba(24,24,27,.92);
 }
 
-body.dark .calendar-day,
-body.dark .info-pill{
-  background:#28242E;
+body.dark .close {
+    background: #27272A;
 }
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
-/* RESPONSIVE */
+@media (min-width: 700px) {
 
-@media(max-width:520px){
-  .quick-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+    .people-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
 
-  .visual-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .plan-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
 
-  .visual-image{
-    height:125px;
-  }
+    .quick-grid {
+        grid-template-columns: repeat(8,1fr);
+    }
+
+    .bottom-nav {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: min(700px,100%);
+        border: 1px solid var(--border);
+        border-radius: 25px 25px 0 0;
+    }
 }
+
+@media (max-width: 380px) {
+
+    .people-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .person-photo {
+        height: 280px;
+    }
 
-@media(max-width:360px){
-  .visual-grid{
-    grid-template-columns:1fr;
-  }
+    .quick-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<div id="toastContainer" class="toast-container"></div>
 
-<header class="app-header">
-  <div>
-    <div class="logo">NEXO</div>
-    <div class="muted">Conecta · descubre · hazlo</div>
-  </div>
+<div class="app">
 
-  <div class="header-actions">
-    <button class="icon-btn" onclick="openSearch()">🔎</button>
-    <button class="icon-btn" onclick="openAI()">✦</button>
-    <button class="icon-btn" onclick="openNotifications()">🔔</button>
-  </div>
-</header>
+<!-- =======================================================
+     INICIO
+     ======================================================= -->
 
-<!-- HOME -->
+<section id="page-home" class="page active">
 
-<section id="home" class="screen active">
+    <div class="topbar">
 
-  <div class="hero">
-    <div class="muted">Hoy</div>
-    <h1>¿Qué te apetece hacer?</h1>
+        <div class="brand">
+            <div class="brand-logo">N</div>
 
-    <div class="search-box">
-      🔎
-      <input
-        placeholder="Buscar personas, grupos o planes..."
-        oninput="searchHome(this.value)"
-      >
-    </div>
-  </div>
-
-  <div id="quickActions" class="quick-grid"></div>
-
-  <div class="section-title">
-    <h2>🔥 Ahora mismo</h2>
-    <button class="secondary-btn" onclick="showScreen('now')">
-      Ver todo
-    </button>
-  </div>
-
-  <div id="nowHome"></div>
-
-  <div class="section-title">
-    <h2>⭐ Recomendado</h2>
-    <button class="secondary-btn" onclick="showScreen('connect')">
-      Ver
-    </button>
-  </div>
-
-  <div id="recommended" class="visual-grid"></div>
-
-  <div class="more-container">
-    <button class="secondary-btn" onclick="showScreen('explore')">
-      🔎 Explorar más
-    </button>
-  </div>
-
-</section>
-
-<!-- EXPLORE -->
-
-<section id="explore" class="screen">
-
-  <div class="hero">
-    <h1>🔎 Explorar</h1>
-
-    <div class="search-box">
-      🔎
-      <input
-        id="exploreSearch"
-        placeholder="Eventos, grupos, personas..."
-        oninput="globalSearch(this.value)"
-      >
-    </div>
-  </div>
-
-  <div class="chips">
-    <button class="chip" onclick="setExploreFilter('Todos')">Todos</button>
-    <button class="chip" onclick="setExploreFilter('Hoy')">Hoy</button>
-    <button class="chip" onclick="setExploreFilter('Mañana')">Mañana</button>
-    <button class="chip" onclick="setExploreFilter('Cerca')">Cerca de mí</button>
-    <button class="chip" onclick="setExploreFilter('Online')">Online</button>
-  </div>
-
-  <div class="section-title">
-    <h2>Categorías</h2>
-  </div>
-
-  <div id="categories" class="quick-grid"></div>
-
-  <div class="section-title">
-    <h2>✨ Descubre</h2>
-  </div>
-
-  <div id="exploreResults" class="visual-grid"></div>
-
-  <div id="exploreMore" class="more-container"></div>
-
-</section>
-
-<!-- CONNECT -->
-
-<section id="connect" class="screen">
-
-  <div class="hero">
-    <h1>🤝 Conecta</h1>
-    <p>Personas que podrían encajar contigo.</p>
-  </div>
-
-  <div class="card">
-    <div class="row">
-      <div class="group-icon">🧠</div>
-      <div class="grow">
-        <strong>Personas compatibles</strong>
-        <div class="muted">
-          Descubre gente con intereses parecidos.
+            <div>
+                <div class="brand-name">NEXO</div>
+                <div class="brand-subtitle">
+                    Conecta. Descubre. Vive.
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <div id="peopleContainer"></div>
+        <div class="top-actions">
 
-  <div id="peopleMore" class="more-container"></div>
+            <button class="icon-btn"
+                    onclick="openModal('notificationsModal')">
+                🔔
+                <span class="badge">3</span>
+            </button>
 
-</section>
+            <button class="icon-btn"
+                    onclick="navigate('profile')">
+                👤
+            </button>
 
-<!-- PLANS -->
+        </div>
 
-<section id="plans" class="screen">
-
-  <div class="section-title">
-    <h1>📅 Planes</h1>
-
-    <button class="primary-btn" onclick="openPlanCreator()">
-      + Crear
-    </button>
-  </div>
-
-  <div id="plansContainer"></div>
-
-</section>
-
-<!-- CALENDAR -->
-
-<section id="calendar" class="screen">
-
-  <div class="hero">
-    <h1>🗓️ Calendario</h1>
-    <p>
-      Tus planes, entrenamientos, eventos y quedadas.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Agosto 2026</h3>
-    <div id="calendarGrid" class="calendar"></div>
-  </div>
-
-  <div id="calendarEvents"></div>
-
-</section>
-
-<!-- CHAT -->
-
-<section id="chat" class="screen">
-
-  <div class="hero">
-    <h1>💬 Chat</h1>
-    <p>Tus conversaciones de NEXO.</p>
-  </div>
-
-  <div class="card">
-    <div id="chatsContainer"></div>
-  </div>
-
-</section>
-
-<!-- GROUPS -->
-
-<section id="groups" class="screen">
-
-  <div class="section-title">
-    <h1>👥 Grupos</h1>
-
-    <button class="primary-btn" onclick="openGroupCreator()">
-      + Crear
-    </button>
-  </div>
-
-  <div id="groupsContainer"></div>
-
-</section>
-
-<!-- NOW -->
-
-<section id="now" class="screen">
-
-  <div class="hero">
-    <h1>🔥 Ahora mismo</h1>
-    <p>Lo que está pasando cerca de ti.</p>
-  </div>
-
-  <div id="nowContainer"></div>
-
-</section>
-
-<!-- MAP -->
-
-<section id="map" class="screen">
-
-  <div class="hero">
-    <h1>🗺️ Cerca de ti</h1>
-    <p>Personas, grupos y planes.</p>
-  </div>
-
-  <div class="map">
-
-    <span class="map-marker" style="left:20%;top:30%">🏃</span>
-    <span class="map-marker" style="left:70%;top:35%">☕</span>
-    <span class="map-marker" style="left:50%;top:70%">⚽</span>
-    <span class="map-marker" style="left:80%;top:75%">👤</span>
-    <span class="map-marker" style="left:35%;top:55%">🎵</span>
-
-  </div>
-
-  <div id="mapResults"></div>
-
-</section>
-
-<!-- PROFILE -->
-
-<section id="profile" class="screen">
-
-  <div class="hero">
-    <h1>👤 Mi perfil</h1>
-  </div>
-
-  <div class="card person">
-
-    <img id="myAvatar" class="avatar">
-
-    <div class="person-main">
-      <h2 id="myName" style="margin:0"></h2>
-      <p id="myBio" class="muted"></p>
     </div>
 
-  </div>
+    <div class="hero">
 
-  <div id="myChips" class="chips"></div>
+        <div class="hero-content">
 
-  <div class="section-title">
-    <h2>Mis opciones</h2>
-  </div>
+            <div class="eyebrow"
+                 style="color:#DDD6FE">
+                TU NUEVA COMUNIDAD
+            </div>
 
-  <div class="quick-grid">
+            <h1>
+                Encuentra gente que encaja contigo.
+            </h1>
 
-    <button class="quick-card" onclick="openQR()">
-      <span class="emoji">📷</span>
-      Mi NEXO
-    </button>
+            <p>
+                Descubre personas, crea planes, únete a grupos
+                y encuentra nuevas experiencias cerca de ti.
+            </p>
 
-    <button class="quick-card" onclick="openProfileEditor()">
-      <span class="emoji">✏️</span>
-      Editar
-    </button>
+            <div class="hero-buttons">
 
-    <button class="quick-card" onclick="openSettings()">
-      <span class="emoji">⚙️</span>
-      Ajustes
-    </button>
+                <button class="btn btn-white"
+                        onclick="navigate('connect')">
+                    🤝 Conectar
+                </button>
 
-  </div>
+                <button class="btn"
+                        style="background:rgba(255,255,255,.15);color:white"
+                        onclick="navigate('plans')">
+                    📅 Ver planes
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section-title">
+        <h2>Acceso rápido</h2>
+    </div>
+
+    <div class="quick-grid">
+
+        <button class="quick-card"
+                onclick="navigate('connect')">
+            <div class="quick-icon"
+                 style="background:#EDE9FE">🤝</div>
+            <strong>Conecta</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="navigate('plans')">
+            <div class="quick-icon"
+                 style="background:#DBEAFE">📅</div>
+            <strong>Planes</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="navigate('groups')">
+            <div class="quick-icon"
+                 style="background:#D1FAE5">👥</div>
+            <strong>Grupos</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="navigate('explore')">
+            <div class="quick-icon"
+                 style="background:#FCE7F3">🔎</div>
+            <strong>Explorar</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="navigate('map')">
+            <div class="quick-icon"
+                 style="background:#FEF3C7">🗺️</div>
+            <strong>Mapa</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="navigate('chat')">
+            <div class="quick-icon"
+                 style="background:#DBEAFE">💬</div>
+            <strong>Chat</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="openModal('qrModal')">
+            <div class="quick-icon"
+                 style="background:#F4F4F5">📱</div>
+            <strong>QR</strong>
+        </button>
+
+        <button class="quick-card"
+                onclick="openModal('aiModal')">
+            <div class="quick-icon"
+                 style="background:#EDE9FE">🤖</div>
+            <strong>NEXO IA</strong>
+        </button>
+
+    </div>
+
+    <div class="section-title">
+
+        <h2>Categorías</h2>
+
+        <button onclick="navigate('explore')">
+            Ver todas
+        </button>
+
+    </div>
+
+    <div id="categories" class="horizontal"></div>
+
+    <div class="section-title">
+
+        <h2>Personas para ti</h2>
+
+        <button onclick="navigate('connect')">
+            Ver más
+        </button>
+
+    </div>
+
+    <div id="homePeople" class="people-grid"></div>
+
+    <div class="section-title">
+
+        <h2>Planes cerca de ti</h2>
+
+        <button onclick="navigate('plans')">
+            Ver todos
+        </button>
+
+    </div>
+
+    <div id="homePlans" class="plan-grid"></div>
+
+</section>
+
+
+<!-- =======================================================
+     CONECTA
+     ======================================================= -->
+
+<section id="page-connect" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">NEXO</div>
+            <h1>Conecta</h1>
+        </div>
+
+        <button class="icon-btn"
+                onclick="openModal('filterModal')">
+            ⚙️
+        </button>
+
+    </div>
+
+    <div class="search-box">
+
+        <span>🔎</span>
+
+        <input id="peopleSearch"
+               type="search"
+               placeholder="Buscar personas..."
+               oninput="renderPeople()">
+
+    </div>
+
+    <div class="filters">
+
+        <button class="filter active"
+                onclick="setPeopleFilter(this,'Todos')">
+            Todos
+        </button>
+
+        <button class="filter"
+                onclick="setPeopleFilter(this,'Deporte')">
+            🏃 Deporte
+        </button>
+
+        <button class="filter"
+                onclick="setPeopleFilter(this,'Música')">
+            🎵 Música
+        </button>
+
+        <button class="filter"
+                onclick="setPeopleFilter(this,'Gaming')">
+            🎮 Gaming
+        </button>
+
+        <button class="filter"
+                onclick="setPeopleFilter(this,'Viajes')">
+            ✈️ Viajes
+        </button>
+
+        <button class="filter"
+                onclick="setPeopleFilter(this,'Cine')">
+            🎬 Cine
+        </button>
+
+    </div>
+
+    <div id="connectPeople"
+         class="people-grid"></div>
+
+</section>
+
+
+<!-- =======================================================
+     PLANES
+     ======================================================= -->
+
+<section id="page-plans" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">EXPERIENCIAS</div>
+            <h1>Planes</h1>
+        </div>
+
+        <button class="btn btn-primary"
+                onclick="openModal('createPlanModal')">
+            + Crear
+        </button>
+
+    </div>
+
+    <div class="search-box">
+
+        <span>🔎</span>
+
+        <input id="planSearch"
+               type="search"
+               placeholder="Buscar planes..."
+               oninput="renderPlans()">
+
+    </div>
+
+    <div class="filters">
+
+        <button class="filter active"
+                onclick="setPlanFilter(this,'Todos')">
+            Todos
+        </button>
+
+        <button class="filter"
+                onclick="setPlanFilter(this,'Deporte')">
+            🏃 Deporte
+        </button>
+
+        <button class="filter"
+                onclick="setPlanFilter(this,'Gastronomía')">
+            🍔 Gastronomía
+        </button>
+
+        <button class="filter"
+                onclick="setPlanFilter(this,'Música')">
+            🎵 Música
+        </button>
+
+        <button class="filter"
+                onclick="setPlanFilter(this,'Viajes')">
+            ✈️ Viajes
+        </button>
+
+    </div>
+
+    <div id="plansContainer"
+         class="plan-grid"></div>
+
+</section>
+
+
+<!-- =======================================================
+     EXPLORAR
+     ======================================================= -->
+
+<section id="page-explore" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">DESCUBRE</div>
+            <h1>Explorar</h1>
+        </div>
+
+        <button class="icon-btn"
+                onclick="openModal('filterModal')">
+            ⚙️
+        </button>
+
+    </div>
+
+    <div class="section-title">
+        <h2>Descubre por interés</h2>
+    </div>
+
+    <div id="exploreCategories"
+         class="horizontal"></div>
+
+    <div class="section-title">
+        <h2>Personas destacadas</h2>
+    </div>
+
+    <div id="explorePeople"
+         class="people-grid"></div>
+
+    <div class="section-title">
+        <h2>Experiencias</h2>
+    </div>
+
+    <div id="explorePlans"
+         class="plan-grid"></div>
+
+</section>
+
+
+<!-- =======================================================
+     GRUPOS
+     ======================================================= -->
+
+<section id="page-groups" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">COMUNIDAD</div>
+            <h1>Grupos</h1>
+        </div>
+
+        <button class="btn btn-primary"
+                onclick="openModal('createGroupModal')">
+            + Crear
+        </button>
+
+    </div>
+
+    <div class="search-box">
+
+        <span>🔎</span>
+
+        <input type="search"
+               placeholder="Buscar grupos..."
+               oninput="renderGroups(this.value)">
+
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div id="groupsContainer"
+         class="group-grid"></div>
+
+</section>
+
+
+<!-- =======================================================
+     CHAT
+     ======================================================= -->
+
+<section id="page-chat" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">MENSAJES</div>
+            <h1>Chat</h1>
+        </div>
+
+        <button class="icon-btn"
+                onclick="toast('Nuevo chat')">
+            ✏️
+        </button>
+
+    </div>
+
+    <div class="search-box">
+
+        <span>🔎</span>
+
+        <input type="search"
+               placeholder="Buscar conversaciones..."
+               oninput="renderChats(this.value)">
+
+    </div>
+
+    <div style="height:14px"></div>
+
+    <div id="chatContainer"
+         class="chat-list"></div>
+
+</section>
+
+
+<!-- =======================================================
+     MAPA
+     ======================================================= -->
+
+<section id="page-map" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">CERCA DE TI</div>
+            <h1>Mapa</h1>
+        </div>
+
+        <button class="icon-btn"
+                onclick="locateUser()">
+            📍
+        </button>
+
+    </div>
+
+    <div class="map-box">
+
+        <div class="map-overlay"></div>
+
+        <div class="map-pin"
+             style="left:24%;top:30%">
+            <span>🏃</span>
+        </div>
+
+        <div class="map-pin"
+             style="left:62%;top:20%">
+            <span>🍔</span>
+        </div>
+
+        <div class="map-pin"
+             style="left:72%;top:55%">
+            <span>🎵</span>
+        </div>
+
+        <div class="map-pin"
+             style="left:35%;top:65%">
+            <span>⚽</span>
+        </div>
+
+        <div class="map-info">
+
+            <strong>📍 Actividad cerca de ti</strong>
+
+            <div style="font-size:12px;color:var(--text-soft);margin-top:4px">
+                Hay 24 personas y 8 planes cerca.
+            </div>
+
+            <button class="btn btn-primary"
+                    style="margin-top:10px;width:100%"
+                    onclick="navigate('plans')">
+                Explorar planes
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     PERFIL
+     ======================================================= -->
+
+<section id="page-profile" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">MI CUENTA</div>
+            <h1>Perfil</h1>
+        </div>
+
+        <button class="icon-btn"
+                onclick="navigate('settings')">
+            ⚙️
+        </button>
+
+    </div>
+
+    <div class="profile-cover"></div>
+
+    <div class="profile-photo-wrap">
+
+        <img id="profileImage"
+             class="profile-photo"
+             src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=85"
+             alt="Foto de perfil">
+
+    </div>
+
+    <div class="profile-main">
+
+        <div class="profile-header">
+
+            <div>
+
+                <div class="profile-name">
+                    Fernando <span class="verified">✓</span>
+                </div>
+
+                <div class="person-meta">
+                    📍 Tarragona · España
+                </div>
+
+            </div>
+
+            <button class="btn btn-soft"
+                    onclick="openModal('editProfileModal')">
+                Editar
+            </button>
+
+        </div>
+
+        <p class="profile-bio">
+            Me gusta conocer gente, hacer deporte,
+            descubrir sitios nuevos y crear buenos planes.
+        </p>
+
+        <div class="tags">
+            <span class="tag">🏃 Running</span>
+            <span class="tag">🏋️ Gym</span>
+            <span class="tag">🎵 Música</span>
+            <span class="tag">🚗 Motor</span>
+            <span class="tag">🍔 Gastronomía</span>
+            <span class="tag">✈️ Viajes</span>
+        </div>
+
+        <div class="profile-stats">
+
+            <div class="stat">
+                <strong>128</strong>
+                <span>Conexiones</span>
+            </div>
+
+            <div class="stat">
+                <strong>24</strong>
+                <span>Planes</span>
+            </div>
+
+            <div class="stat">
+                <strong>18</strong>
+                <span>Grupos</span>
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="openModal('shareProfileModal')">
+            🔗 Compartir perfil
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     AJUSTES
+     ======================================================= -->
+
+<section id="page-settings" class="page">
+
+    <div class="topbar">
+
+        <div>
+            <div class="eyebrow">NEXO</div>
+            <h1>Ajustes</h1>
+        </div>
+
+    </div>
+
+    <div class="settings-list">
+
+        <button class="setting"
+                onclick="openModal('editProfileModal')">
+
+            <div class="setting-icon">👤</div>
+
+            <div class="setting-text">
+                <strong>Mi perfil</strong>
+                <span>Nombre, foto, biografía e intereses</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+        <button class="setting"
+                onclick="toggleSetting('notifications')">
+
+            <div class="setting-icon">🔔</div>
+
+            <div class="setting-text">
+                <strong>Notificaciones</strong>
+                <span>Mensajes, conexiones y planes</span>
+            </div>
+
+            <div id="toggleNotifications"
+                 class="toggle on"></div>
+
+        </button>
+
+        <button class="setting"
+                onclick="toggleDarkMode()">
+
+            <div class="setting-icon">🌙</div>
+
+            <div class="setting-text">
+                <strong>Modo oscuro</strong>
+                <span>Cambia la apariencia de NEXO</span>
+            </div>
+
+            <div id="toggleDark"
+                 class="toggle"></div>
+
+        </button>
+
+        <button class="setting"
+                onclick="openModal('privacyModal')">
+
+            <div class="setting-icon">🔐</div>
+
+            <div class="setting-text">
+                <strong>Privacidad y seguridad</strong>
+                <span>Controla quién puede encontrarte</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+        <button class="setting"
+                onclick="openModal('languageModal')">
+
+            <div class="setting-icon">🌐</div>
+
+            <div class="setting-text">
+                <strong>Idioma</strong>
+                <span>Español</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+        <button class="setting"
+                onclick="openModal('helpModal')">
+
+            <div class="setting-icon">❓</div>
+
+            <div class="setting-text">
+                <strong>Ayuda</strong>
+                <span>Preguntas frecuentes y soporte</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+        <button class="setting"
+                onclick="openModal('legalModal')">
+
+            <div class="setting-icon">⚖️</div>
+
+            <div class="setting-text">
+                <strong>Legal</strong>
+                <span>Términos y privacidad</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+        <button class="setting"
+                onclick="clearLocalData()">
+
+            <div class="setting-icon">🗑️</div>
+
+            <div class="setting-text">
+                <strong>Restablecer datos locales</strong>
+                <span>Borra los datos guardados en este dispositivo</span>
+            </div>
+
+            <span>›</span>
+
+        </button>
+
+    </div>
 
 </section>
 
 </div>
 
-<!-- BOTTOM NAV -->
+
+<!-- =======================================================
+     NAVEGACIÓN
+     ======================================================= -->
 
 <nav class="bottom-nav">
 
-  <div class="bottom-nav-inner">
-
-    <button class="nav-btn active" data-nav="home"
-      onclick="showScreen('home')">
-      <span>🏠</span>
-      Inicio
+    <button class="nav-item active"
+            data-page="home"
+            onclick="navigate('home')">
+        <span class="nav-icon">🏠</span>
+        Inicio
     </button>
 
-    <button class="nav-btn" data-nav="connect"
-      onclick="showScreen('connect')">
-      <span>🤝</span>
-      Conecta
+    <button class="nav-item"
+            data-page="explore"
+            onclick="navigate('explore')">
+        <span class="nav-icon">🔎</span>
+        Explorar
     </button>
 
-    <button class="nav-btn" data-nav="plans"
-      onclick="showScreen('plans')">
-      <span>📅</span>
-      Planes
+    <button class="nav-item nav-center"
+            data-page="connect"
+            onclick="navigate('connect')">
+        N
     </button>
 
-    <button class="nav-btn" data-nav="calendar"
-      onclick="showScreen('calendar')">
-      <span>🗓️</span>
-      Calendario
+    <button class="nav-item"
+            data-page="plans"
+            onclick="navigate('plans')">
+        <span class="nav-icon">📅</span>
+        Planes
     </button>
 
-    <button class="nav-btn" data-nav="chat"
-      onclick="showScreen('chat')">
-      <span>💬</span>
-      Chat
+    <button class="nav-item"
+            data-page="profile"
+            onclick="navigate('profile')">
+        <span class="nav-icon">👤</span>
+        Perfil
     </button>
-
-  </div>
 
 </nav>
 
-<!-- MODAL -->
 
-<div id="modalOverlay" class="modal-overlay">
-  <div id="modal" class="modal"></div>
+<!-- =======================================================
+     MODAL NOTIFICACIONES
+     ======================================================= -->
+
+<div id="notificationsModal" class="modal"
+     onclick="closeModalOutside(event,'notificationsModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Notificaciones</h2>
+
+            <button class="close"
+                    onclick="closeModal('notificationsModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="chat-list">
+
+            <div class="chat-card">
+                <img class="chat-avatar"
+                     src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80">
+                <div class="chat-text">
+                    <strong>Laura se ha conectado contigo</strong>
+                    <span>Hace 4 minutos</span>
+                </div>
+                <span>❤️</span>
+            </div>
+
+            <div class="chat-card">
+                <img class="chat-avatar"
+                     src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80">
+                <div class="chat-text">
+                    <strong>Mario te ha enviado un mensaje</strong>
+                    <span>¿Te apuntas al plan?</span>
+                </div>
+                <span>💬</span>
+            </div>
+
+            <div class="chat-card">
+                <img class="chat-avatar"
+                     src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80">
+                <div class="chat-text">
+                    <strong>Nuevo plan cerca de ti</strong>
+                    <span>Running por la playa</span>
+                </div>
+                <span>📅</span>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
-<!-- CHAT WINDOW -->
 
-<div id="chatWindow" class="chat-window">
+<!-- =======================================================
+     MODAL IA
+     ======================================================= -->
 
-  <div class="chat-header">
+<div id="aiModal" class="modal"
+     onclick="closeModalOutside(event,'aiModal')">
 
-    <button class="icon-btn" onclick="closeChat()">←</button>
+    <div class="modal-box">
 
-    <img id="chatAvatar" class="avatar">
+        <div class="modal-head">
 
-    <strong id="chatName"></strong>
+            <h2>🤖 NEXO IA</h2>
 
-  </div>
+            <button class="close"
+                    onclick="closeModal('aiModal')">
+                ✕
+            </button>
 
-  <div id="chatMessages" class="chat-messages"></div>
+        </div>
 
-  <form class="chat-input" onsubmit="sendMessage(event)">
+        <p style="color:var(--text-soft)">
+            Cuéntame qué quieres hacer y NEXO puede ayudarte
+            a encontrar personas, planes o grupos adecuados.
+        </p>
 
-    <input
-      id="messageInput"
-      placeholder="Escribe un mensaje..."
-      autocomplete="off"
-    >
+        <div class="form-group">
 
-    <button class="primary-btn">
-      Enviar
-    </button>
+            <textarea id="aiInput"
+                      class="form-textarea"
+                      placeholder="Ej.: Quiero encontrar gente para correr el sábado..."></textarea>
 
-  </form>
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="runAI()">
+            ✨ Buscar con NEXO IA
+        </button>
+
+        <div id="aiResult"
+             style="margin-top:15px"></div>
+
+    </div>
 
 </div>
+
+
+<!-- =======================================================
+     MODAL QR
+     ======================================================= -->
+
+<div id="qrModal" class="modal"
+     onclick="closeModalOutside(event,'qrModal')">
+
+    <div class="modal-box"
+         style="text-align:center">
+
+        <div class="modal-head">
+
+            <h2>📱 NEXO QR</h2>
+
+            <button class="close"
+                    onclick="closeModal('qrModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="qrFake"
+             style="
+                width:210px;
+                height:210px;
+                margin:10px auto 20px;
+                border-radius:20px;
+                background:
+                repeating-linear-gradient(
+                    45deg,
+                    #111 0 5px,
+                    white 5px 10px
+                );
+                border:12px solid white;
+                box-shadow:0 5px 25px rgba(0,0,0,.15);
+             ">
+        </div>
+
+        <strong>Comparte tu perfil NEXO</strong>
+
+        <p style="color:var(--text-soft);font-size:12px">
+            El lector QR real se conectará posteriormente
+            al sistema de usuarios de NEXO.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL CREAR PLAN
+     ======================================================= -->
+
+<div id="createPlanModal" class="modal"
+     onclick="closeModalOutside(event,'createPlanModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Crear plan</h2>
+
+            <button class="close"
+                    onclick="closeModal('createPlanModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+            <label>Título</label>
+            <input id="newPlanTitle"
+                   class="form-input"
+                   placeholder="Ej.: Running por la playa">
+        </div>
+
+        <div class="form-group">
+            <label>Categoría</label>
+            <select id="newPlanCategory"
+                    class="form-select">
+                <option>Deporte</option>
+                <option>Música</option>
+                <option>Gastronomía</option>
+                <option>Viajes</option>
+                <option>Cine</option>
+                <option>Gaming</option>
+                <option>Otros</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Fecha</label>
+            <input id="newPlanDate"
+                   class="form-input"
+                   type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Lugar</label>
+            <input id="newPlanLocation"
+                   class="form-input"
+                   placeholder="Ej.: Tarragona">
+        </div>
+
+        <div class="form-group">
+            <label>Descripción</label>
+            <textarea id="newPlanDescription"
+                      class="form-textarea"
+                      placeholder="Describe tu plan..."></textarea>
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="createPlan()">
+            Crear plan
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL CREAR GRUPO
+     ======================================================= -->
+
+<div id="createGroupModal" class="modal"
+     onclick="closeModalOutside(event,'createGroupModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Crear grupo</h2>
+
+            <button class="close"
+                    onclick="closeModal('createGroupModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Nombre</label>
+
+            <input id="newGroupName"
+                   class="form-input"
+                   placeholder="Ej.: Running Tarragona">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Descripción</label>
+
+            <textarea id="newGroupDescription"
+                      class="form-textarea"
+                      placeholder="¿De qué trata el grupo?"></textarea>
+
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="createGroup()">
+            Crear grupo
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL EDITAR PERFIL
+     ======================================================= -->
+
+<div id="editProfileModal" class="modal"
+     onclick="closeModalOutside(event,'editProfileModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Editar perfil</h2>
+
+            <button class="close"
+                    onclick="closeModal('editProfileModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Nombre</label>
+
+            <input id="editName"
+                   class="form-input"
+                   value="Fernando">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Biografía</label>
+
+            <textarea id="editBio"
+                      class="form-textarea">Me gusta conocer gente, hacer deporte, descubrir sitios nuevos y crear buenos planes.</textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Foto de perfil</label>
+
+            <input id="editPhoto"
+                   class="form-input"
+                   placeholder="URL de imagen">
+
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="saveProfile()">
+            Guardar cambios
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL PRIVACIDAD
+     ======================================================= -->
+
+<div id="privacyModal" class="modal"
+     onclick="closeModalOutside(event,'privacyModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>🔐 Privacidad</h2>
+
+            <button class="close"
+                    onclick="closeModal('privacyModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="settings-list">
+
+            <div class="setting">
+
+                <div class="setting-icon">📍</div>
+
+                <div class="setting-text">
+                    <strong>Mostrar distancia</strong>
+                    <span>Permite mostrar una distancia aproximada</span>
+                </div>
+
+                <div class="toggle on"></div>
+
+            </div>
+
+            <div class="setting">
+
+                <div class="setting-icon">👁️</div>
+
+                <div class="setting-text">
+                    <strong>Perfil visible</strong>
+                    <span>Otros usuarios podrán descubrirte</span>
+                </div>
+
+                <div class="toggle on"></div>
+
+            </div>
+
+            <div class="setting">
+
+                <div class="setting-icon">💬</div>
+
+                <div class="setting-text">
+                    <strong>Mensajes</strong>
+                    <span>Permitir mensajes de nuevas conexiones</span>
+                </div>
+
+                <div class="toggle on"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL IDIOMA
+     ======================================================= -->
+
+<div id="languageModal" class="modal"
+     onclick="closeModalOutside(event,'languageModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>🌐 Idioma</h2>
+
+            <button class="close"
+                    onclick="closeModal('languageModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <button class="setting"
+                onclick="selectLanguage('Español')">
+            🇪🇸 Español
+        </button>
+
+        <br>
+
+        <button class="setting"
+                onclick="selectLanguage('Català')">
+            🟨 Català
+        </button>
+
+        <br>
+
+        <button class="setting"
+                onclick="selectLanguage('English')">
+            🇬🇧 English
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL AYUDA
+     ======================================================= -->
+
+<div id="helpModal" class="modal"
+     onclick="closeModalOutside(event,'helpModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>❓ Ayuda</h2>
+
+            <button class="close"
+                    onclick="closeModal('helpModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="setting">
+            <div class="setting-icon">🤝</div>
+            <div class="setting-text">
+                <strong>¿Cómo conecto?</strong>
+                <span>Busca personas y pulsa Conectar.</span>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="setting">
+            <div class="setting-icon">📅</div>
+            <div class="setting-text">
+                <strong>¿Cómo creo un plan?</strong>
+                <span>En Planes pulsa el botón Crear.</span>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="setting">
+            <div class="setting-icon">💬</div>
+            <div class="setting-text">
+                <strong>¿Cómo envío mensajes?</strong>
+                <span>Abre una conversación desde Chat.</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL LEGAL
+     ======================================================= -->
+
+<div id="legalModal" class="modal"
+     onclick="closeModalOutside(event,'legalModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>⚖️ Información legal</h2>
+
+            <button class="close"
+                    onclick="closeModal('legalModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <h3>Términos de uso</h3>
+
+        <p style="color:var(--text-soft);line-height:1.5;font-size:13px">
+            NEXO es una plataforma diseñada para facilitar
+            conexiones entre personas y la creación de planes
+            y comunidades.
+        </p>
+
+        <h3>Privacidad</h3>
+
+        <p style="color:var(--text-soft);line-height:1.5;font-size:13px">
+            La versión de demostración guarda determinados datos
+            únicamente en el almacenamiento local del dispositivo.
+        </p>
+
+        <p style="font-size:11px;color:var(--text-soft)">
+            Antes de publicar NEXO será necesario incorporar
+            los textos legales definitivos y el sistema real
+            de protección de datos.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL COMPARTIR
+     ======================================================= -->
+
+<div id="shareProfileModal" class="modal"
+     onclick="closeModalOutside(event,'shareProfileModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Compartir perfil</h2>
+
+            <button class="close"
+                    onclick="closeModal('shareProfileModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="shareProfile()">
+            🔗 Compartir NEXO
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =======================================================
+     MODAL FILTROS
+     ======================================================= -->
+
+<div id="filterModal" class="modal"
+     onclick="closeModalOutside(event,'filterModal')">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h2>Filtros</h2>
+
+            <button class="close"
+                    onclick="closeModal('filterModal')">
+                ✕
+            </button>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Distancia máxima</label>
+
+            <select class="form-select">
+                <option>5 km</option>
+                <option>10 km</option>
+                <option>25 km</option>
+                <option>50 km</option>
+                <option>Cualquier distancia</option>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Interés principal</label>
+
+            <select class="form-select">
+                <option>Cualquiera</option>
+                <option>Deporte</option>
+                <option>Música</option>
+                <option>Gaming</option>
+                <option>Viajes</option>
+                <option>Cine</option>
+            </select>
+
+        </div>
+
+        <button class="btn btn-primary"
+                style="width:100%"
+                onclick="closeModal('filterModal');toast('Filtros aplicados')">
+            Aplicar filtros
+        </button>
+
+    </div>
+
+</div>
+
 
 <script>
+/* =========================================================
+   NEXO — JAVASCRIPT PRINCIPAL
+   ========================================================= */
 
-/* =====================================================
-   STORAGE
-===================================================== */
+const IMAGE = {
+    people: [
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=700&q=85",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=85",
+        "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=700&q=85",
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85"
+    ],
 
-const STORAGE = {
-  profile:"nexo_profile",
-  plans:"nexo_plans",
-  groups:"nexo_groups",
-  chats:"nexo_chats",
-  preferences:"nexo_preferences",
-  notifications:"nexo_notifications",
-  theme:"nexo_theme"
+    categories: [
+        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=85"
+    ],
+
+    plans: [
+        "https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85",
+        "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=1000&q=85"
+    ],
+
+    groups: [
+        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=85",
+        "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=600&q=85"
+    ]
 };
 
 
-/* =====================================================
-   HELPERS
-===================================================== */
+const people = [
 
-function load(key,fallback){
-
-  try{
-    const data=localStorage.getItem(key);
-
-    return data
-      ? JSON.parse(data)
-      : fallback;
-
-  }catch(e){
-
-    return fallback;
-
-  }
-
-}
-
-function save(key,value){
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(value)
-  );
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-let profile=load(
-  STORAGE.profile,
-  {
-    name:"Fernando",
-    bio:"Explorando NEXO.",
-    avatar:"https://i.pravatar.cc/300?img=12",
-    interests:["Running","Música","Gym"]
-  }
-);
-
-
-/* =====================================================
-   PLANS
-===================================================== */
-
-let plans=load(
-  STORAGE.plans,
-  [
     {
-      id:1,
-      title:"Running 5K",
-      category:"Running",
-      time:"19:00",
-      location:"Tarragona",
-      people:4,
-      description:"Salida tranquila de 5 km.",
-      image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80"
+        id: 1,
+        name: "Laura",
+        age: 28,
+        city: "Tarragona",
+        distance: "2,4 km",
+        image: IMAGE.people[0],
+        verified: true,
+        online: true,
+        interests: ["Deporte","Música","Viajes"],
+        bio: "Running, música y descubrir sitios nuevos."
     },
 
     {
-      id:2,
-      title:"Café y conocer gente",
-      category:"Cafés",
-      time:"18:30",
-      location:"Tarragona",
-      people:3,
-      description:"Tomar algo y conocer gente nueva.",
-      image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80"
+        id: 2,
+        name: "Mario",
+        age: 31,
+        city: "Salou",
+        distance: "5,1 km",
+        image: IMAGE.people[1],
+        verified: true,
+        online: true,
+        interests: ["Gaming","Cine","Motor"],
+        bio: "Gaming, motor y buen cine."
     },
 
     {
-      id:3,
-      title:"Partido de fútbol",
-      category:"Deportes",
-      time:"20:30",
-      location:"Tarragona",
-      people:10,
-      description:"Partido amistoso.",
-      image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
+        id: 3,
+        name: "Sofía",
+        age: 27,
+        city: "Reus",
+        distance: "8,2 km",
+        image: IMAGE.people[2],
+        verified: false,
+        online: false,
+        interests: ["Viajes","Gastronomía","Cine"],
+        bio: "Viajar, comer bien y conocer gente."
+    },
+
+    {
+        id: 4,
+        name: "David",
+        age: 30,
+        city: "Tarragona",
+        distance: "3,7 km",
+        image: IMAGE.people[3],
+        verified: true,
+        online: true,
+        interests: ["Deporte","Motor","Gaming"],
+        bio: "Gym, coches y videojuegos."
+    },
+
+    {
+        id: 5,
+        name: "Andrea",
+        age: 29,
+        city: "Vila-seca",
+        distance: "4,2 km",
+        image: IMAGE.people[4],
+        verified: true,
+        online: true,
+        interests: ["Música","Viajes","Arte"],
+        bio: "Música, viajes y fotografía."
+    },
+
+    {
+        id: 6,
+        name: "Alex",
+        age: 32,
+        city: "Cambrils",
+        distance: "11 km",
+        image: IMAGE.people[5],
+        verified: false,
+        online: true,
+        interests: ["Gastronomía","Deporte","Cine"],
+        bio: "Deporte, restaurantes y películas."
     }
-  ]
-);
+
+];
 
 
-/* =====================================================
-   GROUPS
-===================================================== */
+const categories = [
+    {name:"Deporte",emoji:"🏃",image:IMAGE.categories[0]},
+    {name:"Música",emoji:"🎵",image:IMAGE.categories[1]},
+    {name:"Gaming",emoji:"🎮",image:IMAGE.categories[2]},
+    {name:"Viajes",emoji:"✈️",image:IMAGE.categories[3]},
+    {name:"Cine",emoji:"🎬",image:IMAGE.categories[4]},
+    {name:"Gastronomía",emoji:"🍔",image:IMAGE.categories[5]},
+    {name:"Playa",emoji:"🏖️",image:IMAGE.categories[6]},
+    {name:"Eventos",emoji:"🎉",image:IMAGE.categories[7]}
+];
 
-let groups=load(
-  STORAGE.groups,
-  [
+
+let plans = [
+
     {
-      id:1,
-      name:"Running Tarragona",
-      category:"Deporte",
-      members:12438,
-      description:"Entrena y conoce gente.",
-      emoji:"🏃"
+        id:1,
+        title:"Running por la playa",
+        category:"Deporte",
+        location:"La Pineda",
+        date:"Sábado · 10:00",
+        participants:8,
+        image:IMAGE.plans[0],
+        description:"Ruta tranquila para correr, conocer gente y terminar tomando algo.",
+        joined:false
     },
 
     {
-      id:2,
-      name:"Planes Tarragona",
-      category:"Ocio",
-      members:3200,
-      description:"Planes espontáneos y actividades.",
-      emoji:"🎉"
+        id:2,
+        title:"Tarde de música",
+        category:"Música",
+        location:"Tarragona",
+        date:"Viernes · 21:00",
+        participants:15,
+        image:IMAGE.plans[1],
+        description:"Una tarde para escuchar música, charlar y conocer gente nueva.",
+        joined:false
     },
 
     {
-      id:3,
-      name:"Música y conciertos",
-      category:"Música",
-      members:1870,
-      description:"Conciertos, festivales y música.",
-      emoji:"🎵"
+        id:3,
+        title:"Cena NEXO",
+        category:"Gastronomía",
+        location:"Tarragona",
+        date:"Sábado · 20:30",
+        participants:12,
+        image:IMAGE.plans[2],
+        description:"Cena entre personas de la comunidad.",
+        joined:false
     },
 
     {
-      id:4,
-      name:"Gym Tarragona",
-      category:"Fitness",
-      members:2450,
-      description:"Entrena acompañado.",
-      emoji:"🏋️"
+        id:4,
+        title:"Excursión de fin de semana",
+        category:"Viajes",
+        location:"Costa Dorada",
+        date:"Domingo · 09:00",
+        participants:10,
+        image:IMAGE.plans[3],
+        description:"Naturaleza, paseo y buen ambiente.",
+        joined:false
+    },
+
+    {
+        id:5,
+        title:"Cine + cena",
+        category:"Cine",
+        location:"Tarragona",
+        date:"Jueves · 19:30",
+        participants:7,
+        image:IMAGE.plans[4],
+        description:"Película y después algo para comer.",
+        joined:false
     }
-  ]
-);
+
+];
 
 
-/* =====================================================
-   CHATS
-===================================================== */
+let groups = [
 
-let chats=load(
-  STORAGE.chats,
-  [
     {
-      id:1,
-      name:"Laura",
-      avatar:"https://i.pravatar.cc/100?img=47",
-      messages:[
-        {
-          from:"them",
-          text:"¡Hola! 👋"
-        }
-      ]
+        id:1,
+        name:"Running Tarragona",
+        description:"Personas que salen a correr por Tarragona y alrededores.",
+        members:126,
+        image:IMAGE.groups[0]
     },
 
     {
-      id:2,
-      name:"Carlos",
-      avatar:"https://i.pravatar.cc/100?img=13",
-      messages:[
-        {
-          from:"them",
-          text:"¿Te apuntas al running?"
-        }
-      ]
-    }
-  ]
-);
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-let notifications=load(
-  STORAGE.notifications,
-  [
-    {
-      id:1,
-      text:"Laura quiere conectar contigo.",
-      read:false
+        id:2,
+        name:"Planes de fin de semana",
+        description:"Organizamos planes para conocer gente nueva.",
+        members:248,
+        image:IMAGE.groups[1]
     },
+
     {
-      id:2,
-      text:"Hay 3 planes nuevos cerca de ti.",
-      read:false
+        id:3,
+        name:"Gaming NEXO",
+        description:"Videojuegos, partidas online y quedadas.",
+        members:94,
+        image:IMAGE.groups[2]
+    },
+
+    {
+        id:4,
+        name:"Música y eventos",
+        description:"Conciertos, festivales, sesiones y eventos.",
+        members:182,
+        image:IMAGE.groups[3]
     }
-  ]
-);
+
+];
 
 
-/* =====================================================
-   PREFERENCES
-===================================================== */
+const chats = [
 
-let preferences=load(
-  STORAGE.preferences,
-  {
-    distance:25,
-    notifications:true,
-    showOnline:true,
-    privateProfile:false,
-    discoverable:true,
-    language:"Español"
-  }
-);
+    {
+        id:1,
+        name:"Laura",
+        message:"¿Te apuntas al running?",
+        time:"12:42",
+        unread:2,
+        image:IMAGE.people[0]
+    },
+
+    {
+        id:2,
+        name:"Mario",
+        message:"He creado un nuevo plan.",
+        time:"11:30",
+        unread:1,
+        image:IMAGE.people[1]
+    },
+
+    {
+        id:3,
+        name:"Sofía",
+        message:"¡Perfecto! Nos vemos allí.",
+        time:"Ayer",
+        unread:0,
+        image:IMAGE.people[2]
+    },
+
+    {
+        id:4,
+        name:"Andrea",
+        message:"¿Conoces algún sitio para cenar?",
+        time:"Ayer",
+        unread:0,
+        image:IMAGE.people[4]
+    }
+
+];
 
 
-let currentChat=null;
-<script>
+let peopleFilter = "Todos";
+let planFilter = "Todos";
 
-/* =====================================================
-   NEXO PRO — MOTOR PRINCIPAL
-===================================================== */
 
-const $ = id => document.getElementById(id);
+/* =========================================================
+   NAVEGACIÓN
+   ========================================================= */
 
-function save(key,value){
-  localStorage.setItem(key,JSON.stringify(value));
-}
+function navigate(page) {
 
-function escapeHTML(text){
-  return String(text ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-}
+    document.querySelectorAll(".page")
+        .forEach(el => el.classList.remove("active"));
 
-function showScreen(screen){
+    const target = document.getElementById("page-" + page);
 
-  document.querySelectorAll(".screen")
-    .forEach(s => s.classList.remove("active"));
+    if (!target) return;
 
-  const target=$(screen);
-
-  if(target){
     target.classList.add("active");
-  }
 
-  document.querySelectorAll(".nav-btn")
-    .forEach(btn=>{
-      btn.classList.toggle(
-        "active",
-        btn.dataset.nav===screen
-      );
+    document.querySelectorAll(".nav-item")
+        .forEach(el => el.classList.remove("active"));
+
+    const nav = document.querySelector(
+        `.nav-item[data-page="${page}"]`
+    );
+
+    if (nav) nav.classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+    if (page === "home") {
+        renderHome();
+    }
 
-  renderAll();
+    if (page === "connect") {
+        renderPeople();
+    }
+
+    if (page === "plans") {
+        renderPlans();
+    }
+
+    if (page === "explore") {
+        renderExplore();
+    }
+
+    if (page === "groups") {
+        renderGroups();
+    }
+
+    if (page === "chat") {
+        renderChats();
+    }
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MODALES
-===================================================== */
+   ========================================================= */
 
-function openModal(content){
+function openModal(id) {
 
-  $("modal").innerHTML=content;
+    const modal = document.getElementById(id);
 
-  $("modalOverlay")
-    .classList.add("active");
-
-}
-
-function closeModal(){
-
-  $("modalOverlay")
-    .classList.remove("active");
-
-}
-
-$("modalOverlay").addEventListener("click",e=>{
-  if(e.target.id==="modalOverlay"){
-    closeModal();
-  }
-});
-
-
-/* =====================================================
-   AVATAR
-===================================================== */
-
-function avatarURL(seed){
-
-  return `https://i.pravatar.cc/300?img=${seed}`;
-}
-
-
-/* =====================================================
-   QUICK ACTIONS
-===================================================== */
-
-const quickActions=[
-
-  ["🏃","Running","Running"],
-  ["🏋️","Gym","Gym"],
-  ["⚽","Fútbol","Deportes"],
-  ["🎬","Cine","Cine"],
-  ["☕","Café","Cafés"],
-  ["🎵","Música","Música"],
-  ["🎮","Gaming","Gaming"],
-  ["🚴","Ciclismo","Ciclismo"],
-  ["🏖️","Playa","Playa"],
-  ["🍔","Comida","Comida"],
-  ["🎉","Fiesta","Ocio"],
-  ["✈️","Viajes","Viajes"]
-];
-
-function renderQuickActions(){
-
-  $("quickActions").innerHTML=
-    quickActions
-      .map(item=>`
-        <button
-          class="quick-card"
-          onclick="filterCategory('${item[2]}')"
-        >
-          <span class="emoji">${item[0]}</span>
-          ${item[1]}
-        </button>
-      `)
-      .join("");
+    if (modal) {
+        modal.classList.add("show");
+        document.body.style.overflow = "hidden";
+    }
 
 }
 
 
-/* =====================================================
+function closeModal(id) {
+
+    const modal = document.getElementById(id);
+
+    if (modal) {
+        modal.classList.remove("show");
+        document.body.style.overflow = "";
+    }
+
+}
+
+
+function closeModalOutside(event,id) {
+
+    if (event.target.id === id) {
+        closeModal(id);
+    }
+
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+function toast(message) {
+
+    const container =
+        document.getElementById("toastContainer");
+
+    const item =
+        document.createElement("div");
+
+    item.className = "toast";
+
+    item.textContent = message;
+
+    container.appendChild(item);
+
+    setTimeout(() => {
+
+        item.style.opacity = "0";
+
+        setTimeout(() => item.remove(),250);
+
+    },2600);
+
+}
+
+
+/* =========================================================
    CATEGORÍAS
-===================================================== */
+   ========================================================= */
 
-function renderCategories(){
+function categoryHTML(category) {
 
-  $("categories").innerHTML=
-    quickActions
-      .map(item=>`
-        <button
-          class="quick-card"
-          onclick="filterCategory('${item[2]}')"
-        >
-          <span class="emoji">${item[0]}</span>
-          ${item[1]}
-        </button>
-      `)
-      .join("");
+    return `
+        <button class="category-card"
+                onclick="filterCategory('${category.name}')">
 
-}
+            <img src="${category.image}"
+                 alt="${category.name}"
+                 loading="lazy">
 
-function filterCategory(category){
+            <div class="category-info">
 
-  showScreen("explore");
+                <strong>
+                    ${category.emoji}
+                    ${category.name}
+                </strong>
 
-  $("exploreSearch").value=category;
-
-  globalSearch(category);
-
-}
-
-
-/* =====================================================
-   PLAN CARD
-===================================================== */
-
-function planCard(plan){
-
-  return `
-    <div class="card">
-
-      <div style="
-        display:flex;
-        gap:12px;
-        align-items:flex-start;
-      ">
-
-        <div class="now-icon">
-          ${getCategoryEmoji(plan.category)}
-        </div>
-
-        <div style="flex:1">
-
-          <h3>${escapeHTML(plan.title)}</h3>
-
-          <div class="muted">
-            📍 ${escapeHTML(plan.location)}
-            · ⏰ ${escapeHTML(plan.time)}
-          </div>
-
-          <p>
-            ${escapeHTML(plan.description)}
-          </p>
-
-          <div class="chips">
-
-            <span class="chip">
-              ${escapeHTML(plan.category)}
-            </span>
-
-            <span class="chip">
-              👥 ${plan.people}
-            </span>
-
-          </div>
-
-          <div style="
-            display:flex;
-            gap:8px;
-            margin-top:12px;
-          ">
-
-            <button
-              class="primary-btn"
-              onclick="joinPlan(${plan.id})"
-            >
-              Me interesa
-            </button>
-
-            <button
-              class="secondary-btn"
-              onclick="viewPlan(${plan.id})"
-            >
-              Ver
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  `;
-
-}
-
-function getCategoryEmoji(category){
-
-  const found=quickActions.find(
-    x=>x[2]===category
-  );
-
-  return found ? found[0] : "📌";
-
-}
-
-
-/* =====================================================
-   NOW
-===================================================== */
-
-function renderNow(){
-
-  const html=plans
-    .slice(0,6)
-    .map(plan=>planCard(plan))
-    .join("");
-
-  $("nowContainer").innerHTML=
-    html ||
-    `<div class="card">No hay planes todavía.</div>`;
-
-  $("nowHome").innerHTML=
-    plans
-      .slice(0,3)
-      .map(plan=>planCard(plan))
-      .join("");
-
-}
-
-
-/* =====================================================
-   RECOMENDADOS
-===================================================== */
-
-function renderRecommended(){
-
-  const recommended=plans.filter(plan=>
-    profile.interests.some(
-      interest =>
-        plan.category
-          .toLowerCase()
-          .includes(
-            interest.toLowerCase()
-          )
-    )
-  );
-
-  const list=
-    recommended.length
-      ? recommended
-      : plans;
-
-  $("recommended").innerHTML=
-    list
-      .slice(0,4)
-      .map(plan=>planCard(plan))
-      .join("");
-
-}
-
-
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-const people=[
-
-  {
-    id:1,
-    name:"Laura",
-    age:27,
-    city:"Tarragona",
-    avatar:avatarURL(47),
-    compatibility:96,
-    interests:["Running","Música","Viajes"],
-    bio:"Me gusta entrenar, viajar y descubrir sitios nuevos."
-  },
-
-  {
-    id:2,
-    name:"Alex",
-    age:30,
-    city:"Reus",
-    avatar:avatarURL(12),
-    compatibility:91,
-    interests:["Gym","Fútbol","Música"],
-    bio:"Siempre buscando nuevos planes y gente con buen rollo."
-  },
-
-  {
-    id:3,
-    name:"Marta",
-    age:28,
-    city:"Tarragona",
-    avatar:avatarURL(32),
-    compatibility:88,
-    interests:["Cine","Café","Viajes"],
-    bio:"Café, cine y escapadas."
-  },
-
-  {
-    id:4,
-    name:"David",
-    age:31,
-    city:"Salou",
-    avatar:avatarURL(13),
-    compatibility:85,
-    interests:["Gym","Playa","Running"],
-    bio:"Deporte y playa."
-  },
-
-  {
-    id:5,
-    name:"Claudia",
-    age:26,
-    city:"Vila-seca",
-    avatar:avatarURL(44),
-    compatibility:83,
-    interests:["Música","Fiesta","Viajes"],
-    bio:"Siempre preparada para un buen plan."
-  },
-
-  {
-    id:6,
-    name:"Sergio",
-    age:32,
-    city:"Tarragona",
-    avatar:avatarURL(51),
-    compatibility:81,
-    interests:["Gaming","Gym","Fútbol"],
-    bio:"Gaming y deporte."
-  }
-];
-
-function personCard(person){
-
-  return `
-    <div class="card">
-
-      <div class="person">
-
-        <img
-          class="avatar"
-          src="${person.avatar}"
-          alt="${escapeHTML(person.name)}"
-        >
-
-        <div class="person-main">
-
-          <h3>
-            ${escapeHTML(person.name)}, ${person.age}
-          </h3>
-
-          <div class="muted">
-            📍 ${escapeHTML(person.city)}
-          </div>
-
-          <div class="compatibility">
-            ${person.compatibility}% compatible
-          </div>
-
-        </div>
-
-      </div>
-
-      <p class="muted">
-        ${escapeHTML(person.bio)}
-      </p>
-
-      <div class="chips">
-
-        ${person.interests
-          .map(i=>`
-            <span class="chip">${escapeHTML(i)}</span>
-          `)
-          .join("")}
-
-      </div>
-
-      <div style="
-        display:flex;
-        gap:8px;
-        margin-top:12px;
-      ">
-
-        <button
-          class="primary-btn"
-          onclick="connectPerson(${person.id})"
-        >
-          🤝 Conectar
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="openPerson(${person.id})"
-        >
-          Ver perfil
-        </button>
-
-      </div>
-
-    </div>
-  `;
-
-}
-
-function renderPeople(){
-
-  $("peopleContainer").innerHTML=
-    people
-      .map(personCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   GROUPS
-===================================================== */
-
-function groupCard(group){
-
-  return `
-    <div class="card">
-
-      <div style="
-        display:flex;
-        gap:12px;
-        align-items:center;
-      ">
-
-        <div class="now-icon">
-          👥
-        </div>
-
-        <div style="flex:1">
-
-          <h3>
-            ${escapeHTML(group.name)}
-          </h3>
-
-          <div class="muted">
-            ${escapeHTML(group.category)}
-            · ${group.members.toLocaleString("es-ES")} miembros
-          </div>
-
-        </div>
-
-      </div>
-
-      <p>
-        ${escapeHTML(group.description)}
-      </p>
-
-      <button
-        class="primary-btn"
-        onclick="joinGroup(${group.id})"
-      >
-        Unirme
-      </button>
-
-    </div>
-  `;
-
-}
-
-function renderGroups(){
-
-  $("groupsContainer").innerHTML=
-    groups
-      .map(groupCard)
-      .join("");
-
-}
-
-
-/* =====================================================
-   CHATS
-===================================================== */
-
-function renderChats(){
-
-  $("chatsContainer").innerHTML=
-    chats.map(chat=>`
-
-      <div
-        class="card"
-        style="cursor:pointer"
-        onclick="openChat(${chat.id})"
-      >
-
-        <div class="person">
-
-          <img
-            class="avatar"
-            src="${chat.avatar}"
-          >
-
-          <div class="person-main">
-
-            <h3>
-              ${escapeHTML(chat.name)}
-            </h3>
-
-            <div class="muted">
-
-              ${
-                chat.messages.length
-                  ? escapeHTML(
-                      chat.messages[
-                        chat.messages.length-1
-                      ].text
-                    )
-                  : "Sin mensajes"
-              }
+                <span>
+                    Descubrir
+                </span>
 
             </div>
 
-          </div>
-
-        </div>
-
-      </div>
-
-    `).join("");
+        </button>
+    `;
 
 }
 
 
-/* =====================================================
-   OPEN CHAT
-===================================================== */
+function renderCategories() {
 
-function openChat(id){
-
-  const chat=chats.find(c=>c.id===id);
-
-  if(!chat) return;
-
-  currentChat=chat;
-
-  $("chatName").textContent=chat.name;
-
-  $("chatAvatar").src=chat.avatar;
-
-  renderMessages();
-
-  $("chatWindow")
-    .classList.add("active");
-
-}
-
-function closeChat(){
-
-  $("chatWindow")
-    .classList.remove("active");
-
-  currentChat=null;
-
-}
-
-function renderMessages(){
-
-  if(!currentChat) return;
-
-  $("chatMessages").innerHTML=
-    currentChat.messages
-      .map(message=>`
-
-        <div
-          class="message ${message.from==="me"?"me":""}"
-        >
-          ${escapeHTML(message.text)}
-        </div>
-
-      `)
-      .join("");
-
-  $("chatMessages").scrollTop=
-    $("chatMessages").scrollHeight;
-
-}
-
-function sendMessage(event){
-
-  event.preventDefault();
-
-  if(!currentChat) return;
-
-  const input=$("messageInput");
-
-  const text=input.value.trim();
-
-  if(!text) return;
-
-  currentChat.messages.push({
-    from:"me",
-    text
-  });
-
-  save(STORAGE.chats,chats);
-
-  input.value="";
-
-  renderMessages();
-
-  setTimeout(()=>{
-
-    if(!currentChat) return;
-
-    currentChat.messages.push({
-      from:"them",
-      text:"¡Perfecto! 👍"
-    });
-
-    save(STORAGE.chats,chats);
-
-    renderMessages();
-
-  },700);
-
-}
-
-
-/* =====================================================
-   SEARCH
-===================================================== */
-
-function globalSearch(value){
-
-  const query=value
-    .trim()
-    .toLowerCase();
-
-  if(!query){
-
-    $("exploreResults").innerHTML=
-      plans
-        .map(planCard)
+    const html =
+        categories
+        .map(categoryHTML)
         .join("");
 
-    return;
+    document.getElementById("categories").innerHTML = html;
 
-  }
+    document.getElementById("exploreCategories")
+        .innerHTML = html;
 
-  const filteredPlans=plans.filter(plan=>
-    [
-      plan.title,
-      plan.category,
-      plan.location,
-      plan.description
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(query)
-  );
+}
 
-  const filteredPeople=people.filter(person=>
-    [
-      person.name,
-      person.city,
-      person.bio,
-      ...person.interests
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(query)
-  );
 
-  const filteredGroups=groups.filter(group=>
-    [
-      group.name,
-      group.category,
-      group.description
-    ]
-      .join(" ")
-      .toLowerCase()
-      .includes(query)
-  );
+/* =========================================================
+   PERSONAS
+   ========================================================= */
 
-  $("exploreResults").innerHTML=`
+function personHTML(person) {
 
-    <h2>📅 Planes</h2>
+    const tags =
+        person.interests
+        .map(x => `<span class="tag">${x}</span>`)
+        .join("");
 
-    ${
-      filteredPlans.length
-        ? filteredPlans.map(planCard).join("")
-        : `<div class="card">No hay planes.</div>`
+    return `
+        <article class="person-card">
+
+            <div class="person-photo">
+
+                <img
+                    src="${person.image}"
+                    alt="${person.name}"
+                    loading="lazy">
+
+                ${person.online
+                    ? `<span class="online-dot"></span>`
+                    : ""}
+
+                <div class="photo-gradient"></div>
+
+                <span class="person-distance">
+                    📍 ${person.distance}
+                </span>
+
+            </div>
+
+            <div class="person-body">
+
+                <div class="person-name">
+
+                    <h3>
+                        ${person.name}, ${person.age}
+                    </h3>
+
+                    ${person.verified
+                        ? `<span class="verified">✓</span>`
+                        : ""}
+
+                </div>
+
+                <div class="person-meta">
+                    ${person.city}
+                </div>
+
+                <div class="tags">
+                    ${tags}
+                </div>
+
+                <div class="person-actions">
+
+                    <button class="small-btn btn-primary"
+                            onclick="connectPerson(${person.id})">
+                        🤝 Conectar
+                    </button>
+
+                    <button class="small-btn btn-soft"
+                            onclick="likePerson(${person.id})">
+                        ❤️
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+
+}
+
+
+function renderPeople() {
+
+    const search =
+        (document.getElementById("peopleSearch")?.value || "")
+        .toLowerCase()
+        .trim();
+
+    let result = people.filter(person => {
+
+        const matchesFilter =
+            peopleFilter === "Todos" ||
+            person.interests.includes(peopleFilter);
+
+        const matchesSearch =
+            !search ||
+            person.name.toLowerCase().includes(search) ||
+            person.city.toLowerCase().includes(search) ||
+            person.interests.some(
+                x => x.toLowerCase().includes(search)
+            );
+
+        return matchesFilter && matchesSearch;
+
+    });
+
+    const html =
+        result.length
+            ? result.map(personHTML).join("")
+            : `
+                <div class="empty"
+                     style="grid-column:1/-1">
+                    <div class="empty-icon">🔎</div>
+                    <strong>No hemos encontrado personas</strong>
+                    <p>Prueba otro filtro o búsqueda.</p>
+                </div>
+            `;
+
+    const connect =
+        document.getElementById("connectPeople");
+
+    if (connect) {
+        connect.innerHTML = html;
     }
 
-    <h2>🤝 Personas</h2>
+}
 
-    ${
-      filteredPeople.length
-        ? filteredPeople.map(personCard).join("")
-        : `<div class="card">No hay personas.</div>`
+
+function renderHomePeople() {
+
+    document.getElementById("homePeople")
+        .innerHTML =
+        people.slice(0,4)
+        .map(personHTML)
+        .join("");
+
+}
+
+
+function connectPerson(id) {
+
+    const person =
+        people.find(x => x.id === id);
+
+    if (!person) return;
+
+    toast(`🤝 Te has conectado con ${person.name}`);
+
+    saveData();
+
+}
+
+
+function likePerson(id) {
+
+    const person =
+        people.find(x => x.id === id);
+
+    if (!person) return;
+
+    toast(`❤️ Has añadido a ${person.name} a favoritos`);
+
+}
+
+
+/* =========================================================
+   FILTRO PERSONAS
+   ========================================================= */
+
+function setPeopleFilter(button,value) {
+
+    peopleFilter = value;
+
+    document.querySelectorAll(
+        "#page-connect .filter"
+    ).forEach(el => el.classList.remove("active"));
+
+    button.classList.add("active");
+
+    renderPeople();
+
+}
+
+
+function filterCategory(category) {
+
+    peopleFilter = category;
+
+    navigate("connect");
+
+    document.querySelectorAll(
+        "#page-connect .filter"
+    ).forEach(el => {
+
+        el.classList.toggle(
+            "active",
+            el.textContent.trim().includes(category)
+        );
+
+    });
+
+    renderPeople();
+
+}
+
+
+/* =========================================================
+   PLANES
+   ========================================================= */
+
+function planHTML(plan) {
+
+    return `
+        <article class="plan-card">
+
+            <div class="plan-image">
+
+                <img
+                    src="${plan.image}"
+                    alt="${plan.title}"
+                    loading="lazy">
+
+                <span class="plan-category">
+                    ${plan.category}
+                </span>
+
+                <button class="plan-favorite"
+                        onclick="favoritePlan(${plan.id})">
+                    ${plan.favorite ? "❤️" : "♡"}
+                </button>
+
+            </div>
+
+            <div class="plan-body">
+
+                <div class="plan-title">
+                    ${plan.title}
+                </div>
+
+                <div class="plan-description">
+                    ${plan.description}
+                </div>
+
+                <div class="plan-details">
+
+                    <div class="plan-detail">
+                        📍
+                        <strong>${plan.location}</strong>
+                    </div>
+
+                    <div class="plan-detail">
+                        📅
+                        <strong>${plan.date}</strong>
+                    </div>
+
+                </div>
+
+                <div class="plan-footer">
+
+                    <div class="avatar-stack">
+
+                        <img src="${IMAGE.people[0]}">
+
+                        <img src="${IMAGE.people[1]}">
+
+                        <img src="${IMAGE.people[2]}">
+
+                    </div>
+
+                    <span style="font-size:11px;color:var(--text-soft)">
+                        👥 ${plan.participants} personas
+                    </span>
+
+                    <button class="btn ${plan.joined ? "btn-green" : "btn-primary"}"
+                            onclick="joinPlan(${plan.id})">
+                        ${plan.joined ? "✓ Unido" : "Unirme"}
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
+
+}
+
+
+function renderPlans() {
+
+    const search =
+        (document.getElementById("planSearch")?.value || "")
+        .toLowerCase()
+        .trim();
+
+    const result =
+        plans.filter(plan => {
+
+            const categoryMatch =
+                planFilter === "Todos" ||
+                plan.category === planFilter;
+
+            const searchMatch =
+                !search ||
+                plan.title.toLowerCase().includes(search) ||
+                plan.location.toLowerCase().includes(search) ||
+                plan.category.toLowerCase().includes(search);
+
+            return categoryMatch && searchMatch;
+
+        });
+
+    document.getElementById("plansContainer")
+        .innerHTML =
+        result.length
+            ? result.map(planHTML).join("")
+            : `
+                <div class="empty">
+                    <div class="empty-icon">📅</div>
+                    <strong>No hay planes</strong>
+                    <p>Prueba otro filtro.</p>
+                </div>
+            `;
+
+}
+
+
+function renderHomePlans() {
+
+    document.getElementById("homePlans")
+        .innerHTML =
+        plans.slice(0,2)
+        .map(planHTML)
+        .join("");
+
+}
+
+
+function setPlanFilter(button,value) {
+
+    planFilter = value;
+
+    document.querySelectorAll(
+        "#page-plans .filter"
+    ).forEach(el =>
+        el.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    renderPlans();
+
+}
+
+
+function joinPlan(id) {
+
+    const plan =
+        plans.find(x => x.id === id);
+
+    if (!plan) return;
+
+    plan.joined = !plan.joined;
+
+    if (plan.joined) {
+
+        plan.participants++;
+
+        toast(`📅 Te has unido a "${plan.title}"`);
+
+    } else {
+
+        plan.participants--;
+
+        toast("Has salido del plan");
+
     }
 
-    <h2>👥 Grupos</h2>
+    saveData();
+    renderPlans();
+    renderHomePlans();
 
-    ${
-      filteredGroups.length
-        ? filteredGroups.map(groupCard).join("")
-        : `<div class="card">No hay grupos.</div>`
+}
+
+
+function favoritePlan(id) {
+
+    const plan =
+        plans.find(x => x.id === id);
+
+    if (!plan) return;
+
+    plan.favorite = !plan.favorite;
+
+    toast(
+        plan.favorite
+            ? "❤️ Plan guardado"
+            : "Plan eliminado de favoritos"
+    );
+
+    saveData();
+    renderPlans();
+
+}
+
+
+/* =========================================================
+   CREAR PLAN
+   ========================================================= */
+
+function createPlan() {
+
+    const title =
+        document.getElementById("newPlanTitle").value.trim();
+
+    const category =
+        document.getElementById("newPlanCategory").value;
+
+    const date =
+        document.getElementById("newPlanDate").value;
+
+    const location =
+        document.getElementById("newPlanLocation").value.trim();
+
+    const description =
+        document.getElementById("newPlanDescription").value.trim();
+
+    if (!title || !location) {
+
+        toast("Completa el título y el lugar");
+
+        return;
+
     }
 
-  `;
+    const newPlan = {
 
-}
+        id: Date.now(),
 
-function searchHome(value){
+        title,
 
-  if(value.trim().length>1){
+        category,
 
-    showScreen("explore");
+        location,
 
-    $("exploreSearch").value=value;
+        date: date || "Fecha por definir",
 
-    globalSearch(value);
+        participants:1,
 
-  }
+        image:
+            IMAGE.plans[
+                Math.floor(
+                    Math.random() * IMAGE.plans.length
+                )
+            ],
 
-}
+        description:
+            description ||
+            "Nuevo plan creado en NEXO.",
 
-
-/* =====================================================
-   FILTERS
-===================================================== */
-
-function setExploreFilter(filter){
-
-  if(filter==="Todos"){
-
-    $("exploreSearch").value="";
-
-    globalSearch("");
-
-    return;
-
-  }
-
-  $("exploreSearch").value=filter;
-
-  globalSearch(filter);
-
-}
-
-
-/* =====================================================
-   PLAN CREATOR
-===================================================== */
-
-function openPlanCreator(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Crear plan</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="createPlan(event)">
-
-      <div class="form-group">
-
-        <label>Nombre</label>
-
-        <input
-          id="planTitle"
-          required
-          placeholder="Ej. Running 5K"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Categoría</label>
-
-        <select id="planCategory">
-
-          ${quickActions.map(x=>
-            `<option>${x[2]}</option>`
-          ).join("")}
-
-        </select>
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Hora</label>
-
-        <input
-          id="planTime"
-          type="time"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Lugar</label>
-
-        <input
-          id="planLocation"
-          value="Tarragona"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Descripción</label>
-
-        <textarea
-          id="planDescription"
-          placeholder="Explica el plan..."
-        ></textarea>
-
-      </div>
-
-      <button
-        class="primary-btn"
-        style="width:100%"
-      >
-        Crear plan
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-function createPlan(event){
-
-  event.preventDefault();
-
-  const newPlan={
-
-    id:Date.now(),
-
-    title:$("planTitle").value,
-
-    category:$("planCategory").value,
-
-    time:$("planTime").value,
-
-    location:$("planLocation").value,
-
-    people:1,
-
-    description:$("planDescription").value ||
-      "Nuevo plan creado en NEXO."
-
-  };
-
-  plans.unshift(newPlan);
-
-  save(STORAGE.plans,plans);
-
-  closeModal();
-
-  renderAll();
-
-}
-
-
-/* =====================================================
-   JOIN PLAN
-===================================================== */
-
-function joinPlan(id){
-
-  const plan=plans.find(p=>p.id===id);
-
-  if(!plan) return;
-
-  plan.people++;
-
-  save(STORAGE.plans,plans);
-
-  alert(`Te has apuntado a "${plan.title}" 🎉`);
-
-  renderAll();
-
-}
-
-
-/* =====================================================
-   VIEW PLAN
-===================================================== */
-
-function viewPlan(id){
-
-  const plan=plans.find(p=>p.id===id);
-
-  if(!plan) return;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>
-        ${getCategoryEmoji(plan.category)}
-        ${escapeHTML(plan.title)}
-      </h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <p>
-        ${escapeHTML(plan.description)}
-      </p>
-
-      <p>📍 ${escapeHTML(plan.location)}</p>
-
-      <p>⏰ ${escapeHTML(plan.time)}</p>
-
-      <p>👥 ${plan.people} personas</p>
-
-    </div>
-
-    <button
-      class="primary-btn"
-      style="width:100%"
-      onclick="joinPlan(${plan.id});closeModal()"
-    >
-      Quiero participar
-    </button>
-
-  `);
-
-}
-
-
-/* =====================================================
-   GROUP CREATOR
-===================================================== */
-
-function openGroupCreator(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Crear grupo</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="createGroup(event)">
-
-      <div class="form-group">
-
-        <label>Nombre</label>
-
-        <input
-          id="groupName"
-          required
-          placeholder="Ej. Running Tarragona"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Categoría</label>
-
-        <input
-          id="groupCategory"
-          required
-          placeholder="Deporte"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Descripción</label>
-
-        <textarea
-          id="groupDescription"
-        ></textarea>
-
-      </div>
-
-      <button
-        class="primary-btn"
-        style="width:100%"
-      >
-        Crear grupo
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-function createGroup(event){
-
-  event.preventDefault();
-
-  groups.unshift({
-
-    id:Date.now(),
-
-    name:$("groupName").value,
-
-    category:$("groupCategory").value,
-
-    members:1,
-
-    description:
-      $("groupDescription").value ||
-      "Nuevo grupo de NEXO."
-
-  });
-
-  save(STORAGE.groups,groups);
-
-  closeModal();
-
-  renderAll();
-
-}
-
-function joinGroup(id){
-
-  const group=groups.find(g=>g.id===id);
-
-  if(!group) return;
-
-  group.members++;
-
-  save(STORAGE.groups,groups);
-
-  alert(`Te has unido a ${group.name} 👥`);
-
-  renderAll();
-
-}
-
-
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-function connectPerson(id){
-
-  const person=people.find(p=>p.id===id);
-
-  if(!person) return;
-
-  let existing=chats.find(
-    c=>c.name===person.name
-  );
-
-  if(!existing){
-
-    existing={
-
-      id:Date.now(),
-
-      name:person.name,
-
-      avatar:person.avatar,
-
-      messages:[
-        {
-          from:"them",
-          text:"¡Hola! 👋"
-        }
-      ]
+        joined:true
 
     };
 
-    chats.unshift(existing);
+    plans.unshift(newPlan);
 
-    save(STORAGE.chats,chats);
+    saveData();
 
-  }
+    closeModal("createPlanModal");
 
-  openChat(existing.id);
+    renderPlans();
 
-}
+    renderHomePlans();
 
-function openPerson(id){
-
-  const person=people.find(p=>p.id===id);
-
-  if(!person) return;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Perfil</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div style="text-align:center">
-
-      <img
-        src="${person.avatar}"
-        style="
-          width:100px;
-          height:100px;
-          border-radius:50%;
-          object-fit:cover;
-        "
-      >
-
-      <h2>
-        ${escapeHTML(person.name)}, ${person.age}
-      </h2>
-
-      <div class="muted">
-        📍 ${escapeHTML(person.city)}
-      </div>
-
-      <p>
-        ${escapeHTML(person.bio)}
-      </p>
-
-      <div class="chips">
-
-        ${person.interests.map(i=>
-          `<span class="chip">${escapeHTML(i)}</span>`
-        ).join("")}
-
-      </div>
-
-      <br>
-
-      <button
-        class="primary-btn"
-        onclick="connectPerson(${person.id})"
-      >
-        🤝 Conectar
-      </button>
-
-    </div>
-
-  `);
+    toast("🎉 Plan creado correctamente");
 
 }
 
 
-/* =====================================================
-   PROFILE
-===================================================== */
+/* =========================================================
+   GRUPOS
+   ========================================================= */
 
-function renderProfile(){
+function groupHTML(group) {
 
-  $("myAvatar").src=profile.avatar;
+    return `
+        <article class="group-card">
 
-  $("myName").textContent=profile.name;
+            <img
+                src="${group.image}"
+                alt="${group.name}"
+                loading="lazy">
 
-  $("myBio").textContent=profile.bio;
+            <div class="group-content">
 
-  $("myChips").innerHTML=
-    profile.interests
-      .map(i=>
-        `<span class="chip">${escapeHTML(i)}</span>`
-      )
-      .join("");
+                <h3>
+                    ${group.name}
+                </h3>
 
-}
+                <p>
+                    ${group.description}
+                </p>
 
-function openProfileEditor(){
+                <div class="group-members">
+                    👥 ${group.members} miembros
+                </div>
 
-  openModal(`
+                <button class="btn btn-soft"
+                        style="margin-top:9px;width:100%;height:38px"
+                        onclick="joinGroup(${group.id})">
+                    Unirme
+                </button>
 
-    <div class="modal-header">
+            </div>
 
-      <h2>Editar perfil</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="saveProfile(event)">
-
-      <div class="form-group">
-
-        <label>Nombre</label>
-
-        <input
-          id="editName"
-          value="${escapeHTML(profile.name)}"
-          required
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Biografía</label>
-
-        <textarea
-          id="editBio"
-        >${escapeHTML(profile.bio)}</textarea>
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Foto</label>
-
-        <input
-          id="editAvatar"
-          value="${escapeHTML(profile.avatar)}"
-        >
-
-      </div>
-
-      <div class="form-group">
-
-        <label>Intereses separados por comas</label>
-
-        <input
-          id="editInterests"
-          value="${profile.interests.join(", ")}"
-        >
-
-      </div>
-
-      <button
-        class="primary-btn"
-        style="width:100%"
-      >
-        Guardar cambios
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-function saveProfile(event){
-
-  event.preventDefault();
-
-  profile={
-
-    ...profile,
-
-    name:$("editName").value,
-
-    bio:$("editBio").value,
-
-    avatar:$("editAvatar").value ||
-      avatarURL(12),
-
-    interests:$("editInterests")
-      .value
-      .split(",")
-      .map(x=>x.trim())
-      .filter(Boolean)
-
-  };
-
-  save(STORAGE.profile,profile);
-
-  closeModal();
-
-  renderAll();
-
-}
-
-
-/* =====================================================
-   SEARCH HEADER
-===================================================== */
-
-function openSearch(){
-
-  showScreen("explore");
-
-  setTimeout(()=>{
-    $("exploreSearch").focus();
-  },100);
-
-}
-
-
-/* =====================================================
-   AI
-===================================================== */
-
-function openAI(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>✦ NEXO AI</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="ai-box">
-
-      <div class="ai-title">
-        ¿Qué quieres hacer?
-      </div>
-
-      <p>
-        Puedo ayudarte a encontrar ideas
-        para planes según tus intereses.
-      </p>
-
-      <button
-        class="secondary-btn"
-        onclick="aiSuggestion('deporte')"
-      >
-        🏃 Quiero hacer deporte
-      </button>
-
-      <button
-        class="secondary-btn"
-        onclick="aiSuggestion('social')"
-      >
-        🤝 Quiero conocer gente
-      </button>
-
-      <button
-        class="secondary-btn"
-        onclick="aiSuggestion('ocio')"
-      >
-        🎉 Quiero un plan
-      </button>
-
-      <div
-        id="aiResult"
-        style="margin-top:15px"
-      ></div>
-
-    </div>
-
-  `);
-
-}
-
-function aiSuggestion(type){
-
-  const suggestions={
-
-    deporte:
-      "Te recomiendo Running 5K, Gym o Ciclismo.",
-
-    social:
-      "Prueba Conecta y busca personas con intereses similares.",
-
-    ocio:
-      "Mira Cafés, Cine, Música y Planes para hoy."
-
-  };
-
-  $("aiResult").innerHTML=`
-    <div class="card">
-      ✦ ${suggestions[type]}
-    </div>
-  `;
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function openNotifications(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>🔔 Notificaciones</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    ${
-      notifications.length
-        ? notifications.map(n=>
-            `<div class="card">${escapeHTML(n)}</div>`
-          ).join("")
-        : `
-          <div class="card">
-            No tienes notificaciones nuevas.
-          </div>
-        `
-    }
-
-  `);
-
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function openSettings(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>⚙️ Ajustes</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>Apariencia</h3>
-
-      <button
-        class="secondary-btn"
-        onclick="toggleDarkMode()"
-      >
-        🌙 Cambiar modo
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>Notificaciones</h3>
-
-      <button
-        class="secondary-btn"
-        onclick="toggleNotifications()"
-      >
-        🔔 ${
-          preferences.notifications
-            ? "Desactivar"
-            : "Activar"
-        }
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <h3>Privacidad</h3>
-
-      <button
-        class="secondary-btn"
-        onclick="togglePrivacy()"
-      >
-        🔒 Perfil ${
-          preferences.privateProfile
-            ? "privado"
-            : "público"
-        }
-      </button>
-
-    </div>
-
-  `);
-
-}
-
-function toggleNotifications(){
-
-  preferences.notifications=
-    !preferences.notifications;
-
-  save(
-    STORAGE.preferences,
-    preferences
-  );
-
-  openSettings();
-
-}
-
-function togglePrivacy(){
-
-  preferences.privateProfile=
-    !preferences.privateProfile;
-
-  save(
-    STORAGE.preferences,
-    preferences
-  );
-
-  openSettings();
-
-}
-
-
-/* =====================================================
-   DARK MODE
-===================================================== */
-
-function toggleDarkMode(){
-
-  document.body.classList.toggle("dark");
-
-  const dark=
-    document.body.classList.contains("dark");
-
-  localStorage.setItem(
-    STORAGE.theme,
-    dark ? "dark" : "light"
-  );
-
-}
-
-function loadTheme(){
-
-  if(
-    localStorage.getItem(STORAGE.theme)
-      ==="dark"
-  ){
-
-    document.body.classList.add("dark");
-
-  }
-
-}
-
-
-/* =====================================================
-   QR / CONECTA
-===================================================== */
-
-function openQR(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>📷 Mi Conecta</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div style="
-      text-align:center;
-      padding:20px;
-    ">
-
-      <div style="
-        width:220px;
-        height:220px;
-        margin:auto;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        background:white;
-        border-radius:20px;
-        font-size:120px;
-      ">
-        ▦
-      </div>
-
-      <h3>
-        ${escapeHTML(profile.name)}
-      </h3>
-
-      <p class="muted">
-        Escanea este código para conectar.
-      </p>
-
-    </div>
-
-  `);
-
-}
-
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-
-function renderCalendar(){
-
-  const grid=$("calendarGrid");
-
-  if(!grid) return;
-
-  let html="";
-
-  for(let day=1;day<=31;day++){
-
-    const hasEvent=
-      plans.some(
-        p=>day%5===0
-      );
-
-    html+=`
-      <div
-        class="calendar-day ${hasEvent?"event":""}"
-      >
-        ${day}
-      </div>
+        </article>
     `;
 
-  }
+}
 
-  grid.innerHTML=html;
 
-  $("calendarEvents").innerHTML=
-    plans.slice(0,5)
-      .map(plan=>planCard(plan))
-      .join("");
+function renderGroups(search="") {
+
+    search =
+        search.toLowerCase().trim();
+
+    const result =
+        groups.filter(group =>
+            !search ||
+            group.name.toLowerCase().includes(search) ||
+            group.description.toLowerCase().includes(search)
+        );
+
+    document.getElementById("groupsContainer")
+        .innerHTML =
+        result.map(groupHTML).join("");
 
 }
 
 
-/* =====================================================
-   MAP
-===================================================== */
+function joinGroup(id) {
 
-function renderMap(){
+    const group =
+        groups.find(x => x.id === id);
 
-  $("mapResults").innerHTML=`
+    if (!group) return;
 
-    <div class="card">
+    group.members++;
 
-      <h3>📍 Actividad cerca de ti</h3>
+    toast(`👥 Te has unido a ${group.name}`);
 
-      <p class="muted">
-        4 planes · 6 personas · 2 grupos
-      </p>
+    saveData();
 
-      <button
-        class="primary-btn"
-        onclick="showScreen('explore')"
-      >
-        Explorar
-      </button>
-
-    </div>
-
-  `;
+    renderGroups();
 
 }
 
 
-/* =====================================================
-   RENDER TODO
-===================================================== */
+/* =========================================================
+   CREAR GRUPO
+   ========================================================= */
 
-function renderAll(){
+function createGroup() {
 
-  renderQuickActions();
+    const name =
+        document.getElementById("newGroupName")
+            .value.trim();
 
-  renderCategories();
+    const description =
+        document.getElementById("newGroupDescription")
+            .value.trim();
 
-  renderNow();
+    if (!name) {
 
-  renderRecommended();
+        toast("Escribe un nombre para el grupo");
 
-  renderPeople();
+        return;
 
-  renderGroups();
-
-  renderChats();
-
-  renderProfile();
-
-  renderCalendar();
-
-  renderMap();
-
-}
-
-
-/* =====================================================
-   HOME SEARCH ENTER
-===================================================== */
-
-document.addEventListener("keydown",e=>{
-
-  if(
-    e.key==="Enter" &&
-    document.activeElement &&
-    document.activeElement.matches(
-      ".search-box input"
-    )
-  ){
-
-    globalSearch(
-      document.activeElement.value
-    );
-
-  }
-
-});
-
-
-/* =====================================================
-   INIT
-===================================================== */
-
-loadTheme();
-
-renderAll();
-
-</script>
-
-let exploreVisible=6;
-
-let peopleVisible=6;
-
-
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-const people=[
-
-  {
-    id:1,
-    name:"Laura",
-    age:29,
-    city:"Tarragona",
-    compatibility:96,
-    bio:"Running, música y planes espontáneos.",
-    interests:["Running","Música","Viajes"],
-    avatar:"https://i.pravatar.cc/300?img=47"
-  },
-
-  {
-    id:2,
-    name:"Carlos",
-    age:31,
-    city:"Tarragona",
-    compatibility:93,
-    bio:"Gym, fútbol y conocer gente.",
-    interests:["Gym","Fútbol","Fitness"],
-    avatar:"https://i.pravatar.cc/300?img=13"
-  },
-
-  {
-    id:3,
-    name:"Marta",
-    age:28,
-    city:"Reus",
-    compatibility:91,
-    bio:"Me encanta descubrir sitios nuevos.",
-    interests:["Cafés","Viajes","Cine"],
-    avatar:"https://i.pravatar.cc/300?img=32"
-  },
-
-  {
-    id:4,
-    name:"David",
-    age:30,
-    city:"Tarragona",
-    compatibility:89,
-    bio:"Deporte, tecnología y playa.",
-    interests:["Gym","Playa","Tecnología"],
-    avatar:"https://i.pravatar.cc/300?img=11"
-  },
-
-  {
-    id:5,
-    name:"Ana",
-    age:27,
-    city:"Salou",
-    compatibility:87,
-    bio:"Planes tranquilos y buena música.",
-    interests:["Música","Cine","Ocio"],
-    avatar:"https://i.pravatar.cc/300?img=44"
-  },
-
-  {
-    id:6,
-    name:"Sergio",
-    age:32,
-    city:"Vila-seca",
-    compatibility:85,
-    bio:"Running y rutas al aire libre.",
-    interests:["Running","Naturaleza","Bici"],
-    avatar:"https://i.pravatar.cc/300?img=68"
-  },
-
-  {
-    id:7,
-    name:"Claudia",
-    age:26,
-    city:"Tarragona",
-    compatibility:84,
-    bio:"Viajes, gastronomía y fotografía.",
-    interests:["Viajes","Comida","Fotos"],
-    avatar:"https://i.pravatar.cc/300?img=49"
-  },
-
-  {
-    id:8,
-    name:"Pablo",
-    age:30,
-    city:"Reus",
-    compatibility:82,
-    bio:"Fútbol, videojuegos y amigos.",
-    interests:["Fútbol","Gaming","Ocio"],
-    avatar:"https://i.pravatar.cc/300?img=59"
-  }
-];
-
-
-/* =====================================================
-   EXPLORE DATA
-===================================================== */
-
-const exploreData=[
-
-  {
-    type:"plan",
-    title:"Running al atardecer",
-    description:"5 km por la zona de Tarragona.",
-    category:"Running",
-    location:"Tarragona",
-    time:"19:00",
-    image:"https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Café & charla",
-    description:"Conoce gente nueva tomando algo.",
-    category:"Cafés",
-    location:"Tarragona",
-    time:"18:30",
-    image:"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Partido de fútbol",
-    description:"Partido amistoso abierto a todos.",
-    category:"Deporte",
-    location:"Tarragona",
-    time:"20:30",
-    image:"https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Tarde de playa",
-    description:"Playa, música y buen ambiente.",
-    category:"Playa",
-    location:"Salou",
-    time:"17:00",
-    image:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Cine esta noche",
-    description:"Película y algo para picar después.",
-    category:"Cine",
-    location:"Tarragona",
-    time:"21:00",
-    image:"https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Ruta en bici",
-    description:"Ruta tranquila para todos los niveles.",
-    category:"Bici",
-    location:"Vila-seca",
-    time:"18:00",
-    image:"https://images.unsplash.com/photo-1502744688674-c619d1586c9e?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Concierto",
-    description:"Música en directo y buen ambiente.",
-    category:"Música",
-    location:"Tarragona",
-    time:"22:00",
-    image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Gym en grupo",
-    description:"Entrenamiento acompañado.",
-    category:"Fitness",
-    location:"Tarragona",
-    time:"19:30",
-    image:"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Fotografía urbana",
-    description:"Salimos a hacer fotos por la ciudad.",
-    category:"Fotografía",
-    location:"Tarragona",
-    time:"18:45",
-    image:"https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=900&q=80"
-  },
-
-  {
-    type:"plan",
-    title:"Cena y conocer gente",
-    description:"Cena informal entre gente de NEXO.",
-    category:"Gastronomía",
-    location:"Tarragona",
-    time:"21:30",
-    image:"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=80"
-  }
-];
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-function showScreen(id){
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(screen=>{
-      screen.classList.remove("active");
-    });
-
-  const target=document.getElementById(id);
-
-  if(target){
-    target.classList.add("active");
-  }
-
-  document
-    .querySelectorAll(".nav-btn")
-    .forEach(btn=>{
-      btn.classList.toggle(
-        "active",
-        btn.dataset.nav===id
-      );
-    });
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  if(id==="home") renderHome();
-  if(id==="connect") renderPeople();
-  if(id==="plans") renderPlans();
-  if(id==="calendar") renderCalendar();
-  if(id==="chat") renderChats();
-  if(id==="groups") renderGroups();
-  if(id==="now") renderNow();
-  if(id==="map") renderMap();
-  if(id==="profile") renderProfile();
-  if(id==="explore") renderExplore();
-}
-
-
-/* =====================================================
-   QUICK ACTIONS
-===================================================== */
-
-function renderQuickActions(){
-
-  const actions=[
-    ["🏃","Running","Running"],
-    ["🏋️","Gym","Fitness"],
-    ["⚽","Fútbol","Deporte"],
-    ["🎵","Música","Música"],
-    ["☕","Café","Cafés"],
-    ["🎬","Cine","Cine"],
-    ["🏖️","Playa","Playa"],
-    ["🚲","Bici","Bici"],
-    ["🎮","Gaming","Gaming"],
-    ["✈️","Viajes","Viajes"],
-    ["🍔","Comida","Gastronomía"],
-    ["📸","Fotos","Fotografía"]
-  ];
-
-  document.getElementById("quickActions").innerHTML=
-    actions.map(a=>`
-      <button
-        class="quick-card"
-        onclick="filterCategory('${a[2]}')"
-      >
-        <span class="emoji">${a[0]}</span>
-        ${a[1]}
-      </button>
-    `).join("");
-}
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-function renderHome(){
-
-  renderQuickActions();
-
-  const now=plans.slice(0,3);
-
-  document.getElementById("nowHome").innerHTML=
-    now.map(plan=>`
-      <div class="card">
-
-        <div class="row">
-
-          <div class="group-icon">
-            ${getCategoryEmoji(plan.category)}
-          </div>
-
-          <div class="grow">
-
-            <h3>${escapeHTML(plan.title)}</h3>
-
-            <div class="muted">
-              ${escapeHTML(plan.description)}
-            </div>
-
-            <div class="plan-info">
-              <span class="info-pill">🕐 ${escapeHTML(plan.time)}</span>
-              <span class="info-pill">📍 ${escapeHTML(plan.location)}</span>
-            </div>
-
-          </div>
-
-          <button
-            class="secondary-btn"
-            onclick="openPlan(${plan.id})"
-          >
-            Ver
-          </button>
-
-        </div>
-
-      </div>
-    `).join("");
-
-  renderRecommended();
-
-}
-
-
-/* =====================================================
-   RECOMMENDED
-===================================================== */
-
-function renderRecommended(){
-
-  const data=exploreData.slice(0,6);
-
-  document.getElementById("recommended").innerHTML=
-    data.map((item,index)=>visualCard(item,index)).join("");
-
-}
-
-
-/* =====================================================
-   VISUAL CARD
-===================================================== */
-
-function visualCard(item,index){
-
-  return `
-    <article class="visual-card">
-
-      <img
-        class="visual-image"
-        src="${item.image}"
-        alt="${escapeHTML(item.title)}"
-        loading="lazy"
-      >
-
-      <div class="visual-content">
-
-        <h3>${escapeHTML(item.title)}</h3>
-
-        <p>
-          ${escapeHTML(item.description)}
-        </p>
-
-        <div class="visual-meta">
-          <span>📍 ${escapeHTML(item.location)}</span>
-          <span>🕐 ${escapeHTML(item.time)}</span>
-        </div>
-
-        <button
-          class="secondary-btn"
-          style="width:100%;margin-top:10px"
-          onclick="openExploreItem(${index})"
-        >
-          Ver
-        </button>
-
-      </div>
-
-    </article>
-  `;
-
-}
-
-
-/* =====================================================
-   EXPLORE
-===================================================== */
-
-function renderExplore(){
-
-  renderCategories();
-
-  const data=exploreData.slice(
-    0,
-    exploreVisible
-  );
-
-  document.getElementById("exploreResults").innerHTML=
-    data.map((item,index)=>
-      visualCard(item,index)
-    ).join("");
-
-  document.getElementById("exploreMore").innerHTML=
-    exploreVisible<exploreData.length
-      ? `<button class="primary-btn" onclick="loadMoreExplore()">
-           ➕ Ver más
-         </button>`
-      : `<div class="muted">Has visto todo 🎉</div>`;
-
-}
-
-
-/* =====================================================
-   CATEGORIES
-===================================================== */
-
-function renderCategories(){
-
-  const categories=[
-    ["🏃","Running"],
-    ["🏋️","Fitness"],
-    ["⚽","Deporte"],
-    ["🎵","Música"],
-    ["🎬","Cine"],
-    ["☕","Cafés"],
-    ["🏖️","Playa"],
-    ["🚲","Bici"]
-  ];
-
-  document.getElementById("categories").innerHTML=
-    categories.map(c=>`
-      <button
-        class="quick-card"
-        onclick="filterCategory('${c[1]}')"
-      >
-        <span class="emoji">${c[0]}</span>
-        ${c[1]}
-      </button>
-    `).join("");
-
-}
-
-
-/* =====================================================
-   LOAD MORE
-===================================================== */
-
-function loadMoreExplore(){
-
-  exploreVisible+=4;
-
-  renderExplore();
-
-}
-
-
-/* =====================================================
-   FILTER
-===================================================== */
-
-function filterCategory(category){
-
-  showScreen("explore");
-
-  const filtered=exploreData.filter(item=>
-    item.category
-      .toLowerCase()
-      .includes(category.toLowerCase())
-  );
-
-  if(!filtered.length){
-    document.getElementById("exploreResults").innerHTML=
-      `<div class="card">
-        No hay resultados todavía.
-      </div>`;
-    return;
-  }
-
-  document.getElementById("exploreResults").innerHTML=
-    filtered.map((item,index)=>
-      visualCard(item,index)
-    ).join("");
-
-  document.getElementById("exploreMore").innerHTML="";
-}
-
-
-function setExploreFilter(filter){
-
-  if(filter==="Todos"){
-    exploreVisible=6;
-    renderExplore();
-    return;
-  }
-
-  const filtered=exploreData.filter(item=>{
-
-    if(filter==="Cerca"){
-      return item.location.includes("Tarragona") ||
-             item.location.includes("Vila-seca") ||
-             item.location.includes("Salou");
     }
 
-    if(filter==="Online"){
-      return item.description
-        .toLowerCase()
-        .includes("online");
-    }
+    groups.unshift({
 
-    return true;
+        id:Date.now(),
 
-  });
+        name,
 
-  document.getElementById("exploreResults").innerHTML=
-    filtered.map((item,index)=>
-      visualCard(item,index)
-    ).join("");
+        description:
+            description ||
+            "Nuevo grupo de la comunidad NEXO.",
 
-  document.getElementById("exploreMore").innerHTML="";
-}
+        members:1,
 
+        image:
+            IMAGE.groups[
+                Math.floor(
+                    Math.random() * IMAGE.groups.length
+                )
+            ]
 
-/* =====================================================
-   SEARCH
-===================================================== */
+    });
 
-function searchHome(value){
+    saveData();
 
-  const q=value.trim().toLowerCase();
+    closeModal("createGroupModal");
 
-  if(!q){
-    renderHome();
-    return;
-  }
+    renderGroups();
 
-  showScreen("explore");
-
-  const results=exploreData.filter(item=>
-    JSON.stringify(item)
-      .toLowerCase()
-      .includes(q)
-  );
-
-  document.getElementById("exploreResults").innerHTML=
-    results.length
-      ? results.map((item,index)=>
-          visualCard(item,index)
-        ).join("")
-      : `<div class="card">
-           No hemos encontrado nada.
-         </div>`;
-
-  document.getElementById("exploreMore").innerHTML="";
-}
-
-
-function globalSearch(value){
-
-  const q=value.trim().toLowerCase();
-
-  const results=exploreData.filter(item=>
-    JSON.stringify(item)
-      .toLowerCase()
-      .includes(q)
-  );
-
-  document.getElementById("exploreResults").innerHTML=
-    results.length
-      ? results.map((item,index)=>
-          visualCard(item,index)
-        ).join("")
-      : `<div class="card">
-          <strong>Sin resultados</strong>
-          <div class="muted">
-            Prueba con otra búsqueda.
-          </div>
-        </div>`;
+    toast("👥 Grupo creado");
 
 }
 
 
-/* =====================================================
-   PEOPLE
-===================================================== */
-
-function renderPeople(){
-
-  const data=people.slice(
-    0,
-    peopleVisible
-  );
-
-  document.getElementById("peopleContainer").innerHTML=
-    data.map(person=>`
-
-      <div class="card">
-
-        <div class="person">
-
-          <img
-            class="avatar"
-            src="${person.avatar}"
-            alt="${escapeHTML(person.name)}"
-            loading="lazy"
-          >
-
-          <div class="person-main">
-
-            <h3>
-              ${escapeHTML(person.name)}, ${person.age}
-            </h3>
-
-            <div class="muted">
-              📍 ${escapeHTML(person.city)}
-            </div>
-
-            <div class="compatibility">
-              ${person.compatibility}% compatible
-            </div>
-
-          </div>
-
-          <button
-            class="secondary-btn"
-            onclick="connectPerson(${person.id})"
-          >
-            Conectar
-          </button>
-
-        </div>
-
-        <p class="muted">
-          ${escapeHTML(person.bio)}
-        </p>
-
-        <div class="chips">
-
-          ${person.interests.map(i=>
-            `<span class="chip">${escapeHTML(i)}</span>`
-          ).join("")}
-
-        </div>
-
-      </div>
-
-    `).join("");
-
-  document.getElementById("peopleMore").innerHTML=
-    peopleVisible<people.length
-      ? `<button class="primary-btn" onclick="loadMorePeople()">
-           ➕ Ver más personas
-         </button>`
-      : `<div class="muted">
-           Has visto todas las recomendaciones.
-         </div>`;
-
-}
-
-
-function loadMorePeople(){
-
-  peopleVisible+=2;
-
-  renderPeople();
-
-}
-
-
-function connectPerson(id){
-
-  const person=people.find(p=>p.id===id);
-
-  if(!person)return;
-
-  notifications.unshift({
-    id:Date.now(),
-    text:`Has enviado una conexión a ${person.name}.`,
-    read:false
-  });
-
-  save(
-    STORAGE.notifications,
-    notifications
-  );
-
-  showToast(
-    `Conexión enviada a ${person.name} 🤝`
-  );
-
-}
-
-
-/* =====================================================
-   PLANS
-===================================================== */
-
-function renderPlans(){
-
-  document.getElementById("plansContainer").innerHTML=
-    plans.map(plan=>`
-
-      <div class="card">
-
-        <img
-          class="plan-image"
-          src="${plan.image || defaultPlanImage()}"
-          alt="${escapeHTML(plan.title)}"
-          loading="lazy"
-        >
-
-        <h3>${escapeHTML(plan.title)}</h3>
-
-        <div class="muted">
-          ${escapeHTML(plan.description)}
-        </div>
-
-        <div class="plan-info">
-          <span class="info-pill">
-            ${getCategoryEmoji(plan.category)}
-            ${escapeHTML(plan.category)}
-          </span>
-
-          <span class="info-pill">
-            🕐 ${escapeHTML(plan.time)}
-          </span>
-
-          <span class="info-pill">
-            📍 ${escapeHTML(plan.location)}
-          </span>
-
-          <span class="info-pill">
-            👥 ${plan.people}
-          </span>
-        </div>
-
-        <button
-          class="primary-btn"
-          onclick="openPlan(${plan.id})"
-        >
-          Ver plan
-        </button>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-function openPlan(id){
-
-  const plan=plans.find(p=>p.id===id);
-
-  if(!plan)return;
-
-  openModal(`
-
-    <div class="modal-header">
-      <h2>${escapeHTML(plan.title)}</h2>
-      <button class="close-btn" onclick="closeModal()">✕</button>
-    </div>
-
-    <img
-      class="plan-image"
-      src="${plan.image || defaultPlanImage()}"
-      alt=""
-    >
-
-    <p>
-      ${escapeHTML(plan.description)}
-    </p>
-
-    <div class="plan-info">
-
-      <span class="info-pill">
-        ${getCategoryEmoji(plan.category)}
-        ${escapeHTML(plan.category)}
-      </span>
-
-      <span class="info-pill">
-        🕐 ${escapeHTML(plan.time)}
-      </span>
-
-      <span class="info-pill">
-        📍 ${escapeHTML(plan.location)}
-      </span>
-
-      <span class="info-pill">
-        👥 ${plan.people}
-      </span>
-
-    </div>
-
-    <button
-      class="primary-btn"
-      style="width:100%;margin-top:12px"
-      onclick="joinPlan(${plan.id})"
-    >
-      🙋 Apuntarme
-    </button>
-
-  `);
-
-}
-
-
-function joinPlan(id){
-
-  const plan=plans.find(p=>p.id===id);
-
-  if(!plan)return;
-
-  plan.people++;
-
-  save(STORAGE.plans,plans);
-
-  closeModal();
-
-  renderPlans();
-
-  showToast("Te has apuntado al plan 🎉");
-
-}
-
-
-/* =====================================================
-   PLAN CREATOR
-===================================================== */
-
-function openPlanCreator(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Crear plan</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="createPlan(event)">
-
-      <div class="form-group">
-        <label>Nombre del plan</label>
-        <input id="planTitle" required>
-      </div>
-
-      <div class="form-group">
-        <label>Categoría</label>
-
-        <select id="planCategory">
-
-          <option>Running</option>
-          <option>Fitness</option>
-          <option>Deporte</option>
-          <option>Música</option>
-          <option>Cine</option>
-          <option>Cafés</option>
-          <option>Playa</option>
-          <option>Bici</option>
-          <option>Ocio</option>
-
-        </select>
-
-      </div>
-
-      <div class="form-group">
-        <label>Descripción</label>
-        <textarea id="planDescription" required></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>Hora</label>
-        <input id="planTime" type="time" required>
-      </div>
-
-      <div class="form-group">
-        <label>Lugar</label>
-        <input id="planLocation" value="Tarragona" required>
-      </div>
-
-      <div class="form-group">
-        <label>Foto del plan</label>
-        <input id="planImage" type="url" placeholder="https://...">
-      </div>
-
-      <button class="primary-btn" style="width:100%">
-        Crear plan
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-
-function createPlan(event){
-
-  event.preventDefault();
-
-  const plan={
-    id:Date.now(),
-    title:document.getElementById("planTitle").value,
-    category:document.getElementById("planCategory").value,
-    description:document.getElementById("planDescription").value,
-    time:document.getElementById("planTime").value,
-    location:document.getElementById("planLocation").value,
-    people:1,
-    image:
-      document.getElementById("planImage").value ||
-      defaultPlanImage()
-  };
-
-  plans.unshift(plan);
-
-  save(STORAGE.plans,plans);
-
-  closeModal();
-
-  renderPlans();
-
-  showToast("Plan creado correctamente 🎉");
-
-}
-
-
-/* =====================================================
-   GROUPS
-===================================================== */
-
-function renderGroups(){
-
-  document.getElementById("groupsContainer").innerHTML=
-    groups.map(group=>`
-
-      <div class="card group-card">
-
-        <div class="group-icon">
-          ${group.emoji || "👥"}
-        </div>
-
-        <div class="grow">
-
-          <h3>${escapeHTML(group.name)}</h3>
-
-          <div class="muted">
-            ${escapeHTML(group.description)}
-          </div>
-
-          <div class="plan-info">
-            <span class="info-pill">
-              ${escapeHTML(group.category)}
-            </span>
-
-            <span class="info-pill">
-              👥 ${group.members.toLocaleString()}
-            </span>
-          </div>
-
-        </div>
-
-        <button
-          class="secondary-btn"
-          onclick="joinGroup(${group.id})"
-        >
-          Unirme
-        </button>
-
-      </div>
-
-    `).join("");
-
-}
-
-
-function joinGroup(id){
-
-  const group=groups.find(g=>g.id===id);
-
-  if(!group)return;
-
-  group.members++;
-
-  save(STORAGE.groups,groups);
-
-  renderGroups();
-
-  showToast(
-    `Te has unido a ${group.name} 👥`
-  );
-
-}
-
-
-function openGroupCreator(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Crear grupo</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="createGroup(event)">
-
-      <div class="form-group">
-        <label>Nombre</label>
-        <input id="groupName" required>
-      </div>
-
-      <div class="form-group">
-        <label>Categoría</label>
-
-        <select id="groupCategory">
-          <option>Deporte</option>
-          <option>Ocio</option>
-          <option>Música</option>
-          <option>Fitness</option>
-          <option>Viajes</option>
-          <option>Gaming</option>
-        </select>
-
-      </div>
-
-      <div class="form-group">
-        <label>Descripción</label>
-        <textarea id="groupDescription" required></textarea>
-      </div>
-
-      <button class="primary-btn" style="width:100%">
-        Crear grupo
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-
-function createGroup(event){
-
-  event.preventDefault();
-
-  const category=
-    document.getElementById("groupCategory").value;
-
-  const group={
-    id:Date.now(),
-    name:document.getElementById("groupName").value,
-    category,
-    description:
-      document.getElementById("groupDescription").value,
-    members:1,
-    emoji:getCategoryEmoji(category)
-  };
-
-  groups.unshift(group);
-
-  save(STORAGE.groups,groups);
-
-  closeModal();
-
-  renderGroups();
-
-  showToast("Grupo creado correctamente 👥");
-
-}
-
-
-/* =====================================================
-   CALENDAR
-===================================================== */
-
-function renderCalendar(){
-
-  const grid=
-    document.getElementById("calendarGrid");
-
-  const days=[
-    "L","M","X","J","V","S","D"
-  ];
-
-  let html=
-    days.map(d=>
-      `<div class="calendar-head">${d}</div>`
-    ).join("");
-
-  for(let i=1;i<=31;i++){
-
-    const hasEvent=i<=plans.length;
-
-    html+=`
-      <div
-        class="calendar-day ${hasEvent?"event":""}"
-        onclick="calendarDay(${i})"
-      >
-        ${i}
-      </div>
-    `;
-
-  }
-
-  grid.innerHTML=html;
-
-  document.getElementById("calendarEvents").innerHTML=
-    plans.slice(0,5).map(plan=>`
-      <div class="card">
-
-        <strong>${escapeHTML(plan.title)}</strong>
-
-        <div class="muted">
-          📅 Próximamente · 🕐 ${escapeHTML(plan.time)}
-        </div>
-
-      </div>
-    `).join("");
-
-}
-
-
-function calendarDay(day){
-
-  showToast(`Día ${day} seleccionado 🗓️`);
-
-}
-
-
-/* =====================================================
+/* =========================================================
    CHAT
-===================================================== */
+   ========================================================= */
 
-function renderChats(){
+function chatHTML(chat) {
 
-  document.getElementById("chatsContainer").innerHTML=
-    chats.map(chat=>{
+    return `
+        <button class="chat-card"
+                onclick="openChat('${chat.name}')">
 
-      const last=
-        chat.messages[chat.messages.length-1];
+            <img
+                class="chat-avatar"
+                src="${chat.image}"
+                alt="${chat.name}">
 
-      return `
+            <div class="chat-text">
 
-        <div
-          class="chat-item"
-          onclick="openChat(${chat.id})"
-        >
+                <strong>
+                    ${chat.name}
+                </strong>
 
-          <img
-            class="avatar"
-            src="${chat.avatar}"
-            alt=""
-          >
+                <span>
+                    ${chat.message}
+                </span>
 
-          <div class="grow">
-
-            <strong>
-              ${escapeHTML(chat.name)}
-            </strong>
-
-            <div class="muted">
-              ${escapeHTML(last?.text || "")}
             </div>
 
-          </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px">
 
-          <span>›</span>
+                <span class="chat-time">
+                    ${chat.time}
+                </span>
+
+                ${
+                    chat.unread
+                    ? `<span class="unread">${chat.unread}</span>`
+                    : ""
+                }
+
+            </div>
+
+        </button>
+    `;
+
+}
+
+
+function renderChats(search="") {
+
+    search =
+        search.toLowerCase().trim();
+
+    const result =
+        chats.filter(chat =>
+            !search ||
+            chat.name.toLowerCase().includes(search) ||
+            chat.message.toLowerCase().includes(search)
+        );
+
+    document.getElementById("chatContainer")
+        .innerHTML =
+        result.map(chatHTML).join("");
+
+}
+
+
+function openChat(name) {
+
+    toast(`💬 Abriendo conversación con ${name}`);
+
+}
+
+
+/* =========================================================
+   EXPLORAR
+   ========================================================= */
+
+function renderExplore() {
+
+    document.getElementById("explorePeople")
+        .innerHTML =
+        people.slice(0,6)
+        .map(personHTML)
+        .join("");
+
+    document.getElementById("explorePlans")
+        .innerHTML =
+        plans.slice(0,4)
+        .map(planHTML)
+        .join("");
+
+}
+
+
+/* =========================================================
+   INICIO
+   ========================================================= */
+
+function renderHome() {
+
+    renderCategories();
+
+    renderHomePeople();
+
+    renderHomePlans();
+
+}
+
+
+/* =========================================================
+   IA DEMO
+   ========================================================= */
+
+function runAI() {
+
+    const input =
+        document.getElementById("aiInput")
+            .value.trim();
+
+    if (!input) {
+
+        toast("Escribe qué estás buscando");
+
+        return;
+
+    }
+
+    const result =
+        document.getElementById("aiResult");
+
+    const recommendedPeople =
+        people.slice(0,3)
+        .map(personHTML)
+        .join("");
+
+    result.innerHTML = `
+
+        <div style="
+            background:#F4F0FF;
+            border-radius:18px;
+            padding:14px;
+            margin-bottom:14px;
+        ">
+
+            <strong>✨ NEXO IA recomienda</strong>
+
+            <p style="font-size:12px;color:#71717A">
+                Basándome en tu búsqueda,
+                estas personas y planes podrían encajar contigo.
+            </p>
 
         </div>
 
-      `;
-
-    }).join("");
-
-}
-
-
-function openChat(id){
-
-  const chat=chats.find(c=>c.id===id);
-
-  if(!chat)return;
-
-  currentChat=id;
-
-  document.getElementById("chatName").textContent=
-    chat.name;
-
-  document.getElementById("chatAvatar").src=
-    chat.avatar;
-
-  document.getElementById("chatWindow")
-    .classList.add("active");
-
-  renderChatMessages();
-
-}
-
-
-function renderChatMessages(){
-
-  const chat=
-    chats.find(c=>c.id===currentChat);
-
-  if(!chat)return;
-
-  const container=
-    document.getElementById("chatMessages");
-
-  container.innerHTML=
-    chat.messages.map(message=>`
-
-      <div class="message ${message.from==="me"?"me":""}">
-        ${escapeHTML(message.text)}
-      </div>
-
-    `).join("");
-
-  container.scrollTop=
-    container.scrollHeight;
-
-}
-
-
-function closeChat(){
-
-  document.getElementById("chatWindow")
-    .classList.remove("active");
-
-  currentChat=null;
-
-  renderChats();
-
-}
-
-
-function sendMessage(event){
-
-  event.preventDefault();
-
-  if(!currentChat)return;
-
-  const input=
-    document.getElementById("messageInput");
-
-  const text=input.value.trim();
-
-  if(!text)return;
-
-  const chat=
-    chats.find(c=>c.id===currentChat);
-
-  chat.messages.push({
-    from:"me",
-    text
-  });
-
-  save(STORAGE.chats,chats);
-
-  input.value="";
-
-  renderChatMessages();
-
-  setTimeout(()=>{
-
-    chat.messages.push({
-      from:"them",
-      text:"¡Perfecto! 😊"
-    });
-
-    save(STORAGE.chats,chats);
-
-    renderChatMessages();
-
-  },700);
-
-}
-
-
-/* =====================================================
-   NOW
-===================================================== */
-
-function renderNow(){
-
-  document.getElementById("nowContainer").innerHTML=
-    plans.map(plan=>`
-
-      <div class="card">
-
-        <div class="row">
-
-          <div class="group-icon">
-            ${getCategoryEmoji(plan.category)}
-          </div>
-
-          <div class="grow">
-
-            <h3>
-              ${escapeHTML(plan.title)}
-            </h3>
-
-            <div class="muted">
-              ${escapeHTML(plan.description)}
-            </div>
-
-            <div class="plan-info">
-
-              <span class="info-pill">
-                🕐 ${escapeHTML(plan.time)}
-              </span>
-
-              <span class="info-pill">
-                📍 ${escapeHTML(plan.location)}
-              </span>
-
-            </div>
-
-          </div>
-
-          <button
-            class="secondary-btn"
-            onclick="openPlan(${plan.id})"
-          >
-            Ver
-          </button>
-
+        <div class="people-grid">
+            ${recommendedPeople}
         </div>
 
-      </div>
-
-    `).join("");
+    `;
 
 }
 
 
-/* =====================================================
-   MAP
-===================================================== */
+/* =========================================================
+   PERFIL
+   ========================================================= */
 
-function renderMap(){
+function saveProfile() {
 
-  document.getElementById("mapResults").innerHTML=`
+    const name =
+        document.getElementById("editName").value.trim();
 
-    <div class="section-title">
-      <h2>📍 Actividad cercana</h2>
-    </div>
+    const bio =
+        document.getElementById("editBio").value.trim();
 
-    ${plans.slice(0,4).map(plan=>`
+    const photo =
+        document.getElementById("editPhoto").value.trim();
 
-      <div class="card">
+    if (name) {
 
-        <div class="row">
+        document.querySelector(".profile-name")
+            .innerHTML =
+            `${name} <span class="verified">✓</span>`;
 
-          <div class="group-icon">
-            ${getCategoryEmoji(plan.category)}
-          </div>
+    }
 
-          <div class="grow">
+    const bioElement =
+        document.querySelector(".profile-bio");
 
-            <strong>${escapeHTML(plan.title)}</strong>
+    if (bio) {
+        bioElement.textContent = bio;
+    }
 
-            <div class="muted">
-              📍 ${escapeHTML(plan.location)}
-            </div>
+    if (photo) {
 
-          </div>
+        document.getElementById("profileImage")
+            .src = photo;
 
-        </div>
+    }
 
-      </div>
-
-    `).join("")}
-
-  `;
-
-}
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
-
-function renderProfile(){
-
-  document.getElementById("myAvatar").src=
-    profile.avatar;
-
-  document.getElementById("myName").textContent=
-    profile.name;
-
-  document.getElementById("myBio").textContent=
-    profile.bio;
-
-  document.getElementById("myChips").innerHTML=
-    profile.interests.map(i=>
-      `<span class="chip">${escapeHTML(i)}</span>`
-    ).join("");
-
-}
-
-
-function openProfileEditor(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>Editar perfil</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <form onsubmit="saveProfile(event)">
-
-      <div class="form-group">
-        <label>Nombre</label>
-        <input
-          id="editName"
-          value="${escapeAttribute(profile.name)}"
-          required
-        >
-      </div>
-
-      <div class="form-group">
-        <label>Descripción</label>
-
-        <textarea id="editBio">${escapeHTML(profile.bio)}</textarea>
-
-      </div>
-
-      <div class="form-group">
-        <label>URL de foto</label>
-
-        <input
-          id="editAvatar"
-          value="${escapeAttribute(profile.avatar)}"
-        >
-
-      </div>
-
-      <div class="form-group">
-        <label>Intereses separados por comas</label>
-
-        <input
-          id="editInterests"
-          value="${escapeAttribute(profile.interests.join(", "))}"
-        >
-
-      </div>
-
-      <button class="primary-btn" style="width:100%">
-        Guardar cambios
-      </button>
-
-    </form>
-
-  `);
-
-}
-
-
-function saveProfile(event){
-
-  event.preventDefault();
-
-  profile={
-    ...profile,
-    name:document.getElementById("editName").value,
-    bio:document.getElementById("editBio").value,
-    avatar:document.getElementById("editAvatar").value,
-    interests:
-      document.getElementById("editInterests")
-        .value
-        .split(",")
-        .map(x=>x.trim())
-        .filter(Boolean)
-  };
-
-  save(STORAGE.profile,profile);
-
-  closeModal();
-
-  renderProfile();
-
-  showToast("Perfil actualizado 👤");
-
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-function openSettings(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>⚙️ Ajustes</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <strong>🌙 Apariencia</strong>
-
-      <p class="muted">
-        Cambia el aspecto de NEXO.
-      </p>
-
-      <button
-        class="secondary-btn"
-        onclick="toggleDarkMode();closeModal()"
-      >
-        Cambiar modo
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <strong>🔔 Notificaciones</strong>
-
-      <p class="muted">
-        ${preferences.notifications
-          ?"Activadas"
-          :"Desactivadas"}
-      </p>
-
-      <button
-        class="secondary-btn"
-        onclick="toggleNotifications();closeModal()"
-      >
-        Cambiar
-      </button>
-
-    </div>
-
-    <div class="card">
-
-      <strong>📍 Distancia</strong>
-
-      <p class="muted">
-        Mostrar personas hasta ${preferences.distance} km.
-      </p>
-
-      <button
-        class="secondary-btn"
-        onclick="changeDistance();closeModal()"
-      >
-        Cambiar distancia
-      </button>
-
-    </div>
-
-  `);
-
-}
-
-
-function toggleNotifications(){
-
-  preferences.notifications=
-    !preferences.notifications;
-
-  save(
-    STORAGE.preferences,
-    preferences
-  );
-
-  showToast(
-    preferences.notifications
-      ?"Notificaciones activadas 🔔"
-      :"Notificaciones desactivadas"
-  );
-
-}
-
-
-function changeDistance(){
-
-  const value=prompt(
-    "¿Cuántos kilómetros quieres?",
-    preferences.distance
-  );
-
-  if(value===null)return;
-
-  const distance=parseInt(value);
-
-  if(!Number.isNaN(distance) && distance>0){
-
-    preferences.distance=distance;
-
-    save(
-      STORAGE.preferences,
-      preferences
+    localStorage.setItem(
+        "nexoProfile",
+        JSON.stringify({
+            name,
+            bio,
+            photo
+        })
     );
 
-    showToast("Distancia actualizada 📍");
+    closeModal("editProfileModal");
 
-  }
-
-}
-
-
-/* =====================================================
-   QR
-===================================================== */
-
-function openQR(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>📷 Mi NEXO</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div style="
-      text-align:center;
-      padding:25px;
-    ">
-
-      <div style="
-        font-size:100px;
-        line-height:1;
-      ">
-        ▦
-      </div>
-
-      <h3>${escapeHTML(profile.name)}</h3>
-
-      <p class="muted">
-        Comparte tu perfil NEXO.
-      </p>
-
-      <button
-        class="primary-btn"
-        onclick="shareProfile()"
-      >
-        Compartir perfil
-      </button>
-
-    </div>
-
-  `);
+    toast("✓ Perfil actualizado");
 
 }
 
 
-async function shareProfile(){
+function loadProfile() {
 
-  const text=
-    `¡Hola! Soy ${profile.name} en NEXO.`;
+    try {
 
-  if(navigator.share){
+        const saved =
+            JSON.parse(
+                localStorage.getItem("nexoProfile")
+            );
 
-    try{
+        if (!saved) return;
 
-      await navigator.share({
+        if (saved.name) {
+
+            document.querySelector(".profile-name")
+                .innerHTML =
+                `${saved.name} <span class="verified">✓</span>`;
+
+            document.getElementById("editName")
+                .value = saved.name;
+
+        }
+
+        if (saved.bio) {
+
+            document.querySelector(".profile-bio")
+                .textContent = saved.bio;
+
+            document.getElementById("editBio")
+                .value = saved.bio;
+
+        }
+
+        if (saved.photo) {
+
+            document.getElementById("profileImage")
+                .src = saved.photo;
+
+            document.getElementById("editPhoto")
+                .value = saved.photo;
+
+        }
+
+    } catch(e) {
+
+        console.log("No hay perfil guardado");
+
+    }
+
+}
+
+
+/* =========================================================
+   COMPARTIR
+   ========================================================= */
+
+async function shareProfile() {
+
+    const data = {
         title:"Mi perfil NEXO",
-        text
-      });
+        text:"Conecta conmigo en NEXO."
+    };
 
-    }catch(e){}
+    if (navigator.share) {
 
-  }else{
+        try {
 
-    await navigator.clipboard
-      ?.writeText(text);
+            await navigator.share(data);
 
-    showToast("Perfil copiado 📋");
+            toast("Perfil compartido");
 
-  }
+        } catch(e) {}
 
-}
+    } else {
 
+        try {
 
-/* =====================================================
-   AI
-===================================================== */
+            await navigator.clipboard.writeText(
+                "Mi perfil NEXO"
+            );
 
-function openAI(){
+            toast("🔗 Copiado al portapapeles");
 
-  openModal(`
+        } catch(e) {
 
-    <div class="modal-header">
+            toast("Comparte tu perfil NEXO");
 
-      <h2>✦ NEXO AI</h2>
+        }
 
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="ai-box">
-
-      <div class="ai-title">
-        Tu asistente NEXO
-      </div>
-
-      <p>
-        Puedo ayudarte a encontrar personas,
-        planes y actividades según tus intereses.
-      </p>
-
-      <button
-        class="secondary-btn"
-        onclick="aiRecommendation()"
-      >
-        ✨ Recomiéndame algo
-      </button>
-
-      <div
-        id="aiResult"
-        style="margin-top:12px"
-      ></div>
-
-    </div>
-
-  `);
-
-}
-
-
-function aiRecommendation(){
-
-  const item=
-    exploreData[
-      Math.floor(
-        Math.random()*exploreData.length
-      )
-    ];
-
-  document.getElementById("aiResult").innerHTML=`
-
-    <div class="card">
-
-      <strong>
-        Te recomiendo:
-      </strong>
-
-      <h3>
-        ${escapeHTML(item.title)}
-      </h3>
-
-      <p class="muted">
-        ${escapeHTML(item.description)}
-      </p>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =====================================================
-   NOTIFICATIONS
-===================================================== */
-
-function openNotifications(){
-
-  notifications=
-    notifications.map(n=>({
-      ...n,
-      read:true
-    }));
-
-  save(
-    STORAGE.notifications,
-    notifications
-  );
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>🔔 Notificaciones</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    ${
-      notifications.length
-      ? notifications.map(n=>`
-          <div class="card">
-            ${escapeHTML(n.text)}
-          </div>
-        `).join("")
-      : `
-        <div class="card">
-          No tienes notificaciones.
-        </div>
-      `
     }
 
-  `);
+}
+
+
+/* =========================================================
+   IDIOMA
+   ========================================================= */
+
+function selectLanguage(language) {
+
+    closeModal("languageModal");
+
+    toast(`🌐 Idioma seleccionado: ${language}`);
 
 }
 
 
-/* =====================================================
-   SEARCH MODAL
-===================================================== */
-
-function openSearch(){
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>🔎 Buscar</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <div class="search-box">
-
-      🔎
-
-      <input
-        id="globalModalSearch"
-        autofocus
-        placeholder="Busca en NEXO..."
-        oninput="modalSearch(this.value)"
-      >
-
-    </div>
-
-    <div id="modalSearchResults"
-         style="margin-top:15px">
-    </div>
-
-  `);
-
-}
-
-
-function modalSearch(value){
-
-  const q=value.trim().toLowerCase();
-
-  if(!q){
-
-    document.getElementById(
-      "modalSearchResults"
-    ).innerHTML="";
-
-    return;
-
-  }
-
-  const results=[
-
-    ...exploreData.map(x=>({
-      type:"Plan",
-      title:x.title,
-      description:x.description
-    })),
-
-    ...groups.map(x=>({
-      type:"Grupo",
-      title:x.name,
-      description:x.description
-    })),
-
-    ...people.map(x=>({
-      type:"Persona",
-      title:x.name,
-      description:x.bio
-    }))
-
-  ].filter(x=>
-    `${x.title} ${x.description}`
-      .toLowerCase()
-      .includes(q)
-  );
-
-  document.getElementById(
-    "modalSearchResults"
-  ).innerHTML=
-    results.length
-      ? results.map(x=>`
-          <div class="card">
-            <strong>
-              ${escapeHTML(x.title)}
-            </strong>
-            <div class="muted">
-              ${escapeHTML(x.type)}
-            </div>
-            <p class="muted">
-              ${escapeHTML(x.description)}
-            </p>
-          </div>
-        `).join("")
-      : `
-        <div class="card">
-          No se encontraron resultados.
-        </div>
-      `;
-
-}
-
-
-/* =====================================================
-   MODAL FUNCTIONS
-===================================================== */
-
-function openModal(content){
-
-  document.getElementById("modal").innerHTML=
-    content;
-
-  document
-    .getElementById("modalOverlay")
-    .classList.add("active");
-
-}
-
-
-function closeModal(){
-
-  document
-    .getElementById("modalOverlay")
-    .classList.remove("active");
-
-}
-
-
-document
-  .getElementById("modalOverlay")
-  .addEventListener("click",event=>{
-
-    if(event.target.id==="modalOverlay"){
-      closeModal();
-    }
-
-  });
-
-
-/* =====================================================
-   UTILS
-===================================================== */
-
-function escapeHTML(value){
-
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-function escapeAttribute(value){
-
-  return escapeHTML(value);
-
-}
-
-
-function getCategoryEmoji(category){
-
-  const map={
-    Running:"🏃",
-    Fitness:"🏋️",
-    Deporte:"⚽",
-    Deportes:"⚽",
-    Música:"🎵",
-    Cine:"🎬",
-    Cafés:"☕",
-    Playa:"🏖️",
-    Bici:"🚲",
-    Gaming:"🎮",
-    Viajes:"✈️",
-    Gastronomía:"🍔",
-    Fotografía:"📸",
-    Ocio:"🎉"
-  };
-
-  return map[category] || "✨";
-
-}
-
-
-function defaultPlanImage(){
-
-  return "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80";
-
-}
-
-
-function openExploreItem(index){
-
-  const item=
-    exploreData[index];
-
-  if(!item)return;
-
-  openModal(`
-
-    <div class="modal-header">
-
-      <h2>${escapeHTML(item.title)}</h2>
-
-      <button
-        class="close-btn"
-        onclick="closeModal()"
-      >
-        ✕
-      </button>
-
-    </div>
-
-    <img
-      class="plan-image"
-      src="${item.image}"
-      alt=""
-    >
-
-    <p>
-      ${escapeHTML(item.description)}
-    </p>
-
-    <div class="plan-info">
-
-      <span class="info-pill">
-        ${getCategoryEmoji(item.category)}
-        ${escapeHTML(item.category)}
-      </span>
-
-      <span class="info-pill">
-        📍 ${escapeHTML(item.location)}
-      </span>
-
-      <span class="info-pill">
-        🕐 ${escapeHTML(item.time)}
-      </span>
-
-    </div>
-
-    <button
-      class="primary-btn"
-      style="width:100%;margin-top:12px"
-      onclick="closeModal();showToast('¡Plan guardado! ⭐')"
-    >
-      ⭐ Me interesa
-    </button>
-
-  `);
-
-}
-
-
-function showToast(text){
-
-  const toast=document.createElement("div");
-
-  toast.textContent=text;
-
-  toast.style.position="fixed";
-  toast.style.left="50%";
-  toast.style.bottom="90px";
-  toast.style.transform="translateX(-50%)";
-  toast.style.zIndex="3000";
-  toast.style.background="#17151F";
-  toast.style.color="white";
-  toast.style.padding="12px 17px";
-  toast.style.borderRadius="14px";
-  toast.style.fontWeight="700";
-  toast.style.fontSize="13px";
-  toast.style.boxShadow="0 10px 30px rgba(0,0,0,.2)";
-
-  document.body.appendChild(toast);
-
-  setTimeout(()=>{
-    toast.remove();
-  },2200);
-
-}
-
-
-/* =====================================================
+/* =========================================================
    DARK MODE
-===================================================== */
+   ========================================================= */
 
-function applyTheme(){
+function toggleDarkMode() {
 
-  const dark=
-    localStorage.getItem(
-      STORAGE.theme
-    )==="dark";
-
-  document.body.classList.toggle(
-    "dark",
-    dark
-  );
-
-}
-
-
-function toggleDarkMode(){
-
-  const dark=
     document.body.classList.toggle("dark");
 
-  localStorage.setItem(
-    STORAGE.theme,
-    dark
-      ?"dark"
-      :"light"
-  );
+    const enabled =
+        document.body.classList.contains("dark");
 
-  showToast(
-    dark
-      ?"Modo oscuro activado 🌙"
-      :"Modo claro activado ☀️"
-  );
+    document.getElementById("toggleDark")
+        .classList.toggle("on",enabled);
+
+    localStorage.setItem(
+        "nexoDark",
+        enabled ? "1" : "0"
+    );
 
 }
 
 
-/* =====================================================
-   INIT
-===================================================== */
+function loadTheme() {
 
-function init(){
+    const dark =
+        localStorage.getItem("nexoDark") === "1";
 
-  applyTheme();
+    if (dark) {
 
-  renderQuickActions();
-  renderHome();
-  renderExplore();
-  renderPeople();
-  renderPlans();
-  renderCalendar();
-  renderChats();
-  renderGroups();
-  renderNow();
-  renderMap();
-  renderProfile();
+        document.body.classList.add("dark");
+
+        document.getElementById("toggleDark")
+            .classList.add("on");
+
+    }
 
 }
 
-init();
+
+/* =========================================================
+   NOTIFICACIONES
+   ========================================================= */
+
+function toggleSetting(type) {
+
+    if (type === "notifications") {
+
+        const element =
+            document.getElementById("toggleNotifications");
+
+        element.classList.toggle("on");
+
+        toast(
+            element.classList.contains("on")
+                ? "🔔 Notificaciones activadas"
+                : "🔕 Notificaciones desactivadas"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   GEOLOCALIZACIÓN
+   ========================================================= */
+
+function locateUser() {
+
+    if (!navigator.geolocation) {
+
+        toast("La geolocalización no está disponible");
+
+        return;
+
+    }
+
+    toast("📍 Buscando tu ubicación...");
+
+    navigator.geolocation.getCurrentPosition(
+
+        position => {
+
+            console.log(
+                position.coords.latitude,
+                position.coords.longitude
+            );
+
+            toast("📍 Ubicación encontrada");
+
+        },
+
+        () => {
+
+            toast("No se pudo obtener la ubicación");
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   DATOS LOCALES
+   ========================================================= */
+
+function saveData() {
+
+    try {
+
+        localStorage.setItem(
+            "nexoPlans",
+            JSON.stringify(plans)
+        );
+
+        localStorage.setItem(
+            "nexoGroups",
+            JSON.stringify(groups)
+        );
+
+    } catch(e) {
+
+        console.log("No se pudieron guardar los datos");
+
+    }
+
+}
+
+
+function loadData() {
+
+    try {
+
+        const savedPlans =
+            JSON.parse(
+                localStorage.getItem("nexoPlans")
+            );
+
+        const savedGroups =
+            JSON.parse(
+                localStorage.getItem("nexoGroups")
+            );
+
+        if (Array.isArray(savedPlans)) {
+            plans = savedPlans;
+        }
+
+        if (Array.isArray(savedGroups)) {
+            groups = savedGroups;
+        }
+
+    } catch(e) {
+
+        console.log("Datos iniciales utilizados");
+
+    }
+
+}
+
+
+function clearLocalData() {
+
+    const confirmed =
+        confirm(
+            "¿Quieres borrar los datos locales de NEXO?"
+        );
+
+    if (!confirmed) return;
+
+    localStorage.removeItem("nexoPlans");
+    localStorage.removeItem("nexoGroups");
+    localStorage.removeItem("nexoProfile");
+    localStorage.removeItem("nexoDark");
+
+    toast("Datos locales eliminados");
+
+    setTimeout(() => {
+        location.reload();
+    },800);
+
+}
+
+
+/* =========================================================
+   PREVENIR ERRORES DE IMAGEN
+   ========================================================= */
+
+document.addEventListener(
+    "error",
+    function(event) {
+
+        if (
+            event.target &&
+            event.target.tagName === "IMG"
+        ) {
+
+            event.target.src =
+                "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80";
+
+        }
+
+    },
+    true
+);
+
+
+/* =========================================================
+   INICIALIZACIÓN
+   ========================================================= */
+
+function initNexo() {
+
+    loadData();
+
+    loadTheme();
+
+    loadProfile();
+
+    renderCategories();
+
+    renderHome();
+
+    renderPeople();
+
+    renderPlans();
+
+    renderGroups();
+
+    renderChats();
+
+    renderExplore();
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initNexo
+);
+
+
+/* =========================================================
+   SERVICE WORKER
+   ========================================================= */
+
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then(() => {
+                    console.log("NEXO Service Worker activo");
+                })
+                .catch(error => {
+                    console.log(
+                        "Service Worker no disponible:",
+                        error
+                    );
+                });
+
+        }
+    );
+
+}
 
 </script>
 
